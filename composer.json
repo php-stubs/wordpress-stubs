@@ -1,0 +1,21 @@
+{
+    "name": "giacocorsiglia/wordpress-stubs",
+    "description": "WordPress function, class, and global variable declaration stubs for easier static analysis.",
+    "homepage": "https://github.com/GiacoCorsiglia/wordpress-stubs",
+    "keywords": [
+        "wordpress",
+        "static analysis"
+    ],
+    "require-dev": {
+        "giacocorsiglia/stubs-generator": "^0.1.0",
+        "johnpbloch/wordpress": "4.9.4"
+    },
+    "license": "GPL-2.0+",
+    "authors": [
+        {
+            "name": "Giaco Corsiglia",
+            "email": "GiacoCorsiglia@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable"
+}
