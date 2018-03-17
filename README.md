@@ -28,7 +28,7 @@ Furthermore, ensure WordPress core code is _not_ included under `<projectFiles>`
 
 ## Versioning
 
-This package is versioned to match the WordPress version from which the stubs are generated.
+This package is versioned to match the WordPress version from which the stubs are generated.  If any fixes to stubs are required, subsequent releases will be versioned as `WP_VERSION.X`.
 
 ## Generating stubs for a different WordPress version
 
