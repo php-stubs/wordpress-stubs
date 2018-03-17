@@ -4,6 +4,9 @@
  * https://wordpress.org
  * https://github.com/GiacoCorsiglia/wordpress-stubs
  */
+/** @var wpdb */
+$wpdb = new wpdb("","","","");
+
 
 /**
  * The custom background script.
