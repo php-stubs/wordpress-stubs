@@ -1,5 +1,15 @@
 #!/usr/bin/env bash
 
-HEADER=$'/**\n * Generated stub declarations for WordPress.\n * https://wordpress.org\n * https://github.com/GiacoCorsiglia/wordpress-stubs\n */\n/** @var wpdb */\n$wpdb = new wpdb("","","","");\n'
+HEADER=$'/**\n * Generated stub declarations for WordPress.\n * https://wordpress.org\n * https://github.com/GiacoCorsiglia/wordpress-stubs\n */'
 
-"$(dirname $0)/vendor/bin/generate-stubs" --finder=finder.php --out=wordpress-stubs.php --force --header="$HEADER"
+FILE='wordpress-stubs.php'
+
+"$(dirname $0)/vendor/bin/generate-stubs" \
+  --finder=finder.php \
+  --out=$FILE --force \
+  --header="$HEADER" \
+  --nullify-globals
+
+# Shim the global $wpdb declaration, since it's actually set up inside a
+# function call.
+echo $'\n/**\n * WordPress database abstraction object.\n * @var wpdb\n */\n$wpdb = null;' >> $FILE

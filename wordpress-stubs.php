@@ -4,9 +4,6 @@
  * https://wordpress.org
  * https://github.com/GiacoCorsiglia/wordpress-stubs
  */
-/** @var wpdb */
-$wpdb = new wpdb("","","","");
-
 
 /**
  * The custom background script.
@@ -40710,13 +40707,13 @@ class IXR_IntrospectionServer extends \IXR_Server
  */
 class IXR_Message
 {
-    var $message;
-    var $messageType;
+    var $message = \false;
+    var $messageType = \false;
     // methodCall / methodResponse / fault
-    var $faultCode;
-    var $faultString;
-    var $methodName;
-    var $params;
+    var $faultCode = \false;
+    var $faultString = \false;
+    var $methodName = '';
+    var $params = array();
     // Current variable stacks
     var $_arraystructs = array();
     // The stack used to keep track of the current array/struct
@@ -66799,1405 +66796,6 @@ function do_dismiss_core_update()
  * @since 2.7.0
  */
 function do_undismiss_core_update()
-{
-}
-/**
- * Sets up theme defaults and registers support for various WordPress features.
- *
- * Note that this function is hooked into the after_setup_theme hook, which
- * runs before the init hook. The init hook is too late for some features, such
- * as indicating support for post thumbnails.
- *
- * @since Twenty Fifteen 1.0
- */
-function twentyfifteen_setup()
-{
-}
-/**
- * Register widget area.
- *
- * @since Twenty Fifteen 1.0
- *
- * @link https://codex.wordpress.org/Function_Reference/register_sidebar
- */
-function twentyfifteen_widgets_init()
-{
-}
-/**
- * Register Google fonts for Twenty Fifteen.
- *
- * @since Twenty Fifteen 1.0
- *
- * @return string Google fonts URL for the theme.
- */
-function twentyfifteen_fonts_url()
-{
-}
-/**
- * JavaScript Detection.
- *
- * Adds a `js` class to the root `<html>` element when JavaScript is detected.
- *
- * @since Twenty Fifteen 1.1
- */
-function twentyfifteen_javascript_detection()
-{
-}
-/**
- * Enqueue scripts and styles.
- *
- * @since Twenty Fifteen 1.0
- */
-function twentyfifteen_scripts()
-{
-}
-/**
- * Add preconnect for Google Fonts.
- *
- * @since Twenty Fifteen 1.7
- *
- * @param array   $urls          URLs to print for resource hints.
- * @param string  $relation_type The relation type the URLs are printed.
- * @return array URLs to print for resource hints.
- */
-function twentyfifteen_resource_hints($urls, $relation_type)
-{
-}
-/**
- * Add featured image as background image to post navigation elements.
- *
- * @since Twenty Fifteen 1.0
- *
- * @see wp_add_inline_style()
- */
-function twentyfifteen_post_nav_background()
-{
-}
-/**
- * Display descriptions in main navigation.
- *
- * @since Twenty Fifteen 1.0
- *
- * @param string  $item_output The menu item output.
- * @param WP_Post $item        Menu item object.
- * @param int     $depth       Depth of the menu.
- * @param array   $args        wp_nav_menu() arguments.
- * @return string Menu item with possible description.
- */
-function twentyfifteen_nav_description($item_output, $item, $depth, $args)
-{
-}
-/**
- * Add a `screen-reader-text` class to the search form's submit button.
- *
- * @since Twenty Fifteen 1.0
- *
- * @param string $html Search form HTML.
- * @return string Modified search form HTML.
- */
-function twentyfifteen_search_form_modify($html)
-{
-}
-/**
- * Modifies tag cloud widget arguments to display all tags in the same font size
- * and use list format for better accessibility.
- *
- * @since Twenty Fifteen 1.9
- *
- * @param array $args Arguments for tag cloud widget.
- * @return array The filtered arguments for tag cloud widget.
- */
-function twentyfifteen_widget_tag_cloud_args($args)
-{
-}
-/**
- * Twenty Fifteen back compat functionality
- *
- * Prevents Twenty Fifteen from running on WordPress versions prior to 4.1,
- * since this theme is not meant to be backward compatible beyond that and
- * relies on many newer functions and markup changes introduced in 4.1.
- *
- * @package WordPress
- * @subpackage Twenty_Fifteen
- * @since Twenty Fifteen 1.0
- */
-/**
- * Prevent switching to Twenty Fifteen on old versions of WordPress.
- *
- * Switches to the default theme.
- *
- * @since Twenty Fifteen 1.0
- */
-function twentyfifteen_switch_theme()
-{
-}
-/**
- * Add message for unsuccessful theme switch.
- *
- * Prints an update nag after an unsuccessful attempt to switch to
- * Twenty Fifteen on WordPress versions prior to 4.1.
- *
- * @since Twenty Fifteen 1.0
- */
-function twentyfifteen_upgrade_notice()
-{
-}
-/**
- * Prevent the Customizer from being loaded on WordPress versions prior to 4.1.
- *
- * @since Twenty Fifteen 1.0
- */
-function twentyfifteen_customize()
-{
-}
-/**
- * Prevent the Theme Preview from being loaded on WordPress versions prior to 4.1.
- *
- * @since Twenty Fifteen 1.0
- */
-function twentyfifteen_preview()
-{
-}
-/**
- * Custom Header functionality for Twenty Fifteen
- *
- * @package WordPress
- * @subpackage Twenty_Fifteen
- * @since Twenty Fifteen 1.0
- */
-/**
- * Set up the WordPress core custom header feature.
- *
- * @uses twentyfifteen_header_style()
- */
-function twentyfifteen_custom_header_setup()
-{
-}
-/**
- * Convert HEX to RGB.
- *
- * @since Twenty Fifteen 1.0
- *
- * @param string $color The original color, in 3- or 6-digit hexadecimal form.
- * @return array Array containing RGB (red, green, and blue) values for the given
- *               HEX code, empty array otherwise.
- */
-function twentyfifteen_hex2rgb($color)
-{
-}
-/**
- * Styles the header image and text displayed on the blog.
- *
- * @since Twenty Fifteen 1.0
- *
- * @see twentyfifteen_custom_header_setup()
- */
-function twentyfifteen_header_style()
-{
-}
-// twentyfifteen_header_style
-/**
- * Enqueues front-end CSS for the header background color.
- *
- * @since Twenty Fifteen 1.0
- *
- * @see wp_add_inline_style()
- */
-function twentyfifteen_header_background_color_css()
-{
-}
-/**
- * Enqueues front-end CSS for the sidebar text color.
- *
- * @since Twenty Fifteen 1.0
- */
-function twentyfifteen_sidebar_text_color_css()
-{
-}
-/**
- * Twenty Fifteen Customizer functionality
- *
- * @package WordPress
- * @subpackage Twenty_Fifteen
- * @since Twenty Fifteen 1.0
- */
-/**
- * Add postMessage support for site title and description for the Customizer.
- *
- * @since Twenty Fifteen 1.0
- *
- * @param WP_Customize_Manager $wp_customize Customizer object.
- */
-function twentyfifteen_customize_register($wp_customize)
-{
-}
-/**
- * Render the site title for the selective refresh partial.
- *
- * @since Twenty Fifteen 1.5
- * @see twentyfifteen_customize_register()
- *
- * @return void
- */
-function twentyfifteen_customize_partial_blogname()
-{
-}
-/**
- * Render the site tagline for the selective refresh partial.
- *
- * @since Twenty Fifteen 1.5
- * @see twentyfifteen_customize_register()
- *
- * @return void
- */
-function twentyfifteen_customize_partial_blogdescription()
-{
-}
-/**
- * Register color schemes for Twenty Fifteen.
- *
- * Can be filtered with {@see 'twentyfifteen_color_schemes'}.
- *
- * The order of colors in a colors array:
- * 1. Main Background Color.
- * 2. Sidebar Background Color.
- * 3. Box Background Color.
- * 4. Main Text and Link Color.
- * 5. Sidebar Text and Link Color.
- * 6. Meta Box Background Color.
- *
- * @since Twenty Fifteen 1.0
- *
- * @return array An associative array of color scheme options.
- */
-function twentyfifteen_get_color_schemes()
-{
-}
-/**
- * Get the current Twenty Fifteen color scheme.
- *
- * @since Twenty Fifteen 1.0
- *
- * @return array An associative array of either the current or default color scheme hex values.
- */
-function twentyfifteen_get_color_scheme()
-{
-}
-/**
- * Returns an array of color scheme choices registered for Twenty Fifteen.
- *
- * @since Twenty Fifteen 1.0
- *
- * @return array Array of color schemes.
- */
-function twentyfifteen_get_color_scheme_choices()
-{
-}
-/**
- * Sanitization callback for color schemes.
- *
- * @since Twenty Fifteen 1.0
- *
- * @param string $value Color scheme name value.
- * @return string Color scheme name.
- */
-function twentyfifteen_sanitize_color_scheme($value)
-{
-}
-// twentyfifteen_sanitize_color_scheme
-/**
- * Enqueues front-end CSS for color scheme.
- *
- * @since Twenty Fifteen 1.0
- *
- * @see wp_add_inline_style()
- */
-function twentyfifteen_color_scheme_css()
-{
-}
-/**
- * Binds JS listener to make Customizer color_scheme control.
- *
- * Passes color scheme data as colorScheme global.
- *
- * @since Twenty Fifteen 1.0
- */
-function twentyfifteen_customize_control_js()
-{
-}
-/**
- * Binds JS handlers to make the Customizer preview reload changes asynchronously.
- *
- * @since Twenty Fifteen 1.0
- */
-function twentyfifteen_customize_preview_js()
-{
-}
-/**
- * Returns CSS for the color schemes.
- *
- * @since Twenty Fifteen 1.0
- *
- * @param array $colors Color scheme colors.
- * @return string Color scheme CSS.
- */
-function twentyfifteen_get_color_scheme_css($colors)
-{
-}
-/**
- * Output an Underscore template for generating CSS for the color scheme.
- *
- * The template generates the css dynamically for instant display in the Customizer
- * preview.
- *
- * @since Twenty Fifteen 1.0
- */
-function twentyfifteen_color_scheme_css_template()
-{
-}
-/**
- * Display navigation to next/previous comments when applicable.
- *
- * @since Twenty Fifteen 1.0
- */
-function twentyfifteen_comment_nav()
-{
-}
-/**
- * Prints HTML with meta information for the categories, tags.
- *
- * @since Twenty Fifteen 1.0
- */
-function twentyfifteen_entry_meta()
-{
-}
-/**
- * Determine whether blog/site has more than one category.
- *
- * @since Twenty Fifteen 1.0
- *
- * @return bool True of there is more than one category, false otherwise.
- */
-function twentyfifteen_categorized_blog()
-{
-}
-/**
- * Flush out the transients used in {@see twentyfifteen_categorized_blog()}.
- *
- * @since Twenty Fifteen 1.0
- */
-function twentyfifteen_category_transient_flusher()
-{
-}
-/**
- * Display an optional post thumbnail.
- *
- * Wraps the post thumbnail in an anchor element on index views, or a div
- * element when on single views.
- *
- * @since Twenty Fifteen 1.0
- */
-function twentyfifteen_post_thumbnail()
-{
-}
-/**
- * Return the post URL.
- *
- * Falls back to the post permalink if no URL is found in the post.
- *
- * @since Twenty Fifteen 1.0
- *
- * @see get_url_in_content()
- *
- * @return string The Link format URL.
- */
-function twentyfifteen_get_link_url()
-{
-}
-/**
- * Replaces "[...]" (appended to automatically generated excerpts) with ... and a 'Continue reading' link.
- *
- * @since Twenty Fifteen 1.0
- *
- * @return string 'Continue reading' link prepended with an ellipsis.
- */
-function twentyfifteen_excerpt_more($more)
-{
-}
-/**
- * Displays the optional custom logo.
- *
- * Does nothing if the custom logo is not available.
- *
- * @since Twenty Fifteen 1.5
- */
-function twentyfifteen_the_custom_logo()
-{
-}
-/**
- * Sets up theme defaults and registers support for various WordPress features.
- *
- * Note that this function is hooked into the after_setup_theme hook, which
- * runs before the init hook. The init hook is too late for some features, such
- * as indicating support for post thumbnails.
- */
-function twentyseventeen_setup()
-{
-}
-/**
- * Set the content width in pixels, based on the theme's design and stylesheet.
- *
- * Priority 0 to make it available to lower priority callbacks.
- *
- * @global int $content_width
- */
-function twentyseventeen_content_width()
-{
-}
-/**
- * Register custom fonts.
- */
-function twentyseventeen_fonts_url()
-{
-}
-/**
- * Add preconnect for Google Fonts.
- *
- * @since Twenty Seventeen 1.0
- *
- * @param array  $urls           URLs to print for resource hints.
- * @param string $relation_type  The relation type the URLs are printed.
- * @return array $urls           URLs to print for resource hints.
- */
-function twentyseventeen_resource_hints($urls, $relation_type)
-{
-}
-/**
- * Register widget area.
- *
- * @link https://developer.wordpress.org/themes/functionality/sidebars/#registering-a-sidebar
- */
-function twentyseventeen_widgets_init()
-{
-}
-/**
- * Replaces "[...]" (appended to automatically generated excerpts) with ... and
- * a 'Continue reading' link.
- *
- * @since Twenty Seventeen 1.0
- *
- * @param string $link Link to single post/page.
- * @return string 'Continue reading' link prepended with an ellipsis.
- */
-function twentyseventeen_excerpt_more($link)
-{
-}
-/**
- * Handles JavaScript detection.
- *
- * Adds a `js` class to the root `<html>` element when JavaScript is detected.
- *
- * @since Twenty Seventeen 1.0
- */
-function twentyseventeen_javascript_detection()
-{
-}
-/**
- * Add a pingback url auto-discovery header for singularly identifiable articles.
- */
-function twentyseventeen_pingback_header()
-{
-}
-/**
- * Display custom color CSS.
- */
-function twentyseventeen_colors_css_wrap()
-{
-}
-/**
- * Enqueue scripts and styles.
- */
-function twentyseventeen_scripts()
-{
-}
-/**
- * Add custom image sizes attribute to enhance responsive image functionality
- * for content images.
- *
- * @since Twenty Seventeen 1.0
- *
- * @param string $sizes A source size value for use in a 'sizes' attribute.
- * @param array  $size  Image size. Accepts an array of width and height
- *                      values in pixels (in that order).
- * @return string A source size value for use in a content image 'sizes' attribute.
- */
-function twentyseventeen_content_image_sizes_attr($sizes, $size)
-{
-}
-/**
- * Filter the `sizes` value in the header image markup.
- *
- * @since Twenty Seventeen 1.0
- *
- * @param string $html   The HTML image tag markup being filtered.
- * @param object $header The custom header object returned by 'get_custom_header()'.
- * @param array  $attr   Array of the attributes for the image tag.
- * @return string The filtered header image HTML.
- */
-function twentyseventeen_header_image_tag($html, $header, $attr)
-{
-}
-/**
- * Add custom image sizes attribute to enhance responsive image functionality
- * for post thumbnails.
- *
- * @since Twenty Seventeen 1.0
- *
- * @param array $attr       Attributes for the image markup.
- * @param int   $attachment Image attachment ID.
- * @param array $size       Registered image size or flat array of height and width dimensions.
- * @return array The filtered attributes for the image markup.
- */
-function twentyseventeen_post_thumbnail_sizes_attr($attr, $attachment, $size)
-{
-}
-/**
- * Use front-page.php when Front page displays is set to a static page.
- *
- * @since Twenty Seventeen 1.0
- *
- * @param string $template front-page.php.
- *
- * @return string The template to be used: blank if is_home() is true (defaults to index.php), else $template.
- */
-function twentyseventeen_front_page_template($template)
-{
-}
-/**
- * Modifies tag cloud widget arguments to display all tags in the same font size
- * and use list format for better accessibility.
- *
- * @since Twenty Seventeen 1.4
- *
- * @param array $args Arguments for tag cloud widget.
- * @return array The filtered arguments for tag cloud widget.
- */
-function twentyseventeen_widget_tag_cloud_args($args)
-{
-}
-/**
- * Twenty Seventeen back compat functionality
- *
- * Prevents Twenty Seventeen from running on WordPress versions prior to 4.7,
- * since this theme is not meant to be backward compatible beyond that and
- * relies on many newer functions and markup changes introduced in 4.7.
- *
- * @package WordPress
- * @subpackage Twenty_Seventeen
- * @since Twenty Seventeen 1.0
- */
-/**
- * Prevent switching to Twenty Seventeen on old versions of WordPress.
- *
- * Switches to the default theme.
- *
- * @since Twenty Seventeen 1.0
- */
-function twentyseventeen_switch_theme()
-{
-}
-/**
- * Adds a message for unsuccessful theme switch.
- *
- * Prints an update nag after an unsuccessful attempt to switch to
- * Twenty Seventeen on WordPress versions prior to 4.7.
- *
- * @since Twenty Seventeen 1.0
- *
- * @global string $wp_version WordPress version.
- */
-function twentyseventeen_upgrade_notice()
-{
-}
-/**
- * Prevents the Customizer from being loaded on WordPress versions prior to 4.7.
- *
- * @since Twenty Seventeen 1.0
- *
- * @global string $wp_version WordPress version.
- */
-function twentyseventeen_customize()
-{
-}
-/**
- * Prevents the Theme Preview from being loaded on WordPress versions prior to 4.7.
- *
- * @since Twenty Seventeen 1.0
- *
- * @global string $wp_version WordPress version.
- */
-function twentyseventeen_preview()
-{
-}
-/**
- * Twenty Seventeen: Color Patterns
- *
- * @package WordPress
- * @subpackage Twenty_Seventeen
- * @since 1.0
- */
-/**
- * Generate the CSS for the current custom color scheme.
- */
-function twentyseventeen_custom_colors_css()
-{
-}
-/**
- * Custom header implementation
- *
- * @link https://codex.wordpress.org/Custom_Headers
- *
- * @package WordPress
- * @subpackage Twenty_Seventeen
- * @since 1.0
- */
-/**
- * Set up the WordPress core custom header feature.
- *
- * @uses twentyseventeen_header_style()
- */
-function twentyseventeen_custom_header_setup()
-{
-}
-/**
- * Styles the header image and text displayed on the blog.
- *
- * @see twentyseventeen_custom_header_setup().
- */
-function twentyseventeen_header_style()
-{
-}
-// End of twentyseventeen_header_style.
-/**
- * Customize video play/pause button in the custom header.
- *
- * @param array $settings Video settings.
- * @return array The filtered video settings.
- */
-function twentyseventeen_video_controls($settings)
-{
-}
-/**
- * Twenty Seventeen: Customizer
- *
- * @package WordPress
- * @subpackage Twenty_Seventeen
- * @since 1.0
- */
-/**
- * Add postMessage support for site title and description for the Theme Customizer.
- *
- * @param WP_Customize_Manager $wp_customize Theme Customizer object.
- */
-function twentyseventeen_customize_register($wp_customize)
-{
-}
-/**
- * Sanitize the page layout options.
- *
- * @param string $input Page layout.
- */
-function twentyseventeen_sanitize_page_layout($input)
-{
-}
-/**
- * Sanitize the colorscheme.
- *
- * @param string $input Color scheme.
- */
-function twentyseventeen_sanitize_colorscheme($input)
-{
-}
-/**
- * Render the site title for the selective refresh partial.
- *
- * @since Twenty Seventeen 1.0
- * @see twentyseventeen_customize_register()
- *
- * @return void
- */
-function twentyseventeen_customize_partial_blogname()
-{
-}
-/**
- * Render the site tagline for the selective refresh partial.
- *
- * @since Twenty Seventeen 1.0
- * @see twentyseventeen_customize_register()
- *
- * @return void
- */
-function twentyseventeen_customize_partial_blogdescription()
-{
-}
-/**
- * Return whether we're previewing the front page and it's a static page.
- */
-function twentyseventeen_is_static_front_page()
-{
-}
-/**
- * Return whether we're on a view that supports a one or two column layout.
- */
-function twentyseventeen_is_view_with_layout_option()
-{
-}
-/**
- * Bind JS handlers to instantly live-preview changes.
- */
-function twentyseventeen_customize_preview_js()
-{
-}
-/**
- * Load dynamic logic for the customizer controls area.
- */
-function twentyseventeen_panels_js()
-{
-}
-/**
- * SVG icons related functions and filters
- *
- * @package WordPress
- * @subpackage Twenty_Seventeen
- * @since 1.0
- */
-/**
- * Add SVG definitions to the footer.
- */
-function twentyseventeen_include_svg_icons()
-{
-}
-/**
- * Return SVG markup.
- *
- * @param array $args {
- *     Parameters needed to display an SVG.
- *
- *     @type string $icon  Required SVG icon filename.
- *     @type string $title Optional SVG title.
- *     @type string $desc  Optional SVG description.
- * }
- * @return string SVG markup.
- */
-function twentyseventeen_get_svg($args = array())
-{
-}
-/**
- * Display SVG icons in social links menu.
- *
- * @param  string  $item_output The menu item output.
- * @param  WP_Post $item        Menu item object.
- * @param  int     $depth       Depth of the menu.
- * @param  array   $args        wp_nav_menu() arguments.
- * @return string  $item_output The menu item output with social icon.
- */
-function twentyseventeen_nav_menu_social_icons($item_output, $item, $depth, $args)
-{
-}
-/**
- * Add dropdown icon if menu item has children.
- *
- * @param  string  $title The menu item's title.
- * @param  WP_Post $item  The current menu item.
- * @param  array   $args  An array of wp_nav_menu() arguments.
- * @param  int     $depth Depth of menu item. Used for padding.
- * @return string  $title The menu item's title with dropdown icon.
- */
-function twentyseventeen_dropdown_icon_to_menu_link($title, $item, $args, $depth)
-{
-}
-/**
- * Returns an array of supported social links (URL and icon name).
- *
- * @return array $social_links_icons
- */
-function twentyseventeen_social_links_icons()
-{
-}
-/**
- * Additional features to allow styling of the templates
- *
- * @package WordPress
- * @subpackage Twenty_Seventeen
- * @since 1.0
- */
-/**
- * Adds custom classes to the array of body classes.
- *
- * @param array $classes Classes for the body element.
- * @return array
- */
-function twentyseventeen_body_classes($classes)
-{
-}
-/**
- * Count our number of active panels.
- *
- * Primarily used to see if we have any panels active, duh.
- */
-function twentyseventeen_panel_count()
-{
-}
-/**
- * Checks to see if we're on the homepage or not.
- */
-function twentyseventeen_is_frontpage()
-{
-}
-/**
- * Prints HTML with meta information for the current post-date/time and author.
- */
-function twentyseventeen_posted_on()
-{
-}
-/**
- * Gets a nicely formatted string for the published date.
- */
-function twentyseventeen_time_link()
-{
-}
-/**
- * Prints HTML with meta information for the categories, tags and comments.
- */
-function twentyseventeen_entry_footer()
-{
-}
-/**
- * Returns an accessibility-friendly link to edit a post or page.
- *
- * This also gives us a little context about what exactly we're editing
- * (post or page?) so that users understand a bit more where they are in terms
- * of the template hierarchy and their content. Helpful when/if the single-page
- * layout with multiple posts/pages shown gets confusing.
- */
-function twentyseventeen_edit_link()
-{
-}
-/**
- * Display a front page section.
- *
- * @param WP_Customize_Partial $partial Partial associated with a selective refresh request.
- * @param integer              $id Front page section to display.
- */
-function twentyseventeen_front_page_section($partial = \null, $id = 0)
-{
-}
-/**
- * Returns true if a blog has more than 1 category.
- *
- * @return bool
- */
-function twentyseventeen_categorized_blog()
-{
-}
-/**
- * Flush out the transients used in twentyseventeen_categorized_blog.
- */
-function twentyseventeen_category_transient_flusher()
-{
-}
-/**
- * Sets up theme defaults and registers support for various WordPress features.
- *
- * Note that this function is hooked into the after_setup_theme hook, which
- * runs before the init hook. The init hook is too late for some features, such
- * as indicating support for post thumbnails.
- *
- * Create your own twentysixteen_setup() function to override in a child theme.
- *
- * @since Twenty Sixteen 1.0
- */
-function twentysixteen_setup()
-{
-}
-/**
- * Sets the content width in pixels, based on the theme's design and stylesheet.
- *
- * Priority 0 to make it available to lower priority callbacks.
- *
- * @global int $content_width
- *
- * @since Twenty Sixteen 1.0
- */
-function twentysixteen_content_width()
-{
-}
-/**
- * Registers a widget area.
- *
- * @link https://developer.wordpress.org/reference/functions/register_sidebar/
- *
- * @since Twenty Sixteen 1.0
- */
-function twentysixteen_widgets_init()
-{
-}
-/**
- * Register Google fonts for Twenty Sixteen.
- *
- * Create your own twentysixteen_fonts_url() function to override in a child theme.
- *
- * @since Twenty Sixteen 1.0
- *
- * @return string Google fonts URL for the theme.
- */
-function twentysixteen_fonts_url()
-{
-}
-/**
- * Handles JavaScript detection.
- *
- * Adds a `js` class to the root `<html>` element when JavaScript is detected.
- *
- * @since Twenty Sixteen 1.0
- */
-function twentysixteen_javascript_detection()
-{
-}
-/**
- * Enqueues scripts and styles.
- *
- * @since Twenty Sixteen 1.0
- */
-function twentysixteen_scripts()
-{
-}
-/**
- * Adds custom classes to the array of body classes.
- *
- * @since Twenty Sixteen 1.0
- *
- * @param array $classes Classes for the body element.
- * @return array (Maybe) filtered body classes.
- */
-function twentysixteen_body_classes($classes)
-{
-}
-/**
- * Converts a HEX value to RGB.
- *
- * @since Twenty Sixteen 1.0
- *
- * @param string $color The original color, in 3- or 6-digit hexadecimal form.
- * @return array Array containing RGB (red, green, and blue) values for the given
- *               HEX code, empty array otherwise.
- */
-function twentysixteen_hex2rgb($color)
-{
-}
-/**
- * Add custom image sizes attribute to enhance responsive image functionality
- * for content images
- *
- * @since Twenty Sixteen 1.0
- *
- * @param string $sizes A source size value for use in a 'sizes' attribute.
- * @param array  $size  Image size. Accepts an array of width and height
- *                      values in pixels (in that order).
- * @return string A source size value for use in a content image 'sizes' attribute.
- */
-function twentysixteen_content_image_sizes_attr($sizes, $size)
-{
-}
-/**
- * Add custom image sizes attribute to enhance responsive image functionality
- * for post thumbnails
- *
- * @since Twenty Sixteen 1.0
- *
- * @param array $attr Attributes for the image markup.
- * @param int   $attachment Image attachment ID.
- * @param array $size Registered image size or flat array of height and width dimensions.
- * @return array The filtered attributes for the image markup.
- */
-function twentysixteen_post_thumbnail_sizes_attr($attr, $attachment, $size)
-{
-}
-/**
- * Modifies tag cloud widget arguments to display all tags in the same font size
- * and use list format for better accessibility.
- *
- * @since Twenty Sixteen 1.1
- *
- * @param array $args Arguments for tag cloud widget.
- * @return array The filtered arguments for tag cloud widget.
- */
-function twentysixteen_widget_tag_cloud_args($args)
-{
-}
-/**
- * Twenty Sixteen back compat functionality
- *
- * Prevents Twenty Sixteen from running on WordPress versions prior to 4.4,
- * since this theme is not meant to be backward compatible beyond that and
- * relies on many newer functions and markup changes introduced in 4.4.
- *
- * @package WordPress
- * @subpackage Twenty_Sixteen
- * @since Twenty Sixteen 1.0
- */
-/**
- * Prevent switching to Twenty Sixteen on old versions of WordPress.
- *
- * Switches to the default theme.
- *
- * @since Twenty Sixteen 1.0
- */
-function twentysixteen_switch_theme()
-{
-}
-/**
- * Adds a message for unsuccessful theme switch.
- *
- * Prints an update nag after an unsuccessful attempt to switch to
- * Twenty Sixteen on WordPress versions prior to 4.4.
- *
- * @since Twenty Sixteen 1.0
- *
- * @global string $wp_version WordPress version.
- */
-function twentysixteen_upgrade_notice()
-{
-}
-/**
- * Prevents the Customizer from being loaded on WordPress versions prior to 4.4.
- *
- * @since Twenty Sixteen 1.0
- *
- * @global string $wp_version WordPress version.
- */
-function twentysixteen_customize()
-{
-}
-/**
- * Prevents the Theme Preview from being loaded on WordPress versions prior to 4.4.
- *
- * @since Twenty Sixteen 1.0
- *
- * @global string $wp_version WordPress version.
- */
-function twentysixteen_preview()
-{
-}
-/**
- * Twenty Sixteen Customizer functionality
- *
- * @package WordPress
- * @subpackage Twenty_Sixteen
- * @since Twenty Sixteen 1.0
- */
-/**
- * Sets up the WordPress core custom header and custom background features.
- *
- * @since Twenty Sixteen 1.0
- *
- * @see twentysixteen_header_style()
- */
-function twentysixteen_custom_header_and_background()
-{
-}
-/**
- * Styles the header text displayed on the site.
- *
- * Create your own twentysixteen_header_style() function to override in a child theme.
- *
- * @since Twenty Sixteen 1.0
- *
- * @see twentysixteen_custom_header_and_background().
- */
-function twentysixteen_header_style()
-{
-}
-// twentysixteen_header_style
-/**
- * Adds postMessage support for site title and description for the Customizer.
- *
- * @since Twenty Sixteen 1.0
- *
- * @param WP_Customize_Manager $wp_customize The Customizer object.
- */
-function twentysixteen_customize_register($wp_customize)
-{
-}
-/**
- * Render the site title for the selective refresh partial.
- *
- * @since Twenty Sixteen 1.2
- * @see twentysixteen_customize_register()
- *
- * @return void
- */
-function twentysixteen_customize_partial_blogname()
-{
-}
-/**
- * Render the site tagline for the selective refresh partial.
- *
- * @since Twenty Sixteen 1.2
- * @see twentysixteen_customize_register()
- *
- * @return void
- */
-function twentysixteen_customize_partial_blogdescription()
-{
-}
-/**
- * Registers color schemes for Twenty Sixteen.
- *
- * Can be filtered with {@see 'twentysixteen_color_schemes'}.
- *
- * The order of colors in a colors array:
- * 1. Main Background Color.
- * 2. Page Background Color.
- * 3. Link Color.
- * 4. Main Text Color.
- * 5. Secondary Text Color.
- *
- * @since Twenty Sixteen 1.0
- *
- * @return array An associative array of color scheme options.
- */
-function twentysixteen_get_color_schemes()
-{
-}
-/**
- * Retrieves the current Twenty Sixteen color scheme.
- *
- * Create your own twentysixteen_get_color_scheme() function to override in a child theme.
- *
- * @since Twenty Sixteen 1.0
- *
- * @return array An associative array of either the current or default color scheme HEX values.
- */
-function twentysixteen_get_color_scheme()
-{
-}
-/**
- * Retrieves an array of color scheme choices registered for Twenty Sixteen.
- *
- * Create your own twentysixteen_get_color_scheme_choices() function to override
- * in a child theme.
- *
- * @since Twenty Sixteen 1.0
- *
- * @return array Array of color schemes.
- */
-function twentysixteen_get_color_scheme_choices()
-{
-}
-/**
- * Handles sanitization for Twenty Sixteen color schemes.
- *
- * Create your own twentysixteen_sanitize_color_scheme() function to override
- * in a child theme.
- *
- * @since Twenty Sixteen 1.0
- *
- * @param string $value Color scheme name value.
- * @return string Color scheme name.
- */
-function twentysixteen_sanitize_color_scheme($value)
-{
-}
-// twentysixteen_sanitize_color_scheme
-/**
- * Enqueues front-end CSS for color scheme.
- *
- * @since Twenty Sixteen 1.0
- *
- * @see wp_add_inline_style()
- */
-function twentysixteen_color_scheme_css()
-{
-}
-/**
- * Binds the JS listener to make Customizer color_scheme control.
- *
- * Passes color scheme data as colorScheme global.
- *
- * @since Twenty Sixteen 1.0
- */
-function twentysixteen_customize_control_js()
-{
-}
-/**
- * Binds JS handlers to make the Customizer preview reload changes asynchronously.
- *
- * @since Twenty Sixteen 1.0
- */
-function twentysixteen_customize_preview_js()
-{
-}
-/**
- * Returns CSS for the color schemes.
- *
- * @since Twenty Sixteen 1.0
- *
- * @param array $colors Color scheme colors.
- * @return string Color scheme CSS.
- */
-function twentysixteen_get_color_scheme_css($colors)
-{
-}
-/**
- * Outputs an Underscore template for generating CSS for the color scheme.
- *
- * The template generates the css dynamically for instant display in the
- * Customizer preview.
- *
- * @since Twenty Sixteen 1.0
- */
-function twentysixteen_color_scheme_css_template()
-{
-}
-/**
- * Enqueues front-end CSS for the page background color.
- *
- * @since Twenty Sixteen 1.0
- *
- * @see wp_add_inline_style()
- */
-function twentysixteen_page_background_color_css()
-{
-}
-/**
- * Enqueues front-end CSS for the link color.
- *
- * @since Twenty Sixteen 1.0
- *
- * @see wp_add_inline_style()
- */
-function twentysixteen_link_color_css()
-{
-}
-/**
- * Enqueues front-end CSS for the main text color.
- *
- * @since Twenty Sixteen 1.0
- *
- * @see wp_add_inline_style()
- */
-function twentysixteen_main_text_color_css()
-{
-}
-/**
- * Enqueues front-end CSS for the secondary text color.
- *
- * @since Twenty Sixteen 1.0
- *
- * @see wp_add_inline_style()
- */
-function twentysixteen_secondary_text_color_css()
-{
-}
-/**
- * Prints HTML with meta information for the categories, tags.
- *
- * Create your own twentysixteen_entry_meta() function to override in a child theme.
- *
- * @since Twenty Sixteen 1.0
- */
-function twentysixteen_entry_meta()
-{
-}
-/**
- * Prints HTML with date information for current post.
- *
- * Create your own twentysixteen_entry_date() function to override in a child theme.
- *
- * @since Twenty Sixteen 1.0
- */
-function twentysixteen_entry_date()
-{
-}
-/**
- * Prints HTML with category and tags for current post.
- *
- * Create your own twentysixteen_entry_taxonomies() function to override in a child theme.
- *
- * @since Twenty Sixteen 1.0
- */
-function twentysixteen_entry_taxonomies()
-{
-}
-/**
- * Displays an optional post thumbnail.
- *
- * Wraps the post thumbnail in an anchor element on index views, or a div
- * element when on single views.
- *
- * Create your own twentysixteen_post_thumbnail() function to override in a child theme.
- *
- * @since Twenty Sixteen 1.0
- */
-function twentysixteen_post_thumbnail()
-{
-}
-/**
- * Displays the optional excerpt.
- *
- * Wraps the excerpt in a div element.
- *
- * Create your own twentysixteen_excerpt() function to override in a child theme.
- *
- * @since Twenty Sixteen 1.0
- *
- * @param string $class Optional. Class string of the div element. Defaults to 'entry-summary'.
- */
-function twentysixteen_excerpt($class = 'entry-summary')
-{
-}
-/**
- * Replaces "[...]" (appended to automatically generated excerpts) with ... and
- * a 'Continue reading' link.
- *
- * Create your own twentysixteen_excerpt_more() function to override in a child theme.
- *
- * @since Twenty Sixteen 1.0
- *
- * @return string 'Continue reading' link prepended with an ellipsis.
- */
-function twentysixteen_excerpt_more()
-{
-}
-/**
- * Determines whether blog/site has more than one category.
- *
- * Create your own twentysixteen_categorized_blog() function to override in a child theme.
- *
- * @since Twenty Sixteen 1.0
- *
- * @return bool True if there is more than one category, false otherwise.
- */
-function twentysixteen_categorized_blog()
-{
-}
-/**
- * Flushes out the transients used in twentysixteen_categorized_blog().
- *
- * @since Twenty Sixteen 1.0
- */
-function twentysixteen_category_transient_flusher()
-{
-}
-/**
- * Displays the optional custom logo.
- *
- * Does nothing if the custom logo is not available.
- *
- * @since Twenty Sixteen 1.2
- */
-function twentysixteen_the_custom_logo()
 {
 }
 /**
@@ -97273,16 +95871,6 @@ function strip_shortcode_tag($m)
 {
 }
 /**
- * Autoloader compatibility callback.
- *
- * @since 4.6.0
- *
- * @param string $classname Class to attempt autoloading.
- */
-function __autoload($classname)
-{
-}
-/**
  * Core Taxonomy API
  *
  * @package WordPress
@@ -102014,7 +100602,7 @@ function logIO($io, $msg)
  * @param string $admin_title The page title, with extra context added.
  * @param string $title       The original page title.
  */
-$admin_title = \apply_filters('admin_title', $admin_title, $title);
+$admin_title = \null;
 /**
  * Filters the CSS classes for the body tag in the admin.
  *
@@ -102029,13 +100617,13 @@ $admin_title = \apply_filters('admin_title', $admin_title, $title);
  *
  * @param string $classes Space-separated list of CSS classes.
  */
-$admin_body_classes = \apply_filters('admin_body_class', '');
+$admin_body_classes = \null;
 /**
  * Post ID global
  * @name $post_ID
  * @var int
  */
-$post_ID = isset($post_ID) ? (int) $post_ID : 0;
+$post_ID = \null;
 // Hack, for now.
 /**
  * Filters the post updated messages.
@@ -102044,7 +100632,7 @@ $post_ID = isset($post_ID) ? (int) $post_ID : 0;
  *
  * @param array $messages Post updated messages. For defaults @see $messages declarations above.
  */
-$messages = \apply_filters('post_updated_messages', $messages);
+$messages = \null;
 /**
  * Filters the title field placeholder text.
  *
@@ -102053,9 +100641,9 @@ $messages = \apply_filters('post_updated_messages', $messages);
  * @param string  $text Placeholder text. Default 'Enter title here'.
  * @param WP_Post $post Post object.
  */
-$title_placeholder = \apply_filters('enter_title_here', \__('Enter title here'), $post);
+$title_placeholder = \null;
 /** This filter is documented in wp-admin/edit-tags.php */
-$dropdown_args = \apply_filters('taxonomy_parent_dropdown_args', $dropdown_args, $taxonomy, 'edit');
+$dropdown_args = \null;
 /**
  * Filters the bulk action updated messages.
  *
@@ -102067,7 +100655,7 @@ $dropdown_args = \apply_filters('taxonomy_parent_dropdown_args', $dropdown_args,
  *                             keyed with 'updated', 'locked', 'deleted', 'trashed', and 'untrashed'.
  * @param array $bulk_counts   Array of item counts for each message, used to build internationalized strings.
  */
-$bulk_messages = \apply_filters('bulk_post_updated_messages', $bulk_messages, $bulk_counts);
+$bulk_messages = \null;
 /**
  * Filters the export args.
  *
@@ -102075,7 +100663,7 @@ $bulk_messages = \apply_filters('bulk_post_updated_messages', $bulk_messages, $b
  *
  * @param array $args The arguments to send to the exporter.
  */
-$args = \apply_filters('export_args', $args);
+$args = \null;
 /**
  * Edit Tags Administration: Messages
  *
@@ -102083,7 +100671,7 @@ $args = \apply_filters('export_args', $args);
  * @subpackage Administration
  * @since 4.4.0
  */
-$messages = array();
+$messages = \null;
 /**
  * Filters the messages displayed when a tag is updated.
  *
@@ -102091,7 +100679,7 @@ $messages = array();
  *
  * @param array $messages The messages to be displayed.
  */
-$messages = \apply_filters('term_updated_messages', $messages);
+$messages = \null;
 /**
  * Filesystem API: Top-level functionality
  *
@@ -102104,72 +100692,23 @@ $messages = \apply_filters('term_updated_messages', $messages);
  * @since 2.3.0
  */
 /** The descriptions for theme files. */
-$wp_file_descriptions = array(
-    'functions.php' => \__('Theme Functions'),
-    'header.php' => \__('Theme Header'),
-    'footer.php' => \__('Theme Footer'),
-    'sidebar.php' => \__('Sidebar'),
-    'comments.php' => \__('Comments'),
-    'searchform.php' => \__('Search Form'),
-    '404.php' => \__('404 Template'),
-    'link.php' => \__('Links Template'),
-    // Archives
-    'index.php' => \__('Main Index Template'),
-    'archive.php' => \__('Archives'),
-    'author.php' => \__('Author Template'),
-    'taxonomy.php' => \__('Taxonomy Template'),
-    'category.php' => \__('Category Template'),
-    'tag.php' => \__('Tag Template'),
-    'home.php' => \__('Posts Page'),
-    'search.php' => \__('Search Results'),
-    'date.php' => \__('Date Template'),
-    // Content
-    'singular.php' => \__('Singular Template'),
-    'single.php' => \__('Single Post'),
-    'page.php' => \__('Single Page'),
-    'front-page.php' => \__('Homepage'),
-    // Attachments
-    'attachment.php' => \__('Attachment Template'),
-    'image.php' => \__('Image Attachment Template'),
-    'video.php' => \__('Video Attachment Template'),
-    'audio.php' => \__('Audio Attachment Template'),
-    'application.php' => \__('Application Attachment Template'),
-    // Embeds
-    'embed.php' => \__('Embed Template'),
-    'embed-404.php' => \__('Embed 404 Template'),
-    'embed-content.php' => \__('Embed Content Template'),
-    'header-embed.php' => \__('Embed Header Template'),
-    'footer-embed.php' => \__('Embed Footer Template'),
-    // Stylesheets
-    'style.css' => \__('Stylesheet'),
-    'editor-style.css' => \__('Visual Editor Stylesheet'),
-    'editor-style-rtl.css' => \__('Visual Editor RTL Stylesheet'),
-    'rtl.css' => \__('RTL Stylesheet'),
-    // Other
-    'my-hacks.php' => \__('my-hacks.php (legacy hacks support)'),
-    '.htaccess' => \__('.htaccess (for rewrite rules )'),
-    // Deprecated files
-    'wp-layout.css' => \__('Stylesheet'),
-    'wp-comments.php' => \__('Comments Template'),
-    'wp-comments-popup.php' => \__('Popup Comments Template'),
-    'comments-popup.php' => \__('Popup Comments'),
-);
+$wp_file_descriptions = \null;
 /**
  * The database character collate.
  */
-$charset_collate = $wpdb->get_charset_collate();
+$charset_collate = \null;
 /**
  * WordPress Theme Installation Administration API
  *
  * @package WordPress
  * @subpackage Administration
  */
-$themes_allowedtags = array('a' => array('href' => array(), 'title' => array(), 'target' => array()), 'abbr' => array('title' => array()), 'acronym' => array('title' => array()), 'code' => array(), 'pre' => array(), 'em' => array(), 'strong' => array(), 'div' => array(), 'p' => array(), 'ul' => array(), 'ol' => array(), 'li' => array(), 'h1' => array(), 'h2' => array(), 'h3' => array(), 'h4' => array(), 'h5' => array(), 'h6' => array(), 'img' => array('src' => array(), 'class' => array(), 'alt' => array()));
+$themes_allowedtags = \null;
 /**
  * @global string    $wp_local_package
  * @global WP_Locale $wp_locale
  */
-$language = '';
+$language = \null;
 /**
  * Displays Administration Menu.
  *
@@ -102181,7 +100720,7 @@ $language = '';
  *
  * @global string $self
  */
-$self = \preg_replace('|^.*/wp-admin/network/|i', '', $_SERVER['PHP_SELF']);
+$self = \null;
 /**
  * Filters the parent file of an admin menu sub-menu item.
  *
@@ -102191,7 +100730,7 @@ $self = \preg_replace('|^.*/wp-admin/network/|i', '', $_SERVER['PHP_SELF']);
  *
  * @param string $parent_file The parent file.
  */
-$parent_file = \apply_filters('parent_file', $parent_file);
+$parent_file = \null;
 /**
  * Filters the file of an admin menu sub-menu item.
  *
@@ -102200,7 +100739,7 @@ $parent_file = \apply_filters('parent_file', $parent_file);
  * @param string $submenu_file The submenu file.
  * @param string $parent_file  The submenu item's parent file.
  */
-$submenu_file = \apply_filters('submenu_file', $submenu_file, $parent_file);
+$submenu_file = \null;
 /**
  * Filters the email content sent when a site in a Multisite network is deleted.
  *
@@ -102208,7 +100747,7 @@ $submenu_file = \apply_filters('submenu_file', $submenu_file, $parent_file);
  *
  * @param string $content The email content that will be sent to the user who deleted a site in a Multisite network.
  */
-$content = \apply_filters('delete_site_email_content', $content);
+$content = \null;
 /**
  * Filters whether to redirect the request to the Network Admin.
  *
@@ -102216,7 +100755,7 @@ $content = \apply_filters('delete_site_email_content', $content);
  *
  * @param bool $redirect_network_admin_request Whether the request should be redirected.
  */
-$redirect_network_admin_request = \apply_filters('redirect_network_admin_request', $redirect_network_admin_request);
+$redirect_network_admin_request = \null;
 /**
  * Filters available network-wide administration menu options.
  *
@@ -102232,7 +100771,7 @@ $redirect_network_admin_request = \apply_filters('redirect_network_admin_request
  *
  * @param array $admin_menus The menu items available.
  */
-$menu_items = \apply_filters('mu_menu_items', array('plugins' => \__('Plugins')));
+$menu_items = \null;
 /**
  * Filters the maximum depth of threaded/nested comments.
  *
@@ -102240,7 +100779,7 @@ $menu_items = \apply_filters('mu_menu_items', array('plugins' => \__('Plugins'))
  *
  * @param int $max_depth The maximum depth of threaded comments. Default 10.
  */
-$maxdeep = (int) \apply_filters('thread_comments_depth_max', 10);
+$maxdeep = \null;
 /**
  * Filters the default avatars.
  *
@@ -102251,7 +100790,7 @@ $maxdeep = (int) \apply_filters('thread_comments_depth_max', 10);
  *
  * @param array $avatar_defaults Array of default avatars.
  */
-$avatar_defaults = \apply_filters('avatar_defaults', $avatar_defaults);
+$avatar_defaults = \null;
 /**
  * Filters the default date formats.
  *
@@ -102260,7 +100799,7 @@ $avatar_defaults = \apply_filters('avatar_defaults', $avatar_defaults);
  *
  * @param array $default_date_formats Array of default date formats.
  */
-$date_formats = \array_unique(\apply_filters('date_formats', array(\__('F j, Y'), 'Y-m-d', 'm/d/Y', 'd/m/Y')));
+$date_formats = \null;
 /**
  * Filters the default time formats.
  *
@@ -102268,7 +100807,7 @@ $date_formats = \array_unique(\apply_filters('date_formats', array(\__('F j, Y')
  *
  * @param array $default_time_formats Array of default time formats.
  */
-$time_formats = \array_unique(\apply_filters('time_formats', array(\__('g:i a'), 'g:i A', 'H:i')));
+$time_formats = \null;
 /**
  * Filters the list of available permalink structure tags on the Permalinks settings page.
  *
@@ -102276,7 +100815,7 @@ $time_formats = \array_unique(\apply_filters('time_formats', array(\__('g:i a'),
  *
  * @param array $available_tags A key => value pair of available permalink structure tags.
  */
-$available_tags = \apply_filters('available_permalink_structure_tags', $available_tags);
+$available_tags = \null;
 /**
  * Filters the options white list.
  *
@@ -102284,11 +100823,11 @@ $available_tags = \apply_filters('available_permalink_structure_tags', $availabl
  *
  * @param array $whitelist_options White list options.
  */
-$whitelist_options = \apply_filters('whitelist_options', $whitelist_options);
+$whitelist_options = \null;
 /**
  * Redirect back to the settings page that was submitted
  */
-$goback = \add_query_arg('settings-updated', 'true', \wp_get_referer());
+$goback = \null;
 /**
  * Filters the tabs shown on the Add Themes screen.
  *
@@ -102298,7 +100837,7 @@ $goback = \add_query_arg('settings-updated', 'true', \wp_get_referer());
  *
  * @param array $tabs The tabs shown on the Add Themes screen. Default is 'upload'.
  */
-$tabs = \apply_filters('install_themes_tabs', array('upload' => \__('Upload Theme')));
+$tabs = \null;
 /**
  * Filters whether to redirect the request to the User Admin in Multisite.
  *
@@ -102306,7 +100845,7 @@ $tabs = \apply_filters('install_themes_tabs', array('upload' => \__('Upload Them
  *
  * @param bool $redirect_user_admin_request Whether the request should be redirected.
  */
-$redirect_user_admin_request = \apply_filters('redirect_user_admin_request', $redirect_user_admin_request);
+$redirect_user_admin_request = \null;
 /**
  * Filters the location URI to send the commenter after posting.
  *
@@ -102315,7 +100854,7 @@ $redirect_user_admin_request = \apply_filters('redirect_user_admin_request', $re
  * @param string     $location The 'redirect_to' URI sent via $_POST.
  * @param WP_Comment $comment  Comment object.
  */
-$location = \apply_filters('comment_post_redirect', $location, $comment);
+$location = \null;
 /**#@-*/
 /**
  * WordPress Database Table prefix.
@@ -102323,23 +100862,7 @@ $location = \apply_filters('comment_post_redirect', $location, $comment);
  * You can have multiple installations in one database if you give each
  * a unique prefix. Only numbers, letters, and underscores please!
  */
-$table_prefix = 'wp_';
-/**
- * Filter the author bio avatar size.
- *
- * @since Twenty Fifteen 1.0
- *
- * @param int $size The avatar height and width size in pixels.
- */
-$author_bio_avatar_size = \apply_filters('twentyfifteen_author_bio_avatar_size', 56);
-/**
- * Filter the Twenty Sixteen author bio avatar size.
- *
- * @since Twenty Sixteen 1.0
- *
- * @param int $size The avatar height and width size in pixels.
- */
-$author_bio_avatar_size = \apply_filters('twentysixteen_author_bio_avatar_size', 42);
+$table_prefix = \null;
 /**
  * WordPress API for creating bbcode-like tags or what WordPress calls
  * "shortcodes". The tag and attribute parsing or regular expression code is
@@ -102379,7 +100902,7 @@ $author_bio_avatar_size = \apply_filters('twentysixteen_author_bio_avatar_size',
  * @var array
  * @global array $shortcode_tags
  */
-$shortcode_tags = array();
+$shortcode_tags = \null;
 /**
  * Filters the thumbnail image ID for use in the embed template.
  *
@@ -102387,7 +100910,7 @@ $shortcode_tags = array();
  *
  * @param int $thumbnail_id Attachment ID.
  */
-$thumbnail_id = \apply_filters('embed_thumbnail_id', $thumbnail_id);
+$thumbnail_id = \null;
 /**
  * Filters the thumbnail image size for use in the embed template.
  *
@@ -102397,7 +100920,7 @@ $thumbnail_id = \apply_filters('embed_thumbnail_id', $thumbnail_id);
  * @param string $image_size   Thumbnail image size.
  * @param int    $thumbnail_id Attachment ID.
  */
-$image_size = \apply_filters('embed_thumbnail_image_size', $image_size, $thumbnail_id);
+$image_size = \null;
 /**
  * Filters the thumbnail shape for use in the embed template.
  *
@@ -102410,95 +100933,95 @@ $image_size = \apply_filters('embed_thumbnail_image_size', $image_size, $thumbna
  * @param string $shape        Thumbnail image shape. Either 'rectangular' or 'square'.
  * @param int    $thumbnail_id Attachment ID.
  */
-$shape = \apply_filters('embed_thumbnail_image_shape', $shape, $thumbnail_id);
+$shape = \null;
 // Server detection
 /**
  * Whether the server software is Apache or something else
  * @global bool $is_apache
  */
-$is_apache = \strpos($_SERVER['SERVER_SOFTWARE'], 'Apache') !== \false || \strpos($_SERVER['SERVER_SOFTWARE'], 'LiteSpeed') !== \false;
+$is_apache = \null;
 /**
  * Whether the server software is Nginx or something else
  * @global bool $is_nginx
  */
-$is_nginx = \strpos($_SERVER['SERVER_SOFTWARE'], 'nginx') !== \false;
+$is_nginx = \null;
 /**
  * Whether the server software is IIS or something else
  * @global bool $is_IIS
  */
-$is_IIS = !$is_apache && (\strpos($_SERVER['SERVER_SOFTWARE'], 'Microsoft-IIS') !== \false || \strpos($_SERVER['SERVER_SOFTWARE'], 'ExpressionDevServer') !== \false);
+$is_IIS = \null;
 /**
  * Whether the server software is IIS 7.X or greater
  * @global bool $is_iis7
  */
-$is_iis7 = $is_IIS && \intval(\substr($_SERVER['SERVER_SOFTWARE'], \strpos($_SERVER['SERVER_SOFTWARE'], 'Microsoft-IIS/') + 14)) >= 7;
+$is_iis7 = \null;
 /**
  * The WordPress version string
  *
  * @global string $wp_version
  */
-$wp_version = '4.9.4';
+$wp_version = \null;
 /**
  * Holds the WordPress DB revision, increments when changes are made to the WordPress DB schema.
  *
  * @global int $wp_db_version
  */
-$wp_db_version = 38590;
+$wp_db_version = \null;
 /**
  * Holds the TinyMCE version
  *
  * @global string $tinymce_version
  */
-$tinymce_version = '4607-20180123';
+$tinymce_version = \null;
 /**
  * Holds the required PHP version
  *
  * @global string $required_php_version
  */
-$required_php_version = '5.2.4';
+$required_php_version = \null;
 /**
  * Holds the required MySQL version
  *
  * @global string $required_mysql_version
  */
-$required_mysql_version = '5.0';
+$required_mysql_version = \null;
 /**
  * Stores the sidebars, since many themes can have more than one.
  *
  * @global array $wp_registered_sidebars
  * @since 2.2.0
  */
-$wp_registered_sidebars = array();
+$wp_registered_sidebars = \null;
 /**
  * Stores the registered widgets.
  *
  * @global array $wp_registered_widgets
  * @since 2.2.0
  */
-$wp_registered_widgets = array();
+$wp_registered_widgets = \null;
 /**
  * Stores the registered widget control (options).
  *
  * @global array $wp_registered_widget_controls
  * @since 2.2.0
  */
-$wp_registered_widget_controls = array();
+$wp_registered_widget_controls = \null;
 /**
  * @global array $wp_registered_widget_updates
  */
-$wp_registered_widget_updates = array();
+$wp_registered_widget_updates = \null;
 /**
  * Private
  *
  * @global array $_wp_sidebars_widgets
  */
-$_wp_sidebars_widgets = array();
+$_wp_sidebars_widgets = \null;
 /**
  * Private
  *
  * @global array $_wp_deprecated_widgets_callbacks
  */
-$_wp_deprecated_widgets_callbacks = array('wp_widget_pages', 'wp_widget_pages_control', 'wp_widget_calendar', 'wp_widget_calendar_control', 'wp_widget_archives', 'wp_widget_archives_control', 'wp_widget_links', 'wp_widget_meta', 'wp_widget_meta_control', 'wp_widget_search', 'wp_widget_recent_entries', 'wp_widget_recent_entries_control', 'wp_widget_tag_cloud', 'wp_widget_tag_cloud_control', 'wp_widget_categories', 'wp_widget_categories_control', 'wp_widget_text', 'wp_widget_text_control', 'wp_widget_rss', 'wp_widget_rss_control', 'wp_widget_recent_comments', 'wp_widget_recent_comments_control');
+$_wp_deprecated_widgets_callbacks = \null;
 /**
  * Filters the separator used between login form navigation links.
  *
@@ -102506,50 +101029,50 @@ $_wp_deprecated_widgets_callbacks = array('wp_widget_pages', 'wp_widget_pages_co
  *
  * @param string $login_link_separator The separator used between login form navigation links.
  */
-$login_link_separator = \apply_filters('login_link_separator', ' | ');
+$login_link_separator = \null;
 /**
  * WordPress Query object
  * @global WP_Query $wp_the_query
  * @since 2.0.0
  */
-$wp_the_query = new \WP_Query();
+$wp_the_query = \null;
 /**
  * Holds the reference to @see $wp_the_query
  * Use this global for WordPress queries
  * @global WP_Query $wp_query
  * @since 1.5.0
  */
-$wp_query = $GLOBALS['wp_the_query'];
+$wp_query = \null;
 /**
  * Holds the WordPress Rewrite object for creating pretty URLs
  * @global WP_Rewrite $wp_rewrite
  * @since 1.5.0
  */
-$wp_rewrite = new \WP_Rewrite();
+$wp_rewrite = \null;
 /**
  * WordPress Object
  * @global WP $wp
  * @since 2.0.0
  */
-$wp = new \WP();
+$wp = \null;
 /**
  * WordPress Widget Factory Object
  * @global WP_Widget_Factory $wp_widget_factory
  * @since 2.8.0
  */
-$wp_widget_factory = new \WP_Widget_Factory();
+$wp_widget_factory = \null;
 /**
  * WordPress User Roles
  * @global WP_Roles $wp_roles
  * @since 2.0.0
  */
-$wp_roles = new \WP_Roles();
+$wp_roles = \null;
 /**
  * WordPress Locale object for loading locale domain date and various strings.
  * @global WP_Locale $wp_locale
  * @since 2.1.0
  */
-$wp_locale = new \WP_Locale();
+$wp_locale = \null;
 /**
  *  WordPress Locale Switcher object for switching locales.
  *
@@ -102557,7 +101080,7 @@ $wp_locale = new \WP_Locale();
  *
  * @global WP_Locale_Switcher $wp_locale_switcher WordPress locale switcher object.
  */
-$wp_locale_switcher = new \WP_Locale_Switcher();
+$wp_locale_switcher = \null;
 /**
  * Filters the type of site sign-up.
  *
@@ -102566,13 +101089,13 @@ $wp_locale_switcher = new \WP_Locale_Switcher();
  * @param string $active_signup String that returns registration type. The value can be
  *                              'all', 'none', 'blog', or 'user'.
  */
-$active_signup = \apply_filters('wpmu_active_signup', $active_signup);
+$active_signup = \null;
 /**
  * Posts submitted via the XML-RPC interface get that title
  * @name post_default_title
  * @var string
  */
-$post_default_title = "";
+$post_default_title = \null;
 /**
  * Filters the class used for handling XML-RPC requests.
  *
@@ -102580,4 +101103,9 @@ $post_default_title = "";
  *
  * @param string $class The name of the XML-RPC server class.
  */
-$wp_xmlrpc_server_class = \apply_filters('wp_xmlrpc_server_class', 'wp_xmlrpc_server');
+$wp_xmlrpc_server_class = \null;
+/**
+ * WordPress database abstraction object.
+ * @var wpdb
+ */
+$wpdb = null;

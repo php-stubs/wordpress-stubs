@@ -7,8 +7,8 @@
         "static analysis"
     ],
     "require-dev": {
-        "giacocorsiglia/stubs-generator": "^0.4.0",
-        "johnpbloch/wordpress": "4.9.4"
+        "giacocorsiglia/stubs-generator": "^0.5.0",
+        "johnpbloch/wordpress": "4.9.5"
     },
     "license": "GPL-2.0+",
     "authors": [
