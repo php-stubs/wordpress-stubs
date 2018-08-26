@@ -24172,6 +24172,19 @@ class WP_Term_Query
     protected function get_search_sql($string)
     {
     }
+    /**
+     * Creates an array of term objects from an array of term IDs.
+     *
+     * Also discards invalid term objects.
+     *
+     * @since 4.9.8
+     *
+     * @param array $term_ids Term IDs.
+     * @return array
+     */
+    protected function populate_terms($term_ids)
+    {
+    }
 }
 /**
  * Locale API: WP_Locale_Switcher class
@@ -50830,6 +50843,19 @@ abstract class WP_REST_Controller
     {
     }
     /**
+     * Gets an array of fields to be included on the response.
+     *
+     * Included fields are based on item schema and `_fields=` request argument.
+     *
+     * @since 4.9.6
+     *
+     * @param WP_REST_Request $request Full details about the request.
+     * @return array Fields to be included in the response.
+     */
+    public function get_fields_for_response($request)
+    {
+    }
+    /**
      * Retrieves an array of endpoint arguments from the item schema for the controller.
      *
      * @since 4.7.0
@@ -51252,6 +51278,19 @@ class WP_REST_Posts_Controller extends \WP_REST_Controller
     {
     }
     /**
+     * Get the link relations available for the post and current user.
+     *
+     * @since 4.9.8
+     *
+     * @param WP_Post $post Post object.
+     * @param WP_REST_Request Request object.
+     *
+     * @return array List of link relations.
+     */
+    protected function get_available_actions($post, $request)
+    {
+    }
+    /**
      * Retrieves the post's schema, conforming to JSON Schema.
      *
      * @since 4.7.0
@@ -51259,6 +51298,16 @@ class WP_REST_Posts_Controller extends \WP_REST_Controller
      * @return array Item schema data.
      */
     public function get_item_schema()
+    {
+    }
+    /**
+     * Retrieve Link Description Objects that should be added to the Schema for the posts collection.
+     *
+     * @since 4.9.8
+     *
+     * @return array
+     */
+    protected function get_schema_links()
     {
     }
     /**
@@ -51692,6 +51741,19 @@ class WP_REST_Attachments_Controller extends \WP_REST_Posts_Controller
      * @return array Array of supported media types.
      */
     protected function get_media_types()
+    {
+    }
+    /**
+     * Determine if uploaded file exceeds space quota on multisite.
+     *
+     * Replicates check_upload_size().
+     *
+     * @since 4.9.8
+     *
+     * @param array $file $_FILES array for a given file.
+     * @return true|WP_Error True if can upload, error for errors.
+     */
+    protected function check_upload_size($file)
     {
     }
 }
@@ -54228,6 +54290,16 @@ abstract class WP_REST_Meta_Fields
      */
     protected abstract function get_meta_type();
     /**
+     * Retrieves the object meta subtype.
+     *
+     * @since 4.9.8
+     *
+     * @return string Subtype for the meta type, or empty string if no specific subtype.
+     */
+    protected function get_meta_subtype()
+    {
+    }
+    /**
      * Retrieves the object type for register_rest_field().
      *
      * @since 4.7.0
@@ -54406,6 +54478,16 @@ class WP_REST_User_Meta_Fields extends \WP_REST_Meta_Fields
     {
     }
     /**
+     * Retrieves the object meta subtype.
+     *
+     * @since 4.9.8
+     *
+     * @return string 'user' There are no subtypes.
+     */
+    protected function get_meta_subtype()
+    {
+    }
+    /**
      * Retrieves the type for register_rest_field().
      *
      * @since 4.7.0
@@ -54460,6 +54542,16 @@ class WP_REST_Term_Meta_Fields extends \WP_REST_Meta_Fields
     {
     }
     /**
+     * Retrieves the object meta subtype.
+     *
+     * @since 4.9.8
+     *
+     * @return string Subtype for the meta type, or empty string if no specific subtype.
+     */
+    protected function get_meta_subtype()
+    {
+    }
+    /**
      * Retrieves the type for register_rest_field().
      *
      * @since 4.7.0
@@ -54494,6 +54586,16 @@ class WP_REST_Comment_Meta_Fields extends \WP_REST_Meta_Fields
      * @return string The meta type.
      */
     protected function get_meta_type()
+    {
+    }
+    /**
+     * Retrieves the object meta subtype.
+     *
+     * @since 4.9.8
+     *
+     * @return string 'comment' There are no subtypes.
+     */
+    protected function get_meta_subtype()
     {
     }
     /**
@@ -54548,6 +54650,16 @@ class WP_REST_Post_Meta_Fields extends \WP_REST_Meta_Fields
      * @return string The meta type.
      */
     protected function get_meta_type()
+    {
+    }
+    /**
+     * Retrieves the object meta subtype.
+     *
+     * @since 4.9.8
+     *
+     * @return string Subtype for the meta type, or empty string if no specific subtype.
+     */
+    protected function get_meta_subtype()
     {
     }
     /**
@@ -59159,6 +59271,14 @@ function wp_welcome_panel()
 {
 }
 /**
+ * Displays a Try Gutenberg Panel, to introduce people to Gutenberg
+ *
+ * @since 4.9.8
+ */
+function wp_try_gutenberg_panel()
+{
+}
+/**
  * WordPress Administration Importer API.
  *
  * @package WordPress
@@ -61430,6 +61550,15 @@ function _wp_privacy_hook_requests_page()
 {
 }
 /**
+ * Add options for the privacy requests screens.
+ *
+ * @since 4.9.8
+ * @access private
+ */
+function _wp_privacy_requests_screen_options()
+{
+}
+/**
  * Upgrades the core of WordPress.
  *
  * This will create a .maintenance file at the base of the WordPress directory
@@ -63112,6 +63241,14 @@ function wp_ajax_hidden_columns()
  * @since 3.1.0
  */
 function wp_ajax_update_welcome_panel()
+{
+}
+/**
+ * Ajax handler for updating whether to display the Try Gutenberg panel.
+ *
+ * @since 4.9.8
+ */
+function wp_ajax_update_try_gutenberg_panel()
 {
 }
 /**
@@ -66419,6 +66556,21 @@ function wp_page_reload_on_back_button_js()
  * @param string $value     The proposed new site admin email address.
  */
 function update_option_new_admin_email($old_value, $value)
+{
+}
+/**
+ * Appends '(Draft)' to draft page titles in the privacy page dropdown
+ * so that unpublished content is obvious.
+ *
+ * @since 4.9.8
+ * @access private
+ *
+ * @param string  $title Page title.
+ * @param WP_Post $page  Page data object.
+ *
+ * @return string Page title.
+ */
+function _wp_privacy_settings_filter_draft_page_titles($title, $page)
 {
 }
 /**
@@ -72673,6 +72825,35 @@ function update_termmeta_cache($term_ids)
  * @return array|false Array with meta data, or false when the meta table is not installed.
  */
 function has_term_meta($term_id)
+{
+}
+/**
+ * Registers a meta key for terms.
+ *
+ * @since 4.9.8
+ *
+ * @param string $taxonomy Taxonomy to register a meta key for. Pass an empty string
+ *                         to register the meta key across all existing taxonomies.
+ * @param string $meta_key The meta key to register.
+ * @param array  $args     Data used to describe the meta key when registered. See
+ *                         {@see register_meta()} for a list of supported arguments.
+ * @return bool True if the meta key was successfully registered, false if not.
+ */
+function register_term_meta($taxonomy, $meta_key, array $args)
+{
+}
+/**
+ * Unregisters a meta key for terms.
+ *
+ * @since 4.9.8
+ *
+ * @param string $taxonomy Taxonomy the meta key is currently registered for. Pass
+ *                         an empty string if the meta key is registered across all
+ *                         existing taxonomies.
+ * @param string $meta_key The meta key to unregister.
+ * @return bool True on success, false if the meta key was not previously registered.
+ */
+function unregister_term_meta($taxonomy, $meta_key)
 {
 }
 /**
@@ -79288,6 +79469,35 @@ function update_post_meta($post_id, $meta_key, $meta_value, $prev_value = '')
  * @return bool Whether the post meta key was deleted from the database.
  */
 function delete_post_meta_by_key($post_meta_key)
+{
+}
+/**
+ * Registers a meta key for posts.
+ *
+ * @since 4.9.8
+ *
+ * @param string $post_type Post type to register a meta key for. Pass an empty string
+ *                          to register the meta key across all existing post types.
+ * @param string $meta_key  The meta key to register.
+ * @param array  $args      Data used to describe the meta key when registered. See
+ *                          {@see register_meta()} for a list of supported arguments.
+ * @return bool True if the meta key was successfully registered, false if not.
+ */
+function register_post_meta($post_type, $meta_key, array $args)
+{
+}
+/**
+ * Unregisters a meta key for posts.
+ *
+ * @since 4.9.8
+ *
+ * @param string $post_type Post type the meta key is currently registered for. Pass
+ *                          an empty string if the meta key is registered across all
+ *                          existing post types.
+ * @param string $meta_key  The meta key to unregister.
+ * @return bool True on success, false if the meta key was not previously registered.
+ */
+function unregister_post_meta($post_type, $meta_key)
 {
 }
 /**
@@ -86919,6 +87129,7 @@ function is_protected_meta($meta_key, $meta_type = \null)
  * Sanitize meta value.
  *
  * @since 3.1.3
+ * @since 4.9.8 The `$object_subtype` parameter was added.
  *
  * @param string $meta_key       Meta key.
  * @param mixed  $meta_value     Meta value to sanitize.
@@ -86926,22 +87137,32 @@ function is_protected_meta($meta_key, $meta_type = \null)
  *
  * @return mixed Sanitized $meta_value.
  */
-function sanitize_meta($meta_key, $meta_value, $object_type)
+function sanitize_meta($meta_key, $meta_value, $object_type, $object_subtype = '')
 {
 }
 /**
  * Registers a meta key.
  *
+ * It is recommended to register meta keys for a specific combination of object type and object subtype. If passing
+ * an object subtype is omitted, the meta key will be registered for the entire object type, however it can be partly
+ * overridden in case a more specific meta key of the same name exists for the same object type and a subtype.
+ *
+ * If an object type does not support any subtypes, such as users or comments, you should commonly call this function
+ * without passing a subtype.
+ *
  * @since 3.3.0
  * @since 4.6.0 {@link https://core.trac.wordpress.org/ticket/35658 Modified
  *              to support an array of data to attach to registered meta keys}. Previous arguments for
  *              `$sanitize_callback` and `$auth_callback` have been folded into this array.
+ * @since 4.9.8 The `$object_subtype` argument was added to the arguments array.
  *
  * @param string $object_type    Type of object this meta is registered to.
  * @param string $meta_key       Meta key to register.
  * @param array  $args {
  *     Data used to describe the meta key when registered.
  *
+ *     @type string $object_subtype    A subtype; e.g. if the object type is "post", the post type. If left empty,
+ *                                     the meta key will be registered on the entire object type. Default empty.
  *     @type string $type              The type of data associated with this meta key.
  *                                     Valid values are 'string', 'boolean', 'integer', and 'number'.
  *     @type string $description       A description of the data attached to this meta key.
@@ -86963,40 +87184,50 @@ function register_meta($object_type, $meta_key, $args, $deprecated = \null)
  * Checks if a meta key is registered.
  *
  * @since 4.6.0
+ * @since 4.9.8 The `$object_subtype` parameter was added.
  *
  * @param string $object_type    The type of object.
  * @param string $meta_key       The meta key.
+ * @param string $object_subtype Optional. The subtype of the object type.
  *
- * @return bool True if the meta key is registered to the object type. False if not.
+ * @return bool True if the meta key is registered to the object type and, if provided,
+ *              the object subtype. False if not.
  */
-function registered_meta_key_exists($object_type, $meta_key)
+function registered_meta_key_exists($object_type, $meta_key, $object_subtype = '')
 {
 }
 /**
  * Unregisters a meta key from the list of registered keys.
  *
  * @since 4.6.0
+ * @since 4.9.8 The `$object_subtype` parameter was added.
  *
- * @param string $object_type The type of object.
- * @param string $meta_key    The meta key.
+ * @param string $object_type    The type of object.
+ * @param string $meta_key       The meta key.
+ * @param string $object_subtype Optional. The subtype of the object type.
  * @return bool True if successful. False if the meta key was not registered.
  */
-function unregister_meta_key($object_type, $meta_key)
+function unregister_meta_key($object_type, $meta_key, $object_subtype = '')
 {
 }
 /**
  * Retrieves a list of registered meta keys for an object type.
  *
  * @since 4.6.0
+ * @since 4.9.8 The `$object_subtype` parameter was added.
  *
- * @param string $object_type The type of object. Post, comment, user, term.
+ * @param string $object_type    The type of object. Post, comment, user, term.
+ * @param string $object_subtype Optional. The subtype of the object type.
  * @return array List of registered meta keys.
  */
-function get_registered_meta_keys($object_type)
+function get_registered_meta_keys($object_type, $object_subtype = '')
 {
 }
 /**
  * Retrieves registered metadata for a specified object.
+ *
+ * The results include both meta that is registered specifically for the
+ * object's subtype and meta that is registered for the entire object type.
  *
  * @since 4.6.0
  *
@@ -87005,7 +87236,7 @@ function get_registered_meta_keys($object_type)
  * @param string $meta_key    Optional. Registered metadata key. If not specified, retrieve all registered
  *                            metadata for the specified object.
  * @return mixed A single value or array of values for a key if specified. An array of all registered keys
- *               and values for an object ID if not.
+ *               and values for an object ID if not. False if a given $meta_key is not registered.
  */
 function get_registered_metadata($object_type, $object_id, $meta_key = '')
 {
@@ -87016,14 +87247,26 @@ function get_registered_metadata($object_type, $object_id, $meta_key = '')
  * to be explicitly turned off is a warranty seal of sorts.
  *
  * @access private
- * @since  4.6.0
+ * @since 4.6.0
  *
- * @param  array $args         Arguments from `register_meta()`.
- * @param  array $default_args Default arguments for `register_meta()`.
+ * @param array $args         Arguments from `register_meta()`.
+ * @param array $default_args Default arguments for `register_meta()`.
  *
  * @return array Filtered arguments.
  */
 function _wp_register_meta_args_whitelist($args, $default_args)
+{
+}
+/**
+ * Returns the object subtype for a given object ID of a specific type.
+ *
+ * @since 4.9.8
+ *
+ * @param string $object_type Type of object to request metadata for. (e.g. comment, post, term, user)
+ * @param int    $object_id   ID of the object to retrieve its subtype.
+ * @return string The object subtype or an empty string if unspecified subtype.
+ */
+function get_object_subtype($object_type, $object_id)
 {
 }
 /**
@@ -101442,9 +101685,9 @@ function __clear_multi_author_cache()
  * @param string   $title    Optional. WordPress login Page title to display in the `<title>` element.
  *                           Default 'Log In'.
  * @param string   $message  Optional. Message to display in header. Default empty.
- * @param WP_Error $wp_error Optional. The error to pass. Default empty.
+ * @param WP_Error $wp_error Optional. The error to pass. Default is a WP_Error instance.
  */
-function login_header($title = 'Log In', $message = '', $wp_error = '')
+function login_header($title = 'Log In', $message = '', $wp_error = \null)
 {
 }
 // End of login_header()
