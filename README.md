@@ -26,6 +26,10 @@ Update your Psalm config to include the section:
 
 Furthermore, ensure WordPress core code is _not_ included under `<projectFiles>`.
 
+## Usage for Intellisense
+
+If your editor has trouble parsing all of WordPress, you may find the stubs useful for enabling code completion and related features.  For example, [here](https://github.com/bmewburn/vscode-intelephense/issues/113) are instructions for usage with VSCode's [Intelephense](https://marketplace.visualstudio.com/items?itemName=bmewburn.vscode-intelephense-client) extension.  (In my experience, however, Intelephense parses WordPress core just fine.)
+
 ## Versioning
 
 This package is versioned to match the WordPress version from which the stubs are generated.  If any fixes to stubs are required, subsequent releases will be versioned as `WP_VERSION.X`.
@@ -39,4 +43,4 @@ You should be running PHP 7.1 or later to follow these steps, so any function de
 3. Run `composer update`
 4. Run `./generate.sh`
 
-The `wordpress-stubs.php` file should now be updated.  Feel free to submit a Pull Request if you'd like to see a release for a newer version.  If things have fallen behind, please generate stubs for each missing version in a distinct commit so we can have a continuous release history.
+The `wordpress-stubs.php` file should now be updated.  Feel free to submit a Pull Request if you'd like to see a release for a newer version.
