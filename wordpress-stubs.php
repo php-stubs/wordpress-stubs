@@ -3239,9 +3239,17 @@ class WP_Community_Events
     {
     }
     /**
-     * Discards expired events, and reduces the remaining list.
+     * Prepares the event list for presentation.
+     *
+     * Discards expired events, and makes WordCamps "sticky." Attendees need more
+     * advanced notice about WordCamps than they do for meetups, so camps should
+     * appear in the list sooner. If a WordCamp is coming up, the API will "stick"
+     * it in the response, even if it wouldn't otherwise appear. When that happens,
+     * the event will be at the end of the list, and will need to be moved into a
+     * higher position, so that it doesn't get trimmed off.
      *
      * @since 4.8.0
+     * @since 4.9.7 Stick a WordCamp to the final list.
      *
      * @param  array $response_body The response body which contains the events.
      * @return array The response body with events trimmed.
@@ -60060,7 +60068,7 @@ function wp_print_request_filesystem_credentials_modal()
  *
  * @since 4.9.6
  *
- * @param array  $group_data {
+ * @param array $group_data {
  *     The group data to render.
  *
  *     @type string $group_label  The user-facing heading for the group, e.g. 'Comments'.
@@ -60085,7 +60093,7 @@ function wp_privacy_generate_personal_data_export_group_html($group_data)
  *
  * @since 4.9.6
  *
- * @param int  $request_id  The export request ID.
+ * @param int $request_id The export request ID.
  */
 function wp_privacy_generate_personal_data_export_file($request_id)
 {
@@ -60095,8 +60103,8 @@ function wp_privacy_generate_personal_data_export_file($request_id)
  *
  * @since 4.9.6
  *
- * @param int  $request_id  The request ID for this personal data export.
- * @return true|WP_Error    True on success or `WP_Error` on failure.
+ * @param int $request_id The request ID for this personal data export.
+ * @return true|WP_Error True on success or `WP_Error` on failure.
  */
 function wp_privacy_send_personal_data_export_email($request_id)
 {
@@ -60960,15 +60968,17 @@ function plugin_sandbox_scrape($plugin)
 {
 }
 /**
- * Helper function for adding content to the postbox shown when editing the privacy policy.
+ * Helper function for adding content to the Privacy Policy Guide.
  *
  * Plugins and themes should suggest text for inclusion in the site's privacy policy.
  * The suggested text should contain information about any functionality that affects user privacy,
- * and will be shown in the Suggested Privacy Policy Content postbox.
+ * and will be shown on the Privacy Policy Guide screen.
  *
  * A plugin or theme can use this function multiple times as long as it will help to better present
  * the suggested policy content. For example modular plugins such as WooCommerse or Jetpack
  * can add or remove suggested content depending on the modules/extensions that are enabled.
+ * For more information see the Plugin Handbook:
+ * https://developer.wordpress.org/plugins/privacy/suggesting-text-for-the-site-privacy-policy/.
  *
  * Intended for use with the `'admin_init'` action.
  *
@@ -60976,7 +60986,6 @@ function plugin_sandbox_scrape($plugin)
  *
  * @param string $plugin_name The name of the plugin or theme that is suggesting content for the site's privacy policy.
  * @param string $policy_text The suggested content for inclusion in the policy.
- *                            For more information see the Plugins Handbook https://developer.wordpress.org/plugins/. 
  */
 function wp_add_privacy_policy_content($plugin_name, $policy_text)
 {
@@ -66100,6 +66109,8 @@ function insert_with_markers($filename, $marker, $insertion)
  * @since 1.5.0
  *
  * @global WP_Rewrite $wp_rewrite
+ *
+ * @return bool|null True on write success, false on failure. Null in multisite.
  */
 function save_mod_rewrite_rules()
 {
@@ -66112,7 +66123,7 @@ function save_mod_rewrite_rules()
  *
  * @global WP_Rewrite $wp_rewrite
  *
- * @return bool True if web.config was updated successfully
+ * @return bool|null True on write success, false on failure. Null in multisite.
  */
 function iis7_save_url_rewrite_rules()
 {
@@ -68248,6 +68259,7 @@ function path_join($base, $path)
  * @since 3.9.0
  * @since 4.4.0 Ensures upper-case drive letters on Windows systems.
  * @since 4.5.0 Allows for Windows network shares.
+ * @since 4.9.7 Allows for PHP file wrappers.
  *
  * @param string $path Path to normalize.
  * @return string Normalized path.
@@ -69816,6 +69828,18 @@ function wp_validate_boolean($var)
  * @param string $file The path to the file to delete.
  */
 function wp_delete_file($file)
+{
+}
+/**
+ * Deletes a file if its path is within the given directory.
+ *
+ * @since 4.9.7
+ *
+ * @param string $file      Absolute path to the file to delete.
+ * @param string $directory Absolute path to a directory.
+ * @return bool True on success, false on failure.
+ */
+function wp_delete_file_from_directory($file, $directory)
 {
 }
 /**
@@ -71719,6 +71743,7 @@ function wp_list_comments($args = array(), $comments = \null)
  * @since 4.5.0 The 'author', 'email', and 'url' form fields are limited to 245, 100,
  *              and 200 characters, respectively.
  * @since 4.6.0 Introduced the 'action' argument.
+ * @since 4.9.6 Introduced the 'cookies' default comment field.
  *
  * @param array       $args {
  *     Optional. Default arguments and form fields to override.
@@ -71726,9 +71751,10 @@ function wp_list_comments($args = array(), $comments = \null)
  *     @type array $fields {
  *         Default comment fields, filterable by default via the {@see 'comment_form_default_fields'} hook.
  *
- *         @type string $author Comment author field HTML.
- *         @type string $email  Comment author email field HTML.
- *         @type string $url    Comment author URL field HTML.
+ *         @type string $author  Comment author field HTML.
+ *         @type string $email   Comment author email field HTML.
+ *         @type string $url     Comment author URL field HTML.
+ *         @type string $cookies Comment cookie opt-in field HTML.
  *     }
  *     @type string $comment_field        The comment textarea field HTML.
  *     @type string $must_log_in          HTML element for a 'must be logged in to comment' message.
@@ -80173,6 +80199,20 @@ function wp_insert_attachment($args, $file = \false, $parent = 0, $wp_error = \f
  * @return WP_Post|false|null Post data on success, false or null on failure.
  */
 function wp_delete_attachment($post_id, $force_delete = \false)
+{
+}
+/**
+ * Deletes all files that belong to the given attachment.
+ *
+ * @since 4.9.7
+ *
+ * @param int    $post_id      Attachment ID.
+ * @param array  $meta         The attachment's meta data.
+ * @param array  $backup_sizes The meta data for the attachment's backup images.
+ * @param string $file         Absolute path to the attachment's file.
+ * @return bool True on success, false on failure.
+ */
+function wp_delete_attachment_files($post_id, $meta, $backup_sizes, $file)
 {
 }
 /**
