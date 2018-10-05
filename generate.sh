@@ -2,11 +2,11 @@
 
 HEADER=$'/**\n * Generated stub declarations for WordPress.\n * https://wordpress.org\n * https://github.com/GiacoCorsiglia/wordpress-stubs\n */'
 
-FILE='wordpress-stubs.php'
+FILE="wordpress-stubs.php"
 
 "$(dirname $0)/vendor/bin/generate-stubs" \
   --finder=finder.php \
-  --out=$FILE \
+  --out="$FILE" \
   --force \
   --header="$HEADER" \
   --nullify-globals
