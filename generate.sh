@@ -6,7 +6,8 @@ FILE='wordpress-stubs.php'
 
 "$(dirname $0)/vendor/bin/generate-stubs" \
   --finder=finder.php \
-  --out=$FILE --force \
+  --out=$FILE \
+  --force \
   --header="$HEADER" \
   --nullify-globals
 
