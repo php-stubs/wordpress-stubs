@@ -10022,7 +10022,7 @@ final class WP_Privacy_Policy_Content
      *
      * Intended for use from `wp_add_privacy_policy_content()`.
      *
-     * $since 4.9.6
+     * @since 4.9.6
      *
      * @param string $plugin_name The name of the plugin or theme that is suggesting content for the site's privacy policy.
      * @param string $policy_text The suggested content for inclusion in the policy.
@@ -10072,7 +10072,7 @@ final class WP_Privacy_Policy_Content
      *
      * @since 4.9.6
      *
-     * @param $post WP_Post The currently edited post.
+     * @param WP_Post $post The currently edited post.
      */
     public static function notice($post)
     {
@@ -41155,8 +41155,8 @@ class WP_Term_Query
      *                                                Can be used in conjunction with `$meta_value`. Default empty.
      *     @type string       $meta_value             Limit terms to those matching a specific metadata value.
      *                                                Usually used in conjunction with `$meta_key`. Default empty.
-     *     @type string       $meta_type              Type of object metadata is for (e.g., comment, post, or user).
-     *                                                Default empty.
+     *     @type string       $meta_type              MySQL data type that the `$meta_value` will be CAST to for
+     *                                                comparisons. Default empty.
      *     @type string       $meta_compare           Comparison operator to test the 'meta_value'. Default empty.
      * }
      */
@@ -64195,6 +64195,17 @@ function _wp_translate_postdata($update = \false, $post_data = \null)
 {
 }
 /**
+ * Returns only allowed post data fields
+ *
+ * @since 4.9.9
+ *
+ * @param array $post_data Array of post data. Defaults to the contents of $_POST.
+ * @return object|bool WP_Error on failure, true on success.
+ */
+function _wp_get_allowed_postdata($post_data = \null)
+{
+}
+/**
  * Update an existing post with values provided in $_POST.
  *
  * @since 1.5.0
@@ -79553,7 +79564,7 @@ function wp_is_stream($path)
  *
  * @since 3.5.0
  *
- * @see checkdate()
+ * @link https://secure.php.net/manual/en/function.checkdate.php
  *
  * @param  int    $month       Month number.
  * @param  int    $day         Day number.
@@ -81224,6 +81235,20 @@ function wp_no_robots()
 {
 }
 /**
+ * Display a noindex,noarchive meta tag and referrer origin-when-cross-origin meta tag.
+ *
+ * Outputs a noindex,noarchive meta tag that tells web robots not to index or cache the page content.
+ * Outputs a referrer origin-when-cross-origin meta tag that tells the browser not to send the full
+ * url as a referrer to other sites when cross-origin assets are loaded.
+ *
+ * Typical usage is as a wp_head callback. add_action( 'wp_head', 'wp_sensitive_page_meta' );
+ *
+ * @since 5.0.0
+ */
+function wp_sensitive_page_meta()
+{
+}
+/**
  * Display site icon meta tags.
  *
  * @since 4.3.0
@@ -82190,6 +82215,7 @@ function wp_kses_one_attr($string, $element)
  * Return a list of allowed tags and attributes for a given context.
  *
  * @since 3.5.0
+ * @since 5.0.1 `form` removed as allowable HTML tag.
  *
  * @global array $allowedposttags
  * @global array $allowedtags
@@ -82245,6 +82271,23 @@ function wp_kses_version()
  * @return string Content with fixed HTML tags
  */
 function wp_kses_split($string, $allowed_html, $allowed_protocols)
+{
+}
+/**
+ * Helper function listing HTML attributes containing a URL.
+ *
+ * This function returns a list of all HTML attributes that must contain
+ * a URL according to the HTML specification.
+ *
+ * This list includes URI attributes both allowed and disallowed by KSES.
+ *
+ * @link https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes
+ *
+ * @since 5.0.1
+ *
+ * @return array HTML attributes that must include a URL.
+ */
+function wp_kses_uri_attributes()
 {
 }
 /**
@@ -86813,7 +86856,7 @@ function wp_media_personal_data_exporter($email_address, $page = 1)
  *
  * @global wpdb $wpdb WordPress database abstraction object.
  *
- * @param string $meta_type  Type of object metadata is for (e.g., comment, post, or user)
+ * @param string $meta_type  Type of object metadata is for (e.g., comment, post, term, or user).
  * @param int    $object_id  ID of the object metadata is for
  * @param string $meta_key   Metadata key
  * @param mixed  $meta_value Metadata value. Must be serializable if non-scalar.
@@ -86834,7 +86877,7 @@ function add_metadata($meta_type, $object_id, $meta_key, $meta_value, $unique = 
  *
  * @global wpdb $wpdb WordPress database abstraction object.
  *
- * @param string $meta_type  Type of object metadata is for (e.g., comment, post, or user)
+ * @param string $meta_type  Type of object metadata is for (e.g., comment, post, term, or user).
  * @param int    $object_id  ID of the object metadata is for
  * @param string $meta_key   Metadata key
  * @param mixed  $meta_value Metadata value. Must be serializable if non-scalar.
@@ -86852,7 +86895,7 @@ function update_metadata($meta_type, $object_id, $meta_key, $meta_value, $prev_v
  *
  * @global wpdb $wpdb WordPress database abstraction object.
  *
- * @param string $meta_type  Type of object metadata is for (e.g., comment, post, or user)
+ * @param string $meta_type  Type of object metadata is for (e.g., comment, post, term, or user).
  * @param int    $object_id  ID of the object metadata is for
  * @param string $meta_key   Metadata key
  * @param mixed  $meta_value Optional. Metadata value. Must be serializable if non-scalar. If specified, only delete
@@ -86873,7 +86916,7 @@ function delete_metadata($meta_type, $object_id, $meta_key, $meta_value = '', $d
  *
  * @since 2.9.0
  *
- * @param string $meta_type Type of object metadata is for (e.g., comment, post, or user)
+ * @param string $meta_type Type of object metadata is for (e.g., comment, post, term, or user).
  * @param int    $object_id ID of the object metadata is for
  * @param string $meta_key  Optional. Metadata key. If not specified, retrieve all metadata for
  * 		                    the specified object.
@@ -86890,7 +86933,7 @@ function get_metadata($meta_type, $object_id, $meta_key = '', $single = \false)
  *
  * @since 3.3.0
  *
- * @param string $meta_type Type of object metadata is for (e.g., comment, post, or user)
+ * @param string $meta_type Type of object metadata is for (e.g., comment, post, term, or user).
  * @param int    $object_id ID of the object metadata is for
  * @param string $meta_key  Metadata key.
  * @return bool True of the key is set, false if not.
@@ -86919,7 +86962,7 @@ function get_metadata_by_mid($meta_type, $meta_id)
  *
  * @global wpdb $wpdb WordPress database abstraction object.
  *
- * @param string $meta_type  Type of object metadata is for (e.g., comment, post, or user)
+ * @param string $meta_type  Type of object metadata is for (e.g., comment, post, term, or user).
  * @param int    $meta_id    ID for a specific meta row
  * @param string $meta_value Metadata value
  * @param string $meta_key   Optional, you can provide a meta key to update it
@@ -86949,7 +86992,7 @@ function delete_metadata_by_mid($meta_type, $meta_id)
  *
  * @global wpdb $wpdb WordPress database abstraction object.
  *
- * @param string    $meta_type  Type of object metadata is for (e.g., comment, post, or user)
+ * @param string    $meta_type  Type of object metadata is for (e.g., comment, post, term, or user).
  * @param int|array $object_ids Array or comma delimited list of object IDs to update cache for
  * @return array|false Metadata cache for the specified objects, or false on failure.
  */
@@ -86990,7 +87033,7 @@ function get_meta_sql($meta_query, $type, $primary_table, $primary_id_column, $c
  *
  * @global wpdb $wpdb WordPress database abstraction object.
  *
- * @param string $type Type of object to get metadata table for (e.g., comment, post, or user)
+ * @param string $type Type of object to get metadata table for (e.g., comment, post, term, or user).
  * @return string|false Metadata table name, or false if no metadata table exists
  */
 function _get_meta_table($type)
@@ -87001,8 +87044,9 @@ function _get_meta_table($type)
  *
  * @since 3.1.3
  *
- * @param string      $meta_key Meta key
- * @param string|null $meta_type
+ * @param string      $meta_key  Meta key
+ * @param string|null $meta_type Optional. Type of object metadata is for (e.g., comment, post,
+ *                               term, or user).
  * @return bool True if the key is protected, false otherwise.
  */
 function is_protected_meta($meta_key, $meta_type = \null)
@@ -92652,7 +92696,7 @@ function get_page_statuses()
 /**
  * Return statuses for privacy requests.
  *
- * @since 5.0.0
+ * @since 4.9.6
  *
  * @return array
  */
