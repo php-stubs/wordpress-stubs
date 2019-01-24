@@ -1,0 +1,24 @@
+language: php
+
+cache:
+  directories:
+    - $HOME/.composer/cache
+
+php: 7.1
+
+before_install:
+  - phpenv config-rm xdebug.ini
+
+install:
+  - composer install
+
+before_script:
+  - mkdir -p .build/php-cs-fixer
+
+script:
+  - ./generate.sh
+  - php -l wordpress-stubs.php
+  - git diff --exit-code
+
+notifications:
+  email: false
