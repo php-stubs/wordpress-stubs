@@ -14,6 +14,8 @@ install:
 
 before_script:
   - mkdir -p .build/php-cs-fixer
+  - cat ./wordpress/wp-includes/version.php
+  - php -m
 
 script:
   - ./generate.sh
