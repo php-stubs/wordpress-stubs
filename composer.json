@@ -10,7 +10,7 @@
         "php": "^7.1",
         "ext-gettext": "*",
         "giacocorsiglia/stubs-generator": "^0.5.0",
-        "johnpbloch/wordpress": "5.0.3"
+        "johnpbloch/wordpress": "5.1.0"
     },
     "license": "GPL-2.0+",
     "authors": [
