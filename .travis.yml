@@ -12,18 +12,32 @@ php:
   - "7.4snapshot"
 
 before_install:
-  - phpenv config-rm xdebug.ini
-  - composer validate --strict
+  - |
+    if [ "$(phpenv version-name)" != "7.4snapshot" ]; then
+      phpenv config-rm xdebug.ini
+    fi
+  - |
+    composer validate --strict
 
 install:
-  - composer install --no-interaction --no-suggest
+  - |
+    if [ "$(phpenv version-name)" == "7.1" ] || [ "$(phpenv version-name)" == "7.2" ]; then
+      wget "https://github.com/jedisct1/libsodium/releases/download/1.0.18-RELEASE/libsodium-1.0.18.tar.gz"
+      tar -xf libsodium-*.tar.gz
+      cd libsodium-* && ./configure --prefix="$HOME/libsodium" && make check && make install
+      LD_LIBRARY_PATH="$HOME/libsodium/lib:$LD_LIBRARY_PATH" PKG_CONFIG_PATH="$HOME/libsodium/lib/pkgconfig:$PKG_CONFIG_PATH" pecl install libsodium
+    fi
+  - |
+    composer install --no-interaction --no-suggest
 
 before_script:
-  - mkdir -p .build/php-cs-fixer
-  - cat ./wordpress/wp-includes/version.php
-  - php -m
+  - |
+    cat ./wordpress/wp-includes/version.php
 
 script:
-  - bash -x ./generate.sh
-  - php -l ./wordpress-stubs.php
-  - git diff --exit-code
+  - |
+    bash -x ./generate.sh
+  - |
+    php -l wordpress-stubs.php
+  - |
+    git diff --exit-code
