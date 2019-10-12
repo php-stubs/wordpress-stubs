@@ -63682,6 +63682,7 @@ function _wp_privacy_settings_filter_draft_page_titles($title, $page)
  * Checks if the user needs to update PHP.
  *
  * @since 5.1.0
+ * @since 5.1.1 Added the {@see 'wp_is_php_version_acceptable'} filter.
  *
  * @return array|false $response Array of PHP version data. False on failure.
  */
@@ -81805,6 +81806,32 @@ function wp_get_default_update_php_url()
  * @since 5.1.0
  */
 function wp_update_php_annotation()
+{
+}
+/**
+ * Gets the URL for directly updating the PHP version the site is running on.
+ *
+ * A URL will only be returned if the `WP_DIRECT_UPDATE_PHP_URL` environment variable is specified or
+ * by using the {@see 'wp_direct_php_update_url'} filter. This allows hosts to send users directly to
+ * the page where they can update PHP to a newer version.
+ *
+ * @since 5.1.1
+ *
+ * @return string URL for directly updating PHP or empty string.
+ */
+function wp_get_direct_php_update_url()
+{
+}
+/**
+ * Display a button directly linking to a PHP update process.
+ *
+ * This provides hosts with a way for users to be sent directly to their PHP update process.
+ *
+ * The button is only displayed if a URL is returned by `wp_get_direct_php_update_url()`.
+ *
+ * @since 5.1.1
+ */
+function wp_direct_php_update_button()
 {
 }
 /**
