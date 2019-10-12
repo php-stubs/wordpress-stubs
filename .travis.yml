@@ -25,7 +25,10 @@ install:
       wget "https://github.com/jedisct1/libsodium/releases/download/1.0.18-RELEASE/libsodium-1.0.18.tar.gz"
       tar -xf libsodium-*.tar.gz
       cd libsodium-* && ./configure --prefix="$HOME/libsodium" && make check && make install
-      LD_LIBRARY_PATH="$HOME/libsodium/lib:$LD_LIBRARY_PATH" PKG_CONFIG_PATH="$HOME/libsodium/lib/pkgconfig:$PKG_CONFIG_PATH" pecl install libsodium
+      LD_LIBRARY_PATH="$HOME/libsodium/lib:$LD_LIBRARY_PATH" \
+        PKG_CONFIG_PATH="$HOME/libsodium/lib/pkgconfig:$PKG_CONFIG_PATH" \
+        LDFLAGS="-L$HOME/libsodium/lib" \
+        pecl install libsodium
     fi
   - |
     composer install --no-interaction --no-suggest
