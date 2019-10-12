@@ -69818,6 +69818,11 @@ function register_block_core_categories()
 {
 }
 /**
+ * Server-side rendering of the `core/latest-comments` block.
+ *
+ * @package WordPress
+ */
+/**
  * Get the post title.
  *
  * The post title is fetched and if it is blank then a default string is
@@ -69837,7 +69842,7 @@ function register_block_core_categories()
  * @param int|WP_Post $post Optional. Post ID or WP_Post object. Default is global $post.
  * @return string The post title if set; "(no title)" if no title is set.
  */
-function gutenberg_draft_or_post_title($post = 0)
+function wp_latest_comments_draft_or_post_title($post = 0)
 {
 }
 /**
@@ -69847,7 +69852,7 @@ function gutenberg_draft_or_post_title($post = 0)
  *
  * @return string Returns the post content with latest comments added.
  */
-function gutenberg_render_block_core_latest_comments($attributes = array())
+function render_block_core_latest_comments($attributes = array())
 {
 }
 /**
@@ -85016,22 +85021,34 @@ function load_child_theme_textdomain($domain, $path = \false)
 {
 }
 /**
- * Load the script translated strings.
- *
- * @see WP_Scripts::set_translations()
- * @link https://core.trac.wordpress.org/ticket/45103
- * @global WP_Scripts $wp_scripts The WP_Scripts object for printing scripts.
+ * Loads the script translated strings.
  *
  * @since 5.0.0
+ * @since 5.0.2 Uses load_script_translations() to load translation data.
+ *
+ * @see WP_Scripts::set_translations()
  *
  * @param string $handle Name of the script to register a translation domain to.
- * @param string $domain The textdomain.
+ * @param string $domain The text domain.
  * @param string $path   Optional. The full file path to the directory containing translation files.
  *
  * @return false|string False if the script textdomain could not be loaded, the translated strings
  *                      in JSON encoding otherwise.
  */
 function load_script_textdomain($handle, $domain, $path = \null)
+{
+}
+/**
+ * Loads the translation data for the given script handle and text domain.
+ *
+ * @since 5.0.2
+ *
+ * @param string|false $file   Path to the translation file to load. False if there isn't one.
+ * @param string       $handle Name of the script to register a translation domain to.
+ * @param string       $domain The text domain.
+ * @return string|false The JSON-encoded translated strings for the given script handle and text domain. False if there are none.
+ */
+function load_script_translations($file, $handle, $domain)
 {
 }
 /**
