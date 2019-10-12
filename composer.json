@@ -1,12 +1,12 @@
 {
-    "name": "szepeviktor/wordpress-stubs",
-    "description": "WordPress function, class, and global variable declaration stubs for static analysis.",
+    "name": "php-stubs/wordpress-stubs",
+    "description": "WordPress function and class declaration stubs for static analysis.",
     "keywords": [
         "wordpress",
         "static analysis",
         "phpstan"
     ],
-    "homepage": "https://github.com/szepeviktor/wordpress-stubs",
+    "homepage": "https://github.com/php-stubs/wordpress-stubs",
     "license": "MIT",
     "require-dev": {
         "php": "~7.1",
@@ -16,7 +16,7 @@
         "ext-mbstring": "*",
         "ext-openssl": "*",
         "ext-sodium": "*",
-        "johnpbloch/wordpress": "5.1.2",
+        "johnpbloch/wordpress": "5.2",
         "giacocorsiglia/stubs-generator": "^0.5.0"
     },
     "minimum-stability": "stable"

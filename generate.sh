@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-HEADER=$'/**\n * Generated stub declarations for WordPress.\n * @see https://wordpress.org\n * @see https://github.com/szepeviktor/wordpress-stubs\n */'
+HEADER=$'/**\n * Generated stub declarations for WordPress.\n * @see https://wordpress.org\n * @see https://github.com/php-stubs/wordpress-stubs\n */'
 
 FILE="wordpress-stubs.php"
 

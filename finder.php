@@ -15,5 +15,6 @@ return \StubsGenerator\Finder::create()
     ->notPath('wp-includes/compat.php')
     ->notPath('wp-includes/spl-autoload-compat.php')
     ->notPath('wp-includes/random_compat')
+    ->notPath('wp-includes/sodium_compat')
     ->sortByName()
 ;
