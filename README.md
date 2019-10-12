@@ -1,3 +1,8 @@
+- php 7.1 sodium must be installed through PECL: `pecl install libsodium`
+- core's compat code is excluded
+- globals are not included in the stubs
+- for php <7.3 use symfony/polyfill-php73 in require-dev
+
 # WordPress Stubs
 
 [![Build Status](https://travis-ci.com/GiacoCorsiglia/wordpress-stubs.svg?branch=master)](https://travis-ci.com/GiacoCorsiglia/wordpress-stubs)

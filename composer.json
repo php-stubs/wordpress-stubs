@@ -1,23 +1,23 @@
 {
-    "name": "giacocorsiglia/wordpress-stubs",
-    "description": "WordPress function, class, and global variable declaration stubs for easier static analysis.",
-    "homepage": "https://github.com/GiacoCorsiglia/wordpress-stubs",
+    "name": "szepeviktor/wordpress-stubs",
+    "description": "WordPress function, class, and global variable declaration stubs for static analysis.",
     "keywords": [
         "wordpress",
-        "static analysis"
+        "static analysis",
+        "phpstan"
     ],
+    "homepage": "https://github.com/szepeviktor/wordpress-stubs",
+    "license": "MIT",
     "require-dev": {
-        "php": "^7.1",
+        "php": "~7.1",
         "ext-gettext": "*",
-        "giacocorsiglia/stubs-generator": "^0.5.0",
-        "johnpbloch/wordpress": "5.1.1"
+        "ext-hash": "*",
+        "ext-json": "*",
+        "ext-mbstring": "*",
+        "ext-openssl": "*",
+        "ext-sodium": "*",
+        "johnpbloch/wordpress": "4.7.14",
+        "giacocorsiglia/stubs-generator": "^0.5.0"
     },
-    "license": "GPL-2.0+",
-    "authors": [
-        {
-            "name": "Giaco Corsiglia",
-            "email": "GiacoCorsiglia@gmail.com"
-        }
-    ],
     "minimum-stability": "stable"
 }
