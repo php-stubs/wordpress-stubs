@@ -65529,6 +65529,17 @@ function _wp_translate_postdata($update = \false, $post_data = \null)
 {
 }
 /**
+ * Returns only allowed post data fields
+ *
+ * @since 4.9.9
+ *
+ * @param array $post_data Array of post data. Defaults to the contents of $_POST.
+ * @return object|bool WP_Error on failure, true on success.
+ */
+function _wp_get_allowed_postdata($post_data = \null)
+{
+}
+/**
  * Update an existing post with values provided in $_POST.
  *
  * @since 1.5.0
@@ -82914,6 +82925,20 @@ function wp_no_robots()
 {
 }
 /**
+ * Display a noindex,noarchive meta tag and referrer origin-when-cross-origin meta tag.
+ *
+ * Outputs a noindex,noarchive meta tag that tells web robots not to index or cache the page content.
+ * Outputs a referrer origin-when-cross-origin meta tag that tells the browser not to send the full
+ * url as a referrer to other sites when cross-origin assets are loaded.
+ *
+ * Typical usage is as a wp_head callback. add_action( 'wp_head', 'wp_sensitive_page_meta' );
+ *
+ * @since 5.0.0
+ */
+function wp_sensitive_page_meta()
+{
+}
+/**
  * Display site icon meta tags.
  *
  * @since 4.3.0
@@ -83906,6 +83931,7 @@ function wp_kses_one_attr($string, $element)
  * Return a list of allowed tags and attributes for a given context.
  *
  * @since 3.5.0
+ * @since 5.0.1 `form` removed as allowable HTML tag.
  *
  * @global array $allowedposttags
  * @global array $allowedtags
@@ -83961,6 +83987,23 @@ function wp_kses_version()
  * @return string Content with fixed HTML tags
  */
 function wp_kses_split($string, $allowed_html, $allowed_protocols)
+{
+}
+/**
+ * Helper function listing HTML attributes containing a URL.
+ *
+ * This function returns a list of all HTML attributes that must contain
+ * a URL according to the HTML specification.
+ *
+ * This list includes URI attributes both allowed and disallowed by KSES.
+ *
+ * @link https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes
+ *
+ * @since 5.0.1
+ *
+ * @return array HTML attributes that must include a URL.
+ */
+function wp_kses_uri_attributes()
 {
 }
 /**

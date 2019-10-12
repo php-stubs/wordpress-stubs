@@ -16,7 +16,7 @@
         "ext-mbstring": "*",
         "ext-openssl": "*",
         "ext-sodium": "*",
-        "johnpbloch/wordpress": "5.0",
+        "johnpbloch/wordpress": "5.0.1",
         "giacocorsiglia/stubs-generator": "^0.5.0"
     },
     "minimum-stability": "stable"
