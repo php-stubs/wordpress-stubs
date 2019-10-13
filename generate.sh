@@ -4,16 +4,21 @@ HEADER=$'/**\n * Generated stub declarations for WordPress.\n * @see https://wor
 
 FILE="wordpress-stubs.php"
 
+set -e
+
+test -f "$FILE"
+test -d "wordpress"
+
 # Exclude globals.
 "$(dirname "$0")/vendor/bin/generate-stubs" \
     --force \
     --finder=finder.php \
-    --out="$FILE" \
     --header="$HEADER" \
     --functions \
     --classes \
     --interfaces \
-    --traits
+    --traits \
+    --out="$FILE"
 
 # Shim the global $wpdb declaration, since it's actually set up inside a
 # function call.
