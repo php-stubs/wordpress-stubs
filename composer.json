@@ -8,6 +8,9 @@
     ],
     "homepage": "https://github.com/php-stubs/wordpress-stubs",
     "license": "MIT",
+    "replace": {
+        "giacocorsiglia/wordpress-stubs": "*"
+    },
     "require-dev": {
         "php": "~7.1",
         "ext-gettext": "*",
@@ -16,8 +19,8 @@
         "ext-mbstring": "*",
         "ext-openssl": "*",
         "ext-sodium": "*",
-        "johnpbloch/wordpress": "5.2.3",
-        "giacocorsiglia/stubs-generator": "^0.5.0"
+        "giacocorsiglia/stubs-generator": "^0.5.0",
+        "johnpbloch/wordpress": "5.2.3"
     },
     "minimum-stability": "stable"
 }

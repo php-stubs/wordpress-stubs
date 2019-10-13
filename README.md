@@ -2,6 +2,7 @@
 - core's compat code is excluded
 - globals are not included in the stubs
 - for php <7.3 use symfony/polyfill-php73 in require-dev
+- composer require --dev szepeviktor/phpstan-wordpress
 
 # WordPress Stubs
 
