@@ -13,6 +13,7 @@ return \StubsGenerator\Finder::create()
     // Backward compatibility files.
     // $ find -iname "*compat*"
     ->notPath('wp-includes/compat.php')
+    ->notPath('wp-includes/class-json.php')
     ->notPath('wp-includes/spl-autoload-compat.php')
     ->notPath('wp-includes/random_compat')
     ->notPath('wp-includes/sodium_compat')
