@@ -20,6 +20,5 @@ test -d "wordpress"
     --traits \
     --out="$FILE"
 
-# Shim the global $wpdb declaration, since it's actually set up inside a
-# function call.
-printf '\n/**\n * WordPress database abstraction object.\n * @var wpdb\n */\n$wpdb = \\null;\n' >>$FILE
+# Shim the global $wpdb declaration, since it's actually set up inside a function call.
+printf '\n/**\n * WordPress database abstraction object.\n * @var wpdb\n */\n$wpdb = \\null;\n' >>"$FILE"
