@@ -20,7 +20,7 @@
         "ext-openssl": "*",
         "ext-sodium": "*",
         "giacocorsiglia/stubs-generator": "^0.5.0",
-        "johnpbloch/wordpress": "4.8.11"
+        "johnpbloch/wordpress": "4.9.12"
     },
     "minimum-stability": "stable"
 }
