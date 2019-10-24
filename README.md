@@ -1,58 +1,75 @@
-- php 7.1 sodium must be installed through PECL: `pecl install libsodium`
-- core's compat code is excluded
-- globals are not included in the stubs
-- for php <7.3 use symfony/polyfill-php73 in require-dev
-- composer require --dev szepeviktor/phpstan-wordpress
-
 # WordPress Stubs
 
-[![Build Status](https://travis-ci.com/GiacoCorsiglia/wordpress-stubs.svg?branch=master)](https://travis-ci.com/GiacoCorsiglia/wordpress-stubs)
+[![Build Status](https://travis-ci.org/php-stubs/wordpress-stubs.svg?branch=master)](https://travis-ci.org/php-stubs/wordpress-stubs)
 
-This package provides stub declarations for [WordPress](https://wordpress.org/) core functions, classes, interfaces, and global variables.  These stubs can help plugin and theme developers leverage static analysis tools like [Psalm](https://getpsalm.org/), which often dislike parsing all of WordPress.
+This package is a fork of `giacocorsiglia/stubs-generator`.
+It provides stub declarations for [WordPress](https://wordpress.org/)
+core functions, classes and interfaces, **globals are not included**.
+These stubs can help plugin and theme developers leverage static analysis tools
+like [PHPStan](https://github.com/phpstan/phpstan),
+which is not able to parse WordPress as it is not OOP code.
 
-The stubs are generated directly from the [source](https://github.com/johnpbloch/wordpress-core) using [giacocorsiglia/stubs-generator](https://github.com/GiacoCorsiglia/php-stubs-generator).  Needless to say, this library repackages a subset of WordPress code, which is the work of the WordPress core developers.  Granted, it's a useless subset without the real thing!
+The stubs are generated directly from the [source](https://github.com/johnpbloch/wordpress-core)
+using [giacocorsiglia/stubs-generator](https://github.com/GiacoCorsiglia/php-stubs-generator).
 
-## Installation
+### Requirements
 
-Require this package as a dev-dependency with [Composer](https://getcomposer.org):
+- PHP >=7.1
+- Sodium PHP extension as latest WordPress core uses it and **compat code is removed**,
+  Sodium is included in PHP from version 7.2, in 7.1 issue `pecl install libsodium`
+- For PHP <7.3 install the `symfony/polyfill-php73` as development dependency
 
+### Installation
+
+Require this package as a development dependency with [Composer](https://getcomposer.org).
+
+```bash
+composer require --dev php-stubs/wordpress-stubs
 ```
-composer require --dev giacocorsiglia/wordpress-stubs
+
+Alternatively you may download `wordpress-stubs.php` directly.
+
+### Usage with PHPStan
+
+```bash
+composer require --dev szepeviktor/phpstan-wordpress
 ```
 
-Alternatively, you may download `wordpress-stubs.php` directly.
+Please do read
+[that package's README](https://github.com/szepeviktor/phpstan-wordpress/blob/master/README.md)
+and see the `example` directory over there.
 
-## Usage with Psalm
+### Usage with Psalm
 
-Update your Psalm config to include the section:
+Update your Psalm config to include this section.
 
 ```xml
 <stubs>
-    <file name="vendor/giacocorsiglia/wordpress-stubs/wordpress-stubs.php" />
+    <file name="vendor/php-stubs/wordpress-stubs/wordpress-stubs.php" />
 </stubs>
 ```
 
-Furthermore, ensure WordPress core code is _not_ included under `<projectFiles>`.
+Furthermore ensure WordPress core is _not_ included in `<projectFiles>`.
 
-## Usage for Intellisense
+### Usage in Intellisense
 
-If your editor has trouble parsing all of WordPress, you may find the stubs useful for enabling code completion and related features.  For example, [here](https://github.com/bmewburn/vscode-intelephense/issues/113) are instructions for usage with VSCode's [Intelephense](https://marketplace.visualstudio.com/items?itemName=bmewburn.vscode-intelephense-client) extension.  (In my experience, however, Intelephense parses WordPress core just fine.)
+If your IDE has trouble parsing all of WordPress
+you may find the stubs useful for enabling code completion and related features.
+For example there are [instructions](https://github.com/bmewburn/vscode-intelephense/issues/113)
+for usage with VSCode's
+[Intelephense](https://marketplace.visualstudio.com/items?itemName=bmewburn.vscode-intelephense-client)
+extension.
 
-## Versioning
+### Versioning
 
-This package is versioned to match the WordPress version from which the stubs are generated.  If any fixes to stubs are required, subsequent releases will be versioned as `WP_VERSION.X`.
+This package is versioned to match the WordPress version from which the stubs are generated.
 
-## Generating stubs for a different WordPress version
+### Generating stubs for a different WordPress version
 
-You should be running PHP 7.1 or later to follow these steps, so any function definitions that are polyfills for older versions of PHP are excluded from the stubs.  Additionally, the Stubs Generator package at least requires PHP 7.1.
+1. Run modern PHP version
+1. Clone this repository and `cd` into it
+1. Update `"johnpbloch/wordpress": "x.x.x"` in `composer.json` with the desired version
+1. Run `composer update`
+1. And run `./generate.sh`
 
-1. Clone this repository and `cd` into it.
-2. Update `"johnpbloch/wordpress": "X.X.X"` in `composer.json` with your desired version.
-3. Run `composer update`
-4. Run `./generate.sh`
-
-The `wordpress-stubs.php` file should now be updated.  Feel free to submit a Pull Request if you'd like to see a release for a newer version.  If things have fallen behind, please generate stubs for each missing version in a distinct commit so we can have a continuous release history.
-
-## Contributing
-
-Please have a look at [`CONTRIBUTING.md`](.github/CONTRIBUTING.md).
+The `wordpress-stubs.php` file should now be updated.
