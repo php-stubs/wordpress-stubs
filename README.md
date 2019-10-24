@@ -35,6 +35,8 @@ Alternatively you may download `wordpress-stubs.php` directly.
 composer require --dev szepeviktor/phpstan-wordpress
 ```
 
+The package [`szepeviktor/phpstan-wordpress`](https://github.com/szepeviktor/phpstan-wordpress)
+depends on [`phpstan/phpstan`](http://github.com/phpstan/phpstan) and this one.
 Please do read
 [that package's README](https://github.com/szepeviktor/phpstan-wordpress/blob/master/README.md)
 and see the `example` directory over there.
