@@ -22,5 +22,11 @@
         "giacocorsiglia/stubs-generator": "^0.5.0",
         "johnpbloch/wordpress": "5.2.4"
     },
-    "minimum-stability": "stable"
+    "minimum-stability": "stable",
+    "scripts": {
+        "cleanup": "git status --short --ignored | sed -n -e 's#^!! ##p' | xargs -r rm -vrf"
+    },
+    "scripts-descriptions": {
+        "cleanup": "Remove all ignored files."
+    }
 }
