@@ -23,7 +23,9 @@
         "johnpbloch/wordpress": "5.2.4"
     },
     "suggest": {
-        "szepeviktor/phpstan-wordpress": "WordPress extensions for PHPStan"
+        "szepeviktor/phpstan-wordpress": "WordPress extensions for PHPStan",
+        "paragonie/sodium_compat": "Pure PHP implementation of libsodium",
+        "symfony/polyfill-php73": "Symfony polyfill backporting some PHP 7.3+ features to lower PHP versions"
     },
     "minimum-stability": "stable",
     "scripts": {

@@ -15,8 +15,9 @@ using [giacocorsiglia/stubs-generator](https://github.com/GiacoCorsiglia/php-stu
 ### Requirements
 
 - PHP >=7.1
-- Sodium PHP extension as latest WordPress core uses it and **compat code is removed**,
+- Sodium PHP extension as latest WordPress core uses it and **compat code is removed** from stubs,
   Sodium is included in PHP from version 7.2, in 7.1 issue `pecl install libsodium`
+  or install the `paragonie/sodium_compat` package
 - For PHP <7.3 install the `symfony/polyfill-php73` as development dependency
 
 ### Installation
