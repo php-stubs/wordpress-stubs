@@ -8,8 +8,6 @@ php:
   # giacocorsiglia/stubs-generator does not support PHP 7.0
   - "7.1"
   - "7.2"
-  - "7.3"
-  - "7.4snapshot"
 
 before_install:
   - |
@@ -21,7 +19,7 @@ before_install:
 
 install:
   - |
-    if [ "$(phpenv version-name)" == "7.1" ] || [ "$(phpenv version-name)" == "7.2" ]; then
+    if [ "$(phpenv version-name)" == "7.1" ]; then
       wget "https://github.com/jedisct1/libsodium/releases/download/1.0.18-RELEASE/libsodium-1.0.18.tar.gz"
       tar -xf libsodium-*.tar.gz
       cd libsodium-* && ./configure --prefix="$HOME/libsodium" && make check && make install && cd -
