@@ -20,7 +20,7 @@
         "ext-openssl": "*",
         "ext-sodium": "*",
         "giacocorsiglia/stubs-generator": "^0.5.0",
-        "johnpbloch/wordpress": "5.2.4"
+        "johnpbloch/wordpress": "5.3.0"
     },
     "suggest": {
         "szepeviktor/phpstan-wordpress": "WordPress extensions for PHPStan",
