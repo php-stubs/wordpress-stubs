@@ -45,7 +45,7 @@ before_script:
     cat ./wordpress/wp-includes/version.php
     if [ "$(phpenv version-name)" == 7.4snapshot ]; then
         # Hide deprecated errors
-        sed -e '3s/^/error_reporting(E_ALL ^ E_DEPRECATED);/' -i ./vendor/bin/generate-stubs
+        sed -e '3s/^/error_reporting(E_ALL ^ E_DEPRECATED);/' -i ./vendor/giacocorsiglia/stubs-generator/bin/generate-stubs
     fi
 
 script:
