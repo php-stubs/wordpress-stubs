@@ -25,10 +25,10 @@ for V in 4.7  4.8  4.9  5.0  5.1  5.2  5.3; do
 
     # Modify composer.json
     printf -v SED_EXP 's#\\("johnpbloch/wordpress"\\): "[0-9]\\+\\.[0-9]\\+\\.[0-9]\\+"#\\1: "%s"#' "$LATEST"
-    sed -e "$SED_EXP" -i composer.json
+    sed -e "$SED_EXP" -i source/composer.json
 
     # Generate stubs
-    composer update --no-interaction --no-suggest
+    composer run-script post-install-cmd
     echo "Generating stubs ..."
     ./generate.sh
 

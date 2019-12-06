@@ -12,11 +12,11 @@ php:
   - "7.1"
   - "7.2"
   - "7.3"
-  - "7.4snapshot"
+  - "7.4"
 
 before_install:
   - |
-    if [ "$(phpenv version-name)" != 7.4snapshot ]; then
+    if [ "$(phpenv version-name)" != 7.4 ]; then
       phpenv config-rm xdebug.ini
     fi
   - |
@@ -39,11 +39,13 @@ install:
     fi
   - |
     composer install --no-interaction --no-suggest
+  - |
+    composer run-script post-install-cmd
 
 before_script:
   - |
-    cat ./wordpress/wp-includes/version.php
-    if [ "$(phpenv version-name)" == 7.4snapshot ]; then
+    cat ./source/wordpress/wp-includes/version.php
+    if [ "$(phpenv version-name)" == 7.4 ]; then
         # Hide deprecated errors
         sed -e '3s/^/error_reporting(E_ALL ^ E_DEPRECATED);/' -i ./vendor/giacocorsiglia/stubs-generator/bin/generate-stubs
     fi

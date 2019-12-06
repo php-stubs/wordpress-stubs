@@ -7,7 +7,7 @@ FILE="wordpress-stubs.php"
 set -e
 
 test -f "$FILE"
-test -d "wordpress"
+test -d "source/wordpress"
 
 # Exclude globals.
 "$(dirname "$0")/vendor/bin/generate-stubs" \

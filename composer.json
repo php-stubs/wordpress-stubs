@@ -13,14 +13,7 @@
     },
     "require-dev": {
         "php": "~7.1",
-        "ext-gettext": "*",
-        "ext-hash": "*",
-        "ext-json": "*",
-        "ext-mbstring": "*",
-        "ext-openssl": "*",
-        "ext-sodium": "*",
-        "giacocorsiglia/stubs-generator": "^0.5.0",
-        "johnpbloch/wordpress": "5.3.0"
+        "giacocorsiglia/stubs-generator": "^0.5.0"
     },
     "suggest": {
         "szepeviktor/phpstan-wordpress": "WordPress extensions for PHPStan",
@@ -29,6 +22,8 @@
     },
     "minimum-stability": "stable",
     "scripts": {
+        "post-install-cmd": "composer --working-dir=source/ install --no-interaction --no-suggest",
+        "post-update-cmd" : "composer --working-dir=source/ install --no-interaction --no-suggest",
         "cleanup": "git status --short --ignored | sed -n -e 's#^!! ##p' | xargs -r rm -vrf"
     },
     "scripts-descriptions": {
