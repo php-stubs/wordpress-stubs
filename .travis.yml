@@ -9,9 +9,6 @@ cache:
 
 php:
   # giacocorsiglia/stubs-generator does not support PHP 7.0
-  - "7.1"
-  - "7.2"
-  - "7.3"
   - "7.4"
 
 before_install:
@@ -24,7 +21,7 @@ before_install:
 
 install:
   - |
-    if [ "$(phpenv version-name)" == 7.1 ]; then
+    if [ "$(phpenv version-name)" == 7.4 ]; then
       # https://github.com/paragonie/sodium_compat/pull/104
       #composer require --no-interaction --dev "paragonie/sodium_compat"
       LIBSODIUM_VERSION="1.0.18"
