@@ -1,6 +1,6 @@
 # WordPress Stubs
 
-[![Build Status](https://travis-ci.org/php-stubs/wordpress-stubs.svg?branch=master)](https://travis-ci.org/php-stubs/wordpress-stubs)
+[![Build Status](https://travis-ci.com/php-stubs/wordpress-stubs.svg?branch=master)](https://travis-ci.com/php-stubs/wordpress-stubs)
 
 This package is a fork of `giacocorsiglia/stubs-generator`.
 It provides stub declarations for [WordPress](https://wordpress.org/)
