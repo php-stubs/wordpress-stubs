@@ -81561,18 +81561,17 @@ function self_link()
 {
 }
 /**
- * Get the timestamp of the most recently modified post from WP_Query.
+ * Get the UTC time of the most recently modified post from WP_Query.
  *
- * If viewing a comment feed, the timestamp of the most recently modified
+ * If viewing a comment feed, the time of the most recently modified
  * comment will be returned.
  *
  * @global WP_Query $wp_query WordPress Query object.
  *
  * @since 5.2.0
  *
- * @param string $format Format of the timestamp to return, passed to mysql2date.
- *
- * @return string The timestamp.
+ * @param string $format Date format string to return the time in.
+ * @return string|false The time in requested format, or false on failure.
  */
 function get_feed_build_date($format)
 {
@@ -102115,7 +102114,7 @@ function get_posts_by_author_sql($post_type, $full = \true, $post_author = \null
  *                          'gmt' uses the `post_date_gmt` field.
  *                          Default 'server'.
  * @param string $post_type Optional. The post type to check. Default 'any'.
- * @return string The date of the last post.
+ * @return string The date of the last post, or false on failure.
  */
 function get_lastpostdate($timezone = 'server', $post_type = 'any')
 {
@@ -102134,7 +102133,7 @@ function get_lastpostdate($timezone = 'server', $post_type = 'any')
  *                          for information on accepted values.
  *                          Default 'server'.
  * @param string $post_type Optional. The post type to check. Default 'any'.
- * @return string The timestamp in 'Y-m-d H:i:s' format.
+ * @return string The timestamp in 'Y-m-d H:i:s' format, or false on failure.
  */
 function get_lastpostmodified($timezone = 'server', $post_type = 'any')
 {
@@ -102152,7 +102151,7 @@ function get_lastpostmodified($timezone = 'server', $post_type = 'any')
  *                          for information on accepted values.
  * @param string $field     Post field to check. Accepts 'date' or 'modified'.
  * @param string $post_type Optional. The post type to check. Default 'any'.
- * @return string|false The timestamp in 'Y-m-d H:i:s' format, or false on error.
+ * @return string|false The timestamp in 'Y-m-d H:i:s' format, or false on failure.
  */
 function _get_last_post_time($timezone, $field, $post_type = 'any')
 {
