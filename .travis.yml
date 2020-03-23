@@ -57,3 +57,5 @@ script:
     php -l wordpress-stubs.php
   - |
     git diff --exit-code
+  - |
+    php -f wordpress-stubs.php
