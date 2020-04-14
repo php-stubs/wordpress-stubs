@@ -16,9 +16,7 @@ php:
 
 before_install:
   - |
-    if [ "$(phpenv version-name)" != 7.4 ]; then
-      phpenv config-rm xdebug.ini
-    fi
+    phpenv config-rm xdebug.ini
   - |
     composer validate --strict
 
