@@ -942,7 +942,7 @@ class ftp_base
     function get($remotefile, $localfile = \NULL, $rest = 0)
     {
     }
-    function fput($remotefile, $fp)
+    function fput($remotefile, $fp, $rest = 0)
     {
     }
     function put($localfile, $remotefile = \NULL, $rest = 0)
@@ -8147,6 +8147,13 @@ final class WP_Screen
      */
     private $_screen_settings;
     /**
+     * Whether the screen is using the block editor.
+     *
+     * @since 5.0.0
+     * @var bool
+     */
+    public $is_block_editor = \false;
+    /**
      * Fetches a screen object.
      *
      * @since 3.3.0
@@ -8193,6 +8200,17 @@ final class WP_Screen
      * @return bool True if the screen is in the indicated admin, false otherwise.
      */
     public function in_admin($admin = \null)
+    {
+    }
+    /**
+     * Sets or returns whether the block editor is loading on the current screen.
+     *
+     * @since 5.0.0
+     *
+     * @param bool $set Optional. Sets whether the block editor is loading on the current screen or not.
+     * @return bool True if the block editor is being loaded, false otherwise.
+     */
+    public function is_block_editor($set = \null)
     {
     }
     /**
@@ -9005,15 +9023,15 @@ class WP_Theme_Install_List_Table extends \WP_Themes_List_Table
      * @param object $theme {
      *     An object that contains theme data returned by the WordPress.org API.
      *
-     *     @type string $name           Theme name, e.g. 'Twenty Seventeen'.
-     *     @type string $slug           Theme slug, e.g. 'twentyseventeen'.
+     *     @type string $name           Theme name, e.g. 'Twenty Nineteen'.
+     *     @type string $slug           Theme slug, e.g. 'twentynineteen'.
      *     @type string $version        Theme version, e.g. '1.1'.
      *     @type string $author         Theme author username, e.g. 'melchoyce'.
-     *     @type string $preview_url    Preview URL, e.g. 'http://2017.wordpress.net/'.
-     *     @type string $screenshot_url Screenshot URL, e.g. 'https://wordpress.org/themes/twentyseventeen/'.
+     *     @type string $preview_url    Preview URL, e.g. 'http://2019.wordpress.net/'.
+     *     @type string $screenshot_url Screenshot URL, e.g. 'https://wordpress.org/themes/twentynineteen/'.
      *     @type float  $rating         Rating score.
      *     @type int    $num_ratings    The number of ratings.
-     *     @type string $homepage       Theme homepage, e.g. 'https://wordpress.org/themes/twentyseventeen/'.
+     *     @type string $homepage       Theme homepage, e.g. 'https://wordpress.org/themes/twentynineteen/'.
      *     @type string $description    Theme description.
      *     @type string $download_link  Theme ZIP download URL.
      * }
@@ -9581,10 +9599,11 @@ final class WP_Privacy_Policy_Content
      * Add a notice with a link to the guide when editing the privacy policy page.
      *
      * @since 4.9.6
+     * @since 5.0.0 The $post parameter is now optional.
      *
-     * @param WP_Post $post The currently edited post.
+     * @param WP_Post|null $post The currently edited post. Default null.
      */
-    public static function notice($post)
+    public static function notice($post = \null)
     {
     }
     /**
@@ -9599,11 +9618,13 @@ final class WP_Privacy_Policy_Content
      * Return the default suggested privacy policy content.
      *
      * @since 4.9.6
+     * @since 5.0.0 Added the `$blocks` parameter.
      *
-     * @param bool $descr Whether to include the descriptions under the section headings. Default false.
+     * @param bool $description Whether to include the descriptions under the section headings. Default false.
+     * @param bool $blocks      Whether to format the content for the block editor. Default true.
      * @return string The default policy content.
      */
-    public static function get_default_content($descr = \false)
+    public static function get_default_content($description = \false, $blocks = \true)
     {
     }
     /**
@@ -26235,6 +26256,532 @@ class WP_Ajax_Response
     }
 }
 /**
+ * Block Serialization Parser
+ *
+ * @package WordPress
+ */
+/**
+ * Class WP_Block_Parser_Block
+ *
+ * Holds the block structure in memory
+ *
+ * @since 3.8.0
+ */
+class WP_Block_Parser_Block
+{
+    /**
+     * Name of block
+     *
+     * @example "core/paragraph"
+     *
+     * @since 3.8.0
+     * @var string
+     */
+    public $blockName;
+    /**
+     * Optional set of attributes from block comment delimiters
+     *
+     * @example null
+     * @example array( 'columns' => 3 )
+     *
+     * @since 3.8.0
+     * @var array|null
+     */
+    public $attrs;
+    /**
+     * List of inner blocks (of this same class)
+     *
+     * @since 3.8.0
+     * @var WP_Block_Parser_Block[]
+     */
+    public $innerBlocks;
+    /**
+     * Resultant HTML from inside block comment delimiters
+     * after removing inner blocks
+     *
+     * @example "...Just <!-- wp:test /--> testing..." -> "Just testing..."
+     *
+     * @since 3.8.0
+     * @var string
+     */
+    public $innerHTML;
+    /**
+     * List of string fragments and null markers where inner blocks were found
+     *
+     * @example array(
+     *   'innerHTML'    => 'BeforeInnerAfter',
+     *   'innerBlocks'  => array( block, block ),
+     *   'innerContent' => array( 'Before', null, 'Inner', null, 'After' ),
+     * )
+     *
+     * @since 4.2.0
+     * @var array
+     */
+    public $innerContent;
+    /**
+     * Constructor.
+     *
+     * Will populate object properties from the provided arguments.
+     *
+     * @since 3.8.0
+     *
+     * @param string $name         Name of block.
+     * @param array  $attrs        Optional set of attributes from block comment delimiters.
+     * @param array  $innerBlocks  List of inner blocks (of this same class).
+     * @param string $innerHTML    Resultant HTML from inside block comment delimiters after removing inner blocks.
+     * @param array  $innerContent List of string fragments and null markers where inner blocks were found.
+     */
+    function __construct($name, $attrs, $innerBlocks, $innerHTML, $innerContent)
+    {
+    }
+}
+/**
+ * Class WP_Block_Parser_Frame
+ *
+ * Holds partial blocks in memory while parsing
+ *
+ * @internal
+ * @since 3.8.0
+ */
+class WP_Block_Parser_Frame
+{
+    /**
+     * Full or partial block
+     *
+     * @since 3.8.0
+     * @var WP_Block_Parser_Block
+     */
+    public $block;
+    /**
+     * Byte offset into document for start of parse token
+     *
+     * @since 3.8.0
+     * @var int
+     */
+    public $token_start;
+    /**
+     * Byte length of entire parse token string
+     *
+     * @since 3.8.0
+     * @var int
+     */
+    public $token_length;
+    /**
+     * Byte offset into document for after parse token ends
+     * (used during reconstruction of stack into parse production)
+     *
+     * @since 3.8.0
+     * @var int
+     */
+    public $prev_offset;
+    /**
+     * Byte offset into document where leading HTML before token starts
+     *
+     * @since 3.8.0
+     * @var int
+     */
+    public $leading_html_start;
+    /**
+     * Constructor
+     *
+     * Will populate object properties from the provided arguments.
+     *
+     * @since 3.8.0
+     *
+     * @param WP_Block_Parser_Block $block              Full or partial block.
+     * @param int                   $token_start        Byte offset into document for start of parse token.
+     * @param int                   $token_length       Byte length of entire parse token string.
+     * @param int                   $prev_offset        Byte offset into document for after parse token ends.
+     * @param int                   $leading_html_start Byte offset into document where leading HTML before token starts.
+     */
+    function __construct($block, $token_start, $token_length, $prev_offset = \null, $leading_html_start = \null)
+    {
+    }
+}
+/**
+ * Class WP_Block_Parser
+ *
+ * Parses a document and constructs a list of parsed block objects
+ *
+ * @since 3.8.0
+ * @since 4.0.0 returns arrays not objects, all attributes are arrays
+ */
+class WP_Block_Parser
+{
+    /**
+     * Input document being parsed
+     *
+     * @example "Pre-text\n<!-- wp:paragraph -->This is inside a block!<!-- /wp:paragraph -->"
+     *
+     * @since 3.8.0
+     * @var string
+     */
+    public $document;
+    /**
+     * Tracks parsing progress through document
+     *
+     * @since 3.8.0
+     * @var int
+     */
+    public $offset;
+    /**
+     * List of parsed blocks
+     *
+     * @since 3.8.0
+     * @var WP_Block_Parser_Block[]
+     */
+    public $output;
+    /**
+     * Stack of partially-parsed structures in memory during parse
+     *
+     * @since 3.8.0
+     * @var WP_Block_Parser_Frame[]
+     */
+    public $stack;
+    /**
+     * Empty associative array, here due to PHP quirks
+     *
+     * @since 4.4.0
+     * @var array empty associative array
+     */
+    public $empty_attrs;
+    /**
+     * Parses a document and returns a list of block structures
+     *
+     * When encountering an invalid parse will return a best-effort
+     * parse. In contrast to the specification parser this does not
+     * return an error on invalid inputs.
+     *
+     * @since 3.8.0
+     *
+     * @param string $document Input document being parsed.
+     * @return WP_Block_Parser_Block[]
+     */
+    function parse($document)
+    {
+    }
+    /**
+     * Processes the next token from the input document
+     * and returns whether to proceed eating more tokens
+     *
+     * This is the "next step" function that essentially
+     * takes a token as its input and decides what to do
+     * with that token before descending deeper into a
+     * nested block tree or continuing along the document
+     * or breaking out of a level of nesting.
+     *
+     * @internal
+     * @since 3.8.0
+     * @return bool
+     */
+    function proceed()
+    {
+    }
+    /**
+     * Scans the document from where we last left off
+     * and finds the next valid token to parse if it exists
+     *
+     * Returns the type of the find: kind of find, block information, attributes
+     *
+     * @internal
+     * @since 3.8.0
+     * @since 4.6.1 fixed a bug in attribute parsing which caused catastrophic backtracking on invalid block comments
+     * @return array
+     */
+    function next_token()
+    {
+    }
+    /**
+     * Returns a new block object for freeform HTML
+     *
+     * @internal
+     * @since 3.9.0
+     *
+     * @param string $innerHTML HTML content of block.
+     * @return WP_Block_Parser_Block freeform block object.
+     */
+    function freeform($innerHTML)
+    {
+    }
+    /**
+     * Pushes a length of text from the input document
+     * to the output list as a freeform block.
+     *
+     * @internal
+     * @since 3.8.0
+     * @param null $length how many bytes of document text to output.
+     */
+    function add_freeform($length = \null)
+    {
+    }
+    /**
+     * Given a block structure from memory pushes
+     * a new block to the output list.
+     *
+     * @internal
+     * @since 3.8.0
+     * @param WP_Block_Parser_Block $block        The block to add to the output.
+     * @param int                   $token_start  Byte offset into the document where the first token for the block starts.
+     * @param int                   $token_length Byte length of entire block from start of opening token to end of closing token.
+     * @param int|null              $last_offset  Last byte offset into document if continuing form earlier output.
+     */
+    function add_inner_block(\WP_Block_Parser_Block $block, $token_start, $token_length, $last_offset = \null)
+    {
+    }
+    /**
+     * Pushes the top block from the parsing stack to the output list.
+     *
+     * @internal
+     * @since 3.8.0
+     * @param int|null $end_offset byte offset into document for where we should stop sending text output as HTML.
+     */
+    function add_block_from_stack($end_offset = \null)
+    {
+    }
+}
+/**
+ * Blocks API: WP_Block_Type_Registry class
+ *
+ * @package WordPress
+ * @subpackage Blocks
+ * @since 5.0.0
+ */
+/**
+ * Core class used for interacting with block types.
+ *
+ * @since 5.0.0
+ */
+final class WP_Block_Type_Registry
+{
+    /**
+     * Registered block types, as `$name => $instance` pairs.
+     *
+     * @since 5.0.0
+     * @var WP_Block_Type[]
+     */
+    private $registered_block_types = array();
+    /**
+     * Container for the main instance of the class.
+     *
+     * @since 5.0.0
+     * @var WP_Block_Type_Registry|null
+     */
+    private static $instance = \null;
+    /**
+     * Registers a block type.
+     *
+     * @since 5.0.0
+     *
+     * @param string|WP_Block_Type $name Block type name including namespace, or alternatively a
+     *                                   complete WP_Block_Type instance. In case a WP_Block_Type
+     *                                   is provided, the $args parameter will be ignored.
+     * @param array                $args {
+     *     Optional. Array of block type arguments. Any arguments may be defined, however the
+     *     ones described below are supported by default. Default empty array.
+     *
+     *     @type callable $render_callback Callback used to render blocks of this block type.
+     *     @type array    $attributes      Block attributes mapping, property name to schema.
+     * }
+     * @return WP_Block_Type|false The registered block type on success, or false on failure.
+     */
+    public function register($name, $args = array())
+    {
+    }
+    /**
+     * Unregisters a block type.
+     *
+     * @since 5.0.0
+     *
+     * @param string|WP_Block_Type $name Block type name including namespace, or alternatively a
+     *                                   complete WP_Block_Type instance.
+     * @return WP_Block_Type|false The unregistered block type on success, or false on failure.
+     */
+    public function unregister($name)
+    {
+    }
+    /**
+     * Retrieves a registered block type.
+     *
+     * @since 5.0.0
+     *
+     * @param string $name Block type name including namespace.
+     * @return WP_Block_Type|null The registered block type, or null if it is not registered.
+     */
+    public function get_registered($name)
+    {
+    }
+    /**
+     * Retrieves all registered block types.
+     *
+     * @since 5.0.0
+     *
+     * @return WP_Block_Type[] Associative array of `$block_type_name => $block_type` pairs.
+     */
+    public function get_all_registered()
+    {
+    }
+    /**
+     * Checks if a block type is registered.
+     *
+     * @since 5.0.0
+     *
+     * @param string $name Block type name including namespace.
+     * @return bool True if the block type is registered, false otherwise.
+     */
+    public function is_registered($name)
+    {
+    }
+    /**
+     * Utility method to retrieve the main instance of the class.
+     *
+     * The instance will be created if it does not exist yet.
+     *
+     * @since 5.0.0
+     *
+     * @return WP_Block_Type_Registry The main instance.
+     */
+    public static function get_instance()
+    {
+    }
+}
+/**
+ * Blocks API: WP_Block_Type class
+ *
+ * @package WordPress
+ * @subpackage Blocks
+ * @since 5.0.0
+ */
+/**
+ * Core class representing a block type.
+ *
+ * @since 5.0.0
+ *
+ * @see register_block_type()
+ */
+class WP_Block_Type
+{
+    /**
+     * Block type key.
+     *
+     * @since 5.0.0
+     * @var string
+     */
+    public $name;
+    /**
+     * Block type render callback.
+     *
+     * @since 5.0.0
+     * @var callable
+     */
+    public $render_callback;
+    /**
+     * Block type attributes property schemas.
+     *
+     * @since 5.0.0
+     * @var array
+     */
+    public $attributes;
+    /**
+     * Block type editor script handle.
+     *
+     * @since 5.0.0
+     * @var string
+     */
+    public $editor_script;
+    /**
+     * Block type front end script handle.
+     *
+     * @since 5.0.0
+     * @var string
+     */
+    public $script;
+    /**
+     * Block type editor style handle.
+     *
+     * @since 5.0.0
+     * @var string
+     */
+    public $editor_style;
+    /**
+     * Block type front end style handle.
+     *
+     * @since 5.0.0
+     * @var string
+     */
+    public $style;
+    /**
+     * Constructor.
+     *
+     * Will populate object properties from the provided arguments.
+     *
+     * @since 5.0.0
+     *
+     * @see register_block_type()
+     *
+     * @param string       $block_type Block type name including namespace.
+     * @param array|string $args       Optional. Array or string of arguments for registering a block type.
+     *                                 Default empty array.
+     */
+    public function __construct($block_type, $args = array())
+    {
+    }
+    /**
+     * Renders the block type output for given attributes.
+     *
+     * @since 5.0.0
+     *
+     * @param array  $attributes Optional. Block attributes. Default empty array.
+     * @param string $content    Optional. Block content. Default empty string.
+     * @return string Rendered block type output.
+     */
+    public function render($attributes = array(), $content = '')
+    {
+    }
+    /**
+     * Returns true if the block type is dynamic, or false otherwise. A dynamic
+     * block is one which defers its rendering to occur on-demand at runtime.
+     *
+     * @since 5.0.0
+     *
+     * @return boolean Whether block type is dynamic.
+     */
+    public function is_dynamic()
+    {
+    }
+    /**
+     * Validates attributes against the current block schema, populating
+     * defaulted and missing values.
+     *
+     * @since 5.0.0
+     *
+     * @param  array $attributes Original block attributes.
+     * @return array             Prepared block attributes.
+     */
+    public function prepare_attributes_for_render($attributes)
+    {
+    }
+    /**
+     * Sets block type properties.
+     *
+     * @since 5.0.0
+     *
+     * @param array|string $args Array or string of arguments for registering a block type.
+     */
+    public function set_props($args)
+    {
+    }
+    /**
+     * Get all available block attributes including possible layout attribute from Columns block.
+     *
+     * @since 5.0.0
+     *
+     * @return array Array of attributes.
+     */
+    public function get_attributes()
+    {
+    }
+}
+/**
  * Comment API: WP_Comment_Query class
  *
  * @package WordPress
@@ -31268,6 +31815,20 @@ class _WP_Dependency
      */
     public $extra = array();
     /**
+     * Translation textdomain set for this dependency.
+     *
+     * @since 5.0.0
+     * @var string
+     */
+    public $textdomain;
+    /**
+     * Translation path set for this dependency.
+     *
+     * @since 5.0.0
+     * @var string
+     */
+    public $translations_path;
+    /**
      * Setup dependencies.
      *
      * @since 2.6.0
@@ -31285,6 +31846,9 @@ class _WP_Dependency
      * @return bool False if not scalar, true otherwise.
      */
     public function add_data($name, $data)
+    {
+    }
+    public function set_translations($domain, $path = \null)
     {
     }
 }
@@ -31391,7 +31955,7 @@ final class _WP_Editors
     /**
      *
      * @static
-     * 
+     *
      * @param bool $default_scripts Optional. Whether default scripts should be enqueued. Default false.
      */
     public static function enqueue_scripts($default_scripts = \false)
@@ -31446,6 +32010,16 @@ final class _WP_Editors
      * @return string Translation object, JSON encoded.
      */
     public static function wp_mce_translation($mce_locale = '', $json_only = \false)
+    {
+    }
+    /**
+     * Force uncompressed TinyMCE when a custom theme has been defined.
+     *
+     * The compressed TinyMCE file cannot deal with custom themes, so this makes
+     * sure that we use the uncompressed TinyMCE file if a theme is defined.
+     * Even if we are on a production environment.
+     */
+    public static function force_uncompressed_tinymce()
     {
     }
     /**
@@ -40271,6 +40845,20 @@ class WP_Text_Diff_Renderer_Table extends \Text_Diff_Renderer
     protected $_show_split_view = \true;
     protected $compat_fields = array('_show_split_view', 'inline_diff_renderer', '_diff_threshold');
     /**
+     * Caches the output of count_chars() in compute_string_distance()
+     *
+     * @var array
+     * @since 5.0.0
+     */
+    protected $count_cache = array();
+    /**
+     * Caches the difference calculation in compute_string_distance()
+     *
+     * @var array
+     * @since 5.0.0
+     */
+    protected $difference_cache = array();
+    /**
      * Constructor - Call parent constructor with params array.
      *
      * This will set class properties based on the key value pairs in the array.
@@ -40510,7 +41098,7 @@ final class WP_Theme implements \ArrayAccess
      * @static
      * @var array
      */
-    private static $default_themes = array('classic' => 'WordPress Classic', 'default' => 'WordPress Default', 'twentyten' => 'Twenty Ten', 'twentyeleven' => 'Twenty Eleven', 'twentytwelve' => 'Twenty Twelve', 'twentythirteen' => 'Twenty Thirteen', 'twentyfourteen' => 'Twenty Fourteen', 'twentyfifteen' => 'Twenty Fifteen', 'twentysixteen' => 'Twenty Sixteen', 'twentyseventeen' => 'Twenty Seventeen');
+    private static $default_themes = array('classic' => 'WordPress Classic', 'default' => 'WordPress Default', 'twentyten' => 'Twenty Ten', 'twentyeleven' => 'Twenty Eleven', 'twentytwelve' => 'Twenty Twelve', 'twentythirteen' => 'Twenty Thirteen', 'twentyfourteen' => 'Twenty Fourteen', 'twentyfifteen' => 'Twenty Fifteen', 'twentysixteen' => 'Twenty Sixteen', 'twentyseventeen' => 'Twenty Seventeen', 'twentynineteen' => 'Twenty Nineteen');
     /**
      * Renamed theme tags.
      *
@@ -45149,6 +45737,33 @@ class WP_Scripts extends \WP_Dependencies
      * @return bool Not already in the group or a lower group
      */
     public function set_group($handle, $recursion, $group = \false)
+    {
+    }
+    /**
+     * Sets a translation textdomain.
+     *
+     * @since 5.0.0
+     *
+     * @param string $handle Name of the script to register a translation domain to.
+     * @param string $domain The textdomain.
+     * @param string $path   Optional. The full file path to the directory containing translation files.
+     *
+     * @return bool True if the textdomain was registered, false if not.
+     */
+    public function set_translations($handle, $domain, $path = \null)
+    {
+    }
+    /**
+     * Prints translations set for a specific handle.
+     *
+     * @since 5.0.0
+     *
+     * @param string $handle Name of the script to add the inline script to. Must be lowercase.
+     * @param bool   $echo   Optional. Whether to echo the script instead of just returning it.
+     *                       Default true.
+     * @return string|false Script on success, false otherwise.
+     */
+    public function print_translations($handle, $echo = \true)
     {
     }
     /**
@@ -51211,6 +51826,522 @@ class WP_REST_Attachments_Controller extends \WP_REST_Posts_Controller
     }
 }
 /**
+ * REST API: WP_REST_Revisions_Controller class
+ *
+ * @package WordPress
+ * @subpackage REST_API
+ * @since 4.7.0
+ */
+/**
+ * Core class used to access revisions via the REST API.
+ *
+ * @since 4.7.0
+ *
+ * @see WP_REST_Controller
+ */
+class WP_REST_Revisions_Controller extends \WP_REST_Controller
+{
+    /**
+     * Parent post type.
+     *
+     * @since 4.7.0
+     * @var string
+     */
+    private $parent_post_type;
+    /**
+     * Parent controller.
+     *
+     * @since 4.7.0
+     * @var WP_REST_Controller
+     */
+    private $parent_controller;
+    /**
+     * The base of the parent controller's route.
+     *
+     * @since 4.7.0
+     * @var string
+     */
+    private $parent_base;
+    /**
+     * Constructor.
+     *
+     * @since 4.7.0
+     *
+     * @param string $parent_post_type Post type of the parent.
+     */
+    public function __construct($parent_post_type)
+    {
+    }
+    /**
+     * Registers routes for revisions based on post types supporting revisions.
+     *
+     * @since 4.7.0
+     *
+     * @see register_rest_route()
+     */
+    public function register_routes()
+    {
+    }
+    /**
+     * Get the parent post, if the ID is valid.
+     *
+     * @since 4.7.2
+     *
+     * @param int $id Supplied ID.
+     * @return WP_Post|WP_Error Post object if ID is valid, WP_Error otherwise.
+     */
+    protected function get_parent($parent)
+    {
+    }
+    /**
+     * Checks if a given request has access to get revisions.
+     *
+     * @since 4.7.0
+     *
+     * @param WP_REST_Request $request Full data about the request.
+     * @return true|WP_Error True if the request has read access, WP_Error object otherwise.
+     */
+    public function get_items_permissions_check($request)
+    {
+    }
+    /**
+     * Get the revision, if the ID is valid.
+     *
+     * @since 4.7.2
+     *
+     * @param int $id Supplied ID.
+     * @return WP_Post|WP_Error Revision post object if ID is valid, WP_Error otherwise.
+     */
+    protected function get_revision($id)
+    {
+    }
+    /**
+     * Gets a collection of revisions.
+     *
+     * @since 4.7.0
+     *
+     * @param WP_REST_Request $request Full data about the request.
+     * @return WP_REST_Response|WP_Error Response object on success, or WP_Error object on failure.
+     */
+    public function get_items($request)
+    {
+    }
+    /**
+     * Checks if a given request has access to get a specific revision.
+     *
+     * @since 4.7.0
+     *
+     * @param WP_REST_Request $request Full data about the request.
+     * @return bool|WP_Error True if the request has read access for the item, WP_Error object otherwise.
+     */
+    public function get_item_permissions_check($request)
+    {
+    }
+    /**
+     * Retrieves one revision from the collection.
+     *
+     * @since 4.7.0
+     *
+     * @param WP_REST_Request $request Full data about the request.
+     * @return WP_REST_Response|WP_Error Response object on success, or WP_Error object on failure.
+     */
+    public function get_item($request)
+    {
+    }
+    /**
+     * Checks if a given request has access to delete a revision.
+     *
+     * @since 4.7.0
+     *
+     * @param  WP_REST_Request $request Full details about the request.
+     * @return bool|WP_Error True if the request has access to delete the item, WP_Error object otherwise.
+     */
+    public function delete_item_permissions_check($request)
+    {
+    }
+    /**
+     * Deletes a single revision.
+     *
+     * @since 4.7.0
+     *
+     * @param WP_REST_Request $request Full details about the request.
+     * @return true|WP_Error True on success, or WP_Error object on failure.
+     */
+    public function delete_item($request)
+    {
+    }
+    /**
+     * Determines the allowed query_vars for a get_items() response and prepares
+     * them for WP_Query.
+     *
+     * @since 5.0.0
+     *
+     * @param array           $prepared_args Optional. Prepared WP_Query arguments. Default empty array.
+     * @param WP_REST_Request $request       Optional. Full details about the request.
+     * @return array Items query arguments.
+     */
+    protected function prepare_items_query($prepared_args = array(), $request = \null)
+    {
+    }
+    /**
+     * Prepares the revision for the REST response.
+     *
+     * @since 4.7.0
+     *
+     * @param WP_Post         $post    Post revision object.
+     * @param WP_REST_Request $request Request object.
+     * @return WP_REST_Response Response object.
+     */
+    public function prepare_item_for_response($post, $request)
+    {
+    }
+    /**
+     * Checks the post_date_gmt or modified_gmt and prepare any post or
+     * modified date for single post output.
+     *
+     * @since 4.7.0
+     *
+     * @param string      $date_gmt GMT publication time.
+     * @param string|null $date     Optional. Local publication time. Default null.
+     * @return string|null ISO8601/RFC3339 formatted datetime, otherwise null.
+     */
+    protected function prepare_date_response($date_gmt, $date = \null)
+    {
+    }
+    /**
+     * Retrieves the revision's schema, conforming to JSON Schema.
+     *
+     * @since 4.7.0
+     *
+     * @return array Item schema data.
+     */
+    public function get_item_schema()
+    {
+    }
+    /**
+     * Retrieves the query params for collections.
+     *
+     * @since 4.7.0
+     *
+     * @return array Collection parameters.
+     */
+    public function get_collection_params()
+    {
+    }
+    /**
+     * Checks the post excerpt and prepare it for single post output.
+     *
+     * @since 4.7.0
+     *
+     * @param string  $excerpt The post excerpt.
+     * @param WP_Post $post    Post revision object.
+     * @return string Prepared excerpt or empty string.
+     */
+    protected function prepare_excerpt_response($excerpt, $post)
+    {
+    }
+}
+/**
+ * REST API: WP_REST_Autosaves_Controller class.
+ *
+ * @package WordPress
+ * @subpackage REST_API
+ * @since 5.0.0
+ */
+/**
+ * Core class used to access autosaves via the REST API.
+ *
+ * @since 5.0.0
+ *
+ * @see WP_REST_Controller
+ */
+class WP_REST_Autosaves_Controller extends \WP_REST_Revisions_Controller
+{
+    /**
+     * Parent post type.
+     *
+     * @since 5.0.0
+     * @var string
+     */
+    private $parent_post_type;
+    /**
+     * Parent post controller.
+     *
+     * @since 5.0.0
+     * @var WP_REST_Controller
+     */
+    private $parent_controller;
+    /**
+     * Revision controller.
+     *
+     * @since 5.0.0
+     * @var WP_REST_Controller
+     */
+    private $revisions_controller;
+    /**
+     * The base of the parent controller's route.
+     *
+     * @since 5.0.0
+     * @var string
+     */
+    private $parent_base;
+    /**
+     * Constructor.
+     *
+     * @since 5.0.0
+     *
+     * @param string $parent_post_type Post type of the parent.
+     */
+    public function __construct($parent_post_type)
+    {
+    }
+    /**
+     * Registers routes for autosaves.
+     *
+     * @since 5.0.0
+     *
+     * @see register_rest_route()
+     */
+    public function register_routes()
+    {
+    }
+    /**
+     * Get the parent post.
+     *
+     * @since 5.0.0
+     *
+     * @param int $parent_id Supplied ID.
+     * @return WP_Post|WP_Error Post object if ID is valid, WP_Error otherwise.
+     */
+    protected function get_parent($parent_id)
+    {
+    }
+    /**
+     * Checks if a given request has access to get autosaves.
+     *
+     * @since 5.0.0
+     *
+     * @param WP_REST_Request $request Full data about the request.
+     * @return true|WP_Error True if the request has read access, WP_Error object otherwise.
+     */
+    public function get_items_permissions_check($request)
+    {
+    }
+    /**
+     * Checks if a given request has access to create an autosave revision.
+     *
+     * Autosave revisions inherit permissions from the parent post,
+     * check if the current user has permission to edit the post.
+     *
+     * @since 5.0.0
+     *
+     * @param WP_REST_Request $request Full details about the request.
+     * @return true|WP_Error True if the request has access to create the item, WP_Error object otherwise.
+     */
+    public function create_item_permissions_check($request)
+    {
+    }
+    /**
+     * Creates, updates or deletes an autosave revision.
+     *
+     * @since 5.0.0
+     *
+     * @param WP_REST_Request $request Full details about the request.
+     * @return WP_REST_Response|WP_Error Response object on success, or WP_Error object on failure.
+     */
+    public function create_item($request)
+    {
+    }
+    /**
+     * Get the autosave, if the ID is valid.
+     *
+     * @since 5.0.0
+     *
+     * @param WP_REST_Request $request Full data about the request.
+     * @return WP_Post|WP_Error Revision post object if ID is valid, WP_Error otherwise.
+     */
+    public function get_item($request)
+    {
+    }
+    /**
+     * Gets a collection of autosaves using wp_get_post_autosave.
+     *
+     * Contains the user's autosave, for empty if it doesn't exist.
+     *
+     * @since 5.0.0
+     *
+     * @param WP_REST_Request $request Full data about the request.
+     * @return WP_REST_Response|WP_Error Response object on success, or WP_Error object on failure.
+     */
+    public function get_items($request)
+    {
+    }
+    /**
+     * Retrieves the autosave's schema, conforming to JSON Schema.
+     *
+     * @since 5.0.0
+     *
+     * @return array Item schema data.
+     */
+    public function get_item_schema()
+    {
+    }
+    /**
+     * Creates autosave for the specified post.
+     *
+     * From wp-admin/post.php.
+     *
+     * @since 5.0.0
+     *
+     * @param mixed $post_data Associative array containing the post data.
+     * @return mixed The autosave revision ID or WP_Error.
+     */
+    public function create_post_autosave($post_data)
+    {
+    }
+    /**
+     * Prepares the revision for the REST response.
+     *
+     * @since 5.0.0
+     *
+     * @param WP_Post         $post    Post revision object.
+     * @param WP_REST_Request $request Request object.
+     *
+     * @return WP_REST_Response Response object.
+     */
+    public function prepare_item_for_response($post, $request)
+    {
+    }
+    /**
+     * Retrieves the query params for the autosaves collection.
+     *
+     * @since 5.0.0
+     *
+     * @return array Collection parameters.
+     */
+    public function get_collection_params()
+    {
+    }
+}
+/**
+ * Block Renderer REST API: WP_REST_Block_Renderer_Controller class
+ *
+ * @package WordPress
+ * @subpackage REST_API
+ * @since 5.0.0
+ */
+/**
+ * Controller which provides REST endpoint for rendering a block.
+ *
+ * @since 5.0.0
+ *
+ * @see WP_REST_Controller
+ */
+class WP_REST_Block_Renderer_Controller extends \WP_REST_Controller
+{
+    /**
+     * Constructs the controller.
+     *
+     * @since 5.0.0
+     */
+    public function __construct()
+    {
+    }
+    /**
+     * Registers the necessary REST API routes, one for each dynamic block.
+     *
+     * @since 5.0.0
+     */
+    public function register_routes()
+    {
+    }
+    /**
+     * Checks if a given request has access to read blocks.
+     *
+     * @since 5.0.0
+     *
+     * @param WP_REST_Request $request Request.
+     * @return true|WP_Error True if the request has read access, WP_Error object otherwise.
+     */
+    public function get_item_permissions_check($request)
+    {
+    }
+    /**
+     * Returns block output from block's registered render_callback.
+     *
+     * @since 5.0.0
+     *
+     * @param WP_REST_Request $request Full details about the request.
+     * @return WP_REST_Response|WP_Error Response object on success, or WP_Error object on failure.
+     */
+    public function get_item($request)
+    {
+    }
+    /**
+     * Retrieves block's output schema, conforming to JSON Schema.
+     *
+     * @since 5.0.0
+     *
+     * @return array Item schema data.
+     */
+    public function get_item_schema()
+    {
+    }
+}
+/**
+ * Reusable blocks REST API: WP_REST_Blocks_Controller class
+ *
+ * @package WordPress
+ * @subpackage REST_API
+ * @since 5.0.0
+ */
+/**
+ * Controller which provides a REST endpoint for the editor to read, create,
+ * edit and delete reusable blocks. Blocks are stored as posts with the wp_block
+ * post type.
+ *
+ * @since 5.0.0
+ *
+ * @see WP_REST_Posts_Controller
+ * @see WP_REST_Controller
+ */
+class WP_REST_Blocks_Controller extends \WP_REST_Posts_Controller
+{
+    /**
+     * Checks if a block can be read.
+     *
+     * @since 5.0.0
+     *
+     * @param object $post Post object that backs the block.
+     * @return bool Whether the block can be read.
+     */
+    public function check_read_permission($post)
+    {
+    }
+    /**
+     * Filters a response based on the context defined in the schema.
+     *
+     * @since 5.0.0
+     *
+     * @param array  $data    Response data to fiter.
+     * @param string $context Context defined in the schema.
+     * @return array Filtered response.
+     */
+    public function filter_response_by_context($data, $context)
+    {
+    }
+    /**
+     * Retrieves the block's schema, conforming to JSON Schema.
+     *
+     * @since 5.0.0
+     *
+     * @return array Item schema data.
+     */
+    public function get_item_schema()
+    {
+    }
+}
+/**
  * REST API: WP_REST_Comments_Controller class
  *
  * @package WordPress
@@ -51737,56 +52868,67 @@ class WP_REST_Post_Types_Controller extends \WP_REST_Controller
     }
 }
 /**
- * REST API: WP_REST_Revisions_Controller class
+ * REST API: WP_REST_Search_Controller class
  *
  * @package WordPress
  * @subpackage REST_API
- * @since 4.7.0
+ * @since 5.0.0
  */
 /**
- * Core class used to access revisions via the REST API.
+ * Core class to search through all WordPress content via the REST API.
  *
- * @since 4.7.0
+ * @since 5.0.0
  *
  * @see WP_REST_Controller
  */
-class WP_REST_Revisions_Controller extends \WP_REST_Controller
+class WP_REST_Search_Controller extends \WP_REST_Controller
 {
     /**
-     * Parent post type.
-     *
-     * @since 4.7.0
-     * @var string
+     * ID property name.
      */
-    private $parent_post_type;
+    const PROP_ID = 'id';
     /**
-     * Parent controller.
-     *
-     * @since 4.7.0
-     * @var WP_REST_Controller
+     * Title property name.
      */
-    private $parent_controller;
+    const PROP_TITLE = 'title';
     /**
-     * The base of the parent controller's route.
-     *
-     * @since 4.7.0
-     * @var string
+     * URL property name.
      */
-    private $parent_base;
+    const PROP_URL = 'url';
+    /**
+     * Type property name.
+     */
+    const PROP_TYPE = 'type';
+    /**
+     * Subtype property name.
+     */
+    const PROP_SUBTYPE = 'subtype';
+    /**
+     * Identifier for the 'any' type.
+     */
+    const TYPE_ANY = 'any';
+    /**
+     * Search handlers used by the controller.
+     *
+     * @since 5.0.0
+     * @var array
+     */
+    protected $search_handlers = array();
     /**
      * Constructor.
      *
-     * @since 4.7.0
+     * @since 5.0.0
      *
-     * @param string $parent_post_type Post type of the parent.
+     * @param array $search_handlers List of search handlers to use in the controller. Each search
+     *                               handler instance must extend the `WP_REST_Search_Handler` class.
      */
-    public function __construct($parent_post_type)
+    public function __construct(array $search_handlers)
     {
     }
     /**
-     * Registers routes for revisions based on post types supporting revisions.
+     * Registers the routes for the objects of the controller.
      *
-     * @since 4.7.0
+     * @since 5.0.0
      *
      * @see register_rest_route()
      */
@@ -51794,122 +52936,43 @@ class WP_REST_Revisions_Controller extends \WP_REST_Controller
     {
     }
     /**
-     * Get the parent post, if the ID is valid.
+     * Checks if a given request has access to search content.
      *
-     * @since 4.7.2
+     * @since 5.0.0
      *
-     * @param int $id Supplied ID.
-     * @return WP_Post|WP_Error Post object if ID is valid, WP_Error otherwise.
+     * @param WP_REST_Request $request Full details about the request.
+     * @return true|WP_Error True if the request has search access, WP_Error object otherwise.
      */
-    protected function get_parent($parent)
+    public function get_items_permission_check($request)
     {
     }
     /**
-     * Checks if a given request has access to get revisions.
+     * Retrieves a collection of search results.
      *
-     * @since 4.7.0
+     * @since 5.0.0
      *
-     * @param WP_REST_Request $request Full data about the request.
-     * @return true|WP_Error True if the request has read access, WP_Error object otherwise.
-     */
-    public function get_items_permissions_check($request)
-    {
-    }
-    /**
-     * Get the revision, if the ID is valid.
-     *
-     * @since 4.7.2
-     *
-     * @param int $id Supplied ID.
-     * @return WP_Post|WP_Error Revision post object if ID is valid, WP_Error otherwise.
-     */
-    protected function get_revision($id)
-    {
-    }
-    /**
-     * Gets a collection of revisions.
-     *
-     * @since 4.7.0
-     *
-     * @param WP_REST_Request $request Full data about the request.
+     * @param WP_REST_Request $request Full details about the request.
      * @return WP_REST_Response|WP_Error Response object on success, or WP_Error object on failure.
      */
     public function get_items($request)
     {
     }
     /**
-     * Checks if a given request has access to get a specific revision.
+     * Prepares a single search result for response.
      *
-     * @since 4.7.0
+     * @since 5.0.0
      *
-     * @param WP_REST_Request $request Full data about the request.
-     * @return bool|WP_Error True if the request has read access for the item, WP_Error object otherwise.
-     */
-    public function get_item_permissions_check($request)
-    {
-    }
-    /**
-     * Retrieves one revision from the collection.
-     *
-     * @since 4.7.0
-     *
-     * @param WP_REST_Request $request Full data about the request.
-     * @return WP_REST_Response|WP_Error Response object on success, or WP_Error object on failure.
-     */
-    public function get_item($request)
-    {
-    }
-    /**
-     * Checks if a given request has access to delete a revision.
-     *
-     * @since 4.7.0
-     *
-     * @param  WP_REST_Request $request Full details about the request.
-     * @return bool|WP_Error True if the request has access to delete the item, WP_Error object otherwise.
-     */
-    public function delete_item_permissions_check($request)
-    {
-    }
-    /**
-     * Deletes a single revision.
-     *
-     * @since 4.7.0
-     *
-     * @param WP_REST_Request $request Full details about the request.
-     * @return true|WP_Error True on success, or WP_Error object on failure.
-     */
-    public function delete_item($request)
-    {
-    }
-    /**
-     * Prepares the revision for the REST response.
-     *
-     * @since 4.7.0
-     *
-     * @param WP_Post         $post    Post revision object.
+     * @param int             $id      ID of the item to prepare.
      * @param WP_REST_Request $request Request object.
      * @return WP_REST_Response Response object.
      */
-    public function prepare_item_for_response($post, $request)
+    public function prepare_item_for_response($id, $request)
     {
     }
     /**
-     * Checks the post_date_gmt or modified_gmt and prepare any post or
-     * modified date for single post output.
+     * Retrieves the item schema, conforming to JSON Schema.
      *
-     * @since 4.7.0
-     *
-     * @param string      $date_gmt GMT publication time.
-     * @param string|null $date     Optional. Local publication time. Default null.
-     * @return string|null ISO8601/RFC3339 formatted datetime, otherwise null.
-     */
-    protected function prepare_date_response($date_gmt, $date = \null)
-    {
-    }
-    /**
-     * Retrieves the revision's schema, conforming to JSON Schema.
-     *
-     * @since 4.7.0
+     * @since 5.0.0
      *
      * @return array Item schema data.
      */
@@ -51917,9 +52980,9 @@ class WP_REST_Revisions_Controller extends \WP_REST_Controller
     {
     }
     /**
-     * Retrieves the query params for collections.
+     * Retrieves the query params for the search results collection.
      *
-     * @since 4.7.0
+     * @since 5.0.0
      *
      * @return array Collection parameters.
      */
@@ -51927,15 +52990,27 @@ class WP_REST_Revisions_Controller extends \WP_REST_Controller
     {
     }
     /**
-     * Checks the post excerpt and prepare it for single post output.
+     * Sanitizes the list of subtypes, to ensure only subtypes of the passed type are included.
      *
-     * @since 4.7.0
+     * @since 5.0.0
      *
-     * @param string  $excerpt The post excerpt.
-     * @param WP_Post $post    Post revision object.
-     * @return string Prepared excerpt or empty string.
+     * @param string|array    $subtypes  One or more subtypes.
+     * @param WP_REST_Request $request   Full details about the request.
+     * @param string          $parameter Parameter name.
+     * @return array|WP_Error List of valid subtypes, or WP_Error object on failure.
      */
-    protected function prepare_excerpt_response($excerpt, $post)
+    public function sanitize_subtypes($subtypes, $request, $parameter)
+    {
+    }
+    /**
+     * Gets the search handler to handle the current request.
+     *
+     * @since 5.0.0
+     *
+     * @param WP_REST_Request $request Full details about the request.
+     * @return WP_REST_Search_Handler|WP_Error Search handler for the request type, or WP_Error object on failure.
+     */
+    protected function get_search_handler($request)
     {
     }
 }
@@ -52430,6 +53505,108 @@ class WP_REST_Terms_Controller extends \WP_REST_Controller
      * @return bool Whether the taxonomy is allowed for REST management.
      */
     protected function check_is_taxonomy_allowed($taxonomy)
+    {
+    }
+}
+/**
+ * REST API: WP_REST_Themes_Controller class
+ *
+ * @package WordPress
+ * @subpackage REST_API
+ * @since 5.0.0
+ */
+/**
+ * Core class used to manage themes via the REST API.
+ *
+ * @since 5.0.0
+ *
+ * @see WP_REST_Controller
+ */
+class WP_REST_Themes_Controller extends \WP_REST_Controller
+{
+    /**
+     * Constructor.
+     *
+     * @since 5.0.0
+     */
+    public function __construct()
+    {
+    }
+    /**
+     * Registers the routes for the objects of the controller.
+     *
+     * @since 5.0.0
+     *
+     * @see register_rest_route()
+     */
+    public function register_routes()
+    {
+    }
+    /**
+     * Checks if a given request has access to read the theme.
+     *
+     * @since 5.0.0
+     *
+     * @param WP_REST_Request $request Full details about the request.
+     * @return true|WP_Error True if the request has read access for the item, otherwise WP_Error object.
+     */
+    public function get_items_permissions_check($request)
+    {
+    }
+    /**
+     * Retrieves a collection of themes.
+     *
+     * @since 5.0.0
+     *
+     * @param WP_REST_Request $request Full details about the request.
+     * @return WP_REST_Response|WP_Error Response object on success, or WP_Error object on failure.
+     */
+    public function get_items($request)
+    {
+    }
+    /**
+     * Prepares a single theme output for response.
+     *
+     * @since 5.0.0
+     *
+     * @param WP_Theme        $theme   Theme object.
+     * @param WP_REST_Request $request Request object.
+     * @return WP_REST_Response Response object.
+     */
+    public function prepare_item_for_response($theme, $request)
+    {
+    }
+    /**
+     * Retrieves the theme's schema, conforming to JSON Schema.
+     *
+     * @since 5.0.0
+     *
+     * @return array Item schema data.
+     */
+    public function get_item_schema()
+    {
+    }
+    /**
+     * Retrieves the search params for the themes collection.
+     *
+     * @since 5.0.0
+     *
+     * @return array Collection parameters.
+     */
+    public function get_collection_params()
+    {
+    }
+    /**
+     * Sanitizes and validates the list of theme status.
+     *
+     * @since 5.0.0
+     *
+     * @param  string|array    $statuses  One or more theme statuses.
+     * @param  WP_REST_Request $request   Full details about the request.
+     * @param  string          $parameter Additional parameter to pass to validation.
+     * @return array|WP_Error A list of valid statuses, otherwise WP_Error object.
+     */
+    public function sanitize_theme_status($statuses, $request, $parameter)
     {
     }
 }
@@ -53170,6 +54347,177 @@ class WP_REST_User_Meta_Fields extends \WP_REST_Meta_Fields
      * @return string The user REST field type.
      */
     public function get_rest_field_type()
+    {
+    }
+}
+/**
+ * REST API: WP_REST_Search_Handler class
+ *
+ * @package WordPress
+ * @subpackage REST_API
+ * @since 5.0.0
+ */
+/**
+ * Core base class representing a search handler for an object type in the REST API.
+ *
+ * @since 5.0.0
+ */
+abstract class WP_REST_Search_Handler
+{
+    /**
+     * Field containing the IDs in the search result.
+     */
+    const RESULT_IDS = 'ids';
+    /**
+     * Field containing the total count in the search result.
+     */
+    const RESULT_TOTAL = 'total';
+    /**
+     * Object type managed by this search handler.
+     *
+     * @since 5.0.0
+     * @var string
+     */
+    protected $type = '';
+    /**
+     * Object subtypes managed by this search handler.
+     *
+     * @since 5.0.0
+     * @var array
+     */
+    protected $subtypes = array();
+    /**
+     * Gets the object type managed by this search handler.
+     *
+     * @since 5.0.0
+     *
+     * @return string Object type identifier.
+     */
+    public function get_type()
+    {
+    }
+    /**
+     * Gets the object subtypes managed by this search handler.
+     *
+     * @since 5.0.0
+     *
+     * @return array Array of object subtype identifiers.
+     */
+    public function get_subtypes()
+    {
+    }
+    /**
+     * Searches the object type content for a given search request.
+     *
+     * @since 5.0.0
+     *
+     * @param WP_REST_Request $request Full REST request.
+     * @return array Associative array containing an `WP_REST_Search_Handler::RESULT_IDS` containing
+     *               an array of found IDs and `WP_REST_Search_Handler::RESULT_TOTAL` containing the
+     *               total count for the matching search results.
+     */
+    public abstract function search_items(\WP_REST_Request $request);
+    /**
+     * Prepares the search result for a given ID.
+     *
+     * @since 5.0.0
+     *
+     * @param int   $id     Item ID.
+     * @param array $fields Fields to include for the item.
+     * @return array Associative array containing all fields for the item.
+     */
+    public abstract function prepare_item($id, array $fields);
+    /**
+     * Prepares links for the search result of a given ID.
+     *
+     * @since 5.0.0
+     *
+     * @param int $id Item ID.
+     * @return array Links for the given item.
+     */
+    public abstract function prepare_item_links($id);
+}
+/**
+ * REST API: WP_REST_Post_Search_Handler class
+ *
+ * @package WordPress
+ * @subpackage REST_API
+ * @since 5.0.0
+ */
+/**
+ * Core class representing a search handler for posts in the REST API.
+ *
+ * @since 5.0.0
+ */
+class WP_REST_Post_Search_Handler extends \WP_REST_Search_Handler
+{
+    /**
+     * Constructor.
+     *
+     * @since 5.0.0
+     */
+    public function __construct()
+    {
+    }
+    /**
+     * Searches the object type content for a given search request.
+     *
+     * @since 5.0.0
+     *
+     * @param WP_REST_Request $request Full REST request.
+     * @return array Associative array containing an `WP_REST_Search_Handler::RESULT_IDS` containing
+     *               an array of found IDs and `WP_REST_Search_Handler::RESULT_TOTAL` containing the
+     *               total count for the matching search results.
+     */
+    public function search_items(\WP_REST_Request $request)
+    {
+    }
+    /**
+     * Prepares the search result for a given ID.
+     *
+     * @since 5.0.0
+     *
+     * @param int   $id     Item ID.
+     * @param array $fields Fields to include for the item.
+     * @return array Associative array containing all fields for the item.
+     */
+    public function prepare_item($id, array $fields)
+    {
+    }
+    /**
+     * Prepares links for the search result of a given ID.
+     *
+     * @since 5.0.0
+     *
+     * @param int $id Item ID.
+     * @return array Links for the given item.
+     */
+    public function prepare_item_links($id)
+    {
+    }
+    /**
+     * Overwrites the default protected title format.
+     *
+     * By default, WordPress will show password protected posts with a title of
+     * "Protected: %s". As the REST API communicates the protected status of a post
+     * in a machine readable format, we remove the "Protected: " prefix.
+     *
+     * @since 5.0.0
+     *
+     * @return string Protected title format.
+     */
+    public function protected_title_format()
+    {
+    }
+    /**
+     * Attempts to detect the route to access a single item.
+     *
+     * @since 5.0.0
+     *
+     * @param WP_Post $post Post object.
+     * @return string REST route relative to the REST base URI, or empty string if unknown.
+     */
+    protected function detect_rest_item_route($post)
     {
     }
 }
@@ -60358,6 +61706,16 @@ function attachment_id3_data_meta_box($post)
 {
 }
 /**
+ * Registers the default post meta boxes, and runs the `do_meta_boxes` actions.
+ *
+ * @since 5.0.0
+ *
+ * @param WP_Post $post The post object that these meta boxes are being generated for.
+ */
+function register_and_do_post_meta_boxes($post)
+{
+}
+/**
  * Misc WordPress Administration API.
  *
  * @package WordPress
@@ -60666,6 +62024,17 @@ function wp_refresh_post_lock($response, $data, $screen_id)
  * @return array The Heartbeat response.
  */
 function wp_refresh_post_nonces($response, $data, $screen_id)
+{
+}
+/**
+ * Add the latest Heartbeat and REST-API nonce to the Heartbeat response.
+ *
+ * @since 5.0.0
+ *
+ * @param array  $response  The Heartbeat response.
+ * @return array The Heartbeat response.
+ */
+function wp_refresh_heartbeat_nonces($response)
 {
 }
 /**
@@ -61772,13 +63141,17 @@ function _get_dropins()
 {
 }
 /**
- * Check whether a plugin is active.
+ * Determines whether a plugin is active.
  *
  * Only plugins installed in the plugins/ folder can be active.
  *
  * Plugins in the mu-plugins/ folder can't be "activated," so this function will
  * return false for those plugins.
- *
+ * 
+ * For more information on this and similar theme functions, check out
+ * the {@link https://developer.wordpress.org/themes/basics/conditional-tags/ 
+ * Conditional Tags} article in the Theme Developer Handbook.
+ * 
  * @since 2.5.0
  *
  * @param string $plugin Path to the main plugin file from plugins directory.
@@ -61788,10 +63161,14 @@ function is_plugin_active($plugin)
 {
 }
 /**
- * Check whether the plugin is inactive.
+ * Determines whether the plugin is inactive.
  *
  * Reverse of is_plugin_active(). Used as a callback.
- *
+ * 
+ * For more information on this and similar theme functions, check out
+ * the {@link https://developer.wordpress.org/themes/basics/conditional-tags/ 
+ * Conditional Tags} article in the Theme Developer Handbook.
+ * 
  * @since 3.1.0
  * @see is_plugin_active()
  *
@@ -61802,17 +63179,21 @@ function is_plugin_inactive($plugin)
 {
 }
 /**
- * Check whether the plugin is active for the entire network.
+ * Determines whether the plugin is active for the entire network.
  *
  * Only plugins installed in the plugins/ folder can be active.
  *
  * Plugins in the mu-plugins/ folder can't be "activated," so this function will
  * return false for those plugins.
- *
+ * 
+ * For more information on this and similar theme functions, check out
+ * the {@link https://developer.wordpress.org/themes/basics/conditional-tags/ 
+ * Conditional Tags} article in the Theme Developer Handbook.
+ * 
  * @since 3.0.0
  *
  * @param string $plugin Path to the main plugin file from plugins directory.
- * @return bool True, if active for the network, otherwise false.
+ * @return bool True if active for the network, otherwise false.
  */
 function is_plugin_active_for_network($plugin)
 {
@@ -62825,6 +64206,73 @@ function redirect_post($post_id = '')
 {
 }
 /**
+ * Return whether the post can be edited in the block editor.
+ *
+ * @since 5.0.0
+ *
+ * @param int|WP_Post $post Post ID or WP_Post object.
+ * @return bool Whether the post can be edited in the block editor.
+ */
+function use_block_editor_for_post($post)
+{
+}
+/**
+ * Return whether a post type is compatible with the block editor.
+ *
+ * The block editor depends on the REST API, and if the post type is not shown in the
+ * REST API, then it won't work with the block editor.
+ *
+ * @since 5.0.0
+ *
+ * @param string $post_type The post type.
+ * @return bool Whether the post type can be edited with the block editor.
+ */
+function use_block_editor_for_post_type($post_type)
+{
+}
+/**
+ * Returns all the block categories that will be shown in the block editor.
+ *
+ * @since 5.0.0
+ *
+ * @param WP_Post $post Post object.
+ * @return array Array of block categories.
+ */
+function get_block_categories($post)
+{
+}
+/**
+ * Prepares server-registered blocks for the block editor.
+ *
+ * Returns an associative array of registered block data keyed by block name. Data includes properties
+ * of a block relevant for client registration.
+ *
+ * @since 5.0.0
+ *
+ * @return array An associative array of registered block data.
+ */
+function get_block_editor_server_block_settings()
+{
+}
+/**
+ * Renders the meta boxes forms.
+ *
+ * @since 5.0.0
+ */
+function the_block_editor_meta_boxes()
+{
+}
+/**
+ * Renders the hidden form required for the meta boxes form.
+ *
+ * @since 5.0.0
+ *
+ * @param WP_Post $post Current post object.
+ */
+function the_block_editor_meta_box_post_form_hidden_fields($post)
+{
+}
+/**
  * WordPress Administration Revisions API
  *
  * @package WordPress
@@ -63495,6 +64943,38 @@ function wp_import_upload_form($action)
  *                                              to your callback). Default null.
  */
 function add_meta_box($id, $title, $callback, $screen = \null, $context = 'advanced', $priority = 'default', $callback_args = \null)
+{
+}
+/**
+ * Function that renders a "fake" meta box with an information message,
+ * shown on the block editor, when an incompatible meta box is found.
+ *
+ * @since 5.0.0
+ *
+ * @param mixed $object The data object being rendered on this screen.
+ * @param array $box    {
+ *     Custom formats meta box arguments.
+ *
+ *     @type string   $id           Meta box 'id' attribute.
+ *     @type string   $title        Meta box title.
+ *     @type callable $old_callback The original callback for this meta box.
+ *     @type array    $args         Extra meta box arguments.
+ * }
+ */
+function do_block_editor_incompatible_meta_box($object, $box)
+{
+}
+/**
+ * Internal helper function to find the plugin from a meta box callback.
+ *
+ * @since 5.0.0
+ *
+ * @access private
+ *
+ * @param callable $callback The callback function to check.
+ * @return array|null The plugin that the callback belongs to, or null if it doesn't belong to a plugin.
+ */
+function _get_plugin_from_callback($callback)
 {
 }
 /**
@@ -65044,6 +66524,17 @@ function upgrade_460()
 {
 }
 /**
+ * Executes changes made in WordPress 5.0.0.
+ *
+ * @ignore
+ * @since 5.0.0
+ *
+ * @global int $wp_current_db_version Current database version.
+ */
+function upgrade_500()
+{
+}
+/**
  * Executes network-level upgrade routines.
  *
  * @since 3.0.0
@@ -66108,8 +67599,12 @@ function show_admin_bar($show)
 {
 }
 /**
- * Determine whether the admin bar should be showing.
- *
+ * Determines whether the admin bar should be showing.
+ * 
+ * For more information on this and similar theme functions, check out
+ * the {@link https://developer.wordpress.org/themes/basics/conditional-tags/ 
+ * Conditional Tags} article in the Theme Developer Handbook.
+ * 
  * @since 3.1.0
  *
  * @global bool   $show_admin_bar
@@ -66382,10 +67877,14 @@ function wp_list_authors($args = '')
 {
 }
 /**
- * Does this site have more than one author
+ * Determines whether this site has more than one author.
  *
  * Checks to see if more than one author has published posts.
- *
+ * 
+ * For more information on this and similar theme functions, check out
+ * the {@link https://developer.wordpress.org/themes/basics/conditional-tags/ 
+ * Conditional Tags} article in the Theme Developer Handbook.
+ * 
  * @since 3.2.0
  *
  * @global wpdb $wpdb WordPress database abstraction object.
@@ -66402,6 +67901,432 @@ function is_multi_author()
  * @access private
  */
 function __clear_multi_author_cache()
+{
+}
+/**
+ * Functions related to registering and parsing blocks.
+ *
+ * @package WordPress
+ * @subpackage Blocks
+ * @since 5.0.0
+ */
+/**
+ * Registers a block type.
+ *
+ * @since 5.0.0
+ *
+ * @param string|WP_Block_Type $name Block type name including namespace, or alternatively a
+ *                                   complete WP_Block_Type instance. In case a WP_Block_Type
+ *                                   is provided, the $args parameter will be ignored.
+ * @param array                $args {
+ *     Optional. Array of block type arguments. Any arguments may be defined, however the
+ *     ones described below are supported by default. Default empty array.
+ *
+ *     @type callable $render_callback Callback used to render blocks of this block type.
+ * }
+ * @return WP_Block_Type|false The registered block type on success, or false on failure.
+ */
+function register_block_type($name, $args = array())
+{
+}
+/**
+ * Unregisters a block type.
+ *
+ * @since 5.0.0
+ *
+ * @param string|WP_Block_Type $name Block type name including namespace, or alternatively a
+ *                                   complete WP_Block_Type instance.
+ * @return WP_Block_Type|false The unregistered block type on success, or false on failure.
+ */
+function unregister_block_type($name)
+{
+}
+/**
+ * Determine whether a post or content string has blocks.
+ *
+ * This test optimizes for performance rather than strict accuracy, detecting
+ * the pattern of a block but not validating its structure. For strict accuracy,
+ * you should use the block parser on post content.
+ *
+ * @since 5.0.0
+ * @see parse_blocks()
+ *
+ * @param int|string|WP_Post|null $post Optional. Post content, post ID, or post object. Defaults to global $post.
+ * @return bool Whether the post has blocks.
+ */
+function has_blocks($post = \null)
+{
+}
+/**
+ * Determine whether a $post or a string contains a specific block type.
+ *
+ * This test optimizes for performance rather than strict accuracy, detecting
+ * the block type exists but not validating its structure. For strict accuracy,
+ * you should use the block parser on post content.
+ *
+ * @since 5.0.0
+ * @see parse_blocks()
+ *
+ * @param string                  $block_name Full Block type to look for.
+ * @param int|string|WP_Post|null $post Optional. Post content, post ID, or post object. Defaults to global $post.
+ * @return bool Whether the post content contains the specified block.
+ */
+function has_block($block_name, $post = \null)
+{
+}
+/**
+ * Returns an array of the names of all registered dynamic block types.
+ *
+ * @since 5.0.0
+ *
+ * @return array Array of dynamic block names.
+ */
+function get_dynamic_block_names()
+{
+}
+/**
+ * Given an array of attributes, returns a string in the serialized attributes
+ * format prepared for post content.
+ *
+ * The serialized result is a JSON-encoded string, with unicode escape sequence
+ * substitution for characters which might otherwise interfere with embedding
+ * the result in an HTML comment.
+ *
+ * @since 5.3.1
+ *
+ * @param array $attributes Attributes object.
+ * @return string Serialized attributes.
+ */
+function serialize_block_attributes($block_attributes)
+{
+}
+/**
+ * Returns the block name to use for serialization. This will remove the default
+ * "core/" namespace from a block name.
+ *
+ * @since 5.3.1
+ *
+ * @param string $block_name Original block name.
+ * @return string Block name to use for serialization.
+ */
+function strip_core_block_namespace($block_name = \null)
+{
+}
+/**
+ * Returns the content of a block, including comment delimiters.
+ *
+ * @since 5.3.1
+ *
+ * @param string $block_name Block name.
+ * @param array  $attributes Block attributes.
+ * @param string $content    Block save content.
+ * @return string Comment-delimited block content.
+ */
+function get_comment_delimited_block_content($block_name = \null, $block_attributes, $block_content)
+{
+}
+/**
+ * Returns the content of a block, including comment delimiters, serializing all
+ * attributes from the given parsed block.
+ *
+ * This should be used when preparing a block to be saved to post content.
+ * Prefer `render_block` when preparing a block for display. Unlike
+ * `render_block`, this does not evaluate a block's `render_callback`, and will
+ * instead preserve the markup as parsed.
+ *
+ * @since 5.3.1
+ *
+ * @param WP_Block_Parser_Block $block A single parsed block object.
+ * @return string String of rendered HTML.
+ */
+function serialize_block($block)
+{
+}
+/**
+ * Returns a joined string of the aggregate serialization of the given parsed
+ * blocks.
+ *
+ * @since 5.3.1
+ *
+ * @param WP_Block_Parser_Block[] $blocks Parsed block objects.
+ * @return string String of rendered HTML.
+ */
+function serialize_blocks($blocks)
+{
+}
+/**
+ * Filters and sanitizes block content to remove non-allowable HTML from
+ * parsed block attribute values.
+ *
+ * @since 5.3.1
+ *
+ * @param string         $text              Text that may contain block content.
+ * @param array[]|string $allowed_html      An array of allowed HTML elements
+ *                                          and attributes, or a context name
+ *                                          such as 'post'.
+ * @param string[]       $allowed_protocols Array of allowed URL protocols.
+ * @return string The filtered and sanitized content result.
+ */
+function filter_block_content($text, $allowed_html = 'post', $allowed_protocols = array())
+{
+}
+/**
+ * Filters and sanitizes a parsed block to remove non-allowable HTML from block
+ * attribute values.
+ *
+ * @since 5.3.1
+ *
+ * @param WP_Block_Parser_Block $block             The parsed block object.
+ * @param array[]|string        $allowed_html      An array of allowed HTML
+ *                                                 elements and attributes, or a
+ *                                                 context name such as 'post'.
+ * @param string[]              $allowed_protocols Allowed URL protocols.
+ * @return array The filtered and sanitized block object result.
+ */
+function filter_block_kses($block, $allowed_html, $allowed_protocols = array())
+{
+}
+/**
+ * Filters and sanitizes a parsed block attribute value to remove non-allowable
+ * HTML.
+ *
+ * @since 5.3.1
+ *
+ * @param mixed          $value             The attribute value to filter.
+ * @param array[]|string $allowed_html      An array of allowed HTML elements
+ *                                          and attributes, or a context name
+ *                                          such as 'post'.
+ * @param string[]       $allowed_protocols Array of allowed URL protocols.
+ * @return array The filtered and sanitized result.
+ */
+function filter_block_kses_value($value, $allowed_html, $allowed_protocols = array())
+{
+}
+/**
+ * Parses blocks out of a content string, and renders those appropriate for the excerpt.
+ *
+ * As the excerpt should be a small string of text relevant to the full post content,
+ * this function renders the blocks that are most likely to contain such text.
+ *
+ * @since 5.0.0
+ *
+ * @param string $content The content to parse.
+ * @return string The parsed and filtered content.
+ */
+function excerpt_remove_blocks($content)
+{
+}
+/**
+ * Renders a single block into a HTML string.
+ *
+ * @since 5.0.0
+ *
+ * @global WP_Post $post The post to edit.
+ *
+ * @param array $block A single parsed block object.
+ * @return string String of rendered HTML.
+ */
+function render_block($block)
+{
+}
+/**
+ * Parses blocks out of a content string.
+ *
+ * @since 5.0.0
+ *
+ * @param string $content Post content.
+ * @return array Array of parsed block objects.
+ */
+function parse_blocks($content)
+{
+}
+/**
+ * Parses dynamic blocks out of `post_content` and re-renders them.
+ *
+ * @since 5.0.0
+ * @global WP_Post $post The post to edit.
+ *
+ * @param  string $content Post content.
+ * @return string Updated post content.
+ */
+function do_blocks($content)
+{
+}
+/**
+ * If do_blocks() needs to remove wp_autop() from the `the_content` filter, this re-adds it afterwards,
+ * for subsequent `the_content` usage.
+ *
+ * @access private
+ *
+ * @since 5.0.0
+ *
+ * @param string $content The post content running through this filter.
+ * @return string The unmodified content.
+ */
+function _restore_wpautop_hook($content)
+{
+}
+/**
+ * Returns the current version of the block format that the content string is using.
+ *
+ * If the string doesn't contain blocks, it returns 0.
+ *
+ * @since 5.0.0
+ *
+ * @param string $content Content to test.
+ * @return int The block format version is 1 if the content contains one or more blocks, 0 otherwise.
+ */
+function block_version($content)
+{
+}
+/**
+ * Server-side rendering of the `core/archives` block.
+ *
+ * @package WordPress
+ */
+/**
+ * Renders the `core/archives` block on server.
+ *
+ * @see WP_Widget_Archives
+ *
+ * @param array $attributes The block attributes.
+ *
+ * @return string Returns the post content with archives added.
+ */
+function render_block_core_archives($attributes)
+{
+}
+/**
+ * Register archives block.
+ */
+function register_block_core_archives()
+{
+}
+/**
+ * Server-side rendering of the `core/block` block.
+ *
+ * @package WordPress
+ */
+/**
+ * Renders the `core/block` block on server.
+ *
+ * @param array $attributes The block attributes.
+ *
+ * @return string Rendered HTML of the referenced block.
+ */
+function render_block_core_block($attributes)
+{
+}
+/**
+ * Server-side rendering of the `core/categories` block.
+ *
+ * @package WordPress
+ */
+/**
+ * Renders the `core/categories` block on server.
+ *
+ * @param array $attributes The block attributes.
+ *
+ * @return string Returns the categories list/dropdown markup.
+ */
+function render_block_core_categories($attributes)
+{
+}
+/**
+ * Generates the inline script for a categories dropdown field.
+ *
+ * @param string $dropdown_id ID of the dropdown field.
+ *
+ * @return string Returns the dropdown onChange redirection script.
+ */
+function build_dropdown_script_block_core_categories($dropdown_id)
+{
+}
+/**
+ * Registers the `core/categories` block on server.
+ */
+function register_block_core_categories()
+{
+}
+/**
+ * Server-side rendering of the `core/latest-comments` block.
+ *
+ * @package WordPress
+ */
+/**
+ * Get the post title.
+ *
+ * The post title is fetched and if it is blank then a default string is
+ * returned.
+ *
+ * Copied from `wp-admin/includes/template.php`, but we can't include that
+ * file because:
+ *
+ * 1. It causes bugs with test fixture generation and strange Docker 255 error
+ *    codes.
+ * 2. It's in the admin; ideally we *shouldn't* be including files from the
+ *    admin for a block's output. It's a very small/simple function as well,
+ *    so duplicating it isn't too terrible.
+ *
+ * @since 3.3.0
+ *
+ * @param int|WP_Post $post Optional. Post ID or WP_Post object. Default is global $post.
+ * @return string The post title if set; "(no title)" if no title is set.
+ */
+function wp_latest_comments_draft_or_post_title($post = 0)
+{
+}
+/**
+ * Renders the `core/latest-comments` block on server.
+ *
+ * @param array $attributes The block attributes.
+ *
+ * @return string Returns the post content with latest comments added.
+ */
+function render_block_core_latest_comments($attributes = array())
+{
+}
+/**
+ * Server-side rendering of the `core/latest-posts` block.
+ *
+ * @package WordPress
+ */
+/**
+ * Renders the `core/latest-posts` block on server.
+ *
+ * @param array $attributes The block attributes.
+ *
+ * @return string Returns the post content with latest posts added.
+ */
+function render_block_core_latest_posts($attributes)
+{
+}
+/**
+ * Registers the `core/latest-posts` block on server.
+ */
+function register_block_core_latest_posts()
+{
+}
+/**
+ * Server-side rendering of the `core/shortcode` block.
+ *
+ * @package WordPress
+ */
+/**
+ * Performs wpautop() on the shortcode block content.
+ *
+ * @param array  $attributes The block attributes.
+ * @param string $content    The block content.
+ *
+ * @return string Returns the block content.
+ */
+function render_block_core_shortcode($attributes, $content)
+{
+}
+/**
+ * Registers the `core/shortcode` block on server.
+ */
+function register_block_core_shortcode()
 {
 }
 /**
@@ -67235,7 +69160,7 @@ function get_the_category_list($separator = '', $parents = '', $post_id = \false
 {
 }
 /**
- * Check if the current post is within any of the given categories.
+ * Checks if the current post is within any of the given categories.
  *
  * The given categories are checked against the post's categories' term_ids, names and slugs.
  * Categories given as integers will only be checked against the post's categories' term_ids.
@@ -67245,6 +69170,10 @@ function get_the_category_list($separator = '', $parents = '', $post_id = \false
  * Prior to v2.7, only one category could be compared: in_category( $single_category ).
  * Prior to v2.7, this function could only be used in the WordPress Loop.
  * As of 2.7, the function can be used anywhere if it is provided a post ID or post object.
+ * 
+ * For more information on this and similar theme functions, check out
+ * the {@link https://developer.wordpress.org/themes/basics/conditional-tags/ 
+ * Conditional Tags} article in the Theme Developer Handbook.
  *
  * @since 1.2.0
  *
@@ -67690,7 +69619,7 @@ function has_category($category = '', $post = \null)
 {
 }
 /**
- * Check if the current post has any of given tags.
+ * Checks if the current post has any of given tags.
  *
  * The given tags are checked against the post's tags' term_ids, names and slugs.
  * Tags given as integers will only be checked against the post's tags' term_ids.
@@ -67699,6 +69628,10 @@ function has_category($category = '', $post = \null)
  * Prior to v2.7 of WordPress, tags given as integers would also be checked against the post's tags' names and slugs (in addition to term_ids)
  * Prior to v2.7, this function could only be used in the WordPress Loop.
  * As of 2.7, the function can be used anywhere if it is provided a post ID or post object.
+ * 
+ * For more information on this and similar theme functions, check out
+ * the {@link https://developer.wordpress.org/themes/basics/conditional-tags/ 
+ * Conditional Tags} article in the Theme Developer Handbook.
  *
  * @since 2.6.0
  *
@@ -68501,8 +70434,12 @@ function trackback_rdf($deprecated = '')
 {
 }
 /**
- * Whether the current post is open for comments.
- *
+ * Determines whether the current post is open for comments.
+ * 
+ * For more information on this and similar theme functions, check out
+ * the {@link https://developer.wordpress.org/themes/basics/conditional-tags/ 
+ * Conditional Tags} article in the Theme Developer Handbook.
+ * 
  * @since 1.5.0
  *
  * @param int|WP_Post $post_id Post ID or WP_Post object. Default current post.
@@ -68512,7 +70449,11 @@ function comments_open($post_id = \null)
 {
 }
 /**
- * Whether the current post is open for pings.
+ * Determines whether the current post is open for pings.
+ * 
+ * For more information on this and similar theme functions, check out
+ * the {@link https://developer.wordpress.org/themes/basics/conditional-tags/ 
+ * Conditional Tags} article in the Theme Developer Handbook.
  *
  * @since 1.5.0
  *
@@ -69895,6 +71836,14 @@ function wp_register_comment_personal_data_eraser($erasers)
  * @return array
  */
 function wp_comments_personal_data_eraser($email_address, $page = 1)
+{
+}
+/**
+ * Sets the last changed time for the 'comment' cache group.
+ *
+ * @since 5.0.0
+ */
+function wp_cache_set_comments_last_changed()
 {
 }
 /**
@@ -71805,10 +73754,14 @@ function is_term($term, $taxonomy = '', $parent = 0)
 {
 }
 /**
- * Is the current admin page generated by a plugin?
+ * Determines whether the current admin page is generated by a plugin.
  *
  * Use global $plugin_page and/or get_plugin_page_hookname() hooks.
- *
+ * 
+ * For more information on this and similar theme functions, check out
+ * the {@link https://developer.wordpress.org/themes/basics/conditional-tags/ 
+ * Conditional Tags} article in the Theme Developer Handbook.
+ * 
  * @since 1.5.0
  * @deprecated 3.1.0
  *
@@ -72564,8 +74517,12 @@ function get_comments_popup_template()
 {
 }
 /**
- * Whether the current URL is within the comments popup window.
- *
+ * Determines whether the current URL is within the comments popup window.
+ * 
+ * For more information on this and similar theme functions, check out
+ * the {@link https://developer.wordpress.org/themes/basics/conditional-tags/ 
+ * Conditional Tags} article in the Theme Developer Handbook.
+ * 
  * @since 1.5.0
  * @deprecated 4.5.0
  *
@@ -72968,6 +74925,18 @@ function get_post_embed_html($width, $height, $post = \null)
  * @return array|false Response data on success, false if post doesn't exist.
  */
 function get_oembed_response_data($post, $width)
+{
+}
+/**
+ * Retrieves the oEmbed response data for a given URL.
+ *
+ * @since 5.0.0
+ *
+ * @param string $url  The URL that should be inspected for discovery `<link>` tags.
+ * @param array  $args oEmbed remote get arguments.
+ * @return object|false oEmbed response data if the URL does belong to the current site. False otherwise.
+ */
+function get_oembed_response_data_for_url($url, $args)
 {
 }
 /**
@@ -75093,6 +77062,22 @@ function wp_pre_kses_less_than_callback($matches)
 {
 }
 /**
+ * Remove non-allowable HTML from parsed block attribute values when filtering
+ * in the post context.
+ *
+ * @since 5.3.1
+ *
+ * @param string         $string            Content to be run through KSES.
+ * @param array[]|string $allowed_html      An array of allowed HTML elements
+ *                                          and attributes, or a context name
+ *                                          such as 'post'.
+ * @param string[]       $allowed_protocols Array of allowed URL protocols.
+ * @return string Filtered text to run through KSES.
+ */
+function wp_pre_kses_block_attributes($string, $allowed_html, $allowed_protocols)
+{
+}
+/**
  * WordPress implementation of PHP sprintf() with filters.
  *
  * @since 2.5.0
@@ -75780,9 +77765,13 @@ function wp_get_http_headers($url, $deprecated = \false)
 {
 }
 /**
- * Whether the publish date of the current post in the loop is different from the
- * publish date of the previous post in the loop.
- *
+ * Determines whether the publish date of the current post in the loop is different
+ * from the publish date of the previous post in the loop.
+ * 
+ * For more information on this and similar theme functions, check out
+ * the {@link https://developer.wordpress.org/themes/basics/conditional-tags/ 
+ * Conditional Tags} article in the Theme Developer Handbook.
+ * 
  * @since 0.71
  *
  * @global string $currentday  The day of the current post in the loop.
@@ -76088,13 +78077,17 @@ function do_robots()
 {
 }
 /**
- * Test whether WordPress is already installed.
+ * Determines whether WordPress is already installed.
  *
  * The cache will be checked first. If you have a cache plugin, which saves
  * the cache values, then this will work. If you use the default WordPress
  * cache, and the database goes away, then you might have problems.
  *
  * Checks for the 'siteurl' option for whether WordPress is installed.
+ * 
+ * For more information on this and similar theme functions, check out
+ * the {@link https://developer.wordpress.org/themes/basics/conditional-tags/ 
+ * Conditional Tags} article in the Theme Developer Handbook.
  *
  * @since 2.1.0
  *
@@ -77912,6 +79905,24 @@ function wp_is_uuid($uuid, $version = \null)
 {
 }
 /**
+ * Get unique ID.
+ *
+ * This is a PHP implementation of Underscore's uniqueId method. A static variable
+ * contains an integer that is incremented with each call. This number is returned
+ * with the optional prefix. As such the returned value is not universally unique,
+ * but it is unique across the life of the PHP process.
+ *
+ * @since 5.0.3
+ *
+ * @staticvar int $id_counter
+ *
+ * @param string $prefix Prefix for the returned ID.
+ * @return string Unique ID.
+ */
+function wp_unique_id($prefix = '')
+{
+}
+/**
  * Get last changed date for the specified cache group.
  *
  * @since 4.7.0
@@ -78134,6 +80145,25 @@ function wp_localize_script($handle, $object_name, $l10n)
 {
 }
 /**
+ * Sets translated strings for a script.
+ *
+ * Works only if the script has already been added.
+ *
+ * @see WP_Scripts::set_translations()
+ * @global WP_Scripts $wp_scripts The WP_Scripts object for printing scripts.
+ *
+ * @since 5.0.0
+ *
+ * @param string $handle Script handle the textdomain will be attached to.
+ * @param string $domain The textdomain.
+ * @param string $path   Optional. The full file path to the directory containing translation files.
+ *
+ * @return bool True if the textdomain was successfully localized, false otherwise.
+ */
+function wp_set_script_translations($handle, $domain, $path = \null)
+{
+}
+/**
  * Remove a registered script.
  *
  * Note: there are intentional safeguards in place to prevent critical admin scripts,
@@ -78186,8 +80216,12 @@ function wp_dequeue_script($handle)
 {
 }
 /**
- * Check whether a script has been added to the queue.
- *
+ * Determines whether a script has been added to the queue.
+ * 
+ * For more information on this and similar theme functions, check out
+ * the {@link https://developer.wordpress.org/themes/basics/conditional-tags/ 
+ * Conditional Tags} article in the Theme Developer Handbook.
+ *  
  * @since 2.8.0
  * @since 3.5.0 'enqueued' added as an alias of the 'queue' list.
  *
@@ -79482,7 +81516,9 @@ function wp_enqueue_editor()
  * @since 4.9.0
  *
  * @see wp_enqueue_editor()
+ * @see wp_get_code_editor_settings();
  * @see _WP_Editors::parse_settings()
+ *
  * @param array $args {
  *     Args.
  *
@@ -79495,9 +81531,33 @@ function wp_enqueue_editor()
  *     @type array    $jshint     JSHint rule overrides.
  *     @type array    $htmlhint   JSHint rule overrides.
  * }
- * @returns array|false Settings for the enqueued code editor, or false if the editor was not enqueued .
+ * @return array|false Settings for the enqueued code editor, or false if the editor was not enqueued.
  */
 function wp_enqueue_code_editor($args)
+{
+}
+/**
+ * Generate and return code editor settings.
+ *
+ * @since 5.0.0
+ *
+ * @see wp_enqueue_code_editor()
+ *
+ * @param array $args {
+ *     Args.
+ *
+ *     @type string   $type       The MIME type of the file to be edited.
+ *     @type string   $file       Filename to be edited. Extension is used to sniff the type. Can be supplied as alternative to `$type` param.
+ *     @type WP_Theme $theme      Theme being edited when on theme editor.
+ *     @type string   $plugin     Plugin being edited when on plugin editor.
+ *     @type array    $codemirror Additional CodeMirror setting overrides.
+ *     @type array    $csslint    CSSLint rule overrides.
+ *     @type array    $jshint     JSHint rule overrides.
+ *     @type array    $htmlhint   JSHint rule overrides.
+ * }
+ * @return array|false Settings for the code editor.
+ */
+function wp_get_code_editor_settings($args)
 {
 }
 /**
@@ -80477,6 +82537,7 @@ function wp_kses_attr($element, $attr, $allowed_html, $allowed_protocols)
  * Determine whether an attribute is allowed.
  *
  * @since 4.2.3
+ * @since 5.0.0 Add support for `data-*` wildcard attributes.
  *
  * @param string $name The attribute name. Returns empty string when not allowed.
  * @param string $value The attribute value. Returns a filtered value.
@@ -80903,6 +82964,7 @@ function safecss_filter_attr($css, $deprecated = '')
  * Helper function to add global attributes to a tag in the allowed html list.
  *
  * @since 3.5.0
+ * @since 5.0.0 Add support for `data-*` wildcard attributes.
  * @access private
  *
  * @param array $value An array of attributes.
@@ -80953,6 +83015,18 @@ function get_locale()
  * @return string The locale of the user.
  */
 function get_user_locale($user_id = 0)
+{
+}
+/**
+ * Determine the current locale desired for the request.
+ *
+ * @since 5.0.0
+ *
+ * @global string $pagenow
+ *
+ * @return string The determined locale.
+ */
+function determine_locale()
 {
 }
 /**
@@ -81412,6 +83486,37 @@ function load_child_theme_textdomain($domain, $path = \false)
 {
 }
 /**
+ * Loads the script translated strings.
+ *
+ * @since 5.0.0
+ * @since 5.0.2 Uses load_script_translations() to load translation data.
+ *
+ * @see WP_Scripts::set_translations()
+ *
+ * @param string $handle Name of the script to register a translation domain to.
+ * @param string $domain The text domain.
+ * @param string $path   Optional. The full file path to the directory containing translation files.
+ *
+ * @return false|string False if the script textdomain could not be loaded, the translated strings
+ *                      in JSON encoding otherwise.
+ */
+function load_script_textdomain($handle, $domain, $path = \null)
+{
+}
+/**
+ * Loads the translation data for the given script handle and text domain.
+ *
+ * @since 5.0.2
+ *
+ * @param string|false $file   Path to the translation file to load. False if there isn't one.
+ * @param string       $handle Name of the script to register a translation domain to.
+ * @param string       $domain The text domain.
+ * @return string|false The JSON-encoded translated strings for the given script handle and text domain. False if there are none.
+ */
+function load_script_translations($file, $handle, $domain)
+{
+}
+/**
  * Loads plugin and theme textdomains just-in-time.
  *
  * When a textdomain is encountered for the first time, we try to load
@@ -81582,7 +83687,11 @@ function wp_dropdown_languages($args = array())
 {
 }
 /**
- * Checks if current locale is RTL.
+ * Determines whether the current locale is right-to-left (RTL).
+ *
+ * For more information on this and similar theme functions, check out
+ * the {@link https://developer.wordpress.org/themes/basics/conditional-tags/
+ * Conditional Tags} article in the Theme Developer Handbook.
  *
  * @since 3.0.0
  *
@@ -83614,10 +85723,14 @@ function wp_clone($object)
 {
 }
 /**
- * Whether the current request is for an administrative interface page.
+ * Determines whether the current request is for an administrative interface page.
  *
  * Does not check if the user is an administrator; current_user_can()
  * for checking roles and capabilities.
+ *
+ * For more information on this and similar theme functions, check out
+ * the {@link https://developer.wordpress.org/themes/basics/conditional-tags/ 
+ * Conditional Tags} article in the Theme Developer Handbook. 
  *
  * @since 1.5.1
  *
@@ -83850,6 +85963,16 @@ function wp_start_scraping_edited_file_errors()
  * @param string $scrape_key Scrape key.
  */
 function wp_finalize_scraping_edited_file_errors($scrape_key)
+{
+}
+/**
+ * Checks whether current request is a JSON request, or is expecting a JSON response.
+ *
+ * @since 5.0.0
+ *
+ * @return bool True if Accepts or Content-Type headers contain application/json, false otherwise.
+ */
+function wp_is_json_request()
 {
 }
 /**
@@ -88635,7 +90758,11 @@ function wp_clear_auth_cookie()
 {
 }
 /**
- * Checks if the current visitor is a logged in user.
+ * Determines whether the current visitor is a logged in user.
+ *
+ * For more information on this and similar theme functions, check out
+ * the {@link https://developer.wordpress.org/themes/basics/conditional-tags/
+ * Conditional Tags} article in the Theme Developer Handbook.
  *
  * @since 2.0.0
  *
@@ -89993,7 +92120,11 @@ function get_the_excerpt($post = \null)
 {
 }
 /**
- * Whether the post has a custom excerpt.
+ * Determines whether the post has a custom excerpt.
+ * 
+ * For more information on this and similar theme functions, check out
+ * the {@link https://developer.wordpress.org/themes/basics/conditional-tags/ 
+ * Conditional Tags} article in the Theme Developer Handbook.
  *
  * @since 2.3.0
  *
@@ -90354,12 +92485,16 @@ function get_the_password_form($post = 0)
 {
 }
 /**
- * Whether currently in a page template.
+ * Determines whether currently in a page template.
  *
  * This template tag allows you to determine if you are in a page template.
  * You can optionally provide a template name or array of template names
  * and then the check will be specific to that template.
- *
+ * 
+ * For more information on this and similar theme functions, check out
+ * the {@link https://developer.wordpress.org/themes/basics/conditional-tags/ 
+ * Conditional Tags} article in the Theme Developer Handbook.
+ * 
  * @since 2.5.0
  * @since 4.2.0 The `$template` parameter was changed to also accept an array of page templates.
  * @since 4.7.0 Now works with any post type, not just pages.
@@ -90431,7 +92566,11 @@ function wp_list_post_revisions($post_id = 0, $type = 'all')
  * @subpackage Template
  */
 /**
- * Check if post has an image attached.
+ * Determines whether a post has an image attached.
+ * 
+ * For more information on this and similar theme functions, check out
+ * the {@link https://developer.wordpress.org/themes/basics/conditional-tags/ 
+ * Conditional Tags} article in the Theme Developer Handbook.
  *
  * @since 2.9.0
  * @since 4.4.0 `$post` can be a post ID or WP_Post object.
@@ -90914,7 +93053,11 @@ function is_post_type_hierarchical($post_type)
 {
 }
 /**
- * Check if a post type is registered.
+ * Determines whether a post type is registered.
+ * 
+ * For more information on this and similar theme functions, check out
+ * the {@link https://developer.wordpress.org/themes/basics/conditional-tags/ 
+ * Conditional Tags} article in the Theme Developer Handbook.
  *
  * @since 3.0.0
  *
@@ -91237,6 +93380,14 @@ function _post_type_meta_capabilities($capabilities = \null)
  * - `items_list_navigation` - Label for the table pagination hidden heading. Default is 'Posts list navigation' /
  *                           'Pages list navigation'.
  * - `items_list` - Label for the table hidden heading. Default is 'Posts list' / 'Pages list'.
+ * - `item_published` - Label used when an item is published. Default is 'Post published.' / 'Page published.'
+ * - `item_published_privately` - Label used when an item is published with private visibility.
+ *                              Default is 'Post published privately.' / 'Page published privately.'
+ * - `item_reverted_to_draft` - Label used when an item is switched to a draft.
+ *                            Default is 'Post reverted to draft.' / 'Page reverted to draft.'
+ * - `item_scheduled` - Label used when an item is scheduled for publishing. Default is 'Post scheduled.' /
+ *                    'Page scheduled.'
+ * - `item_updated` - Label used when an item is updated. Default is 'Post updated.' / 'Page updated.'
  *
  * Above, the first default value is for non-hierarchical post types (like posts)
  * and the second one is for hierarchical post types (like pages).
@@ -91250,6 +93401,8 @@ function _post_type_meta_capabilities($capabilities = \null)
  *              `items_list_navigation`, and `items_list` labels.
  * @since 4.6.0 Converted the `$post_type` parameter to accept a WP_Post_Type object.
  * @since 4.7.0 Added the `view_items` and `attributes` labels.
+ * @since 5.0.0 Added the `item_published`, `item_published_privately`, `item_reverted_to_draft`,
+ *              `item_scheduled`, and `item_updated` labels.
  *
  * @access private
  *
@@ -91579,11 +93732,15 @@ function get_post_custom_values($key = '', $post_id = 0)
 {
 }
 /**
- * Check if post is sticky.
+ * Determines whether a post is sticky.
  *
  * Sticky posts should remain at the top of The Loop. If the post ID is not
  * given, then The Loop ID for the current post will be used.
- *
+ * 
+ * For more information on this and similar theme functions, check out
+ * the {@link https://developer.wordpress.org/themes/basics/conditional-tags/ 
+ * Conditional Tags} article in the Theme Developer Handbook.
+ * 
  * @since 2.7.0
  *
  * @param int $post_id Optional. Post ID. Default is ID of the global $post.
@@ -92387,8 +94544,12 @@ function get_pages($args = array())
 // Attachment functions
 //
 /**
- * Check if the attachment URI is local one and is really an attachment.
- *
+ * Determines whether an attachment URI is local and really an attachment.
+ * 
+ * For more information on this and similar theme functions, check out
+ * the {@link https://developer.wordpress.org/themes/basics/conditional-tags/ 
+ * Conditional Tags} article in the Theme Developer Handbook.
+ * 
  * @since 2.0.0
  *
  * @param string $url URL to check
@@ -92544,7 +94705,11 @@ function wp_attachment_is($type, $post = \null)
 {
 }
 /**
- * Checks if the attachment is an image.
+ * Determines whether an attachment is an image.
+ * 
+ * For more information on this and similar theme functions, check out
+ * the {@link https://developer.wordpress.org/themes/basics/conditional-tags/ 
+ * Conditional Tags} article in the Theme Developer Handbook.
  *
  * @since 2.1.0
  * @since 4.2.0 Modified into wrapper for wp_attachment_is() and
@@ -92984,6 +95149,14 @@ function _filter_query_attachment_filenames($clauses)
 {
 }
 /**
+ * Sets the last changed time for the 'posts' cache group.
+ *
+ * @since 5.0.0
+ */
+function wp_cache_set_posts_last_changed()
+{
+}
+/**
  * WordPress Query API
  *
  * The query API attempts to get which part of WordPress the user is on. It
@@ -93101,10 +95274,14 @@ function wp_reset_postdata()
  * Query type checks.
  */
 /**
- * Is the query for an existing archive page?
+ * Determines whether the query is for an existing archive page.
  *
  * Month, Year, Category, Author, Post Type archive...
- *
+ * 
+ * For more information on this and similar theme functions, check out
+ * the {@link https://developer.wordpress.org/themes/basics/conditional-tags/ 
+ * Conditional Tags} article in the Theme Developer Handbook.
+ * 
  * @since 1.5.0
  *
  * @global WP_Query $wp_query Global WP_Query instance.
@@ -93115,8 +95292,12 @@ function is_archive()
 {
 }
 /**
- * Is the query for an existing post type archive page?
- *
+ * Determines whether the query is for an existing post type archive page.
+ * 
+ * For more information on this and similar theme functions, check out
+ * the {@link https://developer.wordpress.org/themes/basics/conditional-tags/ 
+ * Conditional Tags} article in the Theme Developer Handbook.
+ * 
  * @since 3.1.0
  *
  * @global WP_Query $wp_query Global WP_Query instance.
@@ -93128,8 +95309,12 @@ function is_post_type_archive($post_types = '')
 {
 }
 /**
- * Is the query for an existing attachment page?
- *
+ * Determines whether the query is for an existing attachment page.
+ * 
+ * For more information on this and similar theme functions, check out
+ * the {@link https://developer.wordpress.org/themes/basics/conditional-tags/ 
+ * Conditional Tags} article in the Theme Developer Handbook.
+ * 
  * @since 2.0.0
  *
  * @global WP_Query $wp_query Global WP_Query instance.
@@ -93141,11 +95326,15 @@ function is_attachment($attachment = '')
 {
 }
 /**
- * Is the query for an existing author archive page?
+ * Determines whether the query is for an existing author archive page.
  *
  * If the $author parameter is specified, this function will additionally
  * check if the query is for one of the authors specified.
- *
+ * 
+ * For more information on this and similar theme functions, check out
+ * the {@link https://developer.wordpress.org/themes/basics/conditional-tags/ 
+ * Conditional Tags} article in the Theme Developer Handbook.
+ * 
  * @since 1.5.0
  *
  * @global WP_Query $wp_query Global WP_Query instance.
@@ -93157,11 +95346,15 @@ function is_author($author = '')
 {
 }
 /**
- * Is the query for an existing category archive page?
+ * Determines whether the query is for an existing category archive page.
  *
  * If the $category parameter is specified, this function will additionally
  * check if the query is for one of the categories specified.
- *
+ * 
+ * For more information on this and similar theme functions, check out
+ * the {@link https://developer.wordpress.org/themes/basics/conditional-tags/ 
+ * Conditional Tags} article in the Theme Developer Handbook.
+ * 
  * @since 1.5.0
  *
  * @global WP_Query $wp_query Global WP_Query instance.
@@ -93173,10 +95366,14 @@ function is_category($category = '')
 {
 }
 /**
- * Is the query for an existing tag archive page?
+ * Determines whether the query is for an existing tag archive page.
  *
  * If the $tag parameter is specified, this function will additionally
  * check if the query is for one of the tags specified.
+ * 
+ * For more information on this and similar theme functions, check out
+ * the {@link https://developer.wordpress.org/themes/basics/conditional-tags/ 
+ * Conditional Tags} article in the Theme Developer Handbook.
  *
  * @since 2.3.0
  *
@@ -93189,7 +95386,7 @@ function is_tag($tag = '')
 {
 }
 /**
- * Is the query for an existing custom taxonomy archive page?
+ * Determines whether the query is for an existing custom taxonomy archive page.
  *
  * If the $taxonomy parameter is specified, this function will additionally
  * check if the query is for that specific $taxonomy.
@@ -93197,6 +95394,10 @@ function is_tag($tag = '')
  * If the $term parameter is specified in addition to the $taxonomy parameter,
  * this function will additionally check if the query is for one of the terms
  * specified.
+ * 
+ * For more information on this and similar theme functions, check out
+ * the {@link https://developer.wordpress.org/themes/basics/conditional-tags/ 
+ * Conditional Tags} article in the Theme Developer Handbook.
  *
  * @since 2.5.0
  *
@@ -93210,8 +95411,12 @@ function is_tax($taxonomy = '', $term = '')
 {
 }
 /**
- * Is the query for an existing date archive?
- *
+ * Determines whether the query is for an existing date archive.
+ * 
+ * For more information on this and similar theme functions, check out
+ * the {@link https://developer.wordpress.org/themes/basics/conditional-tags/ 
+ * Conditional Tags} article in the Theme Developer Handbook.
+ * 
  * @since 1.5.0
  *
  * @global WP_Query $wp_query Global WP_Query instance.
@@ -93222,7 +95427,11 @@ function is_date()
 {
 }
 /**
- * Is the query for an existing day archive?
+ * Determines whether the query is for an existing day archive.
+ *
+ * For more information on this and similar theme functions, check out
+ * the {@link https://developer.wordpress.org/themes/basics/conditional-tags/
+ * Conditional Tags} article in the Theme Developer Handbook.
  *
  * @since 1.5.0
  *
@@ -93234,8 +95443,12 @@ function is_day()
 {
 }
 /**
- * Is the query for a feed?
- *
+ * Determines whether the query is for a feed.
+ * 
+ * For more information on this and similar theme functions, check out
+ * the {@link https://developer.wordpress.org/themes/basics/conditional-tags/ 
+ * Conditional Tags} article in the Theme Developer Handbook.
+ * 
  * @since 1.5.0
  *
  * @global WP_Query $wp_query Global WP_Query instance.
@@ -93259,7 +95472,7 @@ function is_comment_feed()
 {
 }
 /**
- * Is the query for the front page of the site?
+ * Determines whether the query is for the front page of the site.
  *
  * This is for what is displayed at your site's main URL.
  *
@@ -93269,7 +95482,11 @@ function is_comment_feed()
  * true when viewing that page.
  *
  * Otherwise the same as @see is_home()
- *
+ * 
+ * For more information on this and similar theme functions, check out
+ * the {@link https://developer.wordpress.org/themes/basics/conditional-tags/ 
+ * Conditional Tags} article in the Theme Developer Handbook.
+ * 
  * @since 2.5.0
  *
  * @global WP_Query $wp_query Global WP_Query instance.
@@ -93280,7 +95497,7 @@ function is_front_page()
 {
 }
 /**
- * Determines if the query is for the blog homepage.
+ * Determines whether the query is for the blog homepage.
  *
  * The blog homepage is the page that shows the time-based blog content of the site.
  *
@@ -93289,7 +95506,11 @@ function is_front_page()
  *
  * If a static page is set for the front page of the site, this function will return true only
  * on the page you set as the "Posts page".
- *
+ * 
+ * For more information on this and similar theme functions, check out
+ * the {@link https://developer.wordpress.org/themes/basics/conditional-tags/ 
+ * Conditional Tags} article in the Theme Developer Handbook.
+ * 
  * @since 1.5.0
  *
  * @see is_front_page()
@@ -93301,8 +95522,12 @@ function is_home()
 {
 }
 /**
- * Is the query for an existing month archive?
- *
+ * Determines whether the query is for an existing month archive.
+ * 
+ * For more information on this and similar theme functions, check out
+ * the {@link https://developer.wordpress.org/themes/basics/conditional-tags/ 
+ * Conditional Tags} article in the Theme Developer Handbook.
+ * 
  * @since 1.5.0
  *
  * @global WP_Query $wp_query Global WP_Query instance.
@@ -93313,11 +95538,15 @@ function is_month()
 {
 }
 /**
- * Is the query for an existing single page?
+ * Determines whether the query is for an existing single page.
  *
  * If the $page parameter is specified, this function will additionally
  * check if the query is for one of the pages specified.
- *
+ * 
+ * For more information on this and similar theme functions, check out
+ * the {@link https://developer.wordpress.org/themes/basics/conditional-tags/ 
+ * Conditional Tags} article in the Theme Developer Handbook.
+ * 
  * @see is_single()
  * @see is_singular()
  *
@@ -93332,8 +95561,12 @@ function is_page($page = '')
 {
 }
 /**
- * Is the query for paged result and not for the first page?
- *
+ * Determines whether the query is for paged results and not for the first page.
+ * 
+ * For more information on this and similar theme functions, check out
+ * the {@link https://developer.wordpress.org/themes/basics/conditional-tags/ 
+ * Conditional Tags} article in the Theme Developer Handbook.
+ * 
  * @since 1.5.0
  *
  * @global WP_Query $wp_query Global WP_Query instance.
@@ -93344,8 +95577,12 @@ function is_paged()
 {
 }
 /**
- * Is the query for a post or page preview?
- *
+ * Determines whether the query is for a post or page preview.
+ * 
+ * For more information on this and similar theme functions, check out
+ * the {@link https://developer.wordpress.org/themes/basics/conditional-tags/ 
+ * Conditional Tags} article in the Theme Developer Handbook.
+ * 
  * @since 2.0.0
  *
  * @global WP_Query $wp_query Global WP_Query instance.
@@ -93368,8 +95605,12 @@ function is_robots()
 {
 }
 /**
- * Is the query for a search?
- *
+ * Determines whether the query is for a search.
+ * 
+ * For more information on this and similar theme functions, check out
+ * the {@link https://developer.wordpress.org/themes/basics/conditional-tags/ 
+ * Conditional Tags} article in the Theme Developer Handbook.
+ * 
  * @since 1.5.0
  *
  * @global WP_Query $wp_query Global WP_Query instance.
@@ -93380,13 +95621,17 @@ function is_search()
 {
 }
 /**
- * Is the query for an existing single post?
+ * Determines whether the query is for an existing single post.
  *
  * Works for any post type, except attachments and pages
  *
  * If the $post parameter is specified, this function will additionally
  * check if the query is for one of the Posts specified.
- *
+ * 
+ * For more information on this and similar theme functions, check out
+ * the {@link https://developer.wordpress.org/themes/basics/conditional-tags/ 
+ * Conditional Tags} article in the Theme Developer Handbook.
+ * 
  * @see is_page()
  * @see is_singular()
  *
@@ -93401,12 +95646,16 @@ function is_single($post = '')
 {
 }
 /**
- * Is the query for an existing single post of any post type (post, attachment, page,
- * custom post types)?
+ * Determines whether the query is for an existing single post of any post type
+ * (post, attachment, page, custom post types).
  *
  * If the $post_types parameter is specified, this function will additionally
  * check if the query is for one of the Posts Types specified.
- *
+ * 
+ * For more information on this and similar theme functions, check out
+ * the {@link https://developer.wordpress.org/themes/basics/conditional-tags/ 
+ * Conditional Tags} article in the Theme Developer Handbook.
+ * 
  * @see is_page()
  * @see is_single()
  *
@@ -93421,7 +95670,11 @@ function is_singular($post_types = '')
 {
 }
 /**
- * Is the query for a specific time?
+ * Determines whether the query is for a specific time.
+ * 
+ * For more information on this and similar theme functions, check out
+ * the {@link https://developer.wordpress.org/themes/basics/conditional-tags/ 
+ * Conditional Tags} article in the Theme Developer Handbook.
  *
  * @since 1.5.0
  *
@@ -93433,7 +95686,11 @@ function is_time()
 {
 }
 /**
- * Is the query for a trackback endpoint call?
+ * Determines whether the query is for a trackback endpoint call.
+ * 
+ * For more information on this and similar theme functions, check out
+ * the {@link https://developer.wordpress.org/themes/basics/conditional-tags/ 
+ * Conditional Tags} article in the Theme Developer Handbook.
  *
  * @since 1.5.0
  *
@@ -93445,7 +95702,11 @@ function is_trackback()
 {
 }
 /**
- * Is the query for an existing year archive?
+ * Determines whether the query is for an existing year archive.
+ * 
+ * For more information on this and similar theme functions, check out
+ * the {@link https://developer.wordpress.org/themes/basics/conditional-tags/ 
+ * Conditional Tags} article in the Theme Developer Handbook.
  *
  * @since 1.5.0
  *
@@ -93457,8 +95718,12 @@ function is_year()
 {
 }
 /**
- * Is the query a 404 (returns no results)?
- *
+ * Determines whether the query has resulted in a 404 (returns no results).
+ * 
+ * For more information on this and similar theme functions, check out
+ * the {@link https://developer.wordpress.org/themes/basics/conditional-tags/ 
+ * Conditional Tags} article in the Theme Developer Handbook.
+ * 
  * @since 1.5.0
  *
  * @global WP_Query $wp_query Global WP_Query instance.
@@ -93481,8 +95746,12 @@ function is_embed()
 {
 }
 /**
- * Is the query the main query?
- *
+ * Determines whether the query is the main query.
+ * 
+ * For more information on this and similar theme functions, check out
+ * the {@link https://developer.wordpress.org/themes/basics/conditional-tags/ 
+ * Conditional Tags} article in the Theme Developer Handbook.
+ * 
  * @since 3.3.0
  *
  * @global WP_Query $wp_query Global WP_Query instance.
@@ -93508,7 +95777,11 @@ function have_posts()
 {
 }
 /**
- * Whether the caller is in the Loop.
+ * Determines whether the caller is in the Loop.
+ * 
+ * For more information on this and similar theme functions, check out
+ * the {@link https://developer.wordpress.org/themes/basics/conditional-tags/ 
+ * Conditional Tags} article in the Theme Developer Handbook.
  *
  * @since 2.0.0
  *
@@ -94115,6 +96388,19 @@ function rest_sanitize_value_from_schema($value, $args)
 {
 }
 /**
+ * Append result of internal request to REST API for purpose of preloading data to be attached to a page.
+ * Expected to be called in the context of `array_reduce`.
+ *
+ * @since 5.0.0
+ *
+ * @param  array  $memo Reduce accumulator.
+ * @param  string $path REST API path to preload.
+ * @return array        Modified reduce accumulator.
+ */
+function rest_preload_api_request($memo, $path)
+{
+}
+/**
  * Post revision functions.
  *
  * @package WordPress
@@ -94574,6 +96860,102 @@ function url_to_postid($url)
 {
 }
 /**
+ * Registers TinyMCE scripts.
+ *
+ * @since 5.0.0
+ *
+ * @param WP_Scripts $scripts WP_Scripts object.
+ */
+function wp_register_tinymce_scripts(&$scripts, $force_uncompressed = \false)
+{
+}
+/**
+ * Registers all the WordPress vendor scripts that are in the standardized
+ * `js/dist/vendor/` location.
+ *
+ * For the order of `$scripts->add` see `wp_default_scripts`.
+ *
+ * @since 5.0.0
+ *
+ * @param WP_Scripts $scripts WP_Scripts object.
+ */
+function wp_default_packages_vendor(&$scripts)
+{
+}
+/**
+ * Returns contents of an inline script used in appending polyfill scripts for
+ * browsers which fail the provided tests. The provided array is a mapping from
+ * a condition to verify feature support to its polyfill script handle.
+ *
+ * @since 5.0.0
+ *
+ * @param WP_Scripts $scripts WP_Scripts object.
+ * @param array      $tests   Features to detect.
+ * @return string Conditional polyfill inline script.
+ */
+function wp_get_script_polyfill(&$scripts, $tests)
+{
+}
+/**
+ * Registers all the WordPress packages scripts that are in the standardized
+ * `js/dist/` location.
+ *
+ * For the order of `$scripts->add` see `wp_default_scripts`.
+ *
+ * @since 5.0.0
+ *
+ * @param WP_Scripts $scripts WP_Scripts object.
+ */
+function wp_default_packages_scripts(&$scripts)
+{
+}
+/**
+ * Adds inline scripts required for the WordPress JavaScript packages.
+ *
+ * @since 5.0.0
+ *
+ * @param WP_Scripts $scripts WP_Scripts object.
+ */
+function wp_default_packages_inline_scripts(&$scripts)
+{
+}
+/**
+ * Adds inline scripts required for the TinyMCE in the block editor.
+ *
+ * These TinyMCE init settings are used to extend and override the default settings
+ * from `_WP_Editors::default_settings()` for the Classic block.
+ *
+ * @since 5.0.0
+ *
+ * @global WP_Scripts $wp_scripts
+ */
+function wp_tinymce_inline_scripts()
+{
+}
+/**
+ * Registers all the WordPress packages scripts.
+ *
+ * @since 5.0.0
+ *
+ * @param WP_Scripts $scripts WP_Scripts object.
+ */
+function wp_default_packages(&$scripts)
+{
+}
+/**
+ * Returns the suffix that can be used for the scripts.
+ *
+ * There are two suffix types, the normal one and the dev suffix.
+ *
+ * @since 5.0.0
+ *
+ * @param string $type The type of suffix to retrieve.
+ * @return string The script suffix.
+ */
+function wp_scripts_get_suffix($type = '')
+{
+}
+/**
  * Register all WordPress scripts.
  *
  * Localizes some of them.
@@ -94798,6 +97180,28 @@ function _print_styles()
  * @global bool $compress_css
  */
 function script_concat_settings()
+{
+}
+/**
+ * Handles the enqueueing of block scripts and styles that are common to both
+ * the editor and the front-end.
+ *
+ * @since 5.0.0
+ *
+ * @global WP_Screen $current_screen
+ */
+function wp_common_block_scripts_and_styles()
+{
+}
+/**
+ * Enqueues registered block scripts and styles, depending on current rendered
+ * context (only enqueuing editor scripts while in context of the editor).
+ *
+ * @since 5.0.0
+ *
+ * @global WP_Screen $current_screen
+ */
+function wp_enqueue_registered_block_scripts_and_styles()
 {
 }
 /**
@@ -95118,9 +97522,13 @@ function get_taxonomy($taxonomy)
 {
 }
 /**
- * Checks that the taxonomy name exists.
+ * Determines whether the taxonomy name exists.
  *
  * Formerly is_taxonomy(), introduced in 2.3.0.
+ * 
+ * For more information on this and similar theme functions, check out
+ * the {@link https://developer.wordpress.org/themes/basics/conditional-tags/ 
+ * Conditional Tags} article in the Theme Developer Handbook.
  *
  * @since 3.0.0
  *
@@ -95133,12 +97541,16 @@ function taxonomy_exists($taxonomy)
 {
 }
 /**
- * Whether the taxonomy object is hierarchical.
+ * Determines whether the taxonomy object is hierarchical.
  *
  * Checks to make sure that the taxonomy is an object first. Then Gets the
  * object, and finally returns the hierarchical value in the object.
  *
  * A false return value might also mean that the taxonomy does not exist.
+ * 
+ * For more information on this and similar theme functions, check out
+ * the {@link https://developer.wordpress.org/themes/basics/conditional-tags/ 
+ * Conditional Tags} article in the Theme Developer Handbook.
  *
  * @since 2.3.0
  *
@@ -95687,9 +98099,13 @@ function unregister_term_meta($taxonomy, $meta_key)
 {
 }
 /**
- * Check if Term exists.
+ * Determines whether a term exists.
  *
  * Formerly is_term(), introduced in 2.3.0.
+ * 
+ * For more information on this and similar theme functions, check out
+ * the {@link https://developer.wordpress.org/themes/basics/conditional-tags/ 
+ * Conditional Tags} article in the Theme Developer Handbook.
  *
  * @since 3.0.0
  *
@@ -96536,6 +98952,25 @@ function wp_get_term_taxonomy_parent_id($term_id, $taxonomy)
  * @return int The new parent for the term.
  */
 function wp_check_term_hierarchy_for_loops($parent, $term_id, $taxonomy)
+{
+}
+/**
+ * Sets the last changed time for the 'terms' cache group.
+ *
+ * @since 5.0.0
+ */
+function wp_cache_set_terms_last_changed()
+{
+}
+/**
+ * Aborts calls to term meta if it is not supported.
+ *
+ * @since 5.0.0
+ *
+ * @param mixed $check Skip-value for whether to proceed term meta function execution.
+ * @return mixed Original value of $check, or false if term meta is not supported.
+ */
+function wp_check_term_meta_support_prefilter($check)
 {
 }
 /**
@@ -97754,12 +100189,16 @@ function get_theme_starter_content()
  * @since 4.1.0 The `title-tag` feature was added
  * @since 4.5.0 The `customize-selective-refresh-widgets` feature was added
  * @since 4.7.0 The `starter-content` feature was added
+ * @since 5.0.0 The `responsive-embeds`, `align-wide`, `dark-editor-style`, `disable-custom-colors`,
+ *              `disable-custom-font-sizes`, `editor-color-pallete`, `editor-font-sizes`,
+ *              `editor-styles`, and `wp-block-styles` features were added.
  *
  * @global array $_wp_theme_features
  *
  * @param string $feature  The feature being added. Likely core values include 'post-formats',
  *                         'post-thumbnails', 'html5', 'custom-logo', 'custom-header-uploads',
- *                         'custom-header', 'custom-background', 'title-tag', 'starter-content', etc.
+ *                         'custom-header', 'custom-background', 'title-tag', 'starter-content',
+ *                         'responsive-embeds', etc.
  * @param mixed  $args,... Optional extra arguments to pass along with certain features.
  * @return void|bool False on failure, void otherwise.
  */
@@ -98622,7 +101061,11 @@ function clean_user_cache($user)
 {
 }
 /**
- * Checks whether the given username exists.
+ * Determines whether the given username exists.
+ * 
+ * For more information on this and similar theme functions, check out
+ * the {@link https://developer.wordpress.org/themes/basics/conditional-tags/ 
+ * Conditional Tags} article in the Theme Developer Handbook.
  *
  * @since 2.0.0
  *
@@ -98633,7 +101076,11 @@ function username_exists($username)
 {
 }
 /**
- * Checks whether the given email exists.
+ * Determines whether the given email exists.
+ * 
+ * For more information on this and similar theme functions, check out
+ * the {@link https://developer.wordpress.org/themes/basics/conditional-tags/ 
+ * Conditional Tags} article in the Theme Developer Handbook.
  *
  * @since 2.1.0
  *
@@ -99441,7 +101888,7 @@ function dynamic_sidebar($index = 1)
 {
 }
 /**
- * Whether widget is displayed on the front end.
+ * Determines whether a given widget is displayed on the front end.
  *
  * Either $callback or $id_base can be used
  * $id_base is the first argument when extending WP_Widget class
@@ -99452,7 +101899,11 @@ function dynamic_sidebar($index = 1)
  *
  * NOTE: $widget_id and $id_base are the same for single widgets. To be effective
  * this function has to run after widgets have initialized, at action {@see 'init'} or later.
- *
+ * 
+ * For more information on this and similar theme functions, check out
+ * the {@link https://developer.wordpress.org/themes/basics/conditional-tags/ 
+ * Conditional Tags} article in the Theme Developer Handbook.
+ * 
  * @since 2.2.0
  *
  * @global array $wp_registered_widgets
@@ -99467,8 +101918,12 @@ function is_active_widget($callback = \false, $widget_id = \false, $id_base = \f
 {
 }
 /**
- * Whether the dynamic sidebar is enabled and used by theme.
- *
+ * Determines whether the dynamic sidebar is enabled and used by the theme.
+ * 
+ * For more information on this and similar theme functions, check out
+ * the {@link https://developer.wordpress.org/themes/basics/conditional-tags/ 
+ * Conditional Tags} article in the Theme Developer Handbook.
+ * 
  * @since 2.2.0
  *
  * @global array $wp_registered_widgets
@@ -99480,8 +101935,12 @@ function is_dynamic_sidebar()
 {
 }
 /**
- * Whether a sidebar is in use.
- *
+ * Determines whether a sidebar is in use.
+ * 
+ * For more information on this and similar theme functions, check out
+ * the {@link https://developer.wordpress.org/themes/basics/conditional-tags/ 
+ * Conditional Tags} article in the Theme Developer Handbook.
+ * 
  * @since 2.8.0
  *
  * @param string|int $index Sidebar name, id or number to check.
