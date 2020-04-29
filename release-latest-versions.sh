@@ -23,9 +23,10 @@ for V in 4.7  4.8  4.9  5.0  5.1  5.2  5.3  5.4; do
         continue;
     fi
 
-    # Require new version
-    composer --working-dir=source/ require --no-interaction --no-suggest --update-no-dev \
-        "johnpbloch/wordpress:$LATEST"
+    # Get new version
+    printf -v SED_EXP 's#\\("johnpbloch/wordpress"\\): "[0-9]\\+\\.[0-9]\\+\\.[0-9]\\+"#\\1: "%s"#' "$LATEST"
+    sed -i -e "$SED_EXP" source/composer.json
+    composer run-script post-install-cmd
 
     # Generate stubs
     echo "Generating stubs ..."
