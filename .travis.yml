@@ -1,5 +1,4 @@
-# https://docs.travis-ci.com/user/reference/overview/#linux
-dist: bionic
+dist: xenial
 
 language: php
 
