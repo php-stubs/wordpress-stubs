@@ -43,9 +43,10 @@ install:
 before_script:
   - |
     cat ./source/wordpress/wp-includes/version.php
+  - |
     if [ "$(phpenv version-name)" == 7.4 ]; then
-        # Hide deprecated errors
-        sed -e '3s/^/error_reporting(E_ALL ^ E_DEPRECATED);/' -i ./vendor/giacocorsiglia/stubs-generator/bin/generate-stubs
+        echo "Hiding deprecated errors in generate-stubs ..."
+        sed -i -e '3s/^/error_reporting(E_ALL ^ E_DEPRECATED);/' ./vendor/giacocorsiglia/stubs-generator/bin/generate-stubs
     fi
 
 script:
