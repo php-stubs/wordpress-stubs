@@ -9,6 +9,11 @@ set -e
 test -f "$FILE"
 test -d "source/wordpress"
 
+# Download dependencies
+if [ ! -d vendor ]; then
+    composer update
+fi
+
 # Exclude globals.
 "$(dirname "$0")/vendor/bin/generate-stubs" \
     --force \
@@ -21,4 +26,4 @@ test -d "source/wordpress"
     --out="$FILE"
 
 # Shim the global $wpdb declaration, since it's actually set up inside a function call.
-printf '\n/**\n * WordPress database abstraction object.\n * @var wpdb\n */\n$wpdb = \\null;\n' >>"$FILE"
+printf '\nnamespace {\n/**\n * WordPress database abstraction object.\n * @var wpdb\n */\n$wpdb = \\null;\n}\n' >>"$FILE"

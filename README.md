@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.com/php-stubs/wordpress-stubs.svg?branch=master)](https://travis-ci.com/php-stubs/wordpress-stubs)
 
-This package is a fork of `giacocorsiglia/stubs-generator`.
+This package is a fork of `giacocorsiglia/wordpress-stubs`.
 It provides stub declarations for [WordPress](https://wordpress.org/)
 core functions, classes and interfaces, **globals are not included**.
 These stubs can help plugin and theme developers leverage static analysis tools

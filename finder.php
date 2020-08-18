@@ -16,6 +16,7 @@ return \StubsGenerator\Finder::create()
     ->notPath('wp-includes/spl-autoload-compat.php')
     ->notPath('wp-includes/random_compat')
     ->notPath('wp-includes/sodium_compat')
+    ->notPath('wp-includes/cache-compat.php')
     // $ grep -rl '^_deprecated_file('
     ->notPath('wp-admin/admin-functions.php')
     ->notPath('wp-admin/custom-background.php')
