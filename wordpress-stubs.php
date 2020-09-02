@@ -4020,7 +4020,7 @@ namespace {
          *
          * @since 5.5.0
          *
-         * @param array $update_results The result of updates tasks.
+         * @param array $update_results The results of update tasks.
          */
         protected function after_plugin_theme_update($update_results)
         {
@@ -10251,9 +10251,11 @@ namespace {
          * Test if auto-updates related constants are set correctly.
          *
          * @since 5.2.0
+         * @since 5.5.1 The `$value` parameter can accept an array.
          *
-         * @param string $constant The name of the constant to check.
-         * @param bool   $value    The value that the constant should be, if set.
+         * @param string $constant         The name of the constant to check.
+         * @param bool|string|array $value The value that the constant should be, if set,
+         *                                 or an array of acceptable values.
          * @return array The test results.
          */
         public function test_constants($constant, $value)
@@ -91598,10 +91600,11 @@ namespace {
     {
     }
     /**
-     * Returns a custom logo, linked to home when on another page.
+     * Returns a custom logo, linked to home unless the theme supports removing the link on the home page.
      *
      * @since 4.5.0
-     * @since 5.5.0 Removed the link on the home page.
+     * @since 5.5.0 Added option to remove the link on the home page with `unlink-homepage-logo` theme support.
+     * @since 5.5.1 Disabled lazy-loading by default.
      *
      * @param int $blog_id Optional. ID of the blog in question. Default is the ID of the current blog.
      * @return string Custom logo markup.
@@ -91610,7 +91613,7 @@ namespace {
     {
     }
     /**
-     * Displays a custom logo, linked to home when on another page.
+     * Displays a custom logo, linked to home unless the theme supports removing the link on the home page.
      *
      * @since 4.5.0
      *
@@ -91789,6 +91792,7 @@ namespace {
      * Retrieve the archive title based on the queried object.
      *
      * @since 4.1.0
+     * @since 5.5.0 The title part is wrapped in a `<span>` element.
      *
      * @return string Archive title.
      */
@@ -96491,10 +96495,12 @@ namespace {
      * The type can be set via the `WP_ENVIRONMENT_TYPE` global system variable,
      * or a constant of the same name.
      *
-     * Possible values include 'development', 'staging', 'production'. If not set,
-     * the type defaults to 'production'.
+     * Possible values include 'local', 'development', 'staging', 'production'.
+     * If not set, the type defaults to 'production'.
      *
      * @since 5.5.0
+     * @since 5.5.1 Added the 'local' type.
+     * @since 5.5.1 Removed the ability to alter the list of types.
      *
      * @return string The current environment type.
      */
@@ -97507,6 +97513,8 @@ namespace {
      * browser scale down the image.
      *
      * @since 2.5.0
+     * @since 4.4.0 The `$srcset` and `$sizes` attributes were added.
+     * @since 5.5.0 The `$loading` attribute was added.
      *
      * @param int          $attachment_id Image attachment ID.
      * @param string|array $size          Optional. Image size. Accepts any valid image size, or an array of width
@@ -97515,13 +97523,16 @@ namespace {
      * @param string|array $attr {
      *     Optional. Attributes for the image markup.
      *
-     *     @type string $src    Image attachment URL.
-     *     @type string $class  CSS class name or space-separated list of classes.
-     *                          Default `attachment-$size_class size-$size_class`,
-     *                          where `$size_class` is the image size being requested.
-     *     @type string $alt    Image description for the alt attribute.
-     *     @type string $srcset The 'srcset' attribute value.
-     *     @type string $sizes  The 'sizes' attribute value.
+     *     @type string       $src     Image attachment URL.
+     *     @type string       $class   CSS class name or space-separated list of classes.
+     *                                 Default `attachment-$size_class size-$size_class`,
+     *                                 where `$size_class` is the image size being requested.
+     *     @type string       $alt     Image description for the alt attribute.
+     *     @type string       $srcset  The 'srcset' attribute value.
+     *     @type string       $sizes   The 'sizes' attribute value.
+     *     @type string|false $loading The 'loading' attribute value. Passing a value of false
+     *                                 will result in the attribute being omitted for the image.
+     *                                 Defaults to 'lazy', depending on wp_lazy_loading_enabled().
      * }
      * @return string HTML img element or empty string on failure.
      */
@@ -107952,7 +107963,8 @@ namespace {
      * Note: Do not use before the {@see 'rest_api_init'} hook.
      *
      * @since 4.4.0
-     * @since 5.1.0 Added a _doing_it_wrong() notice when not called on or after the rest_api_init hook.
+     * @since 5.1.0 Added a `_doing_it_wrong()` notice when not called on or after the `rest_api_init` hook.
+     * @since 5.5.0 Added a `_doing_it_wrong()` notice when the required `permission_callback` argument is not set.
      *
      * @param string $namespace The first URL segment after core prefix. Should be unique to your package/plugin.
      * @param string $route     The base URL for route you are adding.
@@ -109829,6 +109841,19 @@ namespace {
      * @return int The maximum number of URLs.
      */
     function wp_sitemaps_get_max_urls($object_type)
+    {
+    }
+    /**
+     * Retrieves the full URL for a sitemap.
+     *
+     * @since 5.5.1
+     *
+     * @param string $name         The sitemap name.
+     * @param string $subtype_name The sitemap subtype name.  Default empty string.
+     * @param int    $page         The page of the sitemap.  Default 1.
+     * @return string|false The sitemap URL or false if the sitemap doesn't exist.
+     */
+    function get_sitemap_url($name, $subtype_name = '', $page = 1)
     {
     }
     /**
