@@ -479,11 +479,12 @@ class WP_Upgrader
      *
      * @since 2.8.0
      *
-     * @param string $package The URI of the package. If this is the full path to an
-     *                        existing local file, it will be returned untouched.
+     * @param string $package          The URI of the package. If this is the full path to an
+     *                                 existing local file, it will be returned untouched.
+     * @param bool   $check_signatures Whether to validate file signatures. Default false.
      * @return string|WP_Error The full path to the downloaded package file, or a WP_Error object.
      */
-    public function download_package($package)
+    public function download_package($package, $check_signatures = \false)
     {
     }
     /**
@@ -975,7 +976,7 @@ class ftp_base
     }
 }
 /**
- * PemFTP - A Ftp implementation in pure PHP
+ * PemFTP - An Ftp implementation in pure PHP
  *
  * @package PemFTP
  * @since 2.5.0
@@ -1039,7 +1040,7 @@ class ftp_pure extends \ftp_base
     }
 }
 /**
- * PemFTP - A Ftp implementation in pure PHP
+ * PemFTP - An Ftp implementation in pure PHP
  *
  * @package PemFTP
  * @since 2.5.0
@@ -4290,13 +4291,77 @@ class WP_Community_Events
     }
 }
 /**
+ * Class for providing debug data based on a users WordPress environment.
+ *
+ * @package WordPress
+ * @subpackage Site_Health
+ * @since 5.2.0
+ */
+class WP_Debug_Data
+{
+    /**
+     * Calls all core functions to check for updates.
+     *
+     * @since 5.2.0
+     */
+    static function check_for_updates()
+    {
+    }
+    /**
+     * Static function for generating site debug data when required.
+     *
+     * @since 5.2.0
+     *
+     * @throws ImagickException
+     * @global wpdb $wpdb WordPress database abstraction object.
+     *
+     * @return array The debug data for the site.
+     */
+    static function debug_data()
+    {
+    }
+    /**
+     * Format the information gathered for debugging, in a manner suitable for copying to a forum or support ticket.
+     *
+     * @since 5.2.0
+     *
+     * @param array $info_array Information gathered from the `WP_Debug_Data::debug_data` function.
+     * @param string $type      The data type to return, either 'info' or 'debug'.
+     * @return string The formatted data.
+     */
+    public static function format($info_array, $type)
+    {
+    }
+    /**
+     * Fetch the total size of all the database tables for the active database user.
+     *
+     * @since 5.2.0
+     *
+     * @return int The size of the database, in bytes.
+     */
+    public static function get_database_size()
+    {
+    }
+    /**
+     * Fetch the sizes of the WordPress directories: `wordpress` (ABSPATH), `plugins`, `themes`, and `uploads`.
+     * Intended to supplement the array returned by `WP_Debug_Data::debug_data()`.
+     *
+     * @since 5.2.0
+     *
+     * @return array The sizes of the directories, also the database size and total installation size.
+     */
+    public static function get_sizes()
+    {
+    }
+}
+/**
  * Base WordPress Filesystem
  *
  * @package WordPress
  * @subpackage Filesystem
  */
 /**
- * Base WordPress Filesystem class for which Filesystem implementations extend
+ * Base WordPress Filesystem class which Filesystem implementations extend.
  *
  * @since 2.5.0
  */
@@ -4331,7 +4396,7 @@ class WP_Filesystem_Base
      */
     public $options = array();
     /**
-     * Return the path on the remote filesystem of ABSPATH.
+     * Returns the path on the remote filesystem of ABSPATH.
      *
      * @since 2.7.0
      *
@@ -4341,7 +4406,7 @@ class WP_Filesystem_Base
     {
     }
     /**
-     * Return the path on the remote filesystem of WP_CONTENT_DIR.
+     * Returns the path on the remote filesystem of WP_CONTENT_DIR.
      *
      * @since 2.7.0
      *
@@ -4351,7 +4416,7 @@ class WP_Filesystem_Base
     {
     }
     /**
-     * Return the path on the remote filesystem of WP_PLUGIN_DIR.
+     * Returns the path on the remote filesystem of WP_PLUGIN_DIR.
      *
      * @since 2.7.0
      *
@@ -4361,18 +4426,19 @@ class WP_Filesystem_Base
     {
     }
     /**
-     * Return the path on the remote filesystem of the Themes Directory.
+     * Returns the path on the remote filesystem of the Themes Directory.
      *
      * @since 2.7.0
      *
-     * @param string $theme The Theme stylesheet or template for the directory.
+     * @param string|false $theme Optional. The theme stylesheet or template for the directory.
+     *                            Default false.
      * @return string The location of the remote path.
      */
     public function wp_themes_dir($theme = \false)
     {
     }
     /**
-     * Return the path on the remote filesystem of WP_LANG_DIR.
+     * Returns the path on the remote filesystem of WP_LANG_DIR.
      *
      * @since 3.2.0
      *
@@ -4382,7 +4448,7 @@ class WP_Filesystem_Base
     {
     }
     /**
-     * Locate a folder on the remote filesystem.
+     * Locates a folder on the remote filesystem.
      *
      * @since 2.5.0
      * @deprecated 2.7.0 use WP_Filesystem::abspath() or WP_Filesystem::wp_*_dir() instead.
@@ -4401,7 +4467,7 @@ class WP_Filesystem_Base
     {
     }
     /**
-     * Locate a folder on the remote filesystem.
+     * Locates a folder on the remote filesystem.
      *
      * @since 2.5.0
      * @deprecated 2.7.0 use WP_Filesystem::abspath() or WP_Filesystem::wp_*_dir() methods instead.
@@ -4419,10 +4485,10 @@ class WP_Filesystem_Base
     {
     }
     /**
-     * Locate a folder on the remote filesystem.
+     * Locates a folder on the remote filesystem.
      *
      * Assumes that on Windows systems, Stripping off the Drive
-     * letter is OK Sanitizes \\ to / in windows filepaths.
+     * letter is OK Sanitizes \\ to / in Windows filepaths.
      *
      * @since 2.7.0
      *
@@ -4433,7 +4499,7 @@ class WP_Filesystem_Base
     {
     }
     /**
-     * Locate a folder on the remote filesystem.
+     * Locates a folder on the remote filesystem.
      *
      * Expects Windows sanitized path.
      *
@@ -4448,7 +4514,7 @@ class WP_Filesystem_Base
     {
     }
     /**
-     * Return the *nix-style file permissions for a file.
+     * Returns the *nix-style file permissions for a file.
      *
      * From the PHP documentation page for fileperms().
      *
@@ -4463,17 +4529,18 @@ class WP_Filesystem_Base
     {
     }
     /**
-     * Gets the permissions of the specified file or filepath in their octal format
+     * Gets the permissions of the specified file or filepath in their octal format.
      *
      * @since 2.5.0
-     * @param string $file
-     * @return string the last 3 characters of the octal number
+     *
+     * @param string $file Path to the file.
+     * @return string Mode of the file (the last 3 digits).
      */
     public function getchmod($file)
     {
     }
     /**
-     * Convert *nix-style file permissions to a octal number.
+     * Converts *nix-style file permissions to a octal number.
      *
      * Converts '-rw-r--r--' to 0644
      * From "info at rvgate dot nl"'s comment on the PHP documentation for chmod()
@@ -4489,174 +4556,179 @@ class WP_Filesystem_Base
     {
     }
     /**
-     * Determine if the string provided contains binary characters.
+     * Determines if the string provided contains binary characters.
      *
      * @since 2.7.0
      *
      * @param string $text String to test against.
-     * @return bool true if string is binary, false otherwise.
+     * @return bool True if string is binary, false otherwise.
      */
     public function is_binary($text)
     {
     }
     /**
-     * Change the ownership of a file / folder.
+     * Changes the owner of a file or directory.
      *
      * Default behavior is to do nothing, override this in your subclass, if desired.
      *
      * @since 2.5.0
      *
-     * @param string $file      Path to the file.
-     * @param mixed  $owner     A user name or number.
-     * @param bool   $recursive Optional. If set True changes file owner recursivly. Defaults to False.
-     * @return bool Returns true on success or false on failure.
+     * @param string     $file      Path to the file or directory.
+     * @param string|int $owner     A user name or number.
+     * @param bool       $recursive Optional. If set to true, changes file owner recursively.
+     *                              Default false.
+     * @return bool True on success, false on failure.
      */
     public function chown($file, $owner, $recursive = \false)
     {
     }
     /**
-     * Connect filesystem.
+     * Connects filesystem.
      *
      * @since 2.5.0
      * @abstract
      *
-     * @return bool True on success or false on failure (always true for WP_Filesystem_Direct).
+     * @return bool True on success, false on failure (always true for WP_Filesystem_Direct).
      */
     public function connect()
     {
     }
     /**
-     * Read entire file into a string.
+     * Reads entire file into a string.
      *
      * @since 2.5.0
      * @abstract
      *
      * @param string $file Name of the file to read.
-     * @return mixed|bool Returns the read data or false on failure.
+     * @return string|false Read data on success, false on failure.
      */
     public function get_contents($file)
     {
     }
     /**
-     * Read entire file into an array.
+     * Reads entire file into an array.
      *
      * @since 2.5.0
      * @abstract
      *
      * @param string $file Path to the file.
-     * @return array|bool the file contents in an array or false on failure.
+     * @return array|false File contents in an array on success, false on failure.
      */
     public function get_contents_array($file)
     {
     }
     /**
-     * Write a string to a file.
+     * Writes a string to a file.
      *
      * @since 2.5.0
      * @abstract
      *
-     * @param string $file     Remote path to the file where to write the data.
-     * @param string $contents The data to write.
-     * @param int    $mode     Optional. The file permissions as octal number, usually 0644.
-     * @return bool False on failure.
+     * @param string    $file     Remote path to the file where to write the data.
+     * @param string    $contents The data to write.
+     * @param int|false $mode     Optional. The file permissions as octal number, usually 0644.
+     *                            Default false.
+     * @return bool True on success, false on failure.
      */
     public function put_contents($file, $contents, $mode = \false)
     {
     }
     /**
-     * Get the current working directory.
+     * Gets the current working directory.
      *
      * @since 2.5.0
      * @abstract
      *
-     * @return string|bool The current working directory on success, or false on failure.
+     * @return string|false The current working directory on success, false on failure.
      */
     public function cwd()
     {
     }
     /**
-     * Change current directory.
+     * Changes current directory.
      *
      * @since 2.5.0
      * @abstract
      *
      * @param string $dir The new current directory.
-     * @return bool|string
+     * @return bool True on success, false on failure.
      */
     public function chdir($dir)
     {
     }
     /**
-     * Change the file group.
+     * Changes the file group.
      *
      * @since 2.5.0
      * @abstract
      *
-     * @param string $file      Path to the file.
-     * @param mixed  $group     A group name or number.
-     * @param bool   $recursive Optional. If set True changes file group recursively. Defaults to False.
-     * @return bool|string
+     * @param string     $file      Path to the file.
+     * @param string|int $group     A group name or number.
+     * @param bool       $recursive Optional. If set to true, changes file group recursively.
+     *                              Default false.
+     * @return bool True on success, false on failure.
      */
     public function chgrp($file, $group, $recursive = \false)
     {
     }
     /**
-     * Change filesystem permissions.
+     * Changes filesystem permissions.
      *
      * @since 2.5.0
      * @abstract
      *
-     * @param string $file      Path to the file.
-     * @param int    $mode      Optional. The permissions as octal number, usually 0644 for files, 0755 for dirs.
-     * @param bool   $recursive Optional. If set True changes file group recursively. Defaults to False.
-     * @return bool|string
+     * @param string    $file      Path to the file.
+     * @param int|false $mode      Optional. The permissions as octal number, usually 0644 for files,
+     *                             0755 for directories. Default false.
+     * @param bool      $recursive Optional. If set to true, changes file group recursively.
+     *                             Default false.
+     * @return bool True on success, false on failure.
      */
     public function chmod($file, $mode = \false, $recursive = \false)
     {
     }
     /**
-     * Get the file owner.
+     * Gets the file owner.
      *
      * @since 2.5.0
      * @abstract
      *
      * @param string $file Path to the file.
-     * @return string|bool Username of the user or false on error.
+     * @return string|false Username of the owner on success, false on failure.
      */
     public function owner($file)
     {
     }
     /**
-     * Get the file's group.
+     * Gets the file's group.
      *
      * @since 2.5.0
      * @abstract
      *
      * @param string $file Path to the file.
-     * @return string|bool The group or false on error.
+     * @return string|false The group on success, false on failure.
      */
     public function group($file)
     {
     }
     /**
-     * Copy a file.
+     * Copies a file.
      *
      * @since 2.5.0
      * @abstract
      *
-     * @param string $source      Path to the source file.
-     * @param string $destination Path to the destination file.
-     * @param bool   $overwrite   Optional. Whether to overwrite the destination file if it exists.
-     *                            Default false.
-     * @param int    $mode        Optional. The permissions as octal number, usually 0644 for files, 0755 for dirs.
-     *                            Default false.
-     * @return bool True if file copied successfully, False otherwise.
+     * @param string    $source      Path to the source file.
+     * @param string    $destination Path to the destination file.
+     * @param bool      $overwrite   Optional. Whether to overwrite the destination file if it exists.
+     *                               Default false.
+     * @param int|false $mode        Optional. The permissions as octal number, usually 0644 for files,
+     *                               0755 for dirs. Default false.
+     * @return bool True on success, false on failure.
      */
     public function copy($source, $destination, $overwrite = \false, $mode = \false)
     {
     }
     /**
-     * Move a file.
+     * Moves a file.
      *
      * @since 2.5.0
      * @abstract
@@ -4665,41 +4737,41 @@ class WP_Filesystem_Base
      * @param string $destination Path to the destination file.
      * @param bool   $overwrite   Optional. Whether to overwrite the destination file if it exists.
      *                            Default false.
-     * @return bool True if file copied successfully, False otherwise.
+     * @return bool True on success, false on failure.
      */
     public function move($source, $destination, $overwrite = \false)
     {
     }
     /**
-     * Delete a file or directory.
+     * Deletes a file or directory.
      *
      * @since 2.5.0
      * @abstract
      *
-     * @param string $file      Path to the file.
-     * @param bool   $recursive Optional. If set True changes file group recursively. Defaults to False.
-     *                          Default false.
-     * @param bool   $type      Type of resource. 'f' for file, 'd' for directory.
-     *                          Default false.
-     * @return bool True if the file or directory was deleted, false on failure.
+     * @param string       $file      Path to the file or directory.
+     * @param bool         $recursive Optional. If set to true, changes file group recursively.
+     *                                Default false.
+     * @param string|false $type      Type of resource. 'f' for file, 'd' for directory.
+     *                                Default false.
+     * @return bool True on success, false on failure.
      */
     public function delete($file, $recursive = \false, $type = \false)
     {
     }
     /**
-     * Check if a file or directory exists.
+     * Checks if a file or directory exists.
      *
      * @since 2.5.0
      * @abstract
      *
-     * @param string $file Path to file/directory.
+     * @param string $file Path to file or directory.
      * @return bool Whether $file exists or not.
      */
     public function exists($file)
     {
     }
     /**
-     * Check if resource is a file.
+     * Checks if resource is a file.
      *
      * @since 2.5.0
      * @abstract
@@ -4711,7 +4783,7 @@ class WP_Filesystem_Base
     {
     }
     /**
-     * Check if resource is a directory.
+     * Checks if resource is a directory.
      *
      * @since 2.5.0
      * @abstract
@@ -4723,7 +4795,7 @@ class WP_Filesystem_Base
     {
     }
     /**
-     * Check if a file is readable.
+     * Checks if a file is readable.
      *
      * @since 2.5.0
      * @abstract
@@ -4735,12 +4807,12 @@ class WP_Filesystem_Base
     {
     }
     /**
-     * Check if a file or directory is writable.
+     * Checks if a file or directory is writable.
      *
      * @since 2.5.0
      * @abstract
      *
-     * @param string $file Path to file.
+     * @param string $file Path to file or directory.
      * @return bool Whether $file is writable.
      */
     public function is_writable($file)
@@ -4753,7 +4825,7 @@ class WP_Filesystem_Base
      * @abstract
      *
      * @param string $file Path to file.
-     * @return int|bool Unix timestamp representing last access time.
+     * @return int|false Unix timestamp representing last access time, false on failure.
      */
     public function atime($file)
     {
@@ -4765,7 +4837,7 @@ class WP_Filesystem_Base
      * @abstract
      *
      * @param string $file Path to file.
-     * @return int|bool Unix timestamp representing modification time.
+     * @return int|false Unix timestamp representing modification time, false on failure.
      */
     public function mtime($file)
     {
@@ -4777,13 +4849,13 @@ class WP_Filesystem_Base
      * @abstract
      *
      * @param string $file Path to file.
-     * @return int|bool Size of the file in bytes.
+     * @return int|false Size of the file in bytes on success, false on failure.
      */
     public function size($file)
     {
     }
     /**
-     * Set the access and modification times of a file.
+     * Sets the access and modification times of a file.
      *
      * Note: If $file doesn't exist, it will be created.
      *
@@ -4795,31 +4867,31 @@ class WP_Filesystem_Base
      *                      Default 0.
      * @param int    $atime Optional. Access time to set for file.
      *                      Default 0.
-     * @return bool Whether operation was successful or not.
+     * @return bool True on success, false on failure.
      */
     public function touch($file, $time = 0, $atime = 0)
     {
     }
     /**
-     * Create a directory.
+     * Creates a directory.
      *
      * @since 2.5.0
      * @abstract
      *
-     * @param string $path  Path for new directory.
-     * @param mixed  $chmod Optional. The permissions as octal number, (or False to skip chmod)
-     *                      Default false.
-     * @param mixed  $chown Optional. A user name or number (or False to skip chown)
-     *                      Default false.
-     * @param mixed  $chgrp Optional. A group name or number (or False to skip chgrp).
-     *                      Default false.
-     * @return bool False if directory cannot be created, true otherwise.
+     * @param string     $path  Path for new directory.
+     * @param int|false  $chmod Optional. The permissions as octal number (or false to skip chmod).
+     *                          Default false.
+     * @param string|int $chown Optional. A user name or number (or false to skip chown).
+     *                          Default false.
+     * @param string|int $chgrp Optional. A group name or number (or false to skip chgrp).
+     *                          Default false.
+     * @return bool True on success, false on failure.
      */
     public function mkdir($path, $chmod = \false, $chown = \false, $chgrp = \false)
     {
     }
     /**
-     * Delete a directory.
+     * Deletes a directory.
      *
      * @since 2.5.0
      * @abstract
@@ -4827,13 +4899,13 @@ class WP_Filesystem_Base
      * @param string $path      Path to directory.
      * @param bool   $recursive Optional. Whether to recursively remove files/directories.
      *                          Default false.
-     * @return bool Whether directory is deleted successfully or not.
+     * @return bool True on success, false on failure.
      */
     public function rmdir($path, $recursive = \false)
     {
     }
     /**
-     * Get details for files in a directory or a specific file.
+     * Gets details for files in a directory or a specific file.
      *
      * @since 2.5.0
      * @abstract
@@ -4843,10 +4915,10 @@ class WP_Filesystem_Base
      *                               Default true.
      * @param bool   $recursive      Optional. Whether to recursively include file details in nested directories.
      *                               Default false.
-     * @return array|bool {
+     * @return array|false {
      *     Array of files. False if unable to list directory contents.
      *
-     *     @type string $name        Name of the file/directory.
+     *     @type string $name        Name of the file or directory.
      *     @type string $perms       *nix representation of permissions.
      *     @type int    $permsn      Octal representation of permissions.
      *     @type string $owner       Owner name or ID.
@@ -4878,238 +4950,354 @@ class WP_Filesystem_Base
 class WP_Filesystem_Direct extends \WP_Filesystem_Base
 {
     /**
-     * constructor
+     * Constructor.
      *
-     * @param mixed $arg ignored argument
+     * @since 2.5.0
+     *
+     * @param mixed $arg Not used.
      */
     public function __construct($arg)
     {
     }
     /**
-     * Reads entire file into a string
+     * Reads entire file into a string.
+     *
+     * @since 2.5.0
      *
      * @param string $file Name of the file to read.
-     * @return string|bool The function returns the read data or false on failure.
+     * @return string|false Read data on success, false on failure.
      */
     public function get_contents($file)
     {
     }
     /**
-     * Reads entire file into an array
+     * Reads entire file into an array.
+     *
+     * @since 2.5.0
      *
      * @param string $file Path to the file.
-     * @return array|bool the file contents in an array or false on failure.
+     * @return array|false File contents in an array on success, false on failure.
      */
     public function get_contents_array($file)
     {
     }
     /**
-     * Write a string to a file
+     * Writes a string to a file.
      *
-     * @param string $file     Remote path to the file where to write the data.
-     * @param string $contents The data to write.
-     * @param int    $mode     Optional. The file permissions as octal number, usually 0644.
-     *                         Default false.
-     * @return bool False upon failure, true otherwise.
+     * @since 2.5.0
+     *
+     * @param string    $file     Remote path to the file where to write the data.
+     * @param string    $contents The data to write.
+     * @param int|false $mode     Optional. The file permissions as octal number, usually 0644.
+     *                            Default false.
+     * @return bool True on success, false on failure.
      */
     public function put_contents($file, $contents, $mode = \false)
     {
     }
     /**
-     * Gets the current working directory
+     * Gets the current working directory.
      *
-     * @return string|bool the current working directory on success, or false on failure.
+     * @since 2.5.0
+     *
+     * @return string|false The current working directory on success, false on failure.
      */
     public function cwd()
     {
     }
     /**
-     * Change directory
+     * Changes current directory.
+     *
+     * @since 2.5.0
      *
      * @param string $dir The new current directory.
-     * @return bool Returns true on success or false on failure.
+     * @return bool True on success, false on failure.
      */
     public function chdir($dir)
     {
     }
     /**
-     * Changes file group
+     * Changes the file group.
      *
-     * @param string $file      Path to the file.
-     * @param mixed  $group     A group name or number.
-     * @param bool   $recursive Optional. If set True changes file group recursively. Default false.
-     * @return bool Returns true on success or false on failure.
+     * @since 2.5.0
+     *
+     * @param string     $file      Path to the file.
+     * @param string|int $group     A group name or number.
+     * @param bool       $recursive Optional. If set to true, changes file group recursively.
+     *                              Default false.
+     * @return bool True on success, false on failure.
      */
     public function chgrp($file, $group, $recursive = \false)
     {
     }
     /**
-     * Changes filesystem permissions
+     * Changes filesystem permissions.
      *
-     * @param string $file      Path to the file.
-     * @param int    $mode      Optional. The permissions as octal number, usually 0644 for files,
-     *                          0755 for dirs. Default false.
-     * @param bool   $recursive Optional. If set True changes file group recursively. Default false.
-     * @return bool Returns true on success or false on failure.
+     * @since 2.5.0
+     *
+     * @param string    $file      Path to the file.
+     * @param int|false $mode      Optional. The permissions as octal number, usually 0644 for files,
+     *                             0755 for directories. Default false.
+     * @param bool      $recursive Optional. If set to true, changes file group recursively.
+     *                             Default false.
+     * @return bool True on success, false on failure.
      */
     public function chmod($file, $mode = \false, $recursive = \false)
     {
     }
     /**
-     * Changes file owner
+     * Changes the owner of a file or directory.
      *
-     * @param string $file      Path to the file.
-     * @param mixed  $owner     A user name or number.
-     * @param bool   $recursive Optional. If set True changes file owner recursively.
-     *                          Default false.
-     * @return bool Returns true on success or false on failure.
+     * @since 2.5.0
+     *
+     * @param string     $file      Path to the file or directory.
+     * @param string|int $owner     A user name or number.
+     * @param bool       $recursive Optional. If set to true, changes file owner recursively.
+     *                              Default false.
+     * @return bool True on success, false on failure.
      */
     public function chown($file, $owner, $recursive = \false)
     {
     }
     /**
-     * Gets file owner
+     * Gets the file owner.
+     *
+     * @since 2.5.0
      *
      * @param string $file Path to the file.
-     * @return string|bool Username of the user or false on error.
+     * @return string|false Username of the owner on success, false on failure.
      */
     public function owner($file)
     {
     }
     /**
-     * Gets file permissions
+     * Gets the permissions of the specified file or filepath in their octal format.
      *
      * FIXME does not handle errors in fileperms()
      *
+     * @since 2.5.0
+     *
      * @param string $file Path to the file.
-     * @return string Mode of the file (last 3 digits).
+     * @return string Mode of the file (the last 3 digits).
      */
     public function getchmod($file)
     {
     }
     /**
-     * @param string $file
-     * @return string|false
+     * Gets the file's group.
+     *
+     * @since 2.5.0
+     *
+     * @param string $file Path to the file.
+     * @return string|false The group on success, false on failure.
      */
     public function group($file)
     {
     }
     /**
-     * @param string $source
-     * @param string $destination
-     * @param bool   $overwrite
-     * @param int    $mode
-     * @return bool
+     * Copies a file.
+     *
+     * @since 2.5.0
+     *
+     * @param string    $source      Path to the source file.
+     * @param string    $destination Path to the destination file.
+     * @param bool      $overwrite   Optional. Whether to overwrite the destination file if it exists.
+     *                               Default false.
+     * @param int|false $mode        Optional. The permissions as octal number, usually 0644 for files,
+     *                               0755 for dirs. Default false.
+     * @return bool True on success, false on failure.
      */
     public function copy($source, $destination, $overwrite = \false, $mode = \false)
     {
     }
     /**
-     * @param string $source
-     * @param string $destination
-     * @param bool $overwrite
-     * @return bool
+     * Moves a file.
+     *
+     * @since 2.5.0
+     *
+     * @param string $source      Path to the source file.
+     * @param string $destination Path to the destination file.
+     * @param bool   $overwrite   Optional. Whether to overwrite the destination file if it exists.
+     *                            Default false.
+     * @return bool True on success, false on failure.
      */
     public function move($source, $destination, $overwrite = \false)
     {
     }
     /**
-     * @param string $file
-     * @param bool $recursive
-     * @param string $type
-     * @return bool
+     * Deletes a file or directory.
+     *
+     * @since 2.5.0
+     *
+     * @param string       $file      Path to the file or directory.
+     * @param bool         $recursive Optional. If set to true, changes file group recursively.
+     *                                Default false.
+     * @param string|false $type      Type of resource. 'f' for file, 'd' for directory.
+     *                                Default false.
+     * @return bool True on success, false on failure.
      */
     public function delete($file, $recursive = \false, $type = \false)
     {
     }
     /**
-     * @param string $file
-     * @return bool
+     * Checks if a file or directory exists.
+     *
+     * @since 2.5.0
+     *
+     * @param string $file Path to file or directory.
+     * @return bool Whether $file exists or not.
      */
     public function exists($file)
     {
     }
     /**
-     * @param string $file
-     * @return bool
+     * Checks if resource is a file.
+     *
+     * @since 2.5.0
+     *
+     * @param string $file File path.
+     * @return bool Whether $file is a file.
      */
     public function is_file($file)
     {
     }
     /**
-     * @param string $path
-     * @return bool
+     * Checks if resource is a directory.
+     *
+     * @since 2.5.0
+     *
+     * @param string $path Directory path.
+     * @return bool Whether $path is a directory.
      */
     public function is_dir($path)
     {
     }
     /**
-     * @param string $file
-     * @return bool
+     * Checks if a file is readable.
+     *
+     * @since 2.5.0
+     *
+     * @param string $file Path to file.
+     * @return bool Whether $file is readable.
      */
     public function is_readable($file)
     {
     }
     /**
-     * @param string $file
-     * @return bool
+     * Checks if a file or directory is writable.
+     *
+     * @since 2.5.0
+     *
+     * @param string $file Path to file or directory.
+     * @return bool Whether $file is writable.
      */
     public function is_writable($file)
     {
     }
     /**
-     * @param string $file
-     * @return int
+     * Gets the file's last access time.
+     *
+     * @since 2.5.0
+     *
+     * @param string $file Path to file.
+     * @return int|false Unix timestamp representing last access time, false on failure.
      */
     public function atime($file)
     {
     }
     /**
-     * @param string $file
-     * @return int
+     * Gets the file modification time.
+     *
+     * @since 2.5.0
+     *
+     * @param string $file Path to file.
+     * @return int|false Unix timestamp representing modification time, false on failure.
      */
     public function mtime($file)
     {
     }
     /**
-     * @param string $file
-     * @return int
+     * Gets the file size (in bytes).
+     *
+     * @since 2.5.0
+     *
+     * @param string $file Path to file.
+     * @return int|false Size of the file in bytes on success, false on failure.
      */
     public function size($file)
     {
     }
     /**
-     * @param string $file
-     * @param int $time
-     * @param int $atime
-     * @return bool
+     * Sets the access and modification times of a file.
+     *
+     * Note: If $file doesn't exist, it will be created.
+     *
+     * @since 2.5.0
+     *
+     * @param string $file  Path to file.
+     * @param int    $time  Optional. Modified time to set for file.
+     *                      Default 0.
+     * @param int    $atime Optional. Access time to set for file.
+     *                      Default 0.
+     * @return bool True on success, false on failure.
      */
     public function touch($file, $time = 0, $atime = 0)
     {
     }
     /**
-     * @param string $path
-     * @param mixed  $chmod
-     * @param mixed  $chown
-     * @param mixed  $chgrp
-     * @return bool
+     * Creates a directory.
+     *
+     * @since 2.5.0
+     *
+     * @param string     $path  Path for new directory.
+     * @param int|false  $chmod Optional. The permissions as octal number (or false to skip chmod).
+     *                          Default false.
+     * @param string|int $chown Optional. A user name or number (or false to skip chown).
+     *                          Default false.
+     * @param string|int $chgrp Optional. A group name or number (or false to skip chgrp).
+     *                          Default false.
+     * @return bool True on success, false on failure.
      */
     public function mkdir($path, $chmod = \false, $chown = \false, $chgrp = \false)
     {
     }
     /**
-     * @param string $path
-     * @param bool $recursive
-     * @return bool
+     * Deletes a directory.
+     *
+     * @since 2.5.0
+     *
+     * @param string $path      Path to directory.
+     * @param bool   $recursive Optional. Whether to recursively remove files/directories.
+     *                          Default false.
+     * @return bool True on success, false on failure.
      */
     public function rmdir($path, $recursive = \false)
     {
     }
     /**
-     * @param string $path
-     * @param bool $include_hidden
-     * @param bool $recursive
-     * @return bool|array
+     * Gets details for files in a directory or a specific file.
+     *
+     * @since 2.5.0
+     *
+     * @param string $path           Path to directory or file.
+     * @param bool   $include_hidden Optional. Whether to include details of hidden ("." prefixed) files.
+     *                               Default true.
+     * @param bool   $recursive      Optional. Whether to recursively include file details in nested directories.
+     *                               Default false.
+     * @return array|false {
+     *     Array of files. False if unable to list directory contents.
+     *
+     *     @type string $name        Name of the file or directory.
+     *     @type string $perms       *nix representation of permissions.
+     *     @type int    $permsn      Octal representation of permissions.
+     *     @type string $owner       Owner name or ID.
+     *     @type int    $size        Size of file in bytes.
+     *     @type int    $lastmodunix Last modified unix timestamp.
+     *     @type mixed  $lastmod     Last modified month (3 letter) and day (without leading 0).
+     *     @type int    $time        Last modified time.
+     *     @type string $type        Type of resource. 'f' for file, 'd' for directory.
+     *     @type mixed  $files       If a directory and $recursive is true, contains another array of files.
+     * }
      */
     public function dirlist($path, $include_hidden = \true, $recursive = \false)
     {
@@ -5130,195 +5318,313 @@ class WP_Filesystem_Direct extends \WP_Filesystem_Base
  */
 class WP_Filesystem_FTPext extends \WP_Filesystem_Base
 {
+    /**
+     * @since 2.5.0
+     * @var resource
+     */
     public $link;
     /**
+     * Constructor.
+     *
+     * @since 2.5.0
+     *
      * @param array $opt
      */
     public function __construct($opt = '')
     {
     }
     /**
-     * @return bool
+     * Connects filesystem.
+     *
+     * @since 2.5.0
+     *
+     * @return bool True on success, false on failure.
      */
     public function connect()
     {
     }
     /**
-     * Retrieves the file contents.
+     * Reads entire file into a string.
      *
      * @since 2.5.0
      *
-     * @param string $file Filename.
-     * @return string|false File contents on success, false if no temp file could be opened,
+     * @param string $file Name of the file to read.
+     * @return string|false Read data on success, false if no temporary file could be opened,
      *                      or if the file couldn't be retrieved.
      */
     public function get_contents($file)
     {
     }
     /**
-     * @param string $file
-     * @return array
+     * Reads entire file into an array.
+     *
+     * @since 2.5.0
+     *
+     * @param string $file Path to the file.
+     * @return array|false File contents in an array on success, false on failure.
      */
     public function get_contents_array($file)
     {
     }
     /**
-     * @param string $file
-     * @param string $contents
-     * @param bool|int $mode
-     * @return bool
+     * Writes a string to a file.
+     *
+     * @since 2.5.0
+     *
+     * @param string    $file     Remote path to the file where to write the data.
+     * @param string    $contents The data to write.
+     * @param int|false $mode     Optional. The file permissions as octal number, usually 0644.
+     *                            Default false.
+     * @return bool True on success, false on failure.
      */
     public function put_contents($file, $contents, $mode = \false)
     {
     }
     /**
-     * @return string
+     * Gets the current working directory.
+     *
+     * @since 2.5.0
+     *
+     * @return string|false The current working directory on success, false on failure.
      */
     public function cwd()
     {
     }
     /**
-     * @param string $dir
-     * @return bool
+     * Changes current directory.
+     *
+     * @since 2.5.0
+     *
+     * @param string $dir The new current directory.
+     * @return bool True on success, false on failure.
      */
     public function chdir($dir)
     {
     }
     /**
-     * @param string $file
-     * @param int $mode
-     * @param bool $recursive
-     * @return bool
+     * Changes filesystem permissions.
+     *
+     * @since 2.5.0
+     *
+     * @param string    $file      Path to the file.
+     * @param int|false $mode      Optional. The permissions as octal number, usually 0644 for files,
+     *                             0755 for directories. Default false.
+     * @param bool      $recursive Optional. If set to true, changes file group recursively.
+     *                             Default false.
+     * @return bool True on success, false on failure.
      */
     public function chmod($file, $mode = \false, $recursive = \false)
     {
     }
     /**
-     * @param string $file
-     * @return string
+     * Gets the file owner.
+     *
+     * @since 2.5.0
+     *
+     * @param string $file Path to the file.
+     * @return string|false Username of the owner on success, false on failure.
      */
     public function owner($file)
     {
     }
     /**
-     * @param string $file
-     * @return string
+     * Gets the permissions of the specified file or filepath in their octal format.
+     *
+     * @since 2.5.0
+     *
+     * @param string $file Path to the file.
+     * @return string Mode of the file (the last 3 digits).
      */
     public function getchmod($file)
     {
     }
     /**
-     * @param string $file
-     * @return string
+     * Gets the file's group.
+     *
+     * @since 2.5.0
+     *
+     * @param string $file Path to the file.
+     * @return string|false The group on success, false on failure.
      */
     public function group($file)
     {
     }
     /**
-     * @param string $source
-     * @param string $destination
-     * @param bool   $overwrite
-     * @param string|bool $mode
-     * @return bool
+     * Copies a file.
+     *
+     * @since 2.5.0
+     *
+     * @param string    $source      Path to the source file.
+     * @param string    $destination Path to the destination file.
+     * @param bool      $overwrite   Optional. Whether to overwrite the destination file if it exists.
+     *                               Default false.
+     * @param int|false $mode        Optional. The permissions as octal number, usually 0644 for files,
+     *                               0755 for dirs. Default false.
+     * @return bool True on success, false on failure.
      */
     public function copy($source, $destination, $overwrite = \false, $mode = \false)
     {
     }
     /**
-     * @param string $source
-     * @param string $destination
-     * @param bool $overwrite
-     * @return bool
+     * Moves a file.
+     *
+     * @since 2.5.0
+     *
+     * @param string $source      Path to the source file.
+     * @param string $destination Path to the destination file.
+     * @param bool   $overwrite   Optional. Whether to overwrite the destination file if it exists.
+     *                            Default false.
+     * @return bool True on success, false on failure.
      */
     public function move($source, $destination, $overwrite = \false)
     {
     }
     /**
-     * @param string $file
-     * @param bool $recursive
-     * @param string $type
-     * @return bool
+     * Deletes a file or directory.
+     *
+     * @since 2.5.0
+     *
+     * @param string       $file      Path to the file or directory.
+     * @param bool         $recursive Optional. If set to true, changes file group recursively.
+     *                                Default false.
+     * @param string|false $type      Type of resource. 'f' for file, 'd' for directory.
+     *                                Default false.
+     * @return bool True on success, false on failure.
      */
     public function delete($file, $recursive = \false, $type = \false)
     {
     }
     /**
-     * @param string $file
-     * @return bool
+     * Checks if a file or directory exists.
+     *
+     * @since 2.5.0
+     *
+     * @param string $file Path to file or directory.
+     * @return bool Whether $file exists or not.
      */
     public function exists($file)
     {
     }
     /**
-     * @param string $file
-     * @return bool
+     * Checks if resource is a file.
+     *
+     * @since 2.5.0
+     *
+     * @param string $file File path.
+     * @return bool Whether $file is a file.
      */
     public function is_file($file)
     {
     }
     /**
-     * @param string $path
-     * @return bool
+     * Checks if resource is a directory.
+     *
+     * @since 2.5.0
+     *
+     * @param string $path Directory path.
+     * @return bool Whether $path is a directory.
      */
     public function is_dir($path)
     {
     }
     /**
-     * @param string $file
-     * @return bool
+     * Checks if a file is readable.
+     *
+     * @since 2.5.0
+     *
+     * @param string $file Path to file.
+     * @return bool Whether $file is readable.
      */
     public function is_readable($file)
     {
     }
     /**
-     * @param string $file
-     * @return bool
+     * Checks if a file or directory is writable.
+     *
+     * @since 2.5.0
+     *
+     * @param string $file Path to file or directory.
+     * @return bool Whether $file is writable.
      */
     public function is_writable($file)
     {
     }
     /**
-     * @param string $file
-     * @return bool
+     * Gets the file's last access time.
+     *
+     * @since 2.5.0
+     *
+     * @param string $file Path to file.
+     * @return int|false Unix timestamp representing last access time, false on failure.
      */
     public function atime($file)
     {
     }
     /**
-     * @param string $file
-     * @return int
+     * Gets the file modification time.
+     *
+     * @since 2.5.0
+     *
+     * @param string $file Path to file.
+     * @return int|false Unix timestamp representing modification time, false on failure.
      */
     public function mtime($file)
     {
     }
     /**
-     * @param string $file
-     * @return int
+     * Gets the file size (in bytes).
+     *
+     * @since 2.5.0
+     *
+     * @param string $file Path to file.
+     * @return int|false Size of the file in bytes on success, false on failure.
      */
     public function size($file)
     {
     }
     /**
-     * @param string $file
-     * @return bool
+     * Sets the access and modification times of a file.
+     *
+     * Note: If $file doesn't exist, it will be created.
+     *
+     * @since 2.5.0
+     *
+     * @param string $file  Path to file.
+     * @param int    $time  Optional. Modified time to set for file.
+     *                      Default 0.
+     * @param int    $atime Optional. Access time to set for file.
+     *                      Default 0.
+     * @return bool True on success, false on failure.
      */
     public function touch($file, $time = 0, $atime = 0)
     {
     }
     /**
-     * @param string $path
-     * @param mixed $chmod
-     * @param mixed $chown
-     * @param mixed $chgrp
-     * @return bool
+     * Creates a directory.
+     *
+     * @since 2.5.0
+     *
+     * @param string     $path  Path for new directory.
+     * @param int|false  $chmod Optional. The permissions as octal number (or false to skip chmod).
+     *                          Default false.
+     * @param string|int $chown Optional. A user name or number (or false to skip chown).
+     *                          Default false.
+     * @param string|int $chgrp Optional. A group name or number (or false to skip chgrp).
+     *                          Default false.
+     * @return bool True on success, false on failure.
      */
     public function mkdir($path, $chmod = \false, $chown = \false, $chgrp = \false)
     {
     }
     /**
-     * @param string $path
-     * @param bool $recursive
-     * @return bool
+     * Deletes a directory.
+     *
+     * @since 2.5.0
+     *
+     * @param string $path      Path to directory.
+     * @param bool   $recursive Optional. Whether to recursively remove files/directories.
+     *                          Default false.
+     * @return bool True on success, false on failure.
      */
     public function rmdir($path, $recursive = \false)
     {
@@ -5332,15 +5638,37 @@ class WP_Filesystem_FTPext extends \WP_Filesystem_Base
     {
     }
     /**
-     * @param string $path
-     * @param bool $include_hidden
-     * @param bool $recursive
-     * @return bool|array
+     * Gets details for files in a directory or a specific file.
+     *
+     * @since 2.5.0
+     *
+     * @param string $path           Path to directory or file.
+     * @param bool   $include_hidden Optional. Whether to include details of hidden ("." prefixed) files.
+     *                               Default true.
+     * @param bool   $recursive      Optional. Whether to recursively include file details in nested directories.
+     *                               Default false.
+     * @return array|false {
+     *     Array of files. False if unable to list directory contents.
+     *
+     *     @type string $name        Name of the file or directory.
+     *     @type string $perms       *nix representation of permissions.
+     *     @type int    $permsn      Octal representation of permissions.
+     *     @type string $owner       Owner name or ID.
+     *     @type int    $size        Size of file in bytes.
+     *     @type int    $lastmodunix Last modified unix timestamp.
+     *     @type mixed  $lastmod     Last modified month (3 letter) and day (without leading 0).
+     *     @type int    $time        Last modified time.
+     *     @type string $type        Type of resource. 'f' for file, 'd' for directory.
+     *     @type mixed  $files       If a directory and $recursive is true, contains another array of files.
+     * }
      */
     public function dirlist($path = '.', $include_hidden = \true, $recursive = \false)
     {
     }
     /**
+     * Destructor.
+     *
+     * @since 2.5.0
      */
     public function __destruct()
     {
@@ -5362,213 +5690,348 @@ class WP_Filesystem_FTPext extends \WP_Filesystem_Base
 class WP_Filesystem_ftpsockets extends \WP_Filesystem_Base
 {
     /**
+     * @since 2.5.0
      * @var ftp
      */
     public $ftp;
     /**
+     * Constructor.
+     *
+     * @since 2.5.0
+     *
      * @param array $opt
      */
     public function __construct($opt = '')
     {
     }
     /**
-     * @return bool
+     * Connects filesystem.
+     *
+     * @since 2.5.0
+     *
+     * @return bool True on success, false on failure.
      */
     public function connect()
     {
     }
     /**
-     * Retrieves the file contents.
+     * Reads entire file into a string.
      *
      * @since 2.5.0
      *
-     * @param string $file Filename.
-     * @return string|false File contents on success, false if no temp file could be opened,
-     *                      or if the file doesn't exist.
+     * @param string $file Name of the file to read.
+     * @return string|false Read data on success, false if no temporary file could be opened,
+     *                      or if the file couldn't be retrieved.
      */
     public function get_contents($file)
     {
     }
     /**
-     * @param string $file
-     * @return array
+     * Reads entire file into an array.
+     *
+     * @since 2.5.0
+     *
+     * @param string $file Path to the file.
+     * @return array|false File contents in an array on success, false on failure.
      */
     public function get_contents_array($file)
     {
     }
     /**
-     * @param string $file
-     * @param string $contents
-     * @param int|bool $mode
-     * @return bool
+     * Writes a string to a file.
+     *
+     * @since 2.5.0
+     *
+     * @param string    $file     Remote path to the file where to write the data.
+     * @param string    $contents The data to write.
+     * @param int|false $mode     Optional. The file permissions as octal number, usually 0644.
+     *                            Default false.
+     * @return bool True on success, false on failure.
      */
     public function put_contents($file, $contents, $mode = \false)
     {
     }
     /**
-     * @return string
+     * Gets the current working directory.
+     *
+     * @since 2.5.0
+     *
+     * @return string|false The current working directory on success, false on failure.
      */
     public function cwd()
     {
     }
     /**
-     * @param string $file
-     * @return bool
+     * Changes current directory.
+     *
+     * @since 2.5.0
+     *
+     * @param string $dir The new current directory.
+     * @return bool True on success, false on failure.
      */
-    public function chdir($file)
+    public function chdir($dir)
     {
     }
     /**
-     * @param string $file
-     * @param int|bool $mode
-     * @param bool $recursive
-     * @return bool
+     * Changes filesystem permissions.
+     *
+     * @since 2.5.0
+     *
+     * @param string    $file      Path to the file.
+     * @param int|false $mode      Optional. The permissions as octal number, usually 0644 for files,
+     *                             0755 for directories. Default false.
+     * @param bool      $recursive Optional. If set to true, changes file group recursively.
+     *                             Default false.
+     * @return bool True on success, false on failure.
      */
     public function chmod($file, $mode = \false, $recursive = \false)
     {
     }
     /**
-     * @param string $file
-     * @return string
+     * Gets the file owner.
+     *
+     * @since 2.5.0
+     *
+     * @param string $file Path to the file.
+     * @return string|false Username of the owner on success, false on failure.
      */
     public function owner($file)
     {
     }
     /**
-     * @param string $file
-     * @return string
+     * Gets the permissions of the specified file or filepath in their octal format.
+     *
+     * @since 2.5.0
+     *
+     * @param string $file Path to the file.
+     * @return string Mode of the file (the last 3 digits).
      */
     public function getchmod($file)
     {
     }
     /**
-     * @param string $file
-     * @return string
+     * Gets the file's group.
+     *
+     * @since 2.5.0
+     *
+     * @param string $file Path to the file.
+     * @return string|false The group on success, false on failure.
      */
     public function group($file)
     {
     }
     /**
-     * @param string   $source
-     * @param string   $destination
-     * @param bool     $overwrite
-     * @param int|bool $mode
-     * @return bool
+     * Copies a file.
+     *
+     * @since 2.5.0
+     *
+     * @param string    $source      Path to the source file.
+     * @param string    $destination Path to the destination file.
+     * @param bool      $overwrite   Optional. Whether to overwrite the destination file if it exists.
+     *                               Default false.
+     * @param int|false $mode        Optional. The permissions as octal number, usually 0644 for files,
+     *                               0755 for dirs. Default false.
+     * @return bool True on success, false on failure.
      */
     public function copy($source, $destination, $overwrite = \false, $mode = \false)
     {
     }
     /**
-     * @param string $source
-     * @param string $destination
-     * @param bool   $overwrite
-     * @return bool
+     * Moves a file.
+     *
+     * @since 2.5.0
+     *
+     * @param string $source      Path to the source file.
+     * @param string $destination Path to the destination file.
+     * @param bool   $overwrite   Optional. Whether to overwrite the destination file if it exists.
+     *                            Default false.
+     * @return bool True on success, false on failure.
      */
     public function move($source, $destination, $overwrite = \false)
     {
     }
     /**
-     * @param string $file
-     * @param bool   $recursive
-     * @param string $type
-     * @return bool
+     * Deletes a file or directory.
+     *
+     * @since 2.5.0
+     *
+     * @param string       $file      Path to the file or directory.
+     * @param bool         $recursive Optional. If set to true, changes file group recursively.
+     *                                Default false.
+     * @param string|false $type      Type of resource. 'f' for file, 'd' for directory.
+     *                                Default false.
+     * @return bool True on success, false on failure.
      */
     public function delete($file, $recursive = \false, $type = \false)
     {
     }
     /**
-     * @param string $file
-     * @return bool
+     * Checks if a file or directory exists.
+     *
+     * @since 2.5.0
+     *
+     * @param string $file Path to file or directory.
+     * @return bool Whether $file exists or not.
      */
     public function exists($file)
     {
     }
     /**
-     * @param string $file
-     * @return bool
+     * Checks if resource is a file.
+     *
+     * @since 2.5.0
+     *
+     * @param string $file File path.
+     * @return bool Whether $file is a file.
      */
     public function is_file($file)
     {
     }
     /**
-     * @param string $path
-     * @return bool
+     * Checks if resource is a directory.
+     *
+     * @since 2.5.0
+     *
+     * @param string $path Directory path.
+     * @return bool Whether $path is a directory.
      */
     public function is_dir($path)
     {
     }
     /**
-     * @param string $file
-     * @return bool
+     * Checks if a file is readable.
+     *
+     * @since 2.5.0
+     *
+     * @param string $file Path to file.
+     * @return bool Whether $file is readable.
      */
     public function is_readable($file)
     {
     }
     /**
-     * @param string $file
-     * @return bool
+     * Checks if a file or directory is writable.
+     *
+     * @since 2.5.0
+     *
+     * @param string $file Path to file or directory.
+     * @return bool Whether $file is writable.
      */
     public function is_writable($file)
     {
     }
     /**
-     * @param string $file
-     * @return bool
+     * Gets the file's last access time.
+     *
+     * @since 2.5.0
+     *
+     * @param string $file Path to file.
+     * @return int|false Unix timestamp representing last access time, false on failure.
      */
     public function atime($file)
     {
     }
     /**
-     * @param string $file
-     * @return int
+     * Gets the file modification time.
+     *
+     * @since 2.5.0
+     *
+     * @param string $file Path to file.
+     * @return int|false Unix timestamp representing modification time, false on failure.
      */
     public function mtime($file)
     {
     }
     /**
-     * @param string $file
-     * @return int
+     * Gets the file size (in bytes).
+     *
+     * @since 2.5.0
+     *
+     * @param string $file Path to file.
+     * @return int|false Size of the file in bytes on success, false on failure.
      */
     public function size($file)
     {
     }
     /**
-     * @param string $file
-     * @param int $time
-     * @param int $atime
-     * @return bool
+     * Sets the access and modification times of a file.
+     *
+     * Note: If $file doesn't exist, it will be created.
+     *
+     * @since 2.5.0
+     *
+     * @param string $file  Path to file.
+     * @param int    $time  Optional. Modified time to set for file.
+     *                      Default 0.
+     * @param int    $atime Optional. Access time to set for file.
+     *                      Default 0.
+     * @return bool True on success, false on failure.
      */
     public function touch($file, $time = 0, $atime = 0)
     {
     }
     /**
-     * @param string $path
-     * @param mixed  $chmod
-     * @param mixed  $chown
-     * @param mixed  $chgrp
-     * @return bool
+     * Creates a directory.
+     *
+     * @since 2.5.0
+     *
+     * @param string     $path  Path for new directory.
+     * @param int|false  $chmod Optional. The permissions as octal number (or false to skip chmod).
+     *                          Default false.
+     * @param string|int $chown Optional. A user name or number (or false to skip chown).
+     *                          Default false.
+     * @param string|int $chgrp Optional. A group name or number (or false to skip chgrp).
+     *                          Default false.
+     * @return bool True on success, false on failure.
      */
     public function mkdir($path, $chmod = \false, $chown = \false, $chgrp = \false)
     {
     }
     /**
-     * @param string $path
-     * @param bool $recursive
-     * @return bool
+     * Deletes a directory.
+     *
+     * @since 2.5.0
+     *
+     * @param string $path      Path to directory.
+     * @param bool   $recursive Optional. Whether to recursively remove files/directories.
+     *                          Default false.
+     * @return bool True on success, false on failure.
      */
     public function rmdir($path, $recursive = \false)
     {
     }
     /**
-     * @param string $path
-     * @param bool   $include_hidden
-     * @param bool   $recursive
-     * @return bool|array
+     * Gets details for files in a directory or a specific file.
+     *
+     * @since 2.5.0
+     *
+     * @param string $path           Path to directory or file.
+     * @param bool   $include_hidden Optional. Whether to include details of hidden ("." prefixed) files.
+     *                               Default true.
+     * @param bool   $recursive      Optional. Whether to recursively include file details in nested directories.
+     *                               Default false.
+     * @return array|false {
+     *     Array of files. False if unable to list directory contents.
+     *
+     *     @type string $name        Name of the file or directory.
+     *     @type string $perms       *nix representation of permissions.
+     *     @type int    $permsn      Octal representation of permissions.
+     *     @type string $owner       Owner name or ID.
+     *     @type int    $size        Size of file in bytes.
+     *     @type int    $lastmodunix Last modified unix timestamp.
+     *     @type mixed  $lastmod     Last modified month (3 letter) and day (without leading 0).
+     *     @type int    $time        Last modified time.
+     *     @type string $type        Type of resource. 'f' for file, 'd' for directory.
+     *     @type mixed  $files       If a directory and $recursive is true, contains another array of files.
+     * }
      */
     public function dirlist($path = '.', $include_hidden = \true, $recursive = \false)
     {
     }
     /**
+     * Destructor.
+     *
+     * @since 2.5.0
      */
     public function __destruct()
     {
@@ -5611,21 +6074,36 @@ class WP_Filesystem_ftpsockets extends \WP_Filesystem_Base
 class WP_Filesystem_SSH2 extends \WP_Filesystem_Base
 {
     /**
+     * @since 2.7.0
+     * @var resource
      */
     public $link = \false;
     /**
+     * @since 2.7.0
      * @var resource
      */
     public $sftp_link;
+    /**
+     * @since 2.7.0
+     * @var bool
+     */
     public $keys = \false;
     /**
+     * Constructor.
+     *
+     * @since 2.7.0
+     *
      * @param array $opt
      */
     public function __construct($opt = '')
     {
     }
     /**
-     * @return bool
+     * Connects filesystem.
+     *
+     * @since 2.7.0
+     *
+     * @return bool True on success, false on failure.
      */
     public function connect()
     {
@@ -5647,6 +6125,8 @@ class WP_Filesystem_SSH2 extends \WP_Filesystem_Base
     {
     }
     /**
+     * @since 2.7.0
+     *
      * @param string $command
      * @param bool $returnbool
      * @return bool|string True on success, false on failure. String if the command was executed, `$returnbool`
@@ -5656,207 +6136,342 @@ class WP_Filesystem_SSH2 extends \WP_Filesystem_Base
     {
     }
     /**
-     * @param string $file
-     * @return string|false
+     * Reads entire file into a string.
+     *
+     * @since 2.7.0
+     *
+     * @param string $file Name of the file to read.
+     * @return string|false Read data on success, false if no temporary file could be opened,
+     *                      or if the file couldn't be retrieved.
      */
     public function get_contents($file)
     {
     }
     /**
-     * @param string $file
-     * @return array
+     * Reads entire file into an array.
+     *
+     * @since 2.7.0
+     *
+     * @param string $file Path to the file.
+     * @return array|false File contents in an array on success, false on failure.
      */
     public function get_contents_array($file)
     {
     }
     /**
-     * @param string   $file
-     * @param string   $contents
-     * @param bool|int $mode
-     * @return bool
+     * Writes a string to a file.
+     *
+     * @since 2.7.0
+     *
+     * @param string    $file     Remote path to the file where to write the data.
+     * @param string    $contents The data to write.
+     * @param int|false $mode     Optional. The file permissions as octal number, usually 0644.
+     *                            Default false.
+     * @return bool True on success, false on failure.
      */
     public function put_contents($file, $contents, $mode = \false)
     {
     }
     /**
-     * @return bool
+     * Gets the current working directory.
+     *
+     * @since 2.7.0
+     *
+     * @return string|false The current working directory on success, false on failure.
      */
     public function cwd()
     {
     }
     /**
-     * @param string $dir
-     * @return bool|string
+     * Changes current directory.
+     *
+     * @since 2.7.0
+     *
+     * @param string $dir The new current directory.
+     * @return bool True on success, false on failure.
      */
     public function chdir($dir)
     {
     }
     /**
-     * @param string $file
-     * @param string $group
-     * @param bool   $recursive
+     * Changes the file group.
      *
-     * @return bool
+     * @since 2.7.0
+     *
+     * @param string     $file      Path to the file.
+     * @param string|int $group     A group name or number.
+     * @param bool       $recursive Optional. If set to true, changes file group recursively.
+     *                              Default false.
+     * @return bool True on success, false on failure.
      */
     public function chgrp($file, $group, $recursive = \false)
     {
     }
     /**
-     * @param string $file
-     * @param int    $mode
-     * @param bool   $recursive
-     * @return bool|string
+     * Changes filesystem permissions.
+     *
+     * @since 2.7.0
+     *
+     * @param string    $file      Path to the file.
+     * @param int|false $mode      Optional. The permissions as octal number, usually 0644 for files,
+     *                             0755 for directories. Default false.
+     * @param bool      $recursive Optional. If set to true, changes file group recursively.
+     *                             Default false.
+     * @return bool True on success, false on failure.
      */
     public function chmod($file, $mode = \false, $recursive = \false)
     {
     }
     /**
-     * Change the ownership of a file / folder.
+     * Changes the owner of a file or directory.
      *
-     * @param string     $file      Path to the file.
+     * @since 2.7.0
+     *
+     * @param string     $file      Path to the file or directory.
      * @param string|int $owner     A user name or number.
-     * @param bool       $recursive Optional. If set True changes file owner recursivly. Default False.
-     * @return bool True on success or false on failure.
+     * @param bool       $recursive Optional. If set to true, changes file owner recursively.
+     *                              Default false.
+     * @return bool True on success, false on failure.
      */
     public function chown($file, $owner, $recursive = \false)
     {
     }
     /**
-     * @param string $file
-     * @return string|false
+     * Gets the file owner.
+     *
+     * @since 2.7.0
+     *
+     * @param string $file Path to the file.
+     * @return string|false Username of the owner on success, false on failure.
      */
     public function owner($file)
     {
     }
     /**
-     * @param string $file
-     * @return string
+     * Gets the permissions of the specified file or filepath in their octal format.
+     *
+     * @since 2.7.0
+     *
+     * @param string $file Path to the file.
+     * @return string Mode of the file (the last 3 digits).
      */
     public function getchmod($file)
     {
     }
     /**
-     * @param string $file
-     * @return string|false
+     * Gets the file's group.
+     *
+     * @since 2.7.0
+     *
+     * @param string $file Path to the file.
+     * @return string|false The group on success, false on failure.
      */
     public function group($file)
     {
     }
     /**
-     * @param string   $source
-     * @param string   $destination
-     * @param bool     $overwrite
-     * @param int|bool $mode
-     * @return bool
+     * Copies a file.
+     *
+     * @since 2.7.0
+     *
+     * @param string    $source      Path to the source file.
+     * @param string    $destination Path to the destination file.
+     * @param bool      $overwrite   Optional. Whether to overwrite the destination file if it exists.
+     *                               Default false.
+     * @param int|false $mode        Optional. The permissions as octal number, usually 0644 for files,
+     *                               0755 for dirs. Default false.
+     * @return bool True on success, false on failure.
      */
     public function copy($source, $destination, $overwrite = \false, $mode = \false)
     {
     }
     /**
-     * @param string $source
-     * @param string $destination
-     * @param bool   $overwrite
-     * @return bool
+     * Moves a file.
+     *
+     * @since 2.7.0
+     *
+     * @param string $source      Path to the source file.
+     * @param string $destination Path to the destination file.
+     * @param bool   $overwrite   Optional. Whether to overwrite the destination file if it exists.
+     *                            Default false.
+     * @return bool True on success, false on failure.
      */
     public function move($source, $destination, $overwrite = \false)
     {
     }
     /**
-     * @param string      $file
-     * @param bool        $recursive
-     * @param string|bool $type
-     * @return bool
+     * Deletes a file or directory.
+     *
+     * @since 2.7.0
+     *
+     * @param string       $file      Path to the file or directory.
+     * @param bool         $recursive Optional. If set to true, changes file group recursively.
+     *                                Default false.
+     * @param string|false $type      Type of resource. 'f' for file, 'd' for directory.
+     *                                Default false.
+     * @return bool True on success, false on failure.
      */
     public function delete($file, $recursive = \false, $type = \false)
     {
     }
     /**
-     * @param string $file
-     * @return bool
+     * Checks if a file or directory exists.
+     *
+     * @since 2.7.0
+     *
+     * @param string $file Path to file or directory.
+     * @return bool Whether $file exists or not.
      */
     public function exists($file)
     {
     }
     /**
-     * @param string $file
-     * @return bool
+     * Checks if resource is a file.
+     *
+     * @since 2.7.0
+     *
+     * @param string $file File path.
+     * @return bool Whether $file is a file.
      */
     public function is_file($file)
     {
     }
     /**
-     * @param string $path
-     * @return bool
+     * Checks if resource is a directory.
+     *
+     * @since 2.7.0
+     *
+     * @param string $path Directory path.
+     * @return bool Whether $path is a directory.
      */
     public function is_dir($path)
     {
     }
     /**
-     * @param string $file
-     * @return bool
+     * Checks if a file is readable.
+     *
+     * @since 2.7.0
+     *
+     * @param string $file Path to file.
+     * @return bool Whether $file is readable.
      */
     public function is_readable($file)
     {
     }
     /**
-     * @param string $file
-     * @return bool
+     * Checks if a file or directory is writable.
+     *
+     * @since 2.7.0
+     *
+     * @param string $file Path to file or directory.
+     * @return bool Whether $file is writable.
      */
     public function is_writable($file)
     {
     }
     /**
-     * @param string $file
-     * @return int
+     * Gets the file's last access time.
+     *
+     * @since 2.7.0
+     *
+     * @param string $file Path to file.
+     * @return int|false Unix timestamp representing last access time, false on failure.
      */
     public function atime($file)
     {
     }
     /**
-     * @param string $file
-     * @return int
+     * Gets the file modification time.
+     *
+     * @since 2.7.0
+     *
+     * @param string $file Path to file.
+     * @return int|false Unix timestamp representing modification time, false on failure.
      */
     public function mtime($file)
     {
     }
     /**
-     * @param string $file
-     * @return int
+     * Gets the file size (in bytes).
+     *
+     * @since 2.7.0
+     *
+     * @param string $file Path to file.
+     * @return int|false Size of the file in bytes on success, false on failure.
      */
     public function size($file)
     {
     }
     /**
-     * @param string $file
-     * @param int    $time
-     * @param int    $atime
+     * Sets the access and modification times of a file.
+     *
+     * Note: Not implemented.
+     *
+     * @since 2.7.0
+     *
+     * @param string $file  Path to file.
+     * @param int    $time  Optional. Modified time to set for file.
+     *                      Default 0.
+     * @param int    $atime Optional. Access time to set for file.
+     *                      Default 0.
      */
     public function touch($file, $time = 0, $atime = 0)
     {
     }
     /**
-     * @param string $path
-     * @param mixed  $chmod
-     * @param mixed  $chown
-     * @param mixed  $chgrp
-     * @return bool
+     * Creates a directory.
+     *
+     * @since 2.7.0
+     *
+     * @param string     $path  Path for new directory.
+     * @param int|false  $chmod Optional. The permissions as octal number (or false to skip chmod).
+     *                          Default false.
+     * @param string|int $chown Optional. A user name or number (or false to skip chown).
+     *                          Default false.
+     * @param string|int $chgrp Optional. A group name or number (or false to skip chgrp).
+     *                          Default false.
+     * @return bool True on success, false on failure.
      */
     public function mkdir($path, $chmod = \false, $chown = \false, $chgrp = \false)
     {
     }
     /**
-     * @param string $path
-     * @param bool   $recursive
-     * @return bool
+     * Deletes a directory.
+     *
+     * @since 2.7.0
+     *
+     * @param string $path      Path to directory.
+     * @param bool   $recursive Optional. Whether to recursively remove files/directories.
+     *                          Default false.
+     * @return bool True on success, false on failure.
      */
     public function rmdir($path, $recursive = \false)
     {
     }
     /**
-     * @param string $path
-     * @param bool   $include_hidden
-     * @param bool   $recursive
-     * @return bool|array
+     * Gets details for files in a directory or a specific file.
+     *
+     * @since 2.7.0
+     *
+     * @param string $path           Path to directory or file.
+     * @param bool   $include_hidden Optional. Whether to include details of hidden ("." prefixed) files.
+     *                               Default true.
+     * @param bool   $recursive      Optional. Whether to recursively include file details in nested directories.
+     *                               Default false.
+     * @return array|false {
+     *     Array of files. False if unable to list directory contents.
+     *
+     *     @type string $name        Name of the file or directory.
+     *     @type string $perms       *nix representation of permissions.
+     *     @type int    $permsn      Octal representation of permissions.
+     *     @type string $owner       Owner name or ID.
+     *     @type int    $size        Size of file in bytes.
+     *     @type int    $lastmodunix Last modified unix timestamp.
+     *     @type mixed  $lastmod     Last modified month (3 letter) and day (without leading 0).
+     *     @type int    $time        Last modified time.
+     *     @type string $type        Type of resource. 'f' for file, 'd' for directory.
+     *     @type mixed  $files       If a directory and $recursive is true, contains another array of files.
+     * }
      */
     public function dirlist($path, $include_hidden = \true, $recursive = \false)
     {
@@ -6054,11 +6669,6 @@ final class WP_Internal_Pointers
     public static function pointer_wp410_dfw()
     {
     }
-    /**
-     * Display a pointer for the new privacy tools.
-     *
-     * @since 4.9.6
-     */
     public static function pointer_wp496_privacy()
     {
     }
@@ -6940,7 +7550,6 @@ class WP_MS_Users_List_Table extends \WP_List_Table
     /**
      * @global string $usersearch
      * @global string $role
-     * @global wpdb   $wpdb
      * @global string $mode
      */
     public function prepare_items()
@@ -7590,6 +8199,17 @@ class WP_Posts_List_Table extends \WP_List_Table
      * @param string $post_type Post type slug.
      */
     protected function categories_dropdown($post_type)
+    {
+    }
+    /**
+     * Displays a formats drop-down for filtering items.
+     *
+     * @since 5.2.0
+     * @access protected
+     *
+     * @param string $post_type Post type key.
+     */
+    protected function formats_dropdown($post_type)
     {
     }
     /**
@@ -8317,6 +8937,468 @@ final class WP_Screen
      * @param string $tag Optional. The HTML tag to wrap the screen reader text. Default h2.
      */
     public function render_screen_reader_content($key = '', $tag = 'h2')
+    {
+    }
+}
+/**
+ * Class for testing automatic updates in the WordPress code.
+ *
+ * @package WordPress
+ * @subpackage Site_Health
+ * @since 5.2.0
+ */
+class WP_Site_Health_Auto_Updates
+{
+    /**
+     * WP_Site_Health_Auto_Updates constructor.
+     * @since 5.2.0
+     */
+    public function __construct()
+    {
+    }
+    /**
+     * Run tests to determine if auto-updates can run.
+     *
+     * @since 5.2.0
+     *
+     * @return array The test results.
+     */
+    public function run_tests()
+    {
+    }
+    /**
+     * Test if auto-updates related constants are set correctly.
+     *
+     * @since 5.2.0
+     *
+     * @param string $constant The name of the constant to check.
+     * @param bool   $value    The value that the constant should be, if set.
+     * @return array The test results.
+     */
+    public function test_constants($constant, $value)
+    {
+    }
+    /**
+     * Check if updates are intercepted by a filter.
+     *
+     * @since 5.2.0
+     *
+     * @return array The test results.
+     */
+    public function test_wp_version_check_attached()
+    {
+    }
+    /**
+     * Check if automatic updates are disabled by a filter.
+     *
+     * @since 5.2.0
+     *
+     * @return array The test results.
+     */
+    public function test_filters_automatic_updater_disabled()
+    {
+    }
+    /**
+     * Check if automatic updates have tried to run, but failed, previously.
+     *
+     * @since 5.2.0
+     *
+     * @return array|bool The test results. false if the auto updates failed.
+     */
+    function test_if_failed_update()
+    {
+    }
+    /**
+     * Check if WordPress is controlled by a VCS (Git, Subversion etc).
+     *
+     * @since 5.2.0
+     *
+     * @return array The test results.
+     */
+    public function test_vcs_abspath()
+    {
+    }
+    /**
+     * Check if we can access files without providing credentials.
+     *
+     * @since 5.2.0
+     *
+     * @return array The test results.
+     */
+    function test_check_wp_filesystem_method()
+    {
+    }
+    /**
+     * Check if core files are writable by the web user/group.
+     *
+     * @since 5.2.0
+     *
+     * @global WP_Filesystem_Base $wp_filesystem WordPress filesystem subclass.
+     *
+     * @return array|bool The test results. false if they're not writeable.
+     */
+    function test_all_files_writable()
+    {
+    }
+    /**
+     * Check if the install is using a development branch and can use nightly packages.
+     *
+     * @since 5.2.0
+     *
+     * @return array|bool The test results. false if it isn't a development version.
+     */
+    function test_accepts_dev_updates()
+    {
+    }
+    /**
+     * Check if the site supports automatic minor updates.
+     *
+     * @since 5.2.0
+     *
+     * @return array The test results.
+     */
+    function test_accepts_minor_updates()
+    {
+    }
+}
+/**
+ * Class for looking up a site's health based on a user's WordPress environment.
+ *
+ * @package WordPress
+ * @subpackage Site_Health
+ * @since 5.2.0
+ */
+class WP_Site_Health
+{
+    private $mysql_min_version_check;
+    private $mysql_rec_version_check;
+    public $is_mariadb = \false;
+    private $mysql_server_version = '';
+    private $health_check_mysql_required_version = '5.5';
+    private $health_check_mysql_rec_version = '';
+    public $schedules;
+    public $crons;
+    public $last_missed_cron = \null;
+    /**
+     * WP_Site_Health constructor.
+     *
+     * @since 5.2.0
+     */
+    public function __construct()
+    {
+    }
+    /**
+     * Enqueues the site health scripts.
+     *
+     * @since 5.2.0
+     */
+    public function enqueue_scripts()
+    {
+    }
+    /**
+     * Run the SQL version checks.
+     *
+     * These values are used in later tests, but the part of preparing them is more easily managed early
+     * in the class for ease of access and discovery.
+     *
+     * @since 5.2.0
+     *
+     * @global wpdb $wpdb WordPress database abstraction object.
+     */
+    private function prepare_sql_data()
+    {
+    }
+    /**
+     * Test if `wp_version_check` is blocked.
+     *
+     * It's possible to block updates with the `wp_version_check` filter, but this can't be checked during an
+     * AJAX call, as the filter is never introduced then.
+     *
+     * This filter overrides a normal page request if it's made by an admin through the AJAX call with the
+     * right query argument to check for this.
+     *
+     * @since 5.2.0
+     */
+    public function check_wp_version_check_exists()
+    {
+    }
+    /**
+     * Tests for WordPress version and outputs it.
+     *
+     * Gives various results depending on what kind of updates are available, if any, to encourage the
+     * user to install security updates as a priority.
+     *
+     * @since 5.2.0
+     *
+     * @return array The test result.
+     */
+    public function get_test_wordpress_version()
+    {
+    }
+    /**
+     * Test if plugins are outdated, or unnecessary.
+     *
+     * The tests checks if your plugins are up to date, and encourages you to remove any that are not in use.
+     *
+     * @since 5.2.0
+     *
+     * @return array The test result.
+     */
+    public function get_test_plugin_version()
+    {
+    }
+    /**
+     * Test if themes are outdated, or unnecessary.
+     *
+     * The tests checks if your site has a default theme (to fall back on if there is a need), if your themes
+     * are up to date and, finally, encourages you to remove any themes that are not needed.
+     *
+     * @since 5.2.0
+     *
+     * @return array The test results.
+     */
+    public function get_test_theme_version()
+    {
+    }
+    /**
+     * Test if the supplied PHP version is supported.
+     *
+     * @since 5.2.0
+     *
+     * @return array The test results.
+     */
+    public function get_test_php_version()
+    {
+    }
+    /**
+     * Check if the passed extension or function are available.
+     *
+     * Make the check for available PHP modules into a simple boolean operator for a cleaner test runner.
+     *
+     * @since 5.2.0
+     *
+     * @param string $extension Optional. The extension name to test. Default null.
+     * @param string $function  Optional. The function name to test. Default null.
+     *
+     * @return bool Whether or not the extension and function are available.
+     */
+    private function test_php_extension_availability($extension = \null, $function = \null)
+    {
+    }
+    /**
+     * Test if required PHP modules are installed on the host.
+     *
+     * This test builds on the recommendations made by the WordPress Hosting Team
+     * as seen at https://make.wordpress.org/hosting/handbook/handbook/server-environment/#php-extensions
+     *
+     * @since 5.2.0
+     *
+     * @return array
+     */
+    public function get_test_php_extensions()
+    {
+    }
+    /**
+     * Test if the SQL server is up to date.
+     *
+     * @since 5.2.0
+     *
+     * @return array The test results.
+     */
+    public function get_test_sql_server()
+    {
+    }
+    /**
+     * Test if the database server is capable of using utf8mb4.
+     *
+     * @since 5.2.0
+     *
+     * @return array The test results.
+     */
+    public function get_test_utf8mb4_support()
+    {
+    }
+    /**
+     * Test if the site can communicate with WordPress.org.
+     *
+     * @since 5.2.0
+     *
+     * @return array The test results.
+     */
+    public function get_test_dotorg_communication()
+    {
+    }
+    /**
+     * Test if debug information is enabled.
+     *
+     * When WP_DEBUG is enabled, errors and information may be disclosed to site visitors, or it may be
+     * logged to a publicly accessible file.
+     *
+     * Debugging is also frequently left enabled after looking for errors on a site, as site owners do
+     * not understand the implications of this.
+     *
+     * @since 5.2.0
+     *
+     * @return array The test results.
+     */
+    public function get_test_is_in_debug_mode()
+    {
+    }
+    /**
+     * Test if your site is serving content over HTTPS.
+     *
+     * Many sites have varying degrees of HTTPS support, the most common of which is sites that have it
+     * enabled, but only if you visit the right site address.
+     *
+     * @since 5.2.0
+     *
+     * @return array The test results.
+     */
+    public function get_test_https_status()
+    {
+    }
+    /**
+     * Check if the HTTP API can handle SSL/TLS requests.
+     *
+     * @since 5.2.0
+     *
+     * @return array The test results.
+     */
+    public function get_test_ssl_support()
+    {
+    }
+    /**
+     * Test if scheduled events run as intended.
+     *
+     * If scheduled events are not running, this may indicate something with WP_Cron is not working as intended,
+     * or that there are orphaned events hanging around from older code.
+     *
+     * @since 5.2.0
+     *
+     * @return array The test results.
+     */
+    public function get_test_scheduled_events()
+    {
+    }
+    /**
+     * Test if WordPress can run automated background updates.
+     *
+     * Background updates in WordPress are primarily used for minor releases and security updates. It's important
+     * to either have these working, or be aware that they are intentionally disabled for whatever reason.
+     *
+     * @since 5.2.0
+     *
+     * @return array The test results.
+     */
+    public function get_test_background_updates()
+    {
+    }
+    /**
+     * Test if loopbacks work as expected.
+     *
+     * A loopback is when WordPress queries itself, for example to start a new WP_Cron instance, or when editing a
+     * plugin or theme. This has shown itself to be a recurring issue as code can very easily break this interaction.
+     *
+     * @since 5.2.0
+     *
+     * @return array The test results.
+     */
+    public function get_test_loopback_requests()
+    {
+    }
+    /**
+     * Test if HTTP requests are blocked.
+     *
+     * It's possible to block all outgoing communication (with the possibility of whitelisting hosts) via the
+     * HTTP API. This may create problems for users as many features are running as services these days.
+     *
+     * @since 5.2.0
+     *
+     * @return array The test results.
+     */
+    public function get_test_http_requests()
+    {
+    }
+    /**
+     * Test if the REST API is accessible.
+     *
+     * Various security measures may block the REST API from working, or it may have been disabled in general.
+     * This is required for the new block editor to work, so we explicitly test for this.
+     *
+     * @since 5.2.0
+     *
+     * @return array The test results.
+     */
+    public function get_test_rest_availability()
+    {
+    }
+    /**
+     * Return a set of tests that belong to the site status page.
+     *
+     * Each site status test is defined here, they may be `direct` tests, that run on page load, or `async` tests
+     * which will run later down the line via JavaScript calls to improve page performance and hopefully also user
+     * experiences.
+     *
+     * @since 5.2.0
+     *
+     * @return array The list of tests to run.
+     */
+    public static function get_tests()
+    {
+    }
+    /**
+     * Add a class to the body HTML tag.
+     *
+     * Filters the body class string for admin pages and adds our own class for easier styling.
+     *
+     * @since 5.2.0
+     *
+     * @param string $body_class The body class string.
+     * @return string The modified body class string.
+     */
+    public function admin_body_class($body_class)
+    {
+    }
+    /**
+     * Initiate the WP_Cron schedule test cases.
+     *
+     * @since 5.2.0
+     */
+    private function wp_schedule_test_init()
+    {
+    }
+    /**
+     * Populate our list of cron events and store them to a class-wide variable.
+     *
+     * @since 5.2.0
+     */
+    private function get_cron_tasks()
+    {
+    }
+    /**
+     * Check if any scheduled tasks have been missed.
+     *
+     * Returns a boolean value of `true` if a scheduled task has been missed and ends processing. If the list of
+     * crons is an instance of WP_Error, return the instance instead of a boolean value.
+     *
+     * @since 5.2.0
+     *
+     * @return bool|WP_Error true if a cron was missed, false if it wasn't. WP_Error if the cron is set to that.
+     */
+    public function has_missed_cron()
+    {
+    }
+    /**
+     * Run a loopback test on our site.
+     *
+     * Loopbacks are what WordPress uses to communicate with itself to start up WP_Cron, scheduled posts,
+     * make sure plugin or theme edits don't cause site failures and similar.
+     *
+     * @since 5.2.0
+     *
+     * @return object The test results.
+     */
+    function can_perform_loopback()
     {
     }
 }
@@ -21793,7 +22875,7 @@ class WP_Object_Cache
      * The blog prefix to prepend to keys in non-global groups.
      *
      * @since 3.5.0
-     * @var int
+     * @var string
      */
     private $blog_prefix;
     /**
@@ -21978,7 +23060,7 @@ class WP_Object_Cache
     /**
      * Sets the data contents into the cache.
      *
-     * The cache contents is grouped by the $group parameter followed by the
+     * The cache contents are grouped by the $group parameter followed by the
      * $key. This allows for duplicate ids in unique groups. Therefore, naming of
      * the group should be used with care and should follow normal function
      * naming guidelines outside of core WordPress usage.
@@ -25003,10 +26085,10 @@ class SMTP
     /**
      * Send an SMTP DATA command.
      * Issues a data command and sends the msg_data to the server,
-     * finializing the mail transaction. $msg_data is the message
+     * finalizing the mail transaction. $msg_data is the message
      * that is to be send with the headers. Each header needs to be
      * on a single line followed by a <CRLF> with the message headers
-     * and the message body being separated by and additional <CRLF>.
+     * and the message body being separated by an additional <CRLF>.
      * Implements rfc 821: DATA <CRLF>
      * @param string $msg_data Message data to send
      * @access public
@@ -28682,7 +29764,7 @@ final class WP_Customize_Manager
      *  @type string       $capability            Capability required for the setting. Default 'edit_theme_options'
      *  @type string|array $theme_supports        Theme features required to support the panel. Default is none.
      *  @type string       $default               Default value for the setting. Default is empty string.
-     *  @type string       $transport             Options for rendering the live preview of changes in Theme Customizer.
+     *  @type string       $transport             Options for rendering the live preview of changes in Customizer.
      *                                            Using 'refresh' makes the change visible by reloading the whole preview.
      *                                            Using 'postMessage' allows a custom JavaScript to handle live changes.
      * @link https://developer.wordpress.org/themes/customize-api
@@ -30211,9 +31293,9 @@ class WP_Customize_Setting
      */
     public $default = '';
     /**
-     * Options for rendering the live preview of changes in Theme Customizer.
+     * Options for rendering the live preview of changes in Customizer.
      *
-     * Set this value to 'postMessage' to enable a custom Javascript handler to render changes to this setting
+     * Set this value to 'postMessage' to enable a custom JavaScript handler to render changes to this setting
      * as opposed to reloading the whole page.
      *
      * @link https://developer.wordpress.org/themes/customize-api
@@ -32184,6 +33266,90 @@ class WP_Error
     }
 }
 /**
+ * Error Protection API: WP_Fatal_Error_Handler class
+ *
+ * @package WordPress
+ * @since   5.2.0
+ */
+/**
+ * Core class used as the default shutdown handler for fatal errors.
+ *
+ * A drop-in 'fatal-error-handler.php' can be used to override the instance of this class and use a custom
+ * implementation for the fatal error handler that WordPress registers. The custom class should extend this class and
+ * can override its methods individually as necessary. The file must return the instance of the class that should be
+ * registered.
+ *
+ * @since 5.2.0
+ */
+class WP_Fatal_Error_Handler
+{
+    /**
+     * Runs the shutdown handler.
+     *
+     * This method is registered via `register_shutdown_function()`.
+     *
+     * @since 5.2.0
+     */
+    public function handle()
+    {
+    }
+    /**
+     * Detects the error causing the crash if it should be handled.
+     *
+     * @since 5.2.0
+     *
+     * @return array|null Error that was triggered, or null if no error received or if the error should not be handled.
+     */
+    protected function detect_error()
+    {
+    }
+    /**
+     * Determines whether we are dealing with an error that WordPress should handle
+     * in order to protect the admin backend against WSODs.
+     *
+     * @since 5.2.0
+     *
+     * @param array $error Error information retrieved from error_get_last().
+     * @return bool Whether WordPress should handle this error.
+     */
+    protected function should_handle_error($error)
+    {
+    }
+    /**
+     * Displays the PHP error template and sends the HTTP status code, typically 500.
+     *
+     * A drop-in 'php-error.php' can be used as a custom template. This drop-in should control the HTTP status code and
+     * print the HTML markup indicating that a PHP error occurred. Note that this drop-in may potentially be executed
+     * very early in the WordPress bootstrap process, so any core functions used that are not part of
+     * `wp-includes/load.php` should be checked for before being called.
+     *
+     * If no such drop-in is available, this will call {@see WP_Fatal_Error_Handler::display_default_error_template()}.
+     *
+     * @since 5.2.0
+     *
+     * @param array $error Error information retrieved from `error_get_last()`.
+     */
+    protected function display_error_template($error)
+    {
+    }
+    /**
+     * Displays the default PHP error template.
+     *
+     * This method is called conditionally if no 'php-error.php' drop-in is available.
+     *
+     * It calls {@see wp_die()} with a message indicating that the site is experiencing technical difficulties and a
+     * login link to the admin backend. The {@see 'wp_php_error_message'} and {@see 'wp_php_error_args'} filters can
+     * be used to modify these parameters.
+     *
+     * @since 5.2.0
+     *
+     * @param array $error Error information retrieved from `error_get_last()`.
+     */
+    protected function display_default_error_template($error)
+    {
+    }
+}
+/**
  * Feed API: WP_Feed_Cache_Transient class
  *
  * @package WordPress
@@ -32662,22 +33828,31 @@ class WP_Http_Cookie
      */
     public $domain;
     /**
+     * host-only flag.
+     *
+     * @since 5.2.0
+     * @var bool
+     */
+    public $host_only;
+    /**
      * Sets up this cookie object.
      *
      * The parameter $data should be either an associative array containing the indices names below
      * or a header string detailing it.
      *
      * @since 2.8.0
+     * @since 5.2.0 Added `host_only` to the `$data` parameter.
      *
      * @param string|array $data {
      *     Raw cookie data as header string or data array.
      *
-     *     @type string     $name    Cookie name.
-     *     @type mixed      $value   Value. Should NOT already be urlencoded.
-     *     @type string|int $expires Optional. Unix timestamp or formatted date. Default null.
-     *     @type string     $path    Optional. Path. Default '/'.
-     *     @type string     $domain  Optional. Domain. Default host of parsed $requested_url.
-     *     @type int        $port    Optional. Port. Default null.
+     *     @type string     $name      Cookie name.
+     *     @type mixed      $value     Value. Should NOT already be urlencoded.
+     *     @type string|int $expires   Optional. Unix timestamp or formatted date. Default null.
+     *     @type string     $path      Optional. Path. Default '/'.
+     *     @type string     $domain    Optional. Domain. Default host of parsed $requested_url.
+     *     @type int        $port      Optional. Port. Default null.
+     *     @type bool       $host_only Optional. host-only storage flag. Default true.
      * }
      * @param string       $requested_url The URL which the cookie was set on, used for default $domain
      *                                    and $port values.
@@ -34636,6 +35811,7 @@ class WP_Locale
      * @since 2.1.0
      *
      * @global string $text_direction
+     * @global string $wp_version
      */
     public function init()
     {
@@ -35717,6 +36893,123 @@ final class WP_oEmbed_Controller
     }
 }
 /**
+ * Error Protection API: WP_Paused_Extensions_Storage class
+ *
+ * @package WordPress
+ * @since   5.2.0
+ */
+/**
+ * Core class used for storing paused extensions.
+ *
+ * @since 5.2.0
+ */
+class WP_Paused_Extensions_Storage
+{
+    /**
+     * Type of extension. Used to key extension storage.
+     *
+     * @since 5.2.0
+     * @var string
+     */
+    protected $type;
+    /**
+     * Constructor.
+     *
+     * @since 5.2.0
+     *
+     * @param string $extension_type Extension type. Either 'plugin' or 'theme'.
+     */
+    public function __construct($extension_type)
+    {
+    }
+    /**
+     * Records an extension error.
+     *
+     * Only one error is stored per extension, with subsequent errors for the same extension overriding the
+     * previously stored error.
+     *
+     * @since 5.2.0
+     *
+     * @param string $extension Plugin or theme directory name.
+     * @param array  $error     {
+     *     Error that was triggered.
+     *
+     *     @type string $type    The error type.
+     *     @type string $file    The name of the file in which the error occurred.
+     *     @type string $line    The line number in which the error occurred.
+     *     @type string $message The error message.
+     * }
+     * @return bool True on success, false on failure.
+     */
+    public function set($extension, $error)
+    {
+    }
+    /**
+     * Forgets a previously recorded extension error.
+     *
+     * @since 5.2.0
+     *
+     * @param string $extension Plugin or theme directory name.
+     *
+     * @return bool True on success, false on failure.
+     */
+    public function delete($extension)
+    {
+    }
+    /**
+     * Gets the error for an extension, if paused.
+     *
+     * @since 5.2.0
+     *
+     * @param string $extension Plugin or theme directory name.
+     *
+     * @return array|null Error that is stored, or null if the extension is not paused.
+     */
+    public function get($extension)
+    {
+    }
+    /**
+     * Gets the paused extensions with their errors.
+     *
+     * @since 5.2.0
+     *
+     * @return array Associative array of extension slugs to the error recorded.
+     */
+    public function get_all()
+    {
+    }
+    /**
+     * Remove all paused extensions.
+     *
+     * @since 5.2.0
+     *
+     * @return bool
+     */
+    public function delete_all()
+    {
+    }
+    /**
+     * Checks whether the underlying API to store paused extensions is loaded.
+     *
+     * @since 5.2.0
+     *
+     * @return bool True if the API is loaded, false otherwise.
+     */
+    protected function is_api_loaded()
+    {
+    }
+    /**
+     * Get the option name for storing paused extensions.
+     *
+     * @since 5.2.0
+     *
+     * @return string
+     */
+    protected function get_option_name()
+    {
+    }
+}
+/**
  * Post API: WP_Post_Type class
  *
  * @package WordPress
@@ -36688,6 +37981,13 @@ class WP_Query
      */
     public $is_home = \false;
     /**
+     * Signifies whether the current query is for the Privacy Policy page.
+     *
+     * @since 5.2.0
+     * @var bool
+     */
+    public $is_privacy_policy = \false;
+    /**
      * Signifies whether the current query couldn't find anything.
      *
      * @since 1.5.0
@@ -37448,6 +38748,22 @@ class WP_Query
     {
     }
     /**
+     * Is the query for the Privacy Policy page?
+     *
+     * This is the page which shows the Privacy Policy content of your site.
+     *
+     * Depends on the site's "Change your Privacy Policy page" Privacy Settings 'wp_page_for_privacy_policy'.
+     *
+     * This function will return true only on the page you set as the "Privacy Policy page".
+     *
+     * @since 5.2.0
+     *
+     * @return bool True, if Privacy Policy page.
+     */
+    public function is_privacy_policy()
+    {
+    }
+    /**
      * Is the query for an existing month archive?
      *
      * @since 3.1.0
@@ -37636,6 +38952,17 @@ class WP_Query
     {
     }
     /**
+     * Generate post data.
+     *
+     * @since 5.2.0
+     *
+     * @param WP_Post|object|int $post WP_Post instance or Post ID/object.
+     * @return array|bool $elements Elements of post or false on failure.
+     */
+    public function generate_postdata($post)
+    {
+    }
+    /**
      * After looping through a nested query, this function
      * restores the $post global to the current post in this query.
      *
@@ -37670,6 +38997,627 @@ class WP_Query
      * @return mixed
      */
     public function lazyload_comment_meta($check, $comment_id)
+    {
+    }
+}
+/**
+ * Error Protection API: WP_Recovery_Mode_Cookie_Service class
+ *
+ * @package WordPress
+ * @since   5.2.0
+ */
+/**
+ * Core class used to set, validate, and clear cookies that identify a Recovery Mode session.
+ *
+ * @since 5.2.0
+ */
+final class WP_Recovery_Mode_Cookie_Service
+{
+    /**
+     * Checks whether the recovery mode cookie is set.
+     *
+     * @since 5.2.0
+     *
+     * @return bool True if the cookie is set, false otherwise.
+     */
+    public function is_cookie_set()
+    {
+    }
+    /**
+     * Sets the recovery mode cookie.
+     *
+     * This must be immediately followed by exiting the request.
+     *
+     * @since 5.2.0
+     */
+    public function set_cookie()
+    {
+    }
+    /**
+     * Clears the recovery mode cookie.
+     *
+     * @since 5.2.0
+     */
+    public function clear_cookie()
+    {
+    }
+    /**
+     * Validates the recovery mode cookie.
+     *
+     * @since 5.2.0
+     *
+     * @param string $cookie Optionally specify the cookie string.
+     *                       If omitted, it will be retrieved from the super global.
+     * @return true|WP_Error True on success, error object on failure.
+     */
+    public function validate_cookie($cookie = '')
+    {
+    }
+    /**
+     * Gets the session identifier from the cookie.
+     *
+     * The cookie should be validated before calling this API.
+     *
+     * @since 5.2.0
+     *
+     * @param string $cookie Optionally specify the cookie string.
+     *                       If omitted, it will be retrieved from the super global.
+     * @return string|WP_Error Session ID on success, or error object on failure.
+     */
+    public function get_session_id_from_cookie($cookie = '')
+    {
+    }
+    /**
+     * Parses the cookie into its four parts.
+     *
+     * @since 5.2.0
+     *
+     * @param string $cookie Cookie content.
+     * @return array|WP_Error Cookie parts array, or error object on failure.
+     */
+    private function parse_cookie($cookie)
+    {
+    }
+    /**
+     * Generates the recovery mode cookie value.
+     *
+     * The cookie is a base64 encoded string with the following format:
+     *
+     * recovery_mode|iat|rand|signature
+     *
+     * Where "recovery_mode" is a constant string,
+     * iat is the time the cookie was generated at,
+     * rand is a randomly generated password that is also used as a session identifier
+     * and signature is an hmac of the preceding 3 parts.
+     *
+     * @since 5.2.0
+     *
+     * @return string Generated cookie content.
+     */
+    private function generate_cookie()
+    {
+    }
+    /**
+     * Gets a form of `wp_hash()` specific to Recovery Mode.
+     *
+     * We cannot use `wp_hash()` because it is defined in `pluggable.php` which is not loaded until after plugins are loaded,
+     * which is too late to verify the recovery mode cookie.
+     *
+     * This tries to use the `AUTH` salts first, but if they aren't valid specific salts will be generated and stored.
+     *
+     * @since 5.2.0
+     *
+     * @param string $data Data to hash.
+     * @return string|false The hashed $data, or false on failure.
+     */
+    private function recovery_mode_hash($data)
+    {
+    }
+}
+/**
+ * Error Protection API: WP_Recovery_Mode_Email_Link class
+ *
+ * @package WordPress
+ * @since   5.2.0
+ */
+/**
+ * Core class used to send an email with a link to begin Recovery Mode.
+ *
+ * @since 5.2.0
+ */
+final class WP_Recovery_Mode_Email_Service
+{
+    const RATE_LIMIT_OPTION = 'recovery_mode_email_last_sent';
+    /**
+     * Service to generate recovery mode URLs.
+     *
+     * @since 5.2.0
+     * @var WP_Recovery_Mode_Link_Service
+     */
+    private $link_service;
+    /**
+     * WP_Recovery_Mode_Email_Service constructor.
+     *
+     * @since 5.2.0
+     *
+     * @param WP_Recovery_Mode_Link_Service $link_service
+     */
+    public function __construct(\WP_Recovery_Mode_Link_Service $link_service)
+    {
+    }
+    /**
+     * Sends the recovery mode email if the rate limit has not been sent.
+     *
+     * @since 5.2.0
+     *
+     * @param int   $rate_limit Number of seconds before another email can be sent.
+     * @param array $error      Error details from {@see error_get_last()}
+     * @param array $extension  The extension that caused the error. {
+     *      @type string $slug The extension slug. The plugin or theme's directory.
+     *      @type string $type The extension type. Either 'plugin' or 'theme'.
+     * }
+     * @return true|WP_Error True if email sent, WP_Error otherwise.
+     */
+    public function maybe_send_recovery_mode_email($rate_limit, $error, $extension)
+    {
+    }
+    /**
+     * Clears the rate limit, allowing a new recovery mode email to be sent immediately.
+     *
+     * @since 5.2.0
+     *
+     * @return bool True on success, false on failure.
+     */
+    public function clear_rate_limit()
+    {
+    }
+    /**
+     * Sends the Recovery Mode email to the site admin email address.
+     *
+     * @since 5.2.0
+     *
+     * @param int   $rate_limit Number of seconds before another email can be sent.
+     * @param array $error      Error details from {@see error_get_last()}
+     * @param array $extension  Extension that caused the error.
+     *
+     * @return bool Whether the email was sent successfully.
+     */
+    private function send_recovery_mode_email($rate_limit, $error, $extension)
+    {
+    }
+    /**
+     * Gets the email address to send the recovery mode link to.
+     *
+     * @since 5.2.0
+     *
+     * @return string Email address to send recovery mode link to.
+     */
+    private function get_recovery_mode_email_address()
+    {
+    }
+    /**
+     * Gets the description indicating the possible cause for the error.
+     *
+     * @since 5.2.0
+     *
+     * @param array $extension The extension that caused the error.
+     * @return string Message about which extension caused the error.
+     */
+    private function get_cause($extension)
+    {
+    }
+}
+/**
+ * Error Protection API: WP_Recovery_Mode_Key_Service class
+ *
+ * @package WordPress
+ * @since   5.2.0
+ */
+/**
+ * Core class used to generate and validate keys used to enter Recovery Mode.
+ *
+ * @since 5.2.0
+ */
+final class WP_Recovery_Mode_Key_Service
+{
+    /**
+     * The option name used to store the keys.
+     *
+     * @since 5.2.0
+     * @var string
+     */
+    private $option_name = 'recovery_keys';
+    /**
+     * Creates a recovery mode token.
+     *
+     * @since 5.2.0
+     *
+     * @return string $token A random string to identify its associated key in storage.
+     */
+    public function generate_recovery_mode_token()
+    {
+    }
+    /**
+     * Creates a recovery mode key.
+     *
+     * @since 5.2.0
+     *
+     * @global PasswordHash $wp_hasher
+     *
+     * @param string $token A token generated by {@see generate_recovery_mode_token()}.
+     * @return string $key Recovery mode key.
+     */
+    public function generate_and_store_recovery_mode_key($token)
+    {
+    }
+    /**
+     * Verifies if the recovery mode key is correct.
+     *
+     * Recovery mode keys can only be used once; the key will be consumed in the process.
+     *
+     * @since 5.2.0
+     *
+     * @param string $token The token used when generating the given key.
+     * @param string $key   The unhashed key.
+     * @param int    $ttl   Time in seconds for the key to be valid for.
+     * @return true|WP_Error True on success, error object on failure.
+     */
+    public function validate_recovery_mode_key($token, $key, $ttl)
+    {
+    }
+    /**
+     * Removes expired recovery mode keys.
+     *
+     * @since 5.2.0
+     *
+     * @param int $ttl Time in seconds for the keys to be valid for.
+     */
+    public function clean_expired_keys($ttl)
+    {
+    }
+    /**
+     * Removes a used recovery key.
+     *
+     * @since 5.2.0
+     *
+     * @param string $token The token used when generating a recovery mode key.
+     */
+    private function remove_key($token)
+    {
+    }
+    /**
+     * Gets the recovery key records.
+     *
+     * @since 5.2.0
+     *
+     * @return array Associative array of $token => $data pairs, where $data has keys 'hashed_key'
+     *               and 'created_at'.
+     */
+    private function get_keys()
+    {
+    }
+    /**
+     * Updates the recovery key records.
+     *
+     * @since 5.2.0
+     *
+     * @param array $keys Associative array of $token => $data pairs, where $data has keys 'hashed_key'
+     *                    and 'created_at'.
+     * @return bool True on success, false on failure.
+     */
+    private function update_keys(array $keys)
+    {
+    }
+}
+/**
+ * Error Protection API: WP_Recovery_Mode_Link_Handler class
+ *
+ * @package WordPress
+ * @since   5.2.0
+ */
+/**
+ * Core class used to generate and handle recovery mode links.
+ *
+ * @since 5.2.0
+ */
+class WP_Recovery_Mode_Link_Service
+{
+    const LOGIN_ACTION_ENTER = 'enter_recovery_mode';
+    const LOGIN_ACTION_ENTERED = 'entered_recovery_mode';
+    /**
+     * Service to generate and validate recovery mode keys.
+     *
+     * @since 5.2.0
+     * @var WP_Recovery_Mode_Key_Service
+     */
+    private $key_service;
+    /**
+     * Service to handle cookies.
+     *
+     * @since 5.2.0
+     * @var WP_Recovery_Mode_Cookie_Service
+     */
+    private $cookie_service;
+    /**
+     * WP_Recovery_Mode_Link_Service constructor.
+     *
+     * @since 5.2.0
+     *
+     * @param WP_Recovery_Mode_Cookie_Service $cookie_service Service to handle setting the recovery mode cookie.
+     * @param WP_Recovery_Mode_Key_Service    $key_service    Service to handle generating recovery mode keys.
+     */
+    public function __construct(\WP_Recovery_Mode_Cookie_Service $cookie_service, \WP_Recovery_Mode_Key_Service $key_service)
+    {
+    }
+    /**
+     * Generates a URL to begin recovery mode.
+     *
+     * Only one recovery mode URL can may be valid at the same time.
+     *
+     * @since 5.2.0
+     *
+     * @return string Generated URL.
+     */
+    public function generate_url()
+    {
+    }
+    /**
+     * Enters recovery mode when the user hits wp-login.php with a valid recovery mode link.
+     *
+     * @since 5.2.0
+     *
+     * @param int $ttl Number of seconds the link should be valid for.
+     */
+    public function handle_begin_link($ttl)
+    {
+    }
+    /**
+     * Gets a URL to begin recovery mode.
+     *
+     * @since 5.2.0
+     *
+     * @param string $token Recovery Mode token created by {@see generate_recovery_mode_token()}.
+     * @param string $key   Recovery Mode key created by {@see generate_and_store_recovery_mode_key()}.
+     * @return string Recovery mode begin URL.
+     */
+    private function get_recovery_mode_begin_url($token, $key)
+    {
+    }
+}
+/**
+ * Error Protection API: WP_Recovery_Mode class
+ *
+ * @package WordPress
+ * @since   5.2.0
+ */
+/**
+ * Core class used to implement Recovery Mode.
+ *
+ * @since 5.2.0
+ */
+class WP_Recovery_Mode
+{
+    const EXIT_ACTION = 'exit_recovery_mode';
+    /**
+     * Service to handle cookies.
+     *
+     * @since 5.2.0
+     * @var WP_Recovery_Mode_Cookie_Service
+     */
+    private $cookie_service;
+    /**
+     * Service to generate a recovery mode key.
+     *
+     * @since 5.2.0
+     * @var WP_Recovery_Mode_Key_Service
+     */
+    private $key_service;
+    /**
+     * Service to generate and validate recovery mode links.
+     *
+     * @since 5.2.0
+     * @var WP_Recovery_Mode_Link_Service
+     */
+    private $link_service;
+    /**
+     * Service to handle sending an email with a recovery mode link.
+     *
+     * @since 5.2.0
+     * @var WP_Recovery_Mode_Email_Service
+     */
+    private $email_service;
+    /**
+     * Is recovery mode initialized.
+     *
+     * @since 5.2.0
+     * @var bool
+     */
+    private $is_initialized = \false;
+    /**
+     * Is recovery mode active in this session.
+     *
+     * @since 5.2.0
+     * @var bool
+     */
+    private $is_active = \false;
+    /**
+     * Get an ID representing the current recovery mode session.
+     *
+     * @since 5.2.0
+     * @var string
+     */
+    private $session_id = '';
+    /**
+     * WP_Recovery_Mode constructor.
+     *
+     * @since 5.2.0
+     */
+    public function __construct()
+    {
+    }
+    /**
+     * Initialize recovery mode for the current request.
+     *
+     * @since 5.2.0
+     */
+    public function initialize()
+    {
+    }
+    /**
+     * Checks whether recovery mode is active.
+     *
+     * This will not change after recovery mode has been initialized. {@see WP_Recovery_Mode::run()}.
+     *
+     * @since 5.2.0
+     *
+     * @return bool True if recovery mode is active, false otherwise.
+     */
+    public function is_active()
+    {
+    }
+    /**
+     * Gets the recovery mode session ID.
+     *
+     * @since 5.2.0
+     *
+     * @return string The session ID if recovery mode is active, empty string otherwise.
+     */
+    public function get_session_id()
+    {
+    }
+    /**
+     * Checks whether recovery mode has been initialized.
+     *
+     * Recovery mode should not be used until this point. Initialization happens immediately before loading plugins.
+     *
+     * @since 5.2.0
+     *
+     * @return bool
+     */
+    public function is_initialized()
+    {
+    }
+    /**
+     * Handles a fatal error occurring.
+     *
+     * The calling API should immediately die() after calling this function.
+     *
+     * @since 5.2.0
+     *
+     * @param array $error Error details from {@see error_get_last()}
+     * @return true|WP_Error True if the error was handled and headers have already been sent.
+     *                       Or the request will exit to try and catch multiple errors at once.
+     *                       WP_Error if an error occurred preventing it from being handled.
+     */
+    public function handle_error(array $error)
+    {
+    }
+    /**
+     * Ends the current recovery mode session.
+     *
+     * @since 5.2.0
+     *
+     * @return bool True on success, false on failure.
+     */
+    public function exit_recovery_mode()
+    {
+    }
+    /**
+     * Handles a request to exit Recovery Mode.
+     *
+     * @since 5.2.0
+     */
+    public function handle_exit_recovery_mode()
+    {
+    }
+    /**
+     * Cleans any recovery mode keys that have expired according to the link TTL.
+     *
+     * Executes on a daily cron schedule.
+     *
+     * @since 5.2.0
+     */
+    public function clean_expired_keys()
+    {
+    }
+    /**
+     * Handles checking for the recovery mode cookie and validating it.
+     *
+     * @since 5.2.0
+     */
+    protected function handle_cookie()
+    {
+    }
+    /**
+     * Gets the rate limit between sending new recovery mode email links.
+     *
+     * @since 5.2.0
+     *
+     * @return int Rate limit in seconds.
+     */
+    protected function get_email_rate_limit()
+    {
+    }
+    /**
+     * Gets the number of seconds the recovery mode link is valid for.
+     *
+     * @since 5.2.0
+     *
+     * @return int Interval in seconds.
+     */
+    protected function get_link_ttl()
+    {
+    }
+    /**
+     * Gets the extension that the error occurred in.
+     *
+     * @since 5.2.0
+     *
+     * @global array $wp_theme_directories
+     *
+     * @param array  $error Error that was triggered.
+     *
+     * @return array|false {
+     *      @type string  $slug  The extension slug. This is the plugin or theme's directory.
+     *      @type string  $type  The extension type. Either 'plugin' or 'theme'.
+     * }
+     */
+    protected function get_extension_for_error($error)
+    {
+    }
+    /**
+     * Checks whether the given extension a network activated plugin.
+     *
+     * @since 5.2.0
+     *
+     * @param array $extension Extension data.
+     * @return bool True if network plugin, false otherwise.
+     */
+    protected function is_network_plugin($extension)
+    {
+    }
+    /**
+     * Stores the given error so that the extension causing it is paused.
+     *
+     * @since 5.2.0
+     *
+     * @param array $error Error that was triggered.
+     * @return bool True if the error was stored successfully, false otherwise.
+     */
+    protected function store_error($error)
+    {
+    }
+    /**
+     * Redirects the current request to allow recovering multiple errors in one go.
+     *
+     * The redirection will only happen when on a protected endpoint.
+     *
+     * It must be ensured that this method is only called when an error actually occurred and will not occur on the
+     * next request again. Otherwise it will create a redirect loop.
+     *
+     * @since 5.2.0
+     */
+    protected function redirect_protected()
     {
     }
 }
@@ -46723,6 +48671,8 @@ class WP_Customize_Nav_Menu_Auto_Add_Control extends \WP_Customize_Control
  * Customize Nav Menu Control Class.
  *
  * @since 4.3.0
+ *
+ * @see WP_Customize_Control
  */
 class WP_Customize_Nav_Menu_Control extends \WP_Customize_Control
 {
@@ -46771,6 +48721,8 @@ class WP_Customize_Nav_Menu_Control extends \WP_Customize_Control
  * Customize control to represent the name field for a given menu.
  *
  * @since 4.3.0
+ *
+ * @see WP_Customize_Control
  */
 class WP_Customize_Nav_Menu_Item_Control extends \WP_Customize_Control
 {
@@ -51582,19 +53534,6 @@ class WP_REST_Attachments_Controller extends \WP_REST_Posts_Controller
     {
     }
     /**
-     * Validates whether the user can query private statuses.
-     *
-     * @since 4.7.0
-     *
-     * @param mixed           $value     Status value.
-     * @param WP_REST_Request $request   Request object.
-     * @param string          $parameter Additional parameter to pass for validation.
-     * @return WP_Error|bool True if the user may query, WP_Error if not.
-     */
-    public function validate_user_can_query_private_statuses($value, $request, $parameter)
-    {
-    }
-    /**
      * Handles an upload via multipart/form-data ($_FILES).
      *
      * @since 4.7.0
@@ -54910,7 +56849,7 @@ abstract class WP_Widget_Media extends \WP_Widget
     /**
      * Get schema for properties of a widget instance (item).
      *
-     * @since  4.8.0
+     * @since 4.8.0
      *
      * @see WP_REST_Controller::get_item_schema()
      * @see WP_REST_Controller::get_additional_fields()
@@ -55069,7 +57008,7 @@ class WP_Widget_Media_Audio extends \WP_Widget_Media
     /**
      * Constructor.
      *
-     * @since  4.8.0
+     * @since 4.8.0
      */
     public function __construct()
     {
@@ -55077,7 +57016,7 @@ class WP_Widget_Media_Audio extends \WP_Widget_Media
     /**
      * Get schema for properties of a widget instance (item).
      *
-     * @since  4.8.0
+     * @since 4.8.0
      *
      * @see WP_REST_Controller::get_item_schema()
      * @see WP_REST_Controller::get_additional_fields()
@@ -55090,7 +57029,7 @@ class WP_Widget_Media_Audio extends \WP_Widget_Media
     /**
      * Render the media on the frontend.
      *
-     * @since  4.8.0
+     * @since 4.8.0
      *
      * @param array $instance Widget instance props.
      * @return void
@@ -55224,7 +57163,7 @@ class WP_Widget_Media_Image extends \WP_Widget_Media
     /**
      * Constructor.
      *
-     * @since  4.8.0
+     * @since 4.8.0
      */
     public function __construct()
     {
@@ -55232,7 +57171,7 @@ class WP_Widget_Media_Image extends \WP_Widget_Media
     /**
      * Get schema for properties of a widget instance (item).
      *
-     * @since  4.8.0
+     * @since 4.8.0
      *
      * @see WP_REST_Controller::get_item_schema()
      * @see WP_REST_Controller::get_additional_fields()
@@ -55245,7 +57184,7 @@ class WP_Widget_Media_Image extends \WP_Widget_Media
     /**
      * Render the media on the frontend.
      *
-     * @since  4.8.0
+     * @since 4.8.0
      *
      * @param array $instance Widget instance props.
      * @return void
@@ -55289,7 +57228,7 @@ class WP_Widget_Media_Video extends \WP_Widget_Media
     /**
      * Constructor.
      *
-     * @since  4.8.0
+     * @since 4.8.0
      */
     public function __construct()
     {
@@ -55297,7 +57236,7 @@ class WP_Widget_Media_Video extends \WP_Widget_Media
     /**
      * Get schema for properties of a widget instance (item).
      *
-     * @since  4.8.0
+     * @since 4.8.0
      *
      * @see WP_REST_Controller::get_item_schema()
      * @see WP_REST_Controller::get_additional_fields()
@@ -55310,7 +57249,7 @@ class WP_Widget_Media_Video extends \WP_Widget_Media
     /**
      * Render the media on the frontend.
      *
-     * @since  4.8.0
+     * @since 4.8.0
      *
      * @param array $instance Widget instance props.
      *
@@ -56720,7 +58659,7 @@ class wpdb
      *
      * Literal percentage signs (%) in the query string must be written as %%. Percentage wildcards (for example,
      * to use in LIKE syntax) must be passed via a substitution argument containing the complete LIKE string, these
-     * cannot be inserted directly in the query string. Also see {@see wpdb::esc_like()}.
+     * cannot be inserted directly in the query string. Also see wpdb::esc_like().
      *
      * Arguments may be passed as individual arguments to the method, or as a single array containing all arguments. A combination
      * of the two is not supported.
@@ -58287,6 +60226,54 @@ function wp_ajax_wp_privacy_export_personal_data()
  * @since 4.9.6
  */
 function wp_ajax_wp_privacy_erase_personal_data()
+{
+}
+/**
+ * Ajax handler for site health checks on server communication.
+ *
+ * @since 5.2.0
+ */
+function wp_ajax_health_check_dotorg_communication()
+{
+}
+/**
+ * Ajax handler for site health checks on debug mode.
+ *
+ * @since 5.2.0
+ */
+function wp_ajax_health_check_is_in_debug_mode()
+{
+}
+/**
+ * Ajax handler for site health checks on background updates.
+ *
+ * @since 5.2.0
+ */
+function wp_ajax_health_check_background_updates()
+{
+}
+/**
+ * Ajax handler for site health checks on loopback requests.
+ *
+ * @since 5.2.0
+ */
+function wp_ajax_health_check_loopback_requests()
+{
+}
+/**
+ * Ajax handler for site health check to update the result status.
+ *
+ * @since 5.2.0
+ */
+function wp_ajax_health_check_site_status_result()
+{
+}
+/**
+ * Ajax handler for site health check to get directories and database sizes.
+ *
+ * @since 5.2.0
+ */
+function wp_ajax_health_check_get_sizes()
 {
 }
 /**
@@ -59993,12 +61980,14 @@ function wp_handle_sideload(&$file, $overrides = \false, $time = \null)
  * Please note that the calling function must unlink() the file.
  *
  * @since 2.5.0
+ * @since 5.2.0 Signature Verification with SoftFail was added.
  *
- * @param string $url  The URL of the file to download.
- * @param int $timeout The timeout for the request to download the file. Default 300 seconds.
+ * @param string $url                    The URL of the file to download.
+ * @param int    $timeout                The timeout for the request to download the file. Default 300 seconds.
+ * @param bool   $signature_verification Whether to perform Signature Verification. Default false.
  * @return string|WP_Error Filename on success, WP_Error on failure.
  */
-function download_url($url, $timeout = 300)
+function download_url($url, $timeout = 300, $signature_verification = \false)
 {
 }
 /**
@@ -60013,6 +62002,30 @@ function download_url($url, $timeout = 300)
  *                       WP_Error on failure.
  */
 function verify_file_md5($filename, $expected_md5)
+{
+}
+/**
+ * Verifies the contents of a file against its ED25519 signature.
+ *
+ * @since 5.2.0
+ *
+ * @param string       $filename            The file to validate.
+ * @param string|array $signatures          A Signature provided for the file.
+ * @param string       $filename_for_errors A friendly filename for errors. Optional.
+ *
+ * @return bool|WP_Error true on success, false if verificaiton not attempted, or WP_Error describing an error condition.
+ */
+function verify_file_signature($filename, $signatures, $filename_for_errors = \false)
+{
+}
+/**
+ * Retrieve the list of signing keys trusted by WordPress.
+ *
+ * @since 5.2.0
+ *
+ * @return array List of base64-encoded Signing keys.
+ */
+function wp_trusted_keys()
 {
 }
 /**
@@ -63142,6 +65155,7 @@ function is_network_only_plugin($plugin)
  * ensure that the success redirection will update the error redirection.
  *
  * @since 2.5.0
+ * @since 5.2.0 Test for WordPress version and PHP version compatibility.
  *
  * @param string $plugin       Path to the plugin file relative to the plugins directory.
  * @param string $redirect     Optional. URL to redirect to.
@@ -63226,6 +65240,17 @@ function validate_active_plugins()
  * @return WP_Error|int 0 on success, WP_Error on failure.
  */
 function validate_plugin($plugin)
+{
+}
+/**
+ * Validate the plugin requirements for WP version and PHP version.
+ *
+ * @since 5.2.0
+ *
+ * @param string $plugin Path to the plugin file relative to the plugins directory.
+ * @return true|WP_Error True if requirements are met, WP_Error on failure.
+ */
+function validate_plugin_requirements($plugin)
 {
 }
 /**
@@ -63610,6 +65635,8 @@ function menu_page_url($menu_slug, $echo = \true)
  * @global array $_wp_real_parent_file
  * @global array $_wp_menu_nopriv
  * @global array $_wp_submenu_nopriv
+ *
+ * @return string
  */
 function get_admin_page_parent($parent = '')
 {
@@ -63621,6 +65648,8 @@ function get_admin_page_parent($parent = '')
  * @global string $pagenow
  * @global string $plugin_page
  * @global string $typenow
+ *
+ * @return string
  */
 function get_admin_page_title()
 {
@@ -63628,17 +65657,21 @@ function get_admin_page_title()
 /**
  * @since 2.3.0
  *
- * @param string $plugin_page
- * @param string $parent_page
- * @return string|null
+ * @param string $plugin_page The slug name of the plugin page.
+ * @param string $parent_page The slug name for the parent menu (or the file name of a standard
+ *                            WordPress admin page).
+ * @return string|null Hook attached to the plugin page, null otherwise.
  */
 function get_plugin_page_hook($plugin_page, $parent_page)
 {
 }
 /**
  * @global array $admin_page_hooks
- * @param string $plugin_page
- * @param string $parent_page
+ *
+ * @param string $plugin_page The slug name of the plugin page.
+ * @param string $parent_page The slug name for the parent menu (or the file name of a standard
+ *                            WordPress admin page).
+ * @return string Hook name for the plugin page.
  */
 function get_plugin_page_hookname($plugin_page, $parent_page)
 {
@@ -63651,6 +65684,8 @@ function get_plugin_page_hookname($plugin_page, $parent_page)
  * @global array $_wp_submenu_nopriv
  * @global string $plugin_page
  * @global array $_registered_pages
+ *
+ * @return bool Whether the current user can access the current admin page.
  */
 function user_can_access_admin_page()
 {
@@ -63754,6 +65789,63 @@ function wp_add_privacy_policy_content($plugin_name, $policy_text)
 {
 }
 /**
+ * Determines whether a plugin is technically active but was paused while
+ * loading.
+ *
+ * For more information on this and similar theme functions, check out
+ * the {@link https://developer.wordpress.org/themes/basics/conditional-tags/
+ * Conditional Tags} article in the Theme Developer Handbook.
+ *
+ * @since 5.2.0
+ *
+ * @param string $plugin Path to the plugin file relative to the plugins directory.
+ * @return bool True, if in the list of paused plugins. False, not in the list.
+ */
+function is_plugin_paused($plugin)
+{
+}
+/**
+ * Gets the error that was recorded for a paused plugin.
+ *
+ * @since 5.2.0
+ *
+ * @param string $plugin Path to the plugin file relative to the plugins
+ *                       directory.
+ * @return array|false Array of error information as it was returned by
+ *                     `error_get_last()`, or false if none was recorded.
+ */
+function wp_get_plugin_error($plugin)
+{
+}
+/**
+ * Tries to resume a single plugin.
+ *
+ * If a redirect was provided, we first ensure the plugin does not throw fatal
+ * errors anymore.
+ *
+ * The way it works is by setting the redirection to the error before trying to
+ * include the plugin file. If the plugin fails, then the redirection will not
+ * be overwritten with the success message and the plugin will not be resumed.
+ *
+ * @since 5.2.0
+ *
+ * @param string $plugin       Single plugin to resume.
+ * @param string $redirect     Optional. URL to redirect to. Default empty string.
+ * @return bool|WP_Error True on success, false if `$plugin` was not paused,
+ *                       `WP_Error` on failure.
+ */
+function resume_plugin($plugin, $redirect = '')
+{
+}
+/**
+ * Renders an admin notice in case some plugins have been paused due to errors.
+ *
+ * @since 5.2.0
+ */
+function paused_plugins_notice()
+{
+}
+/**
  * WordPress Post Administration API.
  *
  * @package WordPress
@@ -63826,18 +65918,20 @@ function get_default_post_to_edit($post_type = 'post', $create_in_db = \false)
 {
 }
 /**
- * Determine if a post exists based on title, content, and date
+ * Determines if a post exists based on title, content, date and type.
  *
  * @since 2.0.0
+ * @since 5.2.0 Added the `$type` parameter.
  *
  * @global wpdb $wpdb WordPress database abstraction object.
  *
- * @param string $title Post title
- * @param string $content Optional post content
- * @param string $date Optional post date
+ * @param string $title   Post title.
+ * @param string $content Optional post content.
+ * @param string $date    Optional post date.
+ * @param string $type    Optional post type.
  * @return int Post ID if post exists, 0 otherwise.
  */
-function post_exists($title, $content = '', $date = '')
+function post_exists($title, $content = '', $date = '', $type = '')
 {
 }
 /**
@@ -63975,19 +66069,6 @@ function wp_edit_posts_query($q = \false)
 {
 }
 /**
- * Get all available post MIME types for a given post type.
- *
- * @since 2.5.0
- *
- * @global wpdb $wpdb WordPress database abstraction object.
- *
- * @param string $type
- * @return mixed
- */
-function get_available_post_mime_types($type = 'attachment')
-{
-}
-/**
  * Get the query variables for the current attachments request.
  *
  * @since 4.2.0
@@ -64016,11 +66097,11 @@ function wp_edit_attachments_query($q = \false)
  *
  * @since 2.5.0
  *
- * @param string $id
- * @param string $page
- * @return string
+ * @param string $box_id    Meta box ID (used in the 'id' attribute for the meta box).
+ * @param string $screen_id The screen on which the meta box is shown.
+ * @return string Space-separated string of class names.
  */
-function postbox_classes($id, $page)
+function postbox_classes($box_id, $screen_id)
 {
 }
 /**
@@ -65664,6 +67745,63 @@ function customize_themes_print_templates()
 {
 }
 /**
+ * Determines whether a theme is technically active but was paused while
+ * loading.
+ *
+ * For more information on this and similar theme functions, check out
+ * the {@link https://developer.wordpress.org/themes/basics/conditional-tags/
+ * Conditional Tags} article in the Theme Developer Handbook.
+ *
+ * @since 5.2.0
+ *
+ * @param string $theme Path to the theme directory relative to the themes directory.
+ * @return bool True, if in the list of paused themes. False, not in the list.
+ */
+function is_theme_paused($theme)
+{
+}
+/**
+ * Gets the error that was recorded for a paused theme.
+ *
+ * @since 5.2.0
+ *
+ * @param string $theme Path to the theme directory relative to the themes
+ *                      directory.
+ * @return array|false Array of error information as it was returned by
+ *                     `error_get_last()`, or false if none was recorded.
+ */
+function wp_get_theme_error($theme)
+{
+}
+/**
+ * Tries to resume a single theme.
+ *
+ * If a redirect was provided and a functions.php file was found, we first ensure that
+ * functions.php file does not throw fatal errors anymore.
+ *
+ * The way it works is by setting the redirection to the error before trying to
+ * include the file. If the theme fails, then the redirection will not be overwritten
+ * with the success message and the theme will not be resumed.
+ *
+ * @since 5.2.0
+ *
+ * @param string $theme    Single theme to resume.
+ * @param string $redirect Optional. URL to redirect to. Default empty string.
+ * @return bool|WP_Error True on success, false if `$theme` was not paused,
+ *                       `WP_Error` on failure.
+ */
+function resume_theme($theme, $redirect = '')
+{
+}
+/**
+ * Renders an admin notice in case some themes have been paused due to errors.
+ *
+ * @since 5.2.0
+ */
+function paused_themes_notice()
+{
+}
+/**
  * WordPress Translation Installation Administration API
  *
  * @package WordPress
@@ -66045,6 +68183,14 @@ function wp_print_admin_notice_templates()
  * @since 4.6.0
  */
 function wp_print_update_row_templates()
+{
+}
+/**
+ * Displays a notice when the user is in recovery mode.
+ *
+ * @since 5.2.0
+ */
+function wp_recovery_mode_nag()
 {
 }
 /**
@@ -67539,6 +69685,16 @@ function wp_admin_bar_search_menu($wp_admin_bar)
 {
 }
 /**
+ * Add a link to exit recovery mode when Recovery Mode is active.
+ *
+ * @since 5.2.0
+ *
+ * @param WP_Admin_Bar $wp_admin_bar
+ */
+function wp_admin_bar_recovery_mode_menu($wp_admin_bar)
+{
+}
+/**
  * Add secondary menus.
  *
  * @since 3.3.0
@@ -67648,8 +69804,8 @@ function get_the_author($deprecated = '')
  * @see get_the_author()
  * @link https://codex.wordpress.org/Template_Tags/the_author
  *
- * @param string $deprecated Deprecated.
- * @param string $deprecated_echo Deprecated. Use get_the_author(). Echo the string or return it.
+ * @param string $deprecated      Deprecated.
+ * @param bool   $deprecated_echo Deprecated. Use get_the_author(). Echo the string or return it.
  * @return string|null The author's display name, from get_the_author().
  */
 function the_author($deprecated = '', $deprecated_echo = \true)
@@ -67713,8 +69869,8 @@ function the_modified_author()
  *
  * @global object $authordata The current author's DB object.
  *
- * @param string $field   Optional. The user field to retrieve. Default empty.
- * @param int    $user_id Optional. User ID.
+ * @param string    $field   Optional. The user field to retrieve. Default empty.
+ * @param int|false $user_id Optional. User ID.
  * @return string The author's field from the current author's DB object, otherwise an empty string.
  */
 function get_the_author_meta($field = '', $user_id = \false)
@@ -67725,9 +69881,9 @@ function get_the_author_meta($field = '', $user_id = \false)
  *
  * @since 2.8.0
  *
- * @param string $field   Selects the field of the users record. See get_the_author_meta()
- *                        for the list of possible fields.
- * @param int    $user_id Optional. User ID.
+ * @param string    $field   Selects the field of the users record. See get_the_author_meta()
+ *                           for the list of possible fields.
+ * @param int|false $user_id Optional. User ID.
  *
  * @see get_the_author_meta()
  */
@@ -68098,6 +70254,19 @@ function excerpt_remove_blocks($content)
 {
 }
 /**
+ * Render inner blocks from the `core/columns` block for generating an excerpt.
+ *
+ * @since 5.2.0
+ * @access private
+ *
+ * @param array $columns        The parsed columns block.
+ * @param array $allowed_blocks The list of allowed inner blocks.
+ * @return string The rendered inner blocks.
+ */
+function _excerpt_render_inner_columns_blocks($columns, $allowed_blocks)
+{
+}
+/**
  * Renders a single block into a HTML string.
  *
  * @since 5.0.0
@@ -68134,7 +70303,7 @@ function do_blocks($content)
 {
 }
 /**
- * If do_blocks() needs to remove wp_autop() from the `the_content` filter, this re-adds it afterwards,
+ * If do_blocks() needs to remove wpautop() from the `the_content` filter, this re-adds it afterwards,
  * for subsequent `the_content` usage.
  *
  * @access private
@@ -68196,6 +70365,27 @@ function register_block_core_archives()
  * @return string Rendered HTML of the referenced block.
  */
 function render_block_core_block($attributes)
+{
+}
+/**
+ * Server-side rendering of the `core/calendar` block.
+ *
+ * @package WordPress
+ */
+/**
+ * Renders the `core/calendar` block on server.
+ *
+ * @param array $attributes The block attributes.
+ *
+ * @return string Returns the block content.
+ */
+function render_block_core_calendar($attributes)
+{
+}
+/**
+ * Registers the `core/calendar` block on server.
+ */
+function register_block_core_calendar()
 {
 }
 /**
@@ -68289,6 +70479,48 @@ function register_block_core_latest_posts()
 {
 }
 /**
+ * Server-side rendering of the `core/rss` block.
+ *
+ * @package WordPress
+ */
+/**
+ * Renders the `core/rss` block on server.
+ *
+ * @param array $attributes The block attributes.
+ *
+ * @return string Returns the block content with received rss items.
+ */
+function render_block_core_rss($attributes)
+{
+}
+/**
+ * Registers the `core/rss` block on server.
+ */
+function register_block_core_rss()
+{
+}
+/**
+ * Server-side rendering of the `core/search` block.
+ *
+ * @package WordPress
+ */
+/**
+ * Dynamically renders the `core/search` block.
+ *
+ * @param array $attributes The block attributes.
+ *
+ * @return string The search block markup.
+ */
+function render_block_core_search($attributes)
+{
+}
+/**
+ * Registers the `core/search` block on the server.
+ */
+function register_block_core_search()
+{
+}
+/**
  * Server-side rendering of the `core/shortcode` block.
  *
  * @package WordPress
@@ -68308,6 +70540,27 @@ function render_block_core_shortcode($attributes, $content)
  * Registers the `core/shortcode` block on server.
  */
 function register_block_core_shortcode()
+{
+}
+/**
+ * Server-side rendering of the `core/tag-cloud` block.
+ *
+ * @package WordPress
+ */
+/**
+ * Renders the `core/tag-cloud` block on server.
+ *
+ * @param array $attributes The block attributes.
+ *
+ * @return string Returns the tag cloud for selected taxonomy.
+ */
+function render_block_core_tag_cloud($attributes)
+{
+}
+/**
+ * Registers the `core/tag-cloud` block on server.
+ */
+function register_block_core_tag_cloud()
 {
 }
 /**
@@ -69060,6 +71313,37 @@ function revoke_super_admin($user_id)
  * @return bool[] Filtered array of the user's capabilities.
  */
 function wp_maybe_grant_install_languages_cap($allcaps)
+{
+}
+/**
+ * Filters the user capabilities to grant the 'resume_plugins' and 'resume_themes' capabilities as necessary.
+ *
+ * @since 5.2.0
+ *
+ * @param bool[] $allcaps An array of all the user's capabilities.
+ * @return bool[] Filtered array of the user's capabilities.
+ */
+function wp_maybe_grant_resume_extensions_caps($allcaps)
+{
+}
+/**
+ * Filters the user capabilities to grant the 'view_site_health_checks' capabilities as necessary.
+ *
+ * @since 5.2.2
+ *
+ * @param bool[]   $allcaps An array of all the user's capabilities.
+ * @param string[] $caps    Required primitive capabilities for the requested capability.
+ * @param array    $args {
+ *     Arguments that accompany the requested capability check.
+ *
+ *     @type string    $0 Requested capability.
+ *     @type int       $1 Concerned user ID.
+ *     @type mixed  ...$2 Optional second and further parameters, typically object ID.
+ * }
+ * @param WP_User  $user    The user object.
+ * @return bool[] Filtered array of the user's capabilities.
+ */
+function wp_maybe_grant_site_health_caps($allcaps, $caps, $args, $user)
 {
 }
 /**
@@ -69907,7 +72191,7 @@ function get_comment_author_email($comment_ID = 0)
  * Display the email of the author of the current global $comment.
  *
  * Care should be taken to protect the email address and assure that email
- * harvesters do not capture your commentors' email address. Most assume that
+ * harvesters do not capture your commenter's email address. Most assume that
  * their email address will not appear in raw form on the site. Doing so will
  * enable anyone, including those that people don't want to get the email
  * address and use it for their own means good and bad.
@@ -69925,7 +72209,7 @@ function comment_author_email($comment_ID = 0)
  * Display the html email link to the author of the current comment.
  *
  * Care should be taken to protect the email address and assure that email
- * harvesters do not capture your commentors' email address. Most assume that
+ * harvesters do not capture your commenter's email address. Most assume that
  * their email address will not appear in raw form on the site. Doing so will
  * enable anyone, including those that people don't want to get the email
  * address and use it for their own means good and bad.
@@ -69946,7 +72230,7 @@ function comment_author_email_link($linktext = '', $before = '', $after = '', $c
  * Return the html email link to the author of the current comment.
  *
  * Care should be taken to protect the email address and assure that email
- * harvesters do not capture your commentors' email address. Most assume that
+ * harvesters do not capture your commenter's email address. Most assume that
  * their email address will not appear in raw form on the site. Doing so will
  * enable anyone, including those that people don't want to get the email
  * address and use it for their own means good and bad.
@@ -70150,16 +72434,18 @@ function comment_date($d = '', $comment_ID = 0)
 {
 }
 /**
- * Retrieves the excerpt of the given comment.
+ * Retrieve the excerpt of the current comment.
  *
- * Returns a maximum of 20 words with an ellipsis appended if necessary.
+ * Will cut each word and only output the first 20 words with '&hellip;' at the end.
+ * If the word count is less than 20, then no truncating is done and no '&hellip;'
+ * will appear.
  *
  * @since 1.5.0
  * @since 4.4.0 Added the ability for `$comment_ID` to also accept a WP_Comment object.
  *
  * @param int|WP_Comment $comment_ID  WP_Comment or ID of the comment for which to get the excerpt.
  *                                    Default current comment.
- * @return string The possibly truncated comment excerpt.
+ * @return string The maybe truncated comment with 20 words or less.
  */
 function get_comment_excerpt($comment_ID = 0)
 {
@@ -75081,7 +77367,7 @@ function wp_filter_oembed_iframe_title_attribute($result, $data, $url)
  * If the `$url` isn't on the trusted providers list,
  * we need to filter the HTML heavily for security.
  *
- * Only filters 'rich' and 'html' response types.
+ * Only filters 'rich' and 'video' response types.
  *
  * @since 4.4.0
  *
@@ -75218,6 +77504,73 @@ function the_embed_site_title()
  *                     Null if the URL does not belong to the current site.
  */
 function wp_filter_pre_oembed_result($result, $url, $args)
+{
+}
+/**
+ * Error Protection API: Functions
+ *
+ * @package WordPress
+ * @since   5.2.0
+ */
+/**
+ * Get the instance for storing paused plugins.
+ *
+ * @return WP_Paused_Extensions_Storage
+ */
+function wp_paused_plugins()
+{
+}
+/**
+ * Get the instance for storing paused extensions.
+ *
+ * @return WP_Paused_Extensions_Storage
+ */
+function wp_paused_themes()
+{
+}
+/**
+ * Get a human readable description of an extension's error.
+ *
+ * @since 5.2.0
+ *
+ * @param array $error Error details {@see error_get_last()}
+ *
+ * @return string Formatted error description.
+ */
+function wp_get_extension_error_description($error)
+{
+}
+/**
+ * Registers the shutdown handler for fatal errors.
+ *
+ * The handler will only be registered if {@see wp_is_fatal_error_handler_enabled()} returns true.
+ *
+ * @since 5.2.0
+ */
+function wp_register_fatal_error_handler()
+{
+}
+/**
+ * Checks whether the fatal error handler is enabled.
+ *
+ * A constant `WP_DISABLE_FATAL_ERROR_HANDLER` can be set in `wp-config.php` to disable it, or alternatively the
+ * {@see 'wp_fatal_error_handler_enabled'} filter can be used to modify the return value.
+ *
+ * @since 5.2.0
+ *
+ * @return bool True if the fatal error handler is enabled, false otherwise.
+ */
+function wp_is_fatal_error_handler_enabled()
+{
+}
+/**
+ * Access the WordPress Recovery Mode instance.
+ *
+ * @since 5.2.0
+ *
+ * @return WP_Recovery_Mode
+ */
+function wp_recovery_mode()
 {
 }
 /**
@@ -75535,6 +77888,23 @@ function rss2_site_icon()
  * @since 2.5.0
  */
 function self_link()
+{
+}
+/*
+ * Get the timestamp of the most recently modified post from WP_Query.
+ *
+ * If viewing a comment feed, the timestamp of the most recently modified
+ * comment will be returned.
+ *
+ * @global WP_Query  $wp_query The global WP_Query object.
+ *
+ * @since 5.2.0
+ *
+ * @param string $format Format of the timestamp to return, passed to mysql2date.
+ *
+ * @return string The timestamp.
+ */
+function get_feed_build_date($format)
 {
 }
 /**
@@ -76697,6 +79067,8 @@ function wp_rel_nofollow_callback($matches)
 /**
  * Adds rel noreferrer and noopener to all HTML A elements that have a target.
  *
+ * @since 5.1.0
+ *
  * @param string $text Content that may contain HTML A elements.
  * @return string Converted content.
  */
@@ -76708,6 +79080,8 @@ function wp_targeted_link_rel($text)
  *
  * Will not duplicate existing noreferrer and noopener values
  * to prevent from invalidating the HTML.
+ *
+ * @since 5.1.0
  *
  * @param array $matches Single Match
  * @return string HTML A Element with rel noreferrer noopener in addition to any existing values
@@ -76896,11 +79270,13 @@ function human_time_diff($from, $to = '')
  * The ' [&hellip;]' string can be modified by plugins/themes using the {@see 'excerpt_more'} filter
  *
  * @since 1.5.0
+ * @since 5.2.0 Added the `$post` parameter.
  *
- * @param string $text Optional. The excerpt. If set to empty, an excerpt is generated.
+ * @param string             $text Optional. The excerpt. If set to empty, an excerpt is generated.
+ * @param WP_Post|object|int $post Optional. WP_Post instance or Post ID/object. Default is null.
  * @return string The excerpt.
  */
-function wp_trim_excerpt($text = '')
+function wp_trim_excerpt($text = '', $post = \null)
 {
 }
 /**
@@ -78679,7 +81055,7 @@ function wp_nonce_ays($action)
 {
 }
 /**
- * Kill WordPress execution and display HTML message with error message.
+ * Kills WordPress execution and displays HTML page with an error message.
  *
  * This function complements the `die()` PHP function. The difference is that
  * HTML will be displayed to the user. It is recommended to use this function
@@ -78694,6 +81070,8 @@ function wp_nonce_ays($action)
  * @since 4.1.0 The `$title` and `$args` parameters were changed to optionally accept
  *              an integer to be used as the response code.
  * @since 5.1.0 The `$link_url`, `$link_text`, and `$exit` arguments were added.
+ *
+ * @global WP_Query $wp_query Global WP_Query instance.
  *
  * @param string|WP_Error  $message Optional. Error message. If this is a WP_Error object,
  *                                  and not an Ajax or XML-RPC request, the error's messages are used.
@@ -78724,10 +81102,10 @@ function wp_die($message = '', $title = '', $args = array())
 {
 }
 /**
- * Kills WordPress execution and display HTML message with error message.
+ * Kills WordPress execution and displays HTML page with an error message.
  *
- * This is the default handler for wp_die if you want a custom one for your
- * site then you can overload using the {@see 'wp_die_handler'} filter in wp_die().
+ * This is the default handler for wp_die(). If you want a custom one,
+ * you can override this using the {@see 'wp_die_handler'} filter in wp_die().
  *
  * @since 3.0.0
  * @access private
@@ -78740,9 +81118,24 @@ function _default_wp_die_handler($message, $title = '', $args = array())
 {
 }
 /**
- * Kill WordPress execution and display JSON message with error message.
+ * Kills WordPress execution and displays Ajax response with an error message.
  *
- * This is the handler for wp_die when processing JSON requests.
+ * This is the handler for wp_die() when processing Ajax requests.
+ *
+ * @since 3.4.0
+ * @access private
+ *
+ * @param string       $message Error message.
+ * @param string       $title   Optional. Error title (unused). Default empty.
+ * @param string|array $args    Optional. Arguments to control behavior. Default empty array.
+ */
+function _ajax_wp_die_handler($message, $title = '', $args = array())
+{
+}
+/**
+ * Kills WordPress execution and displays JSON response with an error message.
+ *
+ * This is the handler for wp_die() when processing JSON requests.
  *
  * @since 5.1.0
  * @access private
@@ -78755,9 +81148,24 @@ function _json_wp_die_handler($message, $title = '', $args = array())
 {
 }
 /**
- * Kill WordPress execution and display XML message with error message.
+ * Kills WordPress execution and displays JSONP response with an error message.
  *
- * This is the handler for wp_die when processing XMLRPC requests.
+ * This is the handler for wp_die() when processing JSONP requests.
+ *
+ * @since 5.2.0
+ * @access private
+ *
+ * @param string       $message Error message.
+ * @param string       $title   Optional. Error title. Default empty.
+ * @param string|array $args    Optional. Arguments to control behavior. Default empty array.
+ */
+function _jsonp_wp_die_handler($message, $title = '', $args = array())
+{
+}
+/**
+ * Kills WordPress execution and displays XML response with an error message.
+ *
+ * This is the handler for wp_die() when processing XMLRPC requests.
  *
  * @since 3.2.0
  * @access private
@@ -78772,24 +81180,24 @@ function _xmlrpc_wp_die_handler($message, $title = '', $args = array())
 {
 }
 /**
- * Kill WordPress ajax execution.
+ * Kills WordPress execution and displays XML response with an error message.
  *
- * This is the handler for wp_die when processing Ajax requests.
+ * This is the handler for wp_die() when processing XML requests.
  *
- * @since 3.4.0
+ * @since 5.2.0
  * @access private
  *
  * @param string       $message Error message.
- * @param string       $title   Optional. Error title (unused). Default empty.
+ * @param string       $title   Optional. Error title. Default empty.
  * @param string|array $args    Optional. Arguments to control behavior. Default empty array.
  */
-function _ajax_wp_die_handler($message, $title = '', $args = array())
+function _xml_wp_die_handler($message, $title = '', $args = array())
 {
 }
 /**
- * Kill WordPress execution.
+ * Kills WordPress execution and displays an error message.
  *
- * This is the handler for wp_die when processing APP requests.
+ * This is the handler for wp_die() when processing APP requests.
  *
  * @since 3.4.0
  * @since 5.1.0 Added the $title and $args parameters.
@@ -78803,7 +81211,7 @@ function _scalar_wp_die_handler($message = '', $title = '', $args = array())
 {
 }
 /**
- * Processes arguments passed to {@see wp_die()} consistently for its handlers.
+ * Processes arguments passed to wp_die() consistently for its handlers.
  *
  * @since 5.1.0
  * @access private
@@ -80264,8 +82672,25 @@ function wp_get_default_update_php_url()
  * annotation if the web host has altered the default "Update PHP" page URL.
  *
  * @since 5.1.0
+ * @since 5.2.0 Added the `$before` and `$after` parameters.
+ *
+ * @param string $before Markup to output before the annotation. Default `<p class="description">`.
+ * @param string $after  Markup to output after the annotation. Default `</p>`.
  */
-function wp_update_php_annotation()
+function wp_update_php_annotation($before = '<p class="description">', $after = '</p>')
+{
+}
+/**
+ * Returns the default annotation for the web hosting altering the "Update PHP" page URL.
+ *
+ * This function is to be used after {@see wp_get_update_php_url()} to return a consistent
+ * annotation if the web host has altered the default "Update PHP" page URL.
+ *
+ * @since 5.2.0
+ *
+ * @return string $message Update PHP page annotation. An empty string if no custom URLs are provided.
+ */
+function wp_get_update_php_annotation()
 {
 }
 /**
@@ -80292,6 +82717,65 @@ function wp_get_direct_php_update_url()
  * @since 5.1.1
  */
 function wp_direct_php_update_button()
+{
+}
+/**
+ * Get the size of a directory.
+ *
+ * A helper function that is used primarily to check whether
+ * a blog has exceeded its allowed upload space.
+ *
+ * @since MU (3.0.0)
+ * @since 5.2.0 $max_execution_time parameter added.
+ *
+ * @param string $directory Full path of a directory.
+ * @param int    $max_execution_time Maximum time to run before giving up. In seconds.
+ *                                   The timeout is global and is measured from the moment WordPress started to load.
+ * @return int|false|null Size in bytes if a valid directory. False if not. Null if timeout.
+ */
+function get_dirsize($directory, $max_execution_time = \null)
+{
+}
+/**
+ * Get the size of a directory recursively.
+ *
+ * Used by get_dirsize() to get a directory's size when it contains
+ * other directories.
+ *
+ * @since MU (3.0.0)
+ * @since 4.3.0 $exclude parameter added.
+ * @since 5.2.0 $max_execution_time parameter added.
+ *
+ * @param string $directory       Full path of a directory.
+ * @param string|array $exclude   Optional. Full path of a subdirectory to exclude from the total, or array of paths.
+ *                                Expected without trailing slash(es).
+ * @param int $max_execution_time Maximum time to run before giving up. In seconds.
+ *                                The timeout is global and is measured from the moment WordPress started to load.
+ * @return int|false|null Size in bytes if a valid directory. False if not. Null if timeout.
+ */
+function recurse_dirsize($directory, $exclude = \null, $max_execution_time = \null)
+{
+}
+/**
+* Checks compatibility with the current WordPress version.
+*
+* @since 5.2.0
+*
+* @param string $required Minimum required WordPress version.
+* @return bool True if required version is compatible or empty, false if not.
+*/
+function is_wp_version_compatible($required)
+{
+}
+/**
+ * Checks compatibility with the current PHP version.
+ *
+ * @since 5.2.0
+ *
+ * @param string $required Minimum required PHP version.
+ * @return bool True if required version is compatible or empty, false if not.
+ */
+function is_php_version_compatible($required)
 {
 }
 /**
@@ -80795,11 +83279,19 @@ function get_template_part($slug, $name = \null)
  * search. To give a few examples of what it can be used for.
  *
  * @since 2.7.0
+ * @since 5.2.0 The $args array parameter was added in place of an $echo boolean flag.
  *
- * @param bool $echo Default to echo and not return the form.
- * @return string|void String when $echo is false.
+ * @param array $args {
+ *     Optional. Array of display arguments.
+ *
+ *     @type bool   $echo       Whether to echo or return the form. Default true.
+ *     @type string $aria_label ARIA label for the search form. Useful to distinguish
+ *                              multiple search forms on the same page and improve
+ *                              accessibility. Default empty.
+ * }
+ * @return string|void String when the $echo param is false.
  */
-function get_search_form($echo = \true)
+function get_search_form($args = array())
 {
 }
 /**
@@ -81295,22 +83787,25 @@ function get_the_post_type_description()
  * three values for the format are not used, then custom format is assumed.
  *
  * @since 1.0.0
+ * @since 5.2.0 Added the `$selected` parameter.
  *
- * @param string $url    URL to archive.
- * @param string $text   Archive text description.
- * @param string $format Optional, default is 'html'. Can be 'link', 'option', 'html', or custom.
- * @param string $before Optional. Content to prepend to the description. Default empty.
- * @param string $after  Optional. Content to append to the description. Default empty.
+ * @param string $url      URL to archive.
+ * @param string $text     Archive text description.
+ * @param string $format   Optional, default is 'html'. Can be 'link', 'option', 'html', or custom.
+ * @param string $before   Optional. Content to prepend to the description. Default empty.
+ * @param string $after    Optional. Content to append to the description. Default empty.
+ * @param bool   $selected Optional. Set to true if the current page is the selected archive page.
  * @return string HTML link content for archive.
  */
-function get_archives_link($url, $text, $format = 'html', $before = '', $after = '')
+function get_archives_link($url, $text, $format = 'html', $before = '', $after = '', $selected = \false)
 {
 }
 /**
  * Display archive links based on type and format.
  *
  * @since 1.2.0
- * @since 4.4.0 $post_type arg was added.
+ * @since 4.4.0 The `$post_type` argument was added.
+ * @since 5.2.0 The `$year`, `$monthnum`, `$day`, and `$w` arguments were added.
  *
  * @see get_archives_link()
  *
@@ -81338,6 +83833,10 @@ function get_archives_link($url, $text, $format = 'html', $before = '', $after =
  *     @type string     $order           Whether to use ascending or descending order. Accepts 'ASC', or 'DESC'.
  *                                       Default 'DESC'.
  *     @type string     $post_type       Post type. Default 'post'.
+ *     @type string     $year            Year. Default current year.
+ *     @type string     $monthnum        Month number. Default current month number.
+ *     @type string     $day             Day. Default current day.
+ *     @type string     $w               Week. Default current week.
  * }
  * @return string|void String when retrieving.
  */
@@ -81603,6 +84102,16 @@ function wp_head()
  * @since 1.5.1
  */
 function wp_footer()
+{
+}
+/**
+ * Fire the wp_body_open action.
+ *
+ * * See {@see 'wp_body_open'}.
+ *
+ * @since 5.2.0
+ */
+function wp_body_open()
 {
 }
 /**
@@ -83721,10 +86230,11 @@ function load_default_textdomain($locale = \null)
  * @since 1.5.0
  * @since 4.6.0 The function now tries to load the .mo file from the languages directory first.
  *
- * @param string $domain          Unique identifier for retrieving translated strings
- * @param string $deprecated      Optional. Use the $plugin_rel_path parameter instead. Default false.
- * @param string $plugin_rel_path Optional. Relative path to WP_PLUGIN_DIR where the .mo file resides.
- *                                Default false.
+ * @param string       $domain          Unique identifier for retrieving translated strings
+ * @param string|false $deprecated      Optional. Deprecated. Use the $plugin_rel_path parameter instead.
+ *                                      Default false.
+ * @param string|false $plugin_rel_path Optional. Relative path to WP_PLUGIN_DIR where the .mo file resides.
+ *                                      Default false.
  * @return bool True when textdomain is successfully loaded, false otherwise.
  */
 function load_plugin_textdomain($domain, $deprecated = \false, $plugin_rel_path = \false)
@@ -83909,11 +86419,14 @@ function is_textdomain_loaded($domain)
  * won't suffer from that problem.
  *
  * @since 2.8.0
+ * @since 5.2.0 Added the `$domain` parameter.
  *
- * @param string $name The role name.
+ * @param string $name   The role name.
+ * @param string $domain Optional. Text domain. Unique identifier for retrieving translated strings.
+ *                       Default 'default'.
  * @return string Translated role name on success, original name on failure.
  */
-function translate_user_role($name)
+function translate_user_role($name, $domain = 'default')
 {
 }
 /**
@@ -84839,7 +87352,7 @@ function adjacent_post_link($format, $link, $in_same_term = \false, $excluded_te
  *
  * @global WP_Rewrite $wp_rewrite
  *
- * @param int  $pagenum Optional. Page ID. Default 1.
+ * @param int  $pagenum Optional. Page number. Default 1.
  * @param bool $escape  Optional. Whether to escape the URL for display, with esc_url(). Defaults to true.
  *                      Otherwise, prepares the URL with esc_url_raw().
  * @return string The link URL for the given page number.
@@ -85992,6 +88505,17 @@ function wp_get_active_and_valid_plugins()
 {
 }
 /**
+ * Filters a given list of plugins, removing any paused plugins from it.
+ *
+ * @since 5.2.0
+ *
+ * @param array $plugins List of absolute plugin main file paths.
+ * @return array Filtered value of $plugins, without any paused plugins.
+ */
+function wp_skip_paused_plugins(array $plugins)
+{
+}
+/**
  * Retrieves an array of active and valid themes.
  *
  * While upgrading or installing WordPress, no themes are returned.
@@ -86002,6 +88526,49 @@ function wp_get_active_and_valid_plugins()
  * @return array Array of paths to theme directories.
  */
 function wp_get_active_and_valid_themes()
+{
+}
+/**
+ * Filters a given list of themes, removing any paused themes from it.
+ *
+ * @since 5.2.0
+ *
+ * @param array $themes List of absolute theme directory paths.
+ * @return array Filtered value of $themes, without any paused themes.
+ */
+function wp_skip_paused_themes(array $themes)
+{
+}
+/**
+ * Is WordPress in Recovery Mode.
+ *
+ * In this mode, plugins or themes that cause WSODs will be paused.
+ *
+ * @since 5.2.0
+ *
+ * @return bool
+ */
+function wp_is_recovery_mode()
+{
+}
+/**
+ * Determines whether we are currently on an endpoint that should be protected against WSODs.
+ *
+ * @since 5.2.0
+ *
+ * @return bool True if the current endpoint should be protected.
+ */
+function is_protected_endpoint()
+{
+}
+/**
+ * Determines whether we are currently handling an AJAX action that should be protected against WSODs.
+ *
+ * @since 5.2.0
+ *
+ * @return bool True if the current AJAX action should be protected.
+ */
+function is_protected_ajax_action()
 {
 }
 /**
@@ -86309,6 +88876,26 @@ function wp_finalize_scraping_edited_file_errors($scrape_key)
  * @return bool True if Accepts or Content-Type headers contain application/json, false otherwise.
  */
 function wp_is_json_request()
+{
+}
+/**
+ * Checks whether current request is a JSONP request, or is expecting a JSONP response.
+ *
+ * @since 5.2.0
+ *
+ * @return bool True if JSONP request, false otherwise.
+ */
+function wp_is_jsonp_request()
+{
+}
+/**
+ * Checks whether current request is an XML request, or is expecting an XML response.
+ *
+ * @since 5.2.0
+ *
+ * @return bool True if Accepts or Content-Type headers contain xml, false otherwise.
+ */
+function wp_is_xml_request()
 {
 }
 /**
@@ -88993,36 +91580,6 @@ function get_most_recent_post_of_user($user_id)
 }
 // Misc functions
 /**
- * Get the size of a directory.
- *
- * A helper function that is used primarily to check whether
- * a blog has exceeded its allowed upload space.
- *
- * @since MU (3.0.0)
- *
- * @param string $directory Full path of a directory.
- * @return int Size of the directory in MB.
- */
-function get_dirsize($directory)
-{
-}
-/**
- * Get the size of a directory recursively.
- *
- * Used by get_dirsize() to get a directory's size when it contains
- * other directories.
- *
- * @since MU (3.0.0)
- * @since 4.3.0 $exclude parameter added.
- *
- * @param string $directory Full path of a directory.
- * @param string $exclude   Optional. Full path of a subdirectory to exclude from the total.
- * @return int|false Size in MB if a valid directory. False if not.
- */
-function recurse_dirsize($directory, $exclude = \null)
-{
-}
-/**
  * Check an array of MIME types against a whitelist.
  *
  * WordPress ships with a set of allowed upload filetypes,
@@ -89725,6 +92282,14 @@ function _prime_network_caches($network_ids)
  *     @type int    $spam         Whether the site is spam. Default 0.
  *     @type int    $deleted      Whether the site is deleted. Default 0.
  *     @type int    $lang_id      The site's language ID. Currently unused. Default 0.
+ *     @type int    $user_id      User ID for the site administrator. Passed to the
+ *                                `wp_initialize_site` hook.
+ *     @type string $title        Site title. Default is 'Site %d' where %d is the site ID. Passed
+ *                                to the `wp_initialize_site` hook.
+ *     @type array  $options      Custom option $key => $value pairs to use. Default empty array. Passed
+ *                                to the `wp_initialize_site` hook.
+ *     @type array  $meta         Custom site metadata $key => $value pairs to use. Default empty array.
+ *                                Passed to the `wp_initialize_site` hook.
  * }
  * @return int|WP_Error The new site's ID on success, or error object on failure.
  */
@@ -92779,6 +95344,7 @@ function the_content($more_link_text = \null, $strip_teaser = \false)
  * Retrieve the post content.
  *
  * @since 0.71
+ * @since 5.2.0 Added the `$post` parameter.
  *
  * @global int   $page      Page number of a single post/page.
  * @global int   $more      Boolean indicator for whether single post/page is being viewed.
@@ -92787,11 +95353,12 @@ function the_content($more_link_text = \null, $strip_teaser = \false)
  *                          part of the content separated by the `<!--nextpage-->` tag.
  * @global int   $multipage Boolean indicator for whether multiple pages are in play.
  *
- * @param string $more_link_text Optional. Content for when there is more text.
- * @param bool   $strip_teaser   Optional. Strip teaser content before the more text. Default is false.
+ * @param string             $more_link_text Optional. Content for when there is more text.
+ * @param bool               $strip_teaser   Optional. Strip teaser content before the more text. Default is false.
+ * @param WP_Post|object|int $post           Optional. WP_Post instance or Post ID/object. Default is null.
  * @return string
  */
-function get_the_content($more_link_text = \null, $strip_teaser = \false)
+function get_the_content($more_link_text = \null, $strip_teaser = \false, $post = \null)
 {
 }
 /**
@@ -95864,6 +98431,19 @@ function wp_cache_set_posts_last_changed()
 {
 }
 /**
+ * Get all available post MIME types for a given post type.
+ *
+ * @since 2.5.0
+ *
+ * @global wpdb $wpdb WordPress database abstraction object.
+ *
+ * @param string $type
+ * @return mixed
+ */
+function get_available_post_mime_types($type = 'attachment')
+{
+}
+/**
  * WordPress Query API
  *
  * The query API attempts to get which part of WordPress the user is on. It
@@ -96228,6 +98808,28 @@ function is_front_page()
  * @return bool True if blog view homepage, otherwise false.
  */
 function is_home()
+{
+}
+/**
+ * Determines whether the query is for the Privacy Policy page.
+ *
+ * The Privacy Policy page is the page that shows the Privacy Policy content of the site.
+ *
+ * is_privacy_policy() is dependent on the site's "Change your Privacy Policy page" Privacy Settings 'wp_page_for_privacy_policy'.
+ *
+ * This function will return true only on the page you set as the "Privacy Policy page".
+ *
+ * For more information on this and similar theme functions, check out
+ * the {@link https://developer.wordpress.org/themes/basics/conditional-tags/
+ * Conditional Tags} article in the Theme Developer Handbook.
+ *
+ * @since 5.2.0
+ *
+ * @global WP_Query $wp_query Global WP_Query instance.
+ *
+ * @return bool
+ */
+function is_privacy_policy()
 {
 }
 /**
@@ -96602,6 +99204,19 @@ function _find_post_by_old_date($post_type)
  * @return bool True when finished.
  */
 function setup_postdata($post)
+{
+}
+/**
+ * Generates post data.
+ *
+ * @since 5.2.0
+ *
+ * @global WP_Query $wp_query Global WP_Query instance.
+ *
+ * @param WP_Post|object|int $post WP_Post instance or Post ID/object.
+ * @return array|bool Elements of post, or false on failure.
+ */
+function generate_postdata($post)
 {
 }
 /**
@@ -99101,7 +101716,7 @@ function wp_remove_object_terms($object_id, $terms, $taxonomy)
  * The way this works is that if the taxonomy that the term belongs to is
  * hierarchical and has a parent, it will append that parent to the $slug.
  *
- * If that still doesn't return an unique slug, then it try to append a number
+ * If that still doesn't return a unique slug, then it tries to append a number
  * until it finds a number that is truly unique.
  *
  * The only purpose for `$term` is for appending a parent, if one exists.
@@ -99301,7 +101916,7 @@ function update_term_cache($terms, $taxonomy = '')
 /**
  * Retrieves children of taxonomy as Term IDs.
  *
- * @ignore
+ * @access private
  * @since 2.3.0
  *
  * @param string $taxonomy Taxonomy name.
@@ -99523,7 +102138,7 @@ function wp_get_split_term($old_term_id, $taxonomy)
  *
  * @param int $term_id Term ID.
  * @return bool Returns false if a term is not shared between multiple taxonomies or
- *              if splittng shared taxonomy terms is finished.
+ *              if splitting shared taxonomy terms is finished.
  */
 function wp_term_is_shared($term_id)
 {
@@ -99941,6 +102556,21 @@ function get_home_template()
  * @return string Full path to front page template file.
  */
 function get_front_page_template()
+{
+}
+/**
+ * Retrieve path of Privacy Policy page template in current or parent template.
+ *
+ * The template hierarchy and template path are filterable via the {@see '$type_template_hierarchy'}
+ * and {@see '$type_template'} dynamic hooks, where `$type` is 'privacypolicy'.
+ *
+ * @since 5.2.0
+ *
+ * @see get_query_template()
+ *
+ * @return string Full path to privacy policy template file.
+ */
+function get_privacy_policy_template()
 {
 }
 /**
@@ -100964,7 +103594,7 @@ function _custom_logo_header_styles()
  *
  * @global array $_wp_theme_features
  *
- * @param string $feature the feature to check
+ * @param string $feature The feature to check.
  * @return mixed The array of extra arguments or the value for the registered feature.
  */
 function get_theme_support($feature)
@@ -100978,7 +103608,7 @@ function get_theme_support($feature)
  *
  * @since 3.0.0
  * @see add_theme_support()
- * @param string $feature the feature being added
+ * @param string $feature The feature being removed.
  * @return bool|void Whether feature was removed.
  */
 function remove_theme_support($feature)
@@ -101000,14 +103630,14 @@ function _remove_theme_support($feature)
 {
 }
 /**
- * Checks a theme's support for a given feature
+ * Checks a theme's support for a given feature.
  *
  * @since 2.9.0
  *
  * @global array $_wp_theme_features
  *
- * @param string $feature the feature being checked
- * @return bool
+ * @param string $feature The feature being checked.
+ * @return bool True if the current theme supports the feature, false otherwise.
  */
 function current_theme_supports($feature)
 {
