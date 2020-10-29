@@ -26,4 +26,8 @@ fi
     --out="$FILE"
 
 # Shim the global $wpdb declaration, since it's actually set up inside a function call.
-printf '\nnamespace {\n/**\n * WordPress database abstraction object.\n * @var wpdb\n */\n$wpdb = \\null;\n}\n' >>"$FILE"
+if grep -qFx 'namespace {' "$FILE"; then
+    printf '\nnamespace {\n/**\n * WordPress database abstraction object.\n * @var wpdb\n */\n$wpdb = \\null;\n}\n' >>"$FILE"
+else
+    printf '\n/**\n * WordPress database abstraction object.\n * @var wpdb\n */\n$wpdb = \\null;\n' >>"$FILE"
+fi
