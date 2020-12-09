@@ -1,6 +1,8 @@
 # WordPress Stubs
 
-[![Build Status](https://travis-ci.com/php-stubs/wordpress-stubs.svg?branch=master)](https://travis-ci.com/php-stubs/wordpress-stubs)
+[![Build Status](https://travis-ci.com/php-stubs/wordpress-stubs.svg?branch=master)](https://travis-ci.com/github/php-stubs/wordpress-stubs)
+[![Packagist](https://img.shields.io/packagist/v/php-stubs/wordpress-stubs.svg?color=4CC61E&style=popout)](https://packagist.org/packages/php-stubs/wordpress-stubs)
+[![Packagist stats](https://img.shields.io/packagist/dt/php-stubs/wordpress-stubs.svg)](https://packagist.org/packages/php-stubs/wordpress-stubs/stats)
 
 This package is a fork of `giacocorsiglia/wordpress-stubs`.
 It provides stub declarations for [WordPress](https://wordpress.org/)
