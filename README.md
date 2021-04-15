@@ -73,7 +73,7 @@ This package is versioned to match the WordPress version from which the stubs ar
 
 1. Run modern PHP version
 1. Clone this repository and `cd` into it
-1. Update `"johnpbloch/wordpress": "x.x.x"` in `composer.json` with the desired version
+1. Update `"johnpbloch/wordpress": "x.x.x"` in `source/composer.json` with the desired version
 1. Run `composer update`
 1. And run `./generate.sh`
 
