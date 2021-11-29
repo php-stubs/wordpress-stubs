@@ -1,6 +1,6 @@
 {
     "require": {
-        "php": "~7.1",
+        "php": "~7.3 || ~8.0",
         "ext-gettext": "*",
         "ext-hash": "*",
         "ext-json": "*",
