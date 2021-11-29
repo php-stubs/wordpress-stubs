@@ -5,13 +5,10 @@ os:
 dist: "bionic"
 
 php:
-  # giacocorsiglia/stubs-generator does not support PHP 7.0
+#  - "8.1"
+  - "8.0"
   - "7.4"
   - "7.3"
-  - "7.2"
-  - "7.1"
-#  # PHP 8.0
-#  - "nightly"
 
 cache:
   directories:
@@ -19,7 +16,6 @@ cache:
 
 before_install:
   - "phpenv config-rm xdebug.ini"
-  - "composer self-update --1"
   - "composer validate --strict"
 
 install:
@@ -42,11 +38,6 @@ install:
 
 before_script:
   - "cat ./source/wordpress/wp-includes/version.php"
-  - |
-    if dpkg --compare-versions "$(phpenv version-name)" ge "7.4"; then
-        echo "Hiding deprecated errors in generate-stubs ..."
-        sed -i -e '3s/^/error_reporting(E_ALL ^ E_DEPRECATED);/' ./vendor/giacocorsiglia/stubs-generator/bin/generate-stubs
-    fi
 
 script:
   # Generate stubs
