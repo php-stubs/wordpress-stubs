@@ -68,6 +68,11 @@ return new class extends NodeVisitor {
 
             foreach ($types as $type) {
                 $parts = preg_split('#\s+#', $type);
+
+                if (strpos($parts[1], '...$') !== false) {
+                    return null;
+                }
+
                 $elements[] = substr($parts[1], 1) . '?: ' . $parts[0];
             }
 
