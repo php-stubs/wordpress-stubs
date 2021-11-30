@@ -38,9 +38,9 @@ return new class extends NodeVisitor {
 
         try {
             $docblock = $factory->create($docCommentText);
-        } catch ( RuntimeException $e ) {
+        } catch ( \RuntimeException $e ) {
             return null;
-        } catch ( InvalidArgumentException $e ) {
+        } catch ( \InvalidArgumentException $e ) {
             return null;
         }
 
@@ -104,7 +104,7 @@ return new class extends NodeVisitor {
 
         $newDocComment = sprintf(
             "%s\n%s\n */",
-            substr($docCommentText,0,-4),
+            substr($docCommentText, 0, -4),
             implode("\n", $additions)
         );
 
