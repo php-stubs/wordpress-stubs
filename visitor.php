@@ -66,6 +66,12 @@ return new class extends NodeVisitor {
             unset($types[0]);
             $elements = [];
 
+            $paramVariableType = preg_replace('#[a-zA-Z0-9_]+\[\]#', 'array', $paramVariableType->__toString());
+
+            if (strpos($paramVariableType, 'array') === false) {
+                continue;
+            }
+
             foreach ($types as $typeTag) {
                 list($type, $name) = preg_split('#\s+#', trim($typeTag));
 
@@ -75,8 +81,6 @@ return new class extends NodeVisitor {
 
                 $elements[] = substr($name, 1) . '?: ' . $type;
             }
-
-            $paramVariableType = preg_replace('#[a-zA-Z0-9_]+\[\]#', 'array', $paramVariableType->__toString());
 
             $additions[] = sprintf(
                 " * @phpstan-param %1\$s{\n *   %2\$s,\n * } $%3\$s",
