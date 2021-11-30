@@ -72,6 +72,10 @@ return new class extends NodeVisitor {
                 continue;
             }
 
+            if (strpos($paramVariableType, 'array|') !== false) {
+                $paramVariableType = str_replace('array|', '', $paramVariableType) . '|array';
+            }
+
             foreach ($types as $typeTag) {
                 list($type, $name) = preg_split('#\s+#', trim($typeTag));
 
