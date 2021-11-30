@@ -10,6 +10,13 @@ use StubsGenerator\NodeVisitor;
 
 return new class extends NodeVisitor {
 
+    private \phpDocumentor\Reflection\DocBlockFactory $docBlockFactory;
+
+    public function __construct()
+    {
+        $this->docBlockFactory = \phpDocumentor\Reflection\DocBlockFactory::createInstance();
+    }
+
     public function enterNode(Node $node)
     {
         parent::enterNode($node);
@@ -34,10 +41,9 @@ return new class extends NodeVisitor {
     private function addArrayHashNotation(Doc $docComment): ?Doc
     {
         $docCommentText = $docComment->getText();
-        $factory = \phpDocumentor\Reflection\DocBlockFactory::createInstance();
 
         try {
-            $docblock = $factory->create($docCommentText);
+            $docblock = $this->docBlockFactory->create($docCommentText);
         } catch ( \RuntimeException $e ) {
             return null;
         } catch ( \InvalidArgumentException $e ) {
