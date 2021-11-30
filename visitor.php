@@ -83,6 +83,10 @@ return new class extends NodeVisitor {
                     return null;
                 }
 
+                if (strpos($name, '$') !== 0) {
+                    return null;
+                }
+
                 $elements[] = substr($name, 1) . '?: ' . $type;
             }
 
