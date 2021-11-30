@@ -66,14 +66,14 @@ return new class extends NodeVisitor {
             unset($types[0]);
             $elements = [];
 
-            foreach ($types as $type) {
-                $parts = preg_split('#\s+#', trim($type));
+            foreach ($types as $typeTag) {
+                list($type, $name) = preg_split('#\s+#', trim($typeTag));
 
-                if (strpos($parts[1], '...$') !== false) {
+                if (strpos($name, '...$') !== false) {
                     return null;
                 }
 
-                $elements[] = substr($parts[1], 1) . '?: ' . $parts[0];
+                $elements[] = substr($name, 1) . '?: ' . $type;
             }
 
             $additions[] = sprintf(
