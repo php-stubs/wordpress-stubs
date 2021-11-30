@@ -76,9 +76,11 @@ return new class extends NodeVisitor {
                 $elements[] = substr($name, 1) . '?: ' . $type;
             }
 
+            $paramVariableType = preg_replace('#[a-zA-Z0-9_]+\[\]#', 'array', $paramVariableType->__toString());
+
             $additions[] = sprintf(
                 " * @phpstan-param %1\$s{\n *   %2\$s,\n * } $%3\$s",
-                str_replace(['|string', 'string|'], '', $paramVariableType->__toString()),
+                str_replace(['|string', 'string|'], '', $paramVariableType),
                 implode(",\n *   ", $elements),
                 $paramVariableName
             );
