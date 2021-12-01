@@ -64,31 +64,45 @@ return new class extends NodeVisitor {
             $paramVariableName = $param->getVariableName();
             $paramVariableType = $param->getType();
 
-            if (!$paramVariableName || !$paramVariableType || strpos($paramDescription, '    @type') === false) {
+            // Skip if the parameter variable name or type are missing.
+            if (!$paramVariableName || !$paramVariableType) {
                 continue;
             }
 
+            // Skip if the description doesn't contain at least one correctly
+            // formatted `@type`, which indicates an array hash.
+            if (strpos($paramDescription, '    @type') === false) {
+                continue;
+            }
+
+            // Populate `$types` with the value of each top level `@type`.
             $types = preg_split('/\R+    @type /', $paramDescription);
             unset($types[0]);
             $elements = [];
 
+            // PHPStan dosn't support typed array shapes (`int[]{...}`) so replace
+            // typed arrays such as `int[]` with `array`.
             $paramVariableType = preg_replace('#[a-zA-Z0-9_]+\[\]#', 'array', $paramVariableType->__toString());
 
             if (strpos($paramVariableType, 'array') === false) {
+                // Skip if we have hash notation that's not for an array (ie. for `object`).
                 continue;
             }
 
             if (strpos($paramVariableType, 'array|') !== false) {
+                // Move `array` to the end of union types so the appended array shape works.
                 $paramVariableType = str_replace('array|', '', $paramVariableType) . '|array';
             }
 
             foreach ($types as $typeTag) {
                 list($type, $name) = preg_split('#\s+#', trim($typeTag));
 
+                // Bail out completely if any element doesn't have a static key.
                 if (strpos($name, '...$') !== false) {
                     return null;
                 }
 
+                // Bail out completely if the name of any element is invalid.
                 if (strpos($name, '$') !== 0) {
                     return null;
                 }
