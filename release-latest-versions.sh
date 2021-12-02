@@ -14,7 +14,7 @@ Do_release()
     if git rev-parse "refs/tags/v${VERSION}" >/dev/null 2>&1; then
         echo "Tag exists!"
         echo
-        return 0;
+        return 0
     fi
 
     # Get new version
@@ -43,7 +43,7 @@ for MINOR in                         4.7 4.8 4.9 \
     if [ -z "${LATEST_FIVE}" ]; then
         echo "No version for ${MINOR}!"
         echo
-        continue;
+        continue
     fi
 
     while read -r PATCH; do
