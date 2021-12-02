@@ -5954,16 +5954,16 @@ namespace {
          *     @type mixed  $files       If a directory and $recursive is true, contains another array of files.
          * }
          * @phpstan-return false|array{
-         *   name?: string,
-         *   perms?: string,
-         *   permsn?: int,
-         *   owner?: string,
-         *   size?: int,
-         *   lastmodunix?: int,
-         *   lastmod?: mixed,
-         *   time?: int,
-         *   type?: string,
-         *   files?: mixed,
+         *   name: string,
+         *   perms: string,
+         *   permsn: int,
+         *   owner: string,
+         *   size: int,
+         *   lastmodunix: int,
+         *   lastmod: mixed,
+         *   time: int,
+         *   type: string,
+         *   files: mixed,
          * }
          */
         public function dirlist($path, $include_hidden = \true, $recursive = \false)
@@ -6335,16 +6335,16 @@ namespace {
          *     @type mixed  $files       If a directory and $recursive is true, contains another array of files.
          * }
          * @phpstan-return false|array{
-         *   name?: string,
-         *   perms?: string,
-         *   permsn?: int,
-         *   owner?: string,
-         *   size?: int,
-         *   lastmodunix?: int,
-         *   lastmod?: mixed,
-         *   time?: int,
-         *   type?: string,
-         *   files?: mixed,
+         *   name: string,
+         *   perms: string,
+         *   permsn: int,
+         *   owner: string,
+         *   size: int,
+         *   lastmodunix: int,
+         *   lastmod: mixed,
+         *   time: int,
+         *   type: string,
+         *   files: mixed,
          * }
          */
         public function dirlist($path, $include_hidden = \true, $recursive = \false)
@@ -6709,16 +6709,16 @@ namespace {
          *     @type mixed  $files       If a directory and $recursive is true, contains another array of files.
          * }
          * @phpstan-return false|array{
-         *   name?: string,
-         *   perms?: string,
-         *   permsn?: int,
-         *   owner?: string,
-         *   size?: int,
-         *   lastmodunix?: int,
-         *   lastmod?: mixed,
-         *   time?: int,
-         *   type?: string,
-         *   files?: mixed,
+         *   name: string,
+         *   perms: string,
+         *   permsn: int,
+         *   owner: string,
+         *   size: int,
+         *   lastmodunix: int,
+         *   lastmod: mixed,
+         *   time: int,
+         *   type: string,
+         *   files: mixed,
          * }
          */
         public function dirlist($path = '.', $include_hidden = \true, $recursive = \false)
@@ -7084,16 +7084,16 @@ namespace {
          *     @type mixed  $files       If a directory and $recursive is true, contains another array of files.
          * }
          * @phpstan-return false|array{
-         *   name?: string,
-         *   perms?: string,
-         *   permsn?: int,
-         *   owner?: string,
-         *   size?: int,
-         *   lastmodunix?: int,
-         *   lastmod?: mixed,
-         *   time?: int,
-         *   type?: string,
-         *   files?: mixed,
+         *   name: string,
+         *   perms: string,
+         *   permsn: int,
+         *   owner: string,
+         *   size: int,
+         *   lastmodunix: int,
+         *   lastmod: mixed,
+         *   time: int,
+         *   type: string,
+         *   files: mixed,
          * }
          */
         public function dirlist($path = '.', $include_hidden = \true, $recursive = \false)
@@ -7544,16 +7544,16 @@ namespace {
          *     @type mixed  $files       If a directory and $recursive is true, contains another array of files.
          * }
          * @phpstan-return false|array{
-         *   name?: string,
-         *   perms?: string,
-         *   permsn?: int,
-         *   owner?: string,
-         *   size?: int,
-         *   lastmodunix?: int,
-         *   lastmod?: mixed,
-         *   time?: int,
-         *   type?: string,
-         *   files?: mixed,
+         *   name: string,
+         *   perms: string,
+         *   permsn: int,
+         *   owner: string,
+         *   size: int,
+         *   lastmodunix: int,
+         *   lastmod: mixed,
+         *   time: int,
+         *   type: string,
+         *   files: mixed,
          * }
          */
         public function dirlist($path, $include_hidden = \true, $recursive = \false)
@@ -29431,8 +29431,8 @@ namespace {
          *     @type string $body    HTTP response body.
          * }
          * @phpstan-return array{
-         *   headers?: string,
-         *   body?: string,
+         *   headers: string,
+         *   body: string,
          * }
          */
         public static function processResponse($strResponse)
@@ -29461,9 +29461,9 @@ namespace {
          *                                        an array containing `WP_Http_Cookie` objects is returned.
          * }
          * @phpstan-return array{
-         *   response?: array,
-         *   newheaders?: array,
-         *   cookies?: WP_Http_Cookie[],
+         *   response: array,
+         *   newheaders: array,
+         *   cookies: WP_Http_Cookie[],
          * }
          */
         public static function processHeaders($headers, $url = '')
@@ -35323,9 +35323,9 @@ namespace {
          *     @type string $panel   ID for panel to be autofocused.
          * }
          * @phpstan-return array{
-         *   control?: string,
-         *   section?: string,
-         *   panel?: string,
+         *   control: string,
+         *   section: string,
+         *   panel: string,
          * }
          */
         public function get_autofocus()
@@ -36607,8 +36607,8 @@ namespace {
          *     @type array  $keys Keys for multidimensional array.
          * }
          * @phpstan-return array{
-         *   base?: string,
-         *   keys?: array,
+         *   base: string,
+         *   keys: array,
          * }
          */
         public final function id_data()
@@ -37329,8 +37329,8 @@ namespace {
          *     @type string $content The contents of the widget form itself.
          * }
          * @phpstan-return array{
-         *   control?: string,
-         *   content?: string,
+         *   control: string,
+         *   content: string,
          * }
          */
         public function get_widget_control_parts($args)
@@ -38119,8 +38119,8 @@ namespace {
          *     @type string $where SQL fragment to append to the main WHERE clause.
          * }
          * @phpstan-return array{
-         *   join?: string,
-         *   where?: string,
+         *   join: string,
+         *   where: string,
          * }
          */
         protected function get_sql_clauses()
@@ -38144,8 +38144,8 @@ namespace {
          *     @type string $where SQL fragment to append to the main WHERE clause.
          * }
          * @phpstan-return array{
-         *   join?: string,
-         *   where?: string,
+         *   join: string,
+         *   where: string,
          * }
          */
         protected function get_sql_for_query($query, $depth = 0)
@@ -38167,8 +38167,8 @@ namespace {
          *     @type string $where SQL fragment to append to the main WHERE clause.
          * }
          * @phpstan-return array{
-         *   join?: string,
-         *   where?: string,
+         *   join: string,
+         *   where: string,
          * }
          */
         protected function get_sql_for_subquery($query)
@@ -38188,8 +38188,8 @@ namespace {
          *     @type string $where SQL fragment to append to the main WHERE clause.
          * }
          * @phpstan-return array{
-         *   join?: string,
-         *   where?: string,
+         *   join: string,
+         *   where: string,
          * }
          */
         protected function get_sql_for_clause($query, $parent_query)
@@ -39680,9 +39680,9 @@ namespace {
          *     @type string          $domain  Cookie domain.
          * }
          * @phpstan-return array{
-         *   expires?: string|int|null,
-         *   path?: string,
-         *   domain?: string,
+         *   expires: string|int|null,
+         *   path: string,
+         *   domain: string,
          * }
          */
         public function get_attributes()
@@ -40671,8 +40671,8 @@ namespace {
          *     @type int $height The image height.
          * }
          * @phpstan-return array{
-         *   width?: int,
-         *   height?: int,
+         *   width: int,
+         *   height: int,
          * }
          */
         public function get_size()
@@ -42146,8 +42146,8 @@ namespace {
          *     @type string $where SQL fragment to append to the main WHERE clause.
          * }
          * @phpstan-return false|array{
-         *   join?: string,
-         *   where?: string,
+         *   join: string,
+         *   where: string,
          * }
          */
         public function get_sql($type, $primary_table, $primary_id_column, $context = \null)
@@ -42168,8 +42168,8 @@ namespace {
          *     @type string $where SQL fragment to append to the main WHERE clause.
          * }
          * @phpstan-return array{
-         *   join?: string,
-         *   where?: string,
+         *   join: string,
+         *   where: string,
          * }
          */
         protected function get_sql_clauses()
@@ -42193,8 +42193,8 @@ namespace {
          *     @type string $where SQL fragment to append to the main WHERE clause.
          * }
          * @phpstan-return array{
-         *   join?: string,
-         *   where?: string,
+         *   join: string,
+         *   where: string,
          * }
          */
         protected function get_sql_for_query(&$query, $depth = 0)
@@ -42220,8 +42220,8 @@ namespace {
          *     @type string $where SQL fragment to append to the main WHERE clause.
          * }
          * @phpstan-return array{
-         *   join?: string,
-         *   where?: string,
+         *   join: string,
+         *   where: string,
          * }
          */
         public function get_sql_for_clause(&$clause, $parent_query, $clause_key = '')
@@ -46335,8 +46335,8 @@ namespace {
          *     @type string $type The extension type. Either 'plugin' or 'theme'.
          * }
          * @phpstan-return false|array{
-         *   slug?: string,
-         *   type?: string,
+         *   slug: string,
+         *   type: string,
          * }
          */
         protected function get_extension_for_error($error)
@@ -48575,8 +48575,8 @@ namespace {
          *     @type string $where SQL fragment to append to the main WHERE clause.
          * }
          * @phpstan-return array{
-         *   join?: string,
-         *   where?: string,
+         *   join: string,
+         *   where: string,
          * }
          */
         public function get_sql($primary_table, $primary_id_column)
@@ -48597,8 +48597,8 @@ namespace {
          *     @type string $where SQL fragment to append to the main WHERE clause.
          * }
          * @phpstan-return array{
-         *   join?: string,
-         *   where?: string,
+         *   join: string,
+         *   where: string,
          * }
          */
         protected function get_sql_clauses()
@@ -48622,8 +48622,8 @@ namespace {
          *     @type string $where SQL fragment to append to the main WHERE clause.
          * }
          * @phpstan-return array{
-         *   join?: string,
-         *   where?: string,
+         *   join: string,
+         *   where: string,
          * }
          */
         protected function get_sql_for_query(&$query, $depth = 0)
@@ -48645,8 +48645,8 @@ namespace {
          *     @type string $where SQL fragment to append to the main WHERE clause.
          * }
          * @phpstan-return array{
-         *   join?: string,
-         *   where?: string,
+         *   join: string,
+         *   where: string,
          * }
          */
         public function get_sql_for_clause(&$clause, $parent_query)
@@ -49719,10 +49719,10 @@ namespace {
          *                                Value < 0 indicates a blank row.
          * }
          * @phpstan-return array{
-         *   orig_matches?: array,
-         *   final_matches?: array,
-         *   orig_rows?: array,
-         *   final_rows?: array,
+         *   orig_matches: array,
+         *   final_matches: array,
+         *   orig_rows: array,
+         *   final_rows: array,
          * }
          */
         public function interleave_changed_lines($orig, $final)
@@ -58321,8 +58321,8 @@ namespace {
          *     @type array  $keys Keys for multidimensional array.
          * }
          * @phpstan-return array{
-         *   base?: string,
-         *   keys?: array,
+         *   base: string,
+         *   keys: array,
          * }
          */
         public final function id_data()
@@ -60888,8 +60888,8 @@ namespace {
          *     @type array $_embedded Embedded objects.
          * }
          * @phpstan-return array{
-         *   _links?: array,
-         *   _embedded?: array,
+         *   _links: array,
+         *   _embedded: array,
          * }
          */
         public function response_to_data($response, $embed)
@@ -60938,8 +60938,8 @@ namespace {
          *     @type array $_embedded Embedded objects.
          * }
          * @phpstan-return array{
-         *   _links?: array,
-         *   _embedded?: array,
+         *   _links: array,
+         *   _embedded: array,
          * }
          */
         protected function embed_links($data, $embed = \true)
@@ -70124,8 +70124,8 @@ namespace {
          *     @type string $collate Collation.
          * }
          * @phpstan-return array{
-         *   charset?: string,
-         *   collate?: string,
+         *   charset: string,
+         *   collate: string,
          * }
          */
         public function determine_charset($charset, $collate)
@@ -76924,10 +76924,10 @@ namespace {
      *     @type string $file    Plugin filename relative to the plugins directory.
      * }
      * @phpstan-return array{
-     *   status?: string,
-     *   url?: string,
-     *   version?: string,
-     *   file?: string,
+     *   status: string,
+     *   url: string,
+     *   version: string,
+     *   file: string,
      * }
      */
     function install_plugin_install_status($api, $loop = \false)
@@ -77010,18 +77010,18 @@ namespace {
      *     @type string $UpdateURI   ID of the plugin for update purposes, should be a URI.
      * }
      * @phpstan-return array{
-     *   Name?: string,
-     *   Title?: string,
-     *   Description?: string,
-     *   Author?: string,
-     *   AuthorURI?: string,
-     *   Version?: string,
-     *   TextDomain?: string,
-     *   DomainPath?: string,
-     *   Network?: bool,
-     *   RequiresWP?: string,
-     *   RequiresPHP?: string,
-     *   UpdateURI?: string,
+     *   Name: string,
+     *   Title: string,
+     *   Description: string,
+     *   Author: string,
+     *   AuthorURI: string,
+     *   Version: string,
+     *   TextDomain: string,
+     *   DomainPath: string,
+     *   Network: bool,
+     *   RequiresWP: string,
+     *   RequiresPHP: string,
+     *   UpdateURI: string,
      * }
      */
     function get_plugin_data($plugin_file, $markup = \true, $translate = \true)
@@ -77055,15 +77055,15 @@ namespace {
      *     @type bool   $Network     Whether the plugin can only be activated network-wide.
      * }
      * @phpstan-return array{
-     *   Name?: string,
-     *   Title?: string,
-     *   Description?: string,
-     *   Author?: string,
-     *   AuthorURI?: string,
-     *   Version?: string,
-     *   TextDomain?: string,
-     *   DomainPath?: string,
-     *   Network?: bool,
+     *   Name: string,
+     *   Title: string,
+     *   Description: string,
+     *   Author: string,
+     *   AuthorURI: string,
+     *   Version: string,
+     *   TextDomain: string,
+     *   DomainPath: string,
+     *   Network: bool,
      * }
      */
     function _get_plugin_data_markup_translate($plugin_file, $plugin_data, $markup = \true, $translate = \true)
@@ -78291,8 +78291,8 @@ namespace {
      *     @type string $1 The post name.
      * }
      * @phpstan-return array{
-     *   0?: string,
-     *   1?: string,
+     *   0: string,
+     *   1: string,
      * }
      */
     function get_sample_permalink($id, $title = \null, $name = \null)
@@ -79596,10 +79596,10 @@ namespace {
      *                           'success', 'warning', 'info'. Default 'error'.
      * }
      * @phpstan-return array{
-     *   setting?: string,
-     *   code?: string,
-     *   message?: string,
-     *   type?: string,
+     *   setting: string,
+     *   code: string,
+     *   message: string,
+     *   type: string,
      * }
      */
     function get_settings_errors($setting = '', $sanitize = \false)
@@ -80744,10 +80744,10 @@ namespace {
      *     @type string $password_message The explanatory message regarding the password.
      * }
      * @phpstan-return array{
-     *   url?: string,
-     *   user_id?: int,
-     *   password?: string,
-     *   password_message?: string,
+     *   url: string,
+     *   user_id: int,
+     *   password: string,
+     *   password_message: string,
      * }
      */
     function wp_install($blog_title, $user_name, $user_email, $public, $deprecated = '', $user_password = '', $language = '')
@@ -88143,9 +88143,9 @@ namespace {
      *     @type string $comment_author_url   The URL address of the current commenter, or an empty string.
      * }
      * @phpstan-return array{
-     *   comment_author?: string,
-     *   comment_author_email?: string,
-     *   comment_author_url?: string,
+     *   comment_author: string,
+     *   comment_author_email: string,
+     *   comment_author_url: string,
      * }
      */
     function wp_get_current_commenter()
@@ -92034,8 +92034,8 @@ namespace {
      *     @type int $1 The embed height.
      * }
      * @phpstan-return array{
-     *   0?: int,
-     *   1?: int,
+     *   0: int,
+     *   1: int,
      * }
      */
     function wp_embed_defaults($url = '')
@@ -95956,12 +95956,12 @@ namespace {
      *     @type string|false $error   False or error message.
      * }
      * @phpstan-return array{
-     *   path?: string,
-     *   url?: string,
-     *   subdir?: string,
-     *   basedir?: string,
-     *   baseurl?: string,
-     *   error?: string|false,
+     *   path: string,
+     *   url: string,
+     *   subdir: string,
+     *   basedir: string,
+     *   baseurl: string,
+     *   error: string|false,
      * }
      */
     function wp_upload_dir($time = \null, $create_dir = \true, $refresh_cache = \false)
@@ -96057,10 +96057,10 @@ namespace {
      *     @type string|false $error Error message, if there has been an error.
      * }
      * @phpstan-return array{
-     *   file?: string,
-     *   url?: string,
-     *   type?: string,
-     *   error?: string|false,
+     *   file: string,
+     *   url: string,
+     *   type: string,
+     *   error: string|false,
      * }
      */
     function wp_upload_bits($name, $deprecated, $bits, $time = \null)
@@ -96106,8 +96106,8 @@ namespace {
      *     @type string|false $type File mime type, or false if the file doesn't match a mime type.
      * }
      * @phpstan-return array{
-     *   ext?: string|false,
-     *   type?: string|false,
+     *   ext: string|false,
+     *   type: string|false,
      * }
      */
     function wp_check_filetype($filename, $mimes = \null)
@@ -96137,9 +96137,9 @@ namespace {
      *     @type string|false $proper_filename File name with its correct extension, or false if it cannot be determined.
      * }
      * @phpstan-return array{
-     *   ext?: string|false,
-     *   type?: string|false,
-     *   proper_filename?: string|false,
+     *   ext: string|false,
+     *   type: string|false,
+     *   proper_filename: string|false,
      * }
      */
     function wp_check_filetype_and_ext($file, $filename, $mimes = \null)
@@ -96394,9 +96394,9 @@ namespace {
      *     @type array  $2 Arguments to control behavior.
      * }
      * @phpstan-return array{
-     *   0?: string,
-     *   1?: string,
-     *   2?: array,
+     *   0: string,
+     *   1: string,
+     *   2: array,
      * }
      */
     function _wp_die_process_input($message, $title = '', $args = array())
@@ -100309,11 +100309,11 @@ namespace {
      *     @type WP_HTTP_Requests_Response|null $http_response Raw HTTP response object.
      * }
      * @phpstan-return \WP_Error|array{
-     *   headers?: string[],
-     *   body?: string,
-     *   response?: array,
-     *   cookies?: WP_HTTP_Cookie[],
-     *   http_response?: WP_HTTP_Requests_Response|null,
+     *   headers: string[],
+     *   body: string,
+     *   response: array,
+     *   cookies: WP_HTTP_Cookie[],
+     *   http_response: WP_HTTP_Requests_Response|null,
      * }
      */
     function wp_remote_request($url, $args = array())
@@ -101814,12 +101814,12 @@ namespace {
      *     @type string $domain   Text domain.
      * }
      * @phpstan-return array{
-     *   0?: string,
-     *   1?: string,
-     *   singular?: string,
-     *   plural?: string,
-     *   context?: null,
-     *   domain?: string,
+     *   0: string,
+     *   1: string,
+     *   singular: string,
+     *   plural: string,
+     *   context: null,
+     *   domain: string,
      * }
      */
     function _n_noop($singular, $plural, $domain = \null)
@@ -101860,13 +101860,13 @@ namespace {
      *     @type string $domain   Text domain.
      * }
      * @phpstan-return array{
-     *   0?: string,
-     *   1?: string,
-     *   2?: string,
-     *   singular?: string,
-     *   plural?: string,
-     *   context?: string,
-     *   domain?: string,
+     *   0: string,
+     *   1: string,
+     *   2: string,
+     *   singular: string,
+     *   plural: string,
+     *   context: string,
+     *   domain: string,
      * }
      */
     function _nx_noop($singular, $plural, $context, $domain = \null)
@@ -104005,8 +104005,8 @@ namespace {
      *   extra_attr?: string,
      * } $args
      * @phpstan-return array{
-     *   found_avatar?: bool,
-     *   url?: string,
+     *   found_avatar: bool,
+     *   url: string,
      * }
      */
     function get_avatar_data($id_or_email, $args = \null)
@@ -104909,8 +104909,8 @@ namespace {
      *     @type int $1 The maximum height in pixels.
      * }
      * @phpstan-return array{
-     *   0?: int,
-     *   1?: int,
+     *   0: int,
+     *   1: int,
      * }
      */
     function image_constrain_size_for_editor($width, $height, $size = 'medium', $context = \null)
@@ -104961,10 +104961,10 @@ namespace {
      *     @type bool   $3 Whether the image is a resized image.
      * }
      * @phpstan-return false|array{
-     *   0?: string,
-     *   1?: int,
-     *   2?: int,
-     *   3?: bool,
+     *   0: string,
+     *   1: int,
+     *   2: int,
+     *   3: bool,
      * }
      */
     function image_downsize($id, $size = 'medium')
@@ -105073,8 +105073,8 @@ namespace {
      *     @type int $1 The height in pixels.
      * }
      * @phpstan-return array{
-     *   0?: int,
-     *   1?: int,
+     *   0: int,
+     *   1: int,
      * }
      */
     function wp_constrain_dimensions($current_width, $current_height, $max_width = 0, $max_height = 0)
@@ -105175,11 +105175,11 @@ namespace {
      *     @type string $url    URL of image.
      * }
      * @phpstan-return false|array{
-     *   file?: string,
-     *   width?: int,
-     *   height?: int,
-     *   path?: string,
-     *   url?: string,
+     *   file: string,
+     *   width: int,
+     *   height: int,
+     *   path: string,
+     *   url: string,
      * }
      */
     function image_get_intermediate_size($post_id, $size = 'thumbnail')
@@ -105225,10 +105225,10 @@ namespace {
      *     @type bool   $3 Whether the image is a resized image.
      * }
      * @phpstan-return false|array{
-     *   0?: string,
-     *   1?: int,
-     *   2?: int,
-     *   3?: bool,
+     *   0: string,
+     *   1: int,
+     *   2: int,
+     *   3: bool,
      * }
      */
     function wp_get_attachment_image_src($attachment_id, $size = 'thumbnail', $icon = \false)
@@ -105321,8 +105321,8 @@ namespace {
      *     @type int $1 Image height.
      * }
      * @phpstan-return false|array{
-     *   0?: int,
-     *   1?: int,
+     *   0: int,
+     *   1: int,
      * }
      */
     function _wp_get_image_size_from_meta($size_name, $image_meta)
@@ -106016,8 +106016,8 @@ namespace {
      *     @type int $1 The maximum height in pixels.
      * }
      * @phpstan-return array{
-     *   0?: int,
-     *   1?: int,
+     *   0: int,
+     *   1: int,
      * }
      */
     function wp_expand_dimensions($example_width, $example_height, $max_width, $max_height)
@@ -106129,40 +106129,40 @@ namespace {
      * }
      *
      * @phpstan-return void|array{
-     *   alt?: string,
-     *   author?: string,
-     *   authorName?: string,
-     *   caption?: string,
-     *   compat?: array,
-     *   context?: string,
-     *   date?: int,
-     *   dateFormatted?: string,
-     *   description?: string,
-     *   editLink?: string,
-     *   filename?: string,
-     *   filesizeHumanReadable?: string,
-     *   filesizeInBytes?: int,
-     *   height?: int,
-     *   icon?: string,
-     *   id?: int,
-     *   link?: string,
-     *   menuOrder?: int,
-     *   meta?: array,
-     *   mime?: string,
-     *   modified?: int,
-     *   name?: string,
-     *   nonces?: array,
-     *   orientation?: string,
-     *   sizes?: array,
-     *   status?: string,
-     *   subtype?: string,
-     *   title?: string,
-     *   type?: string,
-     *   uploadedTo?: int,
-     *   uploadedToLink?: string,
-     *   uploadedToTitle?: string,
-     *   url?: string,
-     *   width?: int,
+     *   alt: string,
+     *   author: string,
+     *   authorName: string,
+     *   caption: string,
+     *   compat: array,
+     *   context: string,
+     *   date: int,
+     *   dateFormatted: string,
+     *   description: string,
+     *   editLink: string,
+     *   filename: string,
+     *   filesizeHumanReadable: string,
+     *   filesizeInBytes: int,
+     *   height: int,
+     *   icon: string,
+     *   id: int,
+     *   link: string,
+     *   menuOrder: int,
+     *   meta: array,
+     *   mime: string,
+     *   modified: int,
+     *   name: string,
+     *   nonces: array,
+     *   orientation: string,
+     *   sizes: array,
+     *   status: string,
+     *   subtype: string,
+     *   title: string,
+     *   type: string,
+     *   uploadedTo: int,
+     *   uploadedToLink: string,
+     *   uploadedToTitle: string,
+     *   url: string,
+     *   width: int,
      * }
      */
     function wp_prepare_attachment_for_js($attachment)
@@ -106373,9 +106373,9 @@ namespace {
      *                                    False on failure.
      *     }
      * @phpstan-return array{
-     *   width?: int|false,
-     *   height?: int|false,
-     *   type?: string|false,
+     *   width: int|false,
+     *   height: int|false,
+     *   type: string|false,
      * }
      */
     function wp_get_webp_info($filename)
@@ -107222,12 +107222,12 @@ namespace {
      *     @type int $deleted  The number of deleted sites.
      * }
      * @phpstan-return array{
-     *   all?: int,
-     *   public?: int,
-     *   archived?: int,
-     *   mature?: int,
-     *   spam?: int,
-     *   deleted?: int,
+     *   all: int,
+     *   public: int,
+     *   archived: int,
+     *   mature: int,
+     *   spam: int,
+     *   deleted: int,
      * }
      */
     function wp_count_sites($network_id = \null)
@@ -107661,8 +107661,8 @@ namespace {
      *     @type int $users Number of users on the network.
      * }
      * @phpstan-return array{
-     *   blogs?: int,
-     *   users?: int,
+     *   blogs: int,
+     *   users: int,
      * }
      */
     function get_sitestats()
@@ -107844,10 +107844,10 @@ namespace {
      *     @type WP_Error $errors        WP_Error object containing any errors found.
      * }
      * @phpstan-return array{
-     *   user_name?: string,
-     *   orig_username?: string,
-     *   user_email?: string,
-     *   errors?: WP_Error,
+     *   user_name: string,
+     *   orig_username: string,
+     *   user_email: string,
+     *   errors: WP_Error,
      * }
      */
     function wpmu_validate_user_signup($user_name, $user_email)
@@ -107886,12 +107886,12 @@ namespace {
      *     @type WP_Error       $errors     WP_Error containing any errors found.
      * }
      * @phpstan-return array{
-     *   domain?: string,
-     *   path?: string,
-     *   blogname?: string,
-     *   blog_title?: string,
-     *   user?: string|WP_User,
-     *   errors?: WP_Error,
+     *   domain: string,
+     *   path: string,
+     *   blogname: string,
+     *   blog_title: string,
+     *   user: string|WP_User,
+     *   errors: WP_Error,
      * }
      */
     function wpmu_validate_blog_signup($blogname, $blog_title, $user = '')
@@ -108277,7 +108277,7 @@ namespace {
      *     @type string $0 The current site's domain.
      * }
      * @phpstan-return array{
-     *   0?: string,
+     *   0: string,
      * }
      */
     function redirect_this_site($deprecated = '')
@@ -112977,9 +112977,9 @@ namespace {
      *     @type string $more_text Custom read more text, or empty string.
      * }
      * @phpstan-return array{
-     *   main?: string,
-     *   extended?: string,
-     *   more_text?: string,
+     *   main: string,
+     *   extended: string,
+     *   more_text: string,
      * }
      */
     function get_extended($post)
@@ -115048,11 +115048,11 @@ namespace {
      *     @type array  $image_meta Image metadata.
      * }
      * @phpstan-return false|array{
-     *   width?: int,
-     *   height?: int,
-     *   file?: string,
-     *   sizes?: array,
-     *   image_meta?: array,
+     *   width: int,
+     *   height: int,
+     *   file: string,
+     *   sizes: array,
+     *   image_meta: array,
      * }
      */
     function wp_get_attachment_metadata($attachment_id = 0, $unfiltered = \false)
@@ -119910,8 +119910,8 @@ namespace {
      *   slug?: string,
      * } $args
      * @phpstan-return \WP_Error|array{
-     *   term_id?: int,
-     *   term_taxonomy_id?: int|string,
+     *   term_id: int,
+     *   term_taxonomy_id: int|string,
      * }
      */
     function wp_insert_term($term, $taxonomy, $args = array())
@@ -122865,8 +122865,8 @@ namespace {
      *     @type int[] $avail_roles Array of user counts keyed by user role.
      * }
      * @phpstan-return array{
-     *   total_users?: int,
-     *   avail_roles?: int[],
+     *   total_users: int,
+     *   avail_roles: int[],
      * }
      */
     function count_users($strategy = 'time', $site_id = \null)
