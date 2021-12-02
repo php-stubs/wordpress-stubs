@@ -150,7 +150,7 @@ return new class extends NodeVisitor {
 
         return sprintf(
             " * @phpstan-return %1\$s{\n *   %2\$s,\n * }",
-            str_replace(['|string', 'string|'], '', $tagVariableType),
+            $tagVariableType,
             implode(",\n *   ", $elements)
         );
     }
