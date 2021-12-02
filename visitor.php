@@ -81,40 +81,40 @@ return new class extends NodeVisitor {
         return new Doc($newDocComment, $docComment->getLine(), $docComment->getFilePos());
     }
 
-    private function getAdditionFromParam(Param $param): ?string
+    private function getAdditionFromParam(Param $tag): ?string
     {
-        $paramDescription = $param->getDescription()->__toString();
-        $paramVariableName = $param->getVariableName();
-        $paramVariableType = $param->getType();
+        $tagDescription = $tag->getDescription()->__toString();
+        $tagVariableName = $tag->getVariableName();
+        $tagVariableType = $tag->getType();
 
         // Skip if the parameter variable name or type are missing.
-        if (!$paramVariableName || !$paramVariableType) {
+        if (!$tagVariableName || !$tagVariableType) {
             return null;
         }
 
         // Skip if the description doesn't contain at least one correctly
         // formatted `@type`, which indicates an array hash.
-        if (strpos($paramDescription, '    @type') === false) {
+        if (strpos($tagDescription, '    @type') === false) {
             return null;
         }
 
         // Populate `$types` with the value of each top level `@type`.
-        $types = preg_split('/\R+    @type /', $paramDescription);
+        $types = preg_split('/\R+    @type /', $tagDescription);
         unset($types[0]);
         $elements = [];
 
         // PHPStan dosn't support typed array shapes (`int[]{...}`) so replace
         // typed arrays such as `int[]` with `array`.
-        $paramVariableType = preg_replace('#[a-zA-Z0-9_]+\[\]#', 'array', $paramVariableType->__toString());
+        $tagVariableType = preg_replace('#[a-zA-Z0-9_]+\[\]#', 'array', $tagVariableType->__toString());
 
-        if (strpos($paramVariableType, 'array') === false) {
+        if (strpos($tagVariableType, 'array') === false) {
             // Skip if we have hash notation that's not for an array (ie. for `object`).
             return null;
         }
 
-        if (strpos($paramVariableType, 'array|') !== false) {
+        if (strpos($tagVariableType, 'array|') !== false) {
             // Move `array` to the end of union types so the appended array shape works.
-            $paramVariableType = str_replace('array|', '', $paramVariableType) . '|array';
+            $tagVariableType = str_replace('array|', '', $tagVariableType) . '|array';
         }
 
         foreach ($types as $typeTag) {
@@ -135,9 +135,9 @@ return new class extends NodeVisitor {
 
         return sprintf(
             " * @phpstan-param %1\$s{\n *   %2\$s,\n * } $%3\$s",
-            str_replace(['|string', 'string|'], '', $paramVariableType),
+            str_replace(['|string', 'string|'], '', $tagVariableType),
             implode(",\n *   ", $elements),
-            $paramVariableName
+            $tagVariableName
         );
     }
 };
