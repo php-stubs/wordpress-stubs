@@ -3,6 +3,8 @@
 declare(strict_types = 1);
 
 use phpDocumentor\Reflection\DocBlock\Tags\Param;
+use phpDocumentor\Reflection\DocBlock\Tags\Return_;
+use phpDocumentor\Reflection\Type;
 use PhpParser\Comment\Doc;
 use PhpParser\Node;
 use PhpParser\Node\Stmt\ClassMethod;
@@ -54,7 +56,10 @@ return new class extends NodeVisitor {
         /** @var \phpDocumentor\Reflection\DocBlock\Tags\Param[] */
         $params = $docblock->getTagsByName('param');
 
-        if (!$params) {
+        /** @var \phpDocumentor\Reflection\DocBlock\Tags\Return_[] */
+        $returns = $docblock->getTagsByName('return');
+
+        if (!$params && !$returns) {
             return null;
         }
 
@@ -62,6 +67,14 @@ return new class extends NodeVisitor {
 
         foreach ($params as $param) {
             $addition = $this->getAdditionFromParam($param);
+
+            if ($addition !== null) {
+                $additions[] = $addition;
+            }
+        }
+
+        if ($returns) {
+            $addition = $this->getAdditionFromReturn($returns[0]);
 
             if ($addition !== null) {
                 $additions[] = $addition;
@@ -115,6 +128,41 @@ return new class extends NodeVisitor {
             str_replace(['|string', 'string|'], '', $tagVariableType),
             implode(",\n *   ", $elements),
             $tagVariableName
+        );
+    }
+
+    private function getAdditionFromReturn(Return_ $tag): ?string
+    {
+        $tagDescription = $tag->getDescription()->__toString();
+        $tagVariableType = $tag->getType();
+
+        // Skip if the description doesn't contain at least one correctly
+        // formatted `@type`, which indicates an array hash.
+        if (strpos($tagDescription, '    @type') === false) {
+            return null;
+        }
+
+        // Skip if the return type is missing.
+        if (!$tagVariableType) {
+            return null;
+        }
+
+        $tagVariableType = $this->getTypeFromTag($tagVariableType);
+
+        if ($tagVariableType === null) {
+            return null;
+        }
+
+        $elements = $this->getElementsFromTag($tagDescription);
+
+        if ($elements === null) {
+            return null;
+        }
+
+        return sprintf(
+            " * @phpstan-return %1\$s{\n *   %2\$s,\n * }",
+            str_replace(['|string', 'string|'], '', $tagVariableType),
+            implode(",\n *   ", $elements)
         );
     }
 
