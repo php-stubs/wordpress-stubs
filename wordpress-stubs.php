@@ -2676,6 +2676,7 @@ namespace {
         function privSwapBackMagicQuotes()
         {
         }
+        // --------------------------------------------------------------------------------
     }
     /**
      * Upgrader API: Plugin_Installer_Skin class
@@ -14189,6 +14190,9 @@ namespace {
         public function quicktime_bookmark_time_scale($info)
         {
         }
+        /*
+        // END helper functions for m4b audiobook chapters
+        */
     }
     class getid3_riff extends \getid3_handler
     {
@@ -14450,7 +14454,7 @@ namespace {
         /**
          * Default DTS syncword used in native .cpt or .dts formats.
          */
-        const syncword = "þ€\1";
+        const syncword = "\xfe\x80\x01";
         /**
          * @var int
          */
@@ -14459,13 +14463,13 @@ namespace {
          * Possible syncwords indicating bitstream encoding.
          */
         public static $syncwords = array(
-            0 => "þ€\1",
+            0 => "\xfe\x80\x01",
             // raw big-endian
-            1 => "þ\1€",
+            1 => "\xfe\x01\x80",
             // raw little-endian
-            2 => "\37ÿè\0",
+            2 => "\x1f\xff\xe8\x00",
             // 14-bit big-endian
-            3 => "ÿ\37\0è",
+            3 => "\xff\x1f\x00\xe8",
         );
         // 14-bit little-endian
         /**
@@ -40492,6 +40496,7 @@ namespace {
      */
     class WP_HTTP_Fsockopen extends \WP_HTTP_Streams
     {
+        // For backward compatibility for users who are using the class directly.
     }
     /**
      * Base WordPress Image Editor
