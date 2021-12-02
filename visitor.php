@@ -104,8 +104,8 @@ return new class extends NodeVisitor {
         $tagVariableName = $tag->getVariableName();
         $tagVariableType = $tag->getType();
 
-        // Skip if the parameter variable name or type are missing.
-        if (!$tagVariableName || !$tagVariableType) {
+        // Skip if information we need is missing.
+        if (!$tagDescription || !$tagVariableName || !$tagVariableType) {
             return null;
         }
 
@@ -138,8 +138,8 @@ return new class extends NodeVisitor {
         $tagDescription = $tag->getDescription();
         $tagVariableType = $tag->getType();
 
-        // Skip if the return type is missing.
-        if (!$tagVariableType) {
+        // Skip if information we need is missing.
+        if (!$tagDescription || !$tagVariableType) {
             return null;
         }
 
