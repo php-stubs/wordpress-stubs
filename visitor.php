@@ -187,7 +187,7 @@ return new class extends NodeVisitor {
 
         // Skip if the description doesn't contain at least one correctly
         // formatted `@type`, which indicates an array hash.
-        if (strpos($text, '    @type') === false) {
+        if (strpos($text, '    @type ') === false) {
             return null;
         }
 
