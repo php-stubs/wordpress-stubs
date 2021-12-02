@@ -14,7 +14,10 @@ use StubsGenerator\NodeVisitor;
 
 return new class extends NodeVisitor {
 
-    private \phpDocumentor\Reflection\DocBlockFactory $docBlockFactory;
+    /**
+     * @var \phpDocumentor\Reflection\DocBlockFactory
+     */
+    private $docBlockFactory;
 
     public function __construct()
     {
