@@ -106,7 +106,7 @@ return new class extends NodeVisitor {
             return null;
         }
 
-        $elements = $this->getElementsFromDescription($tagDescription);
+        $elements = $this->getElementsFromDescription($tagDescription, true);
 
         if ($elements === null) {
             return null;
@@ -140,7 +140,7 @@ return new class extends NodeVisitor {
             return null;
         }
 
-        $elements = $this->getElementsFromDescription($tagDescription);
+        $elements = $this->getElementsFromDescription($tagDescription, false);
 
         if ($elements === null) {
             return null;
@@ -181,7 +181,7 @@ return new class extends NodeVisitor {
     /**
      * @return ?string[]
      */
-    private function getElementsFromDescription(Description $tagDescription): ?array
+    private function getElementsFromDescription(Description $tagDescription, bool $optional): ?array
     {
         $text = $tagDescription->__toString();
 
@@ -209,7 +209,12 @@ return new class extends NodeVisitor {
                 return null;
             }
 
-            $elements[] = substr($name, 1) . '?: ' . $type;
+            $elements[] = sprintf(
+                '%1$s%2$s: %3$s',
+                substr($name, 1),
+                $optional ? '?' : '',
+                $type
+            );
         }
 
         return $elements;
