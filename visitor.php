@@ -106,13 +106,13 @@ return new class extends NodeVisitor {
             return null;
         }
 
-        $elements = $this->getElementsFromTag($tagDescription);
+        $elements = $this->getElementsFromDescription($tagDescription);
 
         if ($elements === null) {
             return null;
         }
 
-        $tagVariableType = $this->getTypeFromTag($tagVariableType);
+        $tagVariableType = $this->getTypeNameFromType($tagVariableType);
 
         if ($tagVariableType === null) {
             return null;
@@ -136,13 +136,13 @@ return new class extends NodeVisitor {
             return null;
         }
 
-        $elements = $this->getElementsFromTag($tagDescription);
+        $elements = $this->getElementsFromDescription($tagDescription);
 
         if ($elements === null) {
             return null;
         }
 
-        $tagVariableType = $this->getTypeFromTag($tagVariableType);
+        $tagVariableType = $this->getTypeNameFromType($tagVariableType);
 
         if ($tagVariableType === null) {
             return null;
@@ -155,7 +155,7 @@ return new class extends NodeVisitor {
         );
     }
 
-    private function getTypeFromTag(Type $tagVariableType): ?string
+    private function getTypeNameFromType(Type $tagVariableType): ?string
     {
         // PHPStan dosn't support typed array shapes (`int[]{...}`) so replace
         // typed arrays such as `int[]` with `array`.
@@ -174,7 +174,10 @@ return new class extends NodeVisitor {
         return $tagVariableType;
     }
 
-    private function getElementsFromTag(Description $tagDescription): ?array
+    /**
+     * @return ?string[]
+     */
+    private function getElementsFromDescription(Description $tagDescription): ?array
     {
         $text = $tagDescription->__toString();
 
