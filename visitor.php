@@ -2,6 +2,7 @@
 
 declare(strict_types = 1);
 
+use phpDocumentor\Reflection\DocBlock\Description;
 use phpDocumentor\Reflection\DocBlock\Tags\Param;
 use phpDocumentor\Reflection\DocBlock\Tags\Return_;
 use phpDocumentor\Reflection\Type;
@@ -96,30 +97,24 @@ return new class extends NodeVisitor {
 
     private function getAdditionFromParam(Param $tag): ?string
     {
-        $tagDescription = $tag->getDescription()->__toString();
+        $tagDescription = $tag->getDescription();
         $tagVariableName = $tag->getVariableName();
         $tagVariableType = $tag->getType();
-
-        // Skip if the description doesn't contain at least one correctly
-        // formatted `@type`, which indicates an array hash.
-        if (strpos($tagDescription, '    @type') === false) {
-            return null;
-        }
 
         // Skip if the parameter variable name or type are missing.
         if (!$tagVariableName || !$tagVariableType) {
             return null;
         }
 
-        $tagVariableType = $this->getTypeFromTag($tagVariableType);
-
-        if ($tagVariableType === null) {
-            return null;
-        }
-
         $elements = $this->getElementsFromTag($tagDescription);
 
         if ($elements === null) {
+            return null;
+        }
+
+        $tagVariableType = $this->getTypeFromTag($tagVariableType);
+
+        if ($tagVariableType === null) {
             return null;
         }
 
@@ -133,29 +128,23 @@ return new class extends NodeVisitor {
 
     private function getAdditionFromReturn(Return_ $tag): ?string
     {
-        $tagDescription = $tag->getDescription()->__toString();
+        $tagDescription = $tag->getDescription();
         $tagVariableType = $tag->getType();
-
-        // Skip if the description doesn't contain at least one correctly
-        // formatted `@type`, which indicates an array hash.
-        if (strpos($tagDescription, '    @type') === false) {
-            return null;
-        }
 
         // Skip if the return type is missing.
         if (!$tagVariableType) {
             return null;
         }
 
-        $tagVariableType = $this->getTypeFromTag($tagVariableType);
-
-        if ($tagVariableType === null) {
-            return null;
-        }
-
         $elements = $this->getElementsFromTag($tagDescription);
 
         if ($elements === null) {
+            return null;
+        }
+
+        $tagVariableType = $this->getTypeFromTag($tagVariableType);
+
+        if ($tagVariableType === null) {
             return null;
         }
 
@@ -185,10 +174,18 @@ return new class extends NodeVisitor {
         return $tagVariableType;
     }
 
-    private function getElementsFromTag(string $tagDescription): ?array
+    private function getElementsFromTag(Description $tagDescription): ?array
     {
+        $text = $tagDescription->__toString();
+
+        // Skip if the description doesn't contain at least one correctly
+        // formatted `@type`, which indicates an array hash.
+        if (strpos($text, '    @type') === false) {
+            return null;
+        }
+
         // Populate `$types` with the value of each top level `@type`.
-        $types = preg_split('/\R+    @type /', $tagDescription);
+        $types = preg_split('/\R+    @type /', $text);
         unset($types[0]);
         $elements = [];
 
