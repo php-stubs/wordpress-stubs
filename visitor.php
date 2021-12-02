@@ -29,13 +29,13 @@ return new class extends NodeVisitor {
         parent::enterNode($node);
 
         if (!($node instanceof Function_) && !($node instanceof ClassMethod)) {
-            return;
+            return null;
         }
 
         $docComment = $node->getDocComment();
 
         if (!($docComment instanceof Doc)) {
-            return;
+            return null;
         }
 
         $newDocComment = $this->addArrayHashNotation($docComment);
@@ -43,6 +43,8 @@ return new class extends NodeVisitor {
         if ($newDocComment !== null) {
             $node->setDocComment($newDocComment);
         }
+
+        return null;
     }
 
     private function addArrayHashNotation(Doc $docComment): ?Doc
@@ -168,6 +170,10 @@ return new class extends NodeVisitor {
         // typed arrays such as `int[]` with `array`.
         $tagVariableType = preg_replace('#[a-zA-Z0-9_]+\[\]#', 'array', $tagVariableType->__toString());
 
+        if ($tagVariableType === null) {
+            return null;
+        }
+
         if (strpos($tagVariableType, 'array') === false) {
             // Skip if we have hash notation that's not for an array (ie. for `object`).
             return null;
@@ -196,11 +202,22 @@ return new class extends NodeVisitor {
 
         // Populate `$types` with the value of each top level `@type`.
         $types = preg_split('/\R+    @type /', $text);
+
+        if (!$types) {
+            return null;
+        }
+
         unset($types[0]);
         $elements = [];
 
         foreach ($types as $typeTag) {
-            list($type, $name) = preg_split('#\s+#', trim($typeTag));
+            $parts = preg_split('#\s+#', trim($typeTag));
+
+            if (!$parts || count($parts) < 2) {
+                return null;
+            }
+
+            list($type, $name) = $parts;
 
             // Bail out completely if any element doesn't have a static key.
             if (strpos($name, '...$') !== false) {
