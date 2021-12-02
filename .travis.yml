@@ -48,3 +48,5 @@ script:
   - "git diff --exit-code"
   # Execute stubs
   - "php -f wordpress-stubs.php"
+  # Analyse our code
+  - "vendor/bin/phpstan"
