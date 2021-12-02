@@ -118,9 +118,13 @@ return new class extends NodeVisitor {
             return null;
         }
 
+        // It's common for an args parameter to accept a query var string or array with `string|array`.
+        // Remove the accepted string type for these so we get the strongest typing we can manage.
+        $tagVariableType = str_replace(['|string', 'string|'], '', $tagVariableType);
+
         return sprintf(
             " * @phpstan-param %1\$s{\n *   %2\$s,\n * } $%3\$s",
-            str_replace(['|string', 'string|'], '', $tagVariableType),
+            $tagVariableType,
             implode(",\n *   ", $elements),
             $tagVariableName
         );
