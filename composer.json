@@ -15,7 +15,7 @@
         "php": "~7.3 || ~8.0",
         "phpdocumentor/reflection-docblock": "^5.3",
         "phpstan/phpstan": "^1.2",
-        "php-stubs/generator": "^0.7.0",
+        "php-stubs/generator": "^0.8.0",
         "nikic/php-parser": "< 4.12.0"
     },
     "suggest": {
