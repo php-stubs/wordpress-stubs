@@ -87,22 +87,39 @@ return new class extends NodeVisitor {
         $tagVariableName = $tag->getVariableName();
         $tagVariableType = $tag->getType();
 
-        // Skip if the parameter variable name or type are missing.
-        if (!$tagVariableName || !$tagVariableType) {
-            return null;
-        }
-
         // Skip if the description doesn't contain at least one correctly
         // formatted `@type`, which indicates an array hash.
         if (strpos($tagDescription, '    @type') === false) {
             return null;
         }
 
-        // Populate `$types` with the value of each top level `@type`.
-        $types = preg_split('/\R+    @type /', $tagDescription);
-        unset($types[0]);
-        $elements = [];
+        // Skip if the parameter variable name or type are missing.
+        if (!$tagVariableName || !$tagVariableType) {
+            return null;
+        }
 
+        $tagVariableType = $this->getTypeFromTag($tagVariableType);
+
+        if ($tagVariableType === null) {
+            return null;
+        }
+
+        $elements = $this->getElementsFromTag($tagDescription);
+
+        if ($elements === null) {
+            return null;
+        }
+
+        return sprintf(
+            " * @phpstan-param %1\$s{\n *   %2\$s,\n * } $%3\$s",
+            str_replace(['|string', 'string|'], '', $tagVariableType),
+            implode(",\n *   ", $elements),
+            $tagVariableName
+        );
+    }
+
+    private function getTypeFromTag(Type $tagVariableType): ?string
+    {
         // PHPStan dosn't support typed array shapes (`int[]{...}`) so replace
         // typed arrays such as `int[]` with `array`.
         $tagVariableType = preg_replace('#[a-zA-Z0-9_]+\[\]#', 'array', $tagVariableType->__toString());
@@ -116,6 +133,16 @@ return new class extends NodeVisitor {
             // Move `array` to the end of union types so the appended array shape works.
             $tagVariableType = str_replace('array|', '', $tagVariableType) . '|array';
         }
+
+        return $tagVariableType;
+    }
+
+    private function getElementsFromTag(string $tagDescription): ?array
+    {
+        // Populate `$types` with the value of each top level `@type`.
+        $types = preg_split('/\R+    @type /', $tagDescription);
+        unset($types[0]);
+        $elements = [];
 
         foreach ($types as $typeTag) {
             list($type, $name) = preg_split('#\s+#', trim($typeTag));
@@ -133,11 +160,6 @@ return new class extends NodeVisitor {
             $elements[] = substr($name, 1) . '?: ' . $type;
         }
 
-        return sprintf(
-            " * @phpstan-param %1\$s{\n *   %2\$s,\n * } $%3\$s",
-            str_replace(['|string', 'string|'], '', $tagVariableType),
-            implode(",\n *   ", $elements),
-            $tagVariableName
-        );
+        return $elements;
     }
 };
