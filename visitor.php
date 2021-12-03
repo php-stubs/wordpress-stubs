@@ -213,7 +213,7 @@ return new class extends NodeVisitor {
         foreach ($types as $typeTag) {
             $parts = preg_split('#\s+#', trim($typeTag));
 
-            if (!$parts || count($parts) < 2) {
+            if ($parts === false || count($parts) < 2) {
                 return null;
             }
 
