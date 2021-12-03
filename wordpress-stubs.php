@@ -640,6 +640,14 @@ namespace {
          * }
          *
          * @return array|WP_Error The result (also stored in `WP_Upgrader::$result`), or a WP_Error on failure.
+         * @phpstan-param array{
+         *   source?: string,
+         *   destination?: string,
+         *   clear_destination?: bool,
+         *   clear_working?: bool,
+         *   abort_if_destination_exists?: bool,
+         *   hook_extra?: array,
+         * } $args
          */
         public function install_package($args = array())
         {
@@ -676,6 +684,15 @@ namespace {
          * }
          * @return array|false|WP_Error The result from self::install_package() on success, otherwise a WP_Error,
          *                              or false if unable to connect to the filesystem.
+         * @phpstan-param array{
+         *   package?: string,
+         *   destination?: string,
+         *   clear_destination?: bool,
+         *   clear_working?: bool,
+         *   abort_if_destination_exists?: bool,
+         *   is_multi?: bool,
+         *   hook_extra?: array,
+         * } $options
          */
         public function run($options)
         {
@@ -769,6 +786,11 @@ namespace {
          *                                  Default false.
          * }
          * @return string|false|WP_Error New WordPress version on success, false or WP_Error on failure.
+         * @phpstan-param array{
+         *   pre_check_md5?: bool,
+         *   attempt_rollback?: bool,
+         *   do_rollback?: bool,
+         * } $args
          */
         public function upgrade($current, $args = array())
         {
@@ -1810,6 +1832,9 @@ namespace {
          * }
          * @return array|bool|WP_Error Will return an array of results, or true if there are no updates,
          *                             false or WP_Error for initial errors.
+         * @phpstan-param array{
+         *   clear_update_cache?: bool,
+         * } $args
          */
         public function bulk_upgrade($language_updates = array(), $args = array())
         {
@@ -2857,6 +2882,9 @@ namespace {
          *                                    Default true.
          * }
          * @return bool|WP_Error True if the installation was successful, false or a WP_Error otherwise.
+         * @phpstan-param array{
+         *   clear_update_cache?: bool,
+         * } $args
          */
         public function install($package, $args = array())
         {
@@ -2875,6 +2903,9 @@ namespace {
          *                                    Default true.
          * }
          * @return bool|WP_Error True if the upgrade was successful, false or a WP_Error object otherwise.
+         * @phpstan-param array{
+         *   clear_update_cache?: bool,
+         * } $args
          */
         public function upgrade($plugin, $args = array())
         {
@@ -2892,6 +2923,9 @@ namespace {
          *     @type bool $clear_update_cache Whether to clear the plugin updates cache if successful. Default true.
          * }
          * @return array|false An array of results indexed by plugin file, or false if unable to connect to the filesystem.
+         * @phpstan-param array{
+         *   clear_update_cache?: bool,
+         * } $args
          */
         public function bulk_upgrade($plugins, $args = array())
         {
@@ -3206,6 +3240,9 @@ namespace {
          * }
          *
          * @return bool|WP_Error True if the installation was successful, false or a WP_Error object otherwise.
+         * @phpstan-param array{
+         *   clear_update_cache?: bool,
+         * } $args
          */
         public function install($package, $args = array())
         {
@@ -3224,6 +3261,9 @@ namespace {
          *                                    Default true.
          * }
          * @return bool|WP_Error True if the upgrade was successful, false or a WP_Error object otherwise.
+         * @phpstan-param array{
+         *   clear_update_cache?: bool,
+         * } $args
          */
         public function upgrade($theme, $args = array())
         {
@@ -3242,6 +3282,9 @@ namespace {
          *                                    Default true.
          * }
          * @return array[]|false An array of results, or false if unable to connect to the filesystem.
+         * @phpstan-param array{
+         *   clear_update_cache?: bool,
+         * } $args
          */
         public function bulk_upgrade($themes, $args = array())
         {
@@ -4030,6 +4073,12 @@ namespace {
          *                            screen. If left null, the current screen will be automatically set.
          *                            Default null.
          * }
+         * @phpstan-param array{
+         *   plural?: string,
+         *   singular?: string,
+         *   ajax?: bool,
+         *   screen?: string,
+         * } $args
          */
         public function __construct($args = array())
         {
@@ -5073,6 +5122,12 @@ namespace {
          *                               symbol. e.g.: -122.341100.
          *     @type string $country     The ISO 3166-1 alpha-2 country code. e.g.: BR
          * }
+         * @phpstan-param false|array{
+         *   description?: string,
+         *   latitude?: string,
+         *   longitude?: string,
+         *   country?: string,
+         * } $user_location
          */
         public function __construct($user_id, $user_location = \false)
         {
@@ -5898,6 +5953,18 @@ namespace {
          *     @type string $type        Type of resource. 'f' for file, 'd' for directory.
          *     @type mixed  $files       If a directory and $recursive is true, contains another array of files.
          * }
+         * @phpstan-return false|array{
+         *   name: string,
+         *   perms: string,
+         *   permsn: int,
+         *   owner: string,
+         *   size: int,
+         *   lastmodunix: int,
+         *   lastmod: mixed,
+         *   time: int,
+         *   type: string,
+         *   files: mixed,
+         * }
          */
         public function dirlist($path, $include_hidden = \true, $recursive = \false)
         {
@@ -6267,6 +6334,18 @@ namespace {
          *     @type string $type        Type of resource. 'f' for file, 'd' for directory.
          *     @type mixed  $files       If a directory and $recursive is true, contains another array of files.
          * }
+         * @phpstan-return false|array{
+         *   name: string,
+         *   perms: string,
+         *   permsn: int,
+         *   owner: string,
+         *   size: int,
+         *   lastmodunix: int,
+         *   lastmod: mixed,
+         *   time: int,
+         *   type: string,
+         *   files: mixed,
+         * }
          */
         public function dirlist($path, $include_hidden = \true, $recursive = \false)
         {
@@ -6628,6 +6707,18 @@ namespace {
          *     @type int    $time        Last modified time.
          *     @type string $type        Type of resource. 'f' for file, 'd' for directory.
          *     @type mixed  $files       If a directory and $recursive is true, contains another array of files.
+         * }
+         * @phpstan-return false|array{
+         *   name: string,
+         *   perms: string,
+         *   permsn: int,
+         *   owner: string,
+         *   size: int,
+         *   lastmodunix: int,
+         *   lastmod: mixed,
+         *   time: int,
+         *   type: string,
+         *   files: mixed,
          * }
          */
         public function dirlist($path = '.', $include_hidden = \true, $recursive = \false)
@@ -6991,6 +7082,18 @@ namespace {
          *     @type int    $time        Last modified time.
          *     @type string $type        Type of resource. 'f' for file, 'd' for directory.
          *     @type mixed  $files       If a directory and $recursive is true, contains another array of files.
+         * }
+         * @phpstan-return false|array{
+         *   name: string,
+         *   perms: string,
+         *   permsn: int,
+         *   owner: string,
+         *   size: int,
+         *   lastmodunix: int,
+         *   lastmod: mixed,
+         *   time: int,
+         *   type: string,
+         *   files: mixed,
          * }
          */
         public function dirlist($path = '.', $include_hidden = \true, $recursive = \false)
@@ -7439,6 +7542,18 @@ namespace {
          *     @type int    $time        Last modified time.
          *     @type string $type        Type of resource. 'f' for file, 'd' for directory.
          *     @type mixed  $files       If a directory and $recursive is true, contains another array of files.
+         * }
+         * @phpstan-return false|array{
+         *   name: string,
+         *   perms: string,
+         *   permsn: int,
+         *   owner: string,
+         *   size: int,
+         *   lastmodunix: int,
+         *   lastmod: mixed,
+         *   time: int,
+         *   type: string,
+         *   files: mixed,
          * }
          */
         public function dirlist($path, $include_hidden = \true, $recursive = \false)
@@ -10239,6 +10354,13 @@ namespace {
          *     @type callable $callback Optional. A callback to generate the tab content. Default false.
          *     @type int      $priority Optional. The priority of the tab, used for ordering. Default 10.
          * }
+         * @phpstan-param array{
+         *   title?: string,
+         *   id?: string,
+         *   content?: string,
+         *   callback?: callable,
+         *   priority?: int,
+         * } $args
          */
         public function add_help_tab($args)
         {
@@ -10338,6 +10460,11 @@ namespace {
          *     @type string $heading_list       Screen reader text for the items list heading.
          *                                      Default 'Items list'.
          * }
+         * @phpstan-param array{
+         *   heading_views?: string,
+         *   heading_pagination?: string,
+         *   heading_list?: string,
+         * } $content
          */
         public function set_screen_reader_content($content = array())
         {
@@ -10380,6 +10507,9 @@ namespace {
          *
          *     @type bool $wrap Whether the screen-options-wrap div will be included. Defaults to true.
          * }
+         * @phpstan-param array{
+         *   wrap?: bool,
+         * } $options
          */
         public function render_screen_options($options = array())
         {
@@ -29147,6 +29277,25 @@ namespace {
          * }
          * @return array|WP_Error Array containing 'headers', 'body', 'response', 'cookies', 'filename'.
          *                        A WP_Error instance upon error.
+         * @phpstan-param array{
+         *   method?: string,
+         *   timeout?: float,
+         *   redirection?: int,
+         *   httpversion?: string,
+         *   user-agent?: string,
+         *   reject_unsafe_urls?: bool,
+         *   blocking?: bool,
+         *   headers?: string|array,
+         *   cookies?: array,
+         *   body?: string|array,
+         *   compress?: bool,
+         *   decompress?: bool,
+         *   sslverify?: bool,
+         *   sslcertificates?: string,
+         *   stream?: bool,
+         *   filename?: string,
+         *   limit_response_size?: int,
+         * } $args
          */
         public function request($url, $args = array())
         {
@@ -29281,6 +29430,10 @@ namespace {
          *     @type string $headers HTTP response headers.
          *     @type string $body    HTTP response body.
          * }
+         * @phpstan-return array{
+         *   headers: string,
+         *   body: string,
+         * }
          */
         public static function processResponse($strResponse)
         {
@@ -29306,6 +29459,11 @@ namespace {
          *     @type array            $newheaders The processed header data as a multidimensional array.
          *     @type WP_Http_Cookie[] $cookies    If the original headers contain the 'Set-Cookie' key,
          *                                        an array containing `WP_Http_Cookie` objects is returned.
+         * }
+         * @phpstan-return array{
+         *   response: array,
+         *   newheaders: array,
+         *   cookies: WP_Http_Cookie[],
          * }
          */
         public static function processHeaders($headers, $url = '')
@@ -30643,6 +30801,14 @@ namespace {
          *     @type array  $meta   Meta data including the following keys: 'html', 'class', 'rel', 'lang', 'dir',
          *                          'onclick', 'target', 'title', 'tabindex'. Default empty.
          * }
+         * @phpstan-param array{
+         *   id?: string,
+         *   title?: string,
+         *   parent?: string,
+         *   href?: string,
+         *   group?: bool,
+         *   meta?: array,
+         * } $args
          */
         public function add_node($args)
         {
@@ -30696,6 +30862,11 @@ namespace {
          *     @type array  $meta   Meta data for the group including the following keys:
          *                         'class', 'onclick', 'target', and 'title'.
          * }
+         * @phpstan-param array{
+         *   id?: string,
+         *   parent?: string,
+         *   meta?: array,
+         * } $args
          */
         public final function add_group($args)
         {
@@ -30829,6 +31000,15 @@ namespace {
          *                                         element as CDATA. Default empty array.
          * }
          * @return string XML response.
+         * @phpstan-param array{
+         *   what?: string,
+         *   action?: string|false,
+         *   id?: int|WP_Error,
+         *   old_id?: int|false,
+         *   position?: string,
+         *   data?: string|WP_Error,
+         *   supplemental?: array,
+         * } $args
          */
         public function add($args = '')
         {
@@ -32301,6 +32481,28 @@ namespace {
          *     @type string|null   $editor_style     Block type editor style handle.
          *     @type string|null   $style            Block type front end style handle.
          * }
+         * @phpstan-param array{
+         *   api_version?: string,
+         *   title?: string,
+         *   category?: string|null,
+         *   parent?: array|null,
+         *   icon?: string|null,
+         *   description?: string,
+         *   keywords?: array,
+         *   textdomain?: string|null,
+         *   styles?: array,
+         *   variations?: array,
+         *   supports?: array|null,
+         *   example?: array|null,
+         *   render_callback?: callable|null,
+         *   attributes?: array|null,
+         *   uses_context?: array,
+         *   provides_context?: array|null,
+         *   editor_script?: string|null,
+         *   script?: string|null,
+         *   editor_style?: string|null,
+         *   style?: string|null,
+         * } $args
          */
         public function __construct($block_type, $args = array())
         {
@@ -32724,6 +32926,53 @@ namespace {
          *     @type bool         $update_comment_post_cache Whether to prime the cache for comment posts.
          *                                                   Default false.
          * }
+         * @phpstan-param array{
+         *   author_email?: string,
+         *   author_url?: string,
+         *   author__in?: int[],
+         *   author__not_in?: int[],
+         *   comment__in?: int[],
+         *   comment__not_in?: int[],
+         *   count?: bool,
+         *   date_query?: array,
+         *   fields?: string,
+         *   ID?: int,
+         *   include_unapproved?: array,
+         *   karma?: int,
+         *   meta_key?: string,
+         *   meta_value?: string,
+         *   meta_query?: array,
+         *   number?: int,
+         *   paged?: int,
+         *   offset?: int,
+         *   no_found_rows?: bool,
+         *   orderby?: string|array,
+         *   order?: string,
+         *   parent?: int,
+         *   parent__in?: int[],
+         *   parent__not_in?: int[],
+         *   post_author__in?: int[],
+         *   post_author__not_in?: int[],
+         *   post_ID?: int,
+         *   post_id?: int,
+         *   post__in?: int[],
+         *   post__not_in?: int[],
+         *   post_author?: int,
+         *   post_status?: string|array,
+         *   post_type?: string,
+         *   post_name?: string,
+         *   post_parent?: int,
+         *   search?: string,
+         *   status?: string|array,
+         *   type?: string|array,
+         *   type__in?: string[],
+         *   type__not_in?: string[],
+         *   user_id?: int,
+         *   hierarchical?: bool|string,
+         *   cache_domain?: string,
+         *   update_comment_meta_cache?: bool,
+         *   update_comment_post_cache?: bool,
+         * } $query
          */
         public function __construct($query = '')
         {
@@ -33065,6 +33314,12 @@ namespace {
          *                                 'none' to disable `ORDER BY` clause.
          * }
          * @return WP_Comment[] Array of `WP_Comment` objects.
+         * @phpstan-param array{
+         *   format?: string,
+         *   status?: string,
+         *   hierarchical?: string,
+         *   orderby?: string|array,
+         * } $args
          */
         public function get_children($args = array())
         {
@@ -33321,6 +33576,24 @@ namespace {
          *                                                 'date' are supported implicitly. Default 'text'.
          *     @type callable             $active_callback Active callback.
          * }
+         * @phpstan-param array{
+         *   instance_number?: int,
+         *   manager?: WP_Customize_Manager,
+         *   id?: string,
+         *   settings?: array,
+         *   setting?: string,
+         *   capability?: string,
+         *   priority?: int,
+         *   section?: string,
+         *   label?: string,
+         *   description?: string,
+         *   choices?: array,
+         *   input_attrs?: array,
+         *   allow_addition?: bool,
+         *   json?: array,
+         *   type?: string,
+         *   active_callback?: callable,
+         * } $args
          */
         public function __construct($manager, $id, $args = array())
         {
@@ -33734,6 +34007,14 @@ namespace {
          *     @type bool              $branching          If changeset branching is allowed; otherwise, changesets are linear. Defaults to true.
          *     @type bool              $autosaved          If data from a changeset's autosaved revision should be loaded if it exists. Defaults to false.
          * }
+         * @phpstan-param array{
+         *   changeset_uuid?: null|string|false,
+         *   theme?: string,
+         *   messenger_channel?: string,
+         *   settings_previewed?: bool,
+         *   branching?: bool,
+         *   autosaved?: bool,
+         * } $args
          */
         public function __construct($args = array())
         {
@@ -33994,6 +34275,12 @@ namespace {
          *     @type bool   $exclude_restore_dismissed  Whether to exclude changeset auto-drafts that have been dismissed. Defaults to true.
          * }
          * @return WP_Post[] Auto-draft changesets.
+         * @phpstan-param array{
+         *   posts_per_page?: int,
+         *   author?: int,
+         *   post_status?: string,
+         *   exclude_restore_dismissed?: bool,
+         * } $args
          */
         protected function get_changeset_posts($args = array())
         {
@@ -34103,6 +34390,10 @@ namespace {
          *     @type bool $exclude_post_data Whether the post input values should also be excluded. Defaults to false when lacking the customize capability.
          * }
          * @return array
+         * @phpstan-param array{
+         *   exclude_changeset?: bool,
+         *   exclude_post_data?: bool,
+         * } $args
          */
         public function unsanitized_post_values($args = array())
         {
@@ -34335,6 +34626,10 @@ namespace {
          *     @type bool $validate_capability Whether the setting capability will be checked.
          * }
          * @return array Mapping of setting IDs to return value of validate method calls, either `true` or `WP_Error`.
+         * @phpstan-param array{
+         *   validate_existence?: bool,
+         *   validate_capability?: bool,
+         * } $options
          */
         public function validate_setting_values($setting_values, $options = array())
         {
@@ -34382,6 +34677,15 @@ namespace {
          * }
          *
          * @return array|WP_Error Returns array on success and WP_Error with array data on error.
+         * @phpstan-param array{
+         *   data?: array,
+         *   status?: string,
+         *   title?: string,
+         *   date_gmt?: string,
+         *   user_id?: int,
+         *   starter_content?: bool,
+         *   autosave?: bool,
+         * } $args
          */
         function save_changeset_post($args = array())
         {
@@ -34997,6 +35301,11 @@ namespace {
          *     @type string $section ID for section to be autofocused.
          *     @type string $panel   ID for panel to be autofocused.
          * }
+         * @phpstan-param array{
+         *   control?: string,
+         *   section?: string,
+         *   panel?: string,
+         * } $autofocus
          */
         public function set_autofocus($autofocus)
         {
@@ -35012,6 +35321,11 @@ namespace {
          *     @type string $control ID for control to be autofocused.
          *     @type string $section ID for section to be autofocused.
          *     @type string $panel   ID for panel to be autofocused.
+         * }
+         * @phpstan-return array{
+         *   control: string,
+         *   section: string,
+         *   panel: string,
          * }
          */
         public function get_autofocus()
@@ -35704,6 +36018,15 @@ namespace {
          *     @type string          $type            Type of the panel.
          *     @type callable        $active_callback Active callback.
          * }
+         * @phpstan-param array{
+         *   priority?: int,
+         *   capability?: string,
+         *   theme_supports?: string|string[],
+         *   title?: string,
+         *   description?: string,
+         *   type?: string,
+         *   active_callback?: callable,
+         * } $args
          */
         public function __construct($manager, $id, $args = array())
         {
@@ -35984,6 +36307,17 @@ namespace {
          *                                               instead of inline above the first control.
          *                                               Default false.
          * }
+         * @phpstan-param array{
+         *   priority?: int,
+         *   panel?: string,
+         *   capability?: string,
+         *   theme_supports?: string|string[],
+         *   title?: string,
+         *   description?: string,
+         *   type?: string,
+         *   active_callback?: callable,
+         *   description_hidden?: bool,
+         * } $args
          */
         public function __construct($manager, $id, $args = array())
         {
@@ -36246,6 +36580,17 @@ namespace {
          *                                                 JSON serializable.
          *     @type bool            $dirty                Whether or not the setting is initially dirty when created.
          * }
+         * @phpstan-param array{
+         *   type?: string,
+         *   capability?: string,
+         *   theme_supports?: string|string[],
+         *   default?: string,
+         *   transport?: string,
+         *   validate_callback?: callable,
+         *   sanitize_callback?: callable,
+         *   sanitize_js_callback?: callable,
+         *   dirty?: bool,
+         * } $args
          */
         public function __construct($manager, $id, $args = array())
         {
@@ -36260,6 +36605,10 @@ namespace {
          *
          *     @type string $base ID base
          *     @type array  $keys Keys for multidimensional array.
+         * }
+         * @phpstan-return array{
+         *   base: string,
+         *   keys: array,
          * }
          */
         public final function id_data()
@@ -36979,6 +37328,10 @@ namespace {
          *     @type string $control Markup for widget control wrapping form.
          *     @type string $content The contents of the widget form itself.
          * }
+         * @phpstan-return array{
+         *   control: string,
+         *   content: string,
+         * }
          */
         public function get_widget_control_parts($args)
         {
@@ -37255,6 +37608,10 @@ namespace {
          * @see WP_Customize_Nav_Menus::filter_wp_nav_menu_args()
          *
          * @return array Params.
+         * @phpstan-param array{
+         *   args?: array,
+         *   widget_args?: array,
+         * } $params
          */
         public function filter_dynamic_sidebar_params($params)
         {
@@ -37369,6 +37726,10 @@ namespace {
          *     @type int    $sidebar_instance_number Disambiguating instance number.
          * }
          * @return string|false
+         * @phpstan-param array{
+         *   sidebar_id?: string,
+         *   sidebar_instance_number?: int,
+         * } $context
          */
         public function render_widget_partial($partial, $context)
         {
@@ -37757,6 +38118,10 @@ namespace {
          *     @type string $join  SQL fragment to append to the main JOIN clause.
          *     @type string $where SQL fragment to append to the main WHERE clause.
          * }
+         * @phpstan-return array{
+         *   join: string,
+         *   where: string,
+         * }
          */
         protected function get_sql_clauses()
         {
@@ -37778,6 +38143,10 @@ namespace {
          *     @type string $join  SQL fragment to append to the main JOIN clause.
          *     @type string $where SQL fragment to append to the main WHERE clause.
          * }
+         * @phpstan-return array{
+         *   join: string,
+         *   where: string,
+         * }
          */
         protected function get_sql_for_query($query, $depth = 0)
         {
@@ -37797,6 +38166,10 @@ namespace {
          *     @type string $join  SQL fragment to append to the main JOIN clause.
          *     @type string $where SQL fragment to append to the main WHERE clause.
          * }
+         * @phpstan-return array{
+         *   join: string,
+         *   where: string,
+         * }
          */
         protected function get_sql_for_subquery($query)
         {
@@ -37813,6 +38186,10 @@ namespace {
          *
          *     @type string $join  SQL fragment to append to the main JOIN clause.
          *     @type string $where SQL fragment to append to the main WHERE clause.
+         * }
+         * @phpstan-return array{
+         *   join: string,
+         *   where: string,
          * }
          */
         protected function get_sql_for_clause($query, $parent_query)
@@ -38048,6 +38425,22 @@ namespace {
          *                                         Quicktags using an array. Default true.
          * }
          * @return array Parsed arguments array.
+         * @phpstan-param array{
+         *   wpautop?: bool,
+         *   media_buttons?: bool,
+         *   default_editor?: string,
+         *   drag_drop_upload?: bool,
+         *   textarea_name?: string,
+         *   textarea_rows?: int,
+         *   tabindex?: string|int,
+         *   tabfocus_elements?: string,
+         *   editor_css?: string,
+         *   editor_class?: string,
+         *   teeny?: bool,
+         *   dfw?: bool,
+         *   tinymce?: bool|array,
+         *   quicktags?: bool|array,
+         * } $settings
          */
         public static function parse_settings($editor_id, $settings)
         {
@@ -38321,6 +38714,10 @@ namespace {
          * }
          * @param string $url The URL attempting to be embedded.
          * @return string|false The embed HTML on success, false otherwise.
+         * @phpstan-param array{
+         *   width?: int,
+         *   height?: int,
+         * } $attr
          */
         public function get_embed_handler_html($attr, $url)
         {
@@ -38341,6 +38738,10 @@ namespace {
          * @param string $url The URL attempting to be embedded.
          * @return string|false The embed HTML on success, otherwise the original URL.
          *                      `->maybe_make_link()` can return false on failure.
+         * @phpstan-param array{
+         *   width?: int,
+         *   height?: int,
+         * } $attr
          */
         public function shortcode($attr, $url = '')
         {
@@ -39220,6 +39621,15 @@ namespace {
          * }
          * @param string       $requested_url The URL which the cookie was set on, used for default $domain
          *                                    and $port values.
+         * @phpstan-param array{
+         *   name?: string,
+         *   value?: mixed,
+         *   expires?: string|int|null,
+         *   path?: string,
+         *   domain?: string,
+         *   port?: int,
+         *   host_only?: bool,
+         * } $data
          */
         public function __construct($data, $requested_url = '')
         {
@@ -39268,6 +39678,11 @@ namespace {
          *     @type string|int|null $expires When the cookie expires. Unix timestamp or formatted date.
          *     @type string          $path    Cookie URL path.
          *     @type string          $domain  Cookie domain.
+         * }
+         * @phpstan-return array{
+         *   expires: string|int|null,
+         *   path: string,
+         *   domain: string,
          * }
          */
         public function get_attributes()
@@ -40192,6 +40607,9 @@ namespace {
          *     }
          * }
          * @return array An array of resized images metadata by size.
+         * @phpstan-param array{
+         *   size?: array,
+         * } $sizes
          */
         public abstract function multi_resize($sizes);
         /**
@@ -40251,6 +40669,10 @@ namespace {
          *
          *     @type int $width  The image width.
          *     @type int $height The image height.
+         * }
+         * @phpstan-return array{
+         *   width: int,
+         *   height: int,
          * }
          */
         public function get_size()
@@ -40513,6 +40935,9 @@ namespace {
          *     }
          * }
          * @return array An array of resized images' metadata by size.
+         * @phpstan-param array{
+         *   size?: array,
+         * } $sizes
          */
         public function multi_resize($sizes)
         {
@@ -40531,6 +40956,11 @@ namespace {
          * }
          * @return array|WP_Error The image data array for inclusion in the `sizes` array in the image meta,
          *                        WP_Error object on error.
+         * @phpstan-param array{
+         *   width?: int,
+         *   height?: int,
+         *   crop?: bool,
+         * } $size_data
          */
         public function make_subsize($size_data)
         {
@@ -40767,6 +41197,9 @@ namespace {
          *     }
          * }
          * @return array An array of resized images' metadata by size.
+         * @phpstan-param array{
+         *   size?: array,
+         * } $sizes
          */
         public function multi_resize($sizes)
         {
@@ -40785,6 +41218,11 @@ namespace {
          * }
          * @return array|WP_Error The image data array for inclusion in the `sizes` array in the image meta,
          *                        WP_Error object on error.
+         * @phpstan-param array{
+         *   width?: int,
+         *   height?: int,
+         *   crop?: bool,
+         * } $size_data
          */
         public function make_subsize($size_data)
         {
@@ -41707,6 +42145,10 @@ namespace {
          *     @type string $join  SQL fragment to append to the main JOIN clause.
          *     @type string $where SQL fragment to append to the main WHERE clause.
          * }
+         * @phpstan-return false|array{
+         *   join: string,
+         *   where: string,
+         * }
          */
         public function get_sql($type, $primary_table, $primary_id_column, $context = \null)
         {
@@ -41724,6 +42166,10 @@ namespace {
          *
          *     @type string $join  SQL fragment to append to the main JOIN clause.
          *     @type string $where SQL fragment to append to the main WHERE clause.
+         * }
+         * @phpstan-return array{
+         *   join: string,
+         *   where: string,
          * }
          */
         protected function get_sql_clauses()
@@ -41745,6 +42191,10 @@ namespace {
          *
          *     @type string $join  SQL fragment to append to the main JOIN clause.
          *     @type string $where SQL fragment to append to the main WHERE clause.
+         * }
+         * @phpstan-return array{
+         *   join: string,
+         *   where: string,
          * }
          */
         protected function get_sql_for_query(&$query, $depth = 0)
@@ -41768,6 +42218,10 @@ namespace {
          *
          *     @type string $join  SQL fragment to append to the main JOIN clause.
          *     @type string $where SQL fragment to append to the main WHERE clause.
+         * }
+         * @phpstan-return array{
+         *   join: string,
+         *   where: string,
          * }
          */
         public function get_sql_for_clause(&$clause, $parent_query, $clause_key = '')
@@ -42027,6 +42481,25 @@ namespace {
          *     @type string       $search               Search term(s) to retrieve matching networks for. Default empty.
          *     @type bool         $update_network_cache Whether to prime the cache for found networks. Default true.
          * }
+         * @phpstan-param array{
+         *   network__in?: int[],
+         *   network__not_in?: int[],
+         *   count?: bool,
+         *   fields?: string,
+         *   number?: int,
+         *   offset?: int,
+         *   no_found_rows?: bool,
+         *   orderby?: string|array,
+         *   order?: string,
+         *   domain?: string,
+         *   domain__in?: string[],
+         *   domain__not_in?: string[],
+         *   path?: string,
+         *   path__in?: string[],
+         *   path__not_in?: string[],
+         *   search?: string,
+         *   update_network_cache?: bool,
+         * } $query
          */
         public function __construct($query = '')
         {
@@ -42777,6 +43250,9 @@ namespace {
          *                          is not found in the built-in providers list. Default true.
          * }
          * @return string|false The oEmbed provider URL on success, false on failure.
+         * @phpstan-param array{
+         *   discover?: bool,
+         * } $args
          */
         public function get_provider($url, $args = '')
         {
@@ -42997,6 +43473,12 @@ namespace {
          *     @type string $message The error message.
          * }
          * @return bool True on success, false on failure.
+         * @phpstan-param array{
+         *   type?: string,
+         *   file?: string,
+         *   line?: string,
+         *   message?: string,
+         * } $error
          */
         public function set($extension, $error)
         {
@@ -44375,6 +44857,80 @@ namespace {
          *     @type int          $w                       The week number of the year. Default empty. Accepts numbers 0-53.
          *     @type int          $year                    The four-digit year. Default empty. Accepts any four-digit year.
          * }
+         * @phpstan-param array{
+         *   attachment_id?: int,
+         *   author?: int|string,
+         *   author_name?: string,
+         *   author__in?: int[],
+         *   author__not_in?: int[],
+         *   cache_results?: bool,
+         *   cat?: int|string,
+         *   category__and?: int[],
+         *   category__in?: int[],
+         *   category__not_in?: int[],
+         *   category_name?: string,
+         *   comment_count?: array|int,
+         *   comment_status?: string,
+         *   comments_per_page?: int,
+         *   date_query?: array,
+         *   day?: int,
+         *   exact?: bool,
+         *   fields?: string,
+         *   hour?: int,
+         *   ignore_sticky_posts?: int|bool,
+         *   m?: int,
+         *   meta_compare?: string,
+         *   meta_compare_key?: string,
+         *   meta_key?: string,
+         *   meta_query?: array,
+         *   meta_value?: string,
+         *   meta_value_num?: int,
+         *   meta_type_key?: string,
+         *   menu_order?: int,
+         *   monthnum?: int,
+         *   name?: string,
+         *   nopaging?: bool,
+         *   no_found_rows?: bool,
+         *   offset?: int,
+         *   order?: string,
+         *   orderby?: string|array,
+         *   p?: int,
+         *   page?: int,
+         *   paged?: int,
+         *   page_id?: int,
+         *   pagename?: string,
+         *   perm?: string,
+         *   ping_status?: string,
+         *   post__in?: int[],
+         *   post__not_in?: int[],
+         *   post_mime_type?: string,
+         *   post_name__in?: string[],
+         *   post_parent?: int,
+         *   post_parent__in?: int[],
+         *   post_parent__not_in?: int[],
+         *   post_type?: string|array,
+         *   post_status?: string|array,
+         *   posts_per_page?: int,
+         *   posts_per_archive_page?: int,
+         *   s?: string,
+         *   second?: int,
+         *   sentence?: bool,
+         *   suppress_filters?: bool,
+         *   tag?: string,
+         *   tag__and?: int[],
+         *   tag__in?: int[],
+         *   tag__not_in?: int[],
+         *   tag_id?: int,
+         *   tag_slug__and?: string[],
+         *   tag_slug__in?: string[],
+         *   tax_query?: array,
+         *   title?: string,
+         *   update_post_meta_cache?: bool,
+         *   update_post_term_cache?: bool,
+         *   lazy_load_term_meta?: bool,
+         *   w?: int,
+         *   year?: int,
+         * } $query
          */
         public function parse_query($query = '')
         {
@@ -45326,6 +45882,10 @@ namespace {
          *     @type string $type The extension type. Either 'plugin' or 'theme'.
          * }
          * @return true|WP_Error True if email sent, WP_Error otherwise.
+         * @phpstan-param array{
+         *   slug?: string,
+         *   type?: string,
+         * } $extension
          */
         public function maybe_send_recovery_mode_email($rate_limit, $error, $extension)
         {
@@ -45773,6 +46333,10 @@ namespace {
          *
          *     @type string $slug The extension slug. This is the plugin or theme's directory.
          *     @type string $type The extension type. Either 'plugin' or 'theme'.
+         * }
+         * @phpstan-return false|array{
+         *   slug: string,
+         *   type: string,
          * }
          */
         protected function get_extension_for_error($error)
@@ -46616,6 +47180,15 @@ namespace {
          *                             and rewrite rules built for each in-turn. Default true.
          *     @type bool $endpoints   Whether endpoints should be applied to the generated rules. Default true.
          * }
+         * @phpstan-param array{
+         *   with_front?: bool,
+         *   ep_mask?: int,
+         *   paged?: bool,
+         *   feed?: bool,
+         *   forcomments?: bool,
+         *   walk_dirs?: bool,
+         *   endpoints?: bool,
+         * } $args
          */
         public function add_permastruct($name, $struct, $args = array())
         {
@@ -47476,6 +48049,45 @@ namespace {
          *                                                comparisons. Default empty.
          *     @type string       $meta_compare           Comparison operator to test the `$meta_value`. Default empty.
          * }
+         * @phpstan-param array{
+         *   site__in?: int[],
+         *   site__not_in?: int[],
+         *   count?: bool,
+         *   date_query?: array,
+         *   fields?: string,
+         *   ID?: int,
+         *   number?: int,
+         *   offset?: int,
+         *   no_found_rows?: bool,
+         *   orderby?: string|array,
+         *   order?: string,
+         *   network_id?: int,
+         *   network__in?: int[],
+         *   network__not_in?: int[],
+         *   domain?: string,
+         *   domain__in?: string[],
+         *   domain__not_in?: string[],
+         *   path?: string,
+         *   path__in?: string[],
+         *   path__not_in?: string[],
+         *   public?: int,
+         *   archived?: int,
+         *   mature?: int,
+         *   spam?: int,
+         *   deleted?: int,
+         *   lang_id?: int,
+         *   lang__in?: string[],
+         *   lang__not_in?: string[],
+         *   search?: string,
+         *   search_columns?: string[],
+         *   update_site_cache?: bool,
+         *   update_site_meta_cache?: bool,
+         *   meta_query?: array,
+         *   meta_key?: string,
+         *   meta_value?: string,
+         *   meta_type?: string,
+         *   meta_compare?: string,
+         * } $query
          */
         public function __construct($query = '')
         {
@@ -47962,6 +48574,10 @@ namespace {
          *     @type string $join  SQL fragment to append to the main JOIN clause.
          *     @type string $where SQL fragment to append to the main WHERE clause.
          * }
+         * @phpstan-return array{
+         *   join: string,
+         *   where: string,
+         * }
          */
         public function get_sql($primary_table, $primary_id_column)
         {
@@ -47979,6 +48595,10 @@ namespace {
          *
          *     @type string $join  SQL fragment to append to the main JOIN clause.
          *     @type string $where SQL fragment to append to the main WHERE clause.
+         * }
+         * @phpstan-return array{
+         *   join: string,
+         *   where: string,
          * }
          */
         protected function get_sql_clauses()
@@ -48001,6 +48621,10 @@ namespace {
          *     @type string $join  SQL fragment to append to the main JOIN clause.
          *     @type string $where SQL fragment to append to the main WHERE clause.
          * }
+         * @phpstan-return array{
+         *   join: string,
+         *   where: string,
+         * }
          */
         protected function get_sql_for_query(&$query, $depth = 0)
         {
@@ -48019,6 +48643,10 @@ namespace {
          *
          *     @type string $join  SQL fragment to append to the main JOIN clause.
          *     @type string $where SQL fragment to append to the main WHERE clause.
+         * }
+         * @phpstan-return array{
+         *   join: string,
+         *   where: string,
          * }
          */
         public function get_sql_for_clause(&$clause, $parent_query)
@@ -48552,6 +49180,39 @@ namespace {
          *                                                comparisons. Default empty.
          *     @type string       $meta_compare           Comparison operator to test the 'meta_value'. Default empty.
          * }
+         * @phpstan-param array{
+         *   taxonomy?: string|array,
+         *   object_ids?: int|int[],
+         *   orderby?: string,
+         *   order?: string,
+         *   hide_empty?: bool|int,
+         *   include?: int[]|string,
+         *   exclude?: int[]|string,
+         *   exclude_tree?: int[]|string,
+         *   number?: int|string,
+         *   offset?: int,
+         *   fields?: string,
+         *   count?: bool,
+         *   name?: string|array,
+         *   slug?: string|array,
+         *   term_taxonomy_id?: int|int[],
+         *   hierarchical?: bool,
+         *   search?: string,
+         *   name__like?: string,
+         *   description__like?: string,
+         *   pad_counts?: bool,
+         *   get?: string,
+         *   child_of?: int,
+         *   parent?: int|string,
+         *   childless?: bool,
+         *   cache_domain?: string,
+         *   update_term_meta_cache?: bool,
+         *   meta_query?: array,
+         *   meta_key?: string,
+         *   meta_value?: string,
+         *   meta_type?: string,
+         *   meta_compare?: string,
+         * } $query
          */
         public function __construct($query = '')
         {
@@ -49056,6 +49717,12 @@ namespace {
          *                                blanks to keep matches aligned with side-by-side diff
          *                                of `$orig`. A value >= 0 corresponds to index of `$final`.
          *                                Value < 0 indicates a blank row.
+         * }
+         * @phpstan-return array{
+         *   orig_matches: array,
+         *   final_matches: array,
+         *   orig_rows: array,
+         *   final_rows: array,
          * }
          */
         public function interleave_changed_lines($orig, $final)
@@ -50821,6 +51488,34 @@ namespace {
          *     @type string[]     $login__not_in       An array of logins to exclude. Users matching one of these
          *                                             logins will not be included in results. Default empty array.
          * }
+         * @phpstan-param array{
+         *   blog_id?: int,
+         *   role?: string|array,
+         *   role__in?: string[],
+         *   role__not_in?: string[],
+         *   meta_key?: string,
+         *   meta_value?: string,
+         *   meta_compare?: string,
+         *   include?: int[],
+         *   exclude?: int[],
+         *   search?: string,
+         *   search_columns?: string[],
+         *   orderby?: string|array,
+         *   order?: string,
+         *   offset?: int,
+         *   number?: int,
+         *   paged?: int,
+         *   count_total?: bool,
+         *   fields?: string|array,
+         *   who?: string,
+         *   has_published_posts?: bool|array,
+         *   nicename?: string,
+         *   nicename__in?: string[],
+         *   nicename__not_in?: string[],
+         *   login?: string,
+         *   login__in?: string[],
+         *   login__not_in?: string[],
+         * } $query
          */
         public function prepare_query($query = array())
         {
@@ -51914,6 +52609,9 @@ namespace {
          *
          *     @type int $number Number increment used for multiples of the same widget.
          * }
+         * @phpstan-param int|array{
+         *   number?: int,
+         * } $widget_args
          */
         public function display_callback($args, $widget_args = 1)
         {
@@ -51942,6 +52640,9 @@ namespace {
          *     @type int $number Number increment used for multiples of the same widget.
          * }
          * @return string|null
+         * @phpstan-param int|array{
+         *   number?: int,
+         * } $widget_args
          */
         public function form_callback($widget_args = 1)
         {
@@ -52095,6 +52796,10 @@ namespace {
          *     @type int $number2 A second number to add.
          * }
          * @return int Sum of the two given numbers.
+         * @phpstan-param array{
+         *   number1?: int,
+         *   number2?: int,
+         * } $args
          */
         public function addTwoNumbers($args)
         {
@@ -52223,6 +52928,10 @@ namespace {
          *  - 'blogid'
          *  - 'blogName'
          *  - 'xmlrpc' - url of xmlrpc endpoint
+         * @phpstan-param array{
+         *   username?: string,
+         *   password?: string,
+         * } $args
          */
         public function wp_getUsersBlogs($args)
         {
@@ -52384,6 +53093,12 @@ namespace {
          *     }
          * }
          * @return int|IXR_Error Post ID on success, IXR_Error instance otherwise.
+         * @phpstan-param array{
+         *   blog_id?: int,
+         *   username?: string,
+         *   password?: string,
+         *   content_struct?: array,
+         * } $args
          */
         public function wp_newPost($args)
         {
@@ -52444,6 +53159,13 @@ namespace {
          *     @type array  $content_struct Extra content arguments.
          * }
          * @return true|IXR_Error True on success, IXR_Error on failure.
+         * @phpstan-param array{
+         *   blog_id?: int,
+         *   username?: string,
+         *   password?: string,
+         *   post_id?: int,
+         *   content_struct?: array,
+         * } $args
          */
         public function wp_editPost($args)
         {
@@ -52464,6 +53186,12 @@ namespace {
          *     @type int    $post_id  Post ID.
          * }
          * @return true|IXR_Error True on success, IXR_Error instance on failure.
+         * @phpstan-param array{
+         *   blog_id?: int,
+         *   username?: string,
+         *   password?: string,
+         *   post_id?: int,
+         * } $args
          */
         public function wp_deletePost($args)
         {
@@ -52516,6 +53244,13 @@ namespace {
          *  - 'categories'
          *  - 'tags'
          *  - 'enclosure'
+         * @phpstan-param array{
+         *   blog_id?: int,
+         *   username?: string,
+         *   password?: string,
+         *   post_id?: int,
+         *   fields?: array,
+         * } $args
          */
         public function wp_getPost($args)
         {
@@ -52541,6 +53276,13 @@ namespace {
          *     @type array  $fields   Optional. The subset of post type fields to return in the response array.
          * }
          * @return array|IXR_Error Array contains a collection of posts.
+         * @phpstan-param array{
+         *   blog_id?: int,
+         *   username?: string,
+         *   password?: string,
+         *   filter?: array,
+         *   fields?: array,
+         * } $args
          */
         public function wp_getPosts($args)
         {
@@ -52563,6 +53305,12 @@ namespace {
          *                                  'parent', 'description', and 'slug'.
          * }
          * @return int|IXR_Error The term ID on success, or an IXR_Error object on failure.
+         * @phpstan-param array{
+         *   blog_id?: int,
+         *   username?: string,
+         *   password?: string,
+         *   content_struct?: array,
+         * } $args
          */
         public function wp_newTerm($args)
         {
@@ -52586,6 +53334,13 @@ namespace {
          *                                  'description', and 'slug'.
          * }
          * @return true|IXR_Error True on success, IXR_Error instance on failure.
+         * @phpstan-param array{
+         *   blog_id?: int,
+         *   username?: string,
+         *   password?: string,
+         *   term_id?: int,
+         *   content_struct?: array,
+         * } $args
          */
         public function wp_editTerm($args)
         {
@@ -52607,6 +53362,13 @@ namespace {
          *     @type int    $term_id      Term ID.
          * }
          * @return true|IXR_Error True on success, IXR_Error instance on failure.
+         * @phpstan-param array{
+         *   blog_id?: int,
+         *   username?: string,
+         *   password?: string,
+         *   taxnomy_name?: string,
+         *   term_id?: int,
+         * } $args
          */
         public function wp_deleteTerm($args)
         {
@@ -52637,6 +53399,13 @@ namespace {
          *  - 'description'
          *  - 'parent'
          *  - 'count'
+         * @phpstan-param array{
+         *   blog_id?: int,
+         *   username?: string,
+         *   password?: string,
+         *   taxnomy?: string,
+         *   term_id?: string,
+         * } $args
          */
         public function wp_getTerm($args)
         {
@@ -52662,6 +53431,13 @@ namespace {
          *                            'offset', 'orderby', 'order', 'hide_empty', and 'search'. Default empty array.
          * }
          * @return array|IXR_Error An associative array of terms data on success, IXR_Error instance otherwise.
+         * @phpstan-param array{
+         *   blog_id?: int,
+         *   username?: string,
+         *   password?: string,
+         *   taxnomy?: string,
+         *   filter?: array,
+         * } $args
          */
         public function wp_getTerms($args)
         {
@@ -52685,6 +53461,13 @@ namespace {
          *                            Default empty array.
          * }
          * @return array|IXR_Error An array of taxonomy data on success, IXR_Error instance otherwise.
+         * @phpstan-param array{
+         *   blog_id?: int,
+         *   username?: string,
+         *   password?: string,
+         *   taxnomy?: string,
+         *   fields?: array,
+         * } $args
          */
         public function wp_getTaxonomy($args)
         {
@@ -52707,6 +53490,13 @@ namespace {
          * }
          * @return array|IXR_Error An associative array of taxonomy data with returned fields determined
          *                         by `$fields`, or an IXR_Error instance on failure.
+         * @phpstan-param array{
+         *   blog_id?: int,
+         *   username?: string,
+         *   password?: string,
+         *   filter?: array,
+         *   fields?: array,
+         * } $args
          */
         public function wp_getTaxonomies($args)
         {
@@ -52746,6 +53536,13 @@ namespace {
          *  - 'url'
          *  - 'display_name'
          *  - 'roles'
+         * @phpstan-param array{
+         *   blog_id?: int,
+         *   username?: string,
+         *   password?: string,
+         *   user_id?: int,
+         *   fields?: array,
+         * } $args
          */
         public function wp_getUser($args)
         {
@@ -52773,6 +53570,13 @@ namespace {
          *     @type array  $fields (optional)
          * }
          * @return array|IXR_Error users data
+         * @phpstan-param array{
+         *   blog_id?: int,
+         *   username?: string,
+         *   password?: string,
+         *   filter?: array,
+         *   fields?: array,
+         * } $args
          */
         public function wp_getUsers($args)
         {
@@ -52791,6 +53595,12 @@ namespace {
          *     @type array  $fields (optional)
          * }
          * @return array|IXR_Error (@see wp_getUser)
+         * @phpstan-param array{
+         *   blog_id?: int,
+         *   username?: string,
+         *   password?: string,
+         *   fields?: array,
+         * } $args
          */
         public function wp_getProfile($args)
         {
@@ -52816,6 +53626,12 @@ namespace {
          *      - 'bio'
          * }
          * @return true|IXR_Error True, on success.
+         * @phpstan-param array{
+         *   blog_id?: int,
+         *   username?: string,
+         *   password?: string,
+         *   content_struct?: array,
+         * } $args
          */
         public function wp_editProfile($args)
         {
@@ -52834,6 +53650,12 @@ namespace {
          *     @type string $password
          * }
          * @return array|IXR_Error
+         * @phpstan-param array{
+         *   blog_id?: int,
+         *   page_id?: int,
+         *   username?: string,
+         *   password?: string,
+         * } $args
          */
         public function wp_getPage($args)
         {
@@ -52852,6 +53674,12 @@ namespace {
          *     @type int    $num_pages
          * }
          * @return array|IXR_Error
+         * @phpstan-param array{
+         *   blog_id?: int,
+         *   username?: string,
+         *   password?: string,
+         *   num_pages?: int,
+         * } $args
          */
         public function wp_getPages($args)
         {
@@ -52872,6 +53700,12 @@ namespace {
          *     @type array  $content_struct
          * }
          * @return int|IXR_Error
+         * @phpstan-param array{
+         *   blog_id?: int,
+         *   username?: string,
+         *   password?: string,
+         *   content_struct?: array,
+         * } $args
          */
         public function wp_newPage($args)
         {
@@ -52890,6 +53724,12 @@ namespace {
          *     @type int    $page_id
          * }
          * @return true|IXR_Error True, if success.
+         * @phpstan-param array{
+         *   blog_id?: int,
+         *   username?: string,
+         *   password?: string,
+         *   page_id?: int,
+         * } $args
          */
         public function wp_deletePage($args)
         {
@@ -52910,6 +53750,14 @@ namespace {
          *     @type string $publish
          * }
          * @return array|IXR_Error
+         * @phpstan-param array{
+         *   blog_id?: int,
+         *   page_id?: int,
+         *   username?: string,
+         *   password?: string,
+         *   content?: string,
+         *   publish?: string,
+         * } $args
          */
         public function wp_editPage($args)
         {
@@ -52929,6 +53777,11 @@ namespace {
          *     @type string $password
          * }
          * @return array|IXR_Error
+         * @phpstan-param array{
+         *   blog_id?: int,
+         *   username?: string,
+         *   password?: string,
+         * } $args
          */
         public function wp_getPageList($args)
         {
@@ -52946,6 +53799,11 @@ namespace {
          *     @type string $password
          * }
          * @return array|IXR_Error
+         * @phpstan-param array{
+         *   blog_id?: int,
+         *   username?: string,
+         *   password?: string,
+         * } $args
          */
         public function wp_getAuthors($args)
         {
@@ -52963,6 +53821,11 @@ namespace {
          *     @type string $password
          * }
          * @return array|IXR_Error
+         * @phpstan-param array{
+         *   blog_id?: int,
+         *   username?: string,
+         *   password?: string,
+         * } $args
          */
         public function wp_getTags($args)
         {
@@ -52981,6 +53844,12 @@ namespace {
          *     @type array  $category
          * }
          * @return int|IXR_Error Category ID.
+         * @phpstan-param array{
+         *   blog_id?: int,
+         *   username?: string,
+         *   password?: string,
+         *   category?: array,
+         * } $args
          */
         public function wp_newCategory($args)
         {
@@ -52999,6 +53868,12 @@ namespace {
          *     @type int    $category_id
          * }
          * @return bool|IXR_Error See wp_delete_term() for return info.
+         * @phpstan-param array{
+         *   blog_id?: int,
+         *   username?: string,
+         *   password?: string,
+         *   category_id?: int,
+         * } $args
          */
         public function wp_deleteCategory($args)
         {
@@ -53018,6 +53893,13 @@ namespace {
          *     @type int    $max_results
          * }
          * @return array|IXR_Error
+         * @phpstan-param array{
+         *   blog_id?: int,
+         *   username?: string,
+         *   password?: string,
+         *   category?: array,
+         *   max_results?: int,
+         * } $args
          */
         public function wp_suggestCategories($args)
         {
@@ -53036,6 +53918,12 @@ namespace {
          *     @type int    $comment_id
          * }
          * @return array|IXR_Error
+         * @phpstan-param array{
+         *   blog_id?: int,
+         *   username?: string,
+         *   password?: string,
+         *   comment_id?: int,
+         * } $args
          */
         public function wp_getComment($args)
         {
@@ -53065,6 +53953,12 @@ namespace {
          *     @type array  $struct
          * }
          * @return array|IXR_Error Contains a collection of comments. See wp_xmlrpc_server::wp_getComment() for a description of each item contents
+         * @phpstan-param array{
+         *   blog_id?: int,
+         *   username?: string,
+         *   password?: string,
+         *   struct?: array,
+         * } $args
          */
         public function wp_getComments($args)
         {
@@ -53086,6 +53980,12 @@ namespace {
          *     @type int    $comment_ID
          * }
          * @return bool|IXR_Error See wp_delete_comment().
+         * @phpstan-param array{
+         *   blog_id?: int,
+         *   username?: string,
+         *   password?: string,
+         *   comment_ID?: int,
+         * } $args
          */
         public function wp_deleteComment($args)
         {
@@ -53116,6 +54016,13 @@ namespace {
          *     @type array  $content_struct
          * }
          * @return true|IXR_Error True, on success.
+         * @phpstan-param array{
+         *   blog_id?: int,
+         *   username?: string,
+         *   password?: string,
+         *   comment_ID?: int,
+         *   content_struct?: array,
+         * } $args
          */
         public function wp_editComment($args)
         {
@@ -53135,6 +54042,13 @@ namespace {
          *     @type array      $content_struct
          * }
          * @return int|IXR_Error See wp_new_comment().
+         * @phpstan-param array{
+         *   blog_id?: int,
+         *   username?: string,
+         *   password?: string,
+         *   post?: string|int,
+         *   content_struct?: array,
+         * } $args
          */
         public function wp_newComment($args)
         {
@@ -53152,6 +54066,11 @@ namespace {
          *     @type string $password
          * }
          * @return array|IXR_Error
+         * @phpstan-param array{
+         *   blog_id?: int,
+         *   username?: string,
+         *   password?: string,
+         * } $args
          */
         public function wp_getCommentStatusList($args)
         {
@@ -53170,6 +54089,12 @@ namespace {
          *     @type int    $post_id
          * }
          * @return array|IXR_Error
+         * @phpstan-param array{
+         *   blog_id?: int,
+         *   username?: string,
+         *   password?: string,
+         *   post_id?: int,
+         * } $args
          */
         public function wp_getCommentCount($args)
         {
@@ -53187,6 +54112,11 @@ namespace {
          *     @type string $password
          * }
          * @return array|IXR_Error
+         * @phpstan-param array{
+         *   blog_id?: int,
+         *   username?: string,
+         *   password?: string,
+         * } $args
          */
         public function wp_getPostStatusList($args)
         {
@@ -53204,6 +54134,11 @@ namespace {
          *     @type string $password
          * }
          * @return array|IXR_Error
+         * @phpstan-param array{
+         *   blog_id?: int,
+         *   username?: string,
+         *   password?: string,
+         * } $args
          */
         public function wp_getPageStatusList($args)
         {
@@ -53221,6 +54156,11 @@ namespace {
          *     @type string $password
          * }
          * @return array|IXR_Error
+         * @phpstan-param array{
+         *   blog_id?: int,
+         *   username?: string,
+         *   password?: string,
+         * } $args
          */
         public function wp_getPageTemplates($args)
         {
@@ -53239,6 +54179,12 @@ namespace {
          *     @type array  $options
          * }
          * @return array|IXR_Error
+         * @phpstan-param array{
+         *   blog_id?: int,
+         *   username?: string,
+         *   password?: string,
+         *   options?: array,
+         * } $args
          */
         public function wp_getOptions($args)
         {
@@ -53268,6 +54214,12 @@ namespace {
          *     @type array  $options
          * }
          * @return array|IXR_Error
+         * @phpstan-param array{
+         *   blog_id?: int,
+         *   username?: string,
+         *   password?: string,
+         *   options?: array,
+         * } $args
          */
         public function wp_setOptions($args)
         {
@@ -53294,6 +54246,12 @@ namespace {
          *  - 'caption'
          *  - 'description'
          *  - 'metadata'
+         * @phpstan-param array{
+         *   blog_id?: int,
+         *   username?: string,
+         *   password?: string,
+         *   attachment_id?: int,
+         * } $args
          */
         public function wp_getMediaItem($args)
         {
@@ -53323,6 +54281,12 @@ namespace {
          *     @type array  $struct
          * }
          * @return array|IXR_Error Contains a collection of media items. See wp_xmlrpc_server::wp_getMediaItem() for a description of each item contents
+         * @phpstan-param array{
+         *   blog_id?: int,
+         *   username?: string,
+         *   password?: string,
+         *   struct?: array,
+         * } $args
          */
         public function wp_getMediaLibrary($args)
         {
@@ -53340,6 +54304,11 @@ namespace {
          *     @type string $password
          * }
          * @return array|IXR_Error List of post formats, otherwise IXR_Error object.
+         * @phpstan-param array{
+         *   blog_id?: int,
+         *   username?: string,
+         *   password?: string,
+         * } $args
          */
         public function wp_getPostFormats($args)
         {
@@ -53370,6 +54339,13 @@ namespace {
          *  - 'menu_position'
          *  - 'taxonomies'
          *  - 'supports'
+         * @phpstan-param array{
+         *   blog_id?: int,
+         *   username?: string,
+         *   password?: string,
+         *   post_type_name?: string,
+         *   fields?: array,
+         * } $args
          */
         public function wp_getPostType($args)
         {
@@ -53391,6 +54367,13 @@ namespace {
          *     @type array  $fields (optional)
          * }
          * @return array|IXR_Error
+         * @phpstan-param array{
+         *   blog_id?: int,
+         *   username?: string,
+         *   password?: string,
+         *   filter?: array,
+         *   fields?: array,
+         * } $args
          */
         public function wp_getPostTypes($args)
         {
@@ -53416,6 +54399,13 @@ namespace {
          *     @type array  $fields (optional)
          * }
          * @return array|IXR_Error contains a collection of posts.
+         * @phpstan-param array{
+         *   blog_id?: int,
+         *   username?: string,
+         *   password?: string,
+         *   post_id?: int,
+         *   fields?: array,
+         * } $args
          */
         public function wp_getRevisions($args)
         {
@@ -53436,6 +54426,12 @@ namespace {
          *     @type int    $revision_id
          * }
          * @return bool|IXR_Error false if there was an error restoring, true if success.
+         * @phpstan-param array{
+         *   blog_id?: int,
+         *   username?: string,
+         *   password?: string,
+         *   revision_id?: int,
+         * } $args
          */
         public function wp_restoreRevision($args)
         {
@@ -53459,6 +54455,11 @@ namespace {
          *     @type string $password
          * }
          * @return array|IXR_Error
+         * @phpstan-param array{
+         *   blog_id?: int,
+         *   username?: string,
+         *   password?: string,
+         * } $args
          */
         public function blogger_getUsersBlogs($args)
         {
@@ -53475,6 +54476,10 @@ namespace {
          *     @type string $password Password.
          * }
          * @return array|IXR_Error
+         * @phpstan-param array{
+         *   username?: string,
+         *   password?: string,
+         * } $args
          */
         protected function _multisite_getUsersBlogs($args)
         {
@@ -53494,6 +54499,11 @@ namespace {
          *     @type string $password
          * }
          * @return array|IXR_Error
+         * @phpstan-param array{
+         *   blog_id?: int,
+         *   username?: string,
+         *   password?: string,
+         * } $args
          */
         public function blogger_getUserInfo($args)
         {
@@ -53512,6 +54522,12 @@ namespace {
          *     @type string $password
          * }
          * @return array|IXR_Error
+         * @phpstan-param array{
+         *   blog_id?: int,
+         *   post_ID?: int,
+         *   username?: string,
+         *   password?: string,
+         * } $args
          */
         public function blogger_getPost($args)
         {
@@ -53531,6 +54547,13 @@ namespace {
          *     @type int    $numberposts (optional)
          * }
          * @return array|IXR_Error
+         * @phpstan-param array{
+         *   appkey?: string,
+         *   blog_id?: int,
+         *   username?: string,
+         *   password?: string,
+         *   numberposts?: int,
+         * } $args
          */
         public function blogger_getRecentPosts($args)
         {
@@ -53575,6 +54598,14 @@ namespace {
          *     @type string $publish
          * }
          * @return int|IXR_Error
+         * @phpstan-param array{
+         *   appkey?: string,
+         *   blog_id?: int,
+         *   username?: string,
+         *   password?: string,
+         *   content?: string,
+         *   publish?: string,
+         * } $args
          */
         public function blogger_newPost($args)
         {
@@ -53595,6 +54626,14 @@ namespace {
          *     @type bool   $publish
          * }
          * @return true|IXR_Error true when done.
+         * @phpstan-param array{
+         *   blog_id?: int,
+         *   post_ID?: int,
+         *   username?: string,
+         *   password?: string,
+         *   content?: string,
+         *   publish?: bool,
+         * } $args
          */
         public function blogger_editPost($args)
         {
@@ -53613,6 +54652,12 @@ namespace {
          *     @type string $password
          * }
          * @return true|IXR_Error True when post is deleted.
+         * @phpstan-param array{
+         *   blog_id?: int,
+         *   post_ID?: int,
+         *   username?: string,
+         *   password?: string,
+         * } $args
          */
         public function blogger_deletePost($args)
         {
@@ -53658,6 +54703,13 @@ namespace {
          *     @type int    $publish
          * }
          * @return int|IXR_Error
+         * @phpstan-param array{
+         *   blog_id?: int,
+         *   username?: string,
+         *   password?: string,
+         *   content_struct?: array,
+         *   publish?: int,
+         * } $args
          */
         public function mw_newPost($args)
         {
@@ -53701,6 +54753,13 @@ namespace {
          *     @type int    $publish
          * }
          * @return true|IXR_Error True on success.
+         * @phpstan-param array{
+         *   blog_id?: int,
+         *   username?: string,
+         *   password?: string,
+         *   content_struct?: array,
+         *   publish?: int,
+         * } $args
          */
         public function mw_editPost($args)
         {
@@ -53719,6 +54778,12 @@ namespace {
          *     @type string $password
          * }
          * @return array|IXR_Error
+         * @phpstan-param array{
+         *   blog_id?: int,
+         *   post_ID?: int,
+         *   username?: string,
+         *   password?: string,
+         * } $args
          */
         public function mw_getPost($args)
         {
@@ -53737,6 +54802,12 @@ namespace {
          *     @type int    $numberposts
          * }
          * @return array|IXR_Error
+         * @phpstan-param array{
+         *   blog_id?: int,
+         *   username?: string,
+         *   password?: string,
+         *   numberposts?: int,
+         * } $args
          */
         public function mw_getRecentPosts($args)
         {
@@ -53754,6 +54825,11 @@ namespace {
          *     @type string $password
          * }
          * @return array|IXR_Error
+         * @phpstan-param array{
+         *   blog_id?: int,
+         *   username?: string,
+         *   password?: string,
+         * } $args
          */
         public function mw_getCategories($args)
         {
@@ -53778,6 +54854,12 @@ namespace {
          *     @type array  $data
          * }
          * @return array|IXR_Error
+         * @phpstan-param array{
+         *   blog_id?: int,
+         *   username?: string,
+         *   password?: string,
+         *   data?: array,
+         * } $args
          */
         public function mw_newMediaObject($args)
         {
@@ -53800,6 +54882,12 @@ namespace {
          *     @type int    $numberposts
          * }
          * @return array|IXR_Error
+         * @phpstan-param array{
+         *   blog_id?: int,
+         *   username?: string,
+         *   password?: string,
+         *   numberposts?: int,
+         * } $args
          */
         public function mt_getRecentPostTitles($args)
         {
@@ -53817,6 +54905,11 @@ namespace {
          *     @type string $password
          * }
          * @return array|IXR_Error
+         * @phpstan-param array{
+         *   blog_id?: int,
+         *   username?: string,
+         *   password?: string,
+         * } $args
          */
         public function mt_getCategoryList($args)
         {
@@ -53834,6 +54927,11 @@ namespace {
          *     @type string $password
          * }
          * @return array|IXR_Error
+         * @phpstan-param array{
+         *   post_ID?: int,
+         *   username?: string,
+         *   password?: string,
+         * } $args
          */
         public function mt_getPostCategories($args)
         {
@@ -53852,6 +54950,12 @@ namespace {
          *     @type array  $categories
          * }
          * @return true|IXR_Error True on success.
+         * @phpstan-param array{
+         *   post_ID?: int,
+         *   username?: string,
+         *   password?: string,
+         *   categories?: array,
+         * } $args
          */
         public function mt_setPostCategories($args)
         {
@@ -53900,6 +55004,11 @@ namespace {
          *     @type string $password
          * }
          * @return int|IXR_Error
+         * @phpstan-param array{
+         *   post_ID?: int,
+         *   username?: string,
+         *   password?: string,
+         * } $args
          */
         public function mt_publishPost($args)
         {
@@ -53920,6 +55029,10 @@ namespace {
          *     @type string $pagelinkedto
          * }
          * @return string|IXR_Error
+         * @phpstan-param array{
+         *   pagelinkedfrom?: string,
+         *   pagelinkedto?: string,
+         * } $args
          */
         public function pingback_ping($args)
         {
@@ -56853,6 +57966,12 @@ namespace {
          *     @type bool   $auto_add    Whether pages will auto_add to this menu. Default false.
          * }
          * @return null|void
+         * @phpstan-param false|array{
+         *   name?: string,
+         *   description?: string,
+         *   parent?: int,
+         *   auto_add?: bool,
+         * } $value
          */
         protected function update($value)
         {
@@ -57176,6 +58295,16 @@ namespace {
          *                                           A partial render is considered a failure if the render_callback returns
          *                                           false.
          * }
+         * @phpstan-param array{
+         *   type?: string,
+         *   selector?: string,
+         *   settings?: string[],
+         *   primary_setting?: string,
+         *   capability?: string,
+         *   render_callback?: callable,
+         *   container_inclusive?: bool,
+         *   fallback_refresh?: bool,
+         * } $args
          */
         public function __construct(\WP_Customize_Selective_Refresh $component, $id, $args = array())
         {
@@ -57190,6 +58319,10 @@ namespace {
          *
          *     @type string $base ID base.
          *     @type array  $keys Keys for multidimensional array.
+         * }
+         * @phpstan-return array{
+         *   base: string,
+         *   keys: array,
          * }
          */
         public final function id_data()
@@ -59754,6 +60887,10 @@ namespace {
          *     @type array $_links    Links.
          *     @type array $_embedded Embedded objects.
          * }
+         * @phpstan-return array{
+         *   _links: array,
+         *   _embedded: array,
+         * }
          */
         public function response_to_data($response, $embed)
         {
@@ -59799,6 +60936,10 @@ namespace {
          *
          *     @type array $_links    Links.
          *     @type array $_embedded Embedded objects.
+         * }
+         * @phpstan-return array{
+         *   _links: array,
+         *   _embedded: array,
          * }
          */
         protected function embed_links($data, $embed = \true)
@@ -59944,6 +61085,9 @@ namespace {
          *     @type string $context Context.
          * }
          * @return WP_REST_Response The API root index data.
+         * @phpstan-param array{
+         *   context?: string,
+         * } $request
          */
         public function get_index($request)
         {
@@ -68318,6 +69462,11 @@ namespace {
          *     @type bool        $legacy Whether widget is in legacy mode.
          * }
          * @return bool Whether Text widget instance contains legacy data.
+         * @phpstan-param array{
+         *   text?: string,
+         *   filter?: bool|string,
+         *   legacy?: bool,
+         * } $instance
          */
         public function is_legacy_instance($instance)
         {
@@ -68973,6 +70122,10 @@ namespace {
          *
          *     @type string $charset Character set.
          *     @type string $collate Collation.
+         * }
+         * @phpstan-return array{
+         *   charset: string,
+         *   collate: string,
          * }
          */
         public function determine_charset($charset, $collate)
@@ -70991,6 +72144,22 @@ namespace {
      * }
      * @param bool  $wp_error Optional. Whether to return a WP_Error object on failure. Default false.
      * @return int|WP_Error Value 0 or WP_Error on failure. The link ID on success.
+     * @phpstan-param array{
+     *   link_id?: int,
+     *   link_url?: string,
+     *   link_name?: string,
+     *   link_image?: string,
+     *   link_target?: string,
+     *   link_description?: string,
+     *   link_visible?: string,
+     *   link_owner?: int,
+     *   link_rating?: int,
+     *   link_updated?: string,
+     *   link_rel?: string,
+     *   link_notes?: string,
+     *   link_rss?: string,
+     *   link_category?: int,
+     * } $linkdata
      */
     function wp_insert_link($linkdata, $wp_error = \false)
     {
@@ -71421,6 +72590,13 @@ namespace {
      *     @type string $id      The container id.
      * }
      * @return bool False if no posts were found. True otherwise.
+     * @phpstan-param array{
+     *   max?: int,
+     *   status?: string,
+     *   order?: string,
+     *   title?: string,
+     *   id?: string,
+     * } $args
      */
     function wp_dashboard_recent_posts($args)
     {
@@ -72492,6 +73668,14 @@ namespace {
      *                                  'publish', 'pending', 'draft', 'auto-draft', 'future', 'private', 'inherit', or
      *                                  'trash'. Default false (all statuses except 'auto-draft').
      * }
+     * @phpstan-param array{
+     *   content?: string,
+     *   author?: string,
+     *   category?: string,
+     *   start_date?: string,
+     *   end_date?: string,
+     *   status?: string,
+     * } $args
      */
     function export_wp($args = array())
     {
@@ -72587,6 +73771,13 @@ namespace {
      *     @type string $nonce      Nonce.
      * }
      * @return true|WP_Error True on success or `WP_Error` on failure.
+     * @phpstan-param array{
+     *   file?: string,
+     *   plugin?: string,
+     *   theme?: string,
+     *   newcontent?: string,
+     *   nonce?: string,
+     * } $args
      */
     function wp_edit_theme_plugin_file($args)
     {
@@ -72656,6 +73847,15 @@ namespace {
      * @return string[] On success, returns an associative array of file attributes.
      *                  On failure, returns `$overrides['upload_error_handler']( &$file, $message )`
      *                  or `array( 'error' => $message )`.
+     * @phpstan-param false|array{
+     *   upload_error_handler?: callable,
+     *   unique_filename_callback?: callable,
+     *   upload_error_strings?: string[],
+     *   test_form?: bool,
+     *   test_size?: bool,
+     *   test_type?: bool,
+     *   mimes?: string[],
+     * } $overrides
      */
     function _wp_handle_upload(&$file, $overrides, $time, $action)
     {
@@ -74109,6 +75309,12 @@ namespace {
      *     @type callable $callback Meta box display callback.
      *     @type array    $args     Extra meta box arguments.
      * }
+     * @phpstan-param array{
+     *   id?: string,
+     *   title?: string,
+     *   callback?: callable,
+     *   args?: array,
+     * } $args
      */
     function post_submit_meta_box($post, $args = array())
     {
@@ -74137,6 +75343,12 @@ namespace {
      *     @type callable $callback Meta box display callback.
      *     @type array    $args     Extra meta box arguments.
      * }
+     * @phpstan-param array{
+     *   id?: string,
+     *   title?: string,
+     *   callback?: callable,
+     *   args?: array,
+     * } $box
      */
     function post_format_meta_box($post, $box)
     {
@@ -74161,6 +75373,12 @@ namespace {
      *         @type string $taxonomy Taxonomy. Default 'post_tag'.
      *     }
      * }
+     * @phpstan-param array{
+     *   id?: string,
+     *   title?: string,
+     *   callback?: callable,
+     *   args?: array,
+     * } $box
      */
     function post_tags_meta_box($post, $box)
     {
@@ -74185,6 +75403,12 @@ namespace {
      *         @type string $taxonomy Taxonomy. Default 'category'.
      *     }
      * }
+     * @phpstan-param array{
+     *   id?: string,
+     *   title?: string,
+     *   callback?: callable,
+     *   args?: array,
+     * } $box
      */
     function post_categories_meta_box($post, $box)
     {
@@ -75164,6 +76388,11 @@ namespace {
      *     @type array  $links    The tabs to include with (label|url|cap) keys.
      *     @type string $selected The ID of the selected link.
      * }
+     * @phpstan-param array{
+     *   blog_id?: int,
+     *   links?: array,
+     *   selected?: string,
+     * } $args
      */
     function network_edit_site_nav($args = array())
     {
@@ -75275,6 +76504,12 @@ namespace {
      *     @type callable     $callback Meta box display callback.
      *     @type WP_Post_Type $args     Extra meta box arguments (the post type object for this meta box).
      * }
+     * @phpstan-param array{
+     *   id?: string,
+     *   title?: string,
+     *   callback?: callable,
+     *   args?: WP_Post_Type,
+     * } $box
      */
     function wp_nav_menu_item_post_type_meta_box($object, $box)
     {
@@ -75295,6 +76530,12 @@ namespace {
      *     @type callable $callback Meta box display callback.
      *     @type object   $args     Extra meta box arguments (the taxonomy object for this meta box).
      * }
+     * @phpstan-param array{
+     *   id?: string,
+     *   title?: string,
+     *   callback?: callable,
+     *   args?: object,
+     * } $box
      */
     function wp_nav_menu_item_taxonomy_meta_box($object, $box)
     {
@@ -75594,6 +76835,21 @@ namespace {
      * @return object|array|WP_Error Response object or array on success, WP_Error on failure. See the
      *         {@link https://developer.wordpress.org/reference/functions/plugins_api/ function reference article}
      *         for more information on the make-up of possible return values depending on the value of `$action`.
+     * @phpstan-param object|array{
+     *   slug?: string,
+     *   per_page?: int,
+     *   page?: int,
+     *   number?: int,
+     *   search?: string,
+     *   tag?: string,
+     *   author?: string,
+     *   user?: string,
+     *   browse?: string,
+     *   locale?: string,
+     *   installed_plugins?: string,
+     *   is_ssl?: bool,
+     *   fields?: array,
+     * } $args
      */
     function plugins_api($action, $args = array())
     {
@@ -75666,6 +76922,12 @@ namespace {
      *     @type string $url     Plugin installation URL.
      *     @type string $version The most recent version of the plugin.
      *     @type string $file    Plugin filename relative to the plugins directory.
+     * }
+     * @phpstan-return array{
+     *   status: string,
+     *   url: string,
+     *   version: string,
+     *   file: string,
      * }
      */
     function install_plugin_install_status($api, $loop = \false)
@@ -75747,6 +77009,20 @@ namespace {
      *     @type string $RequiresPHP Minimum required version of PHP.
      *     @type string $UpdateURI   ID of the plugin for update purposes, should be a URI.
      * }
+     * @phpstan-return array{
+     *   Name: string,
+     *   Title: string,
+     *   Description: string,
+     *   Author: string,
+     *   AuthorURI: string,
+     *   Version: string,
+     *   TextDomain: string,
+     *   DomainPath: string,
+     *   Network: bool,
+     *   RequiresWP: string,
+     *   RequiresPHP: string,
+     *   UpdateURI: string,
+     * }
      */
     function get_plugin_data($plugin_file, $markup = \true, $translate = \true)
     {
@@ -75777,6 +77053,17 @@ namespace {
      *     @type string $TextDomain  Plugin textdomain.
      *     @type string $DomainPath  Plugins relative directory path to .mo files.
      *     @type bool   $Network     Whether the plugin can only be activated network-wide.
+     * }
+     * @phpstan-return array{
+     *   Name: string,
+     *   Title: string,
+     *   Description: string,
+     *   Author: string,
+     *   AuthorURI: string,
+     *   Version: string,
+     *   TextDomain: string,
+     *   DomainPath: string,
+     *   Network: bool,
      * }
      */
     function _get_plugin_data_markup_translate($plugin_file, $plugin_data, $markup = \true, $translate = \true)
@@ -77003,6 +78290,10 @@ namespace {
      *     @type string $0 The permalink with placeholder for the post name.
      *     @type string $1 The post name.
      * }
+     * @phpstan-return array{
+     *   0: string,
+     *   1: string,
+     * }
      */
     function get_sample_permalink($id, $title = \null, $name = \null)
     {
@@ -77261,6 +78552,10 @@ namespace {
      * @param string $group_id     The group identifier.
      * @param int    $groups_count The number of all groups
      * @return string The HTML for this group and its items.
+     * @phpstan-param array{
+     *   group_label?: string,
+     *   items?: array,
+     * } $group_data
      */
     function wp_privacy_generate_personal_data_export_group_html($group_data, $group_id = '', $groups_count = 1)
     {
@@ -77696,6 +78991,14 @@ namespace {
      * @param bool  $wp_error Optional. Default false.
      * @return int|object The ID number of the new or updated Category on success. Zero or a WP_Error on failure,
      *                    depending on param $wp_error.
+     * @phpstan-param array{
+     *   cat_ID?: int,
+     *   taxonomy?: string,
+     *   cat_name?: string,
+     *   category_description?: string,
+     *   category_nicename?: string,
+     *   category_parent?: int|string,
+     * } $catarr
      */
     function wp_insert_category($catarr, $wp_error = \false)
     {
@@ -77826,6 +79129,15 @@ namespace {
      *                                        of echoing it. Default true.
      * }
      * @return string HTML list of input elements.
+     * @phpstan-param array{
+     *   descendants_and_self?: int,
+     *   selected_cats?: int[],
+     *   popular_cats?: int[],
+     *   walker?: Walker,
+     *   taxonomy?: string,
+     *   checked_ontop?: bool,
+     *   echo?: bool,
+     * } $args
      */
     function wp_terms_checklist($post_id = 0, $args = array())
     {
@@ -78041,6 +79353,12 @@ namespace {
      *     @type callable $old_callback The original callback for this meta box.
      *     @type array    $args         Extra meta box arguments.
      * }
+     * @phpstan-param array{
+     *   id?: string,
+     *   title?: string,
+     *   old_callback?: callable,
+     *   args?: array,
+     * } $box
      */
     function do_block_editor_incompatible_meta_box($object, $box)
     {
@@ -78177,6 +79495,10 @@ namespace {
      *     @type string $class     CSS Class to be added to the `<tr>` element when the
      *                             field is output.
      * }
+     * @phpstan-param array{
+     *   label_for?: string,
+     *   class?: string,
+     * } $args
      */
     function add_settings_field($id, $title, $callback, $page, $section = 'default', $args = array())
     {
@@ -78272,6 +79594,12 @@ namespace {
      *                           `<div>` and `<p>` tags).
      *     @type string $type    Optional. Message type, controls HTML class. Possible values include 'error',
      *                           'success', 'warning', 'info'. Default 'error'.
+     * }
+     * @phpstan-return array{
+     *   setting: string,
+     *   code: string,
+     *   message: string,
+     *   type: string,
      * }
      */
     function get_settings_errors($setting = '', $sanitize = \false)
@@ -78537,6 +79865,12 @@ namespace {
      *                             of echoing it. Default true.
      * }
      * @return string Star rating HTML.
+     * @phpstan-param array{
+     *   rating?: int|float,
+     *   type?: string,
+     *   number?: int,
+     *   echo?: bool,
+     * } $args
      */
     function wp_star_rating($args = array())
     {
@@ -78817,6 +80151,19 @@ namespace {
      * @return object|array|WP_Error Response object or array on success, WP_Error on failure. See the
      *         {@link https://developer.wordpress.org/reference/functions/themes_api/ function reference article}
      *         for more information on the make-up of possible return objects depending on the value of `$action`.
+     * @phpstan-param object|array{
+     *   slug?: string,
+     *   per_page?: int,
+     *   page?: int,
+     *   number?: int,
+     *   search?: string,
+     *   tag?: string,
+     *   author?: string,
+     *   user?: string,
+     *   browse?: string,
+     *   locale?: string,
+     *   fields?: array,
+     * } $args
      */
     function themes_api($action, $args = array())
     {
@@ -79395,6 +80742,12 @@ namespace {
      *     @type int    $user_id          The ID of the site owner.
      *     @type string $password         The password of the site owner, if their user account didn't already exist.
      *     @type string $password_message The explanatory message regarding the password.
+     * }
+     * @phpstan-return array{
+     *   url: string,
+     *   user_id: int,
+     *   password: string,
+     *   password_message: string,
      * }
      */
     function wp_install($blog_title, $user_name, $user_email, $public, $deprecated = '', $user_password = '', $language = '')
@@ -80344,6 +81697,12 @@ namespace {
      * }
      * @param WP_User $user The user authorizing the application.
      * @return true|WP_Error True if the request is valid, a WP_Error object contains errors if not.
+     * @phpstan-param array{
+     *   app_name?: string,
+     *   app_id?: string,
+     *   success_url?: string,
+     *   reject_url?: string,
+     * } $request
      */
     function wp_is_authorize_application_password_request_valid($request, $user)
     {
@@ -81179,6 +82538,23 @@ namespace {
      *     @type int[]|string $include       Array or comma/space-separated list of author IDs to include. Default empty.
      * }
      * @return void|string Void if 'echo' argument is true, list of authors if 'echo' is false.
+     * @phpstan-param array{
+     *   orderby?: string,
+     *   order?: string,
+     *   number?: int,
+     *   optioncount?: bool,
+     *   exclude_admin?: bool,
+     *   show_fullname?: bool,
+     *   hide_empty?: bool,
+     *   feed?: string,
+     *   feed_image?: string,
+     *   feed_type?: string,
+     *   echo?: bool,
+     *   style?: string,
+     *   html?: bool,
+     *   exclude?: int[]|string,
+     *   include?: int[]|string,
+     * } $args
      */
     function wp_list_authors($args = '')
     {
@@ -81876,6 +83252,10 @@ namespace {
      * }
      * @param string $template_type Optional. The template type (post type). Default 'wp_template'.
      * @return WP_Block_Template[] Block template objects.
+     * @phpstan-param array{
+     *   slug__in?: array,
+     *   wp_id?: int,
+     * } $query
      */
     function get_block_templates($query = array(), $template_type = 'wp_template')
     {
@@ -83360,6 +84740,18 @@ namespace {
      *
      * }
      * @return string Formatted output in HTML
+     * @phpstan-param array{
+     *   show_updated?: int|bool,
+     *   show_description?: int|bool,
+     *   show_images?: int|bool,
+     *   show_name?: int|bool,
+     *   before?: string,
+     *   after?: string,
+     *   link_before?: string,
+     *   link_after?: string,
+     *   between?: string,
+     *   show_rating?: int|bool,
+     * } $args
      */
     function _walk_bookmarks($bookmarks, $args = '')
     {
@@ -83416,6 +84808,26 @@ namespace {
      *                                          Default 'ASC'.
      * }
      * @return void|string Void if 'echo' argument is true, HTML list of bookmarks if 'echo' is false.
+     * @phpstan-param array{
+     *   orderby?: string,
+     *   order?: string,
+     *   limit?: int,
+     *   category?: string,
+     *   category_name?: string,
+     *   hide_invisible?: int|bool,
+     *   show_updated?: int|bool,
+     *   echo?: int|bool,
+     *   categorize?: int|bool,
+     *   show_description?: int|bool,
+     *   title_li?: string,
+     *   title_before?: string,
+     *   title_after?: string,
+     *   class?: string|array,
+     *   category_before?: string,
+     *   category_after?: string,
+     *   category_orderby?: string,
+     *   category_order?: string,
+     * } $args
      */
     function wp_list_bookmarks($args = '')
     {
@@ -83494,6 +84906,18 @@ namespace {
      *                                    Default empty.
      * }
      * @return object[] List of bookmark row objects.
+     * @phpstan-param array{
+     *   orderby?: string,
+     *   order?: string,
+     *   limit?: int,
+     *   category?: string,
+     *   category_name?: string,
+     *   hide_invisible?: int|bool,
+     *   show_updated?: int|bool,
+     *   include?: string,
+     *   exclude?: string,
+     *   search?: string,
+     * } $args
      */
     function get_bookmarks($args = '')
     {
@@ -84361,6 +85785,26 @@ namespace {
      *                                           Default false.
      * }
      * @return string HTML dropdown list of categories.
+     * @phpstan-param array{
+     *   show_option_all?: string,
+     *   show_option_none?: string,
+     *   option_none_value?: string,
+     *   orderby?: string,
+     *   pad_counts?: bool,
+     *   show_count?: bool|int,
+     *   echo?: bool|int,
+     *   hierarchical?: bool|int,
+     *   depth?: int,
+     *   tab_index?: int,
+     *   name?: string,
+     *   id?: string,
+     *   class?: string,
+     *   selected?: int|string,
+     *   value_field?: string,
+     *   taxonomy?: string|array,
+     *   hide_if_empty?: bool,
+     *   required?: bool,
+     * } $args
      */
     function wp_dropdown_categories($args = '')
     {
@@ -84411,6 +85855,25 @@ namespace {
      * }
      * @return void|string|false Void if 'echo' argument is true, HTML list of categories if 'echo' is false.
      *                           False if the taxonomy does not exist.
+     * @phpstan-param array{
+     *   current_category?: int|int[],
+     *   depth?: int,
+     *   echo?: bool|int,
+     *   exclude?: int[]|string,
+     *   exclude_tree?: int[]|string,
+     *   feed?: string,
+     *   feed_image?: string,
+     *   feed_type?: string,
+     *   hide_title_if_empty?: bool,
+     *   separator?: string,
+     *   show_count?: bool|int,
+     *   show_option_all?: string,
+     *   show_option_none?: string,
+     *   style?: string,
+     *   taxonomy?: string,
+     *   title_li?: string,
+     *   use_desc_for_title?: bool|int,
+     * } $args
      */
     function wp_list_categories($args = '')
     {
@@ -84440,6 +85903,12 @@ namespace {
      * }
      * @return void|string|string[] Void if 'echo' argument is true, or on failure. Otherwise, tag cloud
      *                              as a string or an array, depending on 'format' argument.
+     * @phpstan-param array{
+     *   number?: int,
+     *   link?: string,
+     *   post_type?: string,
+     *   echo?: bool,
+     * } $args
      */
     function wp_tag_cloud($args = '')
     {
@@ -84500,6 +85969,21 @@ namespace {
      *                                                0, 1, or their bool equivalents.
      * }
      * @return string|string[] Tag cloud as a string or an array, depending on 'format' argument.
+     * @phpstan-param array{
+     *   smallest?: int,
+     *   largest?: int,
+     *   unit?: string,
+     *   number?: int,
+     *   format?: string,
+     *   separator?: string,
+     *   orderby?: string,
+     *   order?: string,
+     *   filter?: int|bool,
+     *   topic_count_text?: string,
+     *   topic_count_text_callback?: callable,
+     *   topic_count_scale_callback?: callable,
+     *   show_count?: bool|int,
+     * } $args
      */
     function wp_generate_tag_cloud($tags, $args = '')
     {
@@ -84697,6 +86181,12 @@ namespace {
      *     @type bool   $inclusive Include the term to get the parents for. Default true.
      * }
      * @return string|WP_Error A list of term parents on success, WP_Error or empty string on failure.
+     * @phpstan-param array{
+     *   format?: string,
+     *   separator?: string,
+     *   link?: bool,
+     *   inclusive?: bool,
+     * } $args
      */
     function get_term_parents_list($term_id, $taxonomy, $args = array())
     {
@@ -84803,6 +86293,9 @@ namespace {
      *     @type string $taxonomy Taxonomy to retrieve terms for. Default 'category'.
      * }
      * @return array List of category objects.
+     * @phpstan-param array{
+     *   taxonomy?: string,
+     * } $args
      */
     function get_categories($args = '')
     {
@@ -84943,6 +86436,9 @@ namespace {
      * }
      * @return WP_Term[]|int|WP_Error Array of 'post_tag' term objects, a count thereof,
      *                                or WP_Error if any of the taxonomies do not exist.
+     * @phpstan-param array{
+     *   taxonomy?: string,
+     * } $args
      */
     function get_tags($args = '')
     {
@@ -85437,6 +86933,13 @@ namespace {
      *                                 and `$per_page`.
      * }
      * @return string The permalink to the given comment.
+     * @phpstan-param array{
+     *   type?: string,
+     *   page?: int,
+     *   per_page?: int,
+     *   max_depth?: int,
+     *   cpage?: int|string,
+     * } $args
      */
     function get_comment_link($comment = \null, $args = array())
     {
@@ -85748,6 +87251,16 @@ namespace {
      * @param int|WP_Post    $post    Post ID or WP_Post object the comment is going to be displayed on.
      *                                Default current post.
      * @return string|false|null Link to show comment form, if successful. False, if comments are closed.
+     * @phpstan-param array{
+     *   add_below?: string,
+     *   respond_id?: string,
+     *   reply_text?: string,
+     *   login_text?: string,
+     *   max_depth?: int,
+     *   depth?: int,
+     *   before?: string,
+     *   after?: string,
+     * } $args
      */
     function get_comment_reply_link($args = array(), $comment = \null, $post = \null)
     {
@@ -85789,6 +87302,14 @@ namespace {
      * @param int|WP_Post $post    Optional. Post ID or WP_Post object the comment is going to be displayed on.
      *                             Default current post.
      * @return string|false|null Link to show comment form, if successful. False, if comments are closed.
+     * @phpstan-param array{
+     *   add_below?: string,
+     *   respond_id?: string,
+     *   reply_text?: string,
+     *   login_text?: string,
+     *   before?: string,
+     *   after?: string,
+     * } $args
      */
     function get_post_reply_link($args = array(), $post = \null)
     {
@@ -85922,6 +87443,22 @@ namespace {
      * @param WP_Comment[] $comments Optional. Array of WP_Comment objects.
      * @return void|string Void if 'echo' argument is true, or no comments to list.
      *                     Otherwise, HTML list of comments.
+     * @phpstan-param array{
+     *   walker?: object,
+     *   max_depth?: int,
+     *   style?: string,
+     *   callback?: callable,
+     *   end-callback?: callable,
+     *   type?: string,
+     *   page?: int,
+     *   per_page?: int,
+     *   avatar_size?: int,
+     *   reverse_top_level?: bool,
+     *   reverse_children?: bool,
+     *   format?: string,
+     *   short_ping?: bool,
+     *   echo?: bool,
+     * } $args
      */
     function wp_list_comments($args = array(), $comments = \null)
     {
@@ -85991,6 +87528,32 @@ namespace {
      *     @type string $format               The comment form format. Default 'xhtml'. Accepts 'xhtml', 'html5'.
      * }
      * @param int|WP_Post $post_id Post ID or WP_Post object to generate the form for. Default current post.
+     * @phpstan-param array{
+     *   fields?: array,
+     *   comment_field?: string,
+     *   must_log_in?: string,
+     *   logged_in_as?: string,
+     *   comment_notes_before?: string,
+     *   comment_notes_after?: string,
+     *   action?: string,
+     *   id_form?: string,
+     *   id_submit?: string,
+     *   class_container?: string,
+     *   class_form?: string,
+     *   class_submit?: string,
+     *   name_submit?: string,
+     *   title_reply?: string,
+     *   title_reply_to?: string,
+     *   title_reply_before?: string,
+     *   title_reply_after?: string,
+     *   cancel_reply_before?: string,
+     *   cancel_reply_after?: string,
+     *   cancel_reply_link?: string,
+     *   label_submit?: string,
+     *   submit_button?: string,
+     *   submit_field?: string,
+     *   format?: string,
+     * } $args
      */
     function comment_form($args = array(), $post_id = \null)
     {
@@ -86373,6 +87936,11 @@ namespace {
      *                                 Defaults to the value of the 'thread_comments_depth' option.
      * } *
      * @return int|null Comment page number or null on error.
+     * @phpstan-param array{
+     *   type?: string,
+     *   per_page?: int,
+     *   max_depth?: int|string,
+     * } $args
      */
     function get_page_of_comment($comment_ID, $args = array())
     {
@@ -86574,6 +88142,11 @@ namespace {
      *     @type string $comment_author_email The email address of the current commenter, or an empty string.
      *     @type string $comment_author_url   The URL address of the current commenter, or an empty string.
      * }
+     * @phpstan-return array{
+     *   comment_author: string,
+     *   comment_author_email: string,
+     *   comment_author_url: string,
+     * }
      */
     function wp_get_current_commenter()
     {
@@ -86627,6 +88200,23 @@ namespace {
      *     @type int        $user_id              ID of the user who submitted the comment. Default 0.
      * }
      * @return int|false The new comment's ID on success, false on failure.
+     * @phpstan-param array{
+     *   comment_agent?: string,
+     *   comment_approved?: int|string,
+     *   comment_author?: string,
+     *   comment_author_email?: string,
+     *   comment_author_IP?: string,
+     *   comment_author_url?: string,
+     *   comment_content?: string,
+     *   comment_date?: string,
+     *   comment_date_gmt?: string,
+     *   comment_karma?: int,
+     *   comment_parent?: int,
+     *   comment_post_ID?: int,
+     *   comment_type?: string,
+     *   comment_meta?: array,
+     *   user_id?: int,
+     * } $commentdata
      */
     function wp_insert_comment($commentdata)
     {
@@ -86705,6 +88295,21 @@ namespace {
      * @param bool  $wp_error Should errors be returned as WP_Error objects instead of
      *                        executing wp_die()? Default false.
      * @return int|false|WP_Error The ID of the comment on success, false or WP_Error on failure.
+     * @phpstan-param array{
+     *   comment_author?: string,
+     *   comment_author_email?: string,
+     *   comment_author_url?: string,
+     *   comment_content?: string,
+     *   comment_date?: string,
+     *   comment_date_gmt?: string,
+     *   comment_type?: string,
+     *   comment_parent?: int,
+     *   comment_post_ID?: int,
+     *   user_id?: int,
+     *   user_ID?: int,
+     *   comment_agent?: string,
+     *   comment_author_IP?: string,
+     * } $commentdata
      */
     function wp_new_comment($commentdata, $wp_error = \false)
     {
@@ -87076,6 +88681,15 @@ namespace {
      *     @type string     $_wp_unfiltered_html_comment The nonce value for allowing unfiltered HTML.
      * }
      * @return WP_Comment|WP_Error A WP_Comment object on success, a WP_Error object on failure.
+     * @phpstan-param array{
+     *   comment_post_ID?: string|int,
+     *   author?: string,
+     *   email?: string,
+     *   url?: string,
+     *   comment?: string,
+     *   comment_parent?: string|int,
+     *   _wp_unfiltered_html_comment?: string,
+     * } $comment_data
      */
     function wp_handle_comment_submission($comment_data)
     {
@@ -90419,6 +92033,10 @@ namespace {
      *     @type int $0 The embed width.
      *     @type int $1 The embed height.
      * }
+     * @phpstan-return array{
+     *   0: int,
+     *   1: int,
+     * }
      */
     function wp_embed_defaults($url = '')
     {
@@ -90441,6 +92059,11 @@ namespace {
      *                                is not found in the built-in providers list. Default true.
      * }
      * @return string|false The embed HTML on success, false on failure.
+     * @phpstan-param array{
+     *   width?: int|string,
+     *   height?: int|string,
+     *   discover?: bool,
+     * } $args
      */
     function wp_oembed_get($url, $args = '')
     {
@@ -94332,6 +95955,14 @@ namespace {
      *     @type string       $baseurl URL path without subdir.
      *     @type string|false $error   False or error message.
      * }
+     * @phpstan-return array{
+     *   path: string,
+     *   url: string,
+     *   subdir: string,
+     *   basedir: string,
+     *   baseurl: string,
+     *   error: string|false,
+     * }
      */
     function wp_upload_dir($time = \null, $create_dir = \true, $refresh_cache = \false)
     {
@@ -94425,6 +96056,12 @@ namespace {
      *     @type string       $type  File type.
      *     @type string|false $error Error message, if there has been an error.
      * }
+     * @phpstan-return array{
+     *   file: string,
+     *   url: string,
+     *   type: string,
+     *   error: string|false,
+     * }
      */
     function wp_upload_bits($name, $deprecated, $bits, $time = \null)
     {
@@ -94468,6 +96105,10 @@ namespace {
      *     @type string|false $ext  File extension, or false if the file doesn't match a mime type.
      *     @type string|false $type File mime type, or false if the file doesn't match a mime type.
      * }
+     * @phpstan-return array{
+     *   ext: string|false,
+     *   type: string|false,
+     * }
      */
     function wp_check_filetype($filename, $mimes = \null)
     {
@@ -94494,6 +96135,11 @@ namespace {
      *     @type string|false $ext             File extension, or false if the file doesn't match a mime type.
      *     @type string|false $type            File mime type, or false if the file doesn't match a mime type.
      *     @type string|false $proper_filename File name with its correct extension, or false if it cannot be determined.
+     * }
+     * @phpstan-return array{
+     *   ext: string|false,
+     *   type: string|false,
+     *   proper_filename: string|false,
      * }
      */
     function wp_check_filetype_and_ext($file, $filename, $mimes = \null)
@@ -94608,6 +96254,16 @@ namespace {
      *                                  is a WP_Error.
      *     @type bool   $exit           Whether to exit the process after completion. Default true.
      * }
+     * @phpstan-param int|array{
+     *   response?: int,
+     *   link_url?: string,
+     *   link_text?: string,
+     *   back_link?: bool,
+     *   text_direction?: string,
+     *   charset?: string,
+     *   code?: string,
+     *   exit?: bool,
+     * } $args
      */
     function wp_die($message = '', $title = '', $args = array())
     {
@@ -94736,6 +96392,11 @@ namespace {
      *     @type string $0 Error message.
      *     @type string $1 Error title.
      *     @type array  $2 Arguments to control behavior.
+     * }
+     * @phpstan-return array{
+     *   0: string,
+     *   1: string,
+     *   2: array,
      * }
      */
     function _wp_die_process_input($message, $title = '', $args = array())
@@ -97016,6 +98677,10 @@ namespace {
      *                              accessibility. Default empty.
      * }
      * @return void|string Void if 'echo' argument is true, search form HTML if 'echo' is false.
+     * @phpstan-param array{
+     *   echo?: bool,
+     *   aria_label?: string,
+     * } $args
      */
     function get_search_form($args = array())
     {
@@ -97101,6 +98766,22 @@ namespace {
      *
      * }
      * @return void|string Void if 'echo' argument is true, login form HTML if 'echo' is false.
+     * @phpstan-param array{
+     *   echo?: bool,
+     *   redirect?: string,
+     *   form_id?: string,
+     *   label_username?: string,
+     *   label_password?: string,
+     *   label_remember?: string,
+     *   label_log_in?: string,
+     *   id_username?: string,
+     *   id_password?: string,
+     *   id_remember?: string,
+     *   id_submit?: string,
+     *   remember?: bool,
+     *   value_username?: string,
+     *   value_remember?: bool,
+     * } $args
      */
     function wp_login_form($args = array())
     {
@@ -97570,6 +99251,21 @@ namespace {
      *     @type string     $w               Week. Default current week.
      * }
      * @return void|string Void if 'echo' argument is true, archive links if 'echo' is false.
+     * @phpstan-param array{
+     *   type?: string,
+     *   limit?: string|int,
+     *   format?: string,
+     *   before?: string,
+     *   after?: string,
+     *   show_post_count?: bool,
+     *   echo?: bool|int,
+     *   order?: string,
+     *   post_type?: string,
+     *   year?: string,
+     *   monthnum?: string,
+     *   day?: string,
+     *   w?: string,
+     * } $args
      */
     function wp_get_archives($args = '')
     {
@@ -98067,6 +99763,16 @@ namespace {
      *     @type array    $htmlhint   HTMLHint rule overrides.
      * }
      * @return array|false Settings for the enqueued code editor, or false if the editor was not enqueued.
+     * @phpstan-param array{
+     *   type?: string,
+     *   file?: string,
+     *   theme?: WP_Theme,
+     *   plugin?: string,
+     *   codemirror?: array,
+     *   csslint?: array,
+     *   jshint?: array,
+     *   htmlhint?: array,
+     * } $args
      */
     function wp_enqueue_code_editor($args)
     {
@@ -98091,6 +99797,16 @@ namespace {
      *     @type array    $htmlhint   HTMLHint rule overrides.
      * }
      * @return array|false Settings for the code editor.
+     * @phpstan-param array{
+     *   type?: string,
+     *   file?: string,
+     *   theme?: WP_Theme,
+     *   plugin?: string,
+     *   codemirror?: array,
+     *   csslint?: array,
+     *   jshint?: array,
+     *   htmlhint?: array,
+     * } $args
      */
     function wp_get_code_editor_settings($args)
     {
@@ -98226,6 +99942,24 @@ namespace {
      * }
      * @return string|array|void String of page links or array of page links, depending on 'type' argument.
      *                           Void if total number of pages is less than 2.
+     * @phpstan-param array{
+     *   base?: string,
+     *   format?: string,
+     *   total?: int,
+     *   current?: int,
+     *   aria_current?: string,
+     *   show_all?: bool,
+     *   end_size?: int,
+     *   mid_size?: int,
+     *   prev_next?: bool,
+     *   prev_text?: bool,
+     *   next_text?: bool,
+     *   type?: string,
+     *   add_args?: array,
+     *   add_fragment?: string,
+     *   before_page_number?: string,
+     *   after_page_number?: string,
+     * } $args
      */
     function paginate_links($args = '')
     {
@@ -98255,6 +99989,11 @@ namespace {
      *     @type string $focus   SVG icon color on focus.
      *     @type string $current SVG icon color of current admin menu link.
      * }
+     * @phpstan-param array{
+     *   base?: string,
+     *   focus?: string,
+     *   current?: string,
+     * } $icons
      */
     function wp_admin_css_color($key, $name, $url, $colors = array(), $icons = array())
     {
@@ -98568,6 +100307,13 @@ namespace {
      *     }
      *     @type WP_HTTP_Cookie[]               $cookies       Array of response cookies.
      *     @type WP_HTTP_Requests_Response|null $http_response Raw HTTP response object.
+     * }
+     * @phpstan-return \WP_Error|array{
+     *   headers: string[],
+     *   body: string,
+     *   response: array,
+     *   cookies: WP_HTTP_Cookie[],
+     *   http_response: WP_HTTP_Requests_Response|null,
      * }
      */
     function wp_remote_request($url, $args = array())
@@ -100067,6 +101813,14 @@ namespace {
      *     @type null   $context  Context information for the translators.
      *     @type string $domain   Text domain.
      * }
+     * @phpstan-return array{
+     *   0: string,
+     *   1: string,
+     *   singular: string,
+     *   plural: string,
+     *   context: null,
+     *   domain: string,
+     * }
      */
     function _n_noop($singular, $plural, $domain = \null)
     {
@@ -100104,6 +101858,15 @@ namespace {
      *     @type string $plural   Plural form to be localized.
      *     @type string $context  Context information for the translators.
      *     @type string $domain   Text domain.
+     * }
+     * @phpstan-return array{
+     *   0: string,
+     *   1: string,
+     *   2: string,
+     *   singular: string,
+     *   plural: string,
+     *   context: string,
+     *   domain: string,
      * }
      */
     function _nx_noop($singular, $plural, $context, $domain = \null)
@@ -100457,6 +102220,17 @@ namespace {
      *     @type bool     $show_option_en_us            Whether to show an option for English (United States). Default true.
      * }
      * @return string HTML dropdown list of languages.
+     * @phpstan-param array{
+     *   id?: string,
+     *   name?: string,
+     *   languages?: array,
+     *   translations?: array,
+     *   selected?: string,
+     *   echo?: bool|int,
+     *   show_available_translations?: bool,
+     *   show_option_site_default?: bool,
+     *   show_option_en_us?: bool,
+     * } $args
      */
     function wp_dropdown_languages($args = array())
     {
@@ -101470,6 +103244,11 @@ namespace {
      *                            Default 'Next Page &raquo;'.
      * }
      * @return string The posts link navigation.
+     * @phpstan-param array{
+     *   sep?: string,
+     *   prelabel?: string,
+     *   nxtlabel?: string,
+     * } $args
      */
     function get_posts_nav_link($args = array())
     {
@@ -101507,6 +103286,16 @@ namespace {
      *     @type string       $class              Custom class for the nav element. Default 'post-navigation'.
      * }
      * @return string Markup for post links.
+     * @phpstan-param array{
+     *   prev_text?: string,
+     *   next_text?: string,
+     *   in_same_term?: bool,
+     *   excluded_terms?: int[]|string,
+     *   taxonomy?: string,
+     *   screen_reader_text?: string,
+     *   aria_label?: string,
+     *   class?: string,
+     * } $args
      */
     function get_the_post_navigation($args = array())
     {
@@ -101544,6 +103333,13 @@ namespace {
      *     @type string $class              Custom class for the nav element. Default 'posts-navigation'.
      * }
      * @return string Markup for posts links.
+     * @phpstan-param array{
+     *   prev_text?: string,
+     *   next_text?: string,
+     *   screen_reader_text?: string,
+     *   aria_label?: string,
+     *   class?: string,
+     * } $args
      */
     function get_the_posts_navigation($args = array())
     {
@@ -101575,6 +103371,11 @@ namespace {
      *     @type string $class              Custom class for the nav element. Default 'pagination'.
      * }
      * @return string Markup for pagination links.
+     * @phpstan-param array{
+     *   screen_reader_text?: string,
+     *   aria_label?: string,
+     *   class?: string,
+     * } $args
      */
     function get_the_posts_pagination($args = array())
     {
@@ -101705,6 +103506,13 @@ namespace {
      *     @type string $class              Custom class for the nav element. Default 'comment-navigation'.
      * }
      * @return string Markup for comments links.
+     * @phpstan-param array{
+     *   prev_text?: string,
+     *   next_text?: string,
+     *   screen_reader_text?: string,
+     *   aria_label?: string,
+     *   class?: string,
+     * } $args
      */
     function get_the_comments_navigation($args = array())
     {
@@ -101736,6 +103544,11 @@ namespace {
      *     @type string $class              Custom class for the nav element. Default 'comments-pagination'.
      * }
      * @return string Markup for pagination links.
+     * @phpstan-param array{
+     *   screen_reader_text?: string,
+     *   aria_label?: string,
+     *   class?: string,
+     * } $args
      */
     function get_the_comments_pagination($args = array())
     {
@@ -102122,6 +103935,14 @@ namespace {
      *                                  plus a "found_avatar" guess. Pass as a reference. Default null.
      * }
      * @return string|false The URL of the avatar on success, false on failure.
+     * @phpstan-param array{
+     *   size?: int,
+     *   default?: string,
+     *   force_default?: bool,
+     *   rating?: string,
+     *   scheme?: string,
+     *   processed_args?: array,
+     * } $args
      */
     function get_avatar_url($id_or_email, $args = \null)
     {
@@ -102171,6 +103992,21 @@ namespace {
      *     @type bool   $found_avatar True if we were able to find an avatar for this user,
      *                                false or not set if we couldn't.
      *     @type string $url          The URL of the avatar we found.
+     * }
+     * @phpstan-param array{
+     *   size?: int,
+     *   height?: int,
+     *   width?: int,
+     *   default?: string,
+     *   force_default?: bool,
+     *   rating?: string,
+     *   scheme?: string,
+     *   processed_args?: array,
+     *   extra_attr?: string,
+     * } $args
+     * @phpstan-return array{
+     *   found_avatar: bool,
+     *   url: string,
      * }
      */
     function get_avatar_data($id_or_email, $args = \null)
@@ -103072,6 +104908,10 @@ namespace {
      *     @type int $0 The maximum width in pixels.
      *     @type int $1 The maximum height in pixels.
      * }
+     * @phpstan-return array{
+     *   0: int,
+     *   1: int,
+     * }
      */
     function image_constrain_size_for_editor($width, $height, $size = 'medium', $context = \null)
     {
@@ -103119,6 +104959,12 @@ namespace {
      *     @type int    $1 Image width in pixels.
      *     @type int    $2 Image height in pixels.
      *     @type bool   $3 Whether the image is a resized image.
+     * }
+     * @phpstan-return false|array{
+     *   0: string,
+     *   1: int,
+     *   2: int,
+     *   3: bool,
      * }
      */
     function image_downsize($id, $size = 'medium')
@@ -103226,6 +105072,10 @@ namespace {
      *     @type int $0 The width in pixels.
      *     @type int $1 The height in pixels.
      * }
+     * @phpstan-return array{
+     *   0: int,
+     *   1: int,
+     * }
      */
     function wp_constrain_dimensions($current_width, $current_height, $max_width = 0, $max_height = 0)
     {
@@ -103324,6 +105174,13 @@ namespace {
      *     @type string $path   Absolute filesystem path of image.
      *     @type string $url    URL of image.
      * }
+     * @phpstan-return false|array{
+     *   file: string,
+     *   width: int,
+     *   height: int,
+     *   path: string,
+     *   url: string,
+     * }
      */
     function image_get_intermediate_size($post_id, $size = 'thumbnail')
     {
@@ -103367,6 +105224,12 @@ namespace {
      *     @type int    $2 Image height in pixels.
      *     @type bool   $3 Whether the image is a resized image.
      * }
+     * @phpstan-return false|array{
+     *   0: string,
+     *   1: int,
+     *   2: int,
+     *   3: bool,
+     * }
      */
     function wp_get_attachment_image_src($attachment_id, $size = 'thumbnail', $icon = \false)
     {
@@ -103402,6 +105265,14 @@ namespace {
      *                                 Defaults to 'lazy', depending on wp_lazy_loading_enabled().
      * }
      * @return string HTML img element or empty string on failure.
+     * @phpstan-param array{
+     *   src?: string,
+     *   class?: string,
+     *   alt?: string,
+     *   srcset?: string,
+     *   sizes?: string,
+     *   loading?: string|false,
+     * } $attr
      */
     function wp_get_attachment_image($attachment_id, $size = 'thumbnail', $icon = \false, $attr = '')
     {
@@ -103449,6 +105320,10 @@ namespace {
      *     @type int $0 Image width.
      *     @type int $1 Image height.
      * }
+     * @phpstan-return false|array{
+     *   0: int,
+     *   1: int,
+     * }
      */
     function _wp_get_image_size_from_meta($size_name, $image_meta)
     {
@@ -103485,6 +105360,10 @@ namespace {
      * @param array  $image_meta    The image meta data as returned by 'wp_get_attachment_metadata()'.
      * @param int    $attachment_id Optional. The image attachment ID. Default 0.
      * @return string|false The 'srcset' attribute value. False on error or when only one source exists.
+     * @phpstan-param array{
+     *   0?: int,
+     *   1?: int,
+     * } $size_array
      */
     function wp_calculate_image_srcset($size_array, $image_src, $image_meta, $attachment_id = 0)
     {
@@ -103726,6 +105605,14 @@ namespace {
      * }
      * @param string $content Shortcode content.
      * @return string HTML content to display the caption.
+     * @phpstan-param array{
+     *   id?: string,
+     *   caption_id?: string,
+     *   align?: string,
+     *   width?: int,
+     *   caption?: string,
+     *   class?: string,
+     * } $attr
      */
     function img_caption_shortcode($attr, $content = \null)
     {
@@ -103761,6 +105648,20 @@ namespace {
      *                                    Accepts 'file', 'none'.
      * }
      * @return string HTML content to display gallery.
+     * @phpstan-param array{
+     *   order?: string,
+     *   orderby?: string,
+     *   id?: int,
+     *   itemtag?: string,
+     *   icontag?: string,
+     *   captiontag?: string,
+     *   columns?: int,
+     *   size?: string|int[],
+     *   ids?: string,
+     *   include?: string,
+     *   exclude?: string,
+     *   link?: string,
+     * } $attr
      */
     function gallery_shortcode($attr)
     {
@@ -103818,6 +105719,19 @@ namespace {
      * }
      *
      * @return string Playlist output. Empty string if the passed type is unsupported.
+     * @phpstan-param array{
+     *   type?: string,
+     *   order?: string,
+     *   orderby?: string,
+     *   id?: int,
+     *   ids?: array,
+     *   exclude?: array,
+     *   style?: string,
+     *   tracklist?: bool,
+     *   tracknumbers?: bool,
+     *   images?: bool,
+     *   artists?: bool,
+     * } $attr
      */
     function wp_playlist_shortcode($attr)
     {
@@ -103875,6 +105789,14 @@ namespace {
      * }
      * @param string $content Shortcode content.
      * @return string|void HTML content to display audio.
+     * @phpstan-param array{
+     *   src?: string,
+     *   loop?: string,
+     *   autoplay?: string,
+     *   preload?: string,
+     *   class?: string,
+     *   style?: string,
+     * } $attr
      */
     function wp_audio_shortcode($attr, $content = '')
     {
@@ -103915,6 +105837,16 @@ namespace {
      * }
      * @param string $content Shortcode content.
      * @return string|void HTML content to display video.
+     * @phpstan-param array{
+     *   src?: string,
+     *   height?: int,
+     *   width?: int,
+     *   poster?: string,
+     *   loop?: string,
+     *   autoplay?: string,
+     *   preload?: string,
+     *   class?: string,
+     * } $attr
      */
     function wp_video_shortcode($attr, $content = '')
     {
@@ -104083,6 +106015,10 @@ namespace {
      *     @type int $0 The maximum width in pixels.
      *     @type int $1 The maximum height in pixels.
      * }
+     * @phpstan-return array{
+     *   0: int,
+     *   1: int,
+     * }
      */
     function wp_expand_dimensions($example_width, $example_height, $max_width, $max_height)
     {
@@ -104192,6 +106128,42 @@ namespace {
      *     @type int    $width                 If the attachment is an image, represents the width of the image in pixels.
      * }
      *
+     * @phpstan-return void|array{
+     *   alt: string,
+     *   author: string,
+     *   authorName: string,
+     *   caption: string,
+     *   compat: array,
+     *   context: string,
+     *   date: int,
+     *   dateFormatted: string,
+     *   description: string,
+     *   editLink: string,
+     *   filename: string,
+     *   filesizeHumanReadable: string,
+     *   filesizeInBytes: int,
+     *   height: int,
+     *   icon: string,
+     *   id: int,
+     *   link: string,
+     *   menuOrder: int,
+     *   meta: array,
+     *   mime: string,
+     *   modified: int,
+     *   name: string,
+     *   nonces: array,
+     *   orientation: string,
+     *   sizes: array,
+     *   status: string,
+     *   subtype: string,
+     *   title: string,
+     *   type: string,
+     *   uploadedTo: int,
+     *   uploadedToLink: string,
+     *   uploadedToTitle: string,
+     *   url: string,
+     *   width: int,
+     * }
      */
     function wp_prepare_attachment_for_js($attachment)
     {
@@ -104400,6 +106372,11 @@ namespace {
      *         @type string|false $type   The WebP type: one of 'lossy', 'lossless' or 'animated-alpha'.
      *                                    False on failure.
      *     }
+     * @phpstan-return array{
+     *   width: int|false,
+     *   height: int|false,
+     *   type: string|false,
+     * }
      */
     function wp_get_webp_info($filename)
     {
@@ -104759,6 +106736,16 @@ namespace {
      * @return bool True if the meta key was successfully registered in the global array, false if not.
      *              Registering a meta key with distinct sanitize and auth callbacks will fire those callbacks,
      *              but will not add to the global registry.
+     * @phpstan-param array{
+     *   object_subtype?: string,
+     *   type?: string,
+     *   description?: string,
+     *   single?: bool,
+     *   default?: mixed,
+     *   sanitize_callback?: callable,
+     *   auth_callback?: callable,
+     *   show_in_rest?: bool|array,
+     * } $args
      */
     function register_meta($object_type, $meta_key, $args, $deprecated = \null)
     {
@@ -105234,6 +107221,14 @@ namespace {
      *     @type int $spam     The number of spam sites.
      *     @type int $deleted  The number of deleted sites.
      * }
+     * @phpstan-return array{
+     *   all: int,
+     *   public: int,
+     *   archived: int,
+     *   mature: int,
+     *   spam: int,
+     *   deleted: int,
+     * }
      */
     function wp_count_sites($network_id = \null)
     {
@@ -105542,6 +107537,16 @@ namespace {
      * }
      * @return array[] An empty array if the installation is considered "large" via wp_is_large_network(). Otherwise,
      *                 an associative array of WP_Site data as arrays.
+     * @phpstan-param array{
+     *   network_id?: int|int[],
+     *   public?: int,
+     *   archived?: int,
+     *   mature?: int,
+     *   spam?: int,
+     *   deleted?: int,
+     *   limit?: int,
+     *   offset?: int,
+     * } $args
      */
     function wp_get_sites($args = array())
     {
@@ -105654,6 +107659,10 @@ namespace {
      *
      *     @type int $blogs Number of sites on the network.
      *     @type int $users Number of users on the network.
+     * }
+     * @phpstan-return array{
+     *   blogs: int,
+     *   users: int,
      * }
      */
     function get_sitestats()
@@ -105834,6 +107843,12 @@ namespace {
      *     @type string   $user_email    User email address.
      *     @type WP_Error $errors        WP_Error object containing any errors found.
      * }
+     * @phpstan-return array{
+     *   user_name: string,
+     *   orig_username: string,
+     *   user_email: string,
+     *   errors: WP_Error,
+     * }
      */
     function wpmu_validate_user_signup($user_name, $user_email)
     {
@@ -105869,6 +107884,14 @@ namespace {
      *     @type string         $blog_title Blog title.
      *     @type string|WP_User $user       By default, an empty string. A user object if provided.
      *     @type WP_Error       $errors     WP_Error containing any errors found.
+     * }
+     * @phpstan-return array{
+     *   domain: string,
+     *   path: string,
+     *   blogname: string,
+     *   blog_title: string,
+     *   user: string|WP_User,
+     *   errors: WP_Error,
      * }
      */
     function wpmu_validate_blog_signup($blogname, $blog_title, $user = '')
@@ -106253,6 +108276,9 @@ namespace {
      *
      *     @type string $0 The current site's domain.
      * }
+     * @phpstan-return array{
+     *   0: string,
+     * }
      */
     function redirect_this_site($deprecated = '')
     {
@@ -106322,6 +108348,10 @@ namespace {
      * }
      * @return true|WP_Error|void True on success or a WP_Error object if the user doesn't exist
      *                            or could not be added. Void if $details array was not provided.
+     * @phpstan-param false|array{
+     *   user_id?: int,
+     *   role?: string,
+     * } $details
      */
     function add_existing_user_to_blog($details = \false)
     {
@@ -106896,6 +108926,23 @@ namespace {
      *                                Passed to the `wp_initialize_site` hook.
      * }
      * @return int|WP_Error The new site's ID on success, or error object on failure.
+     * @phpstan-param array{
+     *   domain?: string,
+     *   path?: string,
+     *   network_id?: int,
+     *   registered?: string,
+     *   last_updated?: string,
+     *   public?: int,
+     *   archived?: int,
+     *   mature?: int,
+     *   spam?: int,
+     *   deleted?: int,
+     *   lang_id?: int,
+     *   user_id?: int,
+     *   title?: string,
+     *   options?: array,
+     *   meta?: array,
+     * } $data
      */
     function wp_insert_site(array $data)
     {
@@ -107066,6 +109113,12 @@ namespace {
      *                           Default empty array.
      * }
      * @return true|WP_Error True on success, or error object on failure.
+     * @phpstan-param array{
+     *   user_id?: int,
+     *   title?: string,
+     *   options?: array,
+     *   meta?: array,
+     * } $args
      */
     function wp_initialize_site($site_id, array $args = array())
     {
@@ -107309,6 +109362,26 @@ namespace {
      * }
      * @return void|string|false Void if 'echo' argument is true, menu output if 'echo' is false.
      *                           False if there are no items or no menu was found.
+     * @phpstan-param array{
+     *   menu?: int|string|WP_Term,
+     *   menu_class?: string,
+     *   menu_id?: string,
+     *   container?: string,
+     *   container_class?: string,
+     *   container_id?: string,
+     *   container_aria_label?: string,
+     *   fallback_cb?: callable|false,
+     *   before?: string,
+     *   after?: string,
+     *   link_before?: string,
+     *   link_after?: string,
+     *   echo?: bool,
+     *   depth?: int,
+     *   walker?: object,
+     *   theme_location?: string,
+     *   items_wrap?: string,
+     *   item_spacing?: string,
+     * } $args
      */
     function wp_nav_menu($args = array())
     {
@@ -107588,6 +109661,15 @@ namespace {
      *     @type bool   $nopaging    Whether to retrieve all menu items (true) or paginate (false). Default true.
      * }
      * @return array|false Array of menu items, otherwise false.
+     * @phpstan-param array{
+     *   order?: string,
+     *   orderby?: string,
+     *   post_type?: string,
+     *   post_status?: string,
+     *   output?: string,
+     *   output_key?: string,
+     *   nopaging?: bool,
+     * } $args
      */
     function wp_get_nav_menu_items($menu, $args = array())
     {
@@ -108264,6 +110346,13 @@ namespace {
      *                                         array with a 'schema' key.
      *     @type mixed      $default           Default value when calling `get_option()`.
      * }
+     * @phpstan-param array{
+     *   type?: string,
+     *   description?: string,
+     *   sanitize_callback?: callable,
+     *   show_in_rest?: bool|array,
+     *   default?: mixed,
+     * } $args
      */
     function register_setting($option_group, $option_name, $args = array())
     {
@@ -109085,6 +111174,17 @@ namespace {
      *     @type string       $extra_attr    HTML attributes to insert in the IMG element. Is not sanitized. Default empty.
      * }
      * @return string|false `<img>` tag for the user's avatar. False on failure.
+     * @phpstan-param array{
+     *   height?: int,
+     *   width?: int,
+     *   force_default?: bool,
+     *   rating?: string,
+     *   scheme?: string,
+     *   class?: array|string,
+     *   force_display?: bool,
+     *   loading?: string,
+     *   extra_attr?: string,
+     * } $args
      */
     function get_avatar($id_or_email, $size = 96, $default = '', $alt = '', $args = \null)
     {
@@ -109117,6 +111217,12 @@ namespace {
      *                                   un-split view (single column). Default true.
      * }
      * @return string Empty string if strings are equivalent or HTML with differences.
+     * @phpstan-param array{
+     *   title?: string,
+     *   title_left?: string,
+     *   title_right?: string,
+     *   show_split_view?: bool,
+     * } $args
      */
     function wp_text_diff($left_string, $right_string, $args = \null)
     {
@@ -109950,6 +112056,12 @@ namespace {
      *     @type WP_Post $post   Current post object to retrieve the title for.
      * }
      * @return void|string Void if 'echo' argument is true, the title attribute if 'echo' is false.
+     * @phpstan-param array{
+     *   before?: string,
+     *   after?: string,
+     *   echo?: bool,
+     *   post?: WP_Post,
+     * } $args
      */
     function the_title_attribute($args = '')
     {
@@ -110175,6 +112287,19 @@ namespace {
      *     @type int|bool     $echo             Whether to echo or not. Accepts 1|true or 0|false. Default 1|true.
      * }
      * @return string Formatted output in HTML.
+     * @phpstan-param array{
+     *   before?: string,
+     *   after?: string,
+     *   link_before?: string,
+     *   link_after?: string,
+     *   aria_current?: string,
+     *   next_or_number?: string,
+     *   separator?: string,
+     *   nextpagelink?: string,
+     *   previouspagelink?: string,
+     *   pagelink?: string,
+     *   echo?: int|bool,
+     * } $args
      */
     function wp_link_pages($args = '')
     {
@@ -110250,6 +112375,19 @@ namespace {
      *                                               elements. Accepts any valid post field. Default 'ID'.
      * }
      * @return string HTML dropdown list of pages.
+     * @phpstan-param array{
+     *   depth?: int,
+     *   child_of?: int,
+     *   selected?: int|string,
+     *   echo?: bool|int,
+     *   name?: string,
+     *   id?: string,
+     *   class?: string,
+     *   show_option_none?: string,
+     *   show_option_no_change?: string,
+     *   option_none_value?: string,
+     *   value_field?: string,
+     * } $args
      */
     function wp_dropdown_pages($args = '')
     {
@@ -110293,6 +112431,24 @@ namespace {
      *     @type Walker       $walker       Walker instance to use for listing pages. Default empty (Walker_Page).
      * }
      * @return void|string Void if 'echo' argument is true, HTML list of pages if 'echo' is false.
+     * @phpstan-param array{
+     *   child_of?: int,
+     *   authors?: string,
+     *   date_format?: string,
+     *   depth?: int,
+     *   echo?: bool,
+     *   exclude?: string,
+     *   include?: array,
+     *   link_after?: string,
+     *   link_before?: string,
+     *   post_type?: string,
+     *   post_status?: string|array,
+     *   show_date?: string,
+     *   sort_column?: string,
+     *   title_li?: string,
+     *   item_spacing?: string,
+     *   walker?: Walker,
+     * } $args
      */
     function wp_list_pages($args = '')
     {
@@ -110328,6 +112484,20 @@ namespace {
      *     @type Walker          $walker       Walker instance to use for listing pages. Default empty (Walker_Page).
      * }
      * @return void|string Void if 'echo' argument is true, HTML menu if 'echo' is false.
+     * @phpstan-param array{
+     *   sort_column?: string,
+     *   menu_id?: string,
+     *   menu_class?: string,
+     *   container?: string,
+     *   echo?: bool,
+     *   show_home?: int|bool|string,
+     *   link_before?: string,
+     *   link_after?: string,
+     *   before?: string,
+     *   after?: string,
+     *   item_spacing?: string,
+     *   walker?: Walker,
+     * } $args
      */
     function wp_page_menu($args = array())
     {
@@ -110806,6 +112976,11 @@ namespace {
      *     @type string $extended  Content after the more tag.
      *     @type string $more_text Custom read more text, or empty string.
      * }
+     * @phpstan-return array{
+     *   main: string,
+     *   extended: string,
+     *   more_text: string,
+     * }
      */
     function get_extended($post)
     {
@@ -110979,6 +113154,20 @@ namespace {
      *                                                  Default to false.
      * }
      * @return object
+     * @phpstan-param array{
+     *   label?: bool|string,
+     *   label_count?: bool|array,
+     *   exclude_from_search?: bool,
+     *   _builtin?: bool,
+     *   public?: bool,
+     *   internal?: bool,
+     *   protected?: bool,
+     *   private?: bool,
+     *   publicly_queryable?: bool,
+     *   show_in_admin_all_list?: bool,
+     *   show_in_admin_status_list?: bool,
+     *   date_floating?: bool,
+     * } $args
      */
     function register_post_status($post_status, $args = array())
     {
@@ -111251,6 +113440,39 @@ namespace {
      * }
      * @return WP_Post_Type|WP_Error The registered post type object on success,
      *                               WP_Error object on failure.
+     * @phpstan-param array{
+     *   label?: string,
+     *   labels?: string[],
+     *   description?: string,
+     *   public?: bool,
+     *   hierarchical?: bool,
+     *   exclude_from_search?: bool,
+     *   publicly_queryable?: bool,
+     *   show_ui?: bool,
+     *   show_in_menu?: bool|string,
+     *   show_in_nav_menus?: bool,
+     *   show_in_admin_bar?: bool,
+     *   show_in_rest?: bool,
+     *   rest_base?: string,
+     *   rest_controller_class?: string,
+     *   menu_position?: int,
+     *   menu_icon?: string,
+     *   capability_type?: string,
+     *   capabilities?: string[],
+     *   map_meta_cap?: bool,
+     *   supports?: array,
+     *   register_meta_box_cb?: callable,
+     *   taxonomies?: string[],
+     *   has_archive?: bool|string,
+     *   rewrite?: bool|array,
+     *   query_var?: string|bool,
+     *   can_export?: bool,
+     *   delete_with_user?: bool,
+     *   template?: array,
+     *   template_lock?: string|false,
+     *   _builtin?: bool,
+     *   _edit_link?: string,
+     * } $args
      */
     function register_post_type($post_type, $args = array())
     {
@@ -111629,6 +113851,13 @@ namespace {
      *     @type bool       $suppress_filters Whether to suppress filters. Default true.
      * }
      * @return WP_Post[]|int[] Array of post objects or post IDs.
+     * @phpstan-param array{
+     *   numberposts?: int,
+     *   category?: int|string,
+     *   include?: int[],
+     *   exclude?: int[],
+     *   suppress_filters?: bool,
+     * } $args
      */
     function get_posts($args = \null)
     {
@@ -112126,6 +114355,9 @@ namespace {
      * }
      * @return array|WP_Error Array of WP_Term objects on success or empty array if no terms were found.
      *                        WP_Error object if `$taxonomy` doesn't exist.
+     * @phpstan-param array{
+     *   fields?: string,
+     * } $args
      */
     function wp_get_post_terms($post_id = 0, $taxonomy = 'post_tag', $args = array())
     {
@@ -112211,6 +114443,35 @@ namespace {
      * @param bool  $wp_error         Optional. Whether to return a WP_Error on failure. Default false.
      * @param bool  $fire_after_hooks Optional. Whether to fire the after insert hooks. Default true.
      * @return int|WP_Error The post ID on success. The value 0 or WP_Error on failure.
+     * @phpstan-param array{
+     *   ID?: int,
+     *   post_author?: int,
+     *   post_date?: string,
+     *   post_date_gmt?: string,
+     *   post_content?: mixed,
+     *   post_content_filtered?: string,
+     *   post_title?: string,
+     *   post_excerpt?: string,
+     *   post_status?: string,
+     *   post_type?: string,
+     *   comment_status?: string,
+     *   ping_status?: string,
+     *   post_password?: string,
+     *   post_name?: string,
+     *   to_ping?: string,
+     *   pinged?: string,
+     *   post_modified?: string,
+     *   post_modified_gmt?: string,
+     *   post_parent?: int,
+     *   menu_order?: int,
+     *   post_mime_type?: string,
+     *   guid?: string,
+     *   import_id?: int,
+     *   post_category?: int[],
+     *   tags_input?: array,
+     *   tax_input?: array,
+     *   meta_input?: array,
+     * } $postarr
      */
     function wp_insert_post($postarr, $wp_error = \false, $fire_after_hooks = \true)
     {
@@ -112662,6 +114923,23 @@ namespace {
      * @return WP_Post[]|int[]|false Array of pages (or hierarchical post type items). Boolean false if the
      *                               specified post type is not hierarchical or the specified status is not
      *                               supported by the post type.
+     * @phpstan-param array{
+     *   child_of?: int,
+     *   sort_order?: string,
+     *   sort_column?: string,
+     *   hierarchical?: bool,
+     *   exclude?: int[],
+     *   include?: int[],
+     *   meta_key?: string,
+     *   meta_value?: string,
+     *   authors?: string,
+     *   parent?: int,
+     *   exclude_tree?: string|int[],
+     *   number?: int,
+     *   offset?: int,
+     *   post_type?: string,
+     *   post_status?: string|array,
+     * } $args
      */
     function get_pages($args = array())
     {
@@ -112768,6 +115046,13 @@ namespace {
      *     @type array  $sizes      Keys are size slugs, each value is an array containing
      *                              'file', 'width', 'height', and 'mime-type'.
      *     @type array  $image_meta Image metadata.
+     * }
+     * @phpstan-return false|array{
+     *   width: int,
+     *   height: int,
+     *   file: string,
+     *   sizes: array,
+     *   image_meta: array,
      * }
      */
     function wp_get_attachment_metadata($attachment_id = 0, $unfiltered = \false)
@@ -114202,6 +116487,11 @@ namespace {
      *     @type array|null $schema             Optional. The schema for this field.
      *                                          Default is 'null', no schema entry will be returned.
      * }
+     * @phpstan-param array{
+     *   get_callback?: callable|null,
+     *   update_callback?: callable|null,
+     *   schema?: array|null,
+     * } $args
      */
     function register_rest_field($object_type, $attribute, $args = array())
     {
@@ -116874,6 +119164,32 @@ namespace {
      *                                                Default false.
      * }
      * @return WP_Taxonomy|WP_Error The registered taxonomy object on success, WP_Error object on failure.
+     * @phpstan-param array{
+     *   labels?: string[],
+     *   description?: string,
+     *   public?: bool,
+     *   publicly_queryable?: bool,
+     *   hierarchical?: bool,
+     *   show_ui?: bool,
+     *   show_in_menu?: bool,
+     *   show_in_nav_menus?: bool,
+     *   show_in_rest?: bool,
+     *   rest_base?: string,
+     *   rest_controller_class?: string,
+     *   show_tagcloud?: bool,
+     *   show_in_quick_edit?: bool,
+     *   show_admin_column?: bool,
+     *   meta_box_cb?: bool|callable,
+     *   meta_box_sanitize_cb?: callable,
+     *   capabilities?: string[],
+     *   rewrite?: bool|array,
+     *   query_var?: string|bool,
+     *   update_count_callback?: callable,
+     *   default_term?: string|array,
+     *   sort?: bool,
+     *   args?: array,
+     *   _builtin?: bool,
+     * } $args
      */
     function register_taxonomy($taxonomy, $object_type, $args = array())
     {
@@ -117502,6 +119818,10 @@ namespace {
      * }
      * @return bool|int|WP_Error True on success, false if term does not exist. Zero on attempted
      *                           deletion of default Category. WP_Error if the taxonomy does not exist.
+     * @phpstan-param array{
+     *   default?: int,
+     *   force_default?: bool,
+     * } $args
      */
     function wp_delete_term($term, $taxonomy, $args = array())
     {
@@ -117582,6 +119902,16 @@ namespace {
      *
      *     @type int        $term_id          The new term ID.
      *     @type int|string $term_taxonomy_id The new term taxonomy ID. Can be a numeric string.
+     * }
+     * @phpstan-param array{
+     *   alias_of?: string,
+     *   description?: string,
+     *   parent?: int,
+     *   slug?: string,
+     * } $args
+     * @phpstan-return \WP_Error|array{
+     *   term_id: int,
+     *   term_taxonomy_id: int|string,
      * }
      */
     function wp_insert_term($term, $taxonomy, $args = array())
@@ -117701,6 +120031,12 @@ namespace {
      * }
      * @return array|WP_Error An array containing the `term_id` and `term_taxonomy_id`,
      *                        WP_Error otherwise.
+     * @phpstan-param array{
+     *   alias_of?: string,
+     *   description?: string,
+     *   parent?: int,
+     *   slug?: string,
+     * } $args
      */
     function wp_update_term($term_id, $taxonomy, $args = array())
     {
@@ -118112,6 +120448,12 @@ namespace {
      *     @type  string      $sep    Separates each taxonomy. Default is a space.
      *     @type  string      $after  Displays after the taxonomies. Default empty string.
      * }
+     * @phpstan-param array{
+     *   post?: int|WP_Post,
+     *   before?: string,
+     *   sep?: string,
+     *   after?: string,
+     * } $args
      */
     function the_taxonomies($args = array())
     {
@@ -118134,6 +120476,10 @@ namespace {
      *                                 linked to its archive.
      * }
      * @return array List of taxonomies.
+     * @phpstan-param array{
+     *   template?: string,
+     *   term_template?: string,
+     * } $args
      */
     function get_the_taxonomies($post = 0, $args = array())
     {
@@ -118783,6 +121129,11 @@ namespace {
      *                          are allowed. Default 0, synonymous for the current blog.
      * }
      * @return WP_Theme[] Array of WP_Theme objects.
+     * @phpstan-param array{
+     *   errors?: mixed,
+     *   allowed?: mixed,
+     *   blog_id?: int,
+     * } $args
      */
     function wp_get_themes($args = array())
     {
@@ -119481,6 +121832,10 @@ namespace {
      *     @type string $stylesheet   Stylesheet (child theme) to update. Optional, defaults to current theme/stylesheet.
      * }
      * @return WP_Post|WP_Error Post on success, error on failure.
+     * @phpstan-param array{
+     *   preprocessed?: string,
+     *   stylesheet?: string,
+     * } $args
      */
     function wp_update_custom_css_post($css, $args = array())
     {
@@ -119767,6 +122122,12 @@ namespace {
      *      }
      * }
      * @return true|WP_Error True if the theme feature was successfully registered, a WP_Error object if not.
+     * @phpstan-param array{
+     *   type?: string,
+     *   variadic?: boolean,
+     *   description?: string,
+     *   show_in_rest?: bool|array,
+     * } $args
      */
     function register_theme_feature($feature, $args = array())
     {
@@ -120503,6 +122864,10 @@ namespace {
      *     @type int   $total_users Total number of users on the site.
      *     @type int[] $avail_roles Array of user counts keyed by user role.
      * }
+     * @phpstan-return array{
+     *   total_users: int,
+     *   avail_roles: int[],
+     * }
      */
     function count_users($strategy = 'time', $site_id = \null)
     {
@@ -120592,6 +122957,29 @@ namespace {
      *                                                 these roles will not be included in results. Default empty array.
      * }
      * @return string HTML dropdown list of users.
+     * @phpstan-param array{
+     *   show_option_all?: string,
+     *   show_option_none?: string,
+     *   option_none_value?: int|string,
+     *   hide_if_only_one_author?: string,
+     *   orderby?: string,
+     *   order?: string,
+     *   include?: int[]|string,
+     *   exclude?: int[]|string,
+     *   multi?: bool|int,
+     *   show?: string,
+     *   echo?: int|bool,
+     *   selected?: int,
+     *   include_selected?: bool,
+     *   name?: string,
+     *   id?: string,
+     *   class?: string,
+     *   blog_id?: int,
+     *   who?: string,
+     *   role?: string|array,
+     *   role__in?: string[],
+     *   role__not_in?: string[],
+     * } $args
      */
     function wp_dropdown_users($args = '')
     {
@@ -120744,6 +123132,30 @@ namespace {
      * }
      * @return int|WP_Error The newly created user's ID or a WP_Error object if the user could not
      *                      be created.
+     * @phpstan-param object|\WP_User|array{
+     *   ID?: int,
+     *   user_pass?: string,
+     *   user_login?: string,
+     *   user_nicename?: string,
+     *   user_url?: string,
+     *   user_email?: string,
+     *   display_name?: string,
+     *   nickname?: string,
+     *   first_name?: string,
+     *   last_name?: string,
+     *   description?: string,
+     *   rich_editing?: string,
+     *   syntax_highlighting?: string,
+     *   comment_shortcuts?: string,
+     *   admin_color?: string,
+     *   use_ssl?: bool,
+     *   user_registered?: string,
+     *   user_activation_key?: string,
+     *   spam?: bool,
+     *   show_admin_bar_front?: string,
+     *   role?: string,
+     *   locale?: string,
+     * } $userdata
      */
     function wp_insert_user($userdata)
     {
@@ -121291,6 +123703,10 @@ namespace {
      *                        assigned number for each sidebar.
      *                        Default 'Sidebar' for the first sidebar, otherwise 'Sidebar %d'.
      * }
+     * @phpstan-param array{
+     *   id?: string,
+     *   name?: string,
+     * } $args
      */
     function register_sidebars($number = 1, $args = array())
     {
@@ -121344,6 +123760,18 @@ namespace {
      *                                  Default empty string.
      * }
      * @return string Sidebar ID added to $wp_registered_sidebars global.
+     * @phpstan-param array{
+     *   name?: string,
+     *   id?: string,
+     *   description?: string,
+     *   class?: string,
+     *   before_widget?: string,
+     *   after_widget?: string,
+     *   before_title?: string,
+     *   after_title?: string,
+     *   before_sidebar?: string,
+     *   after_sidebar?: string,
+     * } $args
      */
     function register_sidebar($args = array())
     {
@@ -121405,6 +123833,11 @@ namespace {
      *                                         Only available for WP_Widget based widgets.
      * }
      * @param mixed      ...$params       Optional additional parameters to pass to the callback function when it's called.
+     * @phpstan-param array{
+     *   classname?: string,
+     *   description?: string,
+     *   show_instance_in_rest?: bool,
+     * } $options
      */
     function wp_register_sidebar_widget($id, $name, $output_callback, $options = array(), ...$params)
     {
@@ -121477,6 +123910,11 @@ namespace {
      *                               text widget. The widget id will end up looking like `{$id_base}-{$unique_number}`.
      * }
      * @param mixed      ...$params        Optional additional parameters to pass to the callback function when it's called.
+     * @phpstan-param array{
+     *   height?: int,
+     *   width?: int,
+     *   id_base?: int|string,
+     * } $options
      */
     function wp_register_widget_control($id, $name, $control_callback, $options = array(), ...$params)
     {
@@ -121694,6 +124132,12 @@ namespace {
      *     @type string $after_title   HTML content that will be appended to the widget's title when displayed.
      *                                 Default `</h2>`.
      * }
+     * @phpstan-param array{
+     *   before_widget?: string,
+     *   after_widget?: string,
+     *   before_title?: string,
+     *   after_title?: string,
+     * } $args
      */
     function the_widget($widget, $instance = array(), $args = array())
     {
