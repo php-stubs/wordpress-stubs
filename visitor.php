@@ -203,7 +203,7 @@ return new class extends NodeVisitor {
         // Populate `$types` with the value of each top level `@type`.
         $types = preg_split('/\R+    @type /', $text);
 
-        if (!$types) {
+        if ($types === false) {
             return null;
         }
 
