@@ -33,7 +33,7 @@ install:
             pecl install libsodium
         php --ri sodium
     fi
-  - "composer update --no-interaction --no-suggest"
+  - "composer update --no-interaction"
   - "composer run-script post-install-cmd"
 
 before_script:

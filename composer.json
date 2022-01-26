@@ -25,8 +25,8 @@
     },
     "minimum-stability": "stable",
     "scripts": {
-        "post-install-cmd": "@composer --working-dir=source/ update --no-interaction --no-suggest",
-        "post-update-cmd" : "@composer --working-dir=source/ update --no-interaction --no-suggest",
+        "post-install-cmd": "@composer --working-dir=source/ update --no-interaction",
+        "post-update-cmd" : "@composer --working-dir=source/ update --no-interaction",
         "cleanup": "git status --short --ignored | sed -n -e 's#^!! ##p' | xargs -r rm -vrf"
     },
     "scripts-descriptions": {
