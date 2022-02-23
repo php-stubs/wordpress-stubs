@@ -72,6 +72,10 @@ return new class extends NodeVisitor {
         $additions = [];
 
         foreach ($params as $param) {
+            // might be instanceof \phpDocumentor\Reflection\DocBlock\Tags\invalidTag if the param is invalid
+            if(!($param instanceof Param)) {
+                continue;
+            }
             $addition = $this->getAdditionFromParam($param);
 
             if ($addition !== null) {
@@ -79,7 +83,8 @@ return new class extends NodeVisitor {
             }
         }
 
-        if ($returns) {
+        // might be instanceof \phpDocumentor\Reflection\DocBlock\Tags\invalidTag if the return is invalid
+        if (isset($returns[0]) && $returns[0] instanceof Return_) {
             $addition = $this->getAdditionFromReturn($returns[0]);
 
             if ($addition !== null) {
