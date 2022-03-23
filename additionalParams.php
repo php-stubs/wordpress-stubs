@@ -11,4 +11,8 @@ return [
     'wp_safe_remote_head' => [$httpReturnType],
     'wp_safe_remote_post' => [$httpReturnType],
     'wp_safe_remote_request' => [$httpReturnType],
+    'WP_Http::get' => [$httpReturnType],
+    'WP_Http::head' => [$httpReturnType],
+    'WP_Http::post' => [$httpReturnType],
+    'WP_Http::request' => [$httpReturnType],
 ];
