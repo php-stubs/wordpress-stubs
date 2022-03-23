@@ -49,6 +49,18 @@ return new class extends NodeVisitor {
         }
 
         $this->currentSymbolName = $node->name->name;
+
+        if ($node instanceof ClassMethod) {
+            /** @var \PhpParser\Node\Stmt\Class_ $parent */
+            $parent = $this->stack[count($this->stack) - 2];
+
+            $this->currentSymbolName = sprintf(
+                '%1$s::%2$s',
+                $parent->name->name,
+                $node->name->name
+            );
+        }
+
         $newDocComment = $this->addArrayHashNotation($docComment);
 
         if ($newDocComment !== null) {
