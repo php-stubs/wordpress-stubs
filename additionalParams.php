@@ -7,4 +7,8 @@ return [
     'wp_remote_head' => [$httpReturnType],
     'wp_remote_post' => [$httpReturnType],
     'wp_remote_request' => [$httpReturnType],
+    'wp_safe_remote_get' => [$httpReturnType],
+    'wp_safe_remote_head' => [$httpReturnType],
+    'wp_safe_remote_post' => [$httpReturnType],
+    'wp_safe_remote_request' => [$httpReturnType],
 ];
