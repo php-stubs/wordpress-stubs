@@ -10,6 +10,8 @@ $httpReturnType = 'array{headers:Requests_Utility_CaseInsensitiveDictionary,body
  * @link https://github.com/phpstan/phpstan-src/blob/1.5.x/resources/functionMap.php
  */
 return [
+    'add_meta_box' => ['void', 'context'=>'"normal"|"side"|"advanced"', 'priority'=>'"high"|"core"|"default"|"low"'],
+    'remove_meta_box' => ['void', 'context'=>'"normal"|"side"|"advanced"'],
     'WP_Http::get' => [$httpReturnType],
     'WP_Http::head' => [$httpReturnType],
     'WP_Http::post' => [$httpReturnType],
