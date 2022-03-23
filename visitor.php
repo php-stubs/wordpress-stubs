@@ -19,6 +19,16 @@ return new class extends NodeVisitor {
      */
     private $docBlockFactory;
 
+    /**
+     * @var array<string,array<int|string,string>>
+     */
+    private $additionalParams;
+
+    /**
+     * @var string
+     */
+    private $currentSymbolName;
+
     public function __construct()
     {
         $this->docBlockFactory = \phpDocumentor\Reflection\DocBlockFactory::createInstance();
@@ -38,7 +48,20 @@ return new class extends NodeVisitor {
             return null;
         }
 
+        $this->currentSymbolName = $node->name->name;
         $newDocComment = $this->addArrayHashNotation($docComment);
+
+        if ($newDocComment !== null) {
+            $node->setDocComment($newDocComment);
+        }
+
+        $docComment = $node->getDocComment();
+
+        if (!($docComment instanceof Doc)) {
+            return null;
+        }
+
+        $newDocComment = $this->addAdditionalParams($docComment);
 
         if ($newDocComment !== null) {
             $node->setDocComment($newDocComment);
@@ -95,6 +118,43 @@ return new class extends NodeVisitor {
             "%s\n%s\n */",
             substr($docCommentText, 0, -4),
             implode("\n", $additions)
+        );
+
+        return new Doc($newDocComment, $docComment->getLine(), $docComment->getFilePos());
+    }
+
+    private function addAdditionalParams(Doc $docComment): ?Doc
+    {
+        if (! isset($this->additionalParams)) {
+            $this->additionalParams = require __DIR__ . '/additionalParams.php';
+        }
+
+        if (! isset($this->additionalParams[$this->currentSymbolName])) {
+            return null;
+        }
+
+        $params = $this->additionalParams[$this->currentSymbolName];
+        $returnType = array_shift($params);
+        $additions = [];
+
+        foreach ($params as $param => $paramType) {
+            $additions[] = sprintf(
+                '@phpstan-param %s $%s',
+                $paramType,
+                $param
+            );
+        }
+
+        $additions[] = sprintf(
+            '@phpstan-return %s',
+            $returnType
+        );
+
+        $docCommentText = $docComment->getText();
+        $newDocComment = sprintf(
+            "%s\n * %s\n */",
+            substr($docCommentText, 0, -4),
+            implode("\n * ", $additions)
         );
 
         return new Doc($newDocComment, $docComment->getLine(), $docComment->getFilePos());
