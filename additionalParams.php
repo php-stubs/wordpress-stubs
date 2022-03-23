@@ -10,6 +10,12 @@ $httpReturnType = 'array{headers:Requests_Utility_CaseInsensitiveDictionary,body
  * @link https://github.com/phpstan/phpstan-src/blob/1.5.x/resources/functionMap.php
  */
 return [
+    'WP_Http::get' => [$httpReturnType],
+    'WP_Http::head' => [$httpReturnType],
+    'WP_Http::post' => [$httpReturnType],
+    'WP_Http::request' => [$httpReturnType],
+    'WP_List_Table::display_tablenav' => ['void', 'which'=>'"top"|"bottom"'],
+    'WP_List_Table::pagination' => ['void', 'which'=>'"top"|"bottom"'],
     'wp_remote_get' => [$httpReturnType],
     'wp_remote_head' => [$httpReturnType],
     'wp_remote_post' => [$httpReturnType],
@@ -18,10 +24,4 @@ return [
     'wp_safe_remote_head' => [$httpReturnType],
     'wp_safe_remote_post' => [$httpReturnType],
     'wp_safe_remote_request' => [$httpReturnType],
-    'WP_Http::get' => [$httpReturnType],
-    'WP_Http::head' => [$httpReturnType],
-    'WP_Http::post' => [$httpReturnType],
-    'WP_Http::request' => [$httpReturnType],
-    'WP_List_Table::display_tablenav' => ['void', 'which'=>'"top"|"bottom"'],
-    'WP_List_Table::pagination' => ['void', 'which'=>'"top"|"bottom"'],
 ];
