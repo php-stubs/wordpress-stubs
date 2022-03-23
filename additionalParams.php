@@ -2,6 +2,13 @@
 
 $httpReturnType = 'array{headers:Requests_Utility_CaseInsensitiveDictionary,body:string,response:array{code:int,message:string},cookies:array<int,WP_HTTP_Cookie>,filename:string|null,http_response:WP_HTTP_Requests_Response}|WP_Error';
 
+/**
+ * This array is in the same format as the stubs array in PHPStan:
+ *
+ * '<function_name>' => ['<return_type>, '<arg_name>'=>'<arg_type>']
+ *
+ * @link https://github.com/phpstan/phpstan-src/blob/1.5.x/resources/functionMap.php
+ */
 return [
     'wp_remote_get' => [$httpReturnType],
     'wp_remote_head' => [$httpReturnType],
