@@ -15,4 +15,6 @@ return [
     'WP_Http::head' => [$httpReturnType],
     'WP_Http::post' => [$httpReturnType],
     'WP_Http::request' => [$httpReturnType],
+    'WP_List_Table::display_tablenav' => ['void', 'which'=>'"top"|"bottom"'],
+    'WP_List_Table::pagination' => ['void', 'which'=>'"top"|"bottom"'],
 ];
