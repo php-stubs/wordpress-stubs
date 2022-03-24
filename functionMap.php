@@ -1,6 +1,6 @@
 <?php
 
-$httpReturnType = 'array{headers:Requests_Utility_CaseInsensitiveDictionary,body:string,response:array{code:int,message:string},cookies:array<int,WP_HTTP_Cookie>,filename:string|null,http_response:WP_HTTP_Requests_Response}|WP_Error';
+$httpReturnType = 'array{headers: \Requests_Utility_CaseInsensitiveDictionary, body: string, response: array{code: int,message: string}, cookies: array<int, \WP_HTTP_Cookie>, filename: string|null, http_response: \WP_HTTP_Requests_Response}|\WP_Error';
 
 /**
  * This array is in the same format as the function map array in PHPStan:
