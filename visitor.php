@@ -20,9 +20,9 @@ return new class extends NodeVisitor {
     private $docBlockFactory;
 
     /**
-     * @var array<string,array<int|string,string>>
+     * @var ?array<string,array<int|string,string>>
      */
-    private $functionMap;
+    private $functionMap = null;
 
     /**
      * @var string
@@ -54,11 +54,13 @@ return new class extends NodeVisitor {
             /** @var \PhpParser\Node\Stmt\Class_ $parent */
             $parent = $this->stack[count($this->stack) - 2];
 
-            $this->currentSymbolName = sprintf(
-                '%1$s::%2$s',
-                $parent->name->name,
-                $node->name->name
-            );
+            if (isset($parent->name)) {
+                $this->currentSymbolName = sprintf(
+                    '%1$s::%2$s',
+                    $parent->name->name,
+                    $node->name->name
+                );
+            }
         }
 
         $newDocComment = $this->addArrayHashNotation($docComment);
