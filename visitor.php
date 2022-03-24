@@ -22,7 +22,7 @@ return new class extends NodeVisitor {
     /**
      * @var array<string,array<int|string,string>>
      */
-    private $additionalParams;
+    private $functionMap;
 
     /**
      * @var string
@@ -137,23 +137,23 @@ return new class extends NodeVisitor {
 
     private function addAdditionalParams(Doc $docComment): ?Doc
     {
-        if (! isset($this->additionalParams)) {
-            $this->additionalParams = require __DIR__ . '/additionalParams.php';
+        if (! isset($this->functionMap)) {
+            $this->functionMap = require __DIR__ . '/functionMap.php';
         }
 
-        if (! isset($this->additionalParams[$this->currentSymbolName])) {
+        if (! isset($this->functionMap[$this->currentSymbolName])) {
             return null;
         }
 
-        $params = $this->additionalParams[$this->currentSymbolName];
-        $returnType = array_shift($params);
+        $parameters = $this->functionMap[$this->currentSymbolName];
+        $returnType = array_shift($parameters);
         $additions = [];
 
-        foreach ($params as $param => $paramType) {
+        foreach ($parameters as $paramName => $paramType) {
             $additions[] = sprintf(
                 '@phpstan-param %s $%s',
                 $paramType,
-                $param
+                $paramName
             );
         }
 
