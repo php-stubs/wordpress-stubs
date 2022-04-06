@@ -11,7 +11,7 @@
     "require-dev": {
         "php": "~7.3 || ~8.0",
         "nikic/php-parser": "< 4.12.0",
-        "php-stubs/generator": "dev-master",
+        "php-stubs/generator": "^0.8.1",
         "phpdocumentor/reflection-docblock": "^5.3",
         "phpstan/phpstan": "^1.2"
     },
