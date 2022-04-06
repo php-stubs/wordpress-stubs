@@ -109,6 +109,10 @@ return new class extends NodeVisitor {
         $additions = [];
 
         foreach ($params as $param) {
+            if (! $param instanceof Param) {
+                continue;
+            }
+
             $addition = $this->getAdditionFromParam($param);
 
             if ($addition !== null) {
@@ -116,7 +120,7 @@ return new class extends NodeVisitor {
             }
         }
 
-        if ($returns) {
+        if ($returns !== [] && $returns[0] instanceof Return_) {
             $addition = $this->getAdditionFromReturn($returns[0]);
 
             if ($addition !== null) {
