@@ -5,7 +5,7 @@ $httpReturnType = 'array{headers: \Requests_Utility_CaseInsensitiveDictionary, b
 /**
  * This array is in the same format as the function map array in PHPStan:
  *
- * '<function_name>' => ['<return_type>, '<arg_name>'=>'<arg_type>']
+ * '<function_name>' => ['<return_type>', '<arg_name>'=>'<arg_type>']
  *
  * @link https://github.com/phpstan/phpstan-src/blob/1.5.x/resources/functionMap.php
  */
