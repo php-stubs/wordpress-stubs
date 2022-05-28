@@ -4,19 +4,17 @@
 [![Packagist](https://img.shields.io/packagist/v/php-stubs/wordpress-stubs.svg?color=4CC61E&style=popout)](https://packagist.org/packages/php-stubs/wordpress-stubs)
 [![Packagist stats](https://img.shields.io/packagist/dt/php-stubs/wordpress-stubs.svg)](https://packagist.org/packages/php-stubs/wordpress-stubs/stats)
 
-This package is a fork of `giacocorsiglia/wordpress-stubs`.
 It provides stub declarations for [WordPress](https://wordpress.org/)
 core functions, classes and interfaces, **globals are not included**.
 These stubs can help plugin and theme developers leverage static analysis tools
-like [PHPStan](https://github.com/phpstan/phpstan),
-which is not able to parse WordPress as it is not OOP code.
+like [PHPStan](https://github.com/phpstan/phpstan).
 
-The stubs are generated directly from the [source](https://github.com/johnpbloch/wordpress-core)
-using [giacocorsiglia/stubs-generator](https://github.com/GiacoCorsiglia/php-stubs-generator).
+The stubs are generated from [@johnpbloch's package](https://github.com/johnpbloch/wordpress-core)
+using [php-stubs/generator](https://github.com/php-stubs/generator).
 
 ### Requirements
 
-- PHP >=7.1
+- PHP 7.1+
 - Sodium PHP extension as latest WordPress core uses it and **compat code is removed** from stubs,
   Sodium is included in PHP from version 7.2, in 7.1 issue `pecl install libsodium`
   or install the `paragonie/sodium_compat` package
