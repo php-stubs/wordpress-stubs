@@ -11,7 +11,15 @@ $httpReturnType = 'array{headers: \Requests_Utility_CaseInsensitiveDictionary, b
  */
 return [
     'add_meta_box' => ['void', 'context'=>'"normal"|"side"|"advanced"', 'priority'=>'"high"|"core"|"default"|"low"'],
+    'addslashes_gpc' => ['T', '@phpstan-template'=>'T', 'gpc'=>'T'],
+    'rawurlencode_deep' => ['T', '@phpstan-template'=>'T', 'value'=>'T'],
     'remove_meta_box' => ['void', 'context'=>'"normal"|"side"|"advanced"'],
+    'sanitize_category' => ['T', '@phpstan-template'=>'T of array|object', 'category'=>'T'],
+    'sanitize_post' => ['T', '@phpstan-template'=>'T of array|object', 'post'=>'T'],
+    'sanitize_term' => ['T', '@phpstan-template'=>'T of array|object', 'term'=>'T'],
+    'stripslashes_deep' => ['T', '@phpstan-template'=>'T', 'value'=>'T'],
+    'urldecode_deep' => ['T', '@phpstan-template'=>'T', 'value'=>'T'],
+    'urlencode_deep' => ['T', '@phpstan-template'=>'T', 'value'=>'T'],
     'WP_Http::get' => [$httpReturnType],
     'WP_Http::head' => [$httpReturnType],
     'WP_Http::post' => [$httpReturnType],
@@ -27,4 +35,6 @@ return [
     'wp_safe_remote_head' => [$httpReturnType],
     'wp_safe_remote_post' => [$httpReturnType],
     'wp_safe_remote_request' => [$httpReturnType],
+    'wp_slash' => ['T', '@phpstan-template'=>'T', 'value'=>'T'],
+    'wp_unslash' => ['T', '@phpstan-template'=>'T', 'value'=>'T'],
 ];

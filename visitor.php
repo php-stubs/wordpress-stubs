@@ -156,6 +156,15 @@ return new class extends NodeVisitor {
         $additions = [];
 
         foreach ($parameters as $paramName => $paramType) {
+            if (strpos($paramName, '@') === 0) {
+                $additions[] = sprintf(
+                    '%s %s',
+                    $paramName,
+                    $paramType
+                );
+                continue;
+            }
+
             $additions[] = sprintf(
                 '@phpstan-param %s $%s',
                 $paramType,
