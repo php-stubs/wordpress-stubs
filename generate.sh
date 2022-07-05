@@ -26,8 +26,8 @@ fi
     --traits \
     --out="$FILE"
 
-# Use literal-string type for wpdb::prepare() query statement parameter.
-sed -i -e 's#^.*@param string \+\$query \+Query statement.*$#&\n         * @phpstan-param literal-string $query#' "$FILE"
+## Use literal-string type for wpdb::prepare() query statement parameter.
+#sed -i -e 's#^.*@param string \+\$query \+Query statement.*$#&\n         * @phpstan-param literal-string $query#' "$FILE"
 
 # Shim the global $wpdb declaration, since it's actually set up inside a function call.
 if grep -qFx 'namespace {' "$FILE"; then
