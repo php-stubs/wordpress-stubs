@@ -287,8 +287,17 @@ return new class extends NodeVisitor {
             return null;
         }
 
+        return $this->getTypesAtLevel($text, $optional, 1);
+    }
+
+    /**
+     * @return ?string[]
+     */
+    private function getTypesAtLevel(string $text, bool $optional, int $level): ?array
+    {
         // Populate `$types` with the value of each top level `@type`.
-        $types = preg_split('/\R+    @type /', $text);
+        $spaces = str_repeat(' ', ($level * 4));
+        $types = preg_split("/\R+{$spaces}@type /", $text);
 
         if ($types === false) {
             return null;
@@ -314,6 +323,20 @@ return new class extends NodeVisitor {
             // Bail out completely if the name of any element is invalid.
             if (strpos($name, '$') !== 0) {
                 return null;
+            }
+
+            $nextLevel = $level + 1;
+            $subTypes = $this->getTypesAtLevel($typeTag, $optional, $nextLevel);
+
+            if (! empty($subTypes)) {
+                $currentIdent = str_repeat(' ', (2 * $level));
+                $indent = str_repeat(' ', (2 * $nextLevel));
+                $type = sprintf(
+                    'array{%s%s%s}',
+                    "\n * {$indent}",
+                    implode(",\n * {$indent}", $subTypes),
+                    "\n * {$currentIdent}"
+                );
             }
 
             $elements[] = sprintf(
