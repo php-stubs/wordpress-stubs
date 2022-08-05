@@ -210,6 +210,10 @@ return new class extends NodeVisitor {
             return null;
         }
 
+        // It's common for an args parameter to accept a query var string or array with `string|array`.
+        // Remove the accepted string type for these so we get the strongest typing we can manage.
+        $tagVariableType = str_replace(['|string', 'string|'], '', $tagVariableType);
+
         return sprintf(
             " * @phpstan-param %1\$s{\n *   %2\$s,\n * } $%3\$s",
             $tagVariableType,
@@ -249,17 +253,7 @@ return new class extends NodeVisitor {
 
     private function getTypeNameFromType(Type $tagVariableType): ?string
     {
-        $tagVariableType = $this->getTypeNameFromString($tagVariableType->__toString());
-
-        if ($tagVariableType === null) {
-            return null;
-        }
-
-        // It's common for an args parameter to accept a query var string or array with `string|array`.
-        // Remove the accepted string type for these so we get the strongest typing we can manage.
-        $tagVariableType = str_replace(['|string', 'string|'], '', $tagVariableType);
-
-        return $tagVariableType;
+        return $this->getTypeNameFromString($tagVariableType->__toString());
     }
 
     private function getTypeNameFromString(string $tagVariable): ?string
