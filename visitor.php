@@ -341,7 +341,7 @@ return new class extends NodeVisitor {
                     $this->getTypeNameFromString($type),
                     "\n * {$indent}",
                     implode(",\n * {$indent}", $subTypes),
-                    "\n * {$currentIdent}"
+                    ",\n * {$currentIdent}"
                 );
             }
 
