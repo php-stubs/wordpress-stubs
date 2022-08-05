@@ -249,7 +249,17 @@ return new class extends NodeVisitor {
 
     private function getTypeNameFromType(Type $tagVariableType): ?string
     {
-        return $this->getTypeNameFromString($tagVariableType->__toString());
+        $tagVariableType = $this->getTypeNameFromString($tagVariableType->__toString());
+
+        if ($tagVariableType === null) {
+            return null;
+        }
+
+        // It's common for an args parameter to accept a query var string or array with `string|array`.
+        // Remove the accepted string type for these so we get the strongest typing we can manage.
+        $tagVariableType = str_replace(['|string', 'string|'], '', $tagVariableType);
+
+        return $tagVariableType;
     }
 
     private function getTypeNameFromString(string $tagVariable): ?string
@@ -271,10 +281,6 @@ return new class extends NodeVisitor {
             // Move `array` to the end of union types so the appended array shape works.
             $tagVariableType = str_replace('array|', '', $tagVariableType) . '|array';
         }
-
-        // It's common for an args parameter to accept a query var string or array with `string|array`.
-        // Remove the accepted string type for these so we get the strongest typing we can manage.
-        $tagVariableType = str_replace(['|string', 'string|'], '', $tagVariableType);
 
         return $tagVariableType;
     }
