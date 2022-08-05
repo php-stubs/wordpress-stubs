@@ -249,9 +249,14 @@ return new class extends NodeVisitor {
 
     private function getTypeNameFromType(Type $tagVariableType): ?string
     {
+        return $this->getTypeNameFromString($tagVariableType->__toString());
+    }
+
+    private function getTypeNameFromString(string $tagVariable): ?string
+    {
         // PHPStan dosn't support typed array shapes (`int[]{...}`) so replace
         // typed arrays such as `int[]` with `array`.
-        $tagVariableType = preg_replace('#[a-zA-Z0-9_]+\[\]#', 'array', $tagVariableType->__toString());
+        $tagVariableType = preg_replace('#[a-zA-Z0-9_]+\[\]#', 'array', $tagVariable);
 
         if ($tagVariableType === null) {
             return null;
@@ -332,7 +337,8 @@ return new class extends NodeVisitor {
                 $currentIdent = str_repeat(' ', (2 * $level));
                 $indent = str_repeat(' ', (2 * $nextLevel));
                 $type = sprintf(
-                    'array{%s%s%s}',
+                    '%s{%s%s%s}',
+                    $this->getTypeNameFromString($type),
                     "\n * {$indent}",
                     implode(",\n * {$indent}", $subTypes),
                     "\n * {$currentIdent}"
