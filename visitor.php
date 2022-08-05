@@ -200,7 +200,7 @@ return new class extends NodeVisitor {
 
         $elements = $this->getElementsFromDescription($tagDescription, true);
 
-        if ($elements === null) {
+        if (count($elements) === 0) {
             return null;
         }
 
@@ -230,7 +230,7 @@ return new class extends NodeVisitor {
 
         $elements = $this->getElementsFromDescription($tagDescription, false);
 
-        if ($elements === null) {
+        if (count($elements) === 0) {
             return null;
         }
 
@@ -280,32 +280,32 @@ return new class extends NodeVisitor {
     }
 
     /**
-     * @return ?string[]
+     * @return string[]
      */
-    private function getElementsFromDescription(Description $tagDescription, bool $optional): ?array
+    private function getElementsFromDescription(Description $tagDescription, bool $optional): array
     {
         $text = $tagDescription->__toString();
 
         // Skip if the description doesn't contain at least one correctly
         // formatted `@type`, which indicates an array hash.
         if (strpos($text, '    @type ') === false) {
-            return null;
+            return [];
         }
 
         return $this->getTypesAtLevel($text, $optional, 1);
     }
 
     /**
-     * @return ?string[]
+     * @return string[]
      */
-    private function getTypesAtLevel(string $text, bool $optional, int $level): ?array
+    private function getTypesAtLevel(string $text, bool $optional, int $level): array
     {
         // Populate `$types` with the value of each top level `@type`.
         $spaces = str_repeat(' ', ($level * 4));
         $types = preg_split("/\R+{$spaces}@type /", $text);
 
         if ($types === false) {
-            return null;
+            return [];
         }
 
         unset($types[0]);
@@ -315,25 +315,25 @@ return new class extends NodeVisitor {
             $parts = preg_split('#\s+#', trim($typeTag));
 
             if ($parts === false || count($parts) < 2) {
-                return null;
+                return [];
             }
 
             list($type, $name) = $parts;
 
             // Bail out completely if any element doesn't have a static key.
             if (strpos($name, '...$') !== false) {
-                return null;
+                return [];
             }
 
             // Bail out completely if the name of any element is invalid.
             if (strpos($name, '$') !== 0) {
-                return null;
+                return [];
             }
 
             $nextLevel = $level + 1;
             $subTypes = $this->getTypesAtLevel($typeTag, $optional, $nextLevel);
 
-            if (! empty($subTypes)) {
+            if (count($subTypes) > 0) {
                 $currentIdent = str_repeat(' ', (2 * $level));
                 $indent = str_repeat(' ', (2 * $nextLevel));
                 $type = sprintf(
