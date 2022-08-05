@@ -200,7 +200,7 @@ return new class extends NodeVisitor {
 
         $elements = $this->getElementsFromDescription($tagDescription, true);
 
-        if ($elements === null) {
+        if (count($elements) === 0) {
             return null;
         }
 
@@ -234,7 +234,7 @@ return new class extends NodeVisitor {
 
         $elements = $this->getElementsFromDescription($tagDescription, false);
 
-        if ($elements === null) {
+        if (count($elements) === 0) {
             return null;
         }
 
@@ -253,9 +253,14 @@ return new class extends NodeVisitor {
 
     private function getTypeNameFromType(Type $tagVariableType): ?string
     {
+        return $this->getTypeNameFromString($tagVariableType->__toString());
+    }
+
+    private function getTypeNameFromString(string $tagVariable): ?string
+    {
         // PHPStan dosn't support typed array shapes (`int[]{...}`) so replace
         // typed arrays such as `int[]` with `array`.
-        $tagVariableType = preg_replace('#[a-zA-Z0-9_]+\[\]#', 'array', $tagVariableType->__toString());
+        $tagVariableType = preg_replace('#[a-zA-Z0-9_]+\[\]#', 'array', $tagVariable);
 
         if ($tagVariableType === null) {
             return null;
@@ -275,23 +280,32 @@ return new class extends NodeVisitor {
     }
 
     /**
-     * @return ?string[]
+     * @return string[]
      */
-    private function getElementsFromDescription(Description $tagDescription, bool $optional): ?array
+    private function getElementsFromDescription(Description $tagDescription, bool $optional): array
     {
         $text = $tagDescription->__toString();
 
         // Skip if the description doesn't contain at least one correctly
         // formatted `@type`, which indicates an array hash.
         if (strpos($text, '    @type ') === false) {
-            return null;
+            return [];
         }
 
+        return $this->getTypesAtLevel($text, $optional, 1);
+    }
+
+    /**
+     * @return string[]
+     */
+    private function getTypesAtLevel(string $text, bool $optional, int $level): array
+    {
         // Populate `$types` with the value of each top level `@type`.
-        $types = preg_split('/\R+    @type /', $text);
+        $spaces = str_repeat(' ', ($level * 4));
+        $types = preg_split("/\R+{$spaces}@type /", $text);
 
         if ($types === false) {
-            return null;
+            return [];
         }
 
         unset($types[0]);
@@ -301,19 +315,34 @@ return new class extends NodeVisitor {
             $parts = preg_split('#\s+#', trim($typeTag));
 
             if ($parts === false || count($parts) < 2) {
-                return null;
+                return [];
             }
 
             list($type, $name) = $parts;
 
             // Bail out completely if any element doesn't have a static key.
             if (strpos($name, '...$') !== false) {
-                return null;
+                return [];
             }
 
             // Bail out completely if the name of any element is invalid.
             if (strpos($name, '$') !== 0) {
-                return null;
+                return [];
+            }
+
+            $nextLevel = $level + 1;
+            $subTypes = $this->getTypesAtLevel($typeTag, $optional, $nextLevel);
+
+            if (count($subTypes) > 0) {
+                $currentIdent = str_repeat(' ', (2 * $level));
+                $indent = str_repeat(' ', (2 * $nextLevel));
+                $type = sprintf(
+                    '%s{%s%s%s}',
+                    $this->getTypeNameFromString($type),
+                    "\n * {$indent}",
+                    implode(",\n * {$indent}", $subTypes),
+                    ",\n * {$currentIdent}"
+                );
             }
 
             $elements[] = sprintf(
