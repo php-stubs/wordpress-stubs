@@ -12,7 +12,8 @@ use PhpParser\Node\Stmt\ClassMethod;
 use PhpParser\Node\Stmt\Function_;
 use StubsGenerator\NodeVisitor;
 
-final class WordPressTag {
+final class WordPressTag
+{
     /**
      * @var string
      */
@@ -36,7 +37,8 @@ final class WordPressTag {
     /**
      * @return string[]
      */
-    public function format(): array {
+    public function format(): array
+    {
         $strings = [];
 
         $strings[] = sprintf(
@@ -58,7 +60,8 @@ final class WordPressTag {
     }
 }
 
-final class WordPressArg {
+final class WordPressArg
+{
     /**
      * @var string
      */
@@ -82,7 +85,8 @@ final class WordPressArg {
     /**
      * @return string[]
      */
-    public function format(int $level = 1): array {
+    public function format(int $level = 1): array
+    {
         $strings = [];
         $padding = str_repeat(' ', ($level * 2));
 
