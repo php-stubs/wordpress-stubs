@@ -12,12 +12,53 @@ use PhpParser\Node\Stmt\ClassMethod;
 use PhpParser\Node\Stmt\Function_;
 use StubsGenerator\NodeVisitor;
 
-final class WordPressParam {
+final class WordPressTag {
+    /**
+     * @var string
+     */
+    public $tag;
+
+    /**
+     * @var string
+     */
+    public $type;
+
     /**
      * @var ?string
      */
-    public $tag = null;
+    public $name = null;
 
+    /**
+     * @var WordPressParam[]
+     */
+    public $children = [];
+
+    /**
+     * @return string[]
+     */
+    public function format(): array {
+        $strings = [];
+
+        $strings[] = sprintf(
+            '%s %s{',
+            $this->tag,
+            $this->type
+        );
+
+        foreach ($this->children as $child) {
+            $strings = array_merge($strings, $child->format());
+        }
+
+        $strings[] = sprintf(
+            '}%s',
+            ($this->name !== null) ? (' $' . $this->name) : ''
+        );
+
+        return $strings;
+    }
+}
+
+final class WordPressParam {
     /**
      * @var string
      */
@@ -41,33 +82,7 @@ final class WordPressParam {
     /**
      * @return string[]
      */
-    public function formatTag(): array {
-        $strings = [];
-
-        $strings[] = sprintf(
-            '%s %s%s',
-            $this->tag,
-            $this->type,
-            (count($this->children) > 0) ? '{' : ''
-        );
-
-        foreach ($this->children as $child) {
-            $strings = array_merge($strings, $child->formatArray());
-        }
-
-        $strings[] = sprintf(
-            '%s%s',
-            (count($this->children) > 0) ? '}' : '',
-            ($this->name !== null) ? (' $' . $this->name) : ''
-        );
-
-        return $strings;
-    }
-
-    /**
-     * @return string[]
-     */
-    public function formatArray(int $level = 1): array {
+    public function format(int $level = 1): array {
         $strings = [];
         $padding = str_repeat(' ', ($level * 2));
 
@@ -80,7 +95,7 @@ final class WordPressParam {
                 $this->type
             );
             foreach ($this->children as $child) {
-                $strings = array_merge($strings, $child->formatArray($level + 1));
+                $strings = array_merge($strings, $child->format($level + 1));
             }
             $strings[] = $padding . '},';
         } else {
@@ -191,7 +206,7 @@ return new class extends NodeVisitor {
             return null;
         }
 
-        /** @var WordPressParam[] $additions */
+        /** @var WordPressTag[] $additions */
         $additions = [];
 
         foreach ($params as $param) {
@@ -218,8 +233,8 @@ return new class extends NodeVisitor {
             return null;
         }
 
-        $additions = array_map( function(WordPressParam $param): string {
-            return " * " . implode("\n * ", $param->formatTag());
+        $additions = array_map( function(WordPressTag $param): string {
+            return " * " . implode("\n * ", $param->format());
         }, $additions);
 
         $newDocComment = sprintf(
@@ -277,7 +292,7 @@ return new class extends NodeVisitor {
         return new Doc($newDocComment, $docComment->getLine(), $docComment->getFilePos());
     }
 
-    private function getAdditionFromParam(Param $tag): ?WordPressParam
+    private function getAdditionFromParam(Param $tag): ?WordPressTag
     {
         $tagDescription = $tag->getDescription();
         $tagVariableName = $tag->getVariableName();
@@ -304,17 +319,16 @@ return new class extends NodeVisitor {
         // Remove the accepted string type for these so we get the strongest typing we can manage.
         $tagVariableType = str_replace(['|string', 'string|'], '', $tagVariableType);
 
-        $param = new WordPressParam();
+        $param = new WordPressTag();
         $param->tag = '@phpstan-param';
         $param->type = $tagVariableType;
-        $param->optional = false;
         $param->name = $tagVariableName;
         $param->children = $elements;
 
         return $param;
     }
 
-    private function getAdditionFromReturn(Return_ $tag): ?WordPressParam
+    private function getAdditionFromReturn(Return_ $tag): ?WordPressTag
     {
         $tagDescription = $tag->getDescription();
         $tagVariableType = $tag->getType();
@@ -336,7 +350,7 @@ return new class extends NodeVisitor {
             return null;
         }
 
-        $param = new WordPressParam();
+        $param = new WordPressTag();
         $param->tag = '@phpstan-return';
         $param->type = $tagVariableType;
         $param->children = $elements;
