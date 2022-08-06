@@ -253,8 +253,20 @@ return new class extends NodeVisitor {
         }
 
         $additions = array_map( function(WordPressTag $param): string {
-            return " * " . implode("\n * ", $param->format());
+            $lines = $param->format();
+
+            if (count($lines) === 0) {
+                return '';
+            }
+
+            return " * " . implode("\n * ", $lines);
         }, $additions);
+
+        $additions = array_filter($additions);
+
+        if (count($additions) === 0) {
+            return null;
+        }
 
         $newDocComment = sprintf(
             "%s\n%s\n */",
