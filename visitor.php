@@ -12,6 +12,91 @@ use PhpParser\Node\Stmt\ClassMethod;
 use PhpParser\Node\Stmt\Function_;
 use StubsGenerator\NodeVisitor;
 
+final class WordPressParam {
+    /**
+     * @var ?string
+     */
+    public $tag = null;
+
+    /**
+     * @var string
+     */
+    public $type;
+
+    /**
+     * @var bool
+     */
+    public $optional = false;
+
+    /**
+     * @var ?string
+     */
+    public $name = null;
+
+    /**
+     * @var WordPressParam[]
+     */
+    public $children = [];
+
+    /**
+     * @return string[]
+     */
+    public function formatTag(): array {
+        $strings = [];
+
+        $strings[] = sprintf(
+            '%s %s%s',
+            $this->tag,
+            $this->type,
+            (count($this->children) > 0) ? '{' : ''
+        );
+
+        foreach ($this->children as $child) {
+            $strings = array_merge($strings, $child->formatArray());
+        }
+
+        $strings[] = sprintf(
+            '%s%s',
+            (count($this->children) > 0) ? '}' : '',
+            ($this->name !== null) ? (' $' . $this->name) : ''
+        );
+
+        return $strings;
+    }
+
+    /**
+     * @return string[]
+     */
+    public function formatArray(int $level = 1): array {
+        $strings = [];
+        $padding = str_repeat(' ', ($level * 2));
+
+        if (count($this->children) > 0) {
+            $strings[] = sprintf(
+                '%s%s%s: %s{',
+                $padding,
+                $this->name,
+                ($this->optional) ? '?' : '',
+                $this->type
+            );
+            foreach ($this->children as $child) {
+                $strings = array_merge($strings, $child->formatArray($level + 1));
+            }
+            $strings[] = $padding . '},';
+        } else {
+            $strings[] = sprintf(
+                '%s%s%s: %s,',
+                $padding,
+                $this->name,
+                ($this->optional) ? '?' : '',
+                $this->type
+            );
+        }
+
+        return $strings;
+    }
+}
+
 return new class extends NodeVisitor {
 
     /**
@@ -106,6 +191,7 @@ return new class extends NodeVisitor {
             return null;
         }
 
+        /** @var WordPressParam[] $additions */
         $additions = [];
 
         foreach ($params as $param) {
@@ -131,6 +217,10 @@ return new class extends NodeVisitor {
         if (!$additions) {
             return null;
         }
+
+        $additions = array_map( function(WordPressParam $param): string {
+            return " * " . implode("\n * ", $param->formatTag());
+        }, $additions);
 
         $newDocComment = sprintf(
             "%s\n%s\n */",
@@ -187,7 +277,7 @@ return new class extends NodeVisitor {
         return new Doc($newDocComment, $docComment->getLine(), $docComment->getFilePos());
     }
 
-    private function getAdditionFromParam(Param $tag): ?string
+    private function getAdditionFromParam(Param $tag): ?WordPressParam
     {
         $tagDescription = $tag->getDescription();
         $tagVariableName = $tag->getVariableName();
@@ -214,15 +304,17 @@ return new class extends NodeVisitor {
         // Remove the accepted string type for these so we get the strongest typing we can manage.
         $tagVariableType = str_replace(['|string', 'string|'], '', $tagVariableType);
 
-        return sprintf(
-            " * @phpstan-param %1\$s{\n *   %2\$s,\n * } $%3\$s",
-            $tagVariableType,
-            implode(",\n *   ", $elements),
-            $tagVariableName
-        );
+        $param = new WordPressParam();
+        $param->tag = '@phpstan-param';
+        $param->type = $tagVariableType;
+        $param->optional = false;
+        $param->name = $tagVariableName;
+        $param->children = $elements;
+
+        return $param;
     }
 
-    private function getAdditionFromReturn(Return_ $tag): ?string
+    private function getAdditionFromReturn(Return_ $tag): ?WordPressParam
     {
         $tagDescription = $tag->getDescription();
         $tagVariableType = $tag->getType();
@@ -244,11 +336,12 @@ return new class extends NodeVisitor {
             return null;
         }
 
-        return sprintf(
-            " * @phpstan-return %1\$s{\n *   %2\$s,\n * }",
-            $tagVariableType,
-            implode(",\n *   ", $elements)
-        );
+        $param = new WordPressParam();
+        $param->tag = '@phpstan-return';
+        $param->type = $tagVariableType;
+        $param->children = $elements;
+
+        return $param;
     }
 
     private function getTypeNameFromType(Type $tagVariableType): ?string
@@ -280,7 +373,7 @@ return new class extends NodeVisitor {
     }
 
     /**
-     * @return string[]
+     * @return WordPressParam[]
      */
     private function getElementsFromDescription(Description $tagDescription, bool $optional): array
     {
@@ -296,7 +389,7 @@ return new class extends NodeVisitor {
     }
 
     /**
-     * @return string[]
+     * @return WordPressParam[]
      */
     private function getTypesAtLevel(string $text, bool $optional, int $level): array
     {
@@ -330,27 +423,24 @@ return new class extends NodeVisitor {
                 return [];
             }
 
+            $param = new WordPressParam();
+            $param->type = $type;
+            $param->optional = $optional;
+            $param->name = substr($name, 1);
+
             $nextLevel = $level + 1;
             $subTypes = $this->getTypesAtLevel($typeTag, $optional, $nextLevel);
 
             if (count($subTypes) > 0) {
-                $currentIdent = str_repeat(' ', (2 * $level));
-                $indent = str_repeat(' ', (2 * $nextLevel));
-                $type = sprintf(
-                    '%s{%s%s%s}',
-                    $this->getTypeNameFromString($type),
-                    "\n * {$indent}",
-                    implode(",\n * {$indent}", $subTypes),
-                    ",\n * {$currentIdent}"
-                );
+                $type = $this->getTypeNameFromString($type);
+
+                if ($type !== null) {
+                    $param->type = $type;
+                }
+                $param->children = $subTypes;
             }
 
-            $elements[] = sprintf(
-                '%1$s%2$s: %3$s',
-                substr($name, 1),
-                $optional ? '?' : '',
-                $type
-            );
+            $elements[] = $param;
         }
 
         return $elements;
