@@ -12,7 +12,26 @@ use PhpParser\Node\Stmt\ClassMethod;
 use PhpParser\Node\Stmt\Function_;
 use StubsGenerator\NodeVisitor;
 
-final class WordPressTag
+abstract class WithChildren
+{
+    /**
+     * @var WordPressArg[]
+     */
+    public $children = [];
+
+    public function isArrayShape(): bool
+    {
+        foreach ($this->children as $child) {
+            if ($child->name === null) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+}
+
+final class WordPressTag extends WithChildren
 {
     /**
      * @var string
@@ -28,11 +47,6 @@ final class WordPressTag
      * @var ?string
      */
     public $name = null;
-
-    /**
-     * @var WordPressArg[]
-     */
-    public $children = [];
 
     /**
      * @return string[]
@@ -60,7 +74,7 @@ final class WordPressTag
     }
 }
 
-final class WordPressArg
+final class WordPressArg extends WithChildren
 {
     /**
      * @var string
@@ -76,11 +90,6 @@ final class WordPressArg
      * @var ?string
      */
     public $name = null;
-
-    /**
-     * @var WordPressArg[]
-     */
-    public $children = [];
 
     /**
      * @return string[]
