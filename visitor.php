@@ -29,7 +29,7 @@ final class WordPressTag {
     public $name = null;
 
     /**
-     * @var WordPressParam[]
+     * @var WordPressArg[]
      */
     public $children = [];
 
@@ -58,7 +58,7 @@ final class WordPressTag {
     }
 }
 
-final class WordPressParam {
+final class WordPressArg {
     /**
      * @var string
      */
@@ -75,7 +75,7 @@ final class WordPressParam {
     public $name = null;
 
     /**
-     * @var WordPressParam[]
+     * @var WordPressArg[]
      */
     public $children = [];
 
@@ -387,7 +387,7 @@ return new class extends NodeVisitor {
     }
 
     /**
-     * @return WordPressParam[]
+     * @return WordPressArg[]
      */
     private function getElementsFromDescription(Description $tagDescription, bool $optional): array
     {
@@ -403,7 +403,7 @@ return new class extends NodeVisitor {
     }
 
     /**
-     * @return WordPressParam[]
+     * @return WordPressArg[]
      */
     private function getTypesAtLevel(string $text, bool $optional, int $level): array
     {
@@ -437,7 +437,7 @@ return new class extends NodeVisitor {
                 return [];
             }
 
-            $param = new WordPressParam();
+            $param = new WordPressArg();
             $param->type = $type;
             $param->optional = $optional;
             $param->name = substr($name, 1);
