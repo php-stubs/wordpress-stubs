@@ -61,8 +61,14 @@ final class WordPressTag extends WithChildren
             $this->type
         );
 
+        $level = 1;
+
+        if (! $this->isArrayShape()) {
+            $level = 0;
+        }
+
         foreach ($this->children as $child) {
-            $strings = array_merge($strings, $child->format());
+            $strings = array_merge($strings, $child->format($level));
         }
 
         $strings[] = sprintf(
@@ -440,20 +446,18 @@ return new class extends NodeVisitor {
 
             list($type, $name) = $parts;
 
-            // Bail out completely if any element doesn't have a static key.
             if (strpos($name, '...$') !== false) {
+                $name = null;
+            } elseif (strpos($name, '$') !== 0) {
                 return [];
-            }
-
-            // Bail out completely if the name of any element is invalid.
-            if (strpos($name, '$') !== 0) {
-                return [];
+            } else {
+                $name = ltrim($name, '$');
             }
 
             $arg = new WordPressArg();
             $arg->type = $type;
             $arg->optional = $optional;
-            $arg->name = substr($name, 1);
+            $arg->name = $name;
 
             $nextLevel = $level + 1;
             $subTypes = $this->getTypesAtLevel($typeTag, $optional, $nextLevel);
