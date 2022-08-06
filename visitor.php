@@ -319,13 +319,13 @@ return new class extends NodeVisitor {
         // Remove the accepted string type for these so we get the strongest typing we can manage.
         $tagVariableType = str_replace(['|string', 'string|'], '', $tagVariableType);
 
-        $param = new WordPressTag();
-        $param->tag = '@phpstan-param';
-        $param->type = $tagVariableType;
-        $param->name = $tagVariableName;
-        $param->children = $elements;
+        $tag = new WordPressTag();
+        $tag->tag = '@phpstan-param';
+        $tag->type = $tagVariableType;
+        $tag->name = $tagVariableName;
+        $tag->children = $elements;
 
-        return $param;
+        return $tag;
     }
 
     private function getAdditionFromReturn(Return_ $tag): ?WordPressTag
@@ -350,12 +350,12 @@ return new class extends NodeVisitor {
             return null;
         }
 
-        $param = new WordPressTag();
-        $param->tag = '@phpstan-return';
-        $param->type = $tagVariableType;
-        $param->children = $elements;
+        $tag = new WordPressTag();
+        $tag->tag = '@phpstan-return';
+        $tag->type = $tagVariableType;
+        $tag->children = $elements;
 
-        return $param;
+        return $tag;
     }
 
     private function getTypeNameFromType(Type $tagVariableType): ?string
@@ -437,10 +437,10 @@ return new class extends NodeVisitor {
                 return [];
             }
 
-            $param = new WordPressArg();
-            $param->type = $type;
-            $param->optional = $optional;
-            $param->name = substr($name, 1);
+            $arg = new WordPressArg();
+            $arg->type = $type;
+            $arg->optional = $optional;
+            $arg->name = substr($name, 1);
 
             $nextLevel = $level + 1;
             $subTypes = $this->getTypesAtLevel($typeTag, $optional, $nextLevel);
@@ -449,12 +449,12 @@ return new class extends NodeVisitor {
                 $type = $this->getTypeNameFromString($type);
 
                 if ($type !== null) {
-                    $param->type = $type;
+                    $arg->type = $type;
                 }
-                $param->children = $subTypes;
+                $arg->children = $subTypes;
             }
 
-            $elements[] = $param;
+            $elements[] = $arg;
         }
 
         return $elements;
