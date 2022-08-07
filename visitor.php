@@ -68,11 +68,27 @@ final class WordPressTag extends WithChildren
      */
     public function format(): array
     {
-        $strings = [];
-
         if ($this->isMixedShape()) {
             return [];
         }
+
+        $strings = [];
+        $childStrings = [];
+        $level = 1;
+
+        if (! $this->isArrayShape()) {
+            $level = 0;
+        }
+
+        foreach ($this->children as $child) {
+            $childStrings = array_merge($childStrings, $child->format($level));
+        }
+
+        if (count($childStrings) === 0) {
+            return [];
+        }
+
+        $name = ($this->name !== null) ? (' $' . $this->name) : '';
 
         if ($this->isArrayShape()) {
             $strings[] = sprintf(
@@ -81,24 +97,25 @@ final class WordPressTag extends WithChildren
                 $this->type
             );
         } else {
-            $strings[] = sprintf(
-                '%s array<int|string, %s{',
-                $this->tag,
-                $this->type
-            );
+            if (count($this->children) > 0 && count($this->children[0]->children) > 0) {
+                $strings[] = sprintf(
+                    '%s %s<int|string, array{',
+                    $this->tag,
+                    $this->type
+                );
+            } else {
+                $strings[] = sprintf(
+                    '%s array<int|string, %s>%s',
+                    $this->tag,
+                    $this->type,
+                    $name
+                );
+
+                return $strings;
+            }
         }
 
-        $level = 1;
-
-        if (! $this->isArrayShape()) {
-            $level = 0;
-        }
-
-        foreach ($this->children as $child) {
-            $strings = array_merge($strings, $child->format($level));
-        }
-
-        $name = ($this->name !== null) ? (' $' . $this->name) : '';
+        $strings = array_merge($strings, $childStrings);
 
         if ($this->isArrayShape()) {
             $strings[] = sprintf(
