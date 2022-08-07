@@ -535,7 +535,7 @@ return new class extends NodeVisitor {
         $elements = [];
 
         foreach ($types as $typeTag) {
-            $parts = preg_split('#\s+#', trim($typeTag));
+            $parts = preg_split('#\s+#', trim($typeTag), 3);
 
             if ($parts === false || count($parts) < 2) {
                 return [];
@@ -543,17 +543,26 @@ return new class extends NodeVisitor {
 
             list($type, $name) = $parts;
 
+            $optionalArg = $optional;
+            $nameTrimmed = ltrim($name, '$');
+
+            if (is_numeric($nameTrimmed)) {
+                $optionalArg = false;
+            } elseif ($optional && ($level > 1)) {
+                $optionalArg = (isset($parts[2]) && stripos($parts[2], 'optional') !== false);
+            }
+
             if (strpos($name, '...$') !== false) {
                 $name = null;
             } elseif (strpos($name, '$') !== 0) {
                 return [];
             } else {
-                $name = ltrim($name, '$');
+                $name = $nameTrimmed;
             }
 
             $arg = new WordPressArg();
             $arg->type = $type;
-            $arg->optional = $optional;
+            $arg->optional = $optionalArg;
             $arg->name = $name;
 
             $nextLevel = $level + 1;
