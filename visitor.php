@@ -5,11 +5,13 @@ declare(strict_types = 1);
 use phpDocumentor\Reflection\DocBlock\Description;
 use phpDocumentor\Reflection\DocBlock\Tags\Param;
 use phpDocumentor\Reflection\DocBlock\Tags\Return_;
+use phpDocumentor\Reflection\DocBlock\Tags\Var_;
 use phpDocumentor\Reflection\Type;
 use PhpParser\Comment\Doc;
 use PhpParser\Node;
 use PhpParser\Node\Stmt\ClassMethod;
 use PhpParser\Node\Stmt\Function_;
+use PhpParser\Node\Stmt\Property;
 use StubsGenerator\NodeVisitor;
 
 abstract class WithChildren
@@ -242,7 +244,7 @@ return new class extends NodeVisitor {
     {
         parent::enterNode($node);
 
-        if (!($node instanceof Function_) && !($node instanceof ClassMethod)) {
+        if (!($node instanceof Function_) && !($node instanceof ClassMethod) && !($node instanceof Property)) {
             return null;
         }
 
@@ -252,7 +254,11 @@ return new class extends NodeVisitor {
             return null;
         }
 
-        $this->currentSymbolName = $node->name->name;
+        if ($node instanceof Property) {
+            $this->currentSymbolName = '';
+        } else {
+            $this->currentSymbolName = $node->name->name;
+        }
 
         if ($node instanceof ClassMethod) {
             /** @var \PhpParser\Node\Stmt\Class_ $parent */
@@ -306,7 +312,10 @@ return new class extends NodeVisitor {
         /** @var \phpDocumentor\Reflection\DocBlock\Tags\Return_[] */
         $returns = $docblock->getTagsByName('return');
 
-        if (!$params && !$returns) {
+        /** @var \phpDocumentor\Reflection\DocBlock\Tags\Var_[] */
+        $vars = $docblock->getTagsByName('var');
+
+        if (!$params && !$returns && !$vars) {
             return null;
         }
 
@@ -333,12 +342,20 @@ return new class extends NodeVisitor {
             }
         }
 
+        if ($vars !== [] && $vars[0] instanceof Var_) {
+            $addition = $this->getAdditionFromVar($vars[0]);
+
+            if ($addition !== null) {
+                $additions[] = $addition;
+            }
+        }
+
         if (!$additions) {
             return null;
         }
 
-        $additions = array_map( function(WordPressTag $param): string {
-            $lines = $param->format();
+        $additions = array_map( function(WordPressTag $tag): string {
+            $lines = $tag->format();
 
             if (count($lines) === 0) {
                 return '';
@@ -468,6 +485,36 @@ return new class extends NodeVisitor {
 
         $tag = new WordPressTag();
         $tag->tag = '@phpstan-return';
+        $tag->type = $tagVariableType;
+        $tag->children = $elements;
+
+        return $tag;
+    }
+
+    private function getAdditionFromVar(Var_ $tag): ?WordPressTag
+    {
+        $tagDescription = $tag->getDescription();
+        $tagVariableType = $tag->getType();
+
+        // Skip if information we need is missing.
+        if (!$tagDescription || !$tagVariableType) {
+            return null;
+        }
+
+        $elements = $this->getElementsFromDescription($tagDescription, false);
+
+        if (count($elements) === 0) {
+            return null;
+        }
+
+        $tagVariableType = $this->getTypeNameFromType($tagVariableType);
+
+        if ($tagVariableType === null) {
+            return null;
+        }
+
+        $tag = new WordPressTag();
+        $tag->tag = '@phpstan-var';
         $tag->type = $tagVariableType;
         $tag->children = $elements;
 
