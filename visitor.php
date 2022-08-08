@@ -5,14 +5,50 @@ declare(strict_types = 1);
 use phpDocumentor\Reflection\DocBlock\Description;
 use phpDocumentor\Reflection\DocBlock\Tags\Param;
 use phpDocumentor\Reflection\DocBlock\Tags\Return_;
+use phpDocumentor\Reflection\DocBlock\Tags\Var_;
 use phpDocumentor\Reflection\Type;
 use PhpParser\Comment\Doc;
 use PhpParser\Node;
 use PhpParser\Node\Stmt\ClassMethod;
 use PhpParser\Node\Stmt\Function_;
+use PhpParser\Node\Stmt\Property;
 use StubsGenerator\NodeVisitor;
 
-final class WordPressTag
+abstract class WithChildren
+{
+    /**
+     * @var WordPressArg[]
+     */
+    public $children = [];
+
+    public function isArrayShape(): bool
+    {
+        foreach ($this->children as $child) {
+            if ($child->name === null) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    public function isMixedShape(): bool
+    {
+        $hasStaticKey = false;
+
+        foreach ($this->children as $child) {
+            if ($child->name !== null) {
+                $hasStaticKey = true;
+            } elseif ($hasStaticKey) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+}
+
+final class WordPressTag extends WithChildren
 {
     /**
      * @var string
@@ -30,37 +66,76 @@ final class WordPressTag
     public $name = null;
 
     /**
-     * @var WordPressArg[]
-     */
-    public $children = [];
-
-    /**
      * @return string[]
      */
     public function format(): array
     {
-        $strings = [];
-
-        $strings[] = sprintf(
-            '%s %s{',
-            $this->tag,
-            $this->type
-        );
-
-        foreach ($this->children as $child) {
-            $strings = array_merge($strings, $child->format());
+        if ($this->isMixedShape()) {
+            return [];
         }
 
-        $strings[] = sprintf(
-            '}%s',
-            ($this->name !== null) ? (' $' . $this->name) : ''
-        );
+        $strings = [];
+        $childStrings = [];
+        $level = 1;
+
+        if (! $this->isArrayShape()) {
+            $level = 0;
+        }
+
+        foreach ($this->children as $child) {
+            $childStrings = array_merge($childStrings, $child->format($level));
+        }
+
+        if (count($childStrings) === 0) {
+            return [];
+        }
+
+        $name = ($this->name !== null) ? (' $' . $this->name) : '';
+
+        if ($this->isArrayShape()) {
+            $strings[] = sprintf(
+                '%s %s{',
+                $this->tag,
+                $this->type
+            );
+        } else {
+            if (count($this->children) > 0 && count($this->children[0]->children) > 0) {
+                $strings[] = sprintf(
+                    '%s %s<int|string, array{',
+                    $this->tag,
+                    $this->type
+                );
+            } else {
+                $strings[] = sprintf(
+                    '%s array<int|string, %s>%s',
+                    $this->tag,
+                    $this->type,
+                    $name
+                );
+
+                return $strings;
+            }
+        }
+
+        $strings = array_merge($strings, $childStrings);
+
+        if ($this->isArrayShape()) {
+            $strings[] = sprintf(
+                '}%s',
+                $name
+            );
+        } else {
+            $strings[] = sprintf(
+                '}>%s',
+                $name
+            );
+        }
 
         return $strings;
     }
 }
 
-final class WordPressArg
+final class WordPressArg extends WithChildren
 {
     /**
      * @var string
@@ -78,11 +153,6 @@ final class WordPressArg
     public $name = null;
 
     /**
-     * @var WordPressArg[]
-     */
-    public $children = [];
-
-    /**
      * @return string[]
      */
     public function format(int $level = 1): array
@@ -90,18 +160,50 @@ final class WordPressArg
         $strings = [];
         $padding = str_repeat(' ', ($level * 2));
 
+        if ($this->isMixedShape()) {
+            return [];
+        }
+
         if (count($this->children) > 0) {
-            $strings[] = sprintf(
-                '%s%s%s: %s{',
-                $padding,
-                $this->name,
-                ($this->optional) ? '?' : '',
-                $this->type
-            );
+            $childStrings = [];
+
             foreach ($this->children as $child) {
-                $strings = array_merge($strings, $child->format($level + 1));
+                $childStrings = array_merge($childStrings, $child->format($level + 1));
             }
-            $strings[] = $padding . '},';
+
+            if (count($childStrings) === 0) {
+                return [];
+            }
+
+            if ($this->isArrayShape()) {
+                if ($this->name !== null) {
+                    $strings[] = sprintf(
+                        '%s%s%s: %s{',
+                        $padding,
+                        $this->name,
+                        ($this->optional) ? '?' : '',
+                        $this->type
+                    );
+                }
+            } else {
+                $strings[] = sprintf(
+                    '%s%s%s: array<int|string, %s{',
+                    $padding,
+                    $this->name,
+                    ($this->optional) ? '?' : '',
+                    $this->type
+                );
+            }
+
+            $strings = array_merge($strings, $childStrings);
+
+            if ($this->isArrayShape()) {
+                if ($this->name !== null) {
+                    $strings[] = $padding . '},';
+                }
+            } else {
+                $strings[] = $padding . '}>,';
+            }
         } else {
             $strings[] = sprintf(
                 '%s%s%s: %s,',
@@ -142,7 +244,7 @@ return new class extends NodeVisitor {
     {
         parent::enterNode($node);
 
-        if (!($node instanceof Function_) && !($node instanceof ClassMethod)) {
+        if (!($node instanceof Function_) && !($node instanceof ClassMethod) && !($node instanceof Property)) {
             return null;
         }
 
@@ -152,7 +254,11 @@ return new class extends NodeVisitor {
             return null;
         }
 
-        $this->currentSymbolName = $node->name->name;
+        if ($node instanceof Property) {
+            $this->currentSymbolName = '';
+        } else {
+            $this->currentSymbolName = $node->name->name;
+        }
 
         if ($node instanceof ClassMethod) {
             /** @var \PhpParser\Node\Stmt\Class_ $parent */
@@ -206,7 +312,10 @@ return new class extends NodeVisitor {
         /** @var \phpDocumentor\Reflection\DocBlock\Tags\Return_[] */
         $returns = $docblock->getTagsByName('return');
 
-        if (!$params && !$returns) {
+        /** @var \phpDocumentor\Reflection\DocBlock\Tags\Var_[] */
+        $vars = $docblock->getTagsByName('var');
+
+        if (!$params && !$returns && !$vars) {
             return null;
         }
 
@@ -233,13 +342,33 @@ return new class extends NodeVisitor {
             }
         }
 
+        if ($vars !== [] && $vars[0] instanceof Var_) {
+            $addition = $this->getAdditionFromVar($vars[0]);
+
+            if ($addition !== null) {
+                $additions[] = $addition;
+            }
+        }
+
         if (!$additions) {
             return null;
         }
 
-        $additions = array_map( function(WordPressTag $param): string {
-            return " * " . implode("\n * ", $param->format());
+        $additions = array_map( function(WordPressTag $tag): string {
+            $lines = $tag->format();
+
+            if (count($lines) === 0) {
+                return '';
+            }
+
+            return " * " . implode("\n * ", $lines);
         }, $additions);
+
+        $additions = array_filter($additions);
+
+        if (count($additions) === 0) {
+            return null;
+        }
 
         $newDocComment = sprintf(
             "%s\n%s\n */",
@@ -362,6 +491,36 @@ return new class extends NodeVisitor {
         return $tag;
     }
 
+    private function getAdditionFromVar(Var_ $tag): ?WordPressTag
+    {
+        $tagDescription = $tag->getDescription();
+        $tagVariableType = $tag->getType();
+
+        // Skip if information we need is missing.
+        if (!$tagDescription || !$tagVariableType) {
+            return null;
+        }
+
+        $elements = $this->getElementsFromDescription($tagDescription, false);
+
+        if (count($elements) === 0) {
+            return null;
+        }
+
+        $tagVariableType = $this->getTypeNameFromType($tagVariableType);
+
+        if ($tagVariableType === null) {
+            return null;
+        }
+
+        $tag = new WordPressTag();
+        $tag->tag = '@phpstan-var';
+        $tag->type = $tagVariableType;
+        $tag->children = $elements;
+
+        return $tag;
+    }
+
     private function getTypeNameFromType(Type $tagVariableType): ?string
     {
         return $this->getTypeNameFromString($tagVariableType->__toString());
@@ -423,7 +582,7 @@ return new class extends NodeVisitor {
         $elements = [];
 
         foreach ($types as $typeTag) {
-            $parts = preg_split('#\s+#', trim($typeTag));
+            $parts = preg_split('#\s+#', trim($typeTag), 3);
 
             if ($parts === false || count($parts) < 2) {
                 return [];
@@ -431,20 +590,27 @@ return new class extends NodeVisitor {
 
             list($type, $name) = $parts;
 
-            // Bail out completely if any element doesn't have a static key.
-            if (strpos($name, '...$') !== false) {
-                return [];
+            $optionalArg = $optional;
+            $nameTrimmed = ltrim($name, '$');
+
+            if (is_numeric($nameTrimmed)) {
+                $optionalArg = false;
+            } elseif ($optional && ($level > 1)) {
+                $optionalArg = isset($parts[2]) && self::isOptional($parts[2]);
             }
 
-            // Bail out completely if the name of any element is invalid.
-            if (strpos($name, '$') !== 0) {
+            if (strpos($name, '...$') !== false) {
+                $name = null;
+            } elseif (strpos($name, '$') !== 0) {
                 return [];
+            } else {
+                $name = $nameTrimmed;
             }
 
             $arg = new WordPressArg();
             $arg->type = $type;
-            $arg->optional = $optional;
-            $arg->name = substr($name, 1);
+            $arg->optional = $optionalArg;
+            $arg->name = $name;
 
             $nextLevel = $level + 1;
             $subTypes = $this->getTypesAtLevel($typeTag, $optional, $nextLevel);
@@ -462,5 +628,14 @@ return new class extends NodeVisitor {
         }
 
         return $elements;
+    }
+
+    private static function isOptional(string $description): bool
+    {
+        return (stripos($description, 'Optional') !== false)
+            || (stripos($description, 'Default ') !== false)
+            || (stripos($description, 'Default: ') !== false)
+            || (stripos($description, 'Defaults to ') !== false)
+        ;
     }
 };
