@@ -596,7 +596,7 @@ return new class extends NodeVisitor {
             if (is_numeric($nameTrimmed)) {
                 $optionalArg = false;
             } elseif ($optional && ($level > 1)) {
-                $optionalArg = (isset($parts[2]) && stripos($parts[2], 'optional') !== false);
+                $optionalArg = isset($parts[2]) && self::isOptional($parts[2]);
             }
 
             if (strpos($name, '...$') !== false) {
@@ -628,5 +628,14 @@ return new class extends NodeVisitor {
         }
 
         return $elements;
+    }
+
+    private static function isOptional(string $description): bool
+    {
+        return (stripos($description, 'Optional') !== false)
+            || (stripos($description, 'Default ') !== false)
+            || (stripos($description, 'Default: ') !== false)
+            || (stripos($description, 'Defaults to ') !== false)
+        ;
     }
 };
