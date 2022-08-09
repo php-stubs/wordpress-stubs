@@ -396,7 +396,7 @@ return new class extends NodeVisitor {
             implode("\n", $additionStrings)
         );
 
-        return new Doc($newDocComment, $docComment->getLine(), $docComment->getFilePos());
+        return new Doc($newDocComment, $docComment->getStartLine(), $docComment->getStartFilePos());
     }
 
     /**
@@ -457,7 +457,7 @@ return new class extends NodeVisitor {
             implode("\n * ", $additions)
         );
 
-        return new Doc($newDocComment, $docComment->getLine(), $docComment->getFilePos());
+        return new Doc($newDocComment, $docComment->getStartLine(), $docComment->getStartFilePos());
     }
 
     private function getAdditionFromParam(Param $tag): ?WordPressTag
