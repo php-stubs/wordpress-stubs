@@ -286,7 +286,8 @@ return new class extends NodeVisitor {
             return null;
         }
 
-        $newDocComment = $this->addAdditionalParams($docComment);
+        $additions = $this->getAdditionalParams($docComment);
+        $newDocComment = $this->addParams($additions, $docComment);
 
         if ($newDocComment !== null) {
             $node->setDocComment($newDocComment);
@@ -393,14 +394,17 @@ return new class extends NodeVisitor {
         return new Doc($newDocComment, $docComment->getLine(), $docComment->getFilePos());
     }
 
-    private function addAdditionalParams(Doc $docComment): ?Doc
+    /**
+     * @return string[]
+     */
+    private function getAdditionalParams(Doc $docComment): array
     {
         if (! isset($this->functionMap)) {
             $this->functionMap = require __DIR__ . '/functionMap.php';
         }
 
         if (! isset($this->functionMap[$this->currentSymbolName])) {
-            return null;
+            return [];
         }
 
         $parameters = $this->functionMap[$this->currentSymbolName];
@@ -428,6 +432,18 @@ return new class extends NodeVisitor {
             '@phpstan-return %s',
             $returnType
         );
+
+        return $additions;
+    }
+
+    /**
+     * @param string[] $additions
+     */
+    private function addParams(array $additions, Doc $docComment): ?Doc
+    {
+        if (count($additions) === 0) {
+            return null;
+        }
 
         $docCommentText = $docComment->getText();
         $newDocComment = sprintf(
