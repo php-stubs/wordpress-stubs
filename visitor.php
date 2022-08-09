@@ -230,6 +230,16 @@ return new class extends NodeVisitor {
      */
     private $functionMap = null;
 
+    /**
+     * @var array<string, array<int, WordPressTag>>
+     */
+    private $additionalTags = [];
+
+    /**
+     * @var array<string, array<int, string>>
+     */
+    private $additionalTagStrings = [];
+
     public function __construct()
     {
         $this->docBlockFactory = \phpDocumentor\Reflection\DocBlockFactory::createInstance();
@@ -265,23 +275,16 @@ return new class extends NodeVisitor {
         }
 
         $additions = $this->generateAdditionalTagsFromDoc($docComment);
-        $newDocComment = self::addTags($additions, $docComment);
+        $node->setAttribute('fullSymbolName', $symbolName);
 
-        if ($newDocComment !== null) {
-            $node->setDocComment($newDocComment);
-        }
-
-        $docComment = $node->getDocComment();
-
-        if (!($docComment instanceof Doc)) {
-            return null;
+        if (count($additions) > 0) {
+            $this->additionalTags[ $symbolName ] = $additions;
         }
 
         $additions = $this->getAdditionalTagsFromMap($symbolName);
-        $newDocComment = self::addStringTags($additions, $docComment);
 
-        if ($newDocComment !== null) {
-            $node->setDocComment($newDocComment);
+        if (count($additions) > 0) {
+            $this->additionalTagStrings[ $symbolName ] = $additions;
         }
 
         return null;
@@ -293,7 +296,73 @@ return new class extends NodeVisitor {
             return $node->name->name;
         }
 
+        if ($node instanceof Property) {
+            return uniqid();
+        }
+
         return '';
+    }
+
+    /**
+     * @return Node[]
+     */
+    public function getStubStmts(): array
+    {
+        $stmts = parent::getStubStmts();
+
+        $this->postProcessNodes($stmts);
+
+        return $stmts;
+    }
+
+    /**
+     * @param Node[] $nodes
+     */
+    private function postProcessNodes(array $nodes): void
+    {
+        foreach ($nodes as $node) {
+            if (isset($node->stmts) && is_array($node->stmts)) {
+                $this->postProcessNodes($node->stmts);
+            }
+
+            if (! ($node instanceof Function_) && ! ($node instanceof ClassMethod) && ! ($node instanceof Property)) {
+                continue;
+            }
+
+            $name = $node->getAttribute('fullSymbolName');
+
+            if ($name === null) {
+                continue;
+            }
+
+            $docComment = $node->getDocComment();
+
+            if (!($docComment instanceof Doc)) {
+                continue;
+            }
+
+            if (isset($this->additionalTags[ $name ])) {
+                $newDocComment = self::addTags($this->additionalTags[ $name ], $docComment);
+
+                if ($newDocComment !== null) {
+                    $node->setDocComment($newDocComment);
+                }
+            }
+
+            if (isset($this->additionalTagStrings[ $name ])) {
+                $docComment = $node->getDocComment();
+
+                if (!($docComment instanceof Doc)) {
+                    continue;
+                }
+
+                $newDocComment = self::addStringTags($this->additionalTagStrings[ $name ], $docComment);
+
+                if ($newDocComment !== null) {
+                    $node->setDocComment($newDocComment);
+                }
+            }
+        }
     }
 
     /**
