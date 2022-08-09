@@ -286,7 +286,7 @@ return new class extends NodeVisitor {
             return null;
         }
 
-        $additions = $this->getAdditionalParams($docComment);
+        $additions = $this->getAdditionalParams();
         $newDocComment = $this->addParams($additions, $docComment);
 
         if ($newDocComment !== null) {
@@ -397,7 +397,7 @@ return new class extends NodeVisitor {
     /**
      * @return string[]
      */
-    private function getAdditionalParams(Doc $docComment): array
+    private function getAdditionalParams(): array
     {
         if (! isset($this->functionMap)) {
             $this->functionMap = require __DIR__ . '/functionMap.php';
