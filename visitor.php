@@ -283,7 +283,7 @@ return new class extends NodeVisitor {
         }
 
         $additions = $this->getAdditionalTagsFromMap();
-        $newDocComment = $this->addParams($additions, $docComment);
+        $newDocComment = $this->addStringTags($additions, $docComment);
 
         if ($newDocComment !== null) {
             $node->setDocComment($newDocComment);
@@ -444,7 +444,7 @@ return new class extends NodeVisitor {
     /**
      * @param string[] $additions
      */
-    private function addParams(array $additions, Doc $docComment): ?Doc
+    private function addStringTags(array $additions, Doc $docComment): ?Doc
     {
         if (count($additions) === 0) {
             return null;
