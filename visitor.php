@@ -306,13 +306,8 @@ return new class extends NodeVisitor {
             return null;
         }
 
-        /** @var \phpDocumentor\Reflection\DocBlock\Tags\Param[] */
         $params = $docblock->getTagsByName('param');
-
-        /** @var \phpDocumentor\Reflection\DocBlock\Tags\Return_[] */
         $returns = $docblock->getTagsByName('return');
-
-        /** @var \phpDocumentor\Reflection\DocBlock\Tags\Var_[] */
         $vars = $docblock->getTagsByName('var');
 
         if (!$params && !$returns && !$vars) {
@@ -334,16 +329,24 @@ return new class extends NodeVisitor {
             }
         }
 
-        if ($returns !== [] && $returns[0] instanceof Return_) {
-            $addition = $this->getAdditionFromReturn($returns[0]);
+        foreach ($returns as $return) {
+            if (! $return instanceof Return_) {
+                continue;
+            }
+
+            $addition = $this->getAdditionFromReturn($return);
 
             if ($addition !== null) {
                 $additions[] = $addition;
             }
         }
 
-        if ($vars !== [] && $vars[0] instanceof Var_) {
-            $addition = $this->getAdditionFromVar($vars[0]);
+        foreach ($vars as $var) {
+            if (! $var instanceof Var_) {
+                continue;
+            }
+
+            $addition = $this->getAdditionFromVar($var);
 
             if ($addition !== null) {
                 $additions[] = $addition;
