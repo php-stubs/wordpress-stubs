@@ -2,6 +2,7 @@
 
 declare(strict_types = 1);
 
+use phpDocumentor\Reflection\DocBlock;
 use phpDocumentor\Reflection\DocBlock\Description;
 use phpDocumentor\Reflection\DocBlock\Tags\Param;
 use phpDocumentor\Reflection\DocBlock\Tags\Return_;
@@ -297,7 +298,10 @@ return new class extends NodeVisitor {
         }
 
         if ($node instanceof Property) {
-            return uniqid();
+            return sprintf(
+                'property_%s',
+                uniqid()
+            );
         }
 
         return '';
@@ -341,12 +345,10 @@ return new class extends NodeVisitor {
                 continue;
             }
 
-            if (isset($this->additionalTags[ $name ])) {
-                $newDocComment = self::addTags($this->additionalTags[ $name ], $docComment);
+            $newDocComment = $this->addTags($name, $docComment);
 
-                if ($newDocComment !== null) {
-                    $node->setDocComment($newDocComment);
-                }
+            if ($newDocComment !== null) {
+                $node->setDocComment($newDocComment);
             }
 
             if (isset($this->additionalTagStrings[ $name ])) {
@@ -356,7 +358,7 @@ return new class extends NodeVisitor {
                     continue;
                 }
 
-                $newDocComment = self::addStringTags($this->additionalTagStrings[ $name ], $docComment);
+                $newDocComment = $this->addStringTags($name, $docComment);
 
                 if ($newDocComment !== null) {
                     $node->setDocComment($newDocComment);
@@ -426,12 +428,25 @@ return new class extends NodeVisitor {
         return $additions;
     }
 
-    /**
-     * @param array<int, WordPressTag> $additions
-     */
-    private static function addTags(array $additions, Doc $docComment): ?Doc
+    private function addTags(string $name, Doc $docComment): ?Doc
     {
+        if (isset($this->additionalTags[ $name ])) {
+            $additions = $this->additionalTags[ $name ];
+        } else {
+            $additions = [];
+        }
+
         $docCommentText = $docComment->getText();
+
+        try {
+            $docblock = $this->docBlockFactory->create($docCommentText);
+        } catch ( \RuntimeException $e ) {
+            return null;
+        } catch ( \InvalidArgumentException $e ) {
+            return null;
+        }
+
+        $additions = $this->discoverInheritedArgs($docblock, $additions);
 
         /** @var string[] $additionStrings */
         $additionStrings = array_map( function(WordPressTag $tag): string {
@@ -457,6 +472,62 @@ return new class extends NodeVisitor {
         );
 
         return new Doc($newDocComment, $docComment->getStartLine(), $docComment->getStartFilePos());
+    }
+
+    /**
+     * @param array<int, WordPressTag> $additions
+     * @return array<int, WordPressTag>
+     */
+    private function discoverInheritedArgs(DocBlock $docblock, array $additions): array
+    {
+        /** @var Param[] $params */
+        $params = $docblock->getTagsByName('param');
+
+        foreach ($params as $param) {
+            $type = self::getTypeNameFromType($param->getType());
+
+            if ($type === null) {
+                continue;
+            }
+
+            $paramDescription = $param->getDescription();
+
+            if ($paramDescription === null) {
+                continue;
+            }
+
+            $description = $paramDescription->__toString();
+            list($description) = explode("\n\n", $description);
+
+            if (strpos($description, '()') === false) {
+                continue;
+            }
+
+            foreach (array_keys($this->additionalTags) as $symbolName) {
+                $regex = sprintf(
+                    '#\b%s\(\)#',
+                    $symbolName
+                );
+
+                if (preg_match($regex, $description) !== 1) {
+                    continue;
+                }
+
+                $addition = new WordPressTag();
+                $addition->tag = '@phpstan-param';
+                $addition->name = $param->getVariableName();
+
+                $arg = new WordPressArg();
+                $arg->name = $symbolName;
+                $arg->type = 'testing';
+
+                $addition->children[] = $arg;
+
+                $additions[] = $addition;
+            }
+        }
+
+        return $additions;
     }
 
     /**
@@ -501,14 +572,13 @@ return new class extends NodeVisitor {
         return $additions;
     }
 
-    /**
-     * @param string[] $additions
-     */
-    private static function addStringTags(array $additions, Doc $docComment): ?Doc
+    private function addStringTags(string $name, Doc $docComment): ?Doc
     {
-        if (count($additions) === 0) {
+        if ( !isset($this->additionalTagStrings[ $name ])) {
             return null;
         }
+
+        $additions = $this->additionalTagStrings[ $name ];
 
         $docCommentText = $docComment->getText();
         $newDocComment = sprintf(
