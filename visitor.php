@@ -384,10 +384,6 @@ return new class extends NodeVisitor {
         $returns = $docblock->getTagsByName('return');
         $vars = $docblock->getTagsByName('var');
 
-        if (!$params && !$returns && !$vars) {
-            return [];
-        }
-
         /** @var WordPressTag[] $additions */
         $additions = [];
 
