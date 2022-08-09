@@ -254,11 +254,7 @@ return new class extends NodeVisitor {
             return null;
         }
 
-        if ($node instanceof Property) {
-            $this->currentSymbolName = '';
-        } else {
-            $this->currentSymbolName = $node->name->name;
-        }
+        $this->currentSymbolName = self::getNodeName($node);
 
         if ($node instanceof ClassMethod) {
             /** @var \PhpParser\Node\Stmt\Class_ $parent */
@@ -294,6 +290,15 @@ return new class extends NodeVisitor {
         }
 
         return null;
+    }
+
+    private static function getNodeName(Node $node): string
+    {
+        if (($node instanceof Function_) || ($node instanceof ClassMethod)) {
+            return $node->name->name;
+        }
+
+        return '';
     }
 
     /**
