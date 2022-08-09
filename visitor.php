@@ -273,7 +273,8 @@ return new class extends NodeVisitor {
             }
         }
 
-        $newDocComment = $this->addArrayHashNotation($docComment);
+        $additions = $this->getAdditionalTags($docComment);
+        $newDocComment = $this->addTags($additions, $docComment);
 
         if ($newDocComment !== null) {
             $node->setDocComment($newDocComment);
@@ -294,16 +295,19 @@ return new class extends NodeVisitor {
         return null;
     }
 
-    private function addArrayHashNotation(Doc $docComment): ?Doc
+    /**
+     * @return array<int, WordPressTag>
+     */
+    private function getAdditionalTags(Doc $docComment): array
     {
         $docCommentText = $docComment->getText();
 
         try {
             $docblock = $this->docBlockFactory->create($docCommentText);
         } catch ( \RuntimeException $e ) {
-            return null;
+            return [];
         } catch ( \InvalidArgumentException $e ) {
-            return null;
+            return [];
         }
 
         $params = $docblock->getTagsByName('param');
@@ -311,7 +315,7 @@ return new class extends NodeVisitor {
         $vars = $docblock->getTagsByName('var');
 
         if (!$params && !$returns && !$vars) {
-            return null;
+            return [];
         }
 
         /** @var WordPressTag[] $additions */
@@ -353,11 +357,18 @@ return new class extends NodeVisitor {
             }
         }
 
-        if (!$additions) {
-            return null;
-        }
+        return $additions;
+    }
 
-        $additions = array_map( function(WordPressTag $tag): string {
+    /**
+     * @param array<int, WordPressTag> $additions
+     */
+    private function addTags(array $additions, Doc $docComment): ?Doc
+    {
+        $docCommentText = $docComment->getText();
+
+        /** @var string[] $additionStrings */
+        $additionStrings = array_map( function(WordPressTag $tag): string {
             $lines = $tag->format();
 
             if (count($lines) === 0) {
@@ -367,16 +378,16 @@ return new class extends NodeVisitor {
             return " * " . implode("\n * ", $lines);
         }, $additions);
 
-        $additions = array_filter($additions);
+        $additionStrings = array_filter($additionStrings);
 
-        if (count($additions) === 0) {
+        if (count($additionStrings) === 0) {
             return null;
         }
 
         $newDocComment = sprintf(
             "%s\n%s\n */",
             substr($docCommentText, 0, -4),
-            implode("\n", $additions)
+            implode("\n", $additionStrings)
         );
 
         return new Doc($newDocComment, $docComment->getLine(), $docComment->getFilePos());
