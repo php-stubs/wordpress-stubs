@@ -273,7 +273,7 @@ return new class extends NodeVisitor {
             }
         }
 
-        $additions = $this->getAdditionalTags($docComment);
+        $additions = $this->generateAdditionalTagsFromDoc($docComment);
         $newDocComment = $this->addTags($additions, $docComment);
 
         if ($newDocComment !== null) {
@@ -286,7 +286,7 @@ return new class extends NodeVisitor {
             return null;
         }
 
-        $additions = $this->getAdditionalParams();
+        $additions = $this->getAdditionalTagsFromMap();
         $newDocComment = $this->addParams($additions, $docComment);
 
         if ($newDocComment !== null) {
@@ -299,7 +299,7 @@ return new class extends NodeVisitor {
     /**
      * @return array<int, WordPressTag>
      */
-    private function getAdditionalTags(Doc $docComment): array
+    private function generateAdditionalTagsFromDoc(Doc $docComment): array
     {
         $docCommentText = $docComment->getText();
 
@@ -397,7 +397,7 @@ return new class extends NodeVisitor {
     /**
      * @return string[]
      */
-    private function getAdditionalParams(): array
+    private function getAdditionalTagsFromMap(): array
     {
         if (! isset($this->functionMap)) {
             $this->functionMap = require __DIR__ . '/functionMap.php';
