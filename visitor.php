@@ -230,11 +230,6 @@ return new class extends NodeVisitor {
      */
     private $functionMap = null;
 
-    /**
-     * @var string
-     */
-    private $currentSymbolName;
-
     public function __construct()
     {
         $this->docBlockFactory = \phpDocumentor\Reflection\DocBlockFactory::createInstance();
@@ -254,14 +249,14 @@ return new class extends NodeVisitor {
             return null;
         }
 
-        $this->currentSymbolName = self::getNodeName($node);
+        $symbolName = self::getNodeName($node);
 
         if ($node instanceof ClassMethod) {
             /** @var \PhpParser\Node\Stmt\Class_ $parent */
             $parent = $this->stack[count($this->stack) - 2];
 
             if (isset($parent->name)) {
-                $this->currentSymbolName = sprintf(
+                $symbolName = sprintf(
                     '%1$s::%2$s',
                     $parent->name->name,
                     $node->name->name
@@ -270,7 +265,7 @@ return new class extends NodeVisitor {
         }
 
         $additions = $this->generateAdditionalTagsFromDoc($docComment);
-        $newDocComment = $this->addTags($additions, $docComment);
+        $newDocComment = self::addTags($additions, $docComment);
 
         if ($newDocComment !== null) {
             $node->setDocComment($newDocComment);
@@ -282,8 +277,8 @@ return new class extends NodeVisitor {
             return null;
         }
 
-        $additions = $this->getAdditionalTagsFromMap();
-        $newDocComment = $this->addStringTags($additions, $docComment);
+        $additions = $this->getAdditionalTagsFromMap($symbolName);
+        $newDocComment = self::addStringTags($additions, $docComment);
 
         if ($newDocComment !== null) {
             $node->setDocComment($newDocComment);
@@ -332,7 +327,7 @@ return new class extends NodeVisitor {
                 continue;
             }
 
-            $addition = $this->getAdditionFromParam($param);
+            $addition = self::getAdditionFromParam($param);
 
             if ($addition !== null) {
                 $additions[] = $addition;
@@ -344,7 +339,7 @@ return new class extends NodeVisitor {
                 continue;
             }
 
-            $addition = $this->getAdditionFromReturn($return);
+            $addition = self::getAdditionFromReturn($return);
 
             if ($addition !== null) {
                 $additions[] = $addition;
@@ -356,7 +351,7 @@ return new class extends NodeVisitor {
                 continue;
             }
 
-            $addition = $this->getAdditionFromVar($var);
+            $addition = self::getAdditionFromVar($var);
 
             if ($addition !== null) {
                 $additions[] = $addition;
@@ -369,7 +364,7 @@ return new class extends NodeVisitor {
     /**
      * @param array<int, WordPressTag> $additions
      */
-    private function addTags(array $additions, Doc $docComment): ?Doc
+    private static function addTags(array $additions, Doc $docComment): ?Doc
     {
         $docCommentText = $docComment->getText();
 
@@ -402,17 +397,17 @@ return new class extends NodeVisitor {
     /**
      * @return string[]
      */
-    private function getAdditionalTagsFromMap(): array
+    private function getAdditionalTagsFromMap(string $symbolName): array
     {
         if (! isset($this->functionMap)) {
             $this->functionMap = require __DIR__ . '/functionMap.php';
         }
 
-        if (! isset($this->functionMap[$this->currentSymbolName])) {
+        if (! isset($this->functionMap[$symbolName])) {
             return [];
         }
 
-        $parameters = $this->functionMap[$this->currentSymbolName];
+        $parameters = $this->functionMap[$symbolName];
         $returnType = array_shift($parameters);
         $additions = [];
 
@@ -444,7 +439,7 @@ return new class extends NodeVisitor {
     /**
      * @param string[] $additions
      */
-    private function addStringTags(array $additions, Doc $docComment): ?Doc
+    private static function addStringTags(array $additions, Doc $docComment): ?Doc
     {
         if (count($additions) === 0) {
             return null;
@@ -471,13 +466,13 @@ return new class extends NodeVisitor {
             return null;
         }
 
-        $elements = $this->getElementsFromDescription($tagDescription, true);
+        $elements = self::getElementsFromDescription($tagDescription, true);
 
         if (count($elements) === 0) {
             return null;
         }
 
-        $tagVariableType = $this->getTypeNameFromType($tagVariableType);
+        $tagVariableType = self::getTypeNameFromType($tagVariableType);
 
         if ($tagVariableType === null) {
             return null;
@@ -506,13 +501,13 @@ return new class extends NodeVisitor {
             return null;
         }
 
-        $elements = $this->getElementsFromDescription($tagDescription, false);
+        $elements = self::getElementsFromDescription($tagDescription, false);
 
         if (count($elements) === 0) {
             return null;
         }
 
-        $tagVariableType = $this->getTypeNameFromType($tagVariableType);
+        $tagVariableType = self::getTypeNameFromType($tagVariableType);
 
         if ($tagVariableType === null) {
             return null;
@@ -526,7 +521,7 @@ return new class extends NodeVisitor {
         return $tag;
     }
 
-    private function getAdditionFromVar(Var_ $tag): ?WordPressTag
+    private static function getAdditionFromVar(Var_ $tag): ?WordPressTag
     {
         $tagDescription = $tag->getDescription();
         $tagVariableType = $tag->getType();
@@ -536,13 +531,13 @@ return new class extends NodeVisitor {
             return null;
         }
 
-        $elements = $this->getElementsFromDescription($tagDescription, false);
+        $elements = self::getElementsFromDescription($tagDescription, false);
 
         if (count($elements) === 0) {
             return null;
         }
 
-        $tagVariableType = $this->getTypeNameFromType($tagVariableType);
+        $tagVariableType = self::getTypeNameFromType($tagVariableType);
 
         if ($tagVariableType === null) {
             return null;
@@ -556,12 +551,12 @@ return new class extends NodeVisitor {
         return $tag;
     }
 
-    private function getTypeNameFromType(Type $tagVariableType): ?string
+    private static function getTypeNameFromType(Type $tagVariableType): ?string
     {
-        return $this->getTypeNameFromString($tagVariableType->__toString());
+        return self::getTypeNameFromString($tagVariableType->__toString());
     }
 
-    private function getTypeNameFromString(string $tagVariable): ?string
+    private static function getTypeNameFromString(string $tagVariable): ?string
     {
         // PHPStan dosn't support typed array shapes (`int[]{...}`) so replace
         // typed arrays such as `int[]` with `array`.
@@ -587,7 +582,7 @@ return new class extends NodeVisitor {
     /**
      * @return WordPressArg[]
      */
-    private function getElementsFromDescription(Description $tagDescription, bool $optional): array
+    private static function getElementsFromDescription(Description $tagDescription, bool $optional): array
     {
         $text = $tagDescription->__toString();
 
@@ -597,13 +592,13 @@ return new class extends NodeVisitor {
             return [];
         }
 
-        return $this->getTypesAtLevel($text, $optional, 1);
+        return self::getTypesAtLevel($text, $optional, 1);
     }
 
     /**
      * @return WordPressArg[]
      */
-    private function getTypesAtLevel(string $text, bool $optional, int $level): array
+    private static function getTypesAtLevel(string $text, bool $optional, int $level): array
     {
         // Populate `$types` with the value of each top level `@type`.
         $spaces = str_repeat(' ', ($level * 4));
@@ -648,10 +643,10 @@ return new class extends NodeVisitor {
             $arg->name = $name;
 
             $nextLevel = $level + 1;
-            $subTypes = $this->getTypesAtLevel($typeTag, $optional, $nextLevel);
+            $subTypes = self::getTypesAtLevel($typeTag, $optional, $nextLevel);
 
             if (count($subTypes) > 0) {
-                $type = $this->getTypeNameFromString($type);
+                $type = self::getTypeNameFromString($type);
 
                 if ($type !== null) {
                     $arg->type = $type;
