@@ -503,13 +503,15 @@ return new class extends NodeVisitor {
                 continue;
             }
 
-            foreach (array_keys($this->additionalTags) as $symbolName) {
-                $regex = sprintf(
-                    '#\b%s\(\)#',
+            $description = str_replace("\n", ' ', $description);
+
+            foreach ($this->additionalTags as $symbolName => $tags) {
+                $search = sprintf(
+                    'see %s()',
                     $symbolName
                 );
 
-                if (preg_match($regex, $description) !== 1) {
+                if (stripos($description, $search) === false) {
                     continue;
                 }
 
