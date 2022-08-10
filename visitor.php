@@ -382,8 +382,13 @@ return new class extends NodeVisitor {
             return [];
         }
 
+        /** @var \phpDocumentor\Reflection\DocBlock\Tags\Param[] */
         $params = $docblock->getTagsByName('param');
+
+        /** @var \phpDocumentor\Reflection\DocBlock\Tags\Return_[] */
         $returns = $docblock->getTagsByName('return');
+
+        /** @var \phpDocumentor\Reflection\DocBlock\Tags\Var_[] */
         $vars = $docblock->getTagsByName('var');
 
         /** @var WordPressTag[] $additions */
