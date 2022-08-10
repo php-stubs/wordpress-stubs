@@ -480,6 +480,13 @@ return new class extends NodeVisitor {
      */
     private function discoverInheritedArgs(DocBlock $docblock, array $additions): array
     {
+        foreach ($additions as $add) {
+            if ($add->tag === '@phpstan-param') {
+                // We can't yet handle merging args.
+                return $additions;
+            }
+        }
+
         /** @var Param[] $params */
         $params = $docblock->getTagsByName('param');
 
