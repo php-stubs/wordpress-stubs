@@ -509,14 +509,19 @@ return new class extends NodeVisitor {
                 continue;
             }
 
-            $description = $paramDescription->__toString();
-            list($description) = explode("\n\n", $description);
+            list($description) = explode("\n\n", $paramDescription->__toString());
 
             if (strpos($description, '()') === false) {
                 continue;
             }
 
             $description = str_replace("\n", ' ', $description);
+            $matchNames = [
+                $param->getVariableName(),
+                'args',
+                'options',
+                'query',
+            ];
 
             foreach ($this->additionalTags as $symbolName => $tags) {
                 $search = sprintf(
@@ -528,27 +533,17 @@ return new class extends NodeVisitor {
                     continue;
                 }
 
-                foreach ($tags as $tag) {
-                    if ($tag->tag !== '@phpstan-param') {
-                        continue;
-                    }
+                $matchingTags = array_filter($tags, static function(WordPressTag $tag) use ($matchNames): bool {
+                    return in_array($tag->name, $matchNames, true);
+                });
 
-                    $matchNames = [
-                        $param->getVariableName(),
-                        'args',
-                        'options',
-                        'query',
-                    ];
-
-                    if (! in_array($tag->name, $matchNames, true)) {
-                        continue;
-                    }
-
+                foreach ($matchingTags as $tag) {
                     $addTag = clone $tag;
-
                     $addTag->name = $param->getVariableName();
 
                     $additions[] = $addTag;
+
+                    break;
                 }
             }
         }
