@@ -533,6 +533,7 @@ return new class extends NodeVisitor {
                     $matchNames = [
                         $param->getVariableName(),
                         'args',
+                        'options',
                         'query',
                     ];
 
