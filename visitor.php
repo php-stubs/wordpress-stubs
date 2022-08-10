@@ -491,60 +491,71 @@ return new class extends NodeVisitor {
         $params = $docblock->getTagsByName('param');
 
         foreach ($params as $param) {
-            $type = $param->getType();
+            $additions = array_merge($additions, $this->getInheritedTagsForParam($param));
+        }
 
-            if ($type === null) {
+        return $additions;
+    }
+
+    /**
+     * @return array<int, WordPressTag>
+     */
+    private function getInheritedTagsForParam(Param $param): array
+    {
+        $type = $param->getType();
+
+        if ($type === null) {
+            return [];
+        }
+
+        $typeName = self::getTypeNameFromType($type);
+
+        if ($typeName === null) {
+            return [];
+        }
+
+        $paramDescription = $param->getDescription();
+
+        if ($paramDescription === null) {
+            return [];
+        }
+
+        list($description) = explode("\n\n", $paramDescription->__toString());
+
+        if (strpos($description, '()') === false) {
+            return [];
+        }
+
+        $description = str_replace("\n", ' ', $description);
+        $matchNames = [
+            $param->getVariableName(),
+            'args',
+            'options',
+            'query',
+        ];
+        $additions = [];
+
+        foreach ($this->additionalTags as $symbolName => $tags) {
+            $search = sprintf(
+                'see %s()',
+                $symbolName
+            );
+
+            if (stripos($description, $search) === false) {
                 continue;
             }
 
-            $typeName = self::getTypeNameFromType($type);
+            $matchingTags = array_filter($tags, static function(WordPressTag $tag) use ($matchNames): bool {
+                return in_array($tag->name, $matchNames, true);
+            });
 
-            if ($typeName === null) {
-                continue;
-            }
+            foreach ($matchingTags as $tag) {
+                $addTag = clone $tag;
+                $addTag->name = $param->getVariableName();
 
-            $paramDescription = $param->getDescription();
+                $additions[] = $addTag;
 
-            if ($paramDescription === null) {
-                continue;
-            }
-
-            list($description) = explode("\n\n", $paramDescription->__toString());
-
-            if (strpos($description, '()') === false) {
-                continue;
-            }
-
-            $description = str_replace("\n", ' ', $description);
-            $matchNames = [
-                $param->getVariableName(),
-                'args',
-                'options',
-                'query',
-            ];
-
-            foreach ($this->additionalTags as $symbolName => $tags) {
-                $search = sprintf(
-                    'see %s()',
-                    $symbolName
-                );
-
-                if (stripos($description, $search) === false) {
-                    continue;
-                }
-
-                $matchingTags = array_filter($tags, static function(WordPressTag $tag) use ($matchNames): bool {
-                    return in_array($tag->name, $matchNames, true);
-                });
-
-                foreach ($matchingTags as $tag) {
-                    $addTag = clone $tag;
-                    $addTag->name = $param->getVariableName();
-
-                    $additions[] = $addTag;
-
-                    break;
-                }
+                break;
             }
         }
 
