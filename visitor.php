@@ -527,12 +527,6 @@ return new class extends NodeVisitor {
         }
 
         $description = str_replace("\n", ' ', $description);
-        $matchNames = [
-            $param->getVariableName(),
-            'args',
-            'options',
-            'query',
-        ];
         $additions = [];
 
         foreach ($this->additionalTags as $symbolName => $tags) {
@@ -545,18 +539,37 @@ return new class extends NodeVisitor {
                 continue;
             }
 
-            $matchingTags = array_filter($tags, static function(WordPressTag $tag) use ($matchNames): bool {
-                return in_array($tag->name, $matchNames, true);
-            });
+            $additions = array_merge($additions, self::getMatchingInheritedTag($param, $tags));
+        }
 
-            foreach ($matchingTags as $tag) {
-                $addTag = clone $tag;
-                $addTag->name = $param->getVariableName();
+        return $additions;
+    }
 
-                $additions[] = $addTag;
+    /**
+     * @param array<int, WordPressTag> $tags
+     * @return array<int, WordPressTag>
+     */
+    private static function getMatchingInheritedTag(Param $param, array $tags): array
+    {
+        $additions = [];
+        $paramName = $param->getVariableName();
+        $matchNames = [
+            $paramName,
+            'args',
+            'options',
+            'query',
+        ];
+        $matchingTags = array_filter($tags, static function(WordPressTag $tag) use ($matchNames): bool {
+            return in_array($tag->name, $matchNames, true);
+        });
 
-                break;
-            }
+        foreach ($matchingTags as $tag) {
+            $addTag = clone $tag;
+            $addTag->name = $paramName;
+
+            $additions[] = $addTag;
+
+            break;
         }
 
         return $additions;
