@@ -491,9 +491,15 @@ return new class extends NodeVisitor {
         $params = $docblock->getTagsByName('param');
 
         foreach ($params as $param) {
-            $type = self::getTypeNameFromType($param->getType());
+            $type = $param->getType();
 
             if ($type === null) {
+                continue;
+            }
+
+            $typeName = self::getTypeNameFromType($type);
+
+            if ($typeName === null) {
                 continue;
             }
 
