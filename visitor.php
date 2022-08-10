@@ -513,16 +513,14 @@ return new class extends NodeVisitor {
                     continue;
                 }
 
+                // Flag for testing:
                 $addition = new WordPressTag();
-                $addition->tag = '@phpstan-param';
+                $addition->tag = '@flag';
                 $addition->name = $param->getVariableName();
-
                 $arg = new WordPressArg();
                 $arg->name = $symbolName;
                 $arg->type = 'testing';
-
                 $addition->children[] = $arg;
-
                 $additions[] = $addition;
             }
         }
