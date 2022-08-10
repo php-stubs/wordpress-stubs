@@ -515,16 +515,6 @@ return new class extends NodeVisitor {
                     continue;
                 }
 
-                // Flag for testing:
-                $addition = new WordPressTag();
-                $addition->tag = '@flag';
-                $addition->name = $param->getVariableName();
-                $arg = new WordPressArg();
-                $arg->name = $symbolName;
-                $arg->type = 'testing';
-                $addition->children[] = $arg;
-                $additions[] = $addition;
-
                 foreach ($tags as $tag) {
                     if ($tag->tag !== '@phpstan-param') {
                         continue;
