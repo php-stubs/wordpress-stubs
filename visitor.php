@@ -524,6 +524,28 @@ return new class extends NodeVisitor {
                 $arg->type = 'testing';
                 $addition->children[] = $arg;
                 $additions[] = $addition;
+
+                foreach ($tags as $tag) {
+                    if ($tag->tag !== '@phpstan-param') {
+                        continue;
+                    }
+
+                    $matchNames = [
+                        $param->getVariableName(),
+                        'args',
+                        'query',
+                    ];
+
+                    if (! in_array($tag->name, $matchNames, true)) {
+                        continue;
+                    }
+
+                    $addTag = clone $tag;
+
+                    $addTag->name = $param->getVariableName();
+
+                    $additions[] = $addTag;
+                }
             }
         }
 
