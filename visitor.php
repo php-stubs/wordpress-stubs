@@ -545,7 +545,11 @@ return new class extends NodeVisitor {
                 continue;
             }
 
-            $additions = array_merge($additions, self::getMatchingInheritedTag($param, $tags));
+            $match = self::getMatchingInheritedTag($param, $tags);
+
+            if ($match !== null) {
+                $additions[] = $match;
+            }
         }
 
         return $additions;
@@ -553,11 +557,9 @@ return new class extends NodeVisitor {
 
     /**
      * @param array<int, WordPressTag> $tags
-     * @return array<int, WordPressTag>
      */
-    private static function getMatchingInheritedTag(Param $param, array $tags): array
+    private static function getMatchingInheritedTag(Param $param, array $tags): ?WordPressTag
     {
-        $additions = [];
         $paramName = $param->getVariableName();
         $matchNames = [
             $paramName,
@@ -573,12 +575,10 @@ return new class extends NodeVisitor {
             $addTag = clone $tag;
             $addTag->name = $paramName;
 
-            $additions[] = $addTag;
-
-            break;
+            return $addTag;
         }
 
-        return $additions;
+        return null;
     }
 
     /**
