@@ -314,56 +314,57 @@ return new class extends NodeVisitor {
     {
         $stmts = parent::getStubStmts();
 
-        $this->postProcessNodes($stmts);
+        foreach ($stmts as $stmt) {
+            $this->postProcessNode($stmt);
+        }
 
         return $stmts;
     }
 
-    /**
-     * @param Node[] $nodes
-     */
-    private function postProcessNodes(array $nodes): void
+    private function postProcessNode(Node $node): void
     {
-        foreach ($nodes as $node) {
-            if (isset($node->stmts) && is_array($node->stmts)) {
-                $this->postProcessNodes($node->stmts);
+        if (isset($node->stmts) && is_array($node->stmts)) {
+            foreach ($node->stmts as $stmt) {
+                $this->postProcessNode($stmt);
             }
+        }
 
-            if (! ($node instanceof Function_) && ! ($node instanceof ClassMethod) && ! ($node instanceof Property)) {
-                continue;
-            }
+        if (! ($node instanceof Function_) && ! ($node instanceof ClassMethod) && ! ($node instanceof Property)) {
+            return;
+        }
 
-            $name = $node->getAttribute('fullSymbolName');
+        $name = $node->getAttribute('fullSymbolName');
 
-            if ($name === null) {
-                continue;
-            }
+        if ($name === null) {
+            return;
+        }
 
-            $docComment = $node->getDocComment();
+        $docComment = $node->getDocComment();
 
-            if (!($docComment instanceof Doc)) {
-                continue;
-            }
+        if (!($docComment instanceof Doc)) {
+            return;
+        }
 
-            $newDocComment = $this->addTags($name, $docComment);
+        $newDocComment = $this->addTags($name, $docComment);
 
-            if ($newDocComment !== null) {
-                $node->setDocComment($newDocComment);
-            }
+        if ($newDocComment !== null) {
+            $node->setDocComment($newDocComment);
+        }
 
-            if (isset($this->additionalTagStrings[ $name ])) {
-                $docComment = $node->getDocComment();
+        if (! isset($this->additionalTagStrings[ $name ])) {
+            return;
+        }
 
-                if (!($docComment instanceof Doc)) {
-                    continue;
-                }
+        $docComment = $node->getDocComment();
 
-                $newDocComment = $this->addStringTags($name, $docComment);
+        if (!($docComment instanceof Doc)) {
+            return;
+        }
 
-                if ($newDocComment !== null) {
-                    $node->setDocComment($newDocComment);
-                }
-            }
+        $newDocComment = $this->addStringTags($name, $docComment);
+
+        if ($newDocComment !== null) {
+            $node->setDocComment($newDocComment);
         }
     }
 
