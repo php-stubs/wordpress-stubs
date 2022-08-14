@@ -67,6 +67,11 @@ final class WordPressTag extends WithChildren
     public $name = null;
 
     /**
+     * @var ?string
+     */
+    public $description = null;
+
+    /**
      * @return string[]
      */
     public function format(): array
@@ -119,18 +124,26 @@ final class WordPressTag extends WithChildren
         }
 
         $strings = array_merge($strings, $childStrings);
+        $description = '';
+
+        if ($this->description !== null) {
+            $description = ' ' . $this->description;
+        }
 
         if ($this->isArrayShape()) {
             $strings[] = sprintf(
-                '}%s',
-                $name
+                '}%s%s',
+                $name,
+                $description
             );
         } else {
             $strings[] = sprintf(
-                '}>%s',
-                $name
+                '}>%s%s',
+                $name,
+                $description
             );
         }
+
 
         return $strings;
     }
@@ -545,7 +558,7 @@ return new class extends NodeVisitor {
                 continue;
             }
 
-            $match = self::getMatchingInheritedTag($param, $tags);
+            $match = self::getMatchingInheritedTag($param, $tags, $symbolName);
 
             if ($match !== null) {
                 $additions[] = $match;
@@ -558,7 +571,7 @@ return new class extends NodeVisitor {
     /**
      * @param array<int, WordPressTag> $tags
      */
-    private static function getMatchingInheritedTag(Param $param, array $tags): ?WordPressTag
+    private static function getMatchingInheritedTag(Param $param, array $tags, string $symbolName): ?WordPressTag
     {
         $paramName = $param->getVariableName();
         $matchNames = [
@@ -574,6 +587,10 @@ return new class extends NodeVisitor {
         foreach ($matchingTags as $tag) {
             $addTag = clone $tag;
             $addTag->name = $paramName;
+            $addTag->description = sprintf(
+                '@see %s()',
+                $symbolName
+            );
 
             return $addTag;
         }
