@@ -144,7 +144,6 @@ final class WordPressTag extends WithChildren
             );
         }
 
-
         return $strings;
     }
 }
@@ -499,18 +498,33 @@ return new class extends NodeVisitor {
      */
     private function discoverInheritedArgs(DocBlock $docblock, array $additions): array
     {
-        foreach ($additions as $add) {
-            if ($add->tag === '@phpstan-param') {
-                // We can't yet handle merging args.
-                return $additions;
-            }
-        }
-
         /** @var Param[] $params */
         $params = $docblock->getTagsByName('param');
 
         foreach ($params as $param) {
-            $additions = array_merge($additions, $this->getInheritedTagsForParam($param));
+            $inherited = $this->getInheritedTagsForParam($param);
+
+            if (count($inherited) === 0) {
+                continue;
+            }
+
+            foreach ($additions as $addition) {
+                if ($addition->tag !== '@phpstan-param') {
+                    continue;
+                }
+
+                foreach ($inherited as $inherit) {
+                    if ($addition->name !== $inherit->name) {
+                        continue;
+                    }
+
+                    $addition->children = array_merge($addition->children, $inherit->children);
+                    continue 3;
+                }
+
+            }
+
+            $additions = array_merge($additions, $inherited);
         }
 
         return $additions;
