@@ -501,6 +501,10 @@ return new class extends NodeVisitor {
         /** @var Param[] $params */
         $params = $docblock->getTagsByName('param');
 
+        $phpStanParams = array_filter($additions, function(WordPressTag $addition): bool {
+            return $addition->tag === '@phpstan-param';
+        });
+
         foreach ($params as $param) {
             $inherited = $this->getInheritedTagsForParam($param);
 
@@ -508,11 +512,7 @@ return new class extends NodeVisitor {
                 continue;
             }
 
-            foreach ($additions as $addition) {
-                if ($addition->tag !== '@phpstan-param') {
-                    continue;
-                }
-
+            foreach ($phpStanParams as $addition) {
                 foreach ($inherited as $inherit) {
                     if ($addition->name !== $inherit->name) {
                         continue;
@@ -521,7 +521,6 @@ return new class extends NodeVisitor {
                     $addition->children = array_merge($addition->children, $inherit->children);
                     continue 3;
                 }
-
             }
 
             $additions = array_merge($additions, $inherited);
