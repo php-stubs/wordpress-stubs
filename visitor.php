@@ -2,6 +2,7 @@
 
 declare(strict_types = 1);
 
+use phpDocumentor\Reflection\DocBlock;
 use phpDocumentor\Reflection\DocBlock\Description;
 use phpDocumentor\Reflection\DocBlock\Tags\Param;
 use phpDocumentor\Reflection\DocBlock\Tags\Return_;
@@ -66,6 +67,11 @@ final class WordPressTag extends WithChildren
     public $name = null;
 
     /**
+     * @var ?string
+     */
+    public $description = null;
+
+    /**
      * @return string[]
      */
     public function format(): array
@@ -118,18 +124,26 @@ final class WordPressTag extends WithChildren
         }
 
         $strings = array_merge($strings, $childStrings);
+        $description = '';
+
+        if ($this->description !== null) {
+            $description = ' ' . $this->description;
+        }
 
         if ($this->isArrayShape()) {
             $strings[] = sprintf(
-                '}%s',
-                $name
+                '}%s%s',
+                $name,
+                $description
             );
         } else {
             $strings[] = sprintf(
-                '}>%s',
-                $name
+                '}>%s%s',
+                $name,
+                $description
             );
         }
+
 
         return $strings;
     }
@@ -231,9 +245,14 @@ return new class extends NodeVisitor {
     private $functionMap = null;
 
     /**
-     * @var string
+     * @var array<string, array<int, WordPressTag>>
      */
-    private $currentSymbolName;
+    private $additionalTags = [];
+
+    /**
+     * @var array<string, array<int, string>>
+     */
+    private $additionalTagStrings = [];
 
     public function __construct()
     {
@@ -254,18 +273,14 @@ return new class extends NodeVisitor {
             return null;
         }
 
-        if ($node instanceof Property) {
-            $this->currentSymbolName = '';
-        } else {
-            $this->currentSymbolName = $node->name->name;
-        }
+        $symbolName = self::getNodeName($node);
 
         if ($node instanceof ClassMethod) {
             /** @var \PhpParser\Node\Stmt\Class_ $parent */
             $parent = $this->stack[count($this->stack) - 2];
 
             if (isset($parent->name)) {
-                $this->currentSymbolName = sprintf(
+                $symbolName = sprintf(
                     '%1$s::%2$s',
                     $parent->name->name,
                     $node->name->name
@@ -273,37 +288,112 @@ return new class extends NodeVisitor {
             }
         }
 
-        $newDocComment = $this->addArrayHashNotation($docComment);
+        $additions = $this->generateAdditionalTagsFromDoc($docComment);
+        $node->setAttribute('fullSymbolName', $symbolName);
 
-        if ($newDocComment !== null) {
-            $node->setDocComment($newDocComment);
+        if (count($additions) > 0) {
+            $this->additionalTags[ $symbolName ] = $additions;
         }
 
-        $docComment = $node->getDocComment();
+        $additions = $this->getAdditionalTagsFromMap($symbolName);
 
-        if (!($docComment instanceof Doc)) {
-            return null;
-        }
-
-        $newDocComment = $this->addAdditionalParams($docComment);
-
-        if ($newDocComment !== null) {
-            $node->setDocComment($newDocComment);
+        if (count($additions) > 0) {
+            $this->additionalTagStrings[ $symbolName ] = $additions;
         }
 
         return null;
     }
 
-    private function addArrayHashNotation(Doc $docComment): ?Doc
+    private static function getNodeName(Node $node): string
+    {
+        if (($node instanceof Function_) || ($node instanceof ClassMethod)) {
+            return $node->name->name;
+        }
+
+        if ($node instanceof Property) {
+            return sprintf(
+                'property_%s',
+                uniqid()
+            );
+        }
+
+        return '';
+    }
+
+    /**
+     * @return Node[]
+     */
+    public function getStubStmts(): array
+    {
+        $stmts = parent::getStubStmts();
+
+        foreach ($stmts as $stmt) {
+            $this->postProcessNode($stmt);
+        }
+
+        return $stmts;
+    }
+
+    private function postProcessNode(Node $node): void
+    {
+        if (isset($node->stmts) && is_array($node->stmts)) {
+            foreach ($node->stmts as $stmt) {
+                $this->postProcessNode($stmt);
+            }
+        }
+
+        if (! ($node instanceof Function_) && ! ($node instanceof ClassMethod) && ! ($node instanceof Property)) {
+            return;
+        }
+
+        $name = $node->getAttribute('fullSymbolName');
+
+        if ($name === null) {
+            return;
+        }
+
+        $docComment = $node->getDocComment();
+
+        if (!($docComment instanceof Doc)) {
+            return;
+        }
+
+        $newDocComment = $this->addTags($name, $docComment);
+
+        if ($newDocComment !== null) {
+            $node->setDocComment($newDocComment);
+        }
+
+        if (! isset($this->additionalTagStrings[ $name ])) {
+            return;
+        }
+
+        $docComment = $node->getDocComment();
+
+        if (!($docComment instanceof Doc)) {
+            return;
+        }
+
+        $newDocComment = $this->addStringTags($name, $docComment);
+
+        if ($newDocComment !== null) {
+            $node->setDocComment($newDocComment);
+        }
+    }
+
+    /**
+     * @return array<int, WordPressTag>
+     */
+    private function generateAdditionalTagsFromDoc(Doc $docComment): array
     {
         $docCommentText = $docComment->getText();
 
         try {
             $docblock = $this->docBlockFactory->create($docCommentText);
         } catch ( \RuntimeException $e ) {
-            return null;
+            return [];
         } catch ( \InvalidArgumentException $e ) {
-            return null;
+            return [];
         }
 
         /** @var \phpDocumentor\Reflection\DocBlock\Tags\Param[] */
@@ -315,10 +405,6 @@ return new class extends NodeVisitor {
         /** @var \phpDocumentor\Reflection\DocBlock\Tags\Var_[] */
         $vars = $docblock->getTagsByName('var');
 
-        if (!$params && !$returns && !$vars) {
-            return null;
-        }
-
         /** @var WordPressTag[] $additions */
         $additions = [];
 
@@ -327,34 +413,62 @@ return new class extends NodeVisitor {
                 continue;
             }
 
-            $addition = $this->getAdditionFromParam($param);
+            $addition = self::getAdditionFromParam($param);
 
             if ($addition !== null) {
                 $additions[] = $addition;
             }
         }
 
-        if ($returns !== [] && $returns[0] instanceof Return_) {
-            $addition = $this->getAdditionFromReturn($returns[0]);
+        foreach ($returns as $return) {
+            if (! $return instanceof Return_) {
+                continue;
+            }
+
+            $addition = self::getAdditionFromReturn($return);
 
             if ($addition !== null) {
                 $additions[] = $addition;
             }
         }
 
-        if ($vars !== [] && $vars[0] instanceof Var_) {
-            $addition = $this->getAdditionFromVar($vars[0]);
+        foreach ($vars as $var) {
+            if (! $var instanceof Var_) {
+                continue;
+            }
+
+            $addition = self::getAdditionFromVar($var);
 
             if ($addition !== null) {
                 $additions[] = $addition;
             }
         }
 
-        if (!$additions) {
+        return $additions;
+    }
+
+    private function addTags(string $name, Doc $docComment): ?Doc
+    {
+        if (isset($this->additionalTags[ $name ])) {
+            $additions = $this->additionalTags[ $name ];
+        } else {
+            $additions = [];
+        }
+
+        $docCommentText = $docComment->getText();
+
+        try {
+            $docblock = $this->docBlockFactory->create($docCommentText);
+        } catch ( \RuntimeException $e ) {
+            return null;
+        } catch ( \InvalidArgumentException $e ) {
             return null;
         }
 
-        $additions = array_map( function(WordPressTag $tag): string {
+        $additions = $this->discoverInheritedArgs($docblock, $additions);
+
+        /** @var string[] $additionStrings */
+        $additionStrings = array_map( function(WordPressTag $tag): string {
             $lines = $tag->format();
 
             if (count($lines) === 0) {
@@ -364,32 +478,140 @@ return new class extends NodeVisitor {
             return " * " . implode("\n * ", $lines);
         }, $additions);
 
-        $additions = array_filter($additions);
+        $additionStrings = array_filter($additionStrings);
 
-        if (count($additions) === 0) {
+        if (count($additionStrings) === 0) {
             return null;
         }
 
         $newDocComment = sprintf(
             "%s\n%s\n */",
             substr($docCommentText, 0, -4),
-            implode("\n", $additions)
+            implode("\n", $additionStrings)
         );
 
-        return new Doc($newDocComment, $docComment->getLine(), $docComment->getFilePos());
+        return new Doc($newDocComment, $docComment->getStartLine(), $docComment->getStartFilePos());
     }
 
-    private function addAdditionalParams(Doc $docComment): ?Doc
+    /**
+     * @param array<int, WordPressTag> $additions
+     * @return array<int, WordPressTag>
+     */
+    private function discoverInheritedArgs(DocBlock $docblock, array $additions): array
+    {
+        foreach ($additions as $add) {
+            if ($add->tag === '@phpstan-param') {
+                // We can't yet handle merging args.
+                return $additions;
+            }
+        }
+
+        /** @var Param[] $params */
+        $params = $docblock->getTagsByName('param');
+
+        foreach ($params as $param) {
+            $additions = array_merge($additions, $this->getInheritedTagsForParam($param));
+        }
+
+        return $additions;
+    }
+
+    /**
+     * @return array<int, WordPressTag>
+     */
+    private function getInheritedTagsForParam(Param $param): array
+    {
+        $type = $param->getType();
+
+        if ($type === null) {
+            return [];
+        }
+
+        $typeName = self::getTypeNameFromType($type);
+
+        if ($typeName === null) {
+            return [];
+        }
+
+        $paramDescription = $param->getDescription();
+
+        if ($paramDescription === null) {
+            return [];
+        }
+
+        list($description) = explode("\n\n", $paramDescription->__toString());
+
+        if (strpos($description, '()') === false) {
+            return [];
+        }
+
+        $description = str_replace("\n", ' ', $description);
+        $additions = [];
+
+        foreach ($this->additionalTags as $symbolName => $tags) {
+            $search = sprintf(
+                'see %s()',
+                $symbolName
+            );
+
+            if (stripos($description, $search) === false) {
+                continue;
+            }
+
+            $match = self::getMatchingInheritedTag($param, $tags, $symbolName);
+
+            if ($match !== null) {
+                $additions[] = $match;
+            }
+        }
+
+        return $additions;
+    }
+
+    /**
+     * @param array<int, WordPressTag> $tags
+     */
+    private static function getMatchingInheritedTag(Param $param, array $tags, string $symbolName): ?WordPressTag
+    {
+        $paramName = $param->getVariableName();
+        $matchNames = [
+            $paramName,
+            'args',
+            'options',
+            'query',
+        ];
+        $matchingTags = array_filter($tags, static function(WordPressTag $tag) use ($matchNames): bool {
+            return in_array($tag->name, $matchNames, true);
+        });
+
+        foreach ($matchingTags as $tag) {
+            $addTag = clone $tag;
+            $addTag->name = $paramName;
+            $addTag->description = sprintf(
+                'See %s()',
+                $symbolName
+            );
+
+            return $addTag;
+        }
+
+        return null;
+    }
+
+    /**
+     * @return string[]
+     */
+    private function getAdditionalTagsFromMap(string $symbolName): array
     {
         if (! isset($this->functionMap)) {
             $this->functionMap = require __DIR__ . '/functionMap.php';
         }
 
-        if (! isset($this->functionMap[$this->currentSymbolName])) {
-            return null;
+        if (! isset($this->functionMap[$symbolName])) {
+            return [];
         }
 
-        $parameters = $this->functionMap[$this->currentSymbolName];
+        $parameters = $this->functionMap[$symbolName];
         $returnType = array_shift($parameters);
         $additions = [];
 
@@ -415,6 +637,17 @@ return new class extends NodeVisitor {
             $returnType
         );
 
+        return $additions;
+    }
+
+    private function addStringTags(string $name, Doc $docComment): ?Doc
+    {
+        if ( !isset($this->additionalTagStrings[ $name ])) {
+            return null;
+        }
+
+        $additions = $this->additionalTagStrings[ $name ];
+
         $docCommentText = $docComment->getText();
         $newDocComment = sprintf(
             "%s\n * %s\n */",
@@ -422,7 +655,7 @@ return new class extends NodeVisitor {
             implode("\n * ", $additions)
         );
 
-        return new Doc($newDocComment, $docComment->getLine(), $docComment->getFilePos());
+        return new Doc($newDocComment, $docComment->getStartLine(), $docComment->getStartFilePos());
     }
 
     private function getAdditionFromParam(Param $tag): ?WordPressTag
@@ -436,13 +669,13 @@ return new class extends NodeVisitor {
             return null;
         }
 
-        $elements = $this->getElementsFromDescription($tagDescription, true);
+        $elements = self::getElementsFromDescription($tagDescription, true);
 
         if (count($elements) === 0) {
             return null;
         }
 
-        $tagVariableType = $this->getTypeNameFromType($tagVariableType);
+        $tagVariableType = self::getTypeNameFromType($tagVariableType);
 
         if ($tagVariableType === null) {
             return null;
@@ -471,13 +704,13 @@ return new class extends NodeVisitor {
             return null;
         }
 
-        $elements = $this->getElementsFromDescription($tagDescription, false);
+        $elements = self::getElementsFromDescription($tagDescription, false);
 
         if (count($elements) === 0) {
             return null;
         }
 
-        $tagVariableType = $this->getTypeNameFromType($tagVariableType);
+        $tagVariableType = self::getTypeNameFromType($tagVariableType);
 
         if ($tagVariableType === null) {
             return null;
@@ -491,7 +724,7 @@ return new class extends NodeVisitor {
         return $tag;
     }
 
-    private function getAdditionFromVar(Var_ $tag): ?WordPressTag
+    private static function getAdditionFromVar(Var_ $tag): ?WordPressTag
     {
         $tagDescription = $tag->getDescription();
         $tagVariableType = $tag->getType();
@@ -501,13 +734,13 @@ return new class extends NodeVisitor {
             return null;
         }
 
-        $elements = $this->getElementsFromDescription($tagDescription, false);
+        $elements = self::getElementsFromDescription($tagDescription, false);
 
         if (count($elements) === 0) {
             return null;
         }
 
-        $tagVariableType = $this->getTypeNameFromType($tagVariableType);
+        $tagVariableType = self::getTypeNameFromType($tagVariableType);
 
         if ($tagVariableType === null) {
             return null;
@@ -521,12 +754,12 @@ return new class extends NodeVisitor {
         return $tag;
     }
 
-    private function getTypeNameFromType(Type $tagVariableType): ?string
+    private static function getTypeNameFromType(Type $tagVariableType): ?string
     {
-        return $this->getTypeNameFromString($tagVariableType->__toString());
+        return self::getTypeNameFromString($tagVariableType->__toString());
     }
 
-    private function getTypeNameFromString(string $tagVariable): ?string
+    private static function getTypeNameFromString(string $tagVariable): ?string
     {
         // PHPStan dosn't support typed array shapes (`int[]{...}`) so replace
         // typed arrays such as `int[]` with `array`.
@@ -552,7 +785,7 @@ return new class extends NodeVisitor {
     /**
      * @return WordPressArg[]
      */
-    private function getElementsFromDescription(Description $tagDescription, bool $optional): array
+    private static function getElementsFromDescription(Description $tagDescription, bool $optional): array
     {
         $text = $tagDescription->__toString();
 
@@ -562,13 +795,13 @@ return new class extends NodeVisitor {
             return [];
         }
 
-        return $this->getTypesAtLevel($text, $optional, 1);
+        return self::getTypesAtLevel($text, $optional, 1);
     }
 
     /**
      * @return WordPressArg[]
      */
-    private function getTypesAtLevel(string $text, bool $optional, int $level): array
+    private static function getTypesAtLevel(string $text, bool $optional, int $level): array
     {
         // Populate `$types` with the value of each top level `@type`.
         $spaces = str_repeat(' ', ($level * 4));
@@ -613,10 +846,10 @@ return new class extends NodeVisitor {
             $arg->name = $name;
 
             $nextLevel = $level + 1;
-            $subTypes = $this->getTypesAtLevel($typeTag, $optional, $nextLevel);
+            $subTypes = self::getTypesAtLevel($typeTag, $optional, $nextLevel);
 
             if (count($subTypes) > 0) {
-                $type = $this->getTypeNameFromString($type);
+                $type = self::getTypeNameFromString($type);
 
                 if ($type !== null) {
                     $arg->type = $type;
