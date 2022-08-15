@@ -588,7 +588,7 @@ return new class extends NodeVisitor {
             $addTag = clone $tag;
             $addTag->name = $paramName;
             $addTag->description = sprintf(
-                '@see %s()',
+                'See %s()',
                 $symbolName
             );
 
