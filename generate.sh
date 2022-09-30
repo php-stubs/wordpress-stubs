@@ -36,8 +36,8 @@ else
     printf '\n/**\n * WordPress database abstraction object.\n * @var wpdb\n */\n$wpdb = \\null;\n' >>"$FILE"
 fi
 
-# These are function that need a extra attribute to prevent php8+ notices.
-declare -a PHP_FUNCTIONS=(
+# Add ReturnTypeWillChange attribute to PHP 8-incompatible methods.
+declare -r -a REQUESTS_V1_METHODS=(
     'Requests_Utility_FilteredIterator::unserialize'
     'Requests_Utility_FilteredIterator::__unserialize'
     'Requests_Utility_FilteredIterator::current'
@@ -52,19 +52,18 @@ declare -a PHP_FUNCTIONS=(
     'Requests_Utility_CaseInsensitiveDictionary::offsetUnset'
     'Requests_Utility_CaseInsensitiveDictionary::getIterator'
 )
-for PHP_FUNCTION in "${PHP_FUNCTIONS[@]}"; do
-    # Get the line where the method is defined.
-    LINE=$(php -r "include 'wordpress-stubs.php'; print (new ReflectionMethod('${PHP_FUNCTION}'))->getStartLine();")
-    echo "${PHP_FUNCTION} is defined on line ${LINE}"
+for METHOD in "${REQUESTS_V1_METHODS[@]}"; do
+    # Get the line number where the method is defined.
+    LINE="$(php -r "require 'wordpress-stubs.php'; print (new ReflectionMethod('${METHOD}'))->getStartLine();")"
+    echo "${METHOD} is defined on line ${LINE}."
 
-    # Check the line above for #[ReturnTypeWillChange]
-    if [[ $(sed "$((${LINE}-1))q;d" ${FILE}) == *'#[ReturnTypeWillChange]' ]]; then
-        echo "${PHP_FUNCTION} already has #[ReturnTypeWillChange]"
-        continue # Already there.
+    # Check the previous line forr ReturnTypeWillChange attribute.
+    if sed -e "$((LINE - 1))q;d" "${FILE}" | grep -q -F '#[ReturnTypeWillChange]'; then
+        continue
     fi
 
-    # Grab the current leading whitespace so we can keep the #[ReturnTypeWillChange] indented correctly.
-    LEADING_WHITESPACE="$(sed "${LINE}q;d" ${FILE} | sed "s#\([[:space:]]\+\)\(.*\)#\1#")"
-    # Insert the #[ReturnTypeWillChange]
-    sed -e "${LINE}i\\" -e "${LEADING_WHITESPACE}#[ReturnTypeWillChange]" -i ${FILE}
+    # Grab leading whitespace on the current line so we can indent ReturnTypeWillChange correctly.
+    LEADING_WHITESPACES="$(sed -e "${LINE}q;d" -e 's#\([[:space:]]\+\)\(.*\)#\1#' "${FILE}")"
+    # Insert the ReturnTypeWillChange attribute.
+    sed -i -e "${LINE}i\\" -e "${LEADING_WHITESPACES}#[ReturnTypeWillChange]" "${FILE}"
 done
