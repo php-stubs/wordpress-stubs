@@ -63,7 +63,7 @@ for METHOD in "${REQUESTS_V1_METHODS[@]}"; do
     fi
 
     # Grab leading whitespace on the current line so we can indent ReturnTypeWillChange correctly.
-    LEADING_WHITESPACES="$(sed -e "${LINE} !d;s#^\\(\\s\\+\\).*$#\\1#" "${FILE}")"
+    LEADING_WHITESPACES="$(sed -e "${LINE} !d;s#^\\(\\s\\+\\).*\$#\\1#" "${FILE}")"
     # Insert the ReturnTypeWillChange attribute.
     sed -i -e "${LINE} i\\" -e "${LEADING_WHITESPACES}#[ReturnTypeWillChange]" "${FILE}"
 done
