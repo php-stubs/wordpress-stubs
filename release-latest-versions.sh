@@ -34,9 +34,10 @@ Do_release()
 CORE_JSON="$(wget -q -O- "https://packagist.org/packages/johnpbloch/wordpress-core.json")"
 
 # @TODO Use branches!
-for MINOR in                         4.7 4.8 4.9 \
-         5.0 5.1 5.2 5.3 5.4 5.5 5.6 5.7 5.8 5.9 \
-         6.0; do
+#for MINOR in                         4.7 4.8 4.9 \
+for MINOR in \
+        5.0 5.1 5.2 5.3 5.4 5.5 5.6 5.7 5.8 5.9 \
+        6.0 6.1 6.2; do
     # Find latest version
     printf -v JQ_FILTER '.package.versions[].version | select(test("^%s\\\\.%s\\\\.\\\\d+$"))' "${MINOR%.*}" "${MINOR#*.}"
     LATEST_FIVE="$(jq -r "$JQ_FILTER" <<<"$CORE_JSON" | sort -t "." -k 3 -g | tail -n 5)"

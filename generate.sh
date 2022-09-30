@@ -38,23 +38,26 @@ fi
 
 # Add ReturnTypeWillChange attribute to PHP 8-incompatible methods.
 declare -r -a REQUESTS_V1_METHODS=(
-    'Requests_Utility_FilteredIterator::unserialize'
-    'Requests_Utility_FilteredIterator::__unserialize'
-    'Requests_Utility_FilteredIterator::current'
-    'Requests_Cookie_Jar::offsetExists'
-    'Requests_Cookie_Jar::offsetGet'
-    'Requests_Cookie_Jar::offsetSet'
-    'Requests_Cookie_Jar::offsetUnset'
-    'Requests_Cookie_Jar::getIterator'
-    'Requests_Utility_CaseInsensitiveDictionary::offsetExists'
-    'Requests_Utility_CaseInsensitiveDictionary::offsetGet'
-    'Requests_Utility_CaseInsensitiveDictionary::offsetSet'
-    'Requests_Utility_CaseInsensitiveDictionary::offsetUnset'
-    'Requests_Utility_CaseInsensitiveDictionary::getIterator'
+    "Requests_Cookie_Jar::getIterator"
+    "Requests_Cookie_Jar::offsetExists"
+    "Requests_Cookie_Jar::offsetGet"
+    "Requests_Cookie_Jar::offsetSet"
+    "Requests_Cookie_Jar::offsetUnset"
+    "Requests_Utility_CaseInsensitiveDictionary::getIterator"
+    "Requests_Utility_CaseInsensitiveDictionary::offsetExists"
+    "Requests_Utility_CaseInsensitiveDictionary::offsetGet"
+    "Requests_Utility_CaseInsensitiveDictionary::offsetSet"
+    "Requests_Utility_CaseInsensitiveDictionary::offsetUnset"
+    "Requests_Utility_FilteredIterator::current"
+    "Requests_Utility_FilteredIterator::__unserialize"
+    "Requests_Utility_FilteredIterator::unserialize"
 )
 for METHOD in "${REQUESTS_V1_METHODS[@]}"; do
     # Get the line number where the method is defined.
     LINE="$(php -r "require 'wordpress-stubs.php'; print (new ReflectionMethod('${METHOD}'))->getStartLine();")"
+    if [ -z "${LINE}" ]; then
+        continue
+    fi
     echo "${METHOD} is defined on line ${LINE}."
 
     # Check the previous line forr ReturnTypeWillChange attribute.
