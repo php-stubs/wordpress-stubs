@@ -58,12 +58,12 @@ for METHOD in "${REQUESTS_V1_METHODS[@]}"; do
     echo "${METHOD} is defined on line ${LINE}."
 
     # Check the previous line forr ReturnTypeWillChange attribute.
-    if sed -e "$((LINE - 1))q;d" "${FILE}" | grep -q -F '#[ReturnTypeWillChange]'; then
+    if sed -e "$((LINE - 1)) !d" "${FILE}" | grep -q -F '#[ReturnTypeWillChange]'; then
         continue
     fi
 
     # Grab leading whitespace on the current line so we can indent ReturnTypeWillChange correctly.
-    LEADING_WHITESPACES="$(sed -e "${LINE}q;d" -e 's#\([[:space:]]\+\)\(.*\)#\1#' "${FILE}")"
+    LEADING_WHITESPACES="$(sed -e "${LINE} !d;s#^\\(\\s\\+\\).*$#\\1#" "${FILE}")"
     # Insert the ReturnTypeWillChange attribute.
-    sed -i -e "${LINE}i\\" -e "${LEADING_WHITESPACES}#[ReturnTypeWillChange]" "${FILE}"
+    sed -i -e "${LINE} i\\" -e "${LEADING_WHITESPACES}#[ReturnTypeWillChange]" "${FILE}"
 done
