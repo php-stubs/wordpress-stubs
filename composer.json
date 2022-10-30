@@ -15,9 +15,6 @@
         "phpdocumentor/reflection-docblock": "^5.3",
         "phpstan/phpstan": "^1.2"
     },
-    "replace": {
-        "giacocorsiglia/wordpress-stubs": "*"
-    },
     "suggest": {
         "paragonie/sodium_compat": "Pure PHP implementation of libsodium",
         "symfony/polyfill-php73": "Symfony polyfill backporting some PHP 7.3+ features to lower PHP versions",
