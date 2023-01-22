@@ -34,14 +34,14 @@ install:
         php --ri sodium
     fi
   - "composer update --no-interaction"
-  - "composer run-script post-install-cmd"
+  - "composer run post-install-cmd"
 
 before_script:
   - "cat ./source/wordpress/wp-includes/version.php"
 
 script:
   # Generate stubs
-  - "bash -x ./generate.sh"
+  - "./generate.sh"
   # Check stubs syntax
   - "php -l wordpress-stubs.php"
   # Check stubs changes compared to repository
@@ -49,4 +49,4 @@ script:
   # Execute stubs
   - "php -f wordpress-stubs.php"
   # Analyse our code
-  - "vendor/bin/phpstan"
+  - "composer exec -- phpstan"
