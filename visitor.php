@@ -774,7 +774,7 @@ return new class extends NodeVisitor {
 
     private static function getTypeNameFromString(string $tagVariable): ?string
     {
-        // PHPStan dosn't support typed array shapes (`int[]{...}`) so replace
+        // PHPStan doesn't support typed array shapes (`int[]{...}`) so replace
         // typed arrays such as `int[]` with `array`.
         $tagVariableType = preg_replace('#[a-zA-Z0-9_]+\[\]#', 'array', $tagVariable);
 
