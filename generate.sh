@@ -60,7 +60,7 @@ for METHOD in "${REQUESTS_V1_METHODS[@]}"; do
     fi
     echo "${METHOD} is defined on line ${LINE}."
 
-    # Check the previous line forr ReturnTypeWillChange attribute.
+    # Check the previous line for ReturnTypeWillChange attribute.
     if sed -e "$((LINE - 1)) !d" "${FILE}" | grep -q -F '#[ReturnTypeWillChange]'; then
         continue
     fi
