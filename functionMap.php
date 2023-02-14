@@ -21,6 +21,7 @@ return [
     'stripslashes_deep' => ['T', '@phpstan-template'=>'T', 'value'=>'T'],
     'urldecode_deep' => ['T', '@phpstan-template'=>'T', 'value'=>'T'],
     'urlencode_deep' => ['T', '@phpstan-template'=>'T', 'value'=>'T'],
+    'have_posts' => ['bool', '@phpstan-impure'=>''],
     'wp_clear_scheduled_hook' => ['int|false|WP_Error', 'args'=>$cronArgsType],
     'wp_get_schedule' => ['string|false', 'args'=>$cronArgsType],
     'wp_get_scheduled_event' => ['object|false', 'args'=>$cronArgsType],
