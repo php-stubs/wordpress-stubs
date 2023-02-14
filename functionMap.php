@@ -13,6 +13,7 @@ $cronArgsType = 'list<mixed>';
 return [
     'add_meta_box' => ['void', 'context'=>'"normal"|"side"|"advanced"', 'priority'=>'"high"|"core"|"default"|"low"'],
     'addslashes_gpc' => ['T', '@phpstan-template'=>'T', 'gpc'=>'T'],
+    'have_posts' => ['bool', '@phpstan-impure'=>''],
     'rawurlencode_deep' => ['T', '@phpstan-template'=>'T', 'value'=>'T'],
     'remove_meta_box' => ['void', 'context'=>'"normal"|"side"|"advanced"'],
     'sanitize_category' => ['T', '@phpstan-template'=>'T of array|object', 'category'=>'T'],
@@ -21,7 +22,6 @@ return [
     'stripslashes_deep' => ['T', '@phpstan-template'=>'T', 'value'=>'T'],
     'urldecode_deep' => ['T', '@phpstan-template'=>'T', 'value'=>'T'],
     'urlencode_deep' => ['T', '@phpstan-template'=>'T', 'value'=>'T'],
-    'have_posts' => ['bool', '@phpstan-impure'=>''],
     'wp_clear_scheduled_hook' => ['int|false|WP_Error', 'args'=>$cronArgsType],
     'wp_get_schedule' => ['string|false', 'args'=>$cronArgsType],
     'wp_get_scheduled_event' => ['object|false', 'args'=>$cronArgsType],
