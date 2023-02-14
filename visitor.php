@@ -630,8 +630,9 @@ return new class extends NodeVisitor {
 
         foreach ($parameters as $paramName => $paramType) {
             if (strpos($paramName, '@') === 0) {
+                $format = ( $paramType === '' ) ? '%s' : '%s %s';
                 $additions[] = sprintf(
-                    '%s %s',
+                    $format,
                     $paramName,
                     $paramType
                 );
