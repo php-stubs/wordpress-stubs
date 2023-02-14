@@ -33,6 +33,7 @@ return [
     'WP_List_Table::display_tablenav' => ['void', 'which'=>'"top"|"bottom"'],
     'WP_List_Table::pagination' => ['void', 'which'=>'"top"|"bottom"'],
     'wp_next_scheduled' => ['int|false', 'args'=>$cronArgsType],
+    'WP_Query::have_posts' => ['bool', '@phpstan-impure'=>''],
     'wp_remote_get' => [$httpReturnType],
     'wp_remote_head' => [$httpReturnType],
     'wp_remote_post' => [$httpReturnType],
