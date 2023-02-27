@@ -8,6 +8,10 @@ $cronArgsType = 'list<mixed>';
  *
  * '<function_name>' => ['<return_type>', '<arg_name>'=>'<arg_type>']
  *
+ * For classes:
+ *
+ * '<class_name>' => [null, '<arg_name>'=>'<arg_type>']
+ *
  * @link https://github.com/phpstan/phpstan-src/blob/1.5.x/resources/functionMap.php
  */
 return [
@@ -48,4 +52,19 @@ return [
     'wp_slash' => ['T', '@phpstan-template'=>'T', 'value'=>'T'],
     'wp_unschedule_event' => ['bool|WP_Error', 'args'=>$cronArgsType],
     'wp_unslash' => ['T', '@phpstan-template'=>'T', 'value'=>'T'],
+    'WP_REST_Request' => [null, '@phpstan-template'=>'T of array', '@phpstan-implements'=>'ArrayAccess<key-of<T>, value-of<T>>'],
+    'WP_REST_Request::offsetExists' => ['bool', 'offset'=>'@param key-of<T>'],
+    'WP_REST_Request::offsetGet' => ['T[key-of<T>]', 'offset'=>'@param key-of<T>'],
+    'WP_REST_Request::offsetSet' => ['void', 'offset'=>'@param key-of<T>'],
+    'WP_REST_Request::offsetUnset' => ['void', 'offset'=>'@param key-of<T>'],
+    'WP_Theme' => [null, '@phpstan-template'=>'T of array', '@phpstan-implements'=>'ArrayAccess<key-of<T>, value-of<T>>'],
+    'WP_Theme::offsetExists' => ['bool', 'offset'=>'@param key-of<T>'],
+    'WP_Theme::offsetGet' => ['T[key-of<T>]', 'offset'=>'@param key-of<T>'],
+    'WP_Theme::offsetSet' => ['void', 'offset'=>'@param key-of<T>'],
+    'WP_Theme::offsetUnset' => ['void', 'offset'=>'@param key-of<T>'],
+    'WP_Block_List' => [null, '@phpstan-template'=>'T of WP_Block[]', '@phpstan-implements'=>'ArrayAccess<key-of<T>, value-of<T>>'],
+    'WP_Block_List::offsetExists' => ['bool', 'offset'=>'@param key-of<T>'],
+    'WP_Block_List::offsetGet' => ['WP_Block|null', 'offset'=>'int'],
+    'WP_Block_List::offsetSet' => ['void', 'offset'=>'int|null'],
+    'WP_Block_List::offsetUnset' => ['void', 'offset'=>'int'],
 ];
