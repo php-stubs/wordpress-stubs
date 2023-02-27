@@ -342,7 +342,7 @@ return new class extends NodeVisitor {
             }
         }
 
-        if (! ($node instanceof Function_) && ! ($node instanceof ClassMethod) && ! ($node instanceof Property)) {
+        if (! ($node instanceof Function_) && ! ($node instanceof ClassMethod) && ! ($node instanceof Property) && ! ($node instanceof Class_)) {
             return;
         }
 
