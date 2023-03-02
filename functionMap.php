@@ -2,6 +2,7 @@
 
 $httpReturnType = 'array{headers: \Requests_Utility_CaseInsensitiveDictionary, body: string, response: array{code: int,message: string}, cookies: array<int, \WP_HTTP_Cookie>, filename: string|null, http_response: \WP_HTTP_Requests_Response}|\WP_Error';
 $cronArgsType = 'list<mixed>';
+$wpListPagesArgsType = 'array{sort_column?: string, menu_id?: string, menu_class?: string, container?: string, echo?: bool, show_home?: int|bool|string, link_before?: string, link_after?: string, before?: string, after?: string, item_spacing?: string, walker?: Walker, child_of?: int, authors?: string, date_format?: string, depth?: int, echo?: bool, exclude?: string, include?: array, link_after?: string, link_before?: string, post_type?: string, post_status?: string|array, show_date?: string, sort_column?: string, title_li?: string, item_spacing?: string, walker?: Walker, child_of?: int, sort_order?: string, sort_column?: string, hierarchical?: bool, exclude?: int[], include?: int[], meta_key?: string, meta_value?: string, authors?: string, parent?: int, exclude_tree?: string|int[], number?: int, offset?: int, post_type?: string, post_status?: string|array}';
 
 /**
  * This array is in the same format as the function map array in PHPStan:
@@ -35,6 +36,7 @@ return [
     'WP_List_Table::pagination' => ['void', 'which'=>'"top"|"bottom"'],
     'WP_List_Table::set_pagination_args' => ['void', 'args'=>'array{total_items?: int, total_pages?: int, per_page?: int}'],
     'wp_next_scheduled' => ['int|false', 'args'=>$cronArgsType],
+    'wp_page_menu'=> ['void|string', 'args'=>$wpListPagesArgsType],
     'WP_Query::have_posts' => ['bool', '@phpstan-impure'=>''],
     'wp_remote_get' => [$httpReturnType],
     'wp_remote_head' => [$httpReturnType],
