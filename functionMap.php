@@ -18,7 +18,7 @@ $wpWidgetRssFormInputType = 'array{title?: bool, url?: bool, items?: bool, show_
 return [
     'add_meta_box' => ['void', 'context'=>'"normal"|"side"|"advanced"', 'priority'=>'"high"|"core"|"default"|"low"'],
     'addslashes_gpc' => ['T', '@phpstan-template'=>'T', 'gpc'=>'T'],
-    'get_objects_in_term' => ['string[]|WP_Error', 'term_ids'=>'int|int[]', 'taxonomies'=>'string|string[]', 'args'=>'array{order?: string'],
+    'get_objects_in_term' => ['string[]|WP_Error', 'term_ids'=>'int|int[]', 'taxonomies'=>'string|string[]', 'args'=>'array{order?: string}'],
     'have_posts' => ['bool', '@phpstan-impure'=>''],
     'rawurlencode_deep' => ['T', '@phpstan-template'=>'T', 'value'=>'T'],
     'remove_meta_box' => ['void', 'context'=>'"normal"|"side"|"advanced"'],
