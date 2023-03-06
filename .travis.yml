@@ -1,4 +1,7 @@
 # TravisCI configuration for php-stubs/wordpress-stubs
+
+if: "branch = master"
+
 language: "php"
 os:
   - "linux"
