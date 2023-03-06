@@ -307,7 +307,7 @@ return new class extends NodeVisitor {
 
     private static function getNodeName(Node $node): string
     {
-        if ((($node instanceof Function_) || ($node instanceof ClassMethod) || ($node instanceof Class_)) && $node->name instanceof Identifier) {
+        if ($node instanceof Function_ || $node instanceof ClassMethod || ($node instanceof Class_ && $node->name instanceof Identifier)) {
             return $node->name->name;
         }
 
