@@ -10,6 +10,8 @@ use phpDocumentor\Reflection\DocBlock\Tags\Var_;
 use phpDocumentor\Reflection\Type;
 use PhpParser\Comment\Doc;
 use PhpParser\Node;
+use PhpParser\Node\Identifier;
+use PhpParser\Node\Stmt\Class_;
 use PhpParser\Node\Stmt\ClassMethod;
 use PhpParser\Node\Stmt\Function_;
 use PhpParser\Node\Stmt\Property;
@@ -262,7 +264,7 @@ return new class extends NodeVisitor {
     {
         parent::enterNode($node);
 
-        if (!($node instanceof Function_) && !($node instanceof ClassMethod) && !($node instanceof Property)) {
+        if (!($node instanceof Function_) && !($node instanceof ClassMethod) && !($node instanceof Property) && !($node instanceof Class_)) {
             return null;
         }
 
@@ -305,7 +307,7 @@ return new class extends NodeVisitor {
 
     private static function getNodeName(Node $node): string
     {
-        if (($node instanceof Function_) || ($node instanceof ClassMethod)) {
+        if ((($node instanceof Function_) || ($node instanceof ClassMethod) || ($node instanceof Class_)) && $node->name instanceof Identifier) {
             return $node->name->name;
         }
 
@@ -341,7 +343,7 @@ return new class extends NodeVisitor {
             }
         }
 
-        if (! ($node instanceof Function_) && ! ($node instanceof ClassMethod) && ! ($node instanceof Property)) {
+        if (! ($node instanceof Function_) && ! ($node instanceof ClassMethod) && ! ($node instanceof Property) && ! ($node instanceof Class_)) {
             return;
         }
 
@@ -646,10 +648,12 @@ return new class extends NodeVisitor {
             );
         }
 
-        $additions[] = sprintf(
-            '@phpstan-return %s',
-            $returnType
-        );
+        if ($returnType) {
+            $additions[] = sprintf(
+                '@phpstan-return %s',
+                $returnType
+            );
+        }
 
         return $additions;
     }
