@@ -8,6 +8,10 @@ $cronArgsType = 'list<mixed>';
  *
  * '<function_name>' => ['<return_type>', '<arg_name>'=>'<arg_type>']
  *
+ * For classes:
+ *
+ * '<class_name>' => [null, '<arg_name>'=>'<arg_type>']
+ *
  * @link https://github.com/phpstan/phpstan-src/blob/1.5.x/resources/functionMap.php
  */
 return [
@@ -48,4 +52,18 @@ return [
     'wp_slash' => ['T', '@phpstan-template'=>'T', 'value'=>'T'],
     'wp_unschedule_event' => ['bool|WP_Error', 'args'=>$cronArgsType],
     'wp_unslash' => ['T', '@phpstan-template'=>'T', 'value'=>'T'],
+    'WP_REST_Request' => [null, '@phpstan-template'=>'T of array', '@phpstan-implements'=>'ArrayAccess<key-of<T>, value-of<T>>'],
+    'WP_REST_Request::offsetExists' => ['bool', 'offset'=>'@param key-of<T>'],
+    'WP_REST_Request::offsetGet' => ['T[TOffset]', '@phpstan-template'=>'TOffset of key-of<T>', 'offset'=>'TOffset'],
+    'WP_REST_Request::offsetSet' => ['void', '@phpstan-template'=>'TOffset of key-of<T>', 'offset'=>'TOffset', 'value'=>'T[TOffset]'],
+    'WP_REST_Request::offsetUnset' => ['void', '@phpstan-template'=>'TOffset of key-of<T>', 'offset'=>'TOffset'],
+    'WP_Theme' => [null, '@phpstan-type'=>"ThemeKey 'Name'|'Version'|'Status'|'Title'|'Author'|'Author Name'|'Author URI'|'Description'|'Template'|'Stylesheet'|'Template Files'|'Stylesheet Files'|'Template Dir'|'Stylesheet Dir'|'Screenshot'|'Tags'|'Theme Root'|'Theme Root URI'|'Parent Theme'"],
+    'WP_Theme::offsetExists' => ['($offset is ThemeKey ? true : false)'],
+    'WP_Theme::offsetGet' => ['($offset is ThemeKey ? mixed : null)'],
+    'WP_Block_List' => [null, '@phpstan-implements'=>'ArrayAccess<int, WP_Block>'],
+    'WP_Block_List::offsetExists' => ['bool', 'offset'=>'int'],
+    'WP_Block_List::offsetGet' => ['WP_Block|null', 'offset'=>'int'],
+    'WP_Block_List::offsetSet' => ['void', 'offset'=>'int|null'],
+    'WP_Block_List::offsetUnset' => ['void', 'offset'=>'int'],
+    'is_wp_error' => ['bool', '@phpstan-assert-if-true'=>'\WP_Error $thing']
 ];
