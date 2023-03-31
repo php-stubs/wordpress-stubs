@@ -61,9 +61,9 @@ return [
     'WP_Theme::offsetExists' => ['($offset is ThemeKey ? true : false)'],
     'WP_Theme::offsetGet' => ['($offset is ThemeKey ? mixed : null)'],
     'WP_Block_List' => [null, '@phpstan-implements'=>'ArrayAccess<int, WP_Block>'],
-    'WP_Block_List::offsetExists' => ['bool', 'offset'=>'int'],
-    'WP_Block_List::offsetGet' => ['WP_Block|null', 'offset'=>'int'],
-    'WP_Block_List::offsetSet' => ['void', 'offset'=>'int|null'],
-    'WP_Block_List::offsetUnset' => ['void', 'offset'=>'int'],
+    'WP_Block_List::offsetExists' => ['bool', 'index'=>'int'],
+    'WP_Block_List::offsetGet' => ['WP_Block|null', 'index'=>'int'],
+    'WP_Block_List::offsetSet' => ['void', 'index'=>'int|null'],
+    'WP_Block_List::offsetUnset' => ['void', 'index'=>'int'],
     'is_wp_error' => ['bool', '@phpstan-assert-if-true'=>'\WP_Error $thing']
 ];
