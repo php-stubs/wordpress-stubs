@@ -619,7 +619,7 @@ return new class extends NodeVisitor {
     private function getAdditionalTagsFromMap(string $symbolName): array
     {
         if (! isset($this->functionMap)) {
-            $this->functionMap = require __DIR__ . '/functionMap.php';
+            $this->functionMap = require __DIR__ . '/functionMap62.php';
         }
 
         if (! isset($this->functionMap[$symbolName])) {
