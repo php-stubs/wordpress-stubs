@@ -74,5 +74,14 @@ return [
     'WP_Block_List::offsetGet' => ['WP_Block|null', 'index'=>'int'],
     'WP_Block_List::offsetSet' => ['void', 'index'=>'int|null'],
     'WP_Block_List::offsetUnset' => ['void', 'index'=>'int'],
-    'is_wp_error' => ['bool', '@phpstan-assert-if-true'=>'\WP_Error $thing']
+    'is_wp_error' => ['bool', '@phpstan-assert-if-true'=>'\WP_Error $thing'],
+    'current_time' => ["(\$type is 'timestamp'|'U' ? int : string)"],
+    'mysql2date' => ["(\$format is 'G'|'U' ? int|false : string|false)"],
+    'get_post_types' => ["(\$output is 'names' ? array<int, string> : array<int, \WP_Post_Type>)"],
+    'get_taxonomies' => ["(\$output is 'names' ? array<int, string> : array<int, \WP_Taxonomy>)"],
+    'get_object_taxonomies' => ["(\$output is 'names' ? array<int, string> : array<int, \WP_Taxonomy>)"],
+    'get_comment' => ["(\$output is 'ARRAY_A' ? array<string, mixed>|null : (output is 'ARRAY_N' ? array<int, mixed>|null : \WP_Comment|null))"],
+    'get_post' => ["(\$output is 'ARRAY_A' ? array<string, mixed>|null : (output is 'ARRAY_N' ? array<int, mixed>|null : \WP_Post|null))"],
+    'has_action' => ['($callback is false ? bool : bool|int)'],
+    'has_filter' => ['($callback is false ? bool : bool|int)'],
 ];
