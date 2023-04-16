@@ -1,0 +1,3 @@
+parameters:
+    bootstrapFiles:
+        - ../wordpress-stubs.php

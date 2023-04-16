@@ -13,12 +13,18 @@
         "nikic/php-parser": "< 4.12.0",
         "php-stubs/generator": "^0.8.3",
         "phpdocumentor/reflection-docblock": "^5.3",
-        "phpstan/phpstan": "^1.9"
+        "phpstan/phpstan": "^1.9",
+        "phpunit/phpunit": "^9.5"
     },
     "suggest": {
         "paragonie/sodium_compat": "Pure PHP implementation of libsodium",
         "symfony/polyfill-php73": "Symfony polyfill backporting some PHP 7.3+ features to lower PHP versions",
         "szepeviktor/phpstan-wordpress": "WordPress extensions for PHPStan"
+    },
+    "autoload-dev": {
+        "classmap": [
+            "tests/"
+        ]
     },
     "minimum-stability": "stable",
     "config": {
@@ -29,7 +35,13 @@
     "scripts": {
         "post-install-cmd": "@composer --working-dir=source/ update --no-interaction",
         "post-update-cmd": "@composer --working-dir=source/ update --no-interaction",
-        "cleanup": "git status --short --ignored | sed -n -e 's#^!! ##p' | xargs -r rm -vrf"
+        "cleanup": "git status --short --ignored | sed -n -e 's#^!! ##p' | xargs -r rm -vrf",
+        "test": [
+            "@test:phpstan",
+            "@test:phpunit"
+        ],
+        "test:phpstan": "phpstan analyze",
+        "test:phpunit": "phpunit"
     },
     "scripts-descriptions": {
         "cleanup": "Remove all ignored files."

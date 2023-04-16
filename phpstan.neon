@@ -3,3 +3,6 @@ parameters:
     paths:
         - finder.php
         - visitor.php
+        - tests/
+    excludePaths:
+        - tests/data/
