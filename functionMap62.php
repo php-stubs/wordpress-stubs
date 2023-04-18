@@ -83,6 +83,6 @@ return [
     'get_comment' => ["(\$output is 'ARRAY_A' ? array<string, mixed>|null : (\$output is 'ARRAY_N' ? array<int, mixed>|null : \WP_Comment|null))"],
     'get_post' => ["(\$output is 'ARRAY_A' ? array<string, mixed>|null : (\$output is 'ARRAY_N' ? array<int, mixed>|null : \WP_Post|null))"],
     'get_page_by_path' => ["(\$output is 'ARRAY_A' ? array<string, mixed>|null : (\$output is 'ARRAY_N' ? array<int, mixed>|null : \WP_Post|null))"],
-    'has_action' => ['($callback is false ? bool : bool|int)'],
-    'has_filter' => ['($callback is false ? bool : bool|int)'],
+    'has_action' => ['($callback is false ? bool : false|int)'],
+    'has_filter' => ['($callback is false ? bool : false|int)'],
 ];
