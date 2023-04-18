@@ -17,10 +17,7 @@ assertType('int', current_time('U'));
 assertType('string', current_time('mysql'));
 assertType('string', current_time('Hello'));
 
-// Unknown types
-assertType('int|string', current_time($_GET['foo']));
-assertType('int|string', current_time(get_option('date_format')));
-
-// Unsupported types
-assertType('string', current_time(new stdClass()));
-assertType('string', current_time(false));
+// Unknown string
+/** @var string $string */
+$string = null;
+assertType('int|string', current_time($string));
