@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace WordpressStubs\Tests;
+namespace PhpStubs\WordPress\Core\Tests;
 
 use function has_action;
 use function has_filter;

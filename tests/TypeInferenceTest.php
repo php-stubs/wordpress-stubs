@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace WordpressStubs\Tests;
+namespace PhpStubs\WordPress\Core\Tests;
 
 class TypeInferenceTest extends \PHPStan\Testing\TypeInferenceTestCase
 {

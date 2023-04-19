@@ -2,9 +2,7 @@
 
 declare(strict_types=1);
 
-namespace WordpressStubs\Tests;
-
-use stdClass;
+namespace PhpStubs\WordPress\Core\Tests;
 
 use function current_time;
 use function PHPStan\Testing\assertType;

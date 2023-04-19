@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace WordpressStubs\Tests;
+namespace PhpStubs\WordPress\Core\Tests;
 
 use function get_object_taxonomies;
 use function PHPStan\Testing\assertType;
