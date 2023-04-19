@@ -86,4 +86,7 @@ return [
     'get_page_by_path' => ["(\$output is 'ARRAY_A' ? array<string, mixed>|null : (\$output is 'ARRAY_N' ? array<int, mixed>|null : \WP_Post|null))"],
     'has_action' => ['($callback is false ? bool : false|int)'],
     'has_filter' => ['($callback is false ? bool : false|int)'],
+    'get_permalink' => ['($post is \WP_Post ? string : string|false)'],
+    'get_the_permalink' => ['($post is \WP_Post ? string : string|false)'],
+    'get_post_permalink' => ['($post is \WP_Post ? string : string|false)'],
 ];
