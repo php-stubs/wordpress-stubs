@@ -67,6 +67,7 @@ return [
     'WP_REST_Request::offsetSet' => ['void', '@phpstan-template'=>'TOffset of key-of<T>', 'offset'=>'TOffset', 'value'=>'T[TOffset]'],
     'WP_REST_Request::offsetUnset' => ['void', '@phpstan-template'=>'TOffset of key-of<T>', 'offset'=>'TOffset'],
     'WP_Theme' => [null, '@phpstan-type'=>"ThemeKey 'Name'|'Version'|'Status'|'Title'|'Author'|'Author Name'|'Author URI'|'Description'|'Template'|'Stylesheet'|'Template Files'|'Stylesheet Files'|'Template Dir'|'Stylesheet Dir'|'Screenshot'|'Tags'|'Theme Root'|'Theme Root URI'|'Parent Theme'"],
+    'WP_Theme::get' => ["(\$header is 'Name'|'ThemeURI'|'Description'|'Author'|'AuthorURI'|'Version'|'Template'|'Status'|'Tags'|'TextDomain'|'DomainPath'|'RequiresWP'|'RequiresPHP'|'UpdateURI' ? (\$header is 'Tags' ? string[] : string) : false)"],
     'WP_Theme::offsetExists' => ['($offset is ThemeKey ? true : false)'],
     'WP_Theme::offsetGet' => ['($offset is ThemeKey ? mixed : null)'],
     'WP_Block_List' => [null, '@phpstan-implements'=>'ArrayAccess<int, WP_Block>'],
