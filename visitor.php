@@ -246,6 +246,11 @@ return new class extends NodeVisitor {
     private $functionMap = null;
 
     /**
+     * @var string
+     */
+    public $functionMapFile = __DIR__ . '/functionMap.php';
+
+    /**
      * @var array<string, array<int, WordPressTag>>
      */
     private $additionalTags = [];
@@ -619,7 +624,7 @@ return new class extends NodeVisitor {
     private function getAdditionalTagsFromMap(string $symbolName): array
     {
         if (! isset($this->functionMap)) {
-            $this->functionMap = require __DIR__ . '/functionMap.php';
+            $this->functionMap = require $this->functionMapFile;
         }
 
         if (! isset($this->functionMap[$symbolName])) {
