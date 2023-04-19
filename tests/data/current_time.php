@@ -16,6 +16,4 @@ assertType('string', current_time('mysql'));
 assertType('string', current_time('Hello'));
 
 // Unknown string
-/** @var string $string */
-$string = null;
-assertType('int|string', current_time($string));
+assertType('int|string', current_time((string)$_GET['unknown_string']));

@@ -18,6 +18,4 @@ assertType('array<string, WP_Taxonomy>', get_object_taxonomies([], 'objects'));
 assertType('array<string, WP_Taxonomy>', get_object_taxonomies([], 'Hello'));
 
 // Unknown string
-/** @var string $string */
-$string = null;
-assertType('array<int|string, string|WP_Taxonomy>', get_object_taxonomies([], $string));
+assertType('array<int|string, string|WP_Taxonomy>', get_object_taxonomies([], (string)$_GET['unknown_string']));

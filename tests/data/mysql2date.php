@@ -15,6 +15,4 @@ assertType('int|false', mysql2date('U', $time));
 assertType('string|false', mysql2date('Y-m-d H:i:s', $time));
 
 // Unknown string
-/** @var string $string */
-$string = null;
-assertType('int|string|false', mysql2date($string, $time));
+assertType('int|string|false', mysql2date((string)$_GET['unknown_string'], $time));
