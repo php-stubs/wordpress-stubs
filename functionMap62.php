@@ -89,4 +89,7 @@ return [
     'get_permalink' => ['($post is \WP_Post ? string : string|false)'],
     'get_the_permalink' => ['($post is \WP_Post ? string : string|false)'],
     'get_post_permalink' => ['($post is \WP_Post ? string : string|false)'],
+    'term_exists' => ["(\$term is 0 ? 0 : (\$term is '' ? null : (\$taxonomy is '' ? string|null : array{term_id: string, term_taxonomy_id: string}|null)))"],
+    'is_term' => ["(\$term is 0 ? 0 : (\$term is '' ? null : (\$taxonomy is '' ? string|null : array{term_id: string, term_taxonomy_id: string}|null)))"],
+    'tag_exists' => ["(\$tag_name is 0 ? 0 : (\$tag_name is '' ? null : array{term_id: string, term_taxonomy_id: string}|null))"],
 ];
