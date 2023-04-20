@@ -41,6 +41,5 @@ return \StubsGenerator\Finder::create()
     //->notPath('wp-includes/theme-compat/footer.php')
     //->notPath('wp-includes/theme-compat/header.php')
     //->notPath('wp-includes/theme-compat/sidebar.php')
-// ->notPath('wp-includes/Requests/src')
     ->sortByName()
 ;
