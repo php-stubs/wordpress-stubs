@@ -14,31 +14,17 @@ if [ ! -d vendor ]; then
     composer update
 fi
 
-if [ -r source/wordpress/wp-includes/Requests/Cookie/Jar.php ]; then
-    # Exclude globals.
-    "$(dirname "$0")/vendor/bin/generate-stubs" \
-        --force \
-        --finder=finder.php \
-        --visitor=visitor.php \
-        --header="$HEADER" \
-        --functions \
-        --classes \
-        --interfaces \
-        --traits \
-        --out="$FILE"
-else
-    # Exclude globals.
-    "$(dirname "$0")/vendor/bin/generate-stubs" \
-        --force \
-        --finder=finder.php \
-        --visitor=visitor62.php \
-        --header="$HEADER" \
-        --functions \
-        --classes \
-        --interfaces \
-        --traits \
-        --out="$FILE"
-fi
+# Exclude globals.
+"$(dirname "$0")/vendor/bin/generate-stubs" \
+    --force \
+    --finder=finder.php \
+    --visitor=visitor.php \
+    --header="$HEADER" \
+    --functions \
+    --classes \
+    --interfaces \
+    --traits \
+    --out="$FILE"
 
 # Use literal-string type for wpdb::prepare() query statement parameter.
 sed -i -e 's#^.*@param string \+\$query \+Query statement.*$#&\n         * @phpstan-param literal-string $query#' "$FILE"
