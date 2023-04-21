@@ -77,7 +77,7 @@ return [
     'WP_Block_List::offsetGet' => ['WP_Block|null', 'index'=>'int'],
     'WP_Block_List::offsetSet' => ['void', 'index'=>'int|null'],
     'WP_Block_List::offsetUnset' => ['void', 'index'=>'int'],
-    'is_wp_error' => ['bool', '@phpstan-assert-if-true'=>'\WP_Error $thing'],
+    'is_wp_error' => ['($thing is \WP_Error ? true : false)', '@phpstan-assert-if-true'=>'\WP_Error $thing'],
     'current_time' => ["(\$type is 'timestamp'|'U' ? int : string)"],
     'mysql2date' => ["(\$format is 'G'|'U' ? int|false : string|false)"],
     'get_post_types' => ["(\$output is 'names' ? array<int, string> : array<int, \WP_Post_Type>)"],
