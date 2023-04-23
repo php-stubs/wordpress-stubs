@@ -9,18 +9,19 @@ use function PHPStan\Testing\assertType;
 
 // Default
 assertType('array<string, string>', get_post_stati());
-assertType('array<string, string>', get_post_stati('names'));
+assertType('array<string, string>', get_post_stati([]));
+assertType('array<string, string>', get_post_stati([], 'names'));
 
 // Objects
-assertType('array<string, stdClass>', get_post_stati('objects'));
+assertType('array<string, stdClass>', get_post_stati([], 'objects'));
 
 // Unexpected
-assertType('array<string, stdClass>', get_post_stati('Hello'));
+assertType('array<string, stdClass>', get_post_stati([], 'Hello'));
 
 // Unknown
-assertType('array<string, string|stdClass>', get_post_stati((string)$_GET['string']));
+assertType('array<string, stdClass|string>', get_post_stati([], (string)$_GET['string']));
 
 // Unions
-assertType('array<string, string|stdClass>', get_post_stati($_GET['foo'] ? 'names' : 'objects'));
-assertType('array<string, string|stdClass>', get_post_stati($_GET['foo'] ? (string)$_GET['string'] : 'names'));
-assertType('array<string, string|stdClass>', get_post_stati($_GET['foo'] ? (string)$_GET['string'] : 'objects'));
+assertType('array<string, stdClass|string>', get_post_stati([], $_GET['foo'] ? 'names' : 'objects'));
+assertType('array<string, stdClass|string>', get_post_stati([], $_GET['foo'] ? (string)$_GET['string'] : 'names'));
+assertType('array<string, stdClass|string>', get_post_stati([], $_GET['foo'] ? (string)$_GET['string'] : 'objects'));
