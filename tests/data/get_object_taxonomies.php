@@ -19,3 +19,8 @@ assertType('array<string, WP_Taxonomy>', get_object_taxonomies('post', 'Hello'))
 
 // Unknown string
 assertType('array<int|string, string|WP_Taxonomy>', get_object_taxonomies('post', (string)$_GET['unknown_string']));
+
+// Unions
+assertType('array<int|string, string|WP_Taxonomy>', get_object_taxonomies('post', $_GET['foo'] ? 'names' : 'objects'));
+assertType('array<int|string, string|WP_Taxonomy>', get_object_taxonomies('post', $_GET['foo'] ? (string)$_GET['string'] : 'names'));
+assertType('array<int|string, string|WP_Taxonomy>', get_object_taxonomies('post', $_GET['foo'] ? (string)$_GET['string'] : 'objects'));
