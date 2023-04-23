@@ -12,15 +12,15 @@ assertType('array<string, string>', get_post_stati());
 assertType('array<string, string>', get_post_stati('names'));
 
 // Objects
-assertType('array<string, WP_Taxonomy>', get_post_stati('objects'));
+assertType('array<string, stdClass>', get_post_stati('objects'));
 
 // Unexpected
-assertType('array<string, WP_Taxonomy>', get_post_stati('Hello'));
+assertType('array<string, stdClass>', get_post_stati('Hello'));
 
 // Unknown
-assertType('array<string, string|WP_Taxonomy>', get_post_stati((string)$_GET['string']));
+assertType('array<string, string|stdClass>', get_post_stati((string)$_GET['string']));
 
 // Unions
-assertType('array<string, string|WP_Taxonomy>', get_post_stati($_GET['foo'] ? 'names' : 'objects'));
-assertType('array<string, string|WP_Taxonomy>', get_post_stati($_GET['foo'] ? (string)$_GET['string'] : 'names'));
-assertType('array<string, string|WP_Taxonomy>', get_post_stati($_GET['foo'] ? (string)$_GET['string'] : 'objects'));
+assertType('array<string, string|stdClass>', get_post_stati($_GET['foo'] ? 'names' : 'objects'));
+assertType('array<string, string|stdClass>', get_post_stati($_GET['foo'] ? (string)$_GET['string'] : 'names'));
+assertType('array<string, string|stdClass>', get_post_stati($_GET['foo'] ? (string)$_GET['string'] : 'objects'));
