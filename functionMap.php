@@ -122,4 +122,5 @@ return [
     'wp_loginout' => ['($display is true ? void : string)'],
     'wp_register' => ['($display is true ? void : string)'],
     'wp_title' => ['($display is true ? void : string)'],
+    'wp_script_is' => [null, 'status' => "'enqueued'|'registered'|'queue'|'to_do'|'done'"],
 ];
