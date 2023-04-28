@@ -14,7 +14,7 @@ $wpWidgetRssFormInputType = 'array{title?: bool, url?: bool, items?: bool, show_
  *
  * '<function_name>' => ['<return_type>', '<arg_name>'=>'<arg_type>']
  *
- * For classes:
+ * For classes, or if you don't wish to define the `@phpstan-return` tag:
  *
  * '<class_name>' => [null, '<arg_name>'=>'<arg_type>']
  *
@@ -23,8 +23,8 @@ $wpWidgetRssFormInputType = 'array{title?: bool, url?: bool, items?: bool, show_
 return [
     'add_meta_box' => ['void', 'context'=>'"normal"|"side"|"advanced"', 'priority'=>'"high"|"core"|"default"|"low"'],
     'addslashes_gpc' => ['T', '@phpstan-template'=>'T', 'gpc'=>'T'],
-    'get_objects_in_term' => ['string[]|WP_Error', 'args'=>'array{order?: string}'],
-    'have_posts' => ['bool', '@phpstan-impure'=>''],
+    'get_objects_in_term' => [null, 'args'=>'array{order?: string}'],
+    'have_posts' => [null, '@phpstan-impure'=>''],
     'rawurlencode_deep' => ['T', '@phpstan-template'=>'T', 'value'=>'T'],
     'remove_meta_box' => ['void', 'context'=>'"normal"|"side"|"advanced"'],
     'sanitize_category' => ['T', '@phpstan-template'=>'T of array|object', 'category'=>'T'],
@@ -34,8 +34,8 @@ return [
     'urldecode_deep' => ['T', '@phpstan-template'=>'T', 'value'=>'T'],
     'urlencode_deep' => ['T', '@phpstan-template'=>'T', 'value'=>'T'],
     'wp_clear_scheduled_hook' => ['($wp_error is false ? 0|positive-int|false : 0|positive-int|\WP_Error)', 'args'=>$cronArgsType],
-    'wp_get_schedule' => ['string|false', 'args'=>$cronArgsType],
-    'wp_get_scheduled_event' => ['object|false', 'args'=>$cronArgsType],
+    'wp_get_schedule' => [null, 'args'=>$cronArgsType],
+    'wp_get_scheduled_event' => [null, 'args'=>$cronArgsType],
     'WP_Http::get' => [$httpReturnType],
     'WP_Http::head' => [$httpReturnType],
     'WP_Http::post' => [$httpReturnType],
@@ -44,9 +44,9 @@ return [
     'WP_List_Table::display_tablenav' => ['void', 'which'=>'"top"|"bottom"'],
     'WP_List_Table::pagination' => ['void', 'which'=>'"top"|"bottom"'],
     'WP_List_Table::set_pagination_args' => ['void', 'args'=>'array{total_items?: int, total_pages?: int, per_page?: int}'],
-    'wp_next_scheduled' => ['int|false', 'args'=>$cronArgsType],
+    'wp_next_scheduled' => [null, 'args'=>$cronArgsType],
     'WP_Post_Type::__construct' => ['void', 'args'=>'array<string, mixed>'],
-    'WP_Query::have_posts' => ['bool', '@phpstan-impure'=>''],
+    'WP_Query::have_posts' => [null, '@phpstan-impure'=>''],
     'wp_remote_get' => [$httpReturnType],
     'wp_remote_head' => [$httpReturnType],
     'wp_remote_post' => [$httpReturnType],
@@ -64,7 +64,7 @@ return [
     'wp_unslash' => ['T', '@phpstan-template'=>'T', 'value'=>'T'],
     'wp_widget_rss_form' => ['void', 'args'=>$wpWidgetRssFormArgsType, 'input'=>$wpWidgetRssFormInputType],
     'WP_REST_Request' => [null, '@phpstan-template'=>'T of array', '@phpstan-implements'=>'ArrayAccess<key-of<T>, value-of<T>>'],
-    'WP_REST_Request::offsetExists' => ['bool', 'offset'=>'@param key-of<T>'],
+    'WP_REST_Request::offsetExists' => [null, 'offset'=>'@param key-of<T>'],
     'WP_REST_Request::offsetGet' => ['T[TOffset]', '@phpstan-template'=>'TOffset of key-of<T>', 'offset'=>'TOffset'],
     'WP_REST_Request::offsetSet' => ['void', '@phpstan-template'=>'TOffset of key-of<T>', 'offset'=>'TOffset', 'value'=>'T[TOffset]'],
     'WP_REST_Request::offsetUnset' => ['void', '@phpstan-template'=>'TOffset of key-of<T>', 'offset'=>'TOffset'],
@@ -73,7 +73,7 @@ return [
     'WP_Theme::offsetExists' => ['($offset is ThemeKey ? true : false)'],
     'WP_Theme::offsetGet' => ['($offset is ThemeKey ? mixed : null)'],
     'WP_Block_List' => [null, '@phpstan-implements'=>'ArrayAccess<int, WP_Block>'],
-    'WP_Block_List::offsetExists' => ['bool', 'index'=>'int'],
+    'WP_Block_List::offsetExists' => [null, 'index'=>'int'],
     'WP_Block_List::offsetGet' => ['WP_Block|null', 'index'=>'int'],
     'WP_Block_List::offsetSet' => ['void', 'index'=>'int|null'],
     'WP_Block_List::offsetUnset' => ['void', 'index'=>'int'],
@@ -122,4 +122,5 @@ return [
     'wp_loginout' => ['($display is true ? void : string)'],
     'wp_register' => ['($display is true ? void : string)'],
     'wp_title' => ['($display is true ? void : string)'],
+    'wp_script_is' => [null, 'status' => "'enqueued'|'registered'|'queue'|'to_do'|'done'"],
 ];
