@@ -648,7 +648,7 @@ return new class extends NodeVisitor {
             );
         }
 
-        if ($returnType) {
+        if ($returnType !== null) {
             $additions[] = sprintf(
                 '@phpstan-return %s',
                 $returnType
