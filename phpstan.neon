@@ -1,6 +1,7 @@
 parameters:
     level: 8
     paths:
+        - accessTag.php
         - finder.php
         - visitor.php
         - tests/

@@ -4,6 +4,7 @@ declare(strict_types = 1);
 
 use phpDocumentor\Reflection\DocBlock;
 use phpDocumentor\Reflection\DocBlock\Description;
+use phpDocumentor\Reflection\DocBlock\Tag;
 use phpDocumentor\Reflection\DocBlock\Tags\Param;
 use phpDocumentor\Reflection\DocBlock\Tags\Return_;
 use phpDocumentor\Reflection\DocBlock\Tags\Var_;
@@ -15,6 +16,7 @@ use PhpParser\Node\Stmt\Class_;
 use PhpParser\Node\Stmt\ClassMethod;
 use PhpParser\Node\Stmt\Function_;
 use PhpParser\Node\Stmt\Property;
+use PhpParser\NodeTraverser;
 use StubsGenerator\NodeVisitor;
 
 abstract class WithChildren
@@ -296,6 +298,11 @@ return new class extends NodeVisitor {
             $this->additionalTags[ $symbolName ] = $additions;
         }
 
+        if ($this->isPrivateFunction($node) === true) {
+            $node->setAttribute('isPrivateFunction', true);
+            return null;
+        }
+
         $additions = $this->getAdditionalTagsFromMap($symbolName);
 
         if (count($additions) > 0) {
@@ -303,6 +310,17 @@ return new class extends NodeVisitor {
         }
 
         return null;
+    }
+
+    public function leaveNode(Node $node, bool $preserveStack = false)
+    {
+        if ($node->getAttribute('isPrivateFunction') === true) {
+            if (!$preserveStack) {
+                array_pop($this->stack);
+            }
+            return NodeTraverser::REMOVE_NODE;
+        }
+        return parent::leaveNode($node, $preserveStack);
     }
 
     private static function getNodeName(Node $node): string
@@ -888,5 +906,27 @@ return new class extends NodeVisitor {
             || (stripos($description, 'Default: ') !== false)
             || (stripos($description, 'Defaults to ') !== false)
         ;
+    }
+
+    private function isPrivateFunction(Node $node): bool
+    {
+        if (!($node instanceof Function_)) {
+            return false;
+        }
+
+        $docComment = $node->getDocComment();
+        if (!($docComment instanceof Doc)) {
+            return false;
+        }
+
+        $docblock = $this->docBlockFactory->create($docComment->getText());
+        $access = array_map(
+            static function (Tag $tag): string {
+                return $tag->__toString();
+            },
+            $docblock->getTagsByName('access')
+        );
+
+        return in_array('private', $access, true);
     }
 };

@@ -14,7 +14,8 @@
         "php-stubs/generator": "^0.8.3",
         "phpdocumentor/reflection-docblock": "^5.3",
         "phpstan/phpstan": "^1.9",
-        "phpunit/phpunit": "^9.5"
+        "phpunit/phpunit": "^9.5",
+        "webmozart/assert": "^1.11.0"
     },
     "suggest": {
         "paragonie/sodium_compat": "Pure PHP implementation of libsodium",
@@ -23,7 +24,8 @@
     },
     "autoload-dev": {
         "classmap": [
-            "tests/"
+            "tests/",
+            "accessTag.php"
         ]
     },
     "minimum-stability": "stable",
