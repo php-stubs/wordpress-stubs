@@ -126,7 +126,7 @@ return [
     'wp_script_is' => [null, 'status' => "'enqueued'|'registered'|'queue'|'to_do'|'done'"],
     'WP_Filesystem_Direct::dirlist' => [$filesystemDirlistReturnType],
     'WP_Filesystem_FTPext::dirlist' => [$filesystemDirlistReturnType],
-    'WP_Filesystem_MockFS::dirlist' => [$filesystemDirlistReturnType],
+    'WP_Filesystem_Base::dirlist' => [$filesystemDirlistReturnType],
     'WP_Filesystem_SSH2::dirlist' => [$filesystemDirlistReturnType],
     'WP_Filesystem_ftpsockets::dirlist' => [$filesystemDirlistReturnType],
 ];
