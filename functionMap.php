@@ -8,6 +8,7 @@ if (file_exists(__DIR__ . '/source/wordpress/wp-includes/Requests/Cookie/Jar.php
 $cronArgsType = 'list<mixed>';
 $wpWidgetRssFormArgsType = 'array{number: int, error: bool, title?: string, url?: string, items?: int, show_summary?: int, show_author?: int, show_date?: int}';
 $wpWidgetRssFormInputType = 'array{title?: bool, url?: bool, items?: bool, show_summary?: bool, show_author?: bool, show_date?: bool}';
+$filesystemDirlistReturnType = 'false|array<string, array{name: string, perms: string, permsn: string, owner: string|false, size: int|string|false, lastmodunix: int|string|false, lastmod: string|false, time: string|false, type: string, files: array}>';
 
 /**
  * This array is in the same format as the function map array in PHPStan:
@@ -123,4 +124,9 @@ return [
     'wp_register' => ['($display is true ? void : string)'],
     'wp_title' => ['($display is true ? void : string)'],
     'wp_script_is' => [null, 'status' => "'enqueued'|'registered'|'queue'|'to_do'|'done'"],
+    'WP_Filesystem_Direct::dirlist' => [$filesystemDirlistReturnType],
+    'WP_Filesystem_FTPext::dirlist' => [$filesystemDirlistReturnType],
+    'WP_Filesystem_Base::dirlist' => [$filesystemDirlistReturnType],
+    'WP_Filesystem_SSH2::dirlist' => [$filesystemDirlistReturnType],
+    'WP_Filesystem_ftpsockets::dirlist' => [$filesystemDirlistReturnType],
 ];
