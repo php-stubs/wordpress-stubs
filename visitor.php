@@ -791,23 +791,10 @@ return new class extends NodeVisitor {
             'stdClass',
             '\\object',
         ], 'object', $tagVariableType);
-        $hasSupportedType = false;
         $supportedTypes = [
             'object',
             'array',
         ];
-
-        foreach ($supportedTypes as $supportedType) {
-            if (strpos($tagVariableType, $supportedType) !== false) {
-                $hasSupportedType = true;
-                break;
-            }
-        }
-
-        if (! $hasSupportedType) {
-            // Skip if we have hash notation for a type that's not supported.
-            return null;
-        }
 
         foreach ($supportedTypes as $supportedType) {
             if (strpos($tagVariableType, "{$supportedType}|") !== false) {
