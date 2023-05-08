@@ -787,14 +787,33 @@ return new class extends NodeVisitor {
             return null;
         }
 
-        if (strpos($tagVariableType, 'array') === false) {
-            // Skip if we have hash notation that's not for an array (ie. for `object`).
+        $tagVariableType = str_replace([
+            'stdClass',
+            '\\object',
+        ], 'object', $tagVariableType);
+        $hasSupportedType = false;
+        $supportedTypes = [
+            'object',
+            'array',
+        ];
+
+        foreach ($supportedTypes as $supportedType) {
+            if (strpos($tagVariableType, $supportedType) !== false) {
+                $hasSupportedType = true;
+                break;
+            }
+        }
+
+        if (! $hasSupportedType) {
+            // Skip if we have hash notation for a type that's not supported.
             return null;
         }
 
-        if (strpos($tagVariableType, 'array|') !== false) {
-            // Move `array` to the end of union types so the appended array shape works.
-            $tagVariableType = str_replace('array|', '', $tagVariableType) . '|array';
+        foreach ($supportedTypes as $supportedType) {
+            if (strpos($tagVariableType, "{$supportedType}|") !== false) {
+                // Move the type that uses the hash notation to the end of union types so the shape works.
+                $tagVariableType = str_replace("{$supportedType}|", '', $tagVariableType) . "|{$supportedType}";
+            }
         }
 
         return $tagVariableType;
