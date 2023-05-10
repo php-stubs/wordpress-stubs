@@ -129,4 +129,5 @@ return [
     'WP_Filesystem_Base::dirlist' => [$filesystemDirlistReturnType],
     'WP_Filesystem_SSH2::dirlist' => [$filesystemDirlistReturnType],
     'WP_Filesystem_ftpsockets::dirlist' => [$filesystemDirlistReturnType],
+    'wpdb::prepare' => [null, 'query'=>'literal-string'],
 ];
