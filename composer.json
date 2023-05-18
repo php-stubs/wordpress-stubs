@@ -21,15 +21,18 @@
         "symfony/polyfill-php73": "Symfony polyfill backporting some PHP 7.3+ features to lower PHP versions",
         "szepeviktor/phpstan-wordpress": "WordPress extensions for PHPStan"
     },
+    "minimum-stability": "stable",
     "autoload-dev": {
         "classmap": [
             "tests/"
         ]
     },
-    "minimum-stability": "stable",
     "config": {
         "allow-plugins": {
             "php-stubs/generator": true
+        },
+        "platform": {
+            "php": "7.4.30"
         }
     },
     "scripts": {
