@@ -7,7 +7,7 @@
         "ext-mbstring": "*",
         "ext-openssl": "*",
         "ext-sodium": "*",
-        "johnpbloch/wordpress": "5.6.11"
+        "johnpbloch/wordpress": "5.7.9"
     },
     "minimum-stability": "stable",
     "config": {
