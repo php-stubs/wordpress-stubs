@@ -4,5 +4,11 @@
 /.travis.yml export-ignore
 /README.md export-ignore
 /finder.php export-ignore
+/functionMap.php export-ignore
 /generate.sh export-ignore
+/phpstan.neon.dist export-ignore
+/phpunit.xml.dist export-ignore
 /release-latest-versions.sh export-ignore
+/source/ export-ignore
+/visitor.php export-ignore
+/tests/ export-ignore
