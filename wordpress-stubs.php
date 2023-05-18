@@ -32,14 +32,12 @@ class WP_Upgrader_Skin
     public $result = \false;
     public $options = array();
     /**
-     *
      * @param array $args
      */
     public function __construct($args = array())
     {
     }
     /**
-     *
      * @param WP_Upgrader $upgrader
      */
     public function set_upgrader(&$upgrader)
@@ -90,14 +88,12 @@ class WP_Upgrader_Skin
     {
     }
     /**
-     *
      * @param string|WP_Error $errors
      */
     public function error($errors)
     {
     }
     /**
-     *
      * @param string $string
      */
     public function feedback($string)
@@ -176,14 +172,12 @@ class Automatic_Upgrader_Skin extends \WP_Upgrader_Skin
     {
     }
     /**
-     *
      * @return array
      */
     public function get_upgrade_messages()
     {
     }
     /**
-     *
      * @param string|array|WP_Error $data
      */
     public function feedback($data)
@@ -223,7 +217,6 @@ class Bulk_Upgrader_Skin extends \WP_Upgrader_Skin
      */
     public $error = \false;
     /**
-     *
      * @param array $args
      */
     public function __construct($args = array())
@@ -235,7 +228,6 @@ class Bulk_Upgrader_Skin extends \WP_Upgrader_Skin
     {
     }
     /**
-     *
      * @param string $string
      */
     public function feedback($string)
@@ -252,7 +244,6 @@ class Bulk_Upgrader_Skin extends \WP_Upgrader_Skin
     {
     }
     /**
-     *
      * @param string|WP_Error $error
      */
     public function error($error)
@@ -269,14 +260,12 @@ class Bulk_Upgrader_Skin extends \WP_Upgrader_Skin
     {
     }
     /**
-     *
      * @param string $title
      */
     public function before($title = '')
     {
     }
     /**
-     *
      * @param string $title
      */
     public function after($title = '')
@@ -311,19 +300,17 @@ class Bulk_Upgrader_Skin extends \WP_Upgrader_Skin
 class Bulk_Plugin_Upgrader_Skin extends \Bulk_Upgrader_Skin
 {
     public $plugin_info = array();
-    // Plugin_Upgrader::bulk() will fill this in.
+    // Plugin_Upgrader::bulk_upgrade() will fill this in.
     public function add_strings()
     {
     }
     /**
-     *
      * @param string $title
      */
     public function before($title = '')
     {
     }
     /**
-     *
      * @param string $title
      */
     public function after($title = '')
@@ -353,19 +340,17 @@ class Bulk_Plugin_Upgrader_Skin extends \Bulk_Upgrader_Skin
 class Bulk_Theme_Upgrader_Skin extends \Bulk_Upgrader_Skin
 {
     public $theme_info = array();
-    // Theme_Upgrader::bulk() will fill this in.
+    // Theme_Upgrader::bulk_upgrade() will fill this in.
     public function add_strings()
     {
     }
     /**
-     *
      * @param string $title
      */
     public function before($title = '')
     {
     }
     /**
-     *
      * @param string $title
      */
     public function after($title = '')
@@ -476,7 +461,7 @@ class WP_Upgrader
      *
      * @since 2.8.0
      *
-     * @global WP_Filesystem_Base $wp_filesystem Subclass
+     * @global WP_Filesystem_Base $wp_filesystem WordPress filesystem subclass.
      *
      * @param array $directories                  Optional. A list of directories. If any of these do
      *                                            not exist, a WP_Error object will be returned.
@@ -506,7 +491,7 @@ class WP_Upgrader
      *
      * @since 2.8.0
      *
-     * @global WP_Filesystem_Base $wp_filesystem Subclass
+     * @global WP_Filesystem_Base $wp_filesystem WordPress filesystem subclass.
      *
      * @param string $package        Full path to the package file.
      * @param bool   $delete_package Optional. Whether to delete the package file after attempting
@@ -534,7 +519,7 @@ class WP_Upgrader
      *
      * @since 4.3.0
      *
-     * @global WP_Filesystem_Base $wp_filesystem Subclass
+     * @global WP_Filesystem_Base $wp_filesystem WordPress filesystem subclass.
      *
      * @param string $remote_destination The location on the remote filesystem to be cleared
      * @return bool|WP_Error True upon success, WP_Error on failure.
@@ -551,7 +536,7 @@ class WP_Upgrader
      *
      * @since 2.8.0
      *
-     * @global WP_Filesystem_Base $wp_filesystem Subclass
+     * @global WP_Filesystem_Base $wp_filesystem        WordPress filesystem subclass.
      * @global array              $wp_theme_directories
      *
      * @param array|string $args {
@@ -646,7 +631,6 @@ class WP_Upgrader
      * Creates a lock using WordPress options.
      *
      * @since 4.5.0
-     * @static
      *
      * @param string $lock_name       The name of this unique lock.
      * @param int    $release_timeout Optional. The duration in seconds to respect an existing lock.
@@ -660,7 +644,6 @@ class WP_Upgrader
      * Releases an upgrader lock.
      *
      * @since 4.5.0
-     * @static
      *
      * @see WP_Upgrader::create_lock()
      *
@@ -704,7 +687,7 @@ class Core_Upgrader extends \WP_Upgrader
      *
      * @since 2.8.0
      *
-     * @global WP_Filesystem_Base $wp_filesystem Subclass
+     * @global WP_Filesystem_Base $wp_filesystem                WordPress filesystem subclass.
      * @global callable           $_wp_filesystem_direct_method
      *
      * @param object $current Response object for whether WordPress is current.
@@ -727,8 +710,6 @@ class Core_Upgrader extends \WP_Upgrader
      * Determines if this WordPress Core version should update to an offered version or not.
      *
      * @since 3.7.0
-     *
-     * @static
      *
      * @param string $offered_ver The offered version, of the format x.y.z.
      * @return bool True if we should update to the offered version, otherwise false.
@@ -1163,7 +1144,6 @@ class Language_Pack_Upgrader_Skin extends \WP_Upgrader_Skin
     public $done_footer = \false;
     public $display_footer_actions = \true;
     /**
-     *
      * @param array $args
      */
     public function __construct($args = array())
@@ -1175,7 +1155,6 @@ class Language_Pack_Upgrader_Skin extends \WP_Upgrader_Skin
     {
     }
     /**
-     *
      * @param string|WP_Error $error
      */
     public function error($error)
@@ -1231,7 +1210,6 @@ class Language_Pack_Upgrader extends \WP_Upgrader
      * Hooked to the {@see 'upgrader_process_complete'} action by default.
      *
      * @since 3.7.0
-     * @static
      *
      * @param false|WP_Upgrader $upgrader Optional. WP_Upgrader instance or false. If `$upgrader` is
      *                                    a Language_Pack_Upgrader instance, the method will bail to
@@ -1269,17 +1247,18 @@ class Language_Pack_Upgrader extends \WP_Upgrader
      *
      * @since 3.7.0
      *
-     * @global WP_Filesystem_Base $wp_filesystem Subclass
+     * @global WP_Filesystem_Base $wp_filesystem WordPress filesystem subclass.
      *
-     * @param array $language_updates Optional. Language pack updates. Default empty array.
-     * @param array $args {
-     *     Optional. Other arguments for upgrading multiple language packs. Default empty array
+     * @param object[] $language_updates Optional. Array of language packs to update. @see wp_get_translation_updates().
+     *                                   Default empty array.
+     * @param array    $args {
+     *     Other arguments for upgrading multiple language packs. Default empty array.
      *
      *     @type bool $clear_update_cache Whether to clear the update cache when done.
      *                                    Default true.
      * }
      * @return array|bool|WP_Error Will return an array of results, or true if there are no updates,
-     *                                   false or WP_Error for initial errors.
+     *                             false or WP_Error for initial errors.
      * @phpstan-param array{
      *   clear_update_cache?: bool,
      * } $args
@@ -1312,6 +1291,19 @@ class Language_Pack_Upgrader extends \WP_Upgrader
      * @return string The name of the item being updated.
      */
     public function get_name_for_update($update)
+    {
+    }
+    /**
+     * Clears existing translations where this item is going to be installed into.
+     *
+     * @since 5.1.0
+     *
+     * @global WP_Filesystem_Base $wp_filesystem WordPress filesystem subclass.
+     *
+     * @param string $remote_destination The location on the remote filesystem to be cleared.
+     * @return bool|WP_Error True upon success, WP_Error on failure.
+     */
+    public function clear_destination($remote_destination)
     {
     }
 }
@@ -2132,7 +2124,6 @@ class Plugin_Installer_Skin extends \WP_Upgrader_Skin
     public $api;
     public $type;
     /**
-     *
      * @param array $args
      */
     public function __construct($args = array())
@@ -2170,7 +2161,6 @@ class Plugin_Upgrader_Skin extends \WP_Upgrader_Skin
     public $plugin_active = \false;
     public $plugin_network_active = \false;
     /**
-     *
      * @param array $args
      */
     public function __construct($args = array())
@@ -2261,7 +2251,7 @@ class Plugin_Upgrader extends \WP_Upgrader
      * @since 2.8.0
      * @since 3.7.0 The `$args` parameter was added, making clearing the plugin update cache optional.
      *
-     * @param string $plugin The basename path to the main plugin file.
+     * @param string $plugin Path to the plugin file relative to the plugins directory.
      * @param array  $args {
      *     Optional. Other arguments for upgrading a plugin package. Default empty array.
      *
@@ -2282,12 +2272,11 @@ class Plugin_Upgrader extends \WP_Upgrader
      * @since 2.8.0
      * @since 3.7.0 The `$args` parameter was added, making clearing the plugin update cache optional.
      *
-     * @param array $plugins Array of the basename paths of the plugins' main files.
-     * @param array $args {
-     *     Optional. Other arguments for upgrading several plugins at once. Default empty array.
+     * @param string[] $plugins Array of paths to plugin files relative to the plugins directory.
+     * @param array    $args {
+     *     Optional. Other arguments for upgrading several plugins at once.
      *
-     *     @type bool $clear_update_cache Whether to clear the plugin updates cache if successful.
-     *                                    Default true.
+     *     @type bool $clear_update_cache Whether to clear the plugin updates cache if successful. Default true.
      * }
      * @return array|false An array of results indexed by plugin file, or false if unable to connect to the filesystem.
      * @phpstan-param array{
@@ -2305,7 +2294,7 @@ class Plugin_Upgrader extends \WP_Upgrader
      *
      * @since 3.3.0
      *
-     * @global WP_Filesystem_Base $wp_filesystem Subclass
+     * @global WP_Filesystem_Base $wp_filesystem WordPress filesystem subclass.
      *
      * @param string $source The path to the downloaded package source.
      * @return string|WP_Error The source as passed, or a WP_Error object
@@ -2349,7 +2338,7 @@ class Plugin_Upgrader extends \WP_Upgrader
      *
      * @since 2.8.0
      *
-     * @global WP_Filesystem_Base $wp_filesystem Subclass
+     * @global WP_Filesystem_Base $wp_filesystem WordPress filesystem subclass.
      *
      * @param bool|WP_Error $removed
      * @param string        $local_destination
@@ -2381,7 +2370,6 @@ class Theme_Installer_Skin extends \WP_Upgrader_Skin
     public $api;
     public $type;
     /**
-     *
      * @param array $args
      */
     public function __construct($args = array())
@@ -2417,7 +2405,6 @@ class Theme_Upgrader_Skin extends \WP_Upgrader_Skin
 {
     public $theme = '';
     /**
-     *
      * @param array $args
      */
     public function __construct($args = array())
@@ -2559,8 +2546,8 @@ class Theme_Upgrader extends \WP_Upgrader
      * @since 3.0.0
      * @since 3.7.0 The `$args` parameter was added, making clearing the update cache optional.
      *
-     * @param array $themes The theme slugs.
-     * @param array $args {
+     * @param string[] $themes Array of the theme slugs.
+     * @param array    $args {
      *     Optional. Other arguments for upgrading several themes at once. Default empty array.
      *
      *     @type bool $clear_update_cache Whether to clear the update cache if successful.
@@ -2583,7 +2570,7 @@ class Theme_Upgrader extends \WP_Upgrader
      *
      * @since 3.3.0
      *
-     * @global WP_Filesystem_Base $wp_filesystem Subclass
+     * @global WP_Filesystem_Base $wp_filesystem WordPress filesystem subclass.
      *
      * @param string $source The full path to the package source.
      * @return string|WP_Error The source or a WP_Error.
@@ -2882,8 +2869,8 @@ class Walker_Category_Checklist extends \Walker
      * @param array  $args   An array of arguments. @see wp_terms_checklist()
      * @phpstan-param array{
      *   descendants_and_self?: int,
-     *   selected_cats?: array,
-     *   popular_cats?: array,
+     *   selected_cats?: int[],
+     *   popular_cats?: int[],
      *   walker?: object,
      *   taxonomy?: string,
      *   checked_ontop?: bool,
@@ -2905,8 +2892,8 @@ class Walker_Category_Checklist extends \Walker
      * @param array  $args   An array of arguments. @see wp_terms_checklist()
      * @phpstan-param array{
      *   descendants_and_self?: int,
-     *   selected_cats?: array,
-     *   popular_cats?: array,
+     *   selected_cats?: int[],
+     *   popular_cats?: int[],
      *   walker?: object,
      *   taxonomy?: string,
      *   checked_ontop?: bool,
@@ -2930,8 +2917,8 @@ class Walker_Category_Checklist extends \Walker
      * @param int    $id       ID of the current term.
      * @phpstan-param array{
      *   descendants_and_self?: int,
-     *   selected_cats?: array,
-     *   popular_cats?: array,
+     *   selected_cats?: int[],
+     *   popular_cats?: int[],
      *   walker?: object,
      *   taxonomy?: string,
      *   checked_ontop?: bool,
@@ -2954,8 +2941,8 @@ class Walker_Category_Checklist extends \Walker
      * @param array  $args     An array of arguments. @see wp_terms_checklist()
      * @phpstan-param array{
      *   descendants_and_self?: int,
-     *   selected_cats?: array,
-     *   popular_cats?: array,
+     *   selected_cats?: int[],
+     *   popular_cats?: int[],
      *   walker?: object,
      *   taxonomy?: string,
      *   checked_ontop?: bool,
@@ -3078,7 +3065,6 @@ class Walker_Nav_Menu extends \Walker
 class Walker_Nav_Menu_Checklist extends \Walker_Nav_Menu
 {
     /**
-     *
      * @param array $fields
      */
     public function __construct($fields = \false)
@@ -3548,7 +3534,7 @@ class WP_List_Table
      *
      * @since 4.0.0
      *
-     * @param callable $name      Method to call.
+     * @param string   $name      Method to call.
      * @param array    $arguments Arguments to pass when calling.
      * @return mixed|bool Return value of the callback, false otherwise.
      */
@@ -3566,6 +3552,7 @@ class WP_List_Table
     }
     /**
      * Prepares the list of items for displaying.
+     *
      * @uses WP_List_Table::set_pagination_args()
      *
      * @since 3.1.0
@@ -3685,8 +3672,8 @@ class WP_List_Table
      *
      * @since 3.1.0
      *
-     * @param array $actions The list of actions
-     * @param bool $always_visible Whether the actions should be always visible
+     * @param string[] $actions        An array of action links.
+     * @param bool     $always_visible Whether the actions should be always visible.
      * @return string
      */
     protected function row_actions($actions, $always_visible = \false)
@@ -3915,7 +3902,6 @@ class WP_List_Table
     {
     }
     /**
-     *
      * @param object $item
      * @param string $column_name
      */
@@ -3923,7 +3909,6 @@ class WP_List_Table
     {
     }
     /**
-     *
      * @param object $item
      */
     protected function column_cb($item)
@@ -3962,7 +3947,6 @@ class WP_List_Table
     }
     /**
      * Send required variables to JavaScript land
-     *
      */
     public function _js_vars()
     {
@@ -4012,7 +3996,6 @@ class WP_Comments_List_Table extends \WP_List_Table
     {
     }
     /**
-     *
      * @global int    $post_id
      * @global string $comment_status
      * @global string $search
@@ -4022,7 +4005,6 @@ class WP_Comments_List_Table extends \WP_List_Table
     {
     }
     /**
-     *
      * @param string $comment_status
      * @return int
      */
@@ -4030,14 +4012,12 @@ class WP_Comments_List_Table extends \WP_List_Table
     {
     }
     /**
-     *
      * @global string $comment_status
      */
     public function no_items()
     {
     }
     /**
-     *
      * @global int $post_id
      * @global string $comment_status
      * @global string $comment_type
@@ -4046,7 +4026,6 @@ class WP_Comments_List_Table extends \WP_List_Table
     {
     }
     /**
-     *
      * @global string $comment_status
      *
      * @return array
@@ -4055,7 +4034,6 @@ class WP_Comments_List_Table extends \WP_List_Table
     {
     }
     /**
-     *
      * @global string $comment_status
      * @global string $comment_type
      *
@@ -4071,7 +4049,6 @@ class WP_Comments_List_Table extends \WP_List_Table
     {
     }
     /**
-     *
      * @global int $post_id
      *
      * @return array
@@ -4080,7 +4057,6 @@ class WP_Comments_List_Table extends \WP_List_Table
     {
     }
     /**
-     *
      * @return array
      */
     protected function get_sortable_columns()
@@ -4126,7 +4102,6 @@ class WP_Comments_List_Table extends \WP_List_Table
     {
     }
     /**
-     *
      * @param WP_Comment $comment The comment object.
      */
     public function column_cb($comment)
@@ -4139,7 +4114,6 @@ class WP_Comments_List_Table extends \WP_List_Table
     {
     }
     /**
-     *
      * @global string $comment_status
      *
      * @param WP_Comment $comment The comment object.
@@ -4148,21 +4122,18 @@ class WP_Comments_List_Table extends \WP_List_Table
     {
     }
     /**
-     *
      * @param WP_Comment $comment The comment object.
      */
     public function column_date($comment)
     {
     }
     /**
-     *
      * @param WP_Comment $comment The comment object.
      */
     public function column_response($comment)
     {
     }
     /**
-     *
      * @param WP_Comment $comment     The comment object.
      * @param string     $column_name The custom column's name.
      */
@@ -4731,7 +4702,7 @@ class WP_Filesystem_Base
      *
      * @since 2.5.0
      * @abstract
-     * 
+     *
      * @param string $file Path to the file.
      * @return string|bool Username of the user or false on error.
      */
@@ -5005,7 +4976,6 @@ class WP_Filesystem_Direct extends \WP_Filesystem_Base
     /**
      * constructor
      *
-     *
      * @param mixed $arg ignored argument
      */
     public function __construct($arg)
@@ -5013,7 +4983,6 @@ class WP_Filesystem_Direct extends \WP_Filesystem_Base
     }
     /**
      * Reads entire file into a string
-     *
      *
      * @param string $file Name of the file to read.
      * @return string|bool The function returns the read data or false on failure.
@@ -5024,7 +4993,6 @@ class WP_Filesystem_Direct extends \WP_Filesystem_Base
     /**
      * Reads entire file into an array
      *
-     *
      * @param string $file Path to the file.
      * @return array|bool the file contents in an array or false on failure.
      */
@@ -5033,7 +5001,6 @@ class WP_Filesystem_Direct extends \WP_Filesystem_Base
     }
     /**
      * Write a string to a file
-     *
      *
      * @param string $file     Remote path to the file where to write the data.
      * @param string $contents The data to write.
@@ -5047,7 +5014,6 @@ class WP_Filesystem_Direct extends \WP_Filesystem_Base
     /**
      * Gets the current working directory
      *
-     *
      * @return string|bool the current working directory on success, or false on failure.
      */
     public function cwd()
@@ -5055,7 +5021,6 @@ class WP_Filesystem_Direct extends \WP_Filesystem_Base
     }
     /**
      * Change directory
-     *
      *
      * @param string $dir The new current directory.
      * @return bool Returns true on success or false on failure.
@@ -5065,7 +5030,6 @@ class WP_Filesystem_Direct extends \WP_Filesystem_Base
     }
     /**
      * Changes file group
-     *
      *
      * @param string $file      Path to the file.
      * @param mixed  $group     A group name or number.
@@ -5077,7 +5041,6 @@ class WP_Filesystem_Direct extends \WP_Filesystem_Base
     }
     /**
      * Changes filesystem permissions
-     *
      *
      * @param string $file      Path to the file.
      * @param int    $mode      Optional. The permissions as octal number, usually 0644 for files,
@@ -5091,7 +5054,6 @@ class WP_Filesystem_Direct extends \WP_Filesystem_Base
     /**
      * Changes file owner
      *
-     *
      * @param string $file      Path to the file.
      * @param mixed  $owner     A user name or number.
      * @param bool   $recursive Optional. If set True changes file owner recursively.
@@ -5104,7 +5066,6 @@ class WP_Filesystem_Direct extends \WP_Filesystem_Base
     /**
      * Gets file owner
      *
-     *
      * @param string $file Path to the file.
      * @return string|bool Username of the user or false on error.
      */
@@ -5116,7 +5077,6 @@ class WP_Filesystem_Direct extends \WP_Filesystem_Base
      *
      * FIXME does not handle errors in fileperms()
      *
-     *
      * @param string $file Path to the file.
      * @return string Mode of the file (last 3 digits).
      */
@@ -5124,7 +5084,6 @@ class WP_Filesystem_Direct extends \WP_Filesystem_Base
     {
     }
     /**
-     *
      * @param string $file
      * @return string|false
      */
@@ -5132,7 +5091,6 @@ class WP_Filesystem_Direct extends \WP_Filesystem_Base
     {
     }
     /**
-     *
      * @param string $source
      * @param string $destination
      * @param bool   $overwrite
@@ -5143,7 +5101,6 @@ class WP_Filesystem_Direct extends \WP_Filesystem_Base
     {
     }
     /**
-     *
      * @param string $source
      * @param string $destination
      * @param bool $overwrite
@@ -5153,7 +5110,6 @@ class WP_Filesystem_Direct extends \WP_Filesystem_Base
     {
     }
     /**
-     *
      * @param string $file
      * @param bool $recursive
      * @param string $type
@@ -5163,7 +5119,6 @@ class WP_Filesystem_Direct extends \WP_Filesystem_Base
     {
     }
     /**
-     *
      * @param string $file
      * @return bool
      */
@@ -5171,7 +5126,6 @@ class WP_Filesystem_Direct extends \WP_Filesystem_Base
     {
     }
     /**
-     *
      * @param string $file
      * @return bool
      */
@@ -5179,7 +5133,6 @@ class WP_Filesystem_Direct extends \WP_Filesystem_Base
     {
     }
     /**
-     *
      * @param string $path
      * @return bool
      */
@@ -5187,7 +5140,6 @@ class WP_Filesystem_Direct extends \WP_Filesystem_Base
     {
     }
     /**
-     *
      * @param string $file
      * @return bool
      */
@@ -5195,7 +5147,6 @@ class WP_Filesystem_Direct extends \WP_Filesystem_Base
     {
     }
     /**
-     *
      * @param string $file
      * @return bool
      */
@@ -5203,7 +5154,6 @@ class WP_Filesystem_Direct extends \WP_Filesystem_Base
     {
     }
     /**
-     *
      * @param string $file
      * @return int
      */
@@ -5211,7 +5161,6 @@ class WP_Filesystem_Direct extends \WP_Filesystem_Base
     {
     }
     /**
-     *
      * @param string $file
      * @return int
      */
@@ -5219,7 +5168,6 @@ class WP_Filesystem_Direct extends \WP_Filesystem_Base
     {
     }
     /**
-     *
      * @param string $file
      * @return int
      */
@@ -5227,7 +5175,6 @@ class WP_Filesystem_Direct extends \WP_Filesystem_Base
     {
     }
     /**
-     *
      * @param string $file
      * @param int $time
      * @param int $atime
@@ -5237,7 +5184,6 @@ class WP_Filesystem_Direct extends \WP_Filesystem_Base
     {
     }
     /**
-     *
      * @param string $path
      * @param mixed  $chmod
      * @param mixed  $chown
@@ -5248,7 +5194,6 @@ class WP_Filesystem_Direct extends \WP_Filesystem_Base
     {
     }
     /**
-     *
      * @param string $path
      * @param bool $recursive
      * @return bool
@@ -5257,7 +5202,6 @@ class WP_Filesystem_Direct extends \WP_Filesystem_Base
     {
     }
     /**
-     *
      * @param string $path
      * @param bool $include_hidden
      * @param bool $recursive
@@ -5285,14 +5229,12 @@ class WP_Filesystem_FTPext extends \WP_Filesystem_Base
 {
     public $link;
     /**
-     *
      * @param array $opt
      */
     public function __construct($opt = '')
     {
     }
     /**
-     *
      * @return bool
      */
     public function connect()
@@ -5311,7 +5253,6 @@ class WP_Filesystem_FTPext extends \WP_Filesystem_Base
     {
     }
     /**
-     *
      * @param string $file
      * @return array
      */
@@ -5319,7 +5260,6 @@ class WP_Filesystem_FTPext extends \WP_Filesystem_Base
     {
     }
     /**
-     *
      * @param string $file
      * @param string $contents
      * @param bool|int $mode
@@ -5329,14 +5269,12 @@ class WP_Filesystem_FTPext extends \WP_Filesystem_Base
     {
     }
     /**
-     *
      * @return string
      */
     public function cwd()
     {
     }
     /**
-     *
      * @param string $dir
      * @return bool
      */
@@ -5344,7 +5282,6 @@ class WP_Filesystem_FTPext extends \WP_Filesystem_Base
     {
     }
     /**
-     *
      * @param string $file
      * @param int $mode
      * @param bool $recursive
@@ -5354,7 +5291,6 @@ class WP_Filesystem_FTPext extends \WP_Filesystem_Base
     {
     }
     /**
-     *
      * @param string $file
      * @return string
      */
@@ -5362,7 +5298,6 @@ class WP_Filesystem_FTPext extends \WP_Filesystem_Base
     {
     }
     /**
-     *
      * @param string $file
      * @return string
      */
@@ -5370,7 +5305,6 @@ class WP_Filesystem_FTPext extends \WP_Filesystem_Base
     {
     }
     /**
-     *
      * @param string $file
      * @return string
      */
@@ -5378,7 +5312,6 @@ class WP_Filesystem_FTPext extends \WP_Filesystem_Base
     {
     }
     /**
-     *
      * @param string $source
      * @param string $destination
      * @param bool   $overwrite
@@ -5389,7 +5322,6 @@ class WP_Filesystem_FTPext extends \WP_Filesystem_Base
     {
     }
     /**
-     *
      * @param string $source
      * @param string $destination
      * @param bool $overwrite
@@ -5399,7 +5331,6 @@ class WP_Filesystem_FTPext extends \WP_Filesystem_Base
     {
     }
     /**
-     *
      * @param string $file
      * @param bool $recursive
      * @param string $type
@@ -5409,7 +5340,6 @@ class WP_Filesystem_FTPext extends \WP_Filesystem_Base
     {
     }
     /**
-     *
      * @param string $file
      * @return bool
      */
@@ -5417,7 +5347,6 @@ class WP_Filesystem_FTPext extends \WP_Filesystem_Base
     {
     }
     /**
-     *
      * @param string $file
      * @return bool
      */
@@ -5425,7 +5354,6 @@ class WP_Filesystem_FTPext extends \WP_Filesystem_Base
     {
     }
     /**
-     *
      * @param string $path
      * @return bool
      */
@@ -5433,7 +5361,6 @@ class WP_Filesystem_FTPext extends \WP_Filesystem_Base
     {
     }
     /**
-     *
      * @param string $file
      * @return bool
      */
@@ -5441,7 +5368,6 @@ class WP_Filesystem_FTPext extends \WP_Filesystem_Base
     {
     }
     /**
-     *
      * @param string $file
      * @return bool
      */
@@ -5449,7 +5375,6 @@ class WP_Filesystem_FTPext extends \WP_Filesystem_Base
     {
     }
     /**
-     *
      * @param string $file
      * @return bool
      */
@@ -5457,7 +5382,6 @@ class WP_Filesystem_FTPext extends \WP_Filesystem_Base
     {
     }
     /**
-     *
      * @param string $file
      * @return int
      */
@@ -5465,7 +5389,6 @@ class WP_Filesystem_FTPext extends \WP_Filesystem_Base
     {
     }
     /**
-     *
      * @param string $file
      * @return int
      */
@@ -5473,7 +5396,6 @@ class WP_Filesystem_FTPext extends \WP_Filesystem_Base
     {
     }
     /**
-     *
      * @param string $file
      * @return bool
      */
@@ -5481,7 +5403,6 @@ class WP_Filesystem_FTPext extends \WP_Filesystem_Base
     {
     }
     /**
-     *
      * @param string $path
      * @param mixed $chmod
      * @param mixed $chown
@@ -5492,7 +5413,6 @@ class WP_Filesystem_FTPext extends \WP_Filesystem_Base
     {
     }
     /**
-     *
      * @param string $path
      * @param bool $recursive
      * @return bool
@@ -5501,7 +5421,6 @@ class WP_Filesystem_FTPext extends \WP_Filesystem_Base
     {
     }
     /**
-     *
      * @staticvar bool $is_windows
      * @param string $line
      * @return array
@@ -5510,7 +5429,6 @@ class WP_Filesystem_FTPext extends \WP_Filesystem_Base
     {
     }
     /**
-     *
      * @param string $path
      * @param bool $include_hidden
      * @param bool $recursive
@@ -5546,14 +5464,12 @@ class WP_Filesystem_ftpsockets extends \WP_Filesystem_Base
      */
     public $ftp;
     /**
-     *
      * @param array $opt
      */
     public function __construct($opt = '')
     {
     }
     /**
-     *
      * @return bool
      */
     public function connect()
@@ -5572,7 +5488,6 @@ class WP_Filesystem_ftpsockets extends \WP_Filesystem_Base
     {
     }
     /**
-     *
      * @param string $file
      * @return array
      */
@@ -5580,7 +5495,6 @@ class WP_Filesystem_ftpsockets extends \WP_Filesystem_Base
     {
     }
     /**
-     *
      * @param string $file
      * @param string $contents
      * @param int|bool $mode
@@ -5590,14 +5504,12 @@ class WP_Filesystem_ftpsockets extends \WP_Filesystem_Base
     {
     }
     /**
-     *
      * @return string
      */
     public function cwd()
     {
     }
     /**
-     *
      * @param string $file
      * @return bool
      */
@@ -5605,7 +5517,6 @@ class WP_Filesystem_ftpsockets extends \WP_Filesystem_Base
     {
     }
     /**
-     *
      * @param string $file
      * @param int|bool $mode
      * @param bool $recursive
@@ -5615,7 +5526,6 @@ class WP_Filesystem_ftpsockets extends \WP_Filesystem_Base
     {
     }
     /**
-     *
      * @param string $file
      * @return string
      */
@@ -5623,7 +5533,6 @@ class WP_Filesystem_ftpsockets extends \WP_Filesystem_Base
     {
     }
     /**
-     *
      * @param string $file
      * @return string
      */
@@ -5631,7 +5540,6 @@ class WP_Filesystem_ftpsockets extends \WP_Filesystem_Base
     {
     }
     /**
-     *
      * @param string $file
      * @return string
      */
@@ -5639,7 +5547,6 @@ class WP_Filesystem_ftpsockets extends \WP_Filesystem_Base
     {
     }
     /**
-     *
      * @param string   $source
      * @param string   $destination
      * @param bool     $overwrite
@@ -5650,7 +5557,6 @@ class WP_Filesystem_ftpsockets extends \WP_Filesystem_Base
     {
     }
     /**
-     *
      * @param string $source
      * @param string $destination
      * @param bool   $overwrite
@@ -5660,7 +5566,6 @@ class WP_Filesystem_ftpsockets extends \WP_Filesystem_Base
     {
     }
     /**
-     *
      * @param string $file
      * @param bool   $recursive
      * @param string $type
@@ -5670,7 +5575,6 @@ class WP_Filesystem_ftpsockets extends \WP_Filesystem_Base
     {
     }
     /**
-     *
      * @param string $file
      * @return bool
      */
@@ -5678,7 +5582,6 @@ class WP_Filesystem_ftpsockets extends \WP_Filesystem_Base
     {
     }
     /**
-     *
      * @param string $file
      * @return bool
      */
@@ -5686,7 +5589,6 @@ class WP_Filesystem_ftpsockets extends \WP_Filesystem_Base
     {
     }
     /**
-     *
      * @param string $path
      * @return bool
      */
@@ -5694,7 +5596,6 @@ class WP_Filesystem_ftpsockets extends \WP_Filesystem_Base
     {
     }
     /**
-     *
      * @param string $file
      * @return bool
      */
@@ -5702,7 +5603,6 @@ class WP_Filesystem_ftpsockets extends \WP_Filesystem_Base
     {
     }
     /**
-     *
      * @param string $file
      * @return bool
      */
@@ -5710,7 +5610,6 @@ class WP_Filesystem_ftpsockets extends \WP_Filesystem_Base
     {
     }
     /**
-     *
      * @param string $file
      * @return bool
      */
@@ -5718,7 +5617,6 @@ class WP_Filesystem_ftpsockets extends \WP_Filesystem_Base
     {
     }
     /**
-     *
      * @param string $file
      * @return int
      */
@@ -5733,7 +5631,6 @@ class WP_Filesystem_ftpsockets extends \WP_Filesystem_Base
     {
     }
     /**
-     *
      * @param string $file
      * @param int $time
      * @param int $atime
@@ -5743,7 +5640,6 @@ class WP_Filesystem_ftpsockets extends \WP_Filesystem_Base
     {
     }
     /**
-     *
      * @param string $path
      * @param mixed  $chmod
      * @param mixed  $chown
@@ -5754,7 +5650,6 @@ class WP_Filesystem_ftpsockets extends \WP_Filesystem_Base
     {
     }
     /**
-     *
      * @param string $path
      * @param bool $recursive
      * @return bool
@@ -5763,7 +5658,6 @@ class WP_Filesystem_ftpsockets extends \WP_Filesystem_Base
     {
     }
     /**
-     *
      * @param string $path
      * @param bool   $include_hidden
      * @param bool   $recursive
@@ -5824,14 +5718,12 @@ class WP_Filesystem_SSH2 extends \WP_Filesystem_Base
     public $sftp_link;
     public $keys = \false;
     /**
-     *
      * @param array $opt
      */
     public function __construct($opt = '')
     {
     }
     /**
-     *
      * @return bool
      */
     public function connect()
@@ -5845,7 +5737,6 @@ class WP_Filesystem_SSH2 extends \WP_Filesystem_Base
      * this, the path is converted to /./ which is semantically the same as /
      * See https://bugs.php.net/bug.php?id=64169 for more details.
      *
-     *
      * @since 4.4.0
      *
      * @param string $path The File/Directory path on the remote server to return
@@ -5855,7 +5746,6 @@ class WP_Filesystem_SSH2 extends \WP_Filesystem_Base
     {
     }
     /**
-     *
      * @param string $command
      * @param bool $returnbool
      * @return bool|string True on success, false on failure. String if the command was executed, `$returnbool`
@@ -5865,7 +5755,6 @@ class WP_Filesystem_SSH2 extends \WP_Filesystem_Base
     {
     }
     /**
-     *
      * @param string $file
      * @return string|false
      */
@@ -5873,7 +5762,6 @@ class WP_Filesystem_SSH2 extends \WP_Filesystem_Base
     {
     }
     /**
-     *
      * @param string $file
      * @return array
      */
@@ -5881,7 +5769,6 @@ class WP_Filesystem_SSH2 extends \WP_Filesystem_Base
     {
     }
     /**
-     *
      * @param string   $file
      * @param string   $contents
      * @param bool|int $mode
@@ -5891,14 +5778,12 @@ class WP_Filesystem_SSH2 extends \WP_Filesystem_Base
     {
     }
     /**
-     *
      * @return bool
      */
     public function cwd()
     {
     }
     /**
-     *
      * @param string $dir
      * @return bool|string
      */
@@ -5906,7 +5791,6 @@ class WP_Filesystem_SSH2 extends \WP_Filesystem_Base
     {
     }
     /**
-     *
      * @param string $file
      * @param string $group
      * @param bool   $recursive
@@ -5917,7 +5801,6 @@ class WP_Filesystem_SSH2 extends \WP_Filesystem_Base
     {
     }
     /**
-     *
      * @param string $file
      * @param int    $mode
      * @param bool   $recursive
@@ -5929,7 +5812,6 @@ class WP_Filesystem_SSH2 extends \WP_Filesystem_Base
     /**
      * Change the ownership of a file / folder.
      *
-     *
      * @param string     $file      Path to the file.
      * @param string|int $owner     A user name or number.
      * @param bool       $recursive Optional. If set True changes file owner recursivly. Default False.
@@ -5939,7 +5821,6 @@ class WP_Filesystem_SSH2 extends \WP_Filesystem_Base
     {
     }
     /**
-     *
      * @param string $file
      * @return string|false
      */
@@ -5947,7 +5828,6 @@ class WP_Filesystem_SSH2 extends \WP_Filesystem_Base
     {
     }
     /**
-     *
      * @param string $file
      * @return string
      */
@@ -5955,7 +5835,6 @@ class WP_Filesystem_SSH2 extends \WP_Filesystem_Base
     {
     }
     /**
-     *
      * @param string $file
      * @return string|false
      */
@@ -5963,7 +5842,6 @@ class WP_Filesystem_SSH2 extends \WP_Filesystem_Base
     {
     }
     /**
-     *
      * @param string   $source
      * @param string   $destination
      * @param bool     $overwrite
@@ -5974,7 +5852,6 @@ class WP_Filesystem_SSH2 extends \WP_Filesystem_Base
     {
     }
     /**
-     *
      * @param string $source
      * @param string $destination
      * @param bool   $overwrite
@@ -5984,7 +5861,6 @@ class WP_Filesystem_SSH2 extends \WP_Filesystem_Base
     {
     }
     /**
-     *
      * @param string      $file
      * @param bool        $recursive
      * @param string|bool $type
@@ -5994,7 +5870,6 @@ class WP_Filesystem_SSH2 extends \WP_Filesystem_Base
     {
     }
     /**
-     *
      * @param string $file
      * @return bool
      */
@@ -6002,7 +5877,6 @@ class WP_Filesystem_SSH2 extends \WP_Filesystem_Base
     {
     }
     /**
-     *
      * @param string $file
      * @return bool
      */
@@ -6010,7 +5884,6 @@ class WP_Filesystem_SSH2 extends \WP_Filesystem_Base
     {
     }
     /**
-     *
      * @param string $path
      * @return bool
      */
@@ -6018,7 +5891,6 @@ class WP_Filesystem_SSH2 extends \WP_Filesystem_Base
     {
     }
     /**
-     *
      * @param string $file
      * @return bool
      */
@@ -6026,7 +5898,6 @@ class WP_Filesystem_SSH2 extends \WP_Filesystem_Base
     {
     }
     /**
-     *
      * @param string $file
      * @return bool
      */
@@ -6034,7 +5905,6 @@ class WP_Filesystem_SSH2 extends \WP_Filesystem_Base
     {
     }
     /**
-     *
      * @param string $file
      * @return int
      */
@@ -6042,7 +5912,6 @@ class WP_Filesystem_SSH2 extends \WP_Filesystem_Base
     {
     }
     /**
-     *
      * @param string $file
      * @return int
      */
@@ -6050,7 +5919,6 @@ class WP_Filesystem_SSH2 extends \WP_Filesystem_Base
     {
     }
     /**
-     *
      * @param string $file
      * @return int
      */
@@ -6058,7 +5926,6 @@ class WP_Filesystem_SSH2 extends \WP_Filesystem_Base
     {
     }
     /**
-     *
      * @param string $file
      * @param int    $time
      * @param int    $atime
@@ -6067,7 +5934,6 @@ class WP_Filesystem_SSH2 extends \WP_Filesystem_Base
     {
     }
     /**
-     *
      * @param string $path
      * @param mixed  $chmod
      * @param mixed  $chown
@@ -6078,7 +5944,6 @@ class WP_Filesystem_SSH2 extends \WP_Filesystem_Base
     {
     }
     /**
-     *
      * @param string $path
      * @param bool   $recursive
      * @return bool
@@ -6087,7 +5952,6 @@ class WP_Filesystem_SSH2 extends \WP_Filesystem_Base
     {
     }
     /**
-     *
      * @param string $path
      * @param bool   $include_hidden
      * @param bool   $recursive
@@ -6105,7 +5969,6 @@ class WP_Importer
 {
     /**
      * Class Constructor
-     *
      */
     public function __construct()
     {
@@ -6146,7 +6009,6 @@ class WP_Importer
     {
     }
     /**
-     *
      * @param int $blog_id
      * @return int|void
      */
@@ -6154,7 +6016,6 @@ class WP_Importer
     {
     }
     /**
-     *
      * @param int $user_id
      * @return int|void
      */
@@ -6246,8 +6107,6 @@ final class WP_Internal_Pointers
      * Individual pointers (e.g. wp390_widgets) can be disabled using the following:
      *     remove_action( 'admin_print_footer_scripts', array( 'WP_Internal_Pointers', 'pointer_wp390_widgets' ) );
      *
-     * @static
-     *
      * @param string $hook_suffix The current admin page.
      */
     public static function enqueue_scripts($hook_suffix)
@@ -6296,8 +6155,6 @@ final class WP_Internal_Pointers
      *
      * @since 3.3.0
      *
-     * @static
-     *
      * @param int $user_id User ID.
      */
     public static function dismiss_pointers_for_new_users($user_id)
@@ -6334,14 +6191,12 @@ class WP_Links_List_Table extends \WP_List_Table
     {
     }
     /**
-     *
      * @return bool
      */
     public function ajax_user_can()
     {
     }
     /**
-     *
      * @global int    $cat_id
      * @global string $s
      * @global string $orderby
@@ -6356,14 +6211,12 @@ class WP_Links_List_Table extends \WP_List_Table
     {
     }
     /**
-     *
      * @return array
      */
     protected function get_bulk_actions()
     {
     }
     /**
-     *
      * @global int $cat_id
      * @param string $which
      */
@@ -6371,14 +6224,12 @@ class WP_Links_List_Table extends \WP_List_Table
     {
     }
     /**
-     *
      * @return array
      */
     public function get_columns()
     {
     }
     /**
-     *
      * @return array
      */
     protected function get_sortable_columns()
@@ -6514,14 +6365,12 @@ class _WP_List_Table_Compat extends \WP_List_Table
     {
     }
     /**
-     *
      * @return array
      */
     protected function get_column_info()
     {
     }
     /**
-     *
      * @return array
      */
     public function get_columns()
@@ -6565,14 +6414,12 @@ class WP_Media_List_Table extends \WP_List_Table
     {
     }
     /**
-     *
      * @return bool
      */
     public function ajax_user_can()
     {
     }
     /**
-     *
      * @global WP_Query $wp_query
      * @global array    $post_mime_types
      * @global array    $avail_post_mime_types
@@ -6590,7 +6437,6 @@ class WP_Media_List_Table extends \WP_List_Table
     {
     }
     /**
-     *
      * @return array
      */
     protected function get_bulk_actions()
@@ -6603,14 +6449,12 @@ class WP_Media_List_Table extends \WP_List_Table
     {
     }
     /**
-     *
      * @return string
      */
     public function current_action()
     {
     }
     /**
-     *
      * @return bool
      */
     public function has_items()
@@ -6630,14 +6474,12 @@ class WP_Media_List_Table extends \WP_List_Table
     {
     }
     /**
-     *
      * @return array
      */
     public function get_columns()
     {
     }
     /**
-     *
      * @return array
      */
     protected function get_sortable_columns()
@@ -6725,7 +6567,6 @@ class WP_Media_List_Table extends \WP_List_Table
     {
     }
     /**
-     *
      * @global WP_Post $post
      */
     public function display_rows()
@@ -6792,7 +6633,6 @@ class WP_MS_Sites_List_Table extends \WP_List_Table
     {
     }
     /**
-     *
      * @return bool
      */
     public function ajax_user_can()
@@ -6816,7 +6656,6 @@ class WP_MS_Sites_List_Table extends \WP_List_Table
     {
     }
     /**
-     *
      * @return array
      */
     protected function get_bulk_actions()
@@ -6930,7 +6769,6 @@ class WP_MS_Sites_List_Table extends \WP_List_Table
     {
     }
     /**
-     *
      * @global string $mode
      */
     public function display_rows()
@@ -6995,21 +6833,18 @@ class WP_MS_Themes_List_Table extends \WP_List_Table
     {
     }
     /**
-     *
      * @return array
      */
     protected function get_table_classes()
     {
     }
     /**
-     *
      * @return bool
      */
     public function ajax_user_can()
     {
     }
     /**
-     *
      * @global string $status
      * @global array $totals
      * @global int $page
@@ -7045,14 +6880,12 @@ class WP_MS_Themes_List_Table extends \WP_List_Table
     {
     }
     /**
-     *
      * @return array
      */
     public function get_columns()
     {
     }
     /**
-     *
      * @return array
      */
     protected function get_sortable_columns()
@@ -7069,7 +6902,6 @@ class WP_MS_Themes_List_Table extends \WP_List_Table
     {
     }
     /**
-     *
      * @global array $totals
      * @global string $status
      * @return array
@@ -7176,14 +7008,12 @@ class WP_MS_Themes_List_Table extends \WP_List_Table
 class WP_MS_Users_List_Table extends \WP_List_Table
 {
     /**
-     *
      * @return bool
      */
     public function ajax_user_can()
     {
     }
     /**
-     *
      * @global string $usersearch
      * @global string $role
      * @global wpdb   $wpdb
@@ -7193,7 +7023,6 @@ class WP_MS_Users_List_Table extends \WP_List_Table
     {
     }
     /**
-     *
      * @return array
      */
     protected function get_bulk_actions()
@@ -7205,7 +7034,6 @@ class WP_MS_Users_List_Table extends \WP_List_Table
     {
     }
     /**
-     *
      * @global string $role
      * @return array
      */
@@ -7221,14 +7049,12 @@ class WP_MS_Users_List_Table extends \WP_List_Table
     {
     }
     /**
-     *
      * @return array
      */
     public function get_columns()
     {
     }
     /**
-     *
      * @return array
      */
     protected function get_sortable_columns()
@@ -7376,7 +7202,6 @@ class WP_Plugin_Install_List_Table extends \WP_List_Table
     public $orderby = \null;
     public $groups = array();
     /**
-     *
      * @return bool
      */
     public function ajax_user_can()
@@ -7411,7 +7236,6 @@ class WP_Plugin_Install_List_Table extends \WP_List_Table
     {
     }
     /**
-     *
      * @global array  $tabs
      * @global string $tab
      * @global int    $paged
@@ -7427,7 +7251,6 @@ class WP_Plugin_Install_List_Table extends \WP_List_Table
     {
     }
     /**
-     *
      * @global array $tabs
      * @global string $tab
      *
@@ -7517,7 +7340,6 @@ class WP_Plugins_List_Table extends \WP_List_Table
     {
     }
     /**
-     *
      * @global string $status
      * @global array  $plugins
      * @global array  $totals
@@ -7549,7 +7371,6 @@ class WP_Plugins_List_Table extends \WP_List_Table
     {
     }
     /**
-     *
      * @global array $plugins
      */
     public function no_items()
@@ -7567,7 +7388,6 @@ class WP_Plugins_List_Table extends \WP_List_Table
     {
     }
     /**
-     *
      * @global string $status
      * @return array
      */
@@ -7581,7 +7401,6 @@ class WP_Plugins_List_Table extends \WP_List_Table
     {
     }
     /**
-     *
      * @global array $totals
      * @global string $status
      * @return array
@@ -7590,7 +7409,6 @@ class WP_Plugins_List_Table extends \WP_List_Table
     {
     }
     /**
-     *
      * @global string $status
      * @return array
      */
@@ -7618,7 +7436,6 @@ class WP_Plugins_List_Table extends \WP_List_Table
     {
     }
     /**
-     *
      * @global string $status
      */
     public function display_rows()
@@ -7664,28 +7481,24 @@ class WP_Plugins_List_Table extends \WP_List_Table
 class WP_Post_Comments_List_Table extends \WP_Comments_List_Table
 {
     /**
-     *
      * @return array
      */
     protected function get_column_info()
     {
     }
     /**
-     *
      * @return array
      */
     protected function get_table_classes()
     {
     }
     /**
-     *
      * @param bool $output_empty
      */
     public function display($output_empty = \false)
     {
     }
     /**
-     *
      * @param bool $comment_status
      * @return int
      */
@@ -7757,14 +7570,12 @@ class WP_Posts_List_Table extends \WP_List_Table
     {
     }
     /**
-     *
      * @return bool
      */
     public function ajax_user_can()
     {
     }
     /**
-     *
      * @global array    $avail_post_stati
      * @global WP_Query $wp_query
      * @global int      $per_page
@@ -7774,7 +7585,6 @@ class WP_Posts_List_Table extends \WP_List_Table
     {
     }
     /**
-     *
      * @return bool
      */
     public function has_items()
@@ -7800,16 +7610,15 @@ class WP_Posts_List_Table extends \WP_List_Table
      *
      * @since 4.4.0
      *
-     * @param array  $args  URL parameters for the link.
-     * @param string $label Link text.
-     * @param string $class Optional. Class attribute. Default empty string.
+     * @param string[] $args  Associative array of URL parameters for the link.
+     * @param string   $label Link text.
+     * @param string   $class Optional. Class attribute. Default empty string.
      * @return string The formatted link string.
      */
     protected function get_edit_link($args, $label, $class = '')
     {
     }
     /**
-     *
      * @global array $locked_post_status This seems to be deprecated.
      * @global array $avail_post_stati
      * @return array
@@ -7818,7 +7627,6 @@ class WP_Posts_List_Table extends \WP_List_Table
     {
     }
     /**
-     *
      * @return array
      */
     protected function get_bulk_actions()
@@ -7843,28 +7651,24 @@ class WP_Posts_List_Table extends \WP_List_Table
     {
     }
     /**
-     *
      * @return string
      */
     public function current_action()
     {
     }
     /**
-     *
      * @return array
      */
     protected function get_table_classes()
     {
     }
     /**
-     *
      * @return array
      */
     public function get_columns()
     {
     }
     /**
-     *
      * @return array
      */
     protected function get_sortable_columns()
@@ -8083,6 +7887,7 @@ final class WP_Screen
     /**
      * The taxonomy associated with the screen, if any.
      * The 'edit-tags.php?taxonomy=category' screen has a taxonomy of 'category'.
+     *
      * @since 3.3.0
      * @var string
      */
@@ -8099,12 +7904,10 @@ final class WP_Screen
      *
      * @since 3.3.0
      *
-     * @static
-     *
      * @global string $hook_suffix
      *
      * @param string|WP_Screen $hook_name Optional. The hook name (also known as the hook suffix) used to determine the screen.
-     * 	                                  Defaults to the current $hook_suffix global.
+     *                                    Defaults to the current $hook_suffix global.
      * @return WP_Screen Screen object.
      */
     public static function get($hook_name = '')
@@ -8150,8 +7953,6 @@ final class WP_Screen
      * Sets the old string-based contextual help for the screen for backward compatibility.
      *
      * @since 3.3.0
-     *
-     * @static
      *
      * @param WP_Screen $screen A screen object.
      * @param string $help Help text.
@@ -8395,7 +8196,6 @@ final class WP_Screen
     {
     }
     /**
-     *
      * @global array $wp_meta_boxes
      *
      * @return bool
@@ -8506,7 +8306,7 @@ class WP_Site_Icon
      * List of site icon sizes.
      *
      * @since 4.3.0
-     * @var array
+     * @var int[]
      */
     public $site_icon_sizes = array(
         /*
@@ -8564,12 +8364,12 @@ class WP_Site_Icon
     {
     }
     /**
-     * Adds additional sizes to be made when creating the site_icon images.
+     * Adds additional sizes to be made when creating the site icon images.
      *
      * @since 4.3.0
      *
-     * @param array $sizes List of additional sizes.
-     * @return array Additional image sizes.
+     * @param array[] $sizes Array of arrays containing information for additional sizes.
+     * @return array[] Array of arrays containing additional image sizes.
      */
     public function additional_sizes($sizes = array())
     {
@@ -8579,8 +8379,8 @@ class WP_Site_Icon
      *
      * @since 4.3.0
      *
-     * @param array $sizes List of image sizes.
-     * @return array List of intermediate image sizes.
+     * @param string[] $sizes Array of image size names.
+     * @return string[] Array of image size names.
      */
     public function intermediate_image_sizes($sizes = array())
     {
@@ -8647,7 +8447,6 @@ class WP_Terms_List_Table extends \WP_List_Table
     {
     }
     /**
-     *
      * @return bool
      */
     public function ajax_user_can()
@@ -8659,7 +8458,6 @@ class WP_Terms_List_Table extends \WP_List_Table
     {
     }
     /**
-     *
      * @return bool
      */
     public function has_items()
@@ -8671,28 +8469,24 @@ class WP_Terms_List_Table extends \WP_List_Table
     {
     }
     /**
-     *
      * @return array
      */
     protected function get_bulk_actions()
     {
     }
     /**
-     *
      * @return string
      */
     public function current_action()
     {
     }
     /**
-     *
      * @return array
      */
     public function get_columns()
     {
     }
     /**
-     *
      * @return array
      */
     protected function get_sortable_columns()
@@ -8825,7 +8619,6 @@ class WP_Themes_List_Table extends \WP_List_Table
     {
     }
     /**
-     *
      * @return bool
      */
     public function ajax_user_can()
@@ -8853,7 +8646,6 @@ class WP_Themes_List_Table extends \WP_List_Table
     {
     }
     /**
-     *
      * @return array
      */
     public function get_columns()
@@ -8906,14 +8698,12 @@ class WP_Theme_Install_List_Table extends \WP_Themes_List_Table
 {
     public $features = array();
     /**
-     *
      * @return bool
      */
     public function ajax_user_can()
     {
     }
     /**
-     *
      * @global array  $tabs
      * @global string $tab
      * @global int    $paged
@@ -8929,7 +8719,6 @@ class WP_Theme_Install_List_Table extends \WP_Themes_List_Table
     {
     }
     /**
-     *
      * @global array $tabs
      * @global string $tab
      * @return array
@@ -9209,7 +8998,7 @@ class WP_Users_List_Table extends \WP_List_Table
      * @since 4.4.0
      *
      * @param WP_User $user_object The WP_User object.
-     * @return array An array of user roles.
+     * @return string[] An array of user roles.
      */
     protected function get_role_list($user_object)
     {
@@ -9661,6 +9450,7 @@ abstract class WP_Privacy_Requests_Table extends \WP_List_Table
      * Prepare items to output.
      *
      * @since 4.9.6
+     * @since 5.1.0 Added support for column sorting.
      */
     public function prepare_items()
     {
@@ -14569,6 +14359,20 @@ class Requests_Utility_FilteredIterator extends \ArrayIterator
      */
     #[ReturnTypeWillChange]
     public function current()
+    {
+    }
+    /**
+     * @inheritdoc
+     */
+    #[ReturnTypeWillChange]
+    public function unserialize($serialized)
+    {
+    }
+    /**
+     * @inheritdoc
+     */
+    #[ReturnTypeWillChange]
+    public function __unserialize($serialized)
     {
     }
 }
@@ -21878,7 +21682,7 @@ class WP_Object_Cache
      *
      * @uses WP_Object_Cache::_exists() Checks to see if the cache already has data.
      * @uses WP_Object_Cache::set()     Sets the data after the checking the cache
-     *		                            contents existence.
+     *                                  contents existence.
      *
      * @param int|string $key    What to call the contents in the cache.
      * @param mixed      $data   The contents to store in the cache.
@@ -21950,10 +21754,10 @@ class WP_Object_Cache
      *
      * @param int|string $key    What the contents in the cache are called.
      * @param string     $group  Optional. Where the cache contents are grouped. Default 'default'.
-     * @param string     $force  Optional. Unused. Whether to force a refetch rather than relying on the local
+     * @param bool       $force  Optional. Unused. Whether to force a refetch rather than relying on the local
      *                           cache. Default false.
-     * @param bool        $found  Optional. Whether the key was found in the cache (passed by reference).
-     *                            Disambiguates a return of false, a storable value. Default null.
+     * @param bool       $found  Optional. Whether the key was found in the cache (passed by reference).
+     *                           Disambiguates a return of false, a storable value. Default null.
      * @return false|mixed False on failure to retrieve contents or the cache contents on success.
      */
     public function get($key, $group = 'default', $force = \false, &$found = \null)
@@ -22095,6 +21899,7 @@ class WP_Http
     const HTTP_CONTINUE = 100;
     const SWITCHING_PROTOCOLS = 101;
     const PROCESSING = 102;
+    const EARLY_HINTS = 103;
     const OK = 200;
     const CREATED = 201;
     const ACCEPTED = 202;
@@ -22163,7 +21968,8 @@ class WP_Http
      * @param string|array $args {
      *     Optional. Array or string of HTTP request arguments.
      *
-     *     @type string       $method              Request method. Accepts 'GET', 'POST', 'HEAD', or 'PUT'.
+     *     @type string       $method              Request method. Accepts 'GET', 'POST', 'HEAD', 'PUT', 'DELETE',
+     *                                             'TRACE', 'OPTIONS', or 'PATCH'.
      *                                             Some transports technically allow others, but should not be
      *                                             assumed. Default 'GET'.
      *     @type int          $timeout             How long the connection should stay open in seconds. Default 5.
@@ -22211,9 +22017,8 @@ class WP_Http
      * Normalizes cookies for using in Requests.
      *
      * @since 4.6.0
-     * @static
      *
-     * @param array $cookies List of cookies to send with the request.
+     * @param array $cookies Array of cookies to send with the request.
      * @return Requests_Cookie_Jar Cookie holder object.
      */
     public static function normalize_cookies($cookies)
@@ -22227,7 +22032,6 @@ class WP_Http
      * specification for compatibility purposes.
      *
      * @since 4.6.0
-     * @static
      *
      * @param string            $location URL to redirect to.
      * @param array             $headers  Headers for the redirect.
@@ -22310,7 +22114,6 @@ class WP_Http
     /**
      * Parses the responses and splits the parts into headers and body.
      *
-     * @static
      * @since 2.7.0
      *
      * @param string $strResponse The full response string
@@ -22325,13 +22128,12 @@ class WP_Http
      * If an array is given then it is assumed to be raw header data with numeric keys with the
      * headers as the values. No headers must be passed that were already processed.
      *
-     * @static
      * @since 2.7.0
      *
      * @param string|array $headers
      * @param string $url The URL that was requested
      * @return array Processed string headers. If duplicate headers are encountered,
-     * 					Then a numbered array is returned as the value of that header-key.
+     *                  Then a numbered array is returned as the value of that header-key.
      */
     public static function processHeaders($headers, $url = '')
     {
@@ -22344,7 +22146,6 @@ class WP_Http
      * Edits the array by reference.
      *
      * @since 2.8.0
-     * @static
      *
      * @param array $r Full array of args passed into ::request()
      */
@@ -22359,7 +22160,6 @@ class WP_Http
      * @link https://tools.ietf.org/html/rfc2616#section-19.4.6 Process for chunked decoding.
      *
      * @since 2.7.0
-     * @static
      *
      * @param string $body Body content
      * @return string Chunked decoded body on success or raw body on failure.
@@ -22412,8 +22212,6 @@ class WP_Http
      *
      * @since 3.4.0
      *
-     * @static
-     *
      * @param string $maybe_relative_path The URL which might be relative
      * @param string $url                 The URL which $maybe_relative_path is relative to
      * @return string An Absolute URL, in a failure condition where the URL cannot be parsed, the relative URL will be returned.
@@ -22425,7 +22223,6 @@ class WP_Http
      * Handles HTTP Redirects and follows them if appropriate.
      *
      * @since 3.7.0
-     * @static
      *
      * @param string $url The URL which was requested.
      * @param array $args The Arguments which were used to make the request.
@@ -22446,7 +22243,6 @@ class WP_Http
      * @link http://home.deds.nl/~aeron/regex/ for IPv6 regex
      *
      * @since 3.7.0
-     * @static
      *
      * @param string $maybe_ip A suspected IP address
      * @return integer|bool Upon success, '4' or '6' to represent a IPv4 or IPv6 address, false upon failure
@@ -25742,6 +25538,21 @@ class Walker_Comment extends \Walker
     {
     }
     /**
+     * Filters the comment text.
+     *
+     * Removes links from the pending comment's text if the commenter did not consent
+     * to the comment cookies.
+     *
+     * @since 5.4.2
+     *
+     * @param string          $comment_text Text of the current comment.
+     * @param WP_Comment|null $comment      The comment object. Null if not found.
+     * @return string Filtered text of the current comment.
+     */
+    public function filter_comment_text($comment_text, $comment)
+    {
+    }
+    /**
      * Outputs a single comment.
      *
      * @since 3.6.0
@@ -26084,7 +25895,6 @@ class WP_Admin_Bar
     {
     }
     /**
-     *
      * @global bool $is_IE
      * @param object $root
      */
@@ -26828,7 +26638,7 @@ class WP_Comment_Query
      *
      * @since 4.0.0
      *
-     * @param callable $name      Method to call.
+     * @param string   $name      Method to call.
      * @param array    $arguments Arguments to pass when calling.
      * @return mixed|false Return value of the callback, false otherwise.
      */
@@ -26928,9 +26738,10 @@ class WP_Comment_Query
      *                                                   Default empty.
      *     @type string       $search                    Search term(s) to retrieve matching comments for.
      *                                                   Default empty.
-     *     @type string       $status                    Comment status to limit results by. Accepts 'hold'
-     *                                                   (`comment_status=0`), 'approve' (`comment_status=1`),
-     *                                                   'all', or a custom comment status. Default 'all'.
+     *     @type string|array $status                    Comment stati to limit results by. Accepts an array
+     *                                                   or space/comma-separated list of 'hold' (`comment_status=0`),
+     *                                                   'approve' (`comment_status=1`), 'all', or a custom
+     *                                                   comment status. Default 'all'.
      *     @type string|array $type                      Include comments of a given type, or array of types.
      *                                                   Accepts 'comment', 'pings' (includes 'pingback' and
      *                                                   'trackback'), or anycustom type string. Default empty.
@@ -26991,7 +26802,7 @@ class WP_Comment_Query
      *   post_name?: string,
      *   post_parent?: int,
      *   search?: string,
-     *   status?: string,
+     *   status?: string|array,
      *   type?: string|array,
      *   type__in?: array,
      *   type__not_in?: array,
@@ -27009,7 +26820,6 @@ class WP_Comment_Query
      * Parse arguments passed to the comment query with default query parameters.
      *
      * @since 4.2.0 Extracted from WP_Comment_Query::query().
-     *
      *
      * @param string|array $query WP_Comment_Query arguments. See WP_Comment_Query::__construct()
      * @phpstan-param array{
@@ -27049,7 +26859,7 @@ class WP_Comment_Query
      *   post_name?: string,
      *   post_parent?: int,
      *   search?: string,
-     *   status?: string,
+     *   status?: string|array,
      *   type?: string|array,
      *   type__in?: array,
      *   type__not_in?: array,
@@ -27097,6 +26907,8 @@ class WP_Comment_Query
      * @since 4.4.0
      *
      * @global wpdb $wpdb WordPress database abstraction object.
+     *
+     * @return int|array A single count of comment IDs if a count query. An array of comment IDs if a full query.
      */
     protected function get_comment_ids()
     {
@@ -27111,7 +26923,7 @@ class WP_Comment_Query
      *
      * @global wpdb $wpdb WordPress database abstraction object.
      *
-     * @param array $comments Array of top-level comments whose descendants should be filled in.
+     * @param WP_Comment[] $comments Array of top-level comments whose descendants should be filled in.
      * @return array
      */
     protected function fill_descendants($comments)
@@ -27279,7 +27091,6 @@ final class WP_Comment
      * Retrieves a WP_Comment instance.
      *
      * @since 4.4.0
-     * @static
      *
      * @global wpdb $wpdb WordPress database abstraction object.
      *
@@ -27439,8 +27250,6 @@ class WP_Customize_Control
      * Used when sorting two instances whose priorities are equal.
      *
      * @since 4.1.0
-     *
-     * @static
      * @var int
      */
     protected static $instance_count = 0;
@@ -27849,7 +27658,7 @@ final class WP_Customize_Manager
      * Constructor.
      *
      * @since 3.4.0
-     * @since 4.7.0 Added $args param.
+     * @since 4.7.0 Added `$args` parameter.
      *
      * @param array $args {
      *     Args.
@@ -28159,7 +27968,7 @@ final class WP_Customize_Manager
      * incoming post data.
      *
      * @since 4.1.1
-     * @since 4.7.0 Added $args param and merging with changeset values and stashed theme mods.
+     * @since 4.7.0 Added `$args` parameter and merging with changeset values and stashed theme mods.
      *
      * @param array $args {
      *     Args.
@@ -28540,11 +28349,11 @@ final class WP_Customize_Manager
      * @see WP_Customize_Manager::save_changeset_post()
      * @see _wp_translate_postdata()
      *
-     * @param array  $caps    Returns the user's actual capabilities.
-     * @param string $cap     Capability name.
-     * @param int    $user_id The user ID.
-     * @param array  $args    Adds the context to the cap. Typically the object ID.
-     * @return array Capabilities.
+     * @param string[] $caps    Array of the user's capabilities.
+     * @param string   $cap     Capability name.
+     * @param int      $user_id The user ID.
+     * @param array    $args    Adds the context to the cap. Typically the object ID.
+     * @return array   Capabilities.
      */
     public function grant_edit_post_capability_for_changeset($caps, $cap, $user_id, $args)
     {
@@ -28667,14 +28476,13 @@ final class WP_Customize_Manager
      *  Optional. Array of properties for the new WP_Customize_Setting. Default empty array.
      *
      *  @type string       $type                  Type of the setting. Default 'theme_mod'.
-     *                                            Default 160.
      *  @type string       $capability            Capability required for the setting. Default 'edit_theme_options'
      *  @type string|array $theme_supports        Theme features required to support the panel. Default is none.
      *  @type string       $default               Default value for the setting. Default is empty string.
      *  @type string       $transport             Options for rendering the live preview of changes in Theme Customizer.
      *                                            Using 'refresh' makes the change visible by reloading the whole preview.
      *                                            Using 'postMessage' allows a custom JavaScript to handle live changes.
-     *                                            @link https://developer.wordpress.org/themes/customize-api
+     * @link https://developer.wordpress.org/themes/customize-api
      *                                            Default is 'refresh'
      *  @type callable     $validate_callback     Server-side validation callback for the setting's value.
      *  @type callable     $sanitize_callback     Callback to filter a Customize setting value in un-slashed form.
@@ -29289,8 +29097,8 @@ final class WP_Customize_Nav_Menus
      *
      * @since 4.5.0
      *
-     * @param array $nonces Array of nonces.
-     * @return array $nonces Modified array of nonces.
+     * @param string[] $nonces Array of nonces.
+     * @return string[] $nonces Modified array of nonces.
      */
     public function filter_nonces($nonces)
     {
@@ -29416,10 +29224,10 @@ final class WP_Customize_Nav_Menus
      * @param array $postarr {
      *     Post array. Note that post_status is overridden to be `auto-draft`.
      *
-     *     @var string $post_title   Post title. Required.
-     *     @var string $post_type    Post type. Required.
-     *     @var string $post_name    Post name.
-     *     @var string $post_content Post content.
+     * @var string $post_title   Post title. Required.
+     * @var string $post_type    Post type. Required.
+     * @var string $post_name    Post name.
+     * @var string $post_content Post content.
      * }
      * @return WP_Post|WP_Error Inserted auto-draft post object or error.
      */
@@ -29523,7 +29331,7 @@ final class WP_Customize_Nav_Menus
      *
      * @since 4.3.0
      * @see wp_nav_menu()
-     * @see WP_Customize_Widgets_Partial_Refresh::filter_dynamic_sidebar_params()
+     * @see WP_Customize_Widgets::filter_dynamic_sidebar_params()
      *
      * @param array $args An array containing wp_nav_menu() arguments.
      * @return array Arguments.
@@ -29627,8 +29435,6 @@ class WP_Customize_Panel
      * Used when sorting two instances whose priorities are equal.
      *
      * @since 4.1.0
-     *
-     * @static
      * @var int
      */
     protected static $instance_count = 0;
@@ -29882,8 +29688,6 @@ class WP_Customize_Section
      * Used when sorting two instances whose priorities are equal.
      *
      * @since 4.1.0
-     *
-     * @static
      * @var int
      */
     protected static $instance_count = 0;
@@ -30223,7 +30027,6 @@ class WP_Customize_Setting
      * Cache of multidimensional values to improve performance.
      *
      * @since 4.4.0
-     * @static
      * @var array
      */
     protected static $aggregated_multidimensionals = array();
@@ -30868,8 +30671,8 @@ final class WP_Customize_Widgets
      *
      * @since 3.9.0
      *
-     * @param array $widget_ids Array of widget IDs.
-     * @return array Array of sanitized widget IDs.
+     * @param string[] $widget_ids Array of widget IDs.
+     * @return string[] Array of sanitized widget IDs.
      */
     public function sanitize_sidebar_widgets($widget_ids)
     {
@@ -31146,13 +30949,15 @@ final class WP_Customize_Widgets
     /**
      * Inject selective refresh data attributes into widget container elements.
      *
+     * @since 4.5.0
+     *
      * @param array $params {
      *     Dynamic sidebar params.
      *
      *     @type array $args        Sidebar args.
      *     @type array $widget_args Widget args.
      * }
-     * @see WP_Customize_Nav_Menus_Partial_Refresh::filter_wp_nav_menu_args()
+     * @see WP_Customize_Nav_Menus::filter_wp_nav_menu_args()
      *
      * @return array Params.
      * @phpstan-param array{
@@ -31400,6 +31205,16 @@ class _WP_Dependency
     public function add_data($name, $data)
     {
     }
+    /**
+     * Sets the translation domain for this dependency.
+     *
+     * @since 5.0.0
+     *
+     * @param string $domain The translation textdomain.
+     * @param string $path   Optional. The full file path to the directory containing translation files.
+     *
+     * @return bool False if $domain is not a string, true otherwise.
+     */
     public function set_translations($domain, $path = \null)
     {
     }
@@ -31418,7 +31233,6 @@ final class _WP_Editors
     /**
      * Parse default arguments for the editor instance.
      *
-     * @static
      * @param string $editor_id ID for the current editor instance.
      * @param array  $settings {
      *     Array of editor arguments.
@@ -31471,17 +31285,30 @@ final class _WP_Editors
     /**
      * Outputs the HTML for a single instance of the editor.
      *
-     * @static
      * @param string $content The initial content of the editor.
      * @param string $editor_id ID for the textarea and TinyMCE and Quicktags instances (can contain only ASCII letters and numbers).
-     * @param array $settings See _WP_Editors()::parse_settings() for description.
+     * @param array $settings See _WP_Editors::parse_settings() for description.
+     * @phpstan-param array{
+     *   wpautop?: bool,
+     *   media_buttons?: bool,
+     *   default_editor?: string,
+     *   drag_drop_upload?: bool,
+     *   textarea_name?: string,
+     *   textarea_rows?: int,
+     *   tabindex?: string|int,
+     *   tabfocus_elements?: string,
+     *   editor_css?: string,
+     *   editor_class?: string,
+     *   teeny?: bool,
+     *   dfw?: bool,
+     *   tinymce?: bool|array,
+     *   quicktags?: bool|array,
+     * } $settings See _WP_Editors::parse_settings()
      */
     public static function editor($content, $editor_id, $settings = array())
     {
     }
     /**
-     * @static
-     *
      * @global string $tinymce_version
      *
      * @param string $editor_id
@@ -31513,7 +31340,6 @@ final class _WP_Editors
      * For use when the editor is going to be initialized after page load.
      *
      * @since 4.8.0
-     *
      */
     public static function print_default_editor_scripts()
     {
@@ -31528,7 +31354,6 @@ final class _WP_Editors
      * Translates the default TinyMCE strings and returns them as JSON encoded object ready to be loaded with tinymce.addI18n(),
      * or as JS snippet that should run after tinymce.js is loaded.
      *
-     * @static
      * @param string $mce_locale The locale used for the editor.
      * @param bool $json_only optional Whether to include the JavaScript calls to tinymce.addI18n() and tinymce.ScriptLoader.markDone().
      * @return string Translation object, JSON encoded.
@@ -31551,7 +31376,6 @@ final class _WP_Editors
      *
      * @since 4.8.0
      *
-     * @static
      * @global string $tinymce_version
      * @global bool   $concatenate_scripts
      * @global bool   $compress_scripts
@@ -31562,7 +31386,6 @@ final class _WP_Editors
     /**
      * Print (output) the TinyMCE configuration and initialization scripts.
      *
-     * @static
      * @global string $tinymce_version
      */
     public static function editor_js()
@@ -31573,8 +31396,6 @@ final class _WP_Editors
      *
      * @since 3.2.0
      * @deprecated 4.3.0
-     *
-     * @static
      */
     public static function wp_fullscreen_html()
     {
@@ -31584,7 +31405,6 @@ final class _WP_Editors
      *
      * @since 3.1.0
      *
-     * @static
      * @param array $args Optional. Accepts 'pagenum' and 's' (search) arguments.
      * @return false|array Results.
      */
@@ -31595,8 +31415,6 @@ final class _WP_Editors
      * Dialog for internal linking.
      *
      * @since 3.1.0
-     *
-     * @static
      */
     public static function wp_link_dialog()
     {
@@ -31868,6 +31686,16 @@ class WP_Error
      * @return mixed Error data, if it exists.
      */
     public function get_error_data($code = '')
+    {
+    }
+    /**
+     * Verify if the instance contains errors.
+     *
+     * @since 5.1.0
+     *
+     * @return bool
+     */
+    public function has_errors()
     {
     }
     /**
@@ -32174,7 +32002,6 @@ final class WP_Hook implements \Iterator, \ArrayAccess
      * Normalizes filters set up before WordPress has initialized to WP_Hook objects.
      *
      * @since 4.7.0
-     * @static
      *
      * @param array $filters Filters to normalize.
      * @return WP_Hook[] Array of normalized filters.
@@ -32462,7 +32289,6 @@ class WP_Http_Curl
     /**
      * Determines whether this class can be used for retrieving a URL.
      *
-     * @static
      * @since 2.7.0
      *
      * @param array $args Optional. Array of request arguments. Default empty array.
@@ -32495,8 +32321,6 @@ class WP_Http_Encoding
      *
      * @since 2.8.0
      *
-     * @static
-     *
      * @param string $raw String to compress.
      * @param int $level Optional, default is 9. Compression level, 9 is highest.
      * @param string $supports Optional, not used. When implemented it will choose the right compression based on what the server supports.
@@ -32514,8 +32338,6 @@ class WP_Http_Encoding
      * original compressed string will be returned.
      *
      * @since 2.8.0
-     *
-     * @static
      *
      * @param string $compressed String to decompress.
      * @param int $length The optional length of the compressed data.
@@ -32541,8 +32363,6 @@ class WP_Http_Encoding
      * @link https://secure.php.net/manual/en/function.gzinflate.php#70875
      * @link https://secure.php.net/manual/en/function.gzinflate.php#77336
      *
-     * @static
-     *
      * @param string $gzData String to decompress.
      * @return string|bool False on failure.
      */
@@ -32553,8 +32373,6 @@ class WP_Http_Encoding
      * What encoding types to accept and their priority values.
      *
      * @since 2.8.0
-     *
-     * @static
      *
      * @param string $url
      * @param array  $args
@@ -32568,8 +32386,6 @@ class WP_Http_Encoding
      *
      * @since 2.8.0
      *
-     * @static
-     *
      * @return string Content-Encoding string to send in the header.
      */
     public static function content_encoding()
@@ -32579,8 +32395,6 @@ class WP_Http_Encoding
      * Whether the content be decoded based on the headers.
      *
      * @since 2.8.0
-     *
-     * @static
      *
      * @param array|string $headers All of the available headers.
      * @return bool
@@ -32597,8 +32411,6 @@ class WP_Http_Encoding
      *
      * @since 2.8.0
      *
-     * @static
-     *
      * @return bool
      */
     public static function is_available()
@@ -32610,7 +32422,6 @@ class WP_Http_Encoding
  *
  * @package WordPress
  * @since 3.1.0
- *
  */
 class WP_HTTP_IXR_Client extends \IXR_Client
 {
@@ -33151,7 +32962,6 @@ class WP_Http_Streams
      * IP Address support is included if the request is being made to an IP address.
      *
      * @since 3.7.0
-     * @static
      *
      * @param stream $stream The PHP Stream which the SSL request is being made over
      * @param string $host The hostname being requested
@@ -33163,7 +32973,6 @@ class WP_Http_Streams
     /**
      * Determines whether this class can be used for retrieving a URL.
      *
-     * @static
      * @since 2.7.0
      * @since 3.7.0 Combined with the fsockopen transport and switched to stream_socket_client().
      *
@@ -33222,7 +33031,6 @@ abstract class WP_Image_Editor
      *
      * @since 3.5.0
      *
-     * @static
      * @abstract
      *
      * @param array $args
@@ -33237,7 +33045,6 @@ abstract class WP_Image_Editor
      *
      * @since 3.5.0
      *
-     * @static
      * @abstract
      *
      * @param string $mime_type
@@ -33456,8 +33263,6 @@ abstract class WP_Image_Editor
      *
      * @since 3.5.0
      *
-     * @static
-     *
      * @param string $extension
      * @return string|false
      */
@@ -33469,8 +33274,6 @@ abstract class WP_Image_Editor
      * as mapped from wp_get_mime_types()
      *
      * @since 3.5.0
-     *
-     * @static
      *
      * @param string $mime_type
      * @return string|false
@@ -33508,8 +33311,6 @@ class WP_Image_Editor_GD extends \WP_Image_Editor
      *
      * @since 3.5.0
      *
-     * @static
-     *
      * @param array $args
      * @return bool
      */
@@ -33520,8 +33321,6 @@ class WP_Image_Editor_GD extends \WP_Image_Editor
      * Checks to see if editor supports the mime-type specified.
      *
      * @since 3.5.0
-     *
-     * @static
      *
      * @param string $mime_type
      * @return bool
@@ -33570,7 +33369,6 @@ class WP_Image_Editor_GD extends \WP_Image_Editor
     {
     }
     /**
-     *
      * @param int $max_w
      * @param int $max_h
      * @param bool|array $crop
@@ -33645,8 +33443,8 @@ class WP_Image_Editor_GD extends \WP_Image_Editor
      *
      * @since 3.5.0
      *
-     * @param bool $horz Flip along Horizontal Axis
-     * @param bool $vert Flip along Vertical Axis
+     * @param bool $horz Flip along Horizontal Axis.
+     * @param bool $vert Flip along Vertical Axis.
      * @return true|WP_Error
      */
     public function flip($horz, $vert)
@@ -33730,8 +33528,6 @@ class WP_Image_Editor_Imagick extends \WP_Image_Editor
      *
      * @since 3.5.0
      *
-     * @static
-     *
      * @param array $args
      * @return bool
      */
@@ -33742,8 +33538,6 @@ class WP_Image_Editor_Imagick extends \WP_Image_Editor
      * Checks to see if editor supports the mime-type specified.
      *
      * @since 3.5.0
-     *
-     * @static
      *
      * @param string $mime_type
      * @return bool
@@ -33904,7 +33698,6 @@ class WP_Image_Editor_Imagick extends \WP_Image_Editor
     {
     }
     /**
-     *
      * @param Imagick $image
      * @param string $filename
      * @param string $mime_type
@@ -34071,6 +33864,8 @@ class WP_Locale_Switcher
      * Initializes the locale switcher.
      *
      * Hooks into the {@see 'locale'} filter to change the locale on the fly.
+     *
+     * @since 4.7.0
      */
     public function init()
     {
@@ -34170,13 +33965,6 @@ class WP_Locale
      */
     public $weekday_abbrev;
     /**
-     * Stores the default start of the week.
-     *
-     * @since 4.4.0
-     * @var string
-     */
-    public $start_of_week;
-    /**
      * Stores the translated strings for the full month names.
      *
      * @since 2.1.0
@@ -34261,8 +34049,8 @@ class WP_Locale
      *
      * @since 2.1.0
      *
-     * @param int $weekday_number 0 for Sunday through 6 Saturday
-     * @return string Full translated weekday
+     * @param int $weekday_number 0 for Sunday through 6 Saturday.
+     * @return string Full translated weekday.
      */
     public function get_weekday($weekday_number)
     {
@@ -34277,8 +34065,8 @@ class WP_Locale
      *
      * @since 2.1.0
      *
-     * @param string $weekday_name
-     * @return string
+     * @param string $weekday_name Full translated weekday word.
+     * @return string Translated weekday initial.
      */
     public function get_weekday_initial($weekday_name)
     {
@@ -34291,8 +34079,8 @@ class WP_Locale
      *
      * @since 2.1.0
      *
-     * @param string $weekday_name Full translated weekday word
-     * @return string Translated weekday abbreviation
+     * @param string $weekday_name Full translated weekday word.
+     * @return string Translated weekday abbreviation.
      */
     public function get_weekday_abbrev($weekday_name)
     {
@@ -34310,8 +34098,8 @@ class WP_Locale
      *
      * @since 2.1.0
      *
-     * @param string|int $month_number '01' through '12'
-     * @return string Translated full month name
+     * @param string|int $month_number '01' through '12'.
+     * @return string Translated full month name.
      */
     public function get_month($month_number)
     {
@@ -34324,8 +34112,8 @@ class WP_Locale
      *
      * @since 2.1.0
      *
-     * @param string $month_name Translated month to get abbreviated version
-     * @return string Translated abbreviated month
+     * @param string $month_name Translated month to get abbreviated version.
+     * @return string Translated abbreviated month.
      */
     public function get_month_abbrev($month_name)
     {
@@ -34422,8 +34210,6 @@ class WP_MatchesMapRegex
      * Substitute substring matches in subject.
      *
      * static helper function to ease use
-     *
-     * @static
      *
      * @param string $subject subject
      * @param array  $matches data used for substitution
@@ -34533,7 +34319,7 @@ class WP_Meta_Query
      *
      * @since 3.2.0
      * @since 4.2.0 Introduced support for naming query clauses by associative array keys.
-     *
+     * @since 5.1.0 Introduced $compare_key clause parameter, which enables LIKE key matches.
      *
      * @param array $meta_query {
      *     Array of meta query clauses. When first-order clauses or sub-clauses use strings as
@@ -34544,17 +34330,19 @@ class WP_Meta_Query
      *     @type array {
      *         Optional. An array of first-order clause parameters, or another fully-formed meta query.
      *
-     *         @type string $key     Meta key to filter by.
-     *         @type string $value   Meta value to filter by.
-     *         @type string $compare MySQL operator used for comparing the $value. Accepts '=',
-     *                               '!=', '>', '>=', '<', '<=', 'LIKE', 'NOT LIKE',
-     *                               'IN', 'NOT IN', 'BETWEEN', 'NOT BETWEEN', 'REGEXP',
-     *                               'NOT REGEXP', 'RLIKE', 'EXISTS' or 'NOT EXISTS'.
-     *                               Default is 'IN' when `$value` is an array, '=' otherwise.
-     *         @type string $type    MySQL data type that the meta_value column will be CAST to for
-     *                               comparisons. Accepts 'NUMERIC', 'BINARY', 'CHAR', 'DATE',
-     *                               'DATETIME', 'DECIMAL', 'SIGNED', 'TIME', or 'UNSIGNED'.
-     *                               Default is 'CHAR'.
+     *         @type string $key         Meta key to filter by.
+     *         @type string $compare_key MySQL operator used for comparing the $key. Accepts '=' and 'LIKE'.
+     *                                   Default '='.
+     *         @type string $value       Meta value to filter by.
+     *         @type string $compare     MySQL operator used for comparing the $value. Accepts '=',
+     *                                   '!=', '>', '>=', '<', '<=', 'LIKE', 'NOT LIKE',
+     *                                   'IN', 'NOT IN', 'BETWEEN', 'NOT BETWEEN', 'REGEXP',
+     *                                   'NOT REGEXP', 'RLIKE', 'EXISTS' or 'NOT EXISTS'.
+     *                                   Default is 'IN' when `$value` is an array, '=' otherwise.
+     *         @type string $type        MySQL data type that the meta_value column will be CAST to for
+     *                                   comparisons. Accepts 'NUMERIC', 'BINARY', 'CHAR', 'DATE',
+     *                                   'DATETIME', 'DECIMAL', 'SIGNED', 'TIME', or 'UNSIGNED'.
+     *                                   Default is 'CHAR'.
      *     }
      * }
      */
@@ -34988,7 +34776,6 @@ class WP_Network_Query
      *
      * @since 4.6.0
      *
-     *
      * @param string|array $query WP_Network_Query arguments. See WP_Network_Query::__construct()
      * @phpstan-param array{
      *   network__in?: array,
@@ -35055,8 +34842,8 @@ class WP_Network_Query
      *
      * @global wpdb  $wpdb WordPress database abstraction object.
      *
-     * @param string $string  Search string.
-     * @param array  $columns Columns to search.
+     * @param string   $string  Search string.
+     * @param string[] $columns Array of columns to search.
      *
      * @return string Search SQL.
      */
@@ -35217,7 +35004,6 @@ class WP_Network
      * requested site address.
      *
      * @since 4.4.0
-     * @static
      *
      * @param string   $domain   Domain to check.
      * @param string   $path     Path to check.
@@ -35733,7 +35519,6 @@ final class WP_Post_Type
  * @property-read array  $ancestors
  * @property-read int    $post_category
  * @property-read string $tag_input
- *
  */
 final class WP_Post
 {
@@ -35915,7 +35700,6 @@ final class WP_Post
      * Retrieve WP_Post instance.
      *
      * @since 3.5.0
-     * @static
      *
      * @global wpdb $wpdb WordPress database abstraction object.
      *
@@ -35963,7 +35747,7 @@ final class WP_Post
      * @since 3.5.0
      *
      * @param string $filter Filter.
-     * @return self|array|bool|object|WP_Post
+     * @return array|bool|object|WP_Post
      */
     public function filter($filter)
     {
@@ -36387,6 +36171,7 @@ class WP_Query
      *              Introduced `RAND(x)` syntax for `$orderby`, which allows an integer seed value to random sorts.
      * @since 4.6.0 Added 'post_name__in' support for `$orderby`. Introduced the `$lazy_load_term_meta` argument.
      * @since 4.9.0 Introduced the `$comment_count` parameter.
+     * @since 5.1.0 Introduced the `$meta_compare_key` parameter.
      *
      * @param string|array $query {
      *     Optional. Array or string of Query parameters.
@@ -36423,6 +36208,7 @@ class WP_Query
      *     @type int          $m                       Combination YearMonth. Accepts any four-digit year and month
      *                                                 numbers 1-12. Default empty.
      *     @type string       $meta_compare            Comparison operator to test the 'meta_value'.
+     *     @type string       $meta_compare_key        Comparison operator to test the 'meta_key'.
      *     @type string       $meta_key                Custom field key.
      *     @type array        $meta_query              An associative array of WP_Meta_Query arguments. See WP_Meta_Query.
      *     @type string       $meta_value              Custom field value.
@@ -36522,6 +36308,7 @@ class WP_Query
      *   ignore_sticky_posts?: int|bool,
      *   m?: int,
      *   meta_compare?: string,
+     *   meta_compare_key?: string,
      *   meta_key?: string,
      *   meta_query?: array,
      *   meta_value?: string,
@@ -36609,7 +36396,7 @@ class WP_Query
      *
      * @since 3.7.0
      *
-     * @param array $terms Terms to check.
+     * @param string[] $terms Array of terms to check.
      * @return array Terms that are not stopwords.
      */
     protected function parse_search_terms($terms)
@@ -36676,7 +36463,6 @@ class WP_Query
      * @since 1.5.0
      * @since 3.9.0 The `$default` argument was introduced.
      *
-     *
      * @param string $query_var Query variable key.
      * @param mixed  $default   Optional. Value to return if the query variable is not set. Default empty.
      * @return mixed Contents of the query variable.
@@ -36696,14 +36482,14 @@ class WP_Query
     {
     }
     /**
-     * Retrieve the posts based on query variables.
+     * Retrieves an array of posts based on query variables.
      *
      * There are a few filters and actions that can be used to modify the post
      * database query.
      *
      * @since 1.5.0
      *
-     * @return array List of posts.
+     * @return WP_Post[]|int[] Array of post objects or post IDs.
      */
     public function get_posts()
     {
@@ -36797,7 +36583,7 @@ class WP_Query
      * @since 1.5.0
      *
      * @param string|array $query URL query string or array of query arguments.
-     * @return array List of posts.
+     * @return WP_Post[]|int[] Array of post objects or post IDs.
      */
     public function query($query)
     {
@@ -36865,7 +36651,7 @@ class WP_Query
      *
      * @since 4.0.0
      *
-     * @param callable $name      Method to call.
+     * @param string   $name      Method to call.
      * @param array    $arguments Arguments to pass when calling.
      * @return mixed|false Return value of the callback, false otherwise.
      */
@@ -38140,7 +37926,6 @@ class WP_Rewrite
      * Constructor - Calls init(), which runs setup.
      *
      * @since 1.5.0
-     *
      */
     public function __construct()
     {
@@ -38246,10 +38031,10 @@ class WP_Role
  * in the value of the 'capability' key.
  *
  *     array (
- *    		'rolename' => array (
- *    			'name' => 'rolename',
- *    			'capabilities' => array()
- *    		)
+ *          'rolename' => array (
+ *              'name' => 'rolename',
+ *              'capabilities' => array()
+ *          )
  *     )
  *
  * @since 2.0.0
@@ -38260,21 +38045,21 @@ class WP_Roles
      * List of roles and capabilities.
      *
      * @since 2.0.0
-     * @var array
+     * @var array[]
      */
     public $roles;
     /**
      * List of the role objects.
      *
      * @since 2.0.0
-     * @var array
+     * @var WP_Role[]
      */
     public $role_objects = array();
     /**
      * List of role names.
      *
      * @since 2.0.0
-     * @var array
+     * @var string[]
      */
     public $role_names = array();
     /**
@@ -38302,7 +38087,7 @@ class WP_Roles
      * Constructor
      *
      * @since 2.0.0
-     * @since 4.9.0 The $site_id argument was added.
+     * @since 4.9.0 The `$site_id` argument was added.
      *
      * @global array $wp_user_roles Used to set the 'roles' property value.
      *
@@ -38316,7 +38101,7 @@ class WP_Roles
      *
      * @since 4.0.0
      *
-     * @param callable $name      Method to call.
+     * @param string   $name      Method to call.
      * @param array    $arguments Arguments to pass when calling.
      * @return mixed|false Return value of the callback, false otherwise.
      */
@@ -38415,7 +38200,7 @@ class WP_Roles
      *
      * @since 2.0.0
      *
-     * @return array List of role names.
+     * @return string[] List of role names.
      */
     public function get_names()
     {
@@ -38496,7 +38281,7 @@ abstract class WP_Session_Tokens
      */
     protected $user_id;
     /**
-     * Protected constructor.
+     * Protected constructor. Use the `get_instance()` method to get the instance.
      *
      * @since 4.0.0
      *
@@ -38506,33 +38291,33 @@ abstract class WP_Session_Tokens
     {
     }
     /**
-     * Retrieves a session token manager instance for a user.
+     * Retrieves a session manager instance for a user.
      *
      * This method contains a {@see 'session_token_manager'} filter, allowing a plugin to swap out
      * the session manager for a subclass of `WP_Session_Tokens`.
      *
      * @since 4.0.0
-     * @static
      *
      * @param int $user_id User whose session to manage.
-     * @return WP_User_Meta_Session_Tokens WP_User_Meta_Session_Tokens class instance by default.
+     * @return WP_Session_Tokens The session object, which is by default an instance of
+     *                           the `WP_User_Meta_Session_Tokens` class.
      */
     public static final function get_instance($user_id)
     {
     }
     /**
-     * Get a user's session.
+     * Retrieves a user's session for the given token.
      *
      * @since 4.0.0
      *
-     * @param string $token Session token
-     * @return array User session
+     * @param string $token Session token.
+     * @return array|null The session, or null if it does not exist.
      */
     public final function get($token)
     {
     }
     /**
-     * Validate a user's session token as authentic.
+     * Validates the given session token for authenticity and validity.
      *
      * Checks that the given token is present and hasn't expired.
      *
@@ -38545,11 +38330,11 @@ abstract class WP_Session_Tokens
     {
     }
     /**
-     * Generate a session token and attach session information to it.
+     * Generates a session token and attaches session information to it.
      *
      * A session token is a long, random string. It is used in a cookie
-     * link that cookie to an expiration time and to ensure the cookie
-     * becomes invalidated upon logout.
+     * to link that cookie to an expiration time and to ensure the cookie
+     * becomes invalidated when the user logs out.
      *
      * This function generates a token and stores it with the associated
      * expiration time (and potentially other session information via the
@@ -38564,7 +38349,7 @@ abstract class WP_Session_Tokens
     {
     }
     /**
-     * Update a session token.
+     * Updates the data for the session with the given token.
      *
      * @since 4.0.0
      *
@@ -38575,7 +38360,7 @@ abstract class WP_Session_Tokens
     {
     }
     /**
-     * Destroy a session token.
+     * Destroys the session with the given token.
      *
      * @since 4.0.0
      *
@@ -38585,8 +38370,7 @@ abstract class WP_Session_Tokens
     {
     }
     /**
-     * Destroy all session tokens for this user,
-     * except a single token, presumably the one in use.
+     * Destroys all sessions for this user except the one with the given token (presumably the one in use).
      *
      * @since 4.0.0
      *
@@ -38596,8 +38380,7 @@ abstract class WP_Session_Tokens
     {
     }
     /**
-     * Determine whether a session token is still valid,
-     * based on expiration.
+     * Determines whether a session is still valid, based on its expiration timestamp.
      *
      * @since 4.0.0
      *
@@ -38608,7 +38391,7 @@ abstract class WP_Session_Tokens
     {
     }
     /**
-     * Destroy all session tokens for a user.
+     * Destroys all sessions for a user.
      *
      * @since 4.0.0
      */
@@ -38616,55 +38399,53 @@ abstract class WP_Session_Tokens
     {
     }
     /**
-     * Destroy all session tokens for all users.
+     * Destroys all sessions for all users.
      *
      * @since 4.0.0
-     * @static
      */
     public static final function destroy_all_for_all_users()
     {
     }
     /**
-     * Retrieve all sessions of a user.
+     * Retrieves all sessions for a user.
      *
      * @since 4.0.0
      *
-     * @return array Sessions of a user.
+     * @return array Sessions for a user.
      */
     public final function get_all()
     {
     }
     /**
-     * This method should retrieve all sessions of a user, keyed by verifier.
+     * Retrieves all sessions of the user.
      *
      * @since 4.0.0
      *
-     * @return array Sessions of a user, keyed by verifier.
+     * @return array Sessions of the user.
      */
     protected abstract function get_sessions();
     /**
-     * This method should look up a session by its verifier (token hash).
+     * Retrieves a session based on its verifier (token hash).
      *
      * @since 4.0.0
      *
-     * @param string $verifier Verifier of the session to retrieve.
+     * @param string $verifier Verifier for the session to retrieve.
      * @return array|null The session, or null if it does not exist.
      */
     protected abstract function get_session($verifier);
     /**
-     * This method should update a session by its verifier.
+     * Updates a session based on its verifier (token hash).
      *
-     * Omitting the second argument should destroy the session.
+     * Omitting the second argument destroys the session.
      *
      * @since 4.0.0
      *
-     * @param string $verifier Verifier of the session to update.
+     * @param string $verifier Verifier for the session to update.
      * @param array  $session  Optional. Session. Omitting this argument destroys the session.
      */
     protected abstract function update_session($verifier, $session = \null);
     /**
-     * This method should destroy all session tokens for this user,
-     * except a single session passed.
+     * Destroys all sessions for this user, except the single session with the given verifier.
      *
      * @since 4.0.0
      *
@@ -38672,16 +38453,15 @@ abstract class WP_Session_Tokens
      */
     protected abstract function destroy_other_sessions($verifier);
     /**
-     * This method should destroy all sessions for a user.
+     * Destroys all sessions for the user.
      *
      * @since 4.0.0
      */
     protected abstract function destroy_all_sessions();
     /**
-     * This static method should destroy all session tokens for all users.
+     * Destroys all sessions for all users.
      *
      * @since 4.0.0
-     * @static
      */
     public static function drop_sessions()
     {
@@ -38790,6 +38570,20 @@ class WP_Site_Query
      */
     protected $sql_clauses = array('select' => '', 'from' => '', 'where' => array(), 'groupby' => '', 'orderby' => '', 'limits' => '');
     /**
+     * Metadata query container.
+     *
+     * @since 5.1.0
+     * @var WP_Meta_Query
+     */
+    public $meta_query = \false;
+    /**
+     * Metadata query clauses.
+     *
+     * @since 5.1.0
+     * @var array
+     */
+    protected $meta_query_clauses;
+    /**
      * Date query container.
      *
      * @since 4.6.0
@@ -38836,51 +38630,63 @@ class WP_Site_Query
      *
      * @since 4.6.0
      * @since 4.8.0 Introduced the 'lang_id', 'lang__in', and 'lang__not_in' parameters.
+     * @since 5.1.0 Introduced the 'update_site_meta_cache', 'meta_query', 'meta_key',
+     *              'meta_value', 'meta_type' and 'meta_compare' parameters.
      *
      * @param string|array $query {
      *     Optional. Array or query string of site query parameters. Default empty.
      *
-     *     @type array        $site__in          Array of site IDs to include. Default empty.
-     *     @type array        $site__not_in      Array of site IDs to exclude. Default empty.
-     *     @type bool         $count             Whether to return a site count (true) or array of site objects.
-     *                                           Default false.
-     *     @type array        $date_query        Date query clauses to limit sites by. See WP_Date_Query.
-     *                                           Default null.
-     *     @type string       $fields            Site fields to return. Accepts 'ids' (returns an array of site IDs)
-     *                                           or empty (returns an array of complete site objects). Default empty.
-     *     @type int          $ID                A site ID to only return that site. Default empty.
-     *     @type int          $number            Maximum number of sites to retrieve. Default 100.
-     *     @type int          $offset            Number of sites to offset the query. Used to build LIMIT clause.
-     *                                           Default 0.
-     *     @type bool         $no_found_rows     Whether to disable the `SQL_CALC_FOUND_ROWS` query. Default true.
-     *     @type string|array $orderby           Site status or array of statuses. Accepts 'id', 'domain', 'path',
-     *                                           'network_id', 'last_updated', 'registered', 'domain_length',
-     *                                           'path_length', 'site__in' and 'network__in'. Also accepts false,
-     *                                           an empty array, or 'none' to disable `ORDER BY` clause.
-     *                                           Default 'id'.
-     *     @type string       $order             How to order retrieved sites. Accepts 'ASC', 'DESC'. Default 'ASC'.
-     *     @type int          $network_id        Limit results to those affiliated with a given network ID. If 0,
-     *                                           include all networks. Default 0.
-     *     @type array        $network__in       Array of network IDs to include affiliated sites for. Default empty.
-     *     @type array        $network__not_in   Array of network IDs to exclude affiliated sites for. Default empty.
-     *     @type string       $domain            Limit results to those affiliated with a given domain. Default empty.
-     *     @type array        $domain__in        Array of domains to include affiliated sites for. Default empty.
-     *     @type array        $domain__not_in    Array of domains to exclude affiliated sites for. Default empty.
-     *     @type string       $path              Limit results to those affiliated with a given path. Default empty.
-     *     @type array        $path__in          Array of paths to include affiliated sites for. Default empty.
-     *     @type array        $path__not_in      Array of paths to exclude affiliated sites for. Default empty.
-     *     @type int          $public            Limit results to public sites. Accepts '1' or '0'. Default empty.
-     *     @type int          $archived          Limit results to archived sites. Accepts '1' or '0'. Default empty.
-     *     @type int          $mature            Limit results to mature sites. Accepts '1' or '0'. Default empty.
-     *     @type int          $spam              Limit results to spam sites. Accepts '1' or '0'. Default empty.
-     *     @type int          $deleted           Limit results to deleted sites. Accepts '1' or '0'. Default empty.
-     *     @type int          $lang_id           Limit results to a language ID. Default empty.
-     *     @type array        $lang__in          Array of language IDs to include affiliated sites for. Default empty.
-     *     @type array        $lang__not_in      Array of language IDs to exclude affiliated sites for. Default empty.
-     *     @type string       $search            Search term(s) to retrieve matching sites for. Default empty.
-     *     @type array        $search_columns    Array of column names to be searched. Accepts 'domain' and 'path'.
-     *                                           Default empty array.
-     *     @type bool         $update_site_cache Whether to prime the cache for found sites. Default true.
+     *     @type array        $site__in               Array of site IDs to include. Default empty.
+     *     @type array        $site__not_in           Array of site IDs to exclude. Default empty.
+     *     @type bool         $count                  Whether to return a site count (true) or array of site objects.
+     *                                                Default false.
+     *     @type array        $date_query             Date query clauses to limit sites by. See WP_Date_Query.
+     *                                                Default null.
+     *     @type string       $fields                 Site fields to return. Accepts 'ids' (returns an array of site IDs)
+     *                                                or empty (returns an array of complete site objects). Default empty.
+     *     @type int          $ID                     A site ID to only return that site. Default empty.
+     *     @type int          $number                 Maximum number of sites to retrieve. Default 100.
+     *     @type int          $offset                 Number of sites to offset the query. Used to build LIMIT clause.
+     *                                                Default 0.
+     *     @type bool         $no_found_rows          Whether to disable the `SQL_CALC_FOUND_ROWS` query. Default true.
+     *     @type string|array $orderby                Site status or array of statuses. Accepts 'id', 'domain', 'path',
+     *                                                'network_id', 'last_updated', 'registered', 'domain_length',
+     *                                                'path_length', 'site__in' and 'network__in'. Also accepts false,
+     *                                                an empty array, or 'none' to disable `ORDER BY` clause.
+     *                                                Default 'id'.
+     *     @type string       $order                  How to order retrieved sites. Accepts 'ASC', 'DESC'. Default 'ASC'.
+     *     @type int          $network_id             Limit results to those affiliated with a given network ID. If 0,
+     *                                                include all networks. Default 0.
+     *     @type array        $network__in            Array of network IDs to include affiliated sites for. Default empty.
+     *     @type array        $network__not_in        Array of network IDs to exclude affiliated sites for. Default empty.
+     *     @type string       $domain                 Limit results to those affiliated with a given domain. Default empty.
+     *     @type array        $domain__in             Array of domains to include affiliated sites for. Default empty.
+     *     @type array        $domain__not_in         Array of domains to exclude affiliated sites for. Default empty.
+     *     @type string       $path                   Limit results to those affiliated with a given path. Default empty.
+     *     @type array        $path__in               Array of paths to include affiliated sites for. Default empty.
+     *     @type array        $path__not_in           Array of paths to exclude affiliated sites for. Default empty.
+     *     @type int          $public                 Limit results to public sites. Accepts '1' or '0'. Default empty.
+     *     @type int          $archived               Limit results to archived sites. Accepts '1' or '0'. Default empty.
+     *     @type int          $mature                 Limit results to mature sites. Accepts '1' or '0'. Default empty.
+     *     @type int          $spam                   Limit results to spam sites. Accepts '1' or '0'. Default empty.
+     *     @type int          $deleted                Limit results to deleted sites. Accepts '1' or '0'. Default empty.
+     *     @type int          $lang_id                Limit results to a language ID. Default empty.
+     *     @type array        $lang__in               Array of language IDs to include affiliated sites for. Default empty.
+     *     @type array        $lang__not_in           Array of language IDs to exclude affiliated sites for. Default empty.
+     *     @type string       $search                 Search term(s) to retrieve matching sites for. Default empty.
+     *     @type array        $search_columns         Array of column names to be searched. Accepts 'domain' and 'path'.
+     *                                                Default empty array.
+     *     @type bool         $update_site_cache      Whether to prime the cache for found sites. Default true.
+     *     @type bool         $update_site_meta_cache Whether to prime the metadata cache for found sites. Default true.
+     *     @type array        $meta_query             Meta query clauses to limit retrieved sites by. See `WP_Meta_Query`.
+     *                                                Default empty.
+     *     @type string       $meta_key               Limit sites to those matching a specific metadata key.
+     *                                                Can be used in conjunction with `$meta_value`. Default empty.
+     *     @type string       $meta_value             Limit sites to those matching a specific metadata value.
+     *                                                Usually used in conjunction with `$meta_key`. Default empty.
+     *     @type string       $meta_type              Data type that the `$meta_value` column will be CAST to for
+     *                                                comparisons. Default empty.
+     *     @type string       $meta_compare           Comparison operator to test the `$meta_value`. Default empty.
      * }
      * @phpstan-param array{
      *   site__in?: array,
@@ -38914,6 +38720,12 @@ class WP_Site_Query
      *   search?: string,
      *   search_columns?: array,
      *   update_site_cache?: bool,
+     *   update_site_meta_cache?: bool,
+     *   meta_query?: array,
+     *   meta_key?: string,
+     *   meta_value?: string,
+     *   meta_type?: string,
+     *   meta_compare?: string,
      * } $query
      */
     public function __construct($query = '')
@@ -38959,6 +38771,12 @@ class WP_Site_Query
      *   search?: string,
      *   search_columns?: array,
      *   update_site_cache?: bool,
+     *   update_site_meta_cache?: bool,
+     *   meta_query?: array,
+     *   meta_key?: string,
+     *   meta_value?: string,
+     *   meta_type?: string,
+     *   meta_compare?: string,
      * } $query See WP_Site_Query::__construct()
      */
     public function parse_query($query = '')
@@ -38980,6 +38798,8 @@ class WP_Site_Query
      * Retrieves a list of sites matching the query vars.
      *
      * @since 4.6.0
+     *
+     * @global wpdb $wpdb WordPress database abstraction object.
      *
      * @return array|int List of WP_Site objects, a list of site ids when 'fields' is set to 'ids',
      *                   or the number of sites when 'count' is passed as a query var.
@@ -39006,8 +38826,8 @@ class WP_Site_Query
      *
      * @global wpdb  $wpdb WordPress database abstraction object.
      *
-     * @param string $string  Search string.
-     * @param array  $columns Columns to search.
+     * @param string   $string  Search string.
+     * @param string[] $columns Array of columns to search.
      * @return string Search SQL.
      */
     protected function get_search_sql($string, $columns)
@@ -39171,7 +38991,6 @@ final class WP_Site
     /**
      * Retrieves a site from the database by its ID.
      *
-     * @static
      * @since 4.5.0
      *
      * @global wpdb $wpdb WordPress database abstraction object.
@@ -39380,8 +39199,6 @@ class WP_Tax_Query
      *
      * @since 4.1.0
      *
-     * @static
-     *
      * @param array $query Tax query arguments.
      * @return bool Whether the query clause is a first-order clause.
      */
@@ -39392,8 +39209,6 @@ class WP_Tax_Query
      * Generates SQL clauses to be appended to a main query.
      *
      * @since 3.1.0
-     *
-     * @static
      *
      * @param string $primary_table     Database table where the object being filtered is stored (eg wp_users).
      * @param string $primary_id_column ID column for the filtered object in $primary_table.
@@ -39636,6 +39451,13 @@ final class WP_Taxonomy
      */
     public $meta_box_cb = \null;
     /**
+     * The callback function for sanitizing taxonomy data saved from a meta box.
+     *
+     * @since 5.1.0
+     * @var callable
+     */
+    public $meta_box_sanitize_cb = \null;
+    /**
      * An array of object types this taxonomy is registered for.
      *
      * @since 4.7.0
@@ -39646,7 +39468,7 @@ final class WP_Taxonomy
      * Capabilities for this taxonomy.
      *
      * @since 4.7.0
-     * @var array
+     * @var object
      */
     public $cap;
     /**
@@ -39877,8 +39699,8 @@ class WP_Term_Query
      *     @type int          $offset                 The number by which to offset the terms query. Default empty.
      *     @type string       $fields                 Term fields to query for. Accepts 'all' (returns an array of
      *                                                complete term objects), 'all_with_object_id' (returns an
-     *                                                array of term objects with the 'object_id' param; only works
-     *                                                when the `$fields` parameter is 'object_ids' ), 'ids'
+     *                                                array of term objects with the 'object_id' param; works only
+     *                                                when the `$object_ids` parameter is populated), 'ids'
      *                                                (returns an array of ids), 'tt_ids' (returns an array of
      *                                                term taxonomy ids), 'id=>parent' (returns an associative
      *                                                array with ids as keys, parent term IDs as values), 'names'
@@ -40187,7 +40009,6 @@ final class WP_Term
      * Retrieve WP_Term instance.
      *
      * @since 4.4.0
-     * @static
      *
      * @global wpdb $wpdb WordPress database abstraction object.
      *
@@ -40905,7 +40726,7 @@ final class WP_Theme implements \ArrayAccess
      * @since 3.4.0
      *
      * @return bool True if the textdomain was successfully loaded or has already been loaded.
-     * 	False if no textdomain was specified in the file headers, or if the domain could not be loaded.
+     *  False if no textdomain was specified in the file headers, or if the domain could not be loaded.
      */
     public function load_textdomain()
     {
@@ -40916,7 +40737,7 @@ final class WP_Theme implements \ArrayAccess
      * @since 3.4.0
      *
      * @param string $check Optional. Whether to check only the 'network'-wide settings, the 'site'
-     * 	settings, or 'both'. Defaults to 'both'.
+     *  settings, or 'both'. Defaults to 'both'.
      * @param int $blog_id Optional. Ignored if only network-wide settings are checked. Defaults to current site.
      * @return bool Whether the theme is allowed for the network. Returns true in single-site.
      */
@@ -40940,10 +40761,8 @@ final class WP_Theme implements \ArrayAccess
      *
      * @since 3.4.0
      *
-     * @static
-     *
      * @param int $blog_id Optional. ID of the site. Defaults to the current site.
-     * @return array Array of stylesheet names.
+     * @return string[] Array of stylesheet names.
      */
     public static function get_allowed($blog_id = \null)
     {
@@ -40953,11 +40772,9 @@ final class WP_Theme implements \ArrayAccess
      *
      * @since 3.4.0
      *
-     * @static
-     *
      * @staticvar array $allowed_themes
      *
-     * @return array Array of stylesheet names.
+     * @return string[] Array of stylesheet names.
      */
     public static function get_allowed_on_network()
     {
@@ -40967,12 +40784,10 @@ final class WP_Theme implements \ArrayAccess
      *
      * @since 3.4.0
      *
-     * @static
-     *
      * @staticvar array $allowed_themes
      *
      * @param int $blog_id Optional. ID of the site. Defaults to the current site.
-     * @return array Array of stylesheet names.
+     * @return string[] Array of stylesheet names.
      */
     public static function get_allowed_on_site($blog_id = \null)
     {
@@ -40981,9 +40796,8 @@ final class WP_Theme implements \ArrayAccess
      * Enables a theme for all sites on the current network.
      *
      * @since 4.6.0
-     * @static
      *
-     * @param string|array $stylesheets Stylesheet name or array of stylesheet names.
+     * @param string|string[] $stylesheets Stylesheet name or array of stylesheet names.
      */
     public static function network_enable_theme($stylesheets)
     {
@@ -40992,9 +40806,8 @@ final class WP_Theme implements \ArrayAccess
      * Disables a theme for all sites on the current network.
      *
      * @since 4.6.0
-     * @static
      *
-     * @param string|array $stylesheets Stylesheet name or array of stylesheet names.
+     * @param string|string[] $stylesheets Stylesheet name or array of stylesheet names.
      */
     public static function network_disable_theme($stylesheets)
     {
@@ -41004,9 +40817,7 @@ final class WP_Theme implements \ArrayAccess
      *
      * @since 3.4.0
      *
-     * @static
-     *
-     * @param array $themes Array of themes to sort (passed by reference).
+     * @param WP_Theme[] $themes Array of theme objects to sort (passed by reference).
      */
     public static function sort_by_name(&$themes)
     {
@@ -41023,15 +40834,17 @@ final class WP_Theme implements \ArrayAccess
  * Meta-based user sessions token manager.
  *
  * @since 4.0.0
+ *
+ * @see WP_Session_Tokens
  */
 class WP_User_Meta_Session_Tokens extends \WP_Session_Tokens
 {
     /**
-     * Get all sessions of a user.
+     * Retrieves all sessions of the user.
      *
      * @since 4.0.0
      *
-     * @return array Sessions of a user.
+     * @return array Sessions of the user.
      */
     protected function get_sessions()
     {
@@ -41046,29 +40859,29 @@ class WP_User_Meta_Session_Tokens extends \WP_Session_Tokens
     {
     }
     /**
-     * Retrieve a session by its verifier (token hash).
+     * Retrieves a session based on its verifier (token hash).
      *
      * @since 4.0.0
      *
-     * @param string $verifier Verifier of the session to retrieve.
+     * @param string $verifier Verifier for the session to retrieve.
      * @return array|null The session, or null if it does not exist
      */
     protected function get_session($verifier)
     {
     }
     /**
-     * Update a session by its verifier.
+     * Updates a session based on its verifier (token hash).
      *
      * @since 4.0.0
      *
-     * @param string $verifier Verifier of the session to update.
+     * @param string $verifier Verifier for the session to update.
      * @param array  $session  Optional. Session. Omitting this argument destroys the session.
      */
     protected function update_session($verifier, $session = \null)
     {
     }
     /**
-     * Update a user's sessions in the usermeta table.
+     * Updates the user's sessions in the usermeta table.
      *
      * @since 4.0.0
      *
@@ -41078,7 +40891,7 @@ class WP_User_Meta_Session_Tokens extends \WP_Session_Tokens
     {
     }
     /**
-     * Destroy all session tokens for a user, except a single session passed.
+     * Destroys all sessions for this user, except the single session with the given verifier.
      *
      * @since 4.0.0
      *
@@ -41088,7 +40901,7 @@ class WP_User_Meta_Session_Tokens extends \WP_Session_Tokens
     {
     }
     /**
-     * Destroy all session tokens for a user.
+     * Destroys all session tokens for the user.
      *
      * @since 4.0.0
      */
@@ -41096,10 +40909,9 @@ class WP_User_Meta_Session_Tokens extends \WP_Session_Tokens
     {
     }
     /**
-     * Destroy all session tokens for all users.
+     * Destroys all sessions for all users.
      *
      * @since 4.0.0
-     * @static
      */
     public static function drop_sessions()
     {
@@ -41182,7 +40994,6 @@ class WP_User_Query
      *              querying for all users with using -1.
      * @since 4.7.0 Added 'nicename', 'nicename__in', 'nicename__not_in', 'login', 'login__in',
      *              and 'login__not_in' parameters.
-     *
      *
      * @global wpdb $wpdb WordPress database abstraction object.
      * @global int  $blog_id
@@ -41429,7 +41240,7 @@ class WP_User_Query
      *
      * @since 4.0.0
      *
-     * @param callable $name      Method to call.
+     * @param string   $name      Method to call.
      * @param array    $arguments Arguments to pass when calling.
      * @return mixed Return value of the callback, false otherwise.
      */
@@ -41513,7 +41324,8 @@ class WP_User
      * All capabilities the user has, including individual and role based.
      *
      * @since 2.0.0
-     * @var array
+     * @var bool[] Array of key/value pairs where keys represent a capability name and boolean values
+     *             represent whether the user has that capability.
      */
     public $allcaps = array();
     /**
@@ -41529,8 +41341,6 @@ class WP_User
      * Retrieves the userdata and passes it to WP_User::init().
      *
      * @since 2.0.0
-     *
-     * @global wpdb $wpdb WordPress database abstraction object.
      *
      * @param int|string|stdClass|WP_User $id User's ID, a WP_User object, or a user object from the DB.
      * @param string $name Optional. User's username
@@ -41555,8 +41365,6 @@ class WP_User
      *
      * @since 3.3.0
      * @since 4.4.0 Added 'ID' as an alias of 'id' for the `$field` parameter.
-     *
-     * @static
      *
      * @global wpdb $wpdb WordPress database abstraction object.
      *
@@ -41664,7 +41472,7 @@ class WP_User
      *
      * @since 4.3.0
      *
-     * @param callable $name      Method to call.
+     * @param string   $name      Method to call.
      * @param array    $arguments Arguments to pass when calling.
      * @return mixed|false Return value of the callback, false otherwise.
      */
@@ -41690,16 +41498,15 @@ class WP_User
     {
     }
     /**
-     * Retrieve all of the role capabilities and merge with individual capabilities.
+     * Retrieves all of the capabilities of the roles of the user, and merges them with individual user capabilities.
      *
-     * All of the capabilities of the roles the user belongs to are merged with
-     * the users individual roles. This also means that the user can be denied
-     * specific roles that their role might have, but the specific user isn't
-     * granted permission to.
+     * All of the capabilities of the roles of the user are merged with the user's individual capabilities. This means
+     * that the user can be denied specific capabilities that their role might have, but the user is specifically denied.
      *
      * @since 2.0.0
      *
-     * @return array List of all capabilities for the user.
+     * @return bool[] Array of key/value pairs where keys represent a capability name and boolean values
+     *                represent whether the user has that capability.
      */
     public function get_role_caps()
     {
@@ -41845,8 +41652,6 @@ class WP_User
      *
      * @since 3.0.0
      * @deprecated 4.9.0 Use WP_User::for_site()
-     *
-     * @global wpdb $wpdb WordPress database abstraction object.
      *
      * @param int $blog_id Optional. Site ID, defaults to current site.
      */
@@ -42376,7 +42181,7 @@ class wp_xmlrpc_server extends \IXR_Server
      *
      * @since 4.0.0
      *
-     * @param callable $name      Method to call.
+     * @param string   $name      Method to call.
      * @param array    $arguments Arguments to pass when calling.
      * @return array|IXR_Error|false Return value of the callback, false otherwise.
      */
@@ -42554,7 +42359,6 @@ class wp_xmlrpc_server extends \IXR_Server
     /**
      * Prepares taxonomy data for return in an XML-RPC object.
      *
-     *
      * @param object $taxonomy The unprepared taxonomy data.
      * @param array $fields    The subset of taxonomy fields to return.
      * @return array The prepared taxonomy data.
@@ -42565,7 +42369,6 @@ class wp_xmlrpc_server extends \IXR_Server
     /**
      * Prepares term data for return in an XML-RPC object.
      *
-     *
      * @param array|object $term The unprepared term data.
      * @return array The prepared term data.
      */
@@ -42574,7 +42377,6 @@ class wp_xmlrpc_server extends \IXR_Server
     }
     /**
      * Convert a WordPress date string to an IXR_Date object.
-     *
      *
      * @param string $date Date string to convert.
      * @return IXR_Date IXR_Date object.
@@ -42585,7 +42387,6 @@ class wp_xmlrpc_server extends \IXR_Server
     /**
      * Convert a WordPress GMT date string to an IXR_Date object.
      *
-     *
      * @param string $date_gmt WordPress GMT date string.
      * @param string $date     Date string.
      * @return IXR_Date IXR_Date object.
@@ -42595,7 +42396,6 @@ class wp_xmlrpc_server extends \IXR_Server
     }
     /**
      * Prepares post data for return in an XML-RPC object.
-     *
      *
      * @param array $post   The unprepared post data.
      * @param array $fields The subset of post type fields to return.
@@ -42620,7 +42420,6 @@ class wp_xmlrpc_server extends \IXR_Server
     /**
      * Prepares media item data for return in an XML-RPC object.
      *
-     *
      * @param object $media_item     The unprepared media item data.
      * @param string $thumbnail_size The image size to use for the thumbnail URL.
      * @return array The prepared media item data.
@@ -42631,7 +42430,6 @@ class wp_xmlrpc_server extends \IXR_Server
     /**
      * Prepares page data for return in an XML-RPC object.
      *
-     *
      * @param object $page The unprepared page data.
      * @return array The prepared page data.
      */
@@ -42641,7 +42439,6 @@ class wp_xmlrpc_server extends \IXR_Server
     /**
      * Prepares comment data for return in an XML-RPC object.
      *
-     *
      * @param object $comment The unprepared comment data.
      * @return array The prepared comment data.
      */
@@ -42650,7 +42447,6 @@ class wp_xmlrpc_server extends \IXR_Server
     }
     /**
      * Prepares user data for return in an XML-RPC object.
-     *
      *
      * @param WP_User $user   The unprepared user object.
      * @param array   $fields The subset of user fields to return.
@@ -44685,7 +44481,7 @@ class WP
      * Long list of public query variables.
      *
      * @since 2.0.0
-     * @var array
+     * @var string[]
      */
     public $public_query_vars = array('m', 'p', 'posts', 'w', 'cat', 'withcomments', 'withoutcomments', 's', 'search', 'exact', 'sentence', 'calendar', 'page', 'paged', 'more', 'tb', 'pb', 'author', 'order', 'orderby', 'year', 'monthnum', 'day', 'hour', 'minute', 'second', 'name', 'category_name', 'tag', 'feed', 'author_name', 'pagename', 'page_id', 'error', 'attachment', 'attachment_id', 'subpost', 'subpost_id', 'preview', 'robots', 'taxonomy', 'term', 'cpage', 'post_type', 'embed');
     /**
@@ -44694,7 +44490,7 @@ class WP
      * Long list of private query variables.
      *
      * @since 2.0.0
-     * @var array
+     * @var string[]
      */
     public $private_query_vars = array('offset', 'posts_per_page', 'posts_per_archive_page', 'showposts', 'nopaging', 'post_type', 'post_status', 'category__in', 'category__not_in', 'category__and', 'tag__in', 'tag__not_in', 'tag__and', 'tag_slug__in', 'tag_slug__and', 'tag_id', 'post_mime_type', 'perm', 'comments_per_page', 'post__in', 'post__not_in', 'post_parent', 'post_parent__in', 'post_parent__not_in', 'title', 'fields');
     /**
@@ -45011,8 +44807,9 @@ class WP_Dependencies
      * @since 2.6.0 Moved from `WP_Scripts`.
      *
      * @param string           $handle Name of the item. Should be unique.
-     * @param string           $src    Full URL of the item, or path of the item relative to the WordPress root directory.
-     * @param array            $deps   Optional. An array of registered item handles this item depends on. Default empty array.
+     * @param string|bool      $src    Full URL of the item, or path of the item relative to the WordPress root directory.
+     *                                 If source is set to false, item is an alias of other items it depends on.
+     * @param string[]         $deps   Optional. An array of registered item handles this item depends on. Default empty array.
      * @param string|bool|null $ver    Optional. String specifying item version number, if it has one, which is added to the URL
      *                                 as a query string for cache busting purposes. If version is set to false, a version
      *                                 number is automatically added equal to current installed WordPress version.
@@ -45099,8 +44896,8 @@ class WP_Dependencies
      *
      * @since 4.0.0
      *
-     * @param array  $queue  An array of queued _WP_Dependency handle objects.
-     * @param string $handle Name of the item. Should be unique.
+     * @param string[] $queue  An array of queued _WP_Dependency handles.
+     * @param string   $handle Name of the item. Should be unique.
      * @return bool Whether the handle is found after recursively searching the dependency tree.
      */
     protected function recurse_deps($queue, $handle)
@@ -45167,7 +44964,7 @@ class WP_Scripts extends \WP_Dependencies
      */
     public $content_url;
     /**
-     * Default version string for stylesheets.
+     * Default version string for scripts.
      *
      * @since 2.6.0
      * @var string
@@ -45315,7 +45112,7 @@ class WP_Scripts extends \WP_Dependencies
      *
      * @see WP_Dependencies::do_item()
      *
-     * @param string $handle    The script's registered handle.
+     * @param string    $handle The script's registered handle.
      * @param int|false $group  Optional. Group level: (int) level, (false) no groups. Default false.
      * @return bool True on success, false on failure.
      */
@@ -45344,7 +45141,7 @@ class WP_Scripts extends \WP_Dependencies
      * @param string $handle   Name of the script to add the inline script to. Must be lowercase.
      * @param string $position Optional. Whether to add the inline script before the handle
      *                         or after. Default 'after'.
-     * @param bool $echo       Optional. Whether to echo the script instead of just returning it.
+     * @param bool   $echo     Optional. Whether to echo the script instead of just returning it.
      *                         Default true.
      * @return string|false Script on success, false otherwise.
      */
@@ -45356,10 +45153,10 @@ class WP_Scripts extends \WP_Dependencies
      *
      * @since 2.1.0
      *
-     * @param string $handle
-     * @param string $object_name
-     * @param array $l10n
-     * @return bool
+     * @param string $handle      Name of the script to attach data to.
+     * @param string $object_name Name of the variable that will contain the data.
+     * @param array  $l10n        Array of data to localize.
+     * @return bool True on success, false on failure.
      */
     public function localize($handle, $object_name, $l10n)
     {
@@ -45383,14 +45180,14 @@ class WP_Scripts extends \WP_Dependencies
      * Sets a translation textdomain.
      *
      * @since 5.0.0
+     * @since 5.1.0 The `$domain` parameter was made optional.
      *
      * @param string $handle Name of the script to register a translation domain to.
-     * @param string $domain The textdomain.
+     * @param string $domain Optional. Text domain. Default 'default'.
      * @param string $path   Optional. The full file path to the directory containing translation files.
-     *
-     * @return bool True if the textdomain was registered, false if not.
+     * @return bool True if the text domain was registered, false if not.
      */
-    public function set_translations($handle, $domain, $path = \null)
+    public function set_translations($handle, $domain = 'default', $path = \null)
     {
     }
     /**
@@ -46404,6 +46201,8 @@ class WP_Customize_Date_Time_Control extends \WP_Customize_Control
      * @since 4.9.0
      * @see touch_time()
      *
+     * @global WP_Locale $wp_locale
+     *
      * @return array
      */
     public function get_month_choices()
@@ -46477,8 +46276,26 @@ class WP_Customize_Filter_Setting extends \WP_Customize_Setting
  */
 class WP_Customize_Header_Image_Control extends \WP_Customize_Image_Control
 {
+    /**
+     * Customize control type.
+     *
+     * @since 4.2.0
+     * @var string
+     */
     public $type = 'header';
+    /**
+     * Uploaded header images.
+     *
+     * @since 3.9.0
+     * @var string
+     */
     public $uploaded_headers;
+    /**
+     * Default header images.
+     *
+     * @since 3.9.0
+     * @var string
+     */
     public $default_headers;
     /**
      * Constructor.
@@ -46496,7 +46313,6 @@ class WP_Customize_Header_Image_Control extends \WP_Customize_Image_Control
     {
     }
     /**
-     *
      * @global Custom_Image_Header $custom_image_header
      */
     public function prepare_control()
@@ -46940,10 +46756,10 @@ class WP_Customize_Nav_Menu_Item_Setting extends \WP_Customize_Setting
      *
      * @see wp_get_nav_menu_items()
      *
-     * @param array  $items An array of menu item post objects.
-     * @param object $menu  The menu object.
-     * @param array  $args  An array of arguments used to retrieve menu item objects.
-     * @return array Array of menu items,
+     * @param WP_Post[] $items An array of menu item post objects.
+     * @param WP_Term   $menu  The menu object.
+     * @param array     $args  An array of arguments used to retrieve menu item objects.
+     * @return WP_Post[] Array of menu item objects.
      */
     public function filter_wp_get_nav_menu_items($items, $menu, $args)
     {
@@ -46952,14 +46768,13 @@ class WP_Customize_Nav_Menu_Item_Setting extends \WP_Customize_Setting
      * Re-apply the tail logic also applied on $items by wp_get_nav_menu_items().
      *
      * @since 4.3.0
-     * @static
      *
      * @see wp_get_nav_menu_items()
      *
-     * @param array  $items An array of menu item post objects.
-     * @param object $menu  The menu object.
-     * @param array  $args  An array of arguments used to retrieve menu item objects.
-     * @return array Array of menu items,
+     * @param WP_Post[] $items An array of menu item post objects.
+     * @param WP_Term   $menu  The menu object.
+     * @param array     $args  An array of arguments used to retrieve menu item objects.
+     * @return WP_Post[] Array of menu item objects.
      */
     public static function sort_wp_get_nav_menu_items($items, $menu, $args)
     {
@@ -47087,6 +46902,8 @@ class WP_Customize_Nav_Menu_Location_Control extends \WP_Customize_Control
  * Customize Nav Menu Locations Control Class.
  *
  * @since 4.9.0
+ *
+ * @see WP_Customize_Control
  */
 class WP_Customize_Nav_Menu_Locations_Control extends \WP_Customize_Control
 {
@@ -47340,9 +47157,9 @@ class WP_Customize_Nav_Menu_Setting extends \WP_Customize_Setting
      *
      * @see wp_get_nav_menus()
      *
-     * @param array $menus An array of menu objects.
-     * @param array $args  An array of arguments used to retrieve menu objects.
-     * @return array
+     * @param WP_Term[] $menus An array of menu objects.
+     * @param array     $args  An array of arguments used to retrieve menu objects.
+     * @return WP_Term[] Array of menu objects.
      */
     public function filter_wp_get_nav_menus($menus, $args)
     {
@@ -47989,8 +47806,8 @@ final class WP_Customize_Selective_Refresh
      *
      * @see WP_Customize_Manager::add_dynamic_settings()
      *
-     * @param array $partial_ids The partial ID to add.
-     * @return array Added WP_Customize_Partial instances.
+     * @param string[] $partial_ids Array of the partial IDs to add.
+     * @return WP_Customize_Partial[] Array of added WP_Customize_Partial instances.
      */
     public function add_dynamic_partials($partial_ids)
     {
@@ -48384,13 +48201,61 @@ class WP_Widget_Area_Customize_Control extends \WP_Customize_Control
  */
 class WP_Widget_Form_Customize_Control extends \WP_Customize_Control
 {
+    /**
+     * Customize control type.
+     *
+     * @since 3.9.0
+     * @var string
+     */
     public $type = 'widget_form';
+    /**
+     * Widget ID.
+     *
+     * @since 3.9.0
+     * @var string
+     */
     public $widget_id;
+    /**
+     * Widget ID base.
+     *
+     * @since 3.9.0
+     * @var string
+     */
     public $widget_id_base;
+    /**
+     * Sidebar ID.
+     *
+     * @since 3.9.0
+     * @var string
+     */
     public $sidebar_id;
+    /**
+     * Widget status.
+     *
+     * @since 3.9.0
+     * @var bool True if new, false otherwise. Default false.
+     */
     public $is_new = \false;
+    /**
+     * Widget width.
+     *
+     * @since 3.9.0
+     * @var int
+     */
     public $width;
+    /**
+     * Widget height.
+     *
+     * @since 3.9.0
+     * @var int
+     */
     public $height;
+    /**
+     * Widget mode.
+     *
+     * @since 3.9.0
+     * @var bool True if wide, false otherwise. Default false.
+     */
     public $is_wide = \false;
     /**
      * Gather control params for exporting to JavaScript.
@@ -48451,14 +48316,14 @@ class Translation_Entry
     var $flags = array();
     /**
      * @param array $args associative array, support following keys:
-     * 	- singular (string) -- the string to translate, if omitted and empty entry will be created
-     * 	- plural (string) -- the plural form of the string, setting this will set {@link $is_plural} to true
-     * 	- translations (array) -- translations of the string and possibly -- its plural forms
-     * 	- context (string) -- a string differentiating two equal strings used in different contexts
-     * 	- translator_comments (string) -- comments left by translators
-     * 	- extracted_comments (string) -- comments left by developers
-     * 	- references (array) -- places in the code this strings is used, in relative_to_root_path/file.php:linenum form
-     * 	- flags (array) -- flags like php-format
+     *  - singular (string) -- the string to translate, if omitted and empty entry will be created
+     *  - plural (string) -- the plural form of the string, setting this will set {@link $is_plural} to true
+     *  - translations (array) -- translations of the string and possibly -- its plural forms
+     *  - context (string) -- a string differentiating two equal strings used in different contexts
+     *  - translator_comments (string) -- comments left by translators
+     *  - extracted_comments (string) -- comments left by developers
+     *  - references (array) -- places in the code this strings is used, in relative_to_root_path/file.php:linenum form
+     *  - flags (array) -- flags like php-format
      */
     function __construct($args = array())
     {
@@ -48547,7 +48412,7 @@ class Translations
      * Given the number of items, returns the 0-based index of the plural form to use
      *
      * Here, in the base Translations class, the common logic for English is implemented:
-     * 	0 if there is one element, 1 otherwise
+     *  0 if there is one element, 1 otherwise
      *
      * This function should be overridden by the sub-classes. For example MO/PO can derive the logic
      * from their headers.
@@ -48577,7 +48442,7 @@ class Translations
      *
      * @param Object $other Another Translation object, whose translations will be merged in this one (passed by reference).
      * @return void
-     **/
+     */
     function merge_with(&$other)
     {
     }
@@ -48611,6 +48476,7 @@ class Gettext_Translations extends \Translations
     /**
      * Makes a function, which will return the right translation index, according to the
      * plural forms header
+     *
      * @param int    $nplurals
      * @param string $expression
      */
@@ -48657,6 +48523,7 @@ class MO extends \Gettext_Translations
      * Fills up with the entries from MO file $filename
      *
      * @param string $filename MO file to load
+     * @return bool True if the import from file was successful, otherwise false.
      */
     function import_from_file($filename)
     {
@@ -48717,6 +48584,7 @@ class MO extends \Gettext_Translations
     }
     /**
      * @param POMO_FileReader $reader
+     * @return bool True if the import was successful, otherwise false.
      */
     function import_from_reader($reader)
     {
@@ -48727,9 +48595,10 @@ class MO extends \Gettext_Translations
      *
      * @static
      * @param string $original original string to translate from MO file. Might contain
-     * 	0x04 as context separator or 0x00 as singular/plural separator
+     *  0x04 as context separator or 0x00 as singular/plural separator
      * @param string $translation translation string from MO file. Might contain
-     * 	0x00 as a plural translations separator
+     *  0x00 as a plural translations separator
+     * @return Translation_Entry Entry instance.
      */
     function &make_entry($original, $translation)
     {
@@ -48892,7 +48761,6 @@ class PO extends \Gettext_Translations
     /**
      * Formats a string in PO-style
      *
-     * @static
      * @param string $string the string to format
      * @return string the poified string
      */
@@ -48902,7 +48770,6 @@ class PO extends \Gettext_Translations
     /**
      * Gives back the original string from a PO-formatted string
      *
-     * @static
      * @param string $string PO-formatted string
      * @return string enascaped string
      */
@@ -48913,7 +48780,6 @@ class PO extends \Gettext_Translations
      * Inserts $with in the beginning of every new line of $string and
      * returns the modified string
      *
-     * @static
      * @param string $string prepend lines in this string
      * @param string $with prepend lines with this string
      */
@@ -48927,7 +48793,7 @@ class PO extends \Gettext_Translations
      * @access private
      * @param string $text the comment text
      * @param string $char character to denote a special PO comment,
-     * 	like :, default is a space
+     *  like :, default is a space
      */
     public static function comment_block($text, $char = ' ')
     {
@@ -48935,10 +48801,9 @@ class PO extends \Gettext_Translations
     /**
      * Builds a string from the entry for inclusion in PO file
      *
-     * @static
      * @param Translation_Entry $entry the entry to convert to po string (passed by reference).
      * @return false|string PO-style formatted string for the entry or
-     * 	false if the entry is empty
+     *  false if the entry is empty
      */
     public static function export_entry(&$entry)
     {
@@ -48955,6 +48820,7 @@ class PO extends \Gettext_Translations
     }
     /**
      * Helper function for read_entry
+     *
      * @param string $context
      * @return bool
      */
@@ -49014,7 +48880,7 @@ class POMO_Reader
     /**
      * Sets the endianness of the file.
      *
-     * @param $endian string 'big' or 'little'
+     * @param string $endian Set the endianness of the file. Accepts 'big', or 'little'.
      */
     function setEndian($endian)
     {
@@ -49023,7 +48889,7 @@ class POMO_Reader
      * Reads a 32bit Integer from the Stream
      *
      * @return mixed The integer, corresponding to the next 32 bits from
-     * 	the stream of false if there are not enough bytes or on error
+     *  the stream of false if there are not enough bytes or on error
      */
     function readint32()
     {
@@ -49031,9 +48897,9 @@ class POMO_Reader
     /**
      * Reads an array of 32-bit Integers from the Stream
      *
-     * @param integer count How many elements should be read
+     * @param integer $count How many elements should be read
      * @return mixed Array of integers or false if there isn't
-     * 	enough data or on error
+     *  enough data or on error
      */
     function readint32array($count)
     {
@@ -49097,6 +48963,7 @@ class POMO_FileReader extends \POMO_Reader
     }
     /**
      * @param int $bytes
+     * @return string|false Returns read string, otherwise false.
      */
     function read($bytes)
     {
@@ -49226,7 +49093,6 @@ class NOOP_Translations
     {
     }
     /**
-     *
      * @param string $header
      * @param string $value
      */
@@ -49234,7 +49100,6 @@ class NOOP_Translations
     {
     }
     /**
-     *
      * @param array $headers
      */
     function set_headers($headers)
@@ -49262,7 +49127,6 @@ class NOOP_Translations
     {
     }
     /**
-     *
      * @param int $count
      * @return bool
      */
@@ -49441,7 +49305,6 @@ class WP_REST_Request implements \ArrayAccess
      * @link https://nginx.org/en/docs/http/ngx_http_core_module.html#underscores_in_headers
      *
      * @since 4.4.0
-     * @static
      *
      * @param string $key Header name.
      * @return string Canonicalized name.
@@ -49871,7 +49734,6 @@ class WP_REST_Request implements \ArrayAccess
     /**
      * Retrieves a WP_REST_Request object from a full URL.
      *
-     * @static
      * @since 4.5.0
      *
      * @param string $url URL with protocol, domain, path and query args.
@@ -50022,7 +49884,7 @@ class WP_REST_Response extends \WP_HTTP_Response
     {
     }
     /**
-     * Retrieves the handler that was responsible for generating the response.
+     * Sets the handler that was responsible for generating the response.
      *
      * @since 4.4.0
      *
@@ -50225,7 +50087,6 @@ class WP_REST_Server
      * direct output.
      *
      * @since 4.4.0
-     * @static
      *
      * @param WP_REST_Response $response Response to extract links from.
      * @return array Map of link relation to list of link hashes.
@@ -50240,7 +50101,6 @@ class WP_REST_Server
      * direct output.
      *
      * @since 4.5.0
-     * @static
      *
      * @param WP_REST_Response $response Response to extract links from.
      * @return array Map of link relation to list of link hashes.
@@ -51110,7 +50970,7 @@ class WP_REST_Posts_Controller extends \WP_REST_Controller
      * Sets the template for a post.
      *
      * @since 4.7.0
-     * @since 4.9.0 Introduced the $validate parameter.
+     * @since 4.9.0 Added the `$validate` parameter.
      *
      * @param string  $template Page template filename.
      * @param integer $post_id  Post ID.
@@ -52459,7 +52319,7 @@ class WP_REST_Post_Types_Controller extends \WP_REST_Controller
      *
      * @since 4.7.0
      *
-     * @param stdClass        $post_type Post type data.
+     * @param WP_Post_Type    $post_type Post type object.
      * @param WP_REST_Request $request   Full details about the request.
      * @return WP_REST_Response Response object.
      */
@@ -55779,7 +55639,7 @@ class WP_Widget_Text extends \WP_Widget
      * @since 2.8.0
      * @since 4.8.0 Form only contains hidden inputs which are synced with JS template.
      * @since 4.8.1 Restored original form to be displayed when in legacy mode.
-     * @see WP_Widget_Visual_Text::render_control_template_scripts()
+     * @see WP_Widget_Text::render_control_template_scripts()
      * @see _WP_Editors::editor()
      *
      * @param array $instance Current settings.
@@ -55914,10 +55774,30 @@ class wpdb
      */
     protected $col_info;
     /**
-     * Saved queries that were executed
+     * Log of queries that were executed, for debugging purposes.
      *
      * @since 1.5.0
-     * @var array
+     * @since 2.5.0 The third element in each query log was added to record the calling functions.
+     * @since 5.1.0 The fourth element in each query log was added to record the start time.
+     *
+     * @var array[] {
+     *     Array of queries that were executed.
+     *
+     *     @type array ...$0 {
+     *         Data for each query.
+     *
+     *         @type string $0 The query's SQL.
+     *         @type float  $1 Total time spent on the query, in seconds.
+     *         @type string $2 Comma separated list of the calling functions.
+     *         @type float  $3 Unix timestamp of the time at the start of the query.
+     *     }
+     * }
+     * @phpstan-var array<int|string, array{
+     *   0: string,
+     *   1: float,
+     *   2: string,
+     *   3: float,
+     * }>
      */
     var $queries;
     /**
@@ -56000,7 +55880,7 @@ class wpdb
      * @see wpdb::tables()
      * @var array
      */
-    var $ms_global_tables = array('blogs', 'signups', 'site', 'sitemeta', 'sitecategories', 'registration_log', 'blog_versions');
+    var $ms_global_tables = array('blogs', 'blogmeta', 'signups', 'site', 'sitemeta', 'sitecategories', 'registration_log', 'blog_versions');
     /**
      * WordPress Comments table
      *
@@ -56095,6 +55975,13 @@ class wpdb
      * @var string
      */
     public $blogs;
+    /**
+     * Multisite Blog Metadata table
+     *
+     * @since 5.1.0
+     * @var string
+     */
+    public $blogmeta;
     /**
      * Multisite Blog Versions table
      *
@@ -56509,7 +56396,7 @@ class wpdb
      *
      * Literal percentage signs (%) in the query string must be written as %%. Percentage wildcards (for example,
      * to use in LIKE syntax) must be passed via a substitution argument containing the complete LIKE string, these
-     * cannot be inserted directly in the query string. Also see {@see esc_like()}.
+     * cannot be inserted directly in the query string. Also see {@see wpdb::esc_like()}.
      *
      * Arguments may be passed as individual arguments to the method, or as a single array containing all arguments. A combination
      * of the two is not supported.
@@ -56678,7 +56565,8 @@ class wpdb
      * @since 0.71
      *
      * @param string $query Database query
-     * @return int|false Number of rows affected/selected or false on error
+     * @return int|bool Boolean true for CREATE, ALTER, TRUNCATE and DROP queries. Number of rows
+     *                  affected/selected for all other queries. Boolean false on error.
      */
     public function query($query)
     {
@@ -57090,7 +56978,6 @@ class wpdb
      * Load the column metadata from the last query.
      *
      * @since 3.5.0
-     *
      */
     protected function load_col_info()
     {
@@ -57215,7 +57102,7 @@ class wpdb
      *
      * @since 2.5.0
      *
-     * @return string|array The name of the calling function
+     * @return string Comma separated list of the calling functions.
      */
     public function get_caller()
     {
@@ -57460,9 +57347,11 @@ function wp_ajax_untrash_post($action)
 {
 }
 /**
+ * Ajax handler to delete a page.
+ *
  * @since 3.1.0
  *
- * @param string $action
+ * @param string $action Action to perform.
  */
 function wp_ajax_delete_page($action)
 {
@@ -57957,7 +57846,7 @@ function wp_ajax_save_wporg_username()
  *
  * @see Theme_Upgrader
  *
- * @global WP_Filesystem_Base $wp_filesystem Subclass
+ * @global WP_Filesystem_Base $wp_filesystem WordPress filesystem subclass.
  */
 function wp_ajax_install_theme()
 {
@@ -57969,7 +57858,7 @@ function wp_ajax_install_theme()
  *
  * @see Theme_Upgrader
  *
- * @global WP_Filesystem_Base $wp_filesystem Subclass
+ * @global WP_Filesystem_Base $wp_filesystem WordPress filesystem subclass.
  */
 function wp_ajax_update_theme()
 {
@@ -57981,7 +57870,7 @@ function wp_ajax_update_theme()
  *
  * @see delete_theme()
  *
- * @global WP_Filesystem_Base $wp_filesystem Subclass
+ * @global WP_Filesystem_Base $wp_filesystem WordPress filesystem subclass.
  */
 function wp_ajax_delete_theme()
 {
@@ -57993,7 +57882,7 @@ function wp_ajax_delete_theme()
  *
  * @see Plugin_Upgrader
  *
- * @global WP_Filesystem_Base $wp_filesystem Subclass
+ * @global WP_Filesystem_Base $wp_filesystem WordPress filesystem subclass.
  */
 function wp_ajax_install_plugin()
 {
@@ -58005,7 +57894,7 @@ function wp_ajax_install_plugin()
  *
  * @see Plugin_Upgrader
  *
- * @global WP_Filesystem_Base $wp_filesystem Subclass
+ * @global WP_Filesystem_Base $wp_filesystem WordPress filesystem subclass.
  */
 function wp_ajax_update_plugin()
 {
@@ -58017,7 +57906,7 @@ function wp_ajax_update_plugin()
  *
  * @see delete_plugins()
  *
- * @global WP_Filesystem_Base $wp_filesystem Subclass
+ * @global WP_Filesystem_Base $wp_filesystem WordPress filesystem subclass.
  */
 function wp_ajax_delete_plugin()
 {
@@ -58158,7 +58047,7 @@ function wp_insert_link($linkdata, $wp_error = \false)
  * @since 2.1.0
  *
  * @param int   $link_id         ID of the link to update.
- * @param array $link_categories Array of link categories to add the link to.
+ * @param int[] $link_categories Array of link category IDs to add the link to.
  */
 function wp_set_link_cats($link_id = 0, $link_categories = array())
 {
@@ -58504,7 +58393,7 @@ function wp_dashboard_quick_press($error_msg = \false)
  *
  * @since 2.7.0
  *
- * @param array $drafts
+ * @param WP_Post[] $drafts Optional. Array of posts to display. Default false.
  */
 function wp_dashboard_recent_drafts($drafts = \false)
 {
@@ -58650,7 +58539,7 @@ function wp_print_community_events_templates()
 {
 }
 /**
- * WordPress News dashboard widget.
+ * 'WordPress Events and News' dashboard widget.
  *
  * @since 2.7.0
  * @since 4.8.0 Removed popular plugins feed.
@@ -58659,7 +58548,7 @@ function wp_dashboard_primary()
 {
 }
 /**
- * Display the WordPress news feeds.
+ * Display the WordPress events and news feeds.
  *
  * @since 3.8.0
  * @since 4.8.0 Removed popular plugins feed.
@@ -58703,6 +58592,25 @@ function dashboard_browser_nag_class($classes)
  * @return array|bool False on failure, array of browser data on success.
  */
 function wp_check_browser_version()
+{
+}
+/**
+ * Displays the PHP update nag.
+ *
+ * @since 5.1.0
+ */
+function wp_dashboard_php_nag()
+{
+}
+/**
+ * Adds an additional class to the PHP nag if the current version is insecure.
+ *
+ * @since 5.1.0
+ *
+ * @param array $classes Metabox classes.
+ * @return array Modified metabox classes.
+ */
+function dashboard_php_nag_class($classes)
 {
 }
 /**
@@ -59612,10 +59520,10 @@ function get_home_path()
  * @since 2.6.0
  * @since 4.9.0 Added the `$exclusions` parameter.
  *
- * @param string $folder Optional. Full path to folder. Default empty.
- * @param int    $levels Optional. Levels of folders to follow, Default 100 (PHP Loop limit).
- * @param array  $exclusions Optional. List of folders and files to skip.
- * @return bool|array False on failure, Else array of files
+ * @param string   $folder     Optional. Full path to folder. Default empty.
+ * @param int      $levels     Optional. Levels of folders to follow, Default 100 (PHP Loop limit).
+ * @param string[] $exclusions Optional. List of folders and files to skip.
+ * @return bool|string[] False on failure, else array of files.
  */
 function list_files($folder = '', $levels = 100, $exclusions = array())
 {
@@ -59625,8 +59533,8 @@ function list_files($folder = '', $levels = 100, $exclusions = array())
  *
  * @since 4.9.0
  *
- * @param string $plugin Plugin.
- * @return array File extensions.
+ * @param string $plugin Path to the plugin file relative to the plugins directory.
+ * @return string[] Array of editable file extensions.
  */
 function wp_get_plugin_file_editable_extensions($plugin)
 {
@@ -59634,8 +59542,8 @@ function wp_get_plugin_file_editable_extensions($plugin)
 /**
  * Get list of file extensions that are editable for a given theme.
  *
- * @param WP_Theme $theme Theme.
- * @return array File extensions.
+ * @param WP_Theme $theme Theme object.
+ * @return string[] Array of editable file extensions.
  */
 function wp_get_theme_file_editable_extensions($theme)
 {
@@ -59657,12 +59565,12 @@ function wp_print_file_editor_templates()
  *
  * @since 4.9.0
  *
- * @param array $args {
+ * @param string[] $args {
  *     Args. Note that all of the arg values are already unslashed. They are, however,
- *     coming straight from $_POST and are not validated or sanitized in any way.
+ *     coming straight from `$_POST` and are not validated or sanitized in any way.
  *
  *     @type string $file       Relative path to file.
- *     @type string $plugin     Plugin being edited.
+ *     @type string $plugin     Path to the plugin file relative to the plugins directory.
  *     @type string $theme      Theme being edited.
  *     @type string $newcontent New content for the file.
  *     @type string $nonce      Nonce.
@@ -59702,9 +59610,9 @@ function wp_tempnam($filename = '', $dir = '')
  *
  * @since 1.5.0
  *
- * @param string $file          File the user is attempting to edit.
- * @param array  $allowed_files Optional. Array of allowed files to edit, $file must match an entry exactly.
- * @return string|null
+ * @param string   $file          File the user is attempting to edit.
+ * @param string[] $allowed_files Optional. Array of allowed files to edit. `$file` must match an entry exactly.
+ * @return string|void Returns the file name on success, dies on failure.
  */
 function validate_file_to_edit($file, $allowed_files = array())
 {
@@ -59718,12 +59626,12 @@ function validate_file_to_edit($file, $allowed_files = array())
  *
  * @see wp_handle_upload_error
  *
- * @param array       $file      Reference to a single element of $_FILES. Call the function once for each uploaded file.
- * @param array|false $overrides An associative array of names => values to override default variables. Default false.
- * @param string      $time      Time formatted in 'yyyy/mm'.
- * @param string      $action    Expected value for $_POST['action'].
- * @return array On success, returns an associative array of file attributes. On failure, returns
- *               $overrides['upload_error_handler'](&$file, $message ) or array( 'error'=>$message ).
+ * @param string[]       $file      Reference to a single element of `$_FILES`. Call the function once for each uploaded file.
+ * @param string[]|false $overrides An associative array of names => values to override default variables. Default false.
+ * @param string         $time      Time formatted in 'yyyy/mm'.
+ * @param string         $action    Expected value for `$_POST['action']`.
+ * @return string[] On success, returns an associative array of file attributes. On failure, returns
+ *               `$overrides['upload_error_handler'](&$file, $message )` or `array( 'error'=>$message )`.
  */
 function _wp_handle_upload(&$file, $overrides, $time, $action)
 {
@@ -59768,14 +59676,15 @@ function wp_handle_sideload(&$file, $overrides = \false, $time = \null)
 {
 }
 /**
- * Downloads a URL to a local temporary file using the WordPress HTTP Class.
- * Please note, That the calling function must unlink() the file.
+ * Downloads a URL to a local temporary file using the WordPress HTTP API.
+ *
+ * Please note that the calling function must unlink() the file.
  *
  * @since 2.5.0
  *
- * @param string $url the URL of the file to download
- * @param int $timeout The timeout for the request to download the file default 300 seconds
- * @return mixed WP_Error on failure, string Filename on success.
+ * @param string $url  The URL of the file to download.
+ * @param int $timeout The timeout for the request to download the file. Default 300 seconds.
+ * @return string|WP_Error Filename on success, WP_Error on failure.
  */
 function download_url($url, $timeout = 300)
 {
@@ -59785,85 +59694,99 @@ function download_url($url, $timeout = 300)
  *
  * @since 3.7.0
  *
- * @param string $filename The filename to check the MD5 of.
- * @param string $expected_md5 The expected MD5 of the file, either a base64 encoded raw md5, or a hex-encoded md5
- * @return bool|object WP_Error on failure, true on success, false when the MD5 format is unknown/unexpected
+ * @param string $filename     The filename to check the MD5 of.
+ * @param string $expected_md5 The expected MD5 of the file, either a base64-encoded raw md5,
+ *                             or a hex-encoded md5.
+ * @return bool|WP_Error True on success, false when the MD5 format is unknown/unexpected,
+ *                       WP_Error on failure.
  */
 function verify_file_md5($filename, $expected_md5)
 {
 }
 /**
- * Unzips a specified ZIP file to a location on the Filesystem via the WordPress Filesystem Abstraction.
- * Assumes that WP_Filesystem() has already been called and set up. Does not extract a root-level __MACOSX directory, if present.
+ * Unzips a specified ZIP file to a location on the filesystem via the WordPress
+ * Filesystem Abstraction.
  *
- * Attempts to increase the PHP Memory limit to 256M before uncompressing,
- * However, The most memory required shouldn't be much larger than the Archive itself.
+ * Assumes that WP_Filesystem() has already been called and set up. Does not extract
+ * a root-level __MACOSX directory, if present.
+ *
+ * Attempts to increase the PHP memory limit to 256M before uncompressing. However,
+ * the most memory required shouldn't be much larger than the archive itself.
  *
  * @since 2.5.0
  *
- * @global WP_Filesystem_Base $wp_filesystem Subclass
+ * @global WP_Filesystem_Base $wp_filesystem WordPress filesystem subclass.
  *
- * @param string $file Full path and filename of zip archive
- * @param string $to Full path on the filesystem to extract archive to
- * @return mixed WP_Error on failure, True on success
+ * @param string $file Full path and filename of ZIP archive.
+ * @param string $to   Full path on the filesystem to extract archive to.
+ * @return true|WP_Error True on success, WP_Error on failure.
  */
 function unzip_file($file, $to)
 {
 }
 /**
- * This function should not be called directly, use unzip_file instead. Attempts to unzip an archive using the ZipArchive class.
+ * Attempts to unzip an archive using the ZipArchive class.
+ *
+ * This function should not be called directly, use `unzip_file()` instead.
+ *
  * Assumes that WP_Filesystem() has already been called and set up.
  *
  * @since 3.0.0
- * @see unzip_file
+ * @see unzip_file()
  * @access private
  *
- * @global WP_Filesystem_Base $wp_filesystem Subclass
+ * @global WP_Filesystem_Base $wp_filesystem WordPress filesystem subclass.
  *
- * @param string $file Full path and filename of zip archive
- * @param string $to Full path on the filesystem to extract archive to
+ * @param string $file       Full path and filename of ZIP archive.
+ * @param string $to         Full path on the filesystem to extract archive to.
  * @param array $needed_dirs A partial list of required folders needed to be created.
- * @return mixed WP_Error on failure, True on success
+ * @return true|WP_Error True on success, WP_Error on failure.
  */
 function _unzip_file_ziparchive($file, $to, $needed_dirs = array())
 {
 }
 /**
- * This function should not be called directly, use unzip_file instead. Attempts to unzip an archive using the PclZip library.
+ * Attempts to unzip an archive using the PclZip library.
+ *
+ * This function should not be called directly, use `unzip_file()` instead.
+ *
  * Assumes that WP_Filesystem() has already been called and set up.
  *
  * @since 3.0.0
- * @see unzip_file
+ * @see unzip_file()
  * @access private
  *
- * @global WP_Filesystem_Base $wp_filesystem Subclass
+ * @global WP_Filesystem_Base $wp_filesystem WordPress filesystem subclass.
  *
- * @param string $file Full path and filename of zip archive
- * @param string $to Full path on the filesystem to extract archive to
+ * @param string $file       Full path and filename of ZIP archive.
+ * @param string $to         Full path on the filesystem to extract archive to.
  * @param array $needed_dirs A partial list of required folders needed to be created.
- * @return mixed WP_Error on failure, True on success
+ * @return true|WP_Error True on success, WP_Error on failure.
  */
 function _unzip_file_pclzip($file, $to, $needed_dirs = array())
 {
 }
 /**
- * Copies a directory from one location to another via the WordPress Filesystem Abstraction.
+ * Copies a directory from one location to another via the WordPress Filesystem
+ * Abstraction.
+ *
  * Assumes that WP_Filesystem() has already been called and setup.
  *
  * @since 2.5.0
  *
- * @global WP_Filesystem_Base $wp_filesystem Subclass
+ * @global WP_Filesystem_Base $wp_filesystem WordPress filesystem subclass.
  *
- * @param string $from source directory
- * @param string $to destination directory
- * @param array $skip_list a list of files/folders to skip copying
- * @return mixed WP_Error on failure, True on success.
+ * @param string $from     Source directory.
+ * @param string $to       Destination directory.
+ * @param array $skip_list A list of files/folders to skip copying.
+ * @return true|WP_Error True on success, WP_Error on failure.
  */
 function copy_dir($from, $to, $skip_list = array())
 {
 }
 /**
  * Initialises and connects the WordPress Filesystem Abstraction classes.
+ *
  * This function will include the chosen transport and attempt connecting.
  *
  * Plugins may add extra transports, And force WordPress to use them by returning
@@ -59871,13 +59794,13 @@ function copy_dir($from, $to, $skip_list = array())
  *
  * @since 2.5.0
  *
- * @global WP_Filesystem_Base $wp_filesystem Subclass
+ * @global WP_Filesystem_Base $wp_filesystem WordPress filesystem subclass.
  *
  * @param array|false  $args                         Optional. Connection args, These are passed directly to
  *                                                   the `WP_Filesystem_*()` classes. Default false.
  * @param string|false $context                      Optional. Context for get_filesystem_method(). Default false.
  * @param bool         $allow_relaxed_file_ownership Optional. Whether to allow Group/World writable. Default false.
- * @return null|bool false on failure, true on success.
+ * @return bool|null True on success, false on failure, null if the filesystem method class file does not exist.
  */
 function WP_Filesystem($args = \false, $context = \false, $allow_relaxed_file_ownership = \false)
 {
@@ -59937,7 +59860,7 @@ function get_filesystem_method($args = array(), $context = '', $allow_relaxed_fi
  *                                             the post. Default null.
  * @param bool   $allow_relaxed_file_ownership Optional. Whether to allow Group/World writable. Default false.
  *
- * @return bool False on failure, true on success.
+ * @return bool True on success, false on failure.
  */
 function request_filesystem_credentials($form_post, $type = '', $error = \false, $context = '', $extra_fields = \null, $allow_relaxed_file_ownership = \false)
 {
@@ -60031,6 +59954,8 @@ function wp_privacy_process_personal_data_export_page($response, $exporter_index
 /**
  * Loads the WP image-editing interface.
  *
+ * @since 2.9.0
+ *
  * @param int         $post_id Post ID.
  * @param bool|object $msg     Optional. Message to display for image editor updates or errors.
  *                             Default false.
@@ -60041,6 +59966,8 @@ function wp_image_editor($post_id, $msg = \false)
 /**
  * Streams image in WP_Image_Editor to browser.
  *
+ * @since 2.9.0
+ *
  * @param WP_Image_Editor $image         The image editor instance.
  * @param string          $mime_type     The mime type of the image.
  * @param int             $attachment_id The image's attachment post ID.
@@ -60050,7 +59977,9 @@ function wp_stream_image($image, $mime_type, $attachment_id)
 {
 }
 /**
- * Saves Image to File
+ * Saves image to file.
+ *
+ * @since 2.9.0
  *
  * @param string $filename
  * @param WP_Image_Editor $image
@@ -60137,6 +60066,8 @@ function image_edit_apply_changes($image, $changes)
  * Streams image in post to browser, along with enqueued changes
  * in $_REQUEST['history']
  *
+ * @since 2.9.0
+ *
  * @param int $post_id
  * @return bool
  */
@@ -60157,6 +60088,8 @@ function wp_restore_image($post_id)
 /**
  * Saves image to post along with enqueued changes
  * in $_REQUEST['history']
+ *
+ * @since 2.9.0
  *
  * @param int $post_id
  * @return \stdClass
@@ -60393,7 +60326,7 @@ function wp_get_popular_importers()
  * @since 3.1.0
  */
 /**
- * Fetch an instance of a WP_List_Table class.
+ * Fetches an instance of a WP_List_Table class.
  *
  * @access private
  * @since 3.1.0
@@ -60401,8 +60334,8 @@ function wp_get_popular_importers()
  * @global string $hook_suffix
  *
  * @param string $class The type of the list table, which is the class name.
- * @param array $args Optional. Arguments to pass to the class. Accepts 'screen'.
- * @return object|bool Object on success, false if the class does not exist.
+ * @param array  $args  Optional. Arguments to pass to the class. Accepts 'screen'.
+ * @return WP_List_Table|bool List table object on success, false if the class does not exist.
  */
 function _get_list_table($class, $args = array())
 {
@@ -60493,15 +60426,15 @@ function get_image_send_to_editor($id, $caption, $title, $align, $url = '', $rel
  *
  * @since 2.6.0
  *
- * @param string $html
- * @param integer $id
- * @param string $caption image caption
- * @param string $title image title attribute
- * @param string $align image css alignment property
- * @param string $url image src url
- * @param string $size image size (thumbnail, medium, large, full or added with add_image_size() )
- * @param string $alt image alt attribute
- * @return string
+ * @param string  $html    The image HTML markup to send.
+ * @param integer $id      Image attachment ID.
+ * @param string  $caption Image caption.
+ * @param string  $title   Image title attribute (not used).
+ * @param string  $align   Image CSS alignment property.
+ * @param string  $url     Image source URL (not used).
+ * @param string  $size    Image size (`thumbnail`, `medium`, `large`, `full`, or added with `add_image_size()`) (not used).
+ * @param string  $alt     Image `alt` attribute (not used).
+ * @return string The image HTML markup with caption shortcode.
  */
 function image_add_caption($html, $id, $caption, $title, $align, $url, $size, $alt = '')
 {
@@ -60581,7 +60514,6 @@ function media_buttons($editor_id = 'content')
 {
 }
 /**
- *
  * @global int $post_ID
  * @param string $type
  * @param int $post_id
@@ -60985,7 +60917,7 @@ function wp_read_video_metadata($file)
 {
 }
 /**
- * Retrieve metadata from a audio file's ID3 tags
+ * Retrieve metadata from an audio file's ID3 tags.
  *
  * @since 3.6.0
  *
@@ -61027,7 +60959,6 @@ function wp_media_attach_action($parent_id, $action = 'attach')
 {
 }
 /**
- *
  * @param string $add
  * @param string $class
  * @return string
@@ -61036,7 +60967,6 @@ function add_cssclass($add, $class)
 {
 }
 /**
- *
  * @param array $menu
  * @return array
  */
@@ -61044,7 +60974,6 @@ function add_menu_classes($menu)
 {
 }
 /**
- *
  * @global array $menu_order
  * @global array $default_menu_order
  *
@@ -61477,7 +61406,7 @@ function update_recently_edited($file)
 {
 }
 /**
- * Makes a tree structure for the Theme Editor's file list.
+ * Makes a tree structure for the theme editor's file list.
  *
  * @since 4.9.0
  * @access private
@@ -61489,10 +61418,14 @@ function wp_make_theme_file_tree($allowed_files)
 {
 }
 /**
- * Outputs the formatted file list for the Theme Editor.
+ * Outputs the formatted file list for the theme editor.
  *
  * @since 4.9.0
  * @access private
+ *
+ * @global string $relative_file Name of the file being edited relative to the
+ *                               theme directory.
+ * @global string $stylesheet    The stylesheet name of the theme being edited.
  *
  * @param array|string $tree  List of file/folder paths, or filename.
  * @param int          $level The aria-level for the current iteration.
@@ -61503,19 +61436,19 @@ function wp_print_theme_file_tree($tree, $level = 2, $size = 1, $index = 1)
 {
 }
 /**
- * Makes a tree structure for the Plugin Editor's file list.
+ * Makes a tree structure for the plugin editor's file list.
  *
  * @since 4.9.0
  * @access private
  *
- * @param string $plugin_editable_files List of plugin file paths.
+ * @param array $plugin_editable_files List of plugin file paths.
  * @return array Tree structure for listing plugin files.
  */
 function wp_make_plugin_file_tree($plugin_editable_files)
 {
 }
 /**
- * Outputs the formatted file list for the Plugin Editor.
+ * Outputs the formatted file list for the plugin editor.
  *
  * @since 4.9.0
  * @access private
@@ -61786,6 +61719,17 @@ function _wp_privacy_settings_filter_draft_page_titles($title, $page)
 {
 }
 /**
+ * Checks if the user needs to update PHP.
+ *
+ * @since 5.1.0
+ * @since 5.1.1 Added the {@see 'wp_is_php_version_acceptable'} filter.
+ *
+ * @return array|false $response Array of PHP version data. False on failure.
+ */
+function wp_check_php_version()
+{
+}
+/**
  * Multisite: Deprecated admin functions from past versions and WordPress MU
  *
  * These functions should not be used and will be removed in a later version.
@@ -61895,6 +61839,7 @@ function check_upload_size($file)
  * Delete a site.
  *
  * @since 3.0.0
+ * @since 5.1.0 Use wp_delete_site() internally to delete the site row from the database.
  *
  * @global wpdb $wpdb WordPress database abstraction object.
  *
@@ -62002,16 +61947,16 @@ function format_code_lang($code = '')
 {
 }
 /**
- * Synchronize category and post tag slugs when global terms are enabled.
+ * Synchronizes category and post tag slugs when global terms are enabled.
  *
  * @since 3.0.0
  *
- * @param object $term     The term.
- * @param string $taxonomy The taxonomy for `$term`. Should be 'category' or 'post_tag', as these are
- *                         the only taxonomies which are processed by this function; anything else
- *                         will be returned untouched.
- * @return object|array Returns `$term`, after filtering the 'slug' field with sanitize_title()
- *                      if $taxonomy is 'category' or 'post_tag'.
+ * @param WP_Term|array $term     The term.
+ * @param string        $taxonomy The taxonomy for `$term`. Should be 'category' or 'post_tag', as these are
+ *                                the only taxonomies which are processed by this function; anything else
+ *                                will be returned untouched.
+ * @return WP_Term|array Returns `$term`, after filtering the 'slug' field with `sanitize_title()`
+ *                       if `$taxonomy` is 'category' or 'post_tag'.
  */
 function sync_category_tag_slugs($term, $taxonomy)
 {
@@ -62043,8 +61988,8 @@ function check_import_new_users($permission)
  *
  * @since 3.0.0
  *
- * @param array  $lang_files Optional. An array of the language files. Default empty array.
- * @param string $current    Optional. The current language code. Default empty.
+ * @param string[] $lang_files Optional. An array of the language files. Default empty array.
+ * @param string   $current    Optional. The current language code. Default empty.
  */
 function mu_dropdown_languages($lang_files = array(), $current = '')
 {
@@ -62113,7 +62058,6 @@ function _thickbox_path_admin_subfolder()
 {
 }
 /**
- *
  * @param array $users
  */
 function confirm_delete_users($users)
@@ -62177,7 +62121,7 @@ function _wp_ajax_menu_quick_search($request = array())
  * Register nav menu meta boxes and advanced menu items.
  *
  * @since 3.0.0
- **/
+ */
 function wp_nav_menu_setup()
 {
 }
@@ -62187,7 +62131,7 @@ function wp_nav_menu_setup()
  * @since 3.0.0
  *
  * @global array $wp_meta_boxes
- **/
+ */
 function wp_initial_nav_menu_meta_boxes()
 {
 }
@@ -62289,9 +62233,9 @@ function wp_nav_menu_item_taxonomy_meta_box($object, $box)
  *
  * @since 3.0.0
  *
- * @param int $menu_id The menu ID for which to save this item. $menu_id of 0 makes a draft, orphaned menu item.
- * @param array $menu_data The unsanitized posted menu item data.
- * @return array The database IDs of the items saved
+ * @param int     $menu_id   The menu ID for which to save this item. Value of 0 makes a draft, orphaned menu item. Default 0.
+ * @param array[] $menu_data The unsanitized POSTed menu item data.
+ * @return int[] The database IDs of the items saved
  */
 function wp_save_nav_menu_items($menu_id = 0, $menu_data = array())
 {
@@ -62378,7 +62322,7 @@ function _wp_expand_nav_menu_post_data()
  *
  * @global wpdb $wpdb WordPress database abstraction object.
  *
- * @return Whether a network exists.
+ * @return string|false Base domain if network exists, otherwise false.
  */
 function network_domain_check()
 {
@@ -62417,7 +62361,7 @@ function get_clean_basedomain()
  * Prints step 1 for Network installation process.
  *
  * @todo Realistically, step 1 should be a welcome screen explaining what a Network is and such. Navigating to Tools > Network
- * 	should not be a sudden "Welcome to a new install process! Fill this out and click here." See also contextual help todo.
+ *  should not be a sudden "Welcome to a new install process! Fill this out and click here." See also contextual help todo.
  *
  * @since 3.0.0
  *
@@ -62648,6 +62592,7 @@ function install_search_form($deprecated = \true)
 }
 /**
  * Upload from zip
+ *
  * @since 2.8.0
  */
 function install_plugins_upload()
@@ -62655,8 +62600,8 @@ function install_plugins_upload()
 }
 /**
  * Show a username form for the favorites page
- * @since 3.5.0
  *
+ * @since 3.5.0
  */
 function install_plugins_favorites_form()
 {
@@ -62728,15 +62673,15 @@ function install_plugin_information()
  *     Author URI: Link to the author's web site
  *     Version: Must be set in the plugin for WordPress 2.3+
  *     Text Domain: Optional. Unique identifier, should be same as the one used in
- *    		load_plugin_textdomain()
+ *          load_plugin_textdomain()
  *     Domain Path: Optional. Only useful if the translations are located in a
- *    		folder above the plugin's base path. For example, if .mo files are
- *    		located in the locale folder then Domain Path will be "/locale/" and
- *    		must have the first slash. Defaults to the base folder the plugin is
- *    		located in.
+ *          folder above the plugin's base path. For example, if .mo files are
+ *          located in the locale folder then Domain Path will be "/locale/" and
+ *          must have the first slash. Defaults to the base folder the plugin is
+ *          located in.
  *     Network: Optional. Specify "Network: true" to require that a plugin is activated
- *    		across all sites in an installation. This will prevent a plugin from being
- *    		activated on a single site when Multisite is enabled.
+ *          across all sites in an installation. This will prevent a plugin from being
+ *          activated on a single site when Multisite is enabled.
  *      * / # Remove the space to close comment
  *
  * Some users have issues with opening large files and manipulating the contents
@@ -62753,7 +62698,7 @@ function install_plugin_information()
  *
  * @since 1.5.0
  *
- * @param string $plugin_file Path to the main plugin file.
+ * @param string $plugin_file Absolute path to the main plugin file.
  * @param bool   $markup      Optional. If the returned data should have HTML markup applied.
  *                            Default true.
  * @param bool   $translate   Optional. If the returned data should be translated. Default true.
@@ -62789,8 +62734,40 @@ function get_plugin_data($plugin_file, $markup = \true, $translate = \true)
  * Sanitizes plugin data, optionally adds markup, optionally translates.
  *
  * @since 2.7.0
- * @access private
+ *
  * @see get_plugin_data()
+ *
+ * @access private
+ *
+ * @param string $plugin_file Path to the main plugin file.
+ * @param array  $plugin_data An array of plugin data. See `get_plugin_data()`.
+ * @param bool   $markup      Optional. If the returned data should have HTML markup applied.
+ *                            Default true.
+ * @param bool   $translate   Optional. If the returned data should be translated. Default true.
+ * @return array {
+ *     Plugin data. Values will be empty if not supplied by the plugin.
+ *
+ *     @type string $Name        Name of the plugin. Should be unique.
+ *     @type string $Title       Title of the plugin and link to the plugin's site (if set).
+ *     @type string $Description Plugin description.
+ *     @type string $Author      Author's name.
+ *     @type string $AuthorURI   Author's website address (if set).
+ *     @type string $Version     Plugin version.
+ *     @type string $TextDomain  Plugin textdomain.
+ *     @type string $DomainPath  Plugins relative directory path to .mo files.
+ *     @type bool   $Network     Whether the plugin can only be activated network-wide.
+ * }
+ * @phpstan-return array{
+ *   Name: string,
+ *   Title: string,
+ *   Description: string,
+ *   Author: string,
+ *   AuthorURI: string,
+ *   Version: string,
+ *   TextDomain: string,
+ *   DomainPath: string,
+ *   Network: bool,
+ * }
  */
 function _get_plugin_data_markup_translate($plugin_file, $plugin_data, $markup = \true, $translate = \true)
 {
@@ -62800,7 +62777,7 @@ function _get_plugin_data_markup_translate($plugin_file, $plugin_data, $markup =
  *
  * @since 2.8.0
  *
- * @param string $plugin Path to the main plugin file from plugins directory.
+ * @param string $plugin Path to the plugin file relative to the plugins directory.
  * @return array List of files relative to the plugin root.
  */
 function get_plugin_files($plugin)
@@ -62844,7 +62821,12 @@ function get_mu_plugins()
  * Callback to sort array by a 'Name' key.
  *
  * @since 3.1.0
+ *
  * @access private
+ *
+ * @param array $a array with 'Name' key.
+ * @param array $b array with 'Name' key.
+ * @return int Return 0 or 1 based on two string comparison.
  */
 function _sort_uname_callback($a, $b)
 {
@@ -62865,8 +62847,8 @@ function get_dropins()
  *
  * @since 3.0.0
  * @return array Key is file name. The value is an array, with the first value the
- *	purpose of the drop-in and the second value the name of the constant that must be
- *	true for the drop-in to be used, or true if no constant is required.
+ *  purpose of the drop-in and the second value the name of the constant that must be
+ *  true for the drop-in to be used, or true if no constant is required.
  */
 function _get_dropins()
 {
@@ -62878,14 +62860,14 @@ function _get_dropins()
  *
  * Plugins in the mu-plugins/ folder can't be "activated," so this function will
  * return false for those plugins.
- * 
+ *
  * For more information on this and similar theme functions, check out
- * the {@link https://developer.wordpress.org/themes/basics/conditional-tags/ 
+ * the {@link https://developer.wordpress.org/themes/basics/conditional-tags/
  * Conditional Tags} article in the Theme Developer Handbook.
- * 
+ *
  * @since 2.5.0
  *
- * @param string $plugin Path to the main plugin file from plugins directory.
+ * @param string $plugin Path to the plugin file relative to the plugins directory.
  * @return bool True, if in the active plugins list. False, not in the list.
  */
 function is_plugin_active($plugin)
@@ -62895,15 +62877,15 @@ function is_plugin_active($plugin)
  * Determines whether the plugin is inactive.
  *
  * Reverse of is_plugin_active(). Used as a callback.
- * 
+ *
  * For more information on this and similar theme functions, check out
- * the {@link https://developer.wordpress.org/themes/basics/conditional-tags/ 
+ * the {@link https://developer.wordpress.org/themes/basics/conditional-tags/
  * Conditional Tags} article in the Theme Developer Handbook.
- * 
+ *
  * @since 3.1.0
  * @see is_plugin_active()
  *
- * @param string $plugin Path to the main plugin file from plugins directory.
+ * @param string $plugin Path to the plugin file relative to the plugins directory.
  * @return bool True if inactive. False if active.
  */
 function is_plugin_inactive($plugin)
@@ -62916,14 +62898,14 @@ function is_plugin_inactive($plugin)
  *
  * Plugins in the mu-plugins/ folder can't be "activated," so this function will
  * return false for those plugins.
- * 
+ *
  * For more information on this and similar theme functions, check out
- * the {@link https://developer.wordpress.org/themes/basics/conditional-tags/ 
+ * the {@link https://developer.wordpress.org/themes/basics/conditional-tags/
  * Conditional Tags} article in the Theme Developer Handbook.
- * 
+ *
  * @since 3.0.0
  *
- * @param string $plugin Path to the main plugin file from plugins directory.
+ * @param string $plugin Path to the plugin file relative to the plugins directory.
  * @return bool True if active for the network, otherwise false.
  */
 function is_plugin_active_for_network($plugin)
@@ -62938,7 +62920,7 @@ function is_plugin_active_for_network($plugin)
  *
  * @since 3.0.0
  *
- * @param string $plugin Path to the main plugin file from plugins directory.
+ * @param string $plugin Path to the plugin file relative to the plugins directory.
  * @return bool True if plugin is network only, false otherwise.
  */
 function is_network_only_plugin($plugin)
@@ -62964,7 +62946,7 @@ function is_network_only_plugin($plugin)
  *
  * @since 2.5.0
  *
- * @param string $plugin       Path to the main plugin file from plugins directory.
+ * @param string $plugin       Path to the plugin file relative to the plugins directory.
  * @param string $redirect     Optional. URL to redirect to.
  * @param bool   $network_wide Optional. Whether to enable the plugin for all sites in the network
  *                             or just the current site. Multisite only. Default false.
@@ -62985,7 +62967,7 @@ function activate_plugin($plugin, $redirect = '', $network_wide = \false, $silen
  * @param string|array $plugins Single plugin or list of plugins to deactivate.
  * @param bool $silent Prevent calling deactivation hooks. Default is false.
  * @param mixed $network_wide Whether to deactivate the plugin for all sites in the network.
- * 	A value of null (the default) will deactivate plugins for both the site and the network.
+ *  A value of null (the default) will deactivate plugins for both the site and the network.
  */
 function deactivate_plugins($plugins, $silent = \false, $network_wide = \null)
 {
@@ -63014,12 +62996,12 @@ function activate_plugins($plugins, $redirect = '', $network_wide = \false, $sil
  *
  * @since 2.6.0
  *
- * @global WP_Filesystem_Base $wp_filesystem
+ * @global WP_Filesystem_Base $wp_filesystem WordPress filesystem subclass.
  *
- * @param array  $plugins    List of plugins to delete.
- * @param string $deprecated Deprecated.
- * @return bool|null|WP_Error True on success, false is $plugins is empty, WP_Error on failure.
- *                            Null if filesystem credentials are required to proceed.
+ * @param string[] $plugins    List of plugin paths to delete, relative to the plugins directory.
+ * @param string   $deprecated Not used.
+ * @return bool|null|WP_Error True on success, false if `$plugins` is empty, `WP_Error` on failure.
+ *                            `null` if filesystem credentials are required to proceed.
  */
 function delete_plugins($plugins, $deprecated = '')
 {
@@ -63043,7 +63025,7 @@ function validate_active_plugins()
  *
  * @since 2.5.0
  *
- * @param string $plugin Path to the main plugin file from plugins directory.
+ * @param string $plugin Path to the plugin file relative to the plugins directory.
  * @return WP_Error|int 0 on success, WP_Error on failure.
  */
 function validate_plugin($plugin)
@@ -63054,7 +63036,7 @@ function validate_plugin($plugin)
  *
  * @since 2.7.0
  *
- * @param string $plugin Path to the main plugin file from plugins directory.
+ * @param string $plugin Path to the plugin file relative to the plugins directory.
  * @return bool Whether plugin can be uninstalled.
  */
 function is_uninstallable_plugin($plugin)
@@ -63067,7 +63049,7 @@ function is_uninstallable_plugin($plugin)
  *
  * @since 2.7.0
  *
- * @param string $plugin Path to the main plugin file from plugins directory.
+ * @param string $plugin Path to the plugin file relative to the plugins directory.
  * @return true True if a plugin's uninstall.php file has been found and included.
  */
 function uninstall_plugin($plugin)
@@ -63084,6 +63066,8 @@ function uninstall_plugin($plugin)
  *
  * The function which is hooked in to handle the output of the page must check
  * that the user has the required capability as well.
+ *
+ * @since 1.5.0
  *
  * @global array $menu
  * @global array $admin_page_hooks
@@ -63118,6 +63102,8 @@ function add_menu_page($page_title, $menu_title, $capability, $menu_slug, $funct
  * The function which is hooked in to handle the output of the page must check
  * that the user has the required capability as well.
  *
+ * @since 1.5.0
+ *
  * @global array $submenu
  * @global array $menu
  * @global array $_wp_real_parent_file
@@ -63149,6 +63135,8 @@ function add_submenu_page($parent_slug, $page_title, $menu_title, $capability, $
  * The function which is hooked in to handle the output of the page must check
  * that the user has the required capability as well.
  *
+ * @since 1.5.0
+ *
  * @param string   $page_title The text to be displayed in the title tags of the page when the menu is selected.
  * @param string   $menu_title The text to be used for the menu.
  * @param string   $capability The capability required for this menu to be displayed to the user.
@@ -63167,6 +63155,8 @@ function add_management_page($page_title, $menu_title, $capability, $menu_slug, 
  *
  * The function which is hooked in to handle the output of the page must check
  * that the user has the required capability as well.
+ *
+ * @since 1.5.0
  *
  * @param string   $page_title The text to be displayed in the title tags of the page when the menu is selected.
  * @param string   $menu_title The text to be used for the menu.
@@ -63187,6 +63177,8 @@ function add_options_page($page_title, $menu_title, $capability, $menu_slug, $fu
  * The function which is hooked in to handle the output of the page must check
  * that the user has the required capability as well.
  *
+ * @since 2.0.0
+ *
  * @param string   $page_title The text to be displayed in the title tags of the page when the menu is selected.
  * @param string   $menu_title The text to be used for the menu.
  * @param string   $capability The capability required for this menu to be displayed to the user.
@@ -63205,6 +63197,8 @@ function add_theme_page($page_title, $menu_title, $capability, $menu_slug, $func
  *
  * The function which is hooked in to handle the output of the page must check
  * that the user has the required capability as well.
+ *
+ * @since 3.0.0
  *
  * @param string   $page_title The text to be displayed in the title tags of the page when the menu is selected.
  * @param string   $menu_title The text to be used for the menu.
@@ -63225,6 +63219,8 @@ function add_plugins_page($page_title, $menu_title, $capability, $menu_slug, $fu
  * The function which is hooked in to handle the output of the page must check
  * that the user has the required capability as well.
  *
+ * @since 2.1.3
+ *
  * @param string   $page_title The text to be displayed in the title tags of the page when the menu is selected.
  * @param string   $menu_title The text to be used for the menu.
  * @param string   $capability The capability required for this menu to be displayed to the user.
@@ -63243,6 +63239,8 @@ function add_users_page($page_title, $menu_title, $capability, $menu_slug, $func
  *
  * The function which is hooked in to handle the output of the page must check
  * that the user has the required capability as well.
+ *
+ * @since 2.7.0
  *
  * @param string   $page_title The text to be displayed in the title tags of the page when the menu is selected.
  * @param string   $menu_title The text to be used for the menu.
@@ -63263,6 +63261,8 @@ function add_dashboard_page($page_title, $menu_title, $capability, $menu_slug, $
  * The function which is hooked in to handle the output of the page must check
  * that the user has the required capability as well.
  *
+ * @since 2.7.0
+ *
  * @param string   $page_title The text to be displayed in the title tags of the page when the menu is selected.
  * @param string   $menu_title The text to be used for the menu.
  * @param string   $capability The capability required for this menu to be displayed to the user.
@@ -63281,6 +63281,8 @@ function add_posts_page($page_title, $menu_title, $capability, $menu_slug, $func
  *
  * The function which is hooked in to handle the output of the page must check
  * that the user has the required capability as well.
+ *
+ * @since 2.7.0
  *
  * @param string   $page_title The text to be displayed in the title tags of the page when the menu is selected.
  * @param string   $menu_title The text to be used for the menu.
@@ -63301,6 +63303,8 @@ function add_media_page($page_title, $menu_title, $capability, $menu_slug, $func
  * The function which is hooked in to handle the output of the page must check
  * that the user has the required capability as well.
  *
+ * @since 2.7.0
+ *
  * @param string   $page_title The text to be displayed in the title tags of the page when the menu is selected.
  * @param string   $menu_title The text to be used for the menu.
  * @param string   $capability The capability required for this menu to be displayed to the user.
@@ -63320,6 +63324,8 @@ function add_links_page($page_title, $menu_title, $capability, $menu_slug, $func
  * The function which is hooked in to handle the output of the page must check
  * that the user has the required capability as well.
  *
+ * @since 2.7.0
+ *
  * @param string   $page_title The text to be displayed in the title tags of the page when the menu is selected.
  * @param string   $menu_title The text to be used for the menu.
  * @param string   $capability The capability required for this menu to be displayed to the user.
@@ -63338,6 +63344,8 @@ function add_pages_page($page_title, $menu_title, $capability, $menu_slug, $func
  *
  * The function which is hooked in to handle the output of the page must check
  * that the user has the required capability as well.
+ *
+ * @since 2.7.0
  *
  * @param string   $page_title The text to be displayed in the title tags of the page when the menu is selected.
  * @param string   $menu_title The text to be used for the menu.
@@ -63396,7 +63404,6 @@ function menu_page_url($menu_slug, $echo = \true)
 // Pluggable Menu Support -- Private
 //
 /**
- *
  * @global string $parent_file
  * @global array $menu
  * @global array $submenu
@@ -63411,7 +63418,6 @@ function get_admin_page_parent($parent = '')
 {
 }
 /**
- *
  * @global string $title
  * @global array $menu
  * @global array $submenu
@@ -63433,7 +63439,6 @@ function get_plugin_page_hook($plugin_page, $parent_page)
 {
 }
 /**
- *
  * @global array $admin_page_hooks
  * @param string $plugin_page
  * @param string $parent_page
@@ -63442,7 +63447,6 @@ function get_plugin_page_hookname($plugin_page, $parent_page)
 {
 }
 /**
- *
  * @global string $pagenow
  * @global array $menu
  * @global array $submenu
@@ -63524,7 +63528,7 @@ function wp_clean_plugins_cache($clear_update_cache = \true)
  * @since 3.0.0
  * @since 4.4.0 Function was moved into the `wp-admin/includes/plugin.php` file.
  *
- * @param string $plugin Plugin file to load.
+ * @param string $plugin Path to the plugin file relative to the plugins directory.
  */
 function plugin_sandbox_scrape($plugin)
 {
@@ -63575,7 +63579,7 @@ function _wp_translate_postdata($update = \false, $post_data = \null)
 /**
  * Returns only allowed post data fields
  *
- * @since 4.9.9
+ * @since 5.0.1
  *
  * @param array $post_data Array of post data. Defaults to the contents of $_POST.
  * @return object|bool WP_Error on failure, true on success.
@@ -63937,6 +63941,28 @@ function redirect_post($post_id = '')
 {
 }
 /**
+ * Sanitizes POST values from a checkbox taxonomy metabox.
+ *
+ * @since 5.1.0
+ *
+ * @param mixed $terms Raw term data from the 'tax_input' field.
+ * @return array
+ */
+function taxonomy_meta_box_sanitize_cb_checkboxes($taxonomy, $terms)
+{
+}
+/**
+ * Sanitizes POST values from an input taxonomy metabox.
+ *
+ * @since 5.1.0
+ *
+ * @param mixed $terms Raw term data from the 'tax_input' field.
+ * @return array
+ */
+function taxonomy_meta_box_sanitize_cb_input($taxonomy, $terms)
+{
+}
+/**
  * Return whether the post can be edited in the block editor.
  *
  * @since 5.0.0
@@ -64067,12 +64093,15 @@ function wp_get_db_schema($scope = 'all', $blog_id = \null)
  * Create WordPress options and set the default values.
  *
  * @since 1.5.0
+ * @since 5.1.0 The $options parameter has been added.
  *
  * @global wpdb $wpdb WordPress database abstraction object.
  * @global int  $wp_db_version
  * @global int  $wp_current_db_version
+ *
+ * @param array $options Optional. Custom option $key => $value pairs to use. Default empty array.
  */
-function populate_options()
+function populate_options(array $options = array())
 {
 }
 /**
@@ -64162,7 +64191,6 @@ function install_network()
  *
  * @global wpdb       $wpdb
  * @global object     $current_site
- * @global int        $wp_db_version
  * @global WP_Rewrite $wp_rewrite
  *
  * @param int    $network_id        ID of network to populate.
@@ -64176,6 +64204,33 @@ function install_network()
  *                       so the error code must be checked) or failure.
  */
 function populate_network($network_id = 1, $domain = '', $email = '', $site_name = '', $path = '/', $subdomain_install = \false)
+{
+}
+/**
+ * Creates WordPress network meta and sets the default values.
+ *
+ * @since 5.1.0
+ *
+ * @global wpdb $wpdb          WordPress database abstraction object.
+ * @global int  $wp_db_version WordPress database version.
+ *
+ * @param int   $network_id Network ID to populate meta for.
+ * @param array $meta       Optional. Custom meta $key => $value pairs to use. Default empty array.
+ */
+function populate_network_meta($network_id, array $meta = array())
+{
+}
+/**
+ * Creates WordPress site meta and sets the default values.
+ *
+ * @since 5.1.0
+ *
+ * @global wpdb $wpdb WordPress database abstraction object.
+ *
+ * @param int   $site_id Site ID to populate meta for.
+ * @param array $meta    Optional. Custom meta $key => $value pairs to use. Default empty array.
+ */
+function populate_site_meta($site_id, array $meta = array())
 {
 }
 /**
@@ -64260,7 +64315,7 @@ function get_current_screen()
  * @since 3.0.0
  *
  * @param mixed $hook_name Optional. The hook name (also known as the hook suffix) used to determine the screen,
- *	                       or an existing screen object.
+ *                         or an existing screen object.
  */
 function set_current_screen($hook_name = '')
 {
@@ -64316,8 +64371,8 @@ function wp_create_category($cat_name, $parent = 0)
  *
  * @since 2.0.0
  *
- * @param array $categories List of categories to create.
- * @param int   $post_id    Optional. The post ID. Default empty.
+ * @param string[] $categories Array of category names to create.
+ * @param int      $post_id    Optional. The post ID. Default empty.
  * @return array List of categories to create for the given post.
  */
 function wp_create_categories($categories, $post_id = '')
@@ -64447,8 +64502,8 @@ function wp_create_term($tag_name, $taxonomy = 'post_tag')
  *                                     $selected_cats must not be an array. Default 0.
  * @param int    $descendants_and_self Optional. ID of the category to output along with its descendants.
  *                                     Default 0.
- * @param array  $selected_cats        Optional. List of categories to mark as checked. Default false.
- * @param array  $popular_cats         Optional. List of categories to receive the "popular-category" class.
+ * @param int[]  $selected_cats        Optional. Array of category IDs to mark as checked. Default false.
+ * @param int[]  $popular_cats         Optional. Array of category IDs to receive the "popular-category" class.
  *                                     Default false.
  * @param object $walker               Optional. Walker object to use to build the output.
  *                                     Default is a Walker_Category_Checklist instance.
@@ -64472,8 +64527,8 @@ function wp_category_checklist($post_id = 0, $descendants_and_self = 0, $selecte
  *
  *     @type int    $descendants_and_self ID of the category to output along with its descendants.
  *                                        Default 0.
- *     @type array  $selected_cats        List of categories to mark as checked. Default false.
- *     @type array  $popular_cats         List of categories to receive the "popular-category" class.
+ *     @type int[]  $selected_cats        Array of category IDs to mark as checked. Default false.
+ *     @type int[]  $popular_cats         Array of category IDs to receive the "popular-category" class.
  *                                        Default false.
  *     @type object $walker               Walker object to use to build the output.
  *                                        Default is a Walker_Category_Checklist instance.
@@ -64485,8 +64540,8 @@ function wp_category_checklist($post_id = 0, $descendants_and_self = 0, $selecte
  * }
  * @phpstan-param array{
  *   descendants_and_self?: int,
- *   selected_cats?: array,
- *   popular_cats?: array,
+ *   selected_cats?: int[],
+ *   popular_cats?: int[],
  *   walker?: object,
  *   taxonomy?: string,
  *   checked_ontop?: bool,
@@ -64636,7 +64691,7 @@ function page_template_dropdown($default = '', $post_type = 'page')
  * @param int         $level   Optional. Page depth level. Default 0.
  * @param int|WP_Post $post    Post ID or WP_Post object.
  *
- * @return null|false Boolean False if page has no children, otherwise print out html elements
+ * @return null|false Boolean False if page has no children, otherwise print out html elements.
  */
 function parent_dropdown($default = 0, $parent = 0, $level = 0, $post = \null)
 {
@@ -64737,7 +64792,7 @@ function _get_plugin_from_callback($callback)
 {
 }
 /**
- * Meta-Box template function
+ * Meta-Box template function.
  *
  * @since 2.5.0
  *
@@ -64749,8 +64804,10 @@ function _get_plugin_from_callback($callback)
  *                                  add_submenu_page() to create a new screen (and hence screen_id)
  *                                  make sure your menu slug conforms to the limits of sanitize_key()
  *                                  otherwise the 'screen' menu may not correctly render on your page.
- * @param string           $context box context
- * @param mixed            $object  gets passed to the box callback function as first parameter
+ * @param string           $context The screen context for which to display meta boxes.
+ * @param mixed            $object  Gets passed to the first parameter of the meta box callback function.
+ *                                  Often this is the object that's the focus of the current screen, for
+ *                                  example a `WP_Post` or `WP_Comment` object.
  * @return int number of meta_boxes
  */
 function do_meta_boxes($screen, $context, $object)
@@ -64780,7 +64837,7 @@ function remove_meta_box($id, $screen, $context)
 {
 }
 /**
- * Meta Box Accordion Template Function
+ * Meta Box Accordion Template Function.
  *
  * Largely made up of abstracted code from do_meta_boxes(), this
  * function serves to build meta boxes as list items for display as
@@ -64803,7 +64860,7 @@ function do_accordion_sections($screen, $context, $object)
  *
  * Part of the Settings API. Use this to define new settings sections for an admin page.
  * Show settings sections in your admin page callback function with do_settings_sections().
- * Add settings fields to your section with add_settings_field()
+ * Add settings fields to your section with add_settings_field().
  *
  * The $callback argument should be the name of a function that echoes out any
  * content you want to show at the top of the settings section before the actual
@@ -64811,7 +64868,7 @@ function do_accordion_sections($screen, $context, $object)
  *
  * @since 2.7.0
  *
- * @global $wp_settings_sections Storage array of all settings sections added to admin pages
+ * @global $wp_settings_sections Storage array of all settings sections added to admin pages.
  *
  * @param string   $id       Slug-name to identify the section. Used in the 'id' attribute of tags.
  * @param string   $title    Formatted title of the section. Shown as the heading for the section.
@@ -64824,7 +64881,7 @@ function add_settings_section($id, $title, $callback, $page)
 {
 }
 /**
- * Add a new field to a section of a settings page
+ * Add a new field to a section of a settings page.
  *
  * Part of the Settings API. Use this to define a settings field that will show
  * as part of a settings section inside a settings page. The fields are shown using
@@ -64837,7 +64894,7 @@ function add_settings_section($id, $title, $callback, $page)
  * @since 2.7.0
  * @since 4.2.0 The `$class` argument was added.
  *
- * @global $wp_settings_fields Storage array of settings fields and info about their pages/sections
+ * @global $wp_settings_fields Storage array of settings fields and info about their pages/sections.
  *
  * @param string   $id       Slug-name to identify the field. Used in the 'id' attribute of tags.
  * @param string   $title    Formatted title of the field. Shown as the label for the field
@@ -64872,34 +64929,34 @@ function add_settings_field($id, $title, $callback, $page, $section = 'default',
  * to output all the sections and fields that were added to that $page with
  * add_settings_section() and add_settings_field()
  *
- * @global $wp_settings_sections Storage array of all settings sections added to admin pages
- * @global $wp_settings_fields Storage array of settings fields and info about their pages/sections
+ * @global $wp_settings_sections Storage array of all settings sections added to admin pages.
+ * @global $wp_settings_fields Storage array of settings fields and info about their pages/sections.
  * @since 2.7.0
  *
- * @param string $page The slug name of the page whose settings sections you want to output
+ * @param string $page The slug name of the page whose settings sections you want to output.
  */
 function do_settings_sections($page)
 {
 }
 /**
- * Print out the settings fields for a particular settings section
+ * Print out the settings fields for a particular settings section.
  *
  * Part of the Settings API. Use this in a settings page to output
  * a specific section. Should normally be called by do_settings_sections()
  * rather than directly.
  *
- * @global $wp_settings_fields Storage array of settings fields and their pages/sections
+ * @global $wp_settings_fields Storage array of settings fields and their pages/sections.
  *
  * @since 2.7.0
  *
- * @param string $page Slug title of the admin page who's settings fields you want to show.
- * @param string $section Slug title of the settings section who's fields you want to show.
+ * @param string $page Slug title of the admin page whose settings fields you want to show.
+ * @param string $section Slug title of the settings section whose fields you want to show.
  */
 function do_settings_fields($page, $section)
 {
 }
 /**
- * Register a settings error to be displayed to the user
+ * Register a settings error to be displayed to the user.
  *
  * Part of the Settings API. Use this to show messages to users about settings validation
  * problems, missing settings or anything else.
@@ -64915,7 +64972,7 @@ function do_settings_fields($page, $section)
  *
  * @global array $wp_settings_errors Storage array of errors registered during this pageload
  *
- * @param string $setting Slug title of the setting to which this error applies
+ * @param string $setting Slug title of the setting to which this error applies.
  * @param string $code    Slug-name to identify the error. Used as part of 'id' attribute in HTML output.
  * @param string $message The formatted message text to display to the user (will be shown inside styled
  *                        `<div>` and `<p>` tags).
@@ -64926,7 +64983,7 @@ function add_settings_error($setting, $code, $message, $type = 'error')
 {
 }
 /**
- * Fetch settings errors registered by add_settings_error()
+ * Fetch settings errors registered by add_settings_error().
  *
  * Checks the $wp_settings_errors array for any errors declared during the current
  * pageload and returns them.
@@ -64944,9 +65001,9 @@ function add_settings_error($setting, $code, $message, $type = 'error')
  *
  * @global array $wp_settings_errors Storage array of errors registered during this pageload
  *
- * @param string $setting Optional slug title of a specific setting who's errors you want.
+ * @param string $setting Optional slug title of a specific setting whose errors you want.
  * @param boolean $sanitize Whether to re-sanitize the setting value before returning errors.
- * @return array Array of settings errors
+ * @return array Array of settings errors.
  */
 function get_settings_errors($setting = '', $sanitize = \false)
 {
@@ -64973,7 +65030,7 @@ function get_settings_errors($setting = '', $sanitize = \false)
  *
  * @since 3.0.0
  *
- * @param string $setting        Optional slug title of a specific setting who's errors you want.
+ * @param string $setting        Optional slug title of a specific setting whose errors you want.
  * @param bool   $sanitize       Whether to re-sanitize the setting value before returning errors.
  * @param bool   $hide_on_update If set to true errors will not be shown if the settings page has
  *                               already been submitted.
@@ -65050,14 +65107,12 @@ function iframe_footer()
 {
 }
 /**
- *
  * @param WP_Post $post
  */
 function _post_states($post)
 {
 }
 /**
- *
  * @param WP_Post $post
  */
 function _media_states($post)
@@ -65090,7 +65145,7 @@ function compression_test()
  *                                       id attribute is given in $other_attributes below, $name will be
  *                                       used as the button's id.
  * @param bool         $wrap             True if the output button should be wrapped in a paragraph tag,
- *                                       false otherwise. Defaults to true
+ *                                       false otherwise. Defaults to true.
  * @param array|string $other_attributes Other attributes that should be output with the button, mapping
  *                                       attributes to their values, such as setting tabindex to 1, etc.
  *                                       These key/value attribute pairs will be output as attribute="value",
@@ -65126,7 +65181,6 @@ function get_submit_button($text = '', $type = 'primary large', $name = 'submit'
 {
 }
 /**
- *
  * @global bool $is_IE
  */
 function _wp_admin_html_begin()
@@ -65194,7 +65248,7 @@ function _wp_posts_page_notice()
 {
 }
 /**
- * Retrieve list of WordPress theme features (aka theme tags)
+ * Retrieve list of WordPress theme features (aka theme tags).
  *
  * @since 2.8.0
  *
@@ -65272,11 +65326,12 @@ function install_theme_information()
  *
  * @since 2.8.0
  *
- * @global WP_Filesystem_Base $wp_filesystem Subclass
+ * @global WP_Filesystem_Base $wp_filesystem WordPress filesystem subclass.
  *
- * @param string $stylesheet Stylesheet of the theme to delete
- * @param string $redirect Redirect to page when complete.
- * @return void|bool|WP_Error When void, echoes content.
+ * @param string $stylesheet Stylesheet of the theme to delete.
+ * @param string $redirect   Redirect to page when complete.
+ * @return bool|null|WP_Error True on success, false if `$stylesheet` is empty, WP_Error on failure.
+ *                            Null if filesystem credentials are required to proceed.
  */
 function delete_theme($stylesheet, $redirect = '')
 {
@@ -65336,7 +65391,7 @@ function get_theme_update_available($theme)
 {
 }
 /**
- * Retrieve list of WordPress theme features (aka theme tags)
+ * Retrieve list of WordPress theme features (aka theme tags).
  *
  * @since 3.1.0
  *
@@ -65467,8 +65522,8 @@ function themes_api($action, $args = array())
  *
  * @since 3.8.0
  *
- * @param array $themes Optional. Array of WP_Theme objects to prepare.
- *                      Defaults to all allowed themes.
+ * @param WP_Theme[] $themes Optional. Array of theme objects to prepare.
+ *                           Defaults to all allowed themes.
  *
  * @return array An associative array of theme data, sorted by name.
  */
@@ -65593,7 +65648,7 @@ function wp_can_install_language_pack()
  *
  * @since 2.7.0
  *
- * @global WP_Filesystem_Base $wp_filesystem
+ * @global WP_Filesystem_Base $wp_filesystem          WordPress filesystem subclass.
  * @global array              $_old_files
  * @global array              $_new_bundled_files
  * @global wpdb               $wpdb
@@ -65694,7 +65749,7 @@ function get_preferred_from_update_core()
  * Get available core updates.
  *
  * @param array $options Set $options['dismissed'] to true to show dismissed upgrades too,
- * 	                     set $options['available'] to false to skip not-dismissed updates.
+ *                       set $options['available'] to false to skip not-dismissed updates.
  * @return array|false Array of the update objects on success, false on failure.
  */
 function get_core_updates($options = array())
@@ -65725,7 +65780,6 @@ function get_core_checksums($version, $locale)
 {
 }
 /**
- *
  * @param object $update
  * @return bool
  */
@@ -65733,7 +65787,6 @@ function dismiss_core_update($update)
 {
 }
 /**
- *
  * @param string $version
  * @param string $locale
  * @return bool
@@ -65742,7 +65795,6 @@ function undismiss_core_update($version, $locale)
 {
 }
 /**
- *
  * @param string $version
  * @param string $locale
  * @return object|false
@@ -65751,7 +65803,6 @@ function find_core_update($version, $locale)
 {
 }
 /**
- *
  * @param string $msg
  * @return string
  */
@@ -65759,7 +65810,6 @@ function core_update_footer($msg = '')
 {
 }
 /**
- *
  * @global string $pagenow
  * @return false|void
  */
@@ -65795,7 +65845,6 @@ function wp_plugin_update_row($file, $plugin_data)
 {
 }
 /**
- *
  * @return array
  */
 function get_theme_updates()
@@ -65818,7 +65867,6 @@ function wp_theme_update_row($theme_key, $theme)
 {
 }
 /**
- *
  * @global int $upgrading
  * @return false|void
  */
@@ -66331,10 +66379,18 @@ function upgrade_460()
  *
  * @ignore
  * @since 5.0.0
- *
- * @global int $wp_current_db_version Current database version.
+ * @deprecated 5.1.0
  */
 function upgrade_500()
+{
+}
+/**
+ * Executes changes made in WordPress 5.1.0.
+ *
+ * @ignore
+ * @since 5.1.0
+ */
+function upgrade_510()
 {
 }
 /**
@@ -66472,11 +66528,11 @@ function deslash($content)
  *
  * @global wpdb  $wpdb
  *
- * @param string|array $queries Optional. The query to run. Can be multiple queries
- *                              in an array, or a string of queries separated by
- *                              semicolons. Default empty.
- * @param bool         $execute Optional. Whether or not to execute the query right away.
- *                              Default true.
+ * @param string[]|string $queries Optional. The query to run. Can be multiple queries
+ *                                 in an array, or a string of queries separated by
+ *                                 semicolons. Default empty string.
+ * @param bool            $execute Optional. Whether or not to execute the query right away.
+ *                                 Default true.
  * @return array Strings containing the results of the various update queries.
  */
 function dbDelta($queries = '', $execute = \true)
@@ -66659,7 +66715,7 @@ function add_user()
  * @since 2.0.0
  *
  * @param int $user_id Optional. User ID.
- * @return int|WP_Error user id of the updated user
+ * @return int|WP_Error user id of the updated user.
  */
 function edit_user($user_id = 0)
 {
@@ -66668,7 +66724,7 @@ function edit_user($user_id = 0)
  * Fetch a filtered list of user roles that the current user is
  * allowed to edit.
  *
- * Simple function who's main purpose is to allow filtering of the
+ * Simple function whose main purpose is to allow filtering of the
  * list of roles in the $wp_roles object so that plugins can remove
  * inappropriate ones depending on the situation or user making edits.
  * Specifically because without filtering anyone with the edit_users
@@ -66678,7 +66734,7 @@ function edit_user($user_id = 0)
  *
  * @since 2.8.0
  *
- * @return array
+ * @return array[] Array of arrays containing role information.
  */
 function get_editable_roles()
 {
@@ -66777,13 +66833,12 @@ function delete_users_add_js()
  *
  * @since 2.7.0
  *
- * @param object $user User data object
+ * @param object $user User data object.
  */
 function use_ssl_preference($user)
 {
 }
 /**
- *
  * @param string $text
  * @return string
  */
@@ -66809,7 +66864,7 @@ function _wp_privacy_resend_request($request_id)
  * @access private
  *
  * @param  int          $request_id Request ID.
- * @return int|WP_Error $request    Request ID on success or WP_Error.
+ * @return int|WP_Error $result Request ID on success or WP_Error.
  */
 function _wp_privacy_completed_request($request_id)
 {
@@ -66949,7 +67004,6 @@ function wp_list_widget_controls_dynamic_sidebar($params)
 {
 }
 /**
- *
  * @global array $wp_registered_widgets
  *
  * @param string $id_base
@@ -66976,7 +67030,6 @@ function wp_widget_control($sidebar_args)
 {
 }
 /**
- *
  * @param string $classes
  * @return string
  */
@@ -67066,7 +67119,6 @@ function _add_themes_utility_last()
 {
 }
 /**
- *
  * @global int $_wp_nav_menu_max_depth
  *
  * @param string $classes
@@ -67093,7 +67145,6 @@ function setup_config_display_header($body_classes = array())
 {
 }
 /**
- *
  * @global string $wp_local_package
  * @global wpdb   $wpdb
  *
@@ -67141,7 +67192,7 @@ function list_translation_updates()
  *
  * @since 2.7.0
  *
- * @global WP_Filesystem_Base $wp_filesystem Subclass
+ * @global WP_Filesystem_Base $wp_filesystem WordPress filesystem subclass.
  *
  * @param bool $reinstall
  */
@@ -67304,6 +67355,8 @@ function wp_admin_bar_shortlink_menu($wp_admin_bar)
  *
  * @global WP_Term  $tag
  * @global WP_Query $wp_the_query
+ * @global int      $user_id      The ID of the user being edited. Not to be confused with the
+ *                                global $user_ID, which contains the ID of the current user.
  *
  * @param WP_Admin_Bar $wp_admin_bar
  */
@@ -67403,11 +67456,11 @@ function show_admin_bar($show)
 }
 /**
  * Determines whether the admin bar should be showing.
- * 
+ *
  * For more information on this and similar theme functions, check out
- * the {@link https://developer.wordpress.org/themes/basics/conditional-tags/ 
+ * the {@link https://developer.wordpress.org/themes/basics/conditional-tags/
  * Conditional Tags} article in the Theme Developer Handbook.
- * 
+ *
  * @since 3.1.0
  *
  * @global bool   $show_admin_bar
@@ -67425,7 +67478,7 @@ function is_admin_bar_showing()
  * @access private
  *
  * @param string $context Context of this preference check. Defaults to 'front'. The 'admin'
- * 	preference is no longer used.
+ *  preference is no longer used.
  * @param int $user Optional. ID of the user to check, defaults to 0 for current user.
  * @return bool Whether the admin bar should be showing for this user.
  */
@@ -67611,7 +67664,7 @@ function the_author_posts()
  *
  * @global object $authordata The current author's DB object.
  *
- * @return string An HTML link to the author page.
+ * @return string An HTML link to the author page, or an empty string if $authordata isn't defined.
  */
 function get_the_author_posts_link()
 {
@@ -67659,7 +67712,7 @@ function get_author_posts_url($author_id, $author_nicename = '')
  *     @type string       $order         Sorting direction for $orderby. Accepts 'ASC', 'DESC'. Default 'ASC'.
  *     @type int          $number        Maximum authors to return or display. Default empty (all authors).
  *     @type bool         $optioncount   Show the count in parenthesis next to the author's name. Default false.
- *     @type bool         $exclude_admin Whether to exclude the 'admin' account, if it exists. Default false.
+ *     @type bool         $exclude_admin Whether to exclude the 'admin' account, if it exists. Default true.
  *     @type bool         $show_fullname Whether to show the author's full name. Default false.
  *     @type bool         $hide_empty    Whether to hide any authors with no posts. Default true.
  *     @type string       $feed          If not empty, show a link to the author's feed and use this text as the alt
@@ -67700,11 +67753,11 @@ function wp_list_authors($args = '')
  * Determines whether this site has more than one author.
  *
  * Checks to see if more than one author has published posts.
- * 
+ *
  * For more information on this and similar theme functions, check out
- * the {@link https://developer.wordpress.org/themes/basics/conditional-tags/ 
+ * the {@link https://developer.wordpress.org/themes/basics/conditional-tags/
  * Conditional Tags} article in the Theme Developer Handbook.
- * 
+ *
  * @since 3.2.0
  *
  * @global wpdb $wpdb WordPress database abstraction object.
@@ -68192,7 +68245,7 @@ function register_block_core_shortcode()
  *
  *     @type int|bool $show_updated     Whether to show the time the bookmark was last updated.
  *                                      Accepts 1|true or 0|false. Default 0|false.
- *     @type int|bool $show_description Whether to show the bookmakr description. Accepts 1|true,
+ *     @type int|bool $show_description Whether to show the bookmark description. Accepts 1|true,
  *                                      Accepts 1|true or 0|false. Default 0|false.
  *     @type int|bool $show_images      Whether to show the link image if available. Accepts 1|true
  *                                      or 0|false. Default 1|true.
@@ -68389,7 +68442,7 @@ function get_bookmarks($args = '')
  *
  * @param stdClass|array $bookmark Bookmark row
  * @param string $context Optional, default is 'display'. How to filter the
- *		fields
+ *      fields
  * @return stdClass|array Same type as $bookmark but with fields sanitized.
  */
 function sanitize_bookmark($bookmark, $context = 'display')
@@ -68534,7 +68587,7 @@ function wp_cache_flush()
  * @param bool        $found  Optional. Whether the key was found in the cache (passed by reference).
  *                            Disambiguates a return of false, a storable value. Default null.
  * @return bool|mixed False on failure to retrieve contents or the cache
- *		              contents on success
+ *                    contents on success
  */
 function wp_cache_get($key, $group = '', $force = \false, &$found = \null)
 {
@@ -68697,10 +68750,10 @@ function wp_cache_reset()
  * @global bool $is_IIS
  * @global WP_Query $wp_query
  * @global wpdb $wpdb WordPress database abstraction object.
- * @global WP $wp Current WordPress environment instance. 
+ * @global WP $wp Current WordPress environment instance.
  *
  * @param string $requested_url Optional. The URL that was requested, used to
- *		figure if redirect is needed.
+ *      figure if redirect is needed.
  * @param bool $do_redirect Optional. Redirect to the new URL.
  * @return string|void The string of the URL, if redirect needed.
  */
@@ -68953,8 +69006,8 @@ function revoke_super_admin($user_id)
  *
  * @since 4.9.0
  *
- * @param array $allcaps An array of all the user's capabilities.
- * @return array Filtered array of the user's capabilities.
+ * @param bool[] $allcaps An array of all the user's capabilities.
+ * @return bool[] Filtered array of the user's capabilities.
  */
 function wp_maybe_grant_install_languages_cap($allcaps)
 {
@@ -69005,7 +69058,7 @@ function get_category_parents($id, $link = \false, $separator = '/', $nicename =
  * @since 0.71
  *
  * @param int $id Optional, default to current post ID. The post ID.
- * @return array Array of WP_Term objects, one for each category assigned to the post.
+ * @return WP_Term[] Array of WP_Term objects, one for each category assigned to the post.
  */
 function get_the_category($id = \false)
 {
@@ -69048,9 +69101,9 @@ function get_the_category_list($separator = '', $parents = '', $post_id = \false
  * Prior to v2.7, only one category could be compared: in_category( $single_category ).
  * Prior to v2.7, this function could only be used in the WordPress Loop.
  * As of 2.7, the function can be used anywhere if it is provided a post ID or post object.
- * 
+ *
  * For more information on this and similar theme functions, check out
- * the {@link https://developer.wordpress.org/themes/basics/conditional-tags/ 
+ * the {@link https://developer.wordpress.org/themes/basics/conditional-tags/
  * Conditional Tags} article in the Theme Developer Handbook.
  *
  * @since 1.2.0
@@ -69266,39 +69319,45 @@ function wp_list_categories($args = '')
 {
 }
 /**
- * Display tag cloud.
- *
- * The text size is set by the 'smallest' and 'largest' arguments, which will
- * use the 'unit' argument value for the CSS text size unit. The 'format'
- * argument can be 'flat' (default), 'list', or 'array'. The flat value for the
- * 'format' argument will separate tags with spaces. The list value for the
- * 'format' argument will format the tags in a UL HTML list. The array value for
- * the 'format' argument will return in PHP array type format.
- *
- * The 'orderby' argument will accept 'name' or 'count' and defaults to 'name'.
- * The 'order' is the direction to sort, defaults to 'ASC' and can be 'DESC'.
- *
- * The 'number' argument is how many tags to return. By default, the limit will
- * be to return the top 45 tags in the tag cloud list.
- *
- * The 'topic_count_text' argument is a nooped plural from _n_noop() to generate the
- * text for the tag link count.
- *
- * The 'topic_count_text_callback' argument is a function, which given the count
- * of the posts with that tag returns a text for the tag link count.
- *
- * The 'post_type' argument is used only when 'link' is set to 'edit'. It determines the post_type
- * passed to edit.php for the popular tags edit links.
- *
- * The 'exclude' and 'include' arguments are used for the get_tags() function. Only one
- * should be used, because only one will be used and the other ignored, if they are both set.
+ * Displays a tag cloud.
  *
  * @since 2.3.0
  * @since 4.8.0 Added the `show_count` argument.
  *
- * @param array|string|null $args Optional. Override default arguments.
+ * @param array|string $args {
+ *     Optional. Array or string of arguments for displaying a tag cloud. See wp_generate_tag_cloud()
+ *     and get_terms() for the full lists of arguments that can be passed in `$args`.
+ *
+ *     @type int    $number    The number of tags to display. Accepts any positive integer
+ *                             or zero to return all. Default 0 (all tags).
+ *     @type string $link      Whether to display term editing links or term permalinks.
+ *                             Accepts 'edit' and 'view'. Default 'view'.
+ *     @type string $post_type The post type. Used to highlight the proper post type menu
+ *                             on the linked edit page. Defaults to the first post type
+ *                             associated with the taxonomy.
+ *     @type bool   $echo      Whether or not to echo the return value. Default true.
+ * }
  * @return void|array Generated tag cloud, only if no failures and 'array' is set for the 'format' argument.
  *                    Otherwise, this function outputs the tag cloud.
+ * @phpstan-param array{
+ *   number?: int,
+ *   link?: string,
+ *   post_type?: string,
+ *   echo?: bool,
+ *   smallest?: int,
+ *   largest?: int,
+ *   unit?: string,
+ *   number?: int,
+ *   format?: string,
+ *   separator?: string,
+ *   orderby?: string,
+ *   order?: string,
+ *   filter?: int|bool,
+ *   topic_count_text?: string,
+ *   topic_count_text_callback?: callable,
+ *   topic_count_scale_callback?: callable,
+ *   show_count?: bool|int,
+ * } $args
  */
 function wp_tag_cloud($args = '')
 {
@@ -69321,9 +69380,9 @@ function default_topic_count_scale($count)
  * @since 2.3.0
  * @since 4.8.0 Added the `show_count` argument.
  *
- * @param array $tags List of tags.
+ * @param WP_Term[]    $tags Array of WP_Term objects to generate the tag cloud for.
  * @param string|array $args {
- *     Optional. Array of string of arguments for generating a tag cloud.
+ *     Optional. Array or string of arguments for generating a tag cloud.
  *
  *     @type int      $smallest                   Smallest font size used to display tags. Paired
  *                                                with the value of `$unit`, to determine CSS text
@@ -69515,10 +69574,10 @@ function term_description($term = 0, $deprecated = \null)
  *
  * @since 2.5.0
  *
- * @param int|object $post Post ID or object.
- * @param string $taxonomy Taxonomy name.
- * @return array|false|WP_Error Array of WP_Term objects on success, false if there are no terms
- *                              or the post does not exist, WP_Error on failure.
+ * @param int|WP_Post $post     Post ID or object.
+ * @param string      $taxonomy Taxonomy name.
+ * @return WP_Term[]|false|WP_Error Array of WP_Term objects on success, false if there are no terms
+ *                                  or the post does not exist, WP_Error on failure.
  */
 function get_the_terms($post, $taxonomy)
 {
@@ -69602,9 +69661,9 @@ function has_category($category = '', $post = \null)
  * Prior to v2.7 of WordPress, tags given as integers would also be checked against the post's tags' names and slugs (in addition to term_ids)
  * Prior to v2.7, this function could only be used in the WordPress Loop.
  * As of 2.7, the function can be used anywhere if it is provided a post ID or post object.
- * 
+ *
  * For more information on this and similar theme functions, check out
- * the {@link https://developer.wordpress.org/themes/basics/conditional-tags/ 
+ * the {@link https://developer.wordpress.org/themes/basics/conditional-tags/
  * Conditional Tags} article in the Theme Developer Handbook.
  *
  * @since 2.6.0
@@ -69796,7 +69855,7 @@ function sanitize_category_field($field, $value, $cat_id, $context)
  * @see get_terms() For list of arguments to pass.
  *
  * @param string|array $args Tag arguments to use when retrieving tags.
- * @return array List of tags.
+ * @return WP_Term[]|int $tags Array of 'post_tag' term objects, or a count thereof.
  */
 function get_tags($args = '')
 {
@@ -69884,7 +69943,7 @@ function wp_simplepie_autoload($class)
  * @since 4.4.0 Added the ability for `$comment_ID` to also accept a WP_Comment object.
  *
  * @param int|WP_Comment $comment_ID Optional. WP_Comment or the ID of the comment for which to retrieve the author.
- *									 Default current comment.
+ *                                   Default current comment.
  * @return string The comment author
  */
 function get_comment_author($comment_ID = 0)
@@ -69897,7 +69956,7 @@ function get_comment_author($comment_ID = 0)
  * @since 4.4.0 Added the ability for `$comment_ID` to also accept a WP_Comment object.
  *
  * @param int|WP_Comment $comment_ID Optional. WP_Comment or the ID of the comment for which to print the author.
- *									 Default current comment.
+ *                                   Default current comment.
  */
 function comment_author($comment_ID = 0)
 {
@@ -69909,7 +69968,7 @@ function comment_author($comment_ID = 0)
  * @since 4.4.0 Added the ability for `$comment_ID` to also accept a WP_Comment object.
  *
  * @param int|WP_Comment $comment_ID Optional. WP_Comment or the ID of the comment for which to get the author's email.
- *									 Default current comment.
+ *                                   Default current comment.
  * @return string The current comment author's email
  */
 function get_comment_author_email($comment_ID = 0)
@@ -69928,7 +69987,7 @@ function get_comment_author_email($comment_ID = 0)
  * @since 4.4.0 Added the ability for `$comment_ID` to also accept a WP_Comment object.
  *
  * @param int|WP_Comment $comment_ID Optional. WP_Comment or the ID of the comment for which to print the author's email.
- *									 Default current comment.
+ *                                   Default current comment.
  */
 function comment_author_email($comment_ID = 0)
 {
@@ -69987,7 +70046,7 @@ function get_comment_author_email_link($linktext = '', $before = '', $after = ''
  * @since 4.4.0 Added the ability for `$comment_ID` to also accept a WP_Comment object.
  *
  * @param int|WP_Comment $comment_ID Optional. WP_Comment or the ID of the comment for which to get the author's link.
- *									 Default current comment.
+ *                                   Default current comment.
  * @return string The comment author name or HTML link for author's URL.
  */
 function get_comment_author_link($comment_ID = 0)
@@ -70000,7 +70059,7 @@ function get_comment_author_link($comment_ID = 0)
  * @since 4.4.0 Added the ability for `$comment_ID` to also accept a WP_Comment object.
  *
  * @param int|WP_Comment $comment_ID Optional. WP_Comment or the ID of the comment for which to print the author's link.
- *									 Default current comment.
+ *                                   Default current comment.
  */
 function comment_author_link($comment_ID = 0)
 {
@@ -70012,7 +70071,7 @@ function comment_author_link($comment_ID = 0)
  * @since 4.4.0 Added the ability for `$comment_ID` to also accept a WP_Comment object.
  *
  * @param int|WP_Comment $comment_ID Optional. WP_Comment or the ID of the comment for which to get the author's IP address.
- *									 Default current comment.
+ *                                   Default current comment.
  * @return string Comment author's IP address.
  */
 function get_comment_author_IP($comment_ID = 0)
@@ -70025,7 +70084,7 @@ function get_comment_author_IP($comment_ID = 0)
  * @since 4.4.0 Added the ability for `$comment_ID` to also accept a WP_Comment object.
  *
  * @param int|WP_Comment $comment_ID Optional. WP_Comment or the ID of the comment for which to print the author's IP address.
- *									 Default current comment.
+ *                                   Default current comment.
  */
 function comment_author_IP($comment_ID = 0)
 {
@@ -70037,7 +70096,7 @@ function comment_author_IP($comment_ID = 0)
  * @since 4.4.0 Added the ability for `$comment_ID` to also accept a WP_Comment object.
  *
  * @param int|WP_Comment $comment_ID Optional. WP_Comment or the ID of the comment for which to get the author's URL.
- *									 Default current comment.
+ *                                   Default current comment.
  * @return string Comment author URL.
  */
 function get_comment_author_url($comment_ID = 0)
@@ -70050,7 +70109,7 @@ function get_comment_author_url($comment_ID = 0)
  * @since 4.4.0 Added the ability for `$comment_ID` to also accept a WP_Comment object.
  *
  * @param int|WP_Comment $comment_ID Optional. WP_Comment or the ID of the comment for which to print the author's URL.
- *									 Default current comment.
+ *                                   Default current comment.
  */
 function comment_author_url($comment_ID = 0)
 {
@@ -70421,11 +70480,11 @@ function trackback_rdf($deprecated = '')
 }
 /**
  * Determines whether the current post is open for comments.
- * 
+ *
  * For more information on this and similar theme functions, check out
- * the {@link https://developer.wordpress.org/themes/basics/conditional-tags/ 
+ * the {@link https://developer.wordpress.org/themes/basics/conditional-tags/
  * Conditional Tags} article in the Theme Developer Handbook.
- * 
+ *
  * @since 1.5.0
  *
  * @param int|WP_Post $post_id Post ID or WP_Post object. Default current post.
@@ -70436,9 +70495,9 @@ function comments_open($post_id = \null)
 }
 /**
  * Determines whether the current post is open for pings.
- * 
+ *
  * For more information on this and similar theme functions, check out
- * the {@link https://developer.wordpress.org/themes/basics/conditional-tags/ 
+ * the {@link https://developer.wordpress.org/themes/basics/conditional-tags/
  * Conditional Tags} article in the Theme Developer Handbook.
  *
  * @since 1.5.0
@@ -70509,14 +70568,11 @@ function comments_template($file = '/comments.php', $separate_comments = \false)
  *
  * @since 0.71
  *
- * @param string $zero      Optional. String to display when no comments. Default false.
- * @param string $one       Optional. String to display when only one comment is available.
- *                          Default false.
- * @param string $more      Optional. String to display when there are more than one comment.
- *                          Default false.
- * @param string $css_class Optional. CSS class to use for comments. Default empty.
- * @param string $none      Optional. String to display when comments have been turned off.
- *                          Default false.
+ * @param false|string $zero      Optional. String to display when no comments. Default false.
+ * @param false|string $one       Optional. String to display when only one comment is available. Default false.
+ * @param false|string $more      Optional. String to display when there are more than one comment. Default false.
+ * @param string       $css_class Optional. CSS class to use for comments. Default empty.
+ * @param false|string $none      Optional. String to display when comments have been turned off. Default false.
  */
 function comments_popup_link($zero = \false, $one = \false, $more = \false, $css_class = '', $none = \false)
 {
@@ -70879,7 +70935,7 @@ function comment_form($args = array(), $post_id = \null)
  * @param string $user_ip      Comment author IP address.
  * @param string $user_agent   Comment author User-Agent.
  * @param string $comment_type Comment type, either user-submitted comment,
- *		                       trackback, or pingback.
+ *                             trackback, or pingback.
  * @return bool If all checks pass, true, otherwise false.
  */
 function check_comment($author, $email, $url, $comment, $user_ip, $user_agent, $comment_type)
@@ -70932,7 +70988,7 @@ function check_comment($author, $email, $url, $comment, $user_ip, $user_agent, $
  *   post_name?: string,
  *   post_parent?: int,
  *   search?: string,
- *   status?: string,
+ *   status?: string|array,
  *   type?: string|array,
  *   type__in?: array,
  *   type__not_in?: array,
@@ -71013,7 +71069,7 @@ function get_comment(&$comment = \null, $output = \OBJECT)
  *   post_name?: string,
  *   post_parent?: int,
  *   search?: string,
- *   status?: string,
+ *   status?: string|array,
  *   type?: string|array,
  *   type__in?: array,
  *   type__not_in?: array,
@@ -71159,7 +71215,7 @@ function update_comment_meta($comment_id, $meta_key, $meta_value, $prev_value = 
  *
  * @since 4.5.0
  *
- * @param array $comments Array of comment objects.
+ * @param WP_Comment[] $comments Array of comment objects.
  */
 function wp_queue_comments_for_comment_meta_lazyload($comments)
 {
@@ -71248,8 +71304,8 @@ function wp_check_comment_flood($is_flood, $ip, $email, $date, $avoid_die = \fal
  *
  * @since 2.7.0
  *
- * @param array $comments Array of comments
- * @return array Array of comments keyed by comment_type.
+ * @param WP_Comment[] $comments Array of comments
+ * @return WP_Comment[] Array of comments keyed by comment_type.
  */
 function separate_comments(&$comments)
 {
@@ -71263,9 +71319,9 @@ function separate_comments(&$comments)
  *
  * @global WP_Query $wp_query
  *
- * @param array $comments Optional array of WP_Comment objects. Defaults to $wp_query->comments
- * @param int   $per_page Optional comments per page.
- * @param bool  $threaded Optional control over flat or threaded comments.
+ * @param WP_Comment[] $comments Optional. Array of WP_Comment objects. Defaults to $wp_query->comments.
+ * @param int          $per_page Optional. Comments per page.
+ * @param bool         $threaded Optional. Control over flat or threaded comments.
  * @return int Number of comment pages.
  */
 function get_comment_pages_count($comments = \null, $per_page = \null, $threaded = \null)
@@ -71479,6 +71535,18 @@ function _clear_modified_cache_on_transition_comment_status($new_status, $old_st
  * @return array Comment author, email, url respectively.
  */
 function wp_get_current_commenter()
+{
+}
+/**
+ * Get unapproved comment author's email.
+ *
+ * Used to allow the commenter to see their pending comment.
+ *
+ * @since 5.1.0
+ *
+ * @return string The unapproved comment author's email (when supplied).
+ */
+function wp_get_unapproved_comment_author_email()
 {
 }
 /**
@@ -71774,7 +71842,7 @@ function do_all_pings()
  * Perform trackbacks.
  *
  * @since 1.5.0
- * @since 4.7.0 $post_id can be a WP_Post object.
+ * @since 4.7.0 `$post_id` can be a WP_Post object.
  *
  * @global wpdb $wpdb WordPress database abstraction object.
  *
@@ -71798,7 +71866,7 @@ function generic_ping($post_id = 0)
  * Pings back the links found in a post.
  *
  * @since 0.71
- * @since 4.7.0 $post_id can be a WP_Post object.
+ * @since 4.7.0 `$post_id` can be a WP_Post object.
  *
  * @param string $content Post content to check for links. If empty will retrieve from post.
  * @param int|WP_Post $post_id Post Object or ID.
@@ -71896,8 +71964,8 @@ function clean_comment_cache($ids)
  * @since 2.3.0
  * @since 4.4.0 Introduced the `$update_meta_cache` parameter.
  *
- * @param array $comments          Array of comment row objects
- * @param bool  $update_meta_cache Whether to update commentmeta cache. Default true.
+ * @param WP_Comment[] $comments          Array of comment objects
+ * @param bool         $update_meta_cache Whether to update commentmeta cache. Default true.
  */
 function update_comment_cache($comments, $update_meta_cache = \true)
 {
@@ -71911,7 +71979,7 @@ function update_comment_cache($comments, $update_meta_cache = \true)
  * @see update_comment_cache()
  * @global wpdb $wpdb WordPress database abstraction object.
  *
- * @param array $comment_ids       Array of comment IDs.
+ * @param int[] $comment_ids       Array of comment IDs.
  * @param bool  $update_meta_cache Optional. Whether to update the meta cache. Default true.
  */
 function _prime_comment_caches($comment_ids, $update_meta_cache = \true)
@@ -72041,21 +72109,28 @@ function wp_cache_set_comments_last_changed()
 /**
  * Schedules an event to run only once.
  *
- * Schedules an event which will execute once by the WordPress actions core at
- * a time which you specify. The action will fire off when someone visits your
- * WordPress site, if the schedule time has passed.
+ * Schedules a hook which will be triggered by WordPress at the specified time.
+ * The action will trigger when someone visits your WordPress site if the scheduled
+ * time has passed.
  *
  * Note that scheduling an event to occur within 10 minutes of an existing event
  * with the same action hook will be ignored unless you pass unique `$args` values
  * for each scheduled event.
  *
+ * Use wp_next_scheduled() to prevent duplicate events.
+ *
+ * Use wp_schedule_event() to schedule a recurring event.
+ *
  * @since 2.1.0
+ * @since 5.1.0 Return value modified to boolean indicating success or failure,
+ *              {@see 'pre_schedule_event'} filter added to short-circuit the function.
+ *
  * @link https://codex.wordpress.org/Function_Reference/wp_schedule_single_event
  *
- * @param int $timestamp Unix timestamp (UTC) for when to run the event.
- * @param string $hook Action hook to execute when event is run.
- * @param array $args Optional. Arguments to pass to the hook's callback function.
- * @return false|void False if the event does not get scheduled.
+ * @param int    $timestamp  Unix timestamp (UTC) for when to next run the event.
+ * @param string $hook       Action hook to execute when the event is run.
+ * @param array  $args       Optional. Array containing each separate argument to pass to the hook's callback function.
+ * @return bool True if event successfully scheduled. False for failure.
  * @phpstan-param list<mixed> $args
  * @phpstan-return ($wp_error is false ? bool : true|\WP_Error)
  */
@@ -72063,24 +72138,34 @@ function wp_schedule_single_event($timestamp, $hook, $args = array())
 {
 }
 /**
- * Schedule a recurring event.
+ * Schedules a recurring event.
  *
- * Schedules a hook which will be executed by the WordPress actions core on a
- * specific interval, specified by you. The action will trigger when someone
- * visits your WordPress site, if the scheduled time has passed.
+ * Schedules a hook which will be triggered by WordPress at the specified interval.
+ * The action will trigger when someone visits your WordPress site if the scheduled
+ * time has passed.
  *
- * Valid values for the recurrence are hourly, daily, and twicedaily. These can
+ * Valid values for the recurrence are 'hourly', 'daily', and 'twicedaily'. These can
  * be extended using the {@see 'cron_schedules'} filter in wp_get_schedules().
  *
- * Use wp_next_scheduled() to prevent duplicates
+ * Note that scheduling an event to occur within 10 minutes of an existing event
+ * with the same action hook will be ignored unless you pass unique `$args` values
+ * for each scheduled event.
+ *
+ * Use wp_next_scheduled() to prevent duplicate events.
+ *
+ * Use wp_schedule_single_event() to schedule a non-recurring event.
  *
  * @since 2.1.0
+ * @since 5.1.0 Return value modified to boolean indicating success or failure,
+ *              {@see 'pre_schedule_event'} filter added to short-circuit the function.
  *
- * @param int $timestamp Unix timestamp (UTC) for when to run the event.
- * @param string $recurrence How often the event should recur.
- * @param string $hook Action hook to execute when event is run.
- * @param array $args Optional. Arguments to pass to the hook's callback function.
- * @return false|void False if the event does not get scheduled.
+ * @link https://codex.wordpress.org/Function_Reference/wp_schedule_event
+ *
+ * @param int    $timestamp  Unix timestamp (UTC) for when to next run the event.
+ * @param string $recurrence How often the event should subsequently recur. See wp_get_schedules() for accepted values.
+ * @param string $hook       Action hook to execute when the event is run.
+ * @param array  $args       Optional. Array containing each separate argument to pass to the hook's callback function.
+ * @return bool True if event successfully scheduled. False for failure.
  * @phpstan-param list<mixed> $args
  * @phpstan-return ($wp_error is false ? bool : true|\WP_Error)
  */
@@ -72088,15 +72173,23 @@ function wp_schedule_event($timestamp, $recurrence, $hook, $args = array())
 {
 }
 /**
- * Reschedule a recurring event.
+ * Reschedules a recurring event.
+ *
+ * Mainly for internal use, this takes the time stamp of a previously run
+ * recurring event and reschedules it for its next run.
+ *
+ * To change upcoming scheduled events, use wp_schedule_event() to
+ * change the recurrence frequency.
  *
  * @since 2.1.0
+ * @since 5.1.0 Return value modified to boolean indicating success or failure,
+ *              {@see 'pre_reschedule_event'} filter added to short-circuit the function.
  *
- * @param int $timestamp Unix timestamp (UTC) for when to run the event.
- * @param string $recurrence How often the event should recur.
- * @param string $hook Action hook to execute when event is run.
- * @param array $args Optional. Arguments to pass to the hook's callback function.
- * @return false|void False if the event does not get rescheduled.
+ * @param int    $timestamp  Unix timestamp (UTC) for when the event was scheduled.
+ * @param string $recurrence How often the event should subsequently recur. See wp_get_schedules() for accepted values.
+ * @param string $hook       Action hook to execute when the event is run.
+ * @param array  $args       Optional. Array containing each separate argument to pass to the hook's callback function.
+ * @return bool True if event successfully rescheduled. False for failure.
  * @phpstan-param list<mixed> $args
  * @phpstan-return ($wp_error is false ? bool : true|\WP_Error)
  */
@@ -72110,14 +72203,15 @@ function wp_reschedule_event($timestamp, $recurrence, $hook, $args = array())
  * identified.
  *
  * @since 2.1.0
+ * @since 5.1.0 Return value modified to boolean indicating success or failure,
+ *              {@see 'pre_unschedule_event'} filter added to short-circuit the function.
  *
- * @param int $timestamp Unix timestamp (UTC) for when to run the event.
- * @param string $hook Action hook, the execution of which will be unscheduled.
- * @param array $args Arguments to pass to the hook's callback function.
- * Although not passed to a callback function, these arguments are used
- * to uniquely identify the scheduled event, so they should be the same
- * as those used when originally scheduling the event.
- * @return false|void False if the event does not get unscheduled.
+ * @param int    $timestamp Unix timestamp (UTC) of the event.
+ * @param string $hook      Action hook of the event.
+ * @param array  $args      Optional. Array containing each separate argument to pass to the hook's callback function.
+ *                          Although not passed to a callback, these arguments are used to uniquely identify the
+ *                          event, so they should be the same as those used when originally scheduling the event.
+ * @return bool True if event successfully unscheduled. False for failure.
  * @phpstan-param list<mixed> $args
  * @phpstan-return ($wp_error is false ? bool : true|\WP_Error)
  */
@@ -72127,10 +72221,20 @@ function wp_unschedule_event($timestamp, $hook, $args = array())
 /**
  * Unschedules all events attached to the hook with the specified arguments.
  *
+ * Warning: This function may return Boolean FALSE, but may also return a non-Boolean
+ * value which evaluates to FALSE. For information about casting to booleans see the
+ * {@link https://php.net/manual/en/language.types.boolean.php PHP documentation}. Use
+ * the `===` operator for testing the return value of this function.
+ *
  * @since 2.1.0
+ * @since 5.1.0 Return value modified to indicate success or failure,
+ *              {@see 'pre_clear_scheduled_hook'} filter added to short-circuit the function.
  *
  * @param string $hook Action hook, the execution of which will be unscheduled.
  * @param array $args Optional. Arguments that were to be passed to the hook's callback function.
+ * @return bool|int On success an integer indicating number of events unscheduled (0 indicates no
+ *                  events were registered with the hook and arguments combination), false if
+ *                  unscheduling one or more events fail.
  * @phpstan-param list<mixed> $args
  * @phpstan-return ($wp_error is false ? 0|positive-int|false : 0|positive-int|\WP_Error)
  */
@@ -72142,12 +72246,39 @@ function wp_clear_scheduled_hook($hook, $args = array())
  *
  * Can be useful for plugins when deactivating to clean up the cron queue.
  *
+ * Warning: This function may return Boolean FALSE, but may also return a non-Boolean
+ * value which evaluates to FALSE. For information about casting to booleans see the
+ * {@link https://php.net/manual/en/language.types.boolean.php PHP documentation}. Use
+ * the `===` operator for testing the return value of this function.
+ *
  * @since 4.9.0
+ * @since 5.1.0 Return value added to indicate success or failure.
  *
  * @param string $hook Action hook, the execution of which will be unscheduled.
+ * @return bool|int On success an integer indicating number of events unscheduled (0 indicates no
+ *                  events were registered on the hook), false if unscheduling fails.
  * @phpstan-return ($wp_error is false ? 0|positive-int|false : 0|positive-int|\WP_Error)
  */
 function wp_unschedule_hook($hook)
+{
+}
+/**
+ * Retrieve a scheduled event.
+ *
+ * Retrieve the full event object for a given event, if no timestamp is specified the next
+ * scheduled event is returned.
+ *
+ * @since 5.1.0
+ *
+ * @param string   $hook      Action hook of the event.
+ * @param array    $args      Optional. Array containing each separate argument to pass to the hook's callback function.
+ *                            Although not passed to a callback, these arguments are used to uniquely identify the
+ *                            event, so they should be the same as those used when originally scheduling the event.
+ * @param int|null $timestamp Optional. Unix timestamp (UTC) of the event. If not specified, the next scheduled event is returned.
+ * @return bool|object The event object. False if the event does not exist.
+ * @phpstan-param list<mixed> $args
+ */
+function wp_get_scheduled_event($hook, $args = array(), $timestamp = \null)
 {
 }
 /**
@@ -72155,9 +72286,11 @@ function wp_unschedule_hook($hook)
  *
  * @since 2.1.0
  *
- * @param string $hook Action hook to execute when event is run.
- * @param array $args Optional. Arguments to pass to the hook's callback function.
- * @return false|int The Unix timestamp of the next time the scheduled event will occur.
+ * @param string $hook Action hook of the event.
+ * @param array  $args Optional. Array containing each separate argument to pass to the hook's callback function.
+ *                     Although not passed to a callback, these arguments are used to uniquely identify the
+ *                     event, so they should be the same as those used when originally scheduling the event.
+ * @return false|int The Unix timestamp of the next time the event will occur. False if the event doesn't exist.
  * @phpstan-param list<mixed> $args
  */
 function wp_next_scheduled($hook, $args = array())
@@ -72167,8 +72300,10 @@ function wp_next_scheduled($hook, $args = array())
  * Sends a request to run cron through HTTP request that doesn't halt page loading.
  *
  * @since 2.1.0
+ * @since 5.1.0 Return values added.
  *
  * @param int $gmt_time Optional. Unix timestamp (UTC). Default 0 (current time is used).
+ * @return bool True if spawned, false if no events spawned.
  */
 function spawn_cron($gmt_time = 0)
 {
@@ -72176,7 +72311,16 @@ function spawn_cron($gmt_time = 0)
 /**
  * Run scheduled callbacks or spawn cron for all scheduled events.
  *
+ * Warning: This function may return Boolean FALSE, but may also return a non-Boolean
+ * value which evaluates to FALSE. For information about casting to booleans see the
+ * {@link https://php.net/manual/en/language.types.boolean.php PHP documentation}. Use
+ * the `===` operator for testing the return value of this function.
+ *
  * @since 2.1.0
+ * @since 5.1.0 Return value added to indicate success or failure.
+ *
+ * @return bool|int On success an integer indicating number of events spawned (0 indicates no
+ *                  events needed to be spawned), false if spawning fails for one or more events.
  */
 function wp_cron()
 {
@@ -72203,9 +72347,8 @@ function wp_cron()
  *     // Filter parameter variable name is 'array'.
  *     $array['weekly'] = array(
  *         'interval' => 604800,
- *     	   'display'  => __( 'Once Weekly' )
+ *         'display'  => __( 'Once Weekly' )
  *     );
- *
  *
  * @since 2.1.0
  *
@@ -72220,6 +72363,7 @@ function wp_get_schedules()
  * @see wp_get_schedules() for available schedules.
  *
  * @since 2.1.0
+ * @since 5.1.0 {@see 'get_schedule'} filter added.
  *
  * @param string $hook Action hook to identify the event.
  * @param array $args Optional. Arguments passed to the event's callback function.
@@ -72227,6 +72371,19 @@ function wp_get_schedules()
  * @phpstan-param list<mixed> $args
  */
 function wp_get_schedule($hook, $args = array())
+{
+}
+/**
+ * Retrieve cron jobs ready to be run.
+ *
+ * Returns the results of _get_cron_array() limited to events ready to be run,
+ * ie, with a timestamp in the past.
+ *
+ * @since 5.1.0
+ *
+ * @return array Cron jobs ready to be run.
+ */
+function wp_get_ready_cron_jobs()
 {
 }
 //
@@ -72247,9 +72404,12 @@ function _get_cron_array()
  * Updates the CRON option with the new CRON array.
  *
  * @since 2.1.0
+ * @since 5.1.0 Return value modified to outcome of update_option().
+ *
  * @access private
  *
  * @param array $cron Cron info array from _get_cron_array().
+ * @return bool True if cron array updated, false on failure.
  */
 function _set_cron_array($cron)
 {
@@ -72300,13 +72460,14 @@ function wp_plugin_directory_constants()
  * Defines cookie related WordPress constants
  *
  * Defines constants after multisite is loaded.
+ *
  * @since 3.0.0
  */
 function wp_cookie_constants()
 {
 }
 /**
- * Defines cookie related WordPress constants
+ * Defines SSL-related WordPress constants.
  *
  * @since 3.0.0
  */
@@ -74742,12 +74903,12 @@ function comments_popup_script()
 {
 }
 /**
- * Adds element attributes to open links in new windows.
+ * Adds element attributes to open links in new tabs.
  *
  * @since 0.71
  * @deprecated 4.5.0
  *
- * @param string $text Content to replace links to open in a new window.
+ * @param string $text Content to replace links to open in a new tab.
  * @return string Content that has filtered links.
  */
 function popuplinks($text)
@@ -75208,6 +75369,19 @@ function _oembed_rest_pre_serve_request($served, $result, $request, $server)
  * @return string|false XML string on success, false on error.
  */
 function _oembed_create_xml($data, $node = \null)
+{
+}
+/**
+ * Filters the given oEmbed HTML to make sure iframes have a title attribute.
+ *
+ * @since 5.2.0
+ *
+ * @param string $result The oEmbed HTML result.
+ * @param object $data   A data object result from an oEmbed provider.
+ * @param string $url    The URL of the content to be embedded.
+ * @return string The filtered oEmbed result.
+ */
+function wp_filter_oembed_iframe_title_attribute($result, $data, $url)
 {
 }
 /**
@@ -75689,7 +75863,7 @@ function feed_content_type($type = '')
  *
  * @param mixed $url URL of feed to retrieve. If an array of URLs, the feeds are merged
  * using SimplePie's multifeed feature.
- * See also {@link ​http://simplepie.org/wiki/faq/typical_multifeed_gotchas}
+ * See also {@link http://simplepie.org/wiki/faq/typical_multifeed_gotchas}
  *
  * @return WP_Error|SimplePie WP_Error object on failure or SimplePie object on success
  */
@@ -76494,7 +76668,7 @@ function sanitize_sql_orderby($orderby)
  *
  * @param string $class    The classname to be sanitized
  * @param string $fallback Optional. The value to return if the sanitization ends up as an empty string.
- * 	Defaults to an empty string.
+ *  Defaults to an empty string.
  * @return string The sanitized value
  */
 function sanitize_html_class($class, $fallback = '')
@@ -76557,9 +76731,9 @@ function balanceTags($text, $force = \false)
  * @version 1.1
  * @todo Make better - change loop condition to $text in 1.2
  * @internal Modified by Scott Reilly (coffee2code) 02 Aug 2004
- *		1.1  Fixed handling of append/stack pop order of end text
- *			 Added Cleaning Hooks
- *		1.0  First Version
+ *      1.1  Fixed handling of append/stack pop order of end text
+ *           Added Cleaning Hooks
+ *      1.0  First Version
  *
  * @param string $text Text to be balanced.
  * @return string Balanced text.
@@ -76858,6 +77032,43 @@ function wp_rel_nofollow_callback($matches)
 {
 }
 /**
+ * Adds rel noreferrer and noopener to all HTML A elements that have a target.
+ *
+ * @param string $text Content that may contain HTML A elements.
+ * @return string Converted content.
+ */
+function wp_targeted_link_rel($text)
+{
+}
+/**
+ * Callback to add rel="noreferrer noopener" string to HTML A element.
+ *
+ * Will not duplicate existing noreferrer and noopener values
+ * to prevent from invalidating the HTML.
+ *
+ * @param array $matches Single Match
+ * @return string HTML A Element with rel noreferrer noopener in addition to any existing values
+ */
+function wp_targeted_link_rel_callback($matches)
+{
+}
+/**
+ * Adds all filters modifying the rel attribute of targeted links.
+ *
+ * @since 5.1.0
+ */
+function wp_init_targeted_link_rel_filters()
+{
+}
+/**
+ * Removes all filters modifying the rel attribute of targeted links.
+ *
+ * @since 5.1.0
+ */
+function wp_remove_targeted_link_rel_filters()
+{
+}
+/**
  * Convert one smiley code to the icon graphic file equivalent.
  *
  * Callback handler for convert_smilies().
@@ -77091,7 +77302,7 @@ function format_for_editor($text, $default_editor = \null)
  * @param string|array $search  The value being searched for, otherwise known as the needle.
  *                              An array may be used to designate multiple needles.
  * @param string       $subject The string being searched and replaced on, otherwise known as the haystack.
- * @return string The string with the replaced svalues.
+ * @return string The string with the replaced values.
  */
 function _deep_replace($search, $subject)
 {
@@ -77129,7 +77340,7 @@ function esc_sql($data)
  *
  * @param string $url       The URL to be cleaned.
  * @param array  $protocols Optional. An array of acceptable protocols.
- *		                    Defaults to return value of wp_allowed_protocols()
+ *                          Defaults to return value of wp_allowed_protocols()
  * @param string $_context  Private. Use esc_url_raw() for database usage.
  * @return string The cleaned $url after the {@see 'clean_url'} filter is applied.
  */
@@ -77522,6 +77733,7 @@ function _sanitize_text_fields($str, $keep_newlines = \false)
 function wp_basename($path, $suffix = '')
 {
 }
+// phpcs:disable WordPress.WP.CapitalPDangit.Misspelled, WordPress.NamingConventions.ValidFunctionName.FunctionNameInvalid -- 8-)
 /**
  * Forever eliminate "Wordpress" from the planet (or at least the little bit we can influence).
  *
@@ -77537,6 +77749,7 @@ function wp_basename($path, $suffix = '')
 function capital_P_dangit($text)
 {
 }
+// phpcs:enable
 /**
  * Sanitize a mime type
  *
@@ -77685,9 +77898,9 @@ function wp_staticize_emoji_for_email($mail)
 {
 }
 /**
- * Returns a arrays of emoji data.
+ * Returns arrays of emoji data.
  *
- * These arrays automatically built from the regex in twemoji.js - if they need to be updated,
+ * These arrays are automatically built from the regex in twemoji.js - if they need to be updated,
  * you should update the regex there, then run the `grunt precommit:emoji` job.
  *
  * @since 4.9.0
@@ -77799,7 +78012,8 @@ function current_time($type, $gmt = 0)
 {
 }
 /**
- * Retrieve the date in localized format, based on timestamp.
+ * Retrieve the date in localized format, based on a sum of Unix timestamp and
+ * timezone offset in seconds.
  *
  * If the locale specifies the locale month and weekday, then the locale will
  * take over the format for the date. If it isn't, then the date format string
@@ -77809,13 +78023,15 @@ function current_time($type, $gmt = 0)
  *
  * @global WP_Locale $wp_locale
  *
- * @param string   $dateformatstring Format to display the date.
- * @param bool|int $unixtimestamp    Optional. Unix timestamp. Default false.
- * @param bool     $gmt              Optional. Whether to use GMT timezone. Default false.
+ * @param string   $dateformatstring      Format to display the date.
+ * @param int|bool $timestamp_with_offset Optional. A sum of Unix timestamp and timezone offset in seconds.
+ *                                        Default false.
+ * @param bool     $gmt                   Optional. Whether to use GMT timezone. Only applies if timestamp is
+ *                                        not provided. Default false.
  *
  * @return string The date, translated if locale specifies it.
  */
-function date_i18n($dateformatstring, $unixtimestamp = \false, $gmt = \false)
+function date_i18n($dateformatstring, $timestamp_with_offset = \false, $gmt = \false)
 {
 }
 /**
@@ -77869,6 +78085,18 @@ function number_format_i18n($number, $decimals = 0)
  * @return string|false False on failure. Number string on success.
  */
 function size_format($bytes, $decimals = 0)
+{
+}
+/**
+ * Convert a duration to human readable format.
+ *
+ * @since 5.1.0
+ *
+ * @param string $duration Duration will be in string format (HH:ii:ss) OR (ii:ss),
+ *                         with a possible prepended negative sign (-).
+ * @return string|false A human readable duration string, false on failure.
+ */
+function human_readable_duration($duration = '')
 {
 }
 /**
@@ -78043,7 +78271,7 @@ function is_new_day()
  *
  * @see _http_build_query() Used to build the query
  * @link https://secure.php.net/manual/en/function.http-build-query.php for more on what
- *		 http_build_query() does.
+ *       http_build_query() does.
  *
  * @param array $data URL-encode key/value pairs.
  * @return string URL-encoded string.
@@ -78174,6 +78402,9 @@ function wp($query_vars = '')
  * Retrieve the description for the HTTP status.
  *
  * @since 2.3.0
+ * @since 3.9.0 Added status codes 418, 428, 429, 431, and 511.
+ * @since 4.5.0 Added status codes 308, 421, and 451.
+ * @since 5.1.0 Added status code 103.
  *
  * @global array $wp_header_to_desc
  *
@@ -78388,7 +78619,7 @@ function wp_nonce_url($actionurl, $action = -1, $name = '_wpnonce')
  * @param bool       $echo    Optional. Whether to display or return hidden form field. Default true.
  * @return string Nonce field HTML markup.
  */
-function wp_nonce_field($action = -1, $name = "_wpnonce", $referer = \true, $echo = \true)
+function wp_nonce_field($action = -1, $name = '_wpnonce', $referer = \true, $echo = \true)
 {
 }
 /**
@@ -78807,6 +79038,7 @@ function wp_nonce_ays($action)
  * @since 2.0.4
  * @since 4.1.0 The `$title` and `$args` parameters were changed to optionally accept
  *              an integer to be used as the response code.
+ * @since 5.1.0 The `$link_url`, `$link_text`, and `$exit` arguments were added.
  *
  * @param string|WP_Error  $message Optional. Error message. If this is a WP_Error object,
  *                                  and not an Ajax or XML-RPC request, the error's messages are used.
@@ -78820,15 +79052,26 @@ function wp_nonce_ays($action)
  *     as the response code. Default empty array.
  *
  *     @type int    $response       The HTTP response code. Default 200 for Ajax requests, 500 otherwise.
+ *     @type string $link_url       A URL to include a link to. Only works in combination with $link_text.
+ *                                  Default empty string.
+ *     @type string $link_text      A label for the link to include. Only works in combination with $link_url.
+ *                                  Default empty string.
  *     @type bool   $back_link      Whether to include a link to go back. Default false.
  *     @type string $text_direction The text direction. This is only useful internally, when WordPress
  *                                  is still loading and the site's locale is not set up yet. Accepts 'rtl'.
  *                                  Default is the value of is_rtl().
+ *     @type string $code           Error code to use. Default is 'wp_die', or the main error code if $message
+ *                                  is a WP_Error.
+ *     @type bool   $exit           Whether to exit the process after completion. Default true.
  * }
  * @phpstan-param int|array{
  *   response?: int,
+ *   link_url?: string,
+ *   link_text?: string,
  *   back_link?: bool,
  *   text_direction?: string,
+ *   code?: string,
+ *   exit?: bool,
  * } $args
  */
 function wp_die($message = '', $title = '', $args = array())
@@ -78848,6 +79091,21 @@ function wp_die($message = '', $title = '', $args = array())
  * @param string|array    $args    Optional. Arguments to control behavior. Default empty array.
  */
 function _default_wp_die_handler($message, $title = '', $args = array())
+{
+}
+/**
+ * Kill WordPress execution and display JSON message with error message.
+ *
+ * This is the handler for wp_die when processing JSON requests.
+ *
+ * @since 5.1.0
+ * @access private
+ *
+ * @param string       $message Error message.
+ * @param string       $title   Optional. Error title. Default empty.
+ * @param string|array $args    Optional. Arguments to control behavior. Default empty array.
+ */
+function _json_wp_die_handler($message, $title = '', $args = array())
 {
 }
 /**
@@ -78888,11 +79146,28 @@ function _ajax_wp_die_handler($message, $title = '', $args = array())
  * This is the handler for wp_die when processing APP requests.
  *
  * @since 3.4.0
+ * @since 5.1.0 Added the $title and $args parameters.
  * @access private
  *
- * @param string $message Optional. Response to print. Default empty.
+ * @param string       $message Optional. Response to print. Default empty.
+ * @param string       $title   Optional. Error title (unused). Default empty.
+ * @param string|array $args    Optional. Arguments to control behavior. Default empty array.
  */
-function _scalar_wp_die_handler($message = '')
+function _scalar_wp_die_handler($message = '', $title = '', $args = array())
+{
+}
+/**
+ * Processes arguments passed to {@see wp_die()} consistently for its handlers.
+ *
+ * @since 5.1.0
+ * @access private
+ *
+ * @param string       $message Error message.
+ * @param string       $title   Optional. Error title. Default empty.
+ * @param string|array $args    Optional. Arguments to control behavior. Default empty array.
+ * @return array List of processed $message string, $title string, and $args array.
+ */
+function _wp_die_process_input($message, $title = '', $args = array())
 {
 }
 /**
@@ -79122,6 +79397,17 @@ function wp_parse_args($args, $defaults = '')
 {
 }
 /**
+ * Cleans up an array, comma- or space-separated list of scalar values.
+ *
+ * @since 5.1.0
+ *
+ * @param array|string $list List of values.
+ * @return array Sanitized array of values.
+ */
+function wp_parse_list($list)
+{
+}
+/**
  * Clean up an array, comma- or space-separated list of IDs.
  *
  * @since 3.0.0
@@ -79170,7 +79456,7 @@ function wp_is_numeric_array($data)
  * Filters a list of objects, based on a set of key => value arguments.
  *
  * @since 3.0.0
- * @since 4.7.0 Uses WP_List_Util class.
+ * @since 4.7.0 Uses `WP_List_Util` class.
  *
  * @param array       $list     An array of objects to filter
  * @param array       $args     Optional. An array of key => value arguments to match
@@ -79190,7 +79476,7 @@ function wp_filter_object_list($list, $args = array(), $operator = 'and', $field
  * Filters a list of objects, based on a set of key => value arguments.
  *
  * @since 3.1.0
- * @since 4.7.0 Uses WP_List_Util class.
+ * @since 4.7.0 Uses `WP_List_Util` class.
  *
  * @param array  $list     An array of objects to filter.
  * @param array  $args     Optional. An array of key => value arguments to match
@@ -79212,7 +79498,7 @@ function wp_list_filter($list, $args = array(), $operator = 'AND')
  *
  * @since 3.1.0
  * @since 4.0.0 $index_key parameter added.
- * @since 4.7.0 Uses WP_List_Util class.
+ * @since 4.7.0 Uses `WP_List_Util` class.
  *
  * @param array      $list      List of objects or arrays
  * @param int|string $field     Field from the object to place instead of the entire object
@@ -79230,7 +79516,7 @@ function wp_list_pluck($list, $field, $index_key = \null)
  *
  * @since 4.7.0
  *
- * @param array        $list          An array of objects to filter.
+ * @param array        $list          An array of objects to sort.
  * @param string|array $orderby       Optional. Either the field name to order by or an array
  *                                    of multiple orderby fields as $orderby => $order.
  * @param string       $order         Optional. Either 'ASC' or 'DESC'. Only used if $orderby
@@ -79382,7 +79668,6 @@ function _deprecated_file($file, $version, $replacement = \null, $message = '')
  *     if ( ! empty( $deprecated ) ) {
  *         _deprecated_argument( __FUNCTION__, '3.0.0' );
  *     }
- *
  *
  * There is a hook deprecated_argument_run that will be called that can be used
  * to get the backtrace up to what file and function used the deprecated
@@ -79562,7 +79847,7 @@ function wp_suspend_cache_invalidation($suspend = \true)
  * Determine whether a site is the main site of the current network.
  *
  * @since 3.0.0
- * @since 4.9.0 The $network_id parameter has been added.
+ * @since 4.9.0 The `$network_id` parameter was added.
  *
  * @param int $site_id    Optional. Site ID to test. Defaults to current site.
  * @param int $network_id Optional. Network ID of the network to check for.
@@ -79616,6 +79901,22 @@ function get_main_network_id()
  * @return bool True if multisite and global terms enabled.
  */
 function global_terms_enabled()
+{
+}
+/**
+ * Determines whether site meta is enabled.
+ *
+ * This function checks whether the 'blogmeta' database table exists. The result is saved as
+ * a setting for the main network, making it essentially a global setting. Subsequent requests
+ * will refer to this setting instead of running the query.
+ *
+ * @since 5.1.0
+ *
+ * @global wpdb $wpdb WordPress database abstraction object.
+ *
+ * @return bool True if site meta is supported, false otherwise.
+ */
+function is_site_meta_supported()
 {
 }
 /**
@@ -79700,8 +80001,8 @@ function wp_scheduled_delete()
  *
  * @since 2.9.0
  *
- * @param string $file            Path to the file.
- * @param array  $default_headers List of headers, in the format array('HeaderKey' => 'Header Name').
+ * @param string $file            Absolute path to the file.
+ * @param array  $default_headers List of headers, in the format `array('HeaderKey' => 'Header Name')`.
  * @param string $context         Optional. If specified adds filter hook {@see 'extra_$context_headers'}.
  *                                Default empty.
  * @return array Array of file headers in `HeaderKey => Header Value` format.
@@ -79871,9 +80172,11 @@ function send_frame_options_header()
  *
  * @staticvar array $protocols
  *
- * @return array Array of allowed protocols. Defaults to an array containing 'http', 'https',
- *               'ftp', 'ftps', 'mailto', 'news', 'irc', 'gopher', 'nntp', 'feed', 'telnet',
- *               'mms', 'rtsp', 'svn', 'tel', 'fax', 'xmpp', 'webcal', and 'urn'.
+ * @return string[] Array of allowed protocols. Defaults to an array containing 'http', 'https',
+ *                  'ftp', 'ftps', 'mailto', 'news', 'irc', 'gopher', 'nntp', 'feed', 'telnet',
+ *                  'mms', 'rtsp', 'svn', 'tel', 'fax', 'xmpp', 'webcal', and 'urn'. This covers
+ *                  all common link protocols, except for 'javascript' which should not be
+ *                  allowed for untrusted users.
  */
 function wp_allowed_protocols()
 {
@@ -79885,6 +80188,8 @@ function wp_allowed_protocols()
  * @since 3.4.0
  *
  * @see https://core.trac.wordpress.org/ticket/19589
+ *
+ * @staticvar array $truncate_paths Array of paths to truncate.
  *
  * @param string $ignore_class Optional. A class to ignore all function calls within - useful
  *                             when you want to just give info about the callee. Default null.
@@ -79899,15 +80204,14 @@ function wp_debug_backtrace_summary($ignore_class = \null, $skip_frames = 0, $pr
 {
 }
 /**
- * Retrieve ids that are not already present in the cache.
+ * Retrieve IDs that are not already present in the cache.
  *
  * @since 3.4.0
  * @access private
  *
- * @param array  $object_ids ID list.
+ * @param int[]  $object_ids Array of IDs.
  * @param string $cache_key  The cache bucket to check against.
- *
- * @return array List of ids not present in the cache.
+ * @return int[] Array of IDs not present in the cache.
  */
 function _get_non_cached_ids($object_ids, $cache_key)
 {
@@ -80109,15 +80413,18 @@ function wp_post_preview_js()
 {
 }
 /**
- * Parses and formats a MySQL datetime (Y-m-d H:i:s) for ISO8601/RFC3339.
+ * Parses and formats a MySQL datetime (Y-m-d H:i:s) for ISO8601 (Y-m-d\TH:i:s).
  *
  * Explicitly strips timezones, as datetimes are not saved with any timezone
  * information. Including any information on the offset could be misleading.
  *
+ * Despite historical function name, the output does not conform to RFC3339 format,
+ * which must contain timezone.
+ *
  * @since 4.4.0
  *
  * @param string $date_string Date string to parse and format.
- * @return string Date formatted for ISO8601/RFC3339.
+ * @return string Date formatted for ISO8601 without time zone.
  */
 function mysql_to_rfc3339($date_string)
 {
@@ -80154,7 +80461,8 @@ function wp_generate_uuid4()
  * @since 4.9.0
  *
  * @param mixed $uuid    UUID to check.
- * @param int   $version Specify which version of UUID to check against. Default is none, to accept any UUID version. Otherwise, only version allowed is `4`.
+ * @param int   $version Specify which version of UUID to check against. Default is none,
+ *                       to accept any UUID version. Otherwise, only version allowed is `4`.
  * @return bool The string is a valid UUID or false on failure.
  */
 function wp_is_uuid($uuid, $version = \null)
@@ -80274,6 +80582,73 @@ function wp_privacy_delete_old_export_files()
 {
 }
 /**
+ * Gets the URL to learn more about updating the PHP version the site is running on.
+ *
+ * This URL can be overridden by specifying an environment variable `WP_UPDATE_PHP_URL` or by using the
+ * {@see 'wp_update_php_url'} filter. Providing an empty string is not allowed and will result in the
+ * default URL being used. Furthermore the page the URL links to should preferably be localized in the
+ * site language.
+ *
+ * @since 5.1.0
+ *
+ * @return string URL to learn more about updating PHP.
+ */
+function wp_get_update_php_url()
+{
+}
+/**
+ * Gets the default URL to learn more about updating the PHP version the site is running on.
+ *
+ * Do not use this function to retrieve this URL. Instead, use {@see wp_get_update_php_url()} when relying on the URL.
+ * This function does not allow modifying the returned URL, and is only used to compare the actually used URL with the
+ * default one.
+ *
+ * @since 5.1.0
+ * @access private
+ *
+ * @return string Default URL to learn more about updating PHP.
+ */
+function wp_get_default_update_php_url()
+{
+}
+/**
+ * Prints the default annotation for the web host altering the "Update PHP" page URL.
+ *
+ * This function is to be used after {@see wp_get_update_php_url()} to display a consistent
+ * annotation if the web host has altered the default "Update PHP" page URL.
+ *
+ * @since 5.1.0
+ */
+function wp_update_php_annotation()
+{
+}
+/**
+ * Gets the URL for directly updating the PHP version the site is running on.
+ *
+ * A URL will only be returned if the `WP_DIRECT_UPDATE_PHP_URL` environment variable is specified or
+ * by using the {@see 'wp_direct_php_update_url'} filter. This allows hosts to send users directly to
+ * the page where they can update PHP to a newer version.
+ *
+ * @since 5.1.1
+ *
+ * @return string URL for directly updating PHP or empty string.
+ */
+function wp_get_direct_php_update_url()
+{
+}
+/**
+ * Display a button directly linking to a PHP update process.
+ *
+ * This provides hosts with a way for users to be sent directly to their PHP update process.
+ *
+ * The button is only displayed if a URL is returned by `wp_get_direct_php_update_url()`.
+ *
+ * @since 5.1.1
+ */
+function wp_direct_php_update_button()
+{
+}
+/**
  * Dependencies API: Scripts functions
  *
  * @since 2.6.0
@@ -80326,7 +80701,7 @@ function wp_print_scripts($handles = \false)
 /**
  * Adds extra code to a registered script.
  *
- * Code will only be added if the script in already in the queue.
+ * Code will only be added if the script is already in the queue.
  * Accepts a string $data containing the Code. If two or more code blocks
  * are added to the same script $handle, they will be printed in the order
  * they were added, i.e. the latter added code can redeclare the previous.
@@ -80356,7 +80731,8 @@ function wp_add_inline_script($handle, $data, $position = 'after')
  * @since 4.3.0 A return value was added.
  *
  * @param string           $handle    Name of the script. Should be unique.
- * @param string           $src       Full URL of the script, or path of the script relative to the WordPress root directory.
+ * @param string|bool      $src       Full URL of the script, or path of the script relative to the WordPress root directory.
+ *                                    If source is set to false, script is an alias of other scripts it depends on.
  * @param array            $deps      Optional. An array of registered script handles this script depends on. Default empty array.
  * @param string|bool|null $ver       Optional. String specifying script version number, if it has one, which is added to the URL
  *                                    as a query string for cache busting purposes. If version is set to false, a version
@@ -80381,7 +80757,6 @@ function wp_register_script($handle, $src, $deps = array(), $ver = \false, $in_f
  *         key: value,
  *         ...
  *     }
- *
  *
  * @see WP_Dependencies::localize()
  * @link https://core.trac.wordpress.org/ticket/11520
@@ -80409,14 +80784,14 @@ function wp_localize_script($handle, $object_name, $l10n)
  * @global WP_Scripts $wp_scripts The WP_Scripts object for printing scripts.
  *
  * @since 5.0.0
+ * @since 5.1.0 The `$domain` parameter was made optional.
  *
  * @param string $handle Script handle the textdomain will be attached to.
- * @param string $domain The textdomain.
+ * @param string $domain Optional. Text domain. Default 'default'.
  * @param string $path   Optional. The full file path to the directory containing translation files.
- *
- * @return bool True if the textdomain was successfully localized, false otherwise.
+ * @return bool True if the text domain was successfully localized, false otherwise.
  */
-function wp_set_script_translations($handle, $domain, $path = \null)
+function wp_set_script_translations($handle, $domain = 'default', $path = \null)
 {
 }
 /**
@@ -80473,11 +80848,11 @@ function wp_dequeue_script($handle)
 }
 /**
  * Determines whether a script has been added to the queue.
- * 
+ *
  * For more information on this and similar theme functions, check out
- * the {@link https://developer.wordpress.org/themes/basics/conditional-tags/ 
+ * the {@link https://developer.wordpress.org/themes/basics/conditional-tags/
  * Conditional Tags} article in the Theme Developer Handbook.
- *  
+ *
  * @since 2.8.0
  * @since 3.5.0 'enqueued' added as an alias of the 'queue' list.
  *
@@ -80500,7 +80875,7 @@ function wp_script_is($handle, $list = 'enqueued')
  *
  * @since 4.2.0
  *
- * @see WP_Dependency::add_data()
+ * @see WP_Dependencies::add_data()
  *
  * @param string $handle Name of the script.
  * @param string $key    Name of data point for which we're storing a value.
@@ -80550,7 +80925,7 @@ function wp_print_styles($handles = \false)
 /**
  * Add extra CSS styles to a registered stylesheet.
  *
- * Styles will only be added if the stylesheet in already in the queue.
+ * Styles will only be added if the stylesheet is already in the queue.
  * Accepts a string $data containing the CSS. If two or more CSS code blocks
  * are added to the same stylesheet $handle, they will be printed in the order
  * they were added, i.e. the latter added styles can redeclare the previous.
@@ -80576,7 +80951,8 @@ function wp_add_inline_style($handle, $data)
  * @since 4.3.0 A return value was added.
  *
  * @param string           $handle Name of the stylesheet. Should be unique.
- * @param string           $src    Full URL of the stylesheet, or path of the stylesheet relative to the WordPress root directory.
+ * @param string|bool      $src    Full URL of the stylesheet, or path of the stylesheet relative to the WordPress root directory.
+ *                                 If source is set to false, stylesheet is an alias of other stylesheets it depends on.
  * @param array            $deps   Optional. An array of registered stylesheet handles this stylesheet depends on. Default empty array.
  * @param string|bool|null $ver    Optional. String specifying stylesheet version number, if it has one, which is added to the URL
  *                                 as a query string for cache busting purposes. If version is set to false, a version
@@ -80961,7 +81337,7 @@ function bloginfo($show = '')
  *   child theme will NOT take precedence over this value
  * - 'pingback_url' - The pingback XML-RPC file URL (xmlrpc.php)
  * - 'atom_url' - The Atom feed URL (/feed/atom)
- * - 'rdf_url' - The RDF/RSS 1.0 feed URL (/feed/rfd)
+ * - 'rdf_url' - The RDF/RSS 1.0 feed URL (/feed/rdf)
  * - 'rss_url' - The RSS 0.92 feed URL (/feed/rss)
  * - 'rss2_url' - The RSS 2.0 feed URL (/feed)
  * - 'comments_atom_url' - The comments Atom feed URL (/comments/feed)
@@ -81417,7 +81793,7 @@ function delete_get_calendar_cache()
 function allowed_tags()
 {
 }
-/***** Date/Time tags *****/
+/***** Date/Time tags */
 /**
  * Outputs the date in iso8601 format for xml files.
  *
@@ -81515,7 +81891,7 @@ function the_time($d = '')
  *                          was written. Either 'G', 'U', or php date format defaults
  *                          to the value specified in the time_format option. Default empty.
  * @param int|WP_Post $post WP_Post object or ID. Default is global $post object.
- * @return string|int|false Formatted date string or Unix timestamp if `$id` is 'U' or 'G'. False on failure.
+ * @return string|int|false Formatted date string or Unix timestamp if `$d` is 'U' or 'G'. False on failure.
  */
 function get_the_time($d = '', $post = \null)
 {
@@ -81530,7 +81906,7 @@ function get_the_time($d = '', $post = \null)
  * @param bool        $gmt       Optional. Whether to retrieve the GMT time. Default false.
  * @param int|WP_Post $post      WP_Post object or ID. Default is global $post object.
  * @param bool        $translate Whether to translate the time string. Default false.
- * @return string|int|false Formatted date string or Unix timestamp if `$id` is 'U' or 'G'. False on failure.
+ * @return string|int|false Formatted date string or Unix timestamp if `$d` is 'U' or 'G'. False on failure.
  */
 function get_post_time($d = 'U', $gmt = \false, $post = \null, $translate = \false)
 {
@@ -81570,7 +81946,7 @@ function get_the_modified_time($d = '', $post = \null)
  * @param bool        $gmt       Optional. Whether to retrieve the GMT time. Default false.
  * @param int|WP_Post $post      WP_Post object or ID. Default is global $post object.
  * @param bool        $translate Whether to translate the time string. Default false.
- * @return string|int|false Formatted date string or Unix timestamp if `$id` is 'U' or 'G'. False on failure.
+ * @return string|int|false Formatted date string or Unix timestamp if `$d` is 'U' or 'G'. False on failure.
  */
 function get_post_modified_time($d = 'U', $gmt = \false, $post = \null, $translate = \false)
 {
@@ -81699,7 +82075,7 @@ function wp_no_robots()
  *
  * Typical usage is as a wp_head callback. add_action( 'wp_head', 'wp_sensitive_page_meta' );
  *
- * @since 5.0.0
+ * @since 5.0.1
  */
 function wp_sensitive_page_meta()
 {
@@ -81885,7 +82261,7 @@ function wp_get_code_editor_settings($args)
  * @since 2.3.0
  *
  * @param bool $escaped Whether the result is escaped. Default true.
- * 	                    Only use when you are later escaping it. Do not use unescaped.
+ *                      Only use when you are later escaping it. Do not use unescaped.
  * @return string
  */
 function get_search_query($escaped = \true)
@@ -82005,7 +82381,7 @@ function language_attributes($doctype = 'html')
  *     @type string $before_page_number A string to appear before the page number. Default empty.
  *     @type string $after_page_number  A string to append after the page number. Default empty.
  * }
- * @return array|string|void String of page links or array of page links.
+ * @return string|array|void String of page links or array of page links.
  * @phpstan-param array{
  *   base?: string,
  *   format?: string,
@@ -82029,9 +82405,9 @@ function paginate_links($args = '')
 {
 }
 /**
- * Registers an admin colour scheme css file.
+ * Registers an admin color scheme css file.
  *
- * Allows a plugin to register a new admin colour scheme. For example:
+ * Allows a plugin to register a new admin color scheme. For example:
  *
  *     wp_admin_css_color( 'classic', __( 'Classic' ), admin_url( "css/colors-classic.css" ), array(
  *         '#07273E', '#14568A', '#D54E21', '#2683AE'
@@ -82063,7 +82439,12 @@ function wp_admin_css_color($key, $name, $url, $colors = array(), $icons = array
 {
 }
 /**
- * Registers the default Admin color schemes
+ * Registers the default admin color schemes.
+ *
+ * Registers the initial set of eight color schemes in the Profile section
+ * of the dashboard which allows for styling the admin menu and toolbar.
+ *
+ * @see wp_admin_css_color()
  *
  * @since 3.0.0
  */
@@ -82100,7 +82481,7 @@ function wp_admin_css_uri($file = 'wp-admin')
  * @since 2.3.0
  *
  * @param string $file       Optional. Style handle name or file name (without ".css" extension) relative
- * 	                         to wp-admin/. Defaults to 'wp-admin'.
+ *                           to wp-admin/. Defaults to 'wp-admin'.
  * @param bool   $force_echo Optional. Force the stylesheet link to be printed rather than enqueued.
  */
 function wp_admin_css($file = 'wp-admin', $force_echo = \false)
@@ -82649,7 +83030,7 @@ function ms_allowed_http_request_hosts($is_external, $host)
  * when URL parsing failed.
  *
  * @since 4.4.0
- * @since 4.7.0 The $component parameter was added for parity with PHP's parse_url().
+ * @since 4.7.0 The `$component` parameter was added for parity with PHP's `parse_url()`.
  *
  * @link https://secure.php.net/manual/en/function.parse-url.php
  *
@@ -82707,45 +83088,43 @@ function get_file($path)
 {
 }
 /**
- * Filters content and keeps only allowable HTML elements.
+ * Filters text content and strips out disallowed HTML.
  *
  * This function makes sure that only the allowed HTML element names, attribute
- * names and attribute values plus only sane HTML entities will occur in
- * $string. You have to remove any slashes from PHP's magic quotes before you
- * call this function.
+ * names, attribute values, and HTML entities will occur in the given text string.
  *
- * The default allowed protocols are 'http', 'https', 'ftp', 'mailto', 'news',
- * 'irc', 'gopher', 'nntp', 'feed', 'telnet, 'mms', 'rtsp' and 'svn'. This
- * covers all common link protocols, except for 'javascript' which should not
- * be allowed for untrusted users.
+ * This function expects unslashed data.
+ *
+ * @see wp_kses_post() for specifically filtering post content and fields.
+ * @see wp_allowed_protocols() for the default allowed protocols in link URLs.
  *
  * @since 1.0.0
  *
- * @param string $string            Content to filter through kses
- * @param array  $allowed_html      List of allowed HTML elements
- * @param array  $allowed_protocols Optional. Allowed protocol in links.
- * @return string Filtered content with only allowed HTML elements
+ * @param string         $string            Text content to filter.
+ * @param array[]|string $allowed_html      An array of allowed HTML elements and attributes, or a
+ *                                          context name such as 'post'.
+ * @param string[]       $allowed_protocols Array of allowed URL protocols.
+ * @return string Filtered content containing only the allowed HTML.
  */
 function wp_kses($string, $allowed_html, $allowed_protocols = array())
 {
 }
 /**
- * Filters one attribute only and ensures its value is allowed.
+ * Filters one HTML attribute and ensures its value is allowed.
  *
- * This function has the advantage of being more secure than esc_attr() and can
- * escape data in some situations where wp_kses() must strip the whole attribute.
+ * This function can escape data in some situations where `wp_kses()` must strip the whole attribute.
  *
  * @since 4.2.3
  *
- * @param string $string The 'whole' attribute, including name and value.
- * @param string $element The element name to which the attribute belongs.
+ * @param string $string  The 'whole' attribute, including name and value.
+ * @param string $element The HTML element name to which the attribute belongs.
  * @return string Filtered attribute.
  */
 function wp_kses_one_attr($string, $element)
 {
 }
 /**
- * Return a list of allowed tags and attributes for a given context.
+ * Returns an array of allowed HTML tags and attributes for a given context.
  *
  * @since 3.5.0
  * @since 5.0.1 `form` removed as allowable HTML tag.
@@ -82754,36 +83133,36 @@ function wp_kses_one_attr($string, $element)
  * @global array $allowedtags
  * @global array $allowedentitynames
  *
- * @param string|array $context The context for which to retrieve tags.
- *                              Allowed values are post, strip, data, entities, or
- *                              the name of a field filter such as pre_user_description.
- * @return array List of allowed tags and their allowed attributes.
+ * @param string|array $context The context for which to retrieve tags. Allowed values are 'post',
+ *                              'strip', 'data', 'entities', or the name of a field filter such as
+ *                              'pre_user_description'.
+ * @return array Array of allowed HTML tags and their allowed attributes.
  */
 function wp_kses_allowed_html($context = '')
 {
 }
 /**
- * You add any kses hooks here.
+ * You add any KSES hooks here.
  *
- * There is currently only one kses WordPress hook, {@see 'pre_kses'}, and it is called here.
+ * There is currently only one KSES WordPress hook, {@see 'pre_kses'}, and it is called here.
  * All parameters are passed to the hooks and expected to receive a string.
  *
  * @since 1.0.0
  *
- * @param string $string            Content to filter through kses
- * @param array  $allowed_html      List of allowed HTML elements
- * @param array  $allowed_protocols Allowed protocol in links
+ * @param string          $string            Content to filter through KSES.
+ * @param array[]|string  $allowed_html      List of allowed HTML elements.
+ * @param string[]        $allowed_protocols Array of allowed URL protocols.
  * @return string Filtered content through {@see 'pre_kses'} hook.
  */
 function wp_kses_hook($string, $allowed_html, $allowed_protocols)
 {
 }
 /**
- * This function returns kses' version number.
+ * Returns the version number of KSES.
  *
  * @since 1.0.0
  *
- * @return string KSES Version Number
+ * @return string KSES version number.
  */
 function wp_kses_version()
 {
@@ -82791,16 +83170,16 @@ function wp_kses_version()
 /**
  * Searches for HTML tags, no matter how malformed.
  *
- * It also matches stray ">" characters.
+ * It also matches stray `>` characters.
  *
  * @since 1.0.0
  *
  * @global array $pass_allowed_html
  * @global array $pass_allowed_protocols
  *
- * @param string $string            Content to filter
- * @param array  $allowed_html      Allowed HTML elements
- * @param array  $allowed_protocols Allowed protocols to keep
+ * @param string   $string            Content to filter.
+ * @param array    $allowed_html      Allowed HTML elements.
+ * @param string[] $allowed_protocols Array of allowed URL protocols.
  * @return string Content with fixed HTML tags
  */
 function wp_kses_split($string, $allowed_html, $allowed_protocols)
@@ -82824,10 +83203,11 @@ function wp_kses_uri_attributes()
 {
 }
 /**
- * Callback for wp_kses_split.
+ * Callback for `wp_kses_split()`.
  *
  * @since 3.1.0
  * @access private
+ * @ignore
  *
  * @global array $pass_allowed_html
  * @global array $pass_allowed_protocols
@@ -82838,11 +83218,11 @@ function _wp_kses_split_callback($match)
 {
 }
 /**
- * Callback for wp_kses_split for fixing malformed HTML tags.
+ * Callback for `wp_kses_split()` for fixing malformed HTML tags.
  *
  * This function does a lot of work. It rejects some very malformed things like
- * <:::>. It returns an empty string, if the element isn't allowed (look ma, no
- * strip_tags()!). Otherwise it splits the tag into an element and an attribute
+ * `<:::>`. It returns an empty string, if the element isn't allowed (look ma, no
+ * `strip_tags()`!). Otherwise it splits the tag into an element and an attribute
  * list.
  *
  * After the tag is split into an element and an attribute list, it is run
@@ -82850,11 +83230,12 @@ function _wp_kses_split_callback($match)
  * completed, will be returned.
  *
  * @access private
+ * @ignore
  * @since 1.0.0
  *
- * @param string $string            Content to filter
- * @param array  $allowed_html      Allowed HTML elements
- * @param array  $allowed_protocols Allowed protocols to keep
+ * @param string   $string            Content to filter.
+ * @param array    $allowed_html      Allowed HTML elements.
+ * @param string[] $allowed_protocols Array of allowed URL protocols.
  * @return string Fixed HTML element
  */
 function wp_kses_split2($string, $allowed_html, $allowed_protocols)
@@ -82863,36 +83244,36 @@ function wp_kses_split2($string, $allowed_html, $allowed_protocols)
 /**
  * Removes all attributes, if none are allowed for this element.
  *
- * If some are allowed it calls wp_kses_hair() to split them further, and then
- * it builds up new HTML code from the data that kses_hair() returns. It also
- * removes "<" and ">" characters, if there are any left. One more thing it does
+ * If some are allowed it calls `wp_kses_hair()` to split them further, and then
+ * it builds up new HTML code from the data that `kses_hair()` returns. It also
+ * removes `<` and `>` characters, if there are any left. One more thing it does
  * is to check if the tag has a closing XHTML slash, and if it does, it puts one
  * in the returned code as well.
  *
  * @since 1.0.0
  *
- * @param string $element           HTML element/tag
- * @param string $attr              HTML attributes from HTML element to closing HTML element tag
- * @param array  $allowed_html      Allowed HTML elements
- * @param array  $allowed_protocols Allowed protocols to keep
- * @return string Sanitized HTML element
+ * @param string   $element           HTML element/tag.
+ * @param string   $attr              HTML attributes from HTML element to closing HTML element tag.
+ * @param array    $allowed_html      Allowed HTML elements.
+ * @param string[] $allowed_protocols Array of allowed URL protocols.
+ * @return string Sanitized HTML element.
  */
 function wp_kses_attr($element, $attr, $allowed_html, $allowed_protocols)
 {
 }
 /**
- * Determine whether an attribute is allowed.
+ * Determines whether an attribute is allowed.
  *
  * @since 4.2.3
  * @since 5.0.0 Add support for `data-*` wildcard attributes.
  *
- * @param string $name The attribute name. Returns empty string when not allowed.
- * @param string $value The attribute value. Returns a filtered value.
- * @param string $whole The name=value input. Returns filtered input.
- * @param string $vless 'y' when attribute like "enabled", otherwise 'n'.
- * @param string $element The name of the element to which this attribute belongs.
- * @param array $allowed_html The full list of allowed elements and attributes.
- * @return bool Is the attribute allowed?
+ * @param string $name         The attribute name. Passed by reference. Returns empty string when not allowed.
+ * @param string $value        The attribute value. Passed by reference. Returns a filtered value.
+ * @param string $whole        The `name=value` input. Passed by reference. Returns filtered input.
+ * @param string $vless        Whether the attribute is valueless. Use 'y' or 'n'.
+ * @param string $element      The name of the element to which this attribute belongs.
+ * @param array  $allowed_html The full list of allowed elements and attributes.
+ * @return bool Whether or not the attribute is allowed.
  */
 function wp_kses_attr_check(&$name, &$value, &$whole, $vless, $element, $allowed_html)
 {
@@ -82906,13 +83287,13 @@ function wp_kses_attr_check(&$name, &$value, &$whole, $vless, $element, $allowed
  * or apostrophes around them, to make it easier to produce HTML code that will
  * conform to W3C's HTML specification. It will also remove bad URL protocols
  * from attribute values. It also reduces duplicate attributes by using the
- * attribute defined first (foo='bar' foo='baz' will result in foo='bar').
+ * attribute defined first (`foo='bar' foo='baz'` will result in `foo='bar'`).
  *
  * @since 1.0.0
  *
- * @param string $attr              Attribute list from HTML element to closing HTML element tag
- * @param array  $allowed_protocols Allowed protocols to keep
- * @return array List of attributes after parsing
+ * @param string   $attr              Attribute list from HTML element to closing HTML element tag.
+ * @param string[] $allowed_protocols Array of allowed URL protocols.
+ * @return array[] Array of attribute information after parsing.
  */
 function wp_kses_hair($attr, $allowed_protocols)
 {
@@ -82922,12 +83303,12 @@ function wp_kses_hair($attr, $allowed_protocols)
  *
  * Does not modify input.  May return "evil" output.
  *
- * Based on wp_kses_split2() and wp_kses_attr()
+ * Based on `wp_kses_split2()` and `wp_kses_attr()`.
  *
  * @since 4.2.3
  *
- * @param string $element HTML element/tag
- * @return array|bool List of attributes found in $element. Returns false on failure.
+ * @param string $element HTML element.
+ * @return array|bool List of attributes found in the element. Returns false on failure.
  */
 function wp_kses_attr_parse($element)
 {
@@ -82938,11 +83319,11 @@ function wp_kses_attr_parse($element)
  * Does not modify input.  May return "evil" output.
  * In case of unexpected input, returns false instead of stripping things.
  *
- * Based on wp_kses_hair() but does not return a multi-dimensional array.
+ * Based on `wp_kses_hair()` but does not return a multi-dimensional array.
  *
  * @since 4.2.3
  *
- * @param string $attr Attribute list from HTML element to closing HTML element tag
+ * @param string $attr Attribute list from HTML element to closing HTML element tag.
  * @return array|bool List of attributes found in $attr. Returns false on failure.
  */
 function wp_kses_hair_parse($attr)
@@ -82951,47 +83332,47 @@ function wp_kses_hair_parse($attr)
 /**
  * Performs different checks for attribute values.
  *
- * The currently implemented checks are "maxlen", "minlen", "maxval", "minval"
+ * The currently implemented checks are "maxlen", "minlen", "maxval", "minval",
  * and "valueless".
  *
  * @since 1.0.0
  *
- * @param string $value      Attribute value
- * @param string $vless      Whether the value is valueless. Use 'y' or 'n'
+ * @param string $value      Attribute value.
+ * @param string $vless      Whether the attribute is valueless. Use 'y' or 'n'.
  * @param string $checkname  What $checkvalue is checking for.
- * @param mixed  $checkvalue What constraint the value should pass
- * @return bool Whether check passes
+ * @param mixed  $checkvalue What constraint the value should pass.
+ * @return bool Whether check passes.
  */
 function wp_kses_check_attr_val($value, $vless, $checkname, $checkvalue)
 {
 }
 /**
- * Sanitize string from bad protocols.
+ * Sanitizes a string and removed disallowed URL protocols.
  *
- * This function removes all non-allowed protocols from the beginning of
- * $string. It ignores whitespace and the case of the letters, and it does
- * understand HTML entities. It does its work in a while loop, so it won't be
- * fooled by a string like "javascript:javascript:alert(57)".
+ * This function removes all non-allowed protocols from the beginning of the
+ * string. It ignores whitespace and the case of the letters, and it does
+ * understand HTML entities. It does its work recursively, so it won't be
+ * fooled by a string like `javascript:javascript:alert(57)`.
  *
  * @since 1.0.0
  *
- * @param string $string            Content to filter bad protocols from
- * @param array  $allowed_protocols Allowed protocols to keep
- * @return string Filtered content
+ * @param string   $string            Content to filter bad protocols from.
+ * @param string[] $allowed_protocols Array of allowed URL protocols.
+ * @return string Filtered content.
  */
 function wp_kses_bad_protocol($string, $allowed_protocols)
 {
 }
 /**
- * Removes any invalid control characters in $string.
+ * Removes any invalid control characters in a text string.
  *
- * Also removes any instance of the '\0' string.
+ * Also removes any instance of the `\0` string.
  *
  * @since 1.0.0
  *
- * @param string $string
- * @param array $options Set 'slash_zero' => 'keep' when '\0' is allowed. Default is 'remove'.
- * @return string
+ * @param string $string  Content to filter null characters from.
+ * @param array  $options Set 'slash_zero' => 'keep' when '\0' is allowed. Default is 'remove'.
+ * @return string Filtered content.
  */
 function wp_kses_no_null($string, $options = \null)
 {
@@ -82999,31 +83380,30 @@ function wp_kses_no_null($string, $options = \null)
 /**
  * Strips slashes from in front of quotes.
  *
- * This function changes the character sequence \" to just ". It leaves all
- * other slashes alone. It's really weird, but the quoting from
- * preg_replace(//e) seems to require this.
+ * This function changes the character sequence `\"` to just `"`. It leaves all other
+ * slashes alone. The quoting from `preg_replace(//e)` requires this.
  *
  * @since 1.0.0
  *
- * @param string $string String to strip slashes
- * @return string Fixed string with quoted slashes
+ * @param string $string String to strip slashes from.
+ * @return string Fixed string with quoted slashes.
  */
 function wp_kses_stripslashes($string)
 {
 }
 /**
- * Goes through an array and changes the keys to all lower case.
+ * Converts the keys of an array to lowercase.
  *
  * @since 1.0.0
  *
- * @param array $inarray Unfiltered array
- * @return array Fixed array with all lowercase keys
+ * @param array $inarray Unfiltered array.
+ * @return array Fixed array with all lowercase keys.
  */
 function wp_kses_array_lc($inarray)
 {
 }
 /**
- * Handles parsing errors in wp_kses_hair().
+ * Handles parsing errors in `wp_kses_hair()`.
  *
  * The general plan is to remove everything to and including some whitespace,
  * but it deals with quotes and apostrophes as well.
@@ -83039,30 +83419,31 @@ function wp_kses_html_error($string)
 /**
  * Sanitizes content from bad protocols and other characters.
  *
- * This function searches for URL protocols at the beginning of $string, while
+ * This function searches for URL protocols at the beginning of the string, while
  * handling whitespace and HTML entities.
  *
  * @since 1.0.0
  *
- * @param string $string            Content to check for bad protocols
- * @param string $allowed_protocols Allowed protocols
- * @return string Sanitized content
+ * @param string   $string            Content to check for bad protocols.
+ * @param string[] $allowed_protocols Array of allowed URL protocols.
+ * @return string Sanitized content.
  */
 function wp_kses_bad_protocol_once($string, $allowed_protocols, $count = 1)
 {
 }
 /**
- * Callback for wp_kses_bad_protocol_once() regular expression.
+ * Callback for `wp_kses_bad_protocol_once()` regular expression.
  *
  * This function processes URL protocols, checks to see if they're in the
  * whitelist or not, and returns different data depending on the answer.
  *
  * @access private
+ * @ignore
  * @since 1.0.0
  *
- * @param string $string            URI scheme to check against the whitelist
- * @param string $allowed_protocols Allowed protocols
- * @return string Sanitized content
+ * @param string   $string            URI scheme to check against the whitelist.
+ * @param string[] $allowed_protocols Array of allowed URL protocols.
+ * @return string Sanitized content.
  */
 function wp_kses_bad_protocol_once2($string, $allowed_protocols)
 {
@@ -83075,14 +83456,14 @@ function wp_kses_bad_protocol_once2($string, $allowed_protocols)
  *
  * @since 1.0.0
  *
- * @param string $string Content to normalize entities
- * @return string Content with normalized entities
+ * @param string $string Content to normalize entities.
+ * @return string Content with normalized entities.
  */
 function wp_kses_normalize_entities($string)
 {
 }
 /**
- * Callback for wp_kses_normalize_entities() regular expression.
+ * Callback for `wp_kses_normalize_entities()` regular expression.
  *
  * This function only accepts valid named entity references, which are finite,
  * case-sensitive, and highly scrutinized by HTML and XML validators.
@@ -83091,72 +83472,76 @@ function wp_kses_normalize_entities($string)
  *
  * @global array $allowedentitynames
  *
- * @param array $matches preg_replace_callback() matches array
- * @return string Correctly encoded entity
+ * @param array $matches preg_replace_callback() matches array.
+ * @return string Correctly encoded entity.
  */
 function wp_kses_named_entities($matches)
 {
 }
 /**
- * Callback for wp_kses_normalize_entities() regular expression.
+ * Callback for `wp_kses_normalize_entities()` regular expression.
  *
- * This function helps wp_kses_normalize_entities() to only accept 16-bit
+ * This function helps `wp_kses_normalize_entities()` to only accept 16-bit
  * values and nothing more for `&#number;` entities.
  *
  * @access private
+ * @ignore
  * @since 1.0.0
  *
- * @param array $matches preg_replace_callback() matches array
- * @return string Correctly encoded entity
+ * @param array $matches `preg_replace_callback()` matches array.
+ * @return string Correctly encoded entity.
  */
 function wp_kses_normalize_entities2($matches)
 {
 }
 /**
- * Callback for wp_kses_normalize_entities() for regular expression.
+ * Callback for `wp_kses_normalize_entities()` for regular expression.
  *
- * This function helps wp_kses_normalize_entities() to only accept valid Unicode
+ * This function helps `wp_kses_normalize_entities()` to only accept valid Unicode
  * numeric entities in hex form.
  *
  * @since 2.7.0
  * @access private
+ * @ignore
  *
- * @param array $matches preg_replace_callback() matches array
- * @return string Correctly encoded entity
+ * @param array $matches `preg_replace_callback()` matches array.
+ * @return string Correctly encoded entity.
  */
 function wp_kses_normalize_entities3($matches)
 {
 }
 /**
- * Helper function to determine if a Unicode value is valid.
+ * Determines if a Unicode codepoint is valid.
  *
  * @since 2.7.0
  *
- * @param int $i Unicode value
- * @return bool True if the value was a valid Unicode number
+ * @param int $i Unicode codepoint.
+ * @return bool Whether or not the codepoint is a valid Unicode codepoint.
  */
 function valid_unicode($i)
 {
 }
 /**
- * Convert all entities to their character counterparts.
+ * Converts all numeric HTML entities to their named counterparts.
  *
  * This function decodes numeric HTML entities (`&#65;` and `&#x41;`).
- * It doesn't do anything with other entities like &auml;, but we don't
+ * It doesn't do anything with named entities like `&auml;`, but we don't
  * need them in the URL protocol whitelisting system anyway.
  *
  * @since 1.0.0
  *
- * @param string $string Content to change entities
- * @return string Content after decoded entities
+ * @param string $string Content to change entities.
+ * @return string Content after decoded entities.
  */
 function wp_kses_decode_entities($string)
 {
 }
 /**
- * Regex callback for wp_kses_decode_entities()
+ * Regex callback for `wp_kses_decode_entities()`.
  *
  * @since 2.9.0
+ * @access private
+ * @ignore
  *
  * @param array $match preg match
  * @return string
@@ -83165,9 +83550,11 @@ function _wp_kses_decode_entities_chr($match)
 {
 }
 /**
- * Regex callback for wp_kses_decode_entities()
+ * Regex callback for `wp_kses_decode_entities()`.
  *
  * @since 2.9.0
+ * @access private
+ * @ignore
  *
  * @param array $match preg match
  * @return string
@@ -83176,50 +83563,58 @@ function _wp_kses_decode_entities_chr_hexdec($match)
 {
 }
 /**
- * Sanitize content with allowed HTML Kses rules.
+ * Sanitize content with allowed HTML KSES rules.
+ *
+ * This function expects slashed data.
  *
  * @since 1.0.0
  *
- * @param string $data Content to filter, expected to be escaped with slashes
- * @return string Filtered content
+ * @param string $data Content to filter, expected to be escaped with slashes.
+ * @return string Filtered content.
  */
 function wp_filter_kses($data)
 {
 }
 /**
- * Sanitize content with allowed HTML Kses rules.
+ * Sanitize content with allowed HTML KSES rules.
+ *
+ * This function expects unslashed data.
  *
  * @since 2.9.0
  *
- * @param string $data Content to filter, expected to not be escaped
- * @return string Filtered content
+ * @param string $data Content to filter, expected to not be escaped.
+ * @return string Filtered content.
  */
 function wp_kses_data($data)
 {
 }
 /**
- * Sanitize content for allowed HTML tags for post content.
+ * Sanitizes content for allowed HTML tags for post content.
  *
- * Post content refers to the page contents of the 'post' type and not $_POST
+ * Post content refers to the page contents of the 'post' type and not `$_POST`
  * data from forms.
+ *
+ * This function expects slashed data.
  *
  * @since 2.0.0
  *
- * @param string $data Post content to filter, expected to be escaped with slashes
+ * @param string $data Post content to filter, expected to be escaped with slashes.
  * @return string Filtered post content with allowed HTML tags and attributes intact.
  */
 function wp_filter_post_kses($data)
 {
 }
 /**
- * Sanitize content for allowed HTML tags for post content.
+ * Sanitizes content for allowed HTML tags for post content.
  *
- * Post content refers to the page contents of the 'post' type and not $_POST
+ * Post content refers to the page contents of the 'post' type and not `$_POST`
  * data from forms.
+ *
+ * This function expects unslashed data.
  *
  * @since 2.9.0
  *
- * @param string $data Post content to filter
+ * @param string $data Post content to filter.
  * @return string Filtered post content with allowed HTML tags and attributes intact.
  */
 function wp_kses_post($data)
@@ -83240,23 +83635,25 @@ function wp_kses_post_deep($data)
 {
 }
 /**
- * Strips all of the HTML in the content.
+ * Strips all HTML from a text string.
+ *
+ * This function expects slashed data.
  *
  * @since 2.1.0
  *
- * @param string $data Content to strip all HTML from
- * @return string Filtered content without any HTML
+ * @param string $data Content to strip all HTML from.
+ * @return string Filtered content without any HTML.
  */
 function wp_filter_nohtml_kses($data)
 {
 }
 /**
- * Adds all Kses input form content filters.
+ * Adds all KSES input form content filters.
  *
- * All hooks have default priority. The wp_filter_kses() function is added to
+ * All hooks have default priority. The `wp_filter_kses()` function is added to
  * the 'pre_comment_content' and 'title_save_pre' hooks.
  *
- * The wp_filter_post_kses() function is added to the 'content_save_pre',
+ * The `wp_filter_post_kses()` function is added to the 'content_save_pre',
  * 'excerpt_save_pre', and 'content_filtered_save_pre' hooks.
  *
  * @since 2.0.0
@@ -83265,13 +83662,13 @@ function kses_init_filters()
 {
 }
 /**
- * Removes all Kses input form content filters.
+ * Removes all KSES input form content filters.
  *
- * A quick procedural method to removing all of the filters that kses uses for
+ * A quick procedural method to removing all of the filters that KSES uses for
  * content in WordPress Loop.
  *
- * Does not remove the kses_init() function from {@see 'init'} hook (priority is
- * default). Also does not remove kses_init() function from {@see 'set_current_user'}
+ * Does not remove the `kses_init()` function from {@see 'init'} hook (priority is
+ * default). Also does not remove `kses_init()` function from {@see 'set_current_user'}
  * hook (priority is also default).
  *
  * @since 2.0.6
@@ -83280,15 +83677,11 @@ function kses_remove_filters()
 {
 }
 /**
- * Sets up most of the Kses filters for input form content.
+ * Sets up most of the KSES filters for input form content.
  *
- * If you remove the kses_init() function from {@see 'init'} hook and
- * {@see 'set_current_user'} (priority is default), then none of the Kses filter hooks
- * will be added.
- *
- * First removes all of the Kses filters in case the current user does not need
- * to have Kses filter the content. If the user does not have unfiltered_html
- * capability, then Kses filters are added.
+ * First removes all of the KSES filters in case the current user does not need
+ * to have KSES filter the content. If the user does not have `unfiltered_html`
+ * capability, then KSES filters are added.
  *
  * @since 2.0.0
  */
@@ -83296,13 +83689,13 @@ function kses_init()
 {
 }
 /**
- * Inline CSS filter
+ * Filters an inline style attribute and removes disallowed rules.
  *
  * @since 2.8.1
  *
  * @param string $css        A string of CSS rules.
  * @param string $deprecated Not used.
- * @return string            Filtered string of CSS rules.
+ * @return string Filtered string of CSS rules.
  */
 function safecss_filter_attr($css, $deprecated = '')
 {
@@ -83313,6 +83706,7 @@ function safecss_filter_attr($css, $deprecated = '')
  * @since 3.5.0
  * @since 5.0.0 Add support for `data-*` wildcard attributes.
  * @access private
+ * @ignore
  *
  * @param array $value An array of attributes.
  * @return array The array of attributes with global attributes added.
@@ -83460,7 +83854,7 @@ function esc_attr__($text, $domain = 'default')
  * Retrieve the translation of $text and escapes it for safe use in HTML output.
  *
  * If there is no translation, or the text domain isn't loaded, the original text
- * is escaped and returned..
+ * is escaped and returned.
  *
  * @since 2.8.0
  *
@@ -83667,8 +84061,8 @@ function _n_noop($singular, $plural, $domain = \null)
  * Example of a generic phrase which is disambiguated via the context parameter:
  *
  *     $messages = array(
- *      	'people'  => _nx_noop( '%s group', '%s groups', 'people', 'text-domain' ),
- *      	'animals' => _nx_noop( '%s group', '%s groups', 'animals', 'text-domain' ),
+ *          'people'  => _nx_noop( '%s group', '%s groups', 'people', 'text-domain' ),
+ *          'animals' => _nx_noop( '%s group', '%s groups', 'animals', 'text-domain' ),
  *     );
  *     ...
  *     $message = $messages[ $type ];
@@ -83739,8 +84133,8 @@ function translate_nooped_plural($nooped_plural, $count, $domain = 'default')
  *
  * @since 1.5.0
  *
- * @global array $l10n          An array of all currently loaded text domains.
- * @global array $l10n_unloaded An array of all text domains that have been unloaded again.
+ * @global MO[] $l10n          An array of all currently loaded text domains.
+ * @global MO[] $l10n_unloaded An array of all text domains that have been unloaded again.
  *
  * @param string $domain Text domain. Unique identifier for retrieving translated strings.
  * @param string $mofile Path to the .mo file.
@@ -83754,8 +84148,8 @@ function load_textdomain($domain, $mofile)
  *
  * @since 3.0.0
  *
- * @global array $l10n          An array of all currently loaded text domains.
- * @global array $l10n_unloaded An array of all text domains that have been unloaded again.
+ * @global MO[] $l10n          An array of all currently loaded text domains.
+ * @global MO[] $l10n_unloaded An array of all text domains that have been unloaded again.
  *
  * @param string $domain Text domain. Unique identifier for retrieving translated strings.
  * @return bool Whether textdomain was unloaded.
@@ -83854,17 +84248,18 @@ function load_child_theme_textdomain($domain, $path = \false)
  *
  * @since 5.0.0
  * @since 5.0.2 Uses load_script_translations() to load translation data.
+ * @since 5.1.0 The `$domain` parameter was made optional.
  *
  * @see WP_Scripts::set_translations()
  *
  * @param string $handle Name of the script to register a translation domain to.
- * @param string $domain The text domain.
+ * @param string $domain Optional. Text domain. Default 'default'.
  * @param string $path   Optional. The full file path to the directory containing translation files.
  *
  * @return false|string False if the script textdomain could not be loaded, the translated strings
  *                      in JSON encoding otherwise.
  */
-function load_script_textdomain($handle, $domain, $path = \null)
+function load_script_textdomain($handle, $domain = 'default', $path = \null)
 {
 }
 /**
@@ -83891,7 +84286,7 @@ function load_script_translations($file, $handle, $domain)
  * @access private
  *
  * @see get_translations_for_domain()
- * @global array $l10n_unloaded An array of all text domains that have been unloaded again.
+ * @global MO[] $l10n_unloaded An array of all text domains that have been unloaded again.
  *
  * @param string $domain Text domain. Unique identifier for retrieving translated strings.
  * @return bool True when the textdomain is successfully loaded, false otherwise.
@@ -83908,6 +84303,7 @@ function _load_textdomain_just_in_time($domain)
  * @access private
  *
  * @see _load_textdomain_just_in_time()
+ * @staticvar array $available_translations
  *
  * @param string $domain Text domain. Unique identifier for retrieving translated strings.
  * @param bool   $reset  Whether to reset the internal cache. Used by the switch to locale functionality.
@@ -83925,6 +84321,7 @@ function _get_path_to_translation($domain, $reset = \false)
  * @access private
  *
  * @see _get_path_to_translation()
+ * @staticvar array $cached_mofiles
  *
  * @param string $domain Text domain. Unique identifier for retrieving translated strings.
  * @return string|false The path to the translation file or false if no translation file was found.
@@ -83939,7 +84336,8 @@ function _get_path_to_translation_from_lang_dir($domain)
  *
  * @since 2.8.0
  *
- * @global array $l10n
+ * @global MO[] $l10n
+ * @staticvar NOOP_Translations $noop_translations
  *
  * @param string $domain Text domain. Unique identifier for retrieving translated strings.
  * @return Translations|NOOP_Translations A Translations instance.
@@ -83952,7 +84350,7 @@ function get_translations_for_domain($domain)
  *
  * @since 3.0.0
  *
- * @global array $l10n
+ * @global MO[] $l10n
  *
  * @param string $domain Text domain. Unique identifier for retrieving translated strings.
  * @return bool Whether there are translations.
@@ -84026,6 +84424,7 @@ function wp_get_pomo_file_data($po_file)
  * @since 4.0.0
  * @since 4.3.0 Introduced the `echo` argument.
  * @since 4.7.0 Introduced the `show_option_site_default` argument.
+ * @since 5.1.0 Introduced the `show_option_en_us` argument.
  *
  * @see get_available_languages()
  * @see wp_get_available_translations()
@@ -84044,6 +84443,7 @@ function wp_get_pomo_file_data($po_file)
  *                                                  boolean equivalents. Default 1.
  *     @type bool     $show_available_translations  Whether to show available translations. Default true.
  *     @type bool     $show_option_site_default     Whether to show an option to fall back to the site's locale. Default false.
+ *     @type bool     $show_option_en_us            Whether to show an option for English (United States). Default true.
  * }
  * @return string HTML content
  * @phpstan-param array{
@@ -84055,6 +84455,7 @@ function wp_get_pomo_file_data($po_file)
  *   echo?: bool|int,
  *   show_available_translations?: bool,
  *   show_option_site_default?: bool,
+ *   show_option_en_us?: bool,
  * } $args
  */
 function wp_dropdown_languages($args = array())
@@ -84917,7 +85318,7 @@ function adjacent_post_link($format, $link, $in_same_term = \false, $excluded_te
  *
  * @param int  $pagenum Optional. Page ID. Default 1.
  * @param bool $escape  Optional. Whether to escape the URL for display, with esc_url(). Defaults to true.
- * 	                    Otherwise, prepares the URL with esc_url_raw().
+ *                      Otherwise, prepares the URL with esc_url_raw().
  * @return string The link URL for the given page number.
  */
 function get_pagenum_link($pagenum = 1, $escape = \true)
@@ -85305,7 +85706,7 @@ function previous_comments_link($label = '')
  * @global WP_Rewrite $wp_rewrite
  *
  * @param string|array $args Optional args. See paginate_links(). Default empty array.
- * @return string|void Markup for pagination links.
+ * @return string|array|void Markup for comment page links or array of comment page links.
  * @phpstan-param array{
  *   base?: string,
  *   format?: string,
@@ -85683,7 +86084,7 @@ function wp_get_canonical_url($post = \null)
  * Outputs rel=canonical for singular queries.
  *
  * @since 2.9.0
- * @since 4.6.0 Adjusted to use wp_get_canonical_url().
+ * @since 4.6.0 Adjusted to use `wp_get_canonical_url()`.
  */
 function rel_canonical()
 {
@@ -85697,7 +86098,7 @@ function rel_canonical()
  * via the {@see 'pre_get_shortlink'} filter or filter the output via the {@see 'get_shortlink'}
  * filter.
  *
- * @since 3.0.0.
+ * @since 3.0.0
  *
  * @param int    $id          Optional. A post or site id. Default is 0, which means the current post or site.
  * @param string $context     Optional. Whether the id is a 'site' id, 'post' id, or 'media' id. If 'post',
@@ -85784,6 +86185,17 @@ function the_shortlink($text = '', $title = '', $before = '', $after = '')
  * } $args
  */
 function get_avatar_url($id_or_email, $args = \null)
+{
+}
+/**
+ * Check if this comment type allows avatars to be retrieved.
+ *
+ * @since 5.1.0
+ *
+ * @param string $comment_type Comment type to check.
+ * @return bool Whether the comment type is allowed for retrieving avatars.
+ */
+function is_avatar_comment_type($comment_type)
 {
 }
 /**
@@ -86060,12 +86472,13 @@ function timer_stop($display = 0, $precision = 3)
  * from changing the global configuration setting. Defining `WP_DEBUG_DISPLAY`
  * as false will force errors to be hidden.
  *
- * When `WP_DEBUG_LOG` is true, errors will be logged to debug.log in the content
- * directory.
+ * When `WP_DEBUG_LOG` is true, errors will be logged to `wp-content/debug.log`.
+ * When `WP_DEBUG_LOG` is a valid path, errors will be logged to the specified file.
  *
  * Errors are never displayed for XML-RPC, REST, and Ajax requests.
  *
  * @since 3.0.0
+ * @since 5.1.0 `WP_DEBUG_LOG` can be a file path.
  * @access private
  */
 function wp_debug_mode()
@@ -86171,16 +86584,29 @@ function wp_get_mu_plugins()
  *
  * While upgrading or installing WordPress, no plugins are returned.
  *
- * The default directory is wp-content/plugins. To change the default
+ * The default directory is `wp-content/plugins`. To change the default
  * directory manually, define `WP_PLUGIN_DIR` and `WP_PLUGIN_URL`
- * in wp-config.php.
+ * in `wp-config.php`.
  *
  * @since 3.0.0
  * @access private
  *
- * @return array Files.
+ * @return string[] $plugin_file Array of paths to plugin files relative to the plugins directory.
  */
 function wp_get_active_and_valid_plugins()
+{
+}
+/**
+ * Retrieves an array of active and valid themes.
+ *
+ * While upgrading or installing WordPress, no themes are returned.
+ *
+ * @since 5.1.0
+ * @access private
+ *
+ * @return array Array of paths to theme directories.
+ */
+function wp_get_active_and_valid_themes()
 {
 }
 /**
@@ -86231,12 +86657,12 @@ function wp_clone($object)
 /**
  * Determines whether the current request is for an administrative interface page.
  *
- * Does not check if the user is an administrator; current_user_can()
+ * Does not check if the user is an administrator; use current_user_can()
  * for checking roles and capabilities.
  *
  * For more information on this and similar theme functions, check out
- * the {@link https://developer.wordpress.org/themes/basics/conditional-tags/ 
- * Conditional Tags} article in the Theme Developer Handbook. 
+ * the {@link https://developer.wordpress.org/themes/basics/conditional-tags/
+ * Conditional Tags} article in the Theme Developer Handbook.
  *
  * @since 1.5.1
  *
@@ -86252,7 +86678,7 @@ function is_admin()
  *
  * e.g. `/wp-admin/`
  *
- * Does not check if the user is an administrator; current_user_can()
+ * Does not check if the user is an administrator; use current_user_can()
  * for checking roles and capabilities.
  *
  * @since 3.1.0
@@ -86269,7 +86695,7 @@ function is_blog_admin()
  *
  * e.g. `/wp-admin/network/`
  *
- * Does not check if the user is an administrator; current_user_can()
+ * Does not check if the user is an administrator; use current_user_can()
  * for checking roles and capabilities.
  *
  * @since 3.1.0
@@ -86286,9 +86712,8 @@ function is_network_admin()
  *
  * e.g. `/wp-admin/user/`
  *
- * Does not inform on whether the user is an admin! Use capability
- * checks to tell if the user should be accessing a section or not
- * current_user_can().
+ * Does not check if the user is an administrator; use current_user_can()
+ * for checking roles and capabilities.
  *
  * @since 3.1.0
  *
@@ -86417,6 +86842,16 @@ function wp_is_ini_value_changeable($setting)
  * @return bool True if it's a WordPress Ajax request, false otherwise.
  */
 function wp_doing_ajax()
+{
+}
+/**
+ * Determines whether the current request should use themes.
+ *
+ * @since 5.1.0
+ *
+ * @return bool True if themes should be used, false otherwise.
+ */
+function wp_using_themes()
 {
 }
 /**
@@ -86634,8 +87069,8 @@ function image_downsize($id, $size = 'medium')
  * @global array $_wp_additional_image_sizes Associative array of additional image sizes.
  *
  * @param string     $name   Image size identifier.
- * @param int        $width  Image width in pixels.
- * @param int        $height Image height in pixels.
+ * @param int        $width  Optional. Image width in pixels. Default 0.
+ * @param int        $height Optional. Image height in pixels. Default 0.
  * @param bool|array $crop   Optional. Whether to crop images to specified width and height or resize.
  *                           An array can specify positioning of the crop area. Default false.
  */
@@ -87063,25 +87498,29 @@ function _wp_post_thumbnail_class_filter_remove($attr)
  * filter is {@see 'img_caption_shortcode'} and passes an empty string, the attr
  * parameter and the content parameter values.
  *
- * The supported attributes for the shortcode are 'id', 'align', 'width', and
- * 'caption'.
+ * The supported attributes for the shortcode are 'id', 'caption_id', 'align',
+ * 'width', 'caption', and 'class'.
  *
  * @since 2.6.0
+ * @since 3.9.0 The `class` attribute was added.
+ * @since 5.1.0 The `caption_id` attribute was added.
  *
  * @param array  $attr {
  *     Attributes of the caption shortcode.
  *
- *     @type string $id      ID of the div element for the caption.
- *     @type string $align   Class name that aligns the caption. Default 'alignnone'. Accepts 'alignleft',
- *                           'aligncenter', alignright', 'alignnone'.
- *     @type int    $width   The width of the caption, in pixels.
- *     @type string $caption The caption text.
- *     @type string $class   Additional class name(s) added to the caption container.
+ *     @type string $id         ID of the image and caption container element, i.e. `<figure>` or `<div>`.
+ *     @type string $caption_id ID of the caption element, i.e. `<figcaption>` or `<p>`.
+ *     @type string $align      Class name that aligns the caption. Default 'alignnone'. Accepts 'alignleft',
+ *                              'aligncenter', alignright', 'alignnone'.
+ *     @type int    $width      The width of the caption, in pixels.
+ *     @type string $caption    The caption text.
+ *     @type string $class      Additional class name(s) added to the caption container.
  * }
  * @param string $content Shortcode content.
  * @return string HTML content to display the caption.
  * @phpstan-param array{
  *   id?: string,
+ *   caption_id?: string,
  *   align?: string,
  *   width?: int,
  *   caption?: string,
@@ -87393,17 +87832,16 @@ function get_attachment_taxonomies($attachment, $output = 'names')
 {
 }
 /**
- * Retrieves all of the taxonomy names that are registered for attachments.
+ * Retrieves all of the taxonomies that are registered for attachments.
  *
  * Handles mime-type-specific taxonomies such as attachment:image and attachment:video.
  *
  * @since 3.5.0
- *
  * @see get_taxonomies()
  *
  * @param string $output Optional. The type of taxonomy output to return. Accepts 'names' or 'objects'.
  *                       Default 'names'.
- * @return array The names of all taxonomy of $object_type.
+ * @return string[]|WP_Taxonomy[] Array of names or objects of registered taxonomies for attachments.
  * @phpstan-return ($output is 'names' ? array<int, string> : array<string, \WP_Taxonomy>)
  */
 function get_taxonomies_for_attachments($output = 'names')
@@ -87502,7 +87940,7 @@ function wp_plupload_default_settings()
  *
  * @since 3.5.0
  *
- * @param mixed $attachment Attachment ID or object.
+ * @param int|WP_Post $attachment Attachment ID or object.
  * @return array|void Array of attachment details.
  */
 function wp_prepare_attachment_for_js($attachment)
@@ -87700,8 +88138,9 @@ function add_metadata($meta_type, $object_id, $meta_key, $meta_value, $unique = 
  * @param string $meta_key   Metadata key
  * @param mixed  $meta_value Metadata value. Must be serializable if non-scalar.
  * @param mixed  $prev_value Optional. If specified, only update existing metadata entries with
- * 		                     the specified value. Otherwise, update all entries.
- * @return int|bool Meta ID if the key didn't exist, true on successful update, false on failure.
+ *                           the specified value. Otherwise, update all entries.
+ * @return int|bool The new meta field ID if a field with the given key didn't exist and was
+ *                  therefore added, true on successful update, false on failure.
  */
 function update_metadata($meta_type, $object_id, $meta_key, $meta_value, $prev_value = '')
 {
@@ -87718,7 +88157,7 @@ function update_metadata($meta_type, $object_id, $meta_key, $meta_value, $prev_v
  * @param string $meta_key   Metadata key
  * @param mixed  $meta_value Optional. Metadata value. Must be serializable if non-scalar. If specified, only delete
  *                           metadata entries with this value. Otherwise, delete all entries with the specified meta_key.
- *                           Pass `null, `false`, or an empty string to skip this check. (For backward compatibility,
+ *                           Pass `null`, `false`, or an empty string to skip this check. (For backward compatibility,
  *                           it is not possible to pass an empty string to delete those entries with an empty string
  *                           for a value.)
  * @param bool   $delete_all Optional, default is false. If true, delete matching metadata entries for all objects,
@@ -87737,7 +88176,7 @@ function delete_metadata($meta_type, $object_id, $meta_key, $meta_value = '', $d
  * @param string $meta_type Type of object metadata is for (e.g., comment, post, term, or user).
  * @param int    $object_id ID of the object metadata is for
  * @param string $meta_key  Optional. Metadata key. If not specified, retrieve all metadata for
- * 		                    the specified object.
+ *                          the specified object.
  * @param bool   $single    Optional, default is false.
  *                          If true, return only the first value of the specified meta_key.
  *                          This parameter has no effect if meta_key is not specified.
@@ -87858,14 +88297,13 @@ function _get_meta_table($type)
 {
 }
 /**
- * Determine whether a meta key is protected.
+ * Determines whether a meta key is considered protected.
  *
  * @since 3.1.3
  *
- * @param string      $meta_key  Meta key
- * @param string|null $meta_type Optional. Type of object metadata is for (e.g., comment, post,
- *                               term, or user).
- * @return bool True if the key is protected, false otherwise.
+ * @param string      $meta_key  Meta key.
+ * @param string|null $meta_type Optional. Type of object metadata is for (e.g., comment, post, term, or user).
+ * @return bool Whether the meta key is considered protected.
  */
 function is_protected_meta($meta_key, $meta_type = '')
 {
@@ -87879,6 +88317,7 @@ function is_protected_meta($meta_key, $meta_type = '')
  * @param string $meta_key       Meta key.
  * @param mixed  $meta_value     Meta value to sanitize.
  * @param string $object_type    Type of object the meta is registered to.
+ * @param string $object_subtype Optional. The subtype of the object type.
  *
  * @return mixed Sanitized $meta_value.
  */
@@ -88024,13 +88463,6 @@ function get_object_subtype($object_type, $object_id)
 {
 }
 /**
- * Site/blog functions that work with the blogs table and related data.
- *
- * @package WordPress
- * @subpackage Multisite
- * @since MU (3.0.0)
- */
-/**
  * Update the last_updated field for the current site.
  *
  * @since MU (3.0.0)
@@ -88064,7 +88496,7 @@ function get_blogaddress_by_name($blogname)
  * Retrieves a sites ID given its (subdomain or directory) slug.
  *
  * @since MU (3.0.0)
- * @since 4.7.0 Converted to use get_sites().
+ * @since 4.7.0 Converted to use `get_sites()`.
  *
  * @param string $slug A site's slug.
  * @return int|null The site ID, or null if no site is found for the given slug.
@@ -88113,18 +88545,6 @@ function update_blog_details($blog_id, $details = array())
 {
 }
 /**
- * Clean the blog cache
- *
- * @since 3.5.0
- *
- * @global bool $_wp_suspend_cache_invalidation
- *
- * @param WP_Site|int $blog The site object or ID to be cleared from cache.
- */
-function clean_blog_cache($blog)
-{
-}
-/**
  * Cleans the site details cache for a site.
  *
  * @since 4.7.4
@@ -88132,136 +88552,6 @@ function clean_blog_cache($blog)
  * @param int $site_id Optional. Site ID. Default is the current site ID.
  */
 function clean_site_details_cache($site_id = 0)
-{
-}
-/**
- * Retrieves site data given a site ID or site object.
- *
- * Site data will be cached and returned after being passed through a filter.
- * If the provided site is empty, the current site global will be used.
- *
- * @since 4.6.0
- *
- * @param WP_Site|int|null $site Optional. Site to retrieve. Default is the current site.
- * @return WP_Site|null The site object or null if not found.
- */
-function get_site($site = \null)
-{
-}
-/**
- * Adds any sites from the given ids to the cache that do not already exist in cache.
- *
- * @since 4.6.0
- * @access private
- *
- * @see update_site_cache()
- * @global wpdb $wpdb WordPress database abstraction object.
- *
- * @param array $ids ID list.
- */
-function _prime_site_caches($ids)
-{
-}
-/**
- * Updates sites in cache.
- *
- * @since 4.6.0
- *
- * @param array $sites Array of site objects.
- */
-function update_site_cache($sites)
-{
-}
-/**
- * Retrieves a list of sites matching requested arguments.
- *
- * @since 4.6.0
- * @since 4.8.0 Introduced the 'lang_id', 'lang__in', and 'lang__not_in' parameters.
- *
- * @see WP_Site_Query::parse_query()
- *
- * @param string|array $args {
- *     Optional. Array or query string of site query parameters. Default empty.
- *
- *     @type array        $site__in          Array of site IDs to include. Default empty.
- *     @type array        $site__not_in      Array of site IDs to exclude. Default empty.
- *     @type bool         $count             Whether to return a site count (true) or array of site objects.
- *                                           Default false.
- *     @type array        $date_query        Date query clauses to limit sites by. See WP_Date_Query.
- *                                           Default null.
- *     @type string       $fields            Site fields to return. Accepts 'ids' (returns an array of site IDs)
- *                                           or empty (returns an array of complete site objects). Default empty.
- *     @type int          $ID                A site ID to only return that site. Default empty.
- *     @type int          $number            Maximum number of sites to retrieve. Default 100.
- *     @type int          $offset            Number of sites to offset the query. Used to build LIMIT clause.
- *                                           Default 0.
- *     @type bool         $no_found_rows     Whether to disable the `SQL_CALC_FOUND_ROWS` query. Default true.
- *     @type string|array $orderby           Site status or array of statuses. Accepts 'id', 'domain', 'path',
- *                                           'network_id', 'last_updated', 'registered', 'domain_length',
- *                                           'path_length', 'site__in' and 'network__in'. Also accepts false,
- *                                           an empty array, or 'none' to disable `ORDER BY` clause.
- *                                           Default 'id'.
- *     @type string       $order             How to order retrieved sites. Accepts 'ASC', 'DESC'. Default 'ASC'.
- *     @type int          $network_id        Limit results to those affiliated with a given network ID. If 0,
- *                                           include all networks. Default 0.
- *     @type array        $network__in       Array of network IDs to include affiliated sites for. Default empty.
- *     @type array        $network__not_in   Array of network IDs to exclude affiliated sites for. Default empty.
- *     @type string       $domain            Limit results to those affiliated with a given domain. Default empty.
- *     @type array        $domain__in        Array of domains to include affiliated sites for. Default empty.
- *     @type array        $domain__not_in    Array of domains to exclude affiliated sites for. Default empty.
- *     @type string       $path              Limit results to those affiliated with a given path. Default empty.
- *     @type array        $path__in          Array of paths to include affiliated sites for. Default empty.
- *     @type array        $path__not_in      Array of paths to exclude affiliated sites for. Default empty.
- *     @type int          $public            Limit results to public sites. Accepts '1' or '0'. Default empty.
- *     @type int          $archived          Limit results to archived sites. Accepts '1' or '0'. Default empty.
- *     @type int          $mature            Limit results to mature sites. Accepts '1' or '0'. Default empty.
- *     @type int          $spam              Limit results to spam sites. Accepts '1' or '0'. Default empty.
- *     @type int          $deleted           Limit results to deleted sites. Accepts '1' or '0'. Default empty.
- *     @type int          $lang_id           Limit results to a language ID. Default empty.
- *     @type array        $lang__in          Array of language IDs to include affiliated sites for. Default empty.
- *     @type array        $lang__not_in      Array of language IDs to exclude affiliated sites for. Default empty.
- *     @type string       $search            Search term(s) to retrieve matching sites for. Default empty.
- *     @type array        $search_columns    Array of column names to be searched. Accepts 'domain' and 'path'.
- *                                           Default empty array.
- *     @type bool         $update_site_cache Whether to prime the cache for found sites. Default true.
- * }
- * @return array|int List of WP_Site objects, a list of site ids when 'fields' is set to 'ids',
- *                   or the number of sites when 'count' is passed as a query var.
- * @phpstan-param array{
- *   site__in?: array,
- *   site__not_in?: array,
- *   count?: bool,
- *   date_query?: array,
- *   fields?: string,
- *   ID?: int,
- *   number?: int,
- *   offset?: int,
- *   no_found_rows?: bool,
- *   orderby?: string|array,
- *   order?: string,
- *   network_id?: int,
- *   network__in?: array,
- *   network__not_in?: array,
- *   domain?: string,
- *   domain__in?: array,
- *   domain__not_in?: array,
- *   path?: string,
- *   path__in?: array,
- *   path__not_in?: array,
- *   public?: int,
- *   archived?: int,
- *   mature?: int,
- *   spam?: int,
- *   deleted?: int,
- *   lang_id?: int,
- *   lang__in?: array,
- *   lang__not_in?: array,
- *   search?: string,
- *   search_columns?: array,
- *   update_site_cache?: bool,
- * } $args
- */
-function get_sites($args = array())
 {
 }
 /**
@@ -88426,6 +88716,7 @@ function update_archived($id, $archived)
  * Update a blog details field.
  *
  * @since MU (3.0.0)
+ * @since 5.1.0 Use wp_update_site() internally.
  *
  * @global wpdb $wpdb WordPress database abstraction object.
  *
@@ -88465,75 +88756,6 @@ function get_blog_status($id, $pref)
  * @return array The list of blogs
  */
 function get_last_updated($deprecated = '', $start = 0, $quantity = 40)
-{
-}
-/**
- * Retrieves a list of networks.
- *
- * @since 4.6.0
- *
- * @param string|array $args Optional. Array or string of arguments. See WP_Network_Query::parse_query()
- *                           for information on accepted arguments. Default empty array.
- * @return array|int List of WP_Network objects, a list of network ids when 'fields' is set to 'ids',
- *                   or the number of networks when 'count' is passed as a query var.
- */
-function get_networks($args = array())
-{
-}
-/**
- * Retrieves network data given a network ID or network object.
- *
- * Network data will be cached and returned after being passed through a filter.
- * If the provided network is empty, the current network global will be used.
- *
- * @since 4.6.0
- *
- * @global WP_Network $current_site
- *
- * @param WP_Network|int|null $network Optional. Network to retrieve. Default is the current network.
- * @return WP_Network|null The network object or null if not found.
- */
-function get_network($network = \null)
-{
-}
-/**
- * Removes a network from the object cache.
- *
- * @since 4.6.0
- *
- * @global bool $_wp_suspend_cache_invalidation
- *
- * @param int|array $ids Network ID or an array of network IDs to remove from cache.
- */
-function clean_network_cache($ids)
-{
-}
-/**
- * Updates the network cache of given networks.
- *
- * Will add the networks in $networks to the cache. If network ID already exists
- * in the network cache then it will not be updated. The network is added to the
- * cache using the network group with the key using the ID of the networks.
- *
- * @since 4.6.0
- *
- * @param array $networks Array of network row objects.
- */
-function update_network_cache($networks)
-{
-}
-/**
- * Adds any networks from the given IDs to the cache that do not already exist in cache.
- *
- * @since 4.6.0
- * @access private
- *
- * @see update_network_cache()
- * @global wpdb $wpdb WordPress database abstraction object.
- *
- * @param array $network_ids Array of network IDs.
- */
-function _prime_network_caches($network_ids)
 {
 }
 /**
@@ -88923,6 +89145,60 @@ function is_user_option_local($key, $user_id = 0, $blog_id = 0)
 {
 }
 /**
+ * Store basic site info in the blogs table.
+ *
+ * This function creates a row in the wp_blogs table and returns
+ * the new blog's ID. It is the first step in creating a new blog.
+ *
+ * @since MU (3.0.0)
+ * @deprecated 5.1.0 Use `wp_insert_site()`
+ * @see wp_insert_site()
+ *
+ * @param string $domain  The domain of the new site.
+ * @param string $path    The path of the new site.
+ * @param int    $site_id Unless you're running a multi-network install, be sure to set this value to 1.
+ * @return int|false The ID of the new row
+ */
+function insert_blog($domain, $path, $site_id)
+{
+}
+/**
+ * Install an empty blog.
+ *
+ * Creates the new blog tables and options. If calling this function
+ * directly, be sure to use switch_to_blog() first, so that $wpdb
+ * points to the new blog.
+ *
+ * @since MU (3.0.0)
+ * @deprecated 5.1.0
+ *
+ * @global wpdb     $wpdb
+ * @global WP_Roles $wp_roles
+ *
+ * @param int    $blog_id    The value returned by wp_insert_site().
+ * @param string $blog_title The title of the new site.
+ */
+function install_blog($blog_id, $blog_title = '')
+{
+}
+/**
+ * Set blog defaults.
+ *
+ * This function creates a row in the wp_blogs table.
+ *
+ * @since MU (3.0.0)
+ * @deprecated MU
+ * @deprecated Use wp_install_defaults()
+ *
+ * @global wpdb $wpdb WordPress database abstraction object.
+ *
+ * @param int $blog_id Ignored in this function.
+ * @param int $user_id
+ */
+function install_blog_defaults($blog_id, $user_id)
+{
+}
+/**
  * Multisite WordPress API
  *
  * @package WordPress
@@ -88962,7 +89238,7 @@ function get_active_blog_for_user($user_id)
  * The count is cached and updated twice daily. This is not a live count.
  *
  * @since MU (3.0.0)
- * @since 4.8.0 The $network_id parameter has been added.
+ * @since 4.8.0 The `$network_id` parameter has been added.
  *
  * @param int|null $network_id ID of the network. Default is the current network.
  * @return int Number of active users on the network.
@@ -88976,8 +89252,8 @@ function get_user_count($network_id = \null)
  * The count is cached and updated twice daily. This is not a live count.
  *
  * @since MU (3.0.0)
- * @since 3.7.0 The $network_id parameter has been deprecated.
- * @since 4.8.0 The $network_id parameter is now being used.
+ * @since 3.7.0 The `$network_id` parameter has been deprecated.
+ * @since 4.8.0 The `$network_id` parameter is now being used.
  *
  * @param int|null $network_id ID of the network. Default is the current network.
  * @return int Number of active sites on the network.
@@ -89272,7 +89548,7 @@ function wpmu_create_user($user_name, $password, $email)
  * @param string $path       The new site's path.
  * @param string $title      The new site's title.
  * @param int    $user_id    The user ID of the new site's admin.
- * @param array  $meta       Optional. Array of key=>value pairs used to set initial site options.
+ * @param array  $options    Optional. Array of key=>value pairs used to set initial site options.
  *                           If valid status keys are included ('public', 'archived', 'mature',
  *                           'spam', 'deleted', or 'lang_id') the given site status(es) will be
  *                           updated. Otherwise, keys and values will be used to set options for
@@ -89280,7 +89556,7 @@ function wpmu_create_user($user_name, $password, $email)
  * @param int    $network_id Optional. Network ID. Only relevant on multi-network installations.
  * @return int|WP_Error Returns WP_Error object on failure, the new site ID on success.
  */
-function wpmu_create_blog($domain, $path, $title, $user_id, $meta = array(), $network_id = 1)
+function wpmu_create_blog($domain, $path, $title, $user_id, $options = array(), $network_id = 1)
 {
 }
 /**
@@ -89290,9 +89566,10 @@ function wpmu_create_blog($domain, $path, $title, $user_id, $meta = array(), $ne
  * the notification email.
  *
  * @since MU (3.0.0)
+ * @since 5.1.0 $blog_id now supports input from the {@see 'wp_initialize_site'} action.
  *
- * @param int    $blog_id    The new site's ID.
- * @param string $deprecated Not used.
+ * @param WP_Site|int $blog_id    The new site's object or ID.
+ * @param string      $deprecated Not used.
  * @return bool
  */
 function newblog_notify_siteadmin($blog_id, $deprecated = '')
@@ -89329,59 +89606,6 @@ function newuser_notify_siteadmin($user_id)
  * @return int|null The site ID if the site name exists, null otherwise.
  */
 function domain_exists($domain, $path, $network_id = 1)
-{
-}
-/**
- * Store basic site info in the blogs table.
- *
- * This function creates a row in the wp_blogs table and returns
- * the new blog's ID. It is the first step in creating a new blog.
- *
- * @since MU (3.0.0)
- *
- * @global wpdb $wpdb WordPress database abstraction object.
- *
- * @param string $domain     The domain of the new site.
- * @param string $path       The path of the new site.
- * @param int    $network_id Unless you're running a multi-network installation, be sure to set this value to 1.
- * @return int|false The ID of the new row
- */
-function insert_blog($domain, $path, $network_id)
-{
-}
-/**
- * Install an empty blog.
- *
- * Creates the new blog tables and options. If calling this function
- * directly, be sure to use switch_to_blog() first, so that $wpdb
- * points to the new blog.
- *
- * @since MU (3.0.0)
- *
- * @global wpdb     $wpdb
- * @global WP_Roles $wp_roles
- *
- * @param int    $blog_id    The value returned by insert_blog().
- * @param string $blog_title The title of the new site.
- */
-function install_blog($blog_id, $blog_title = '')
-{
-}
-/**
- * Set blog defaults.
- *
- * This function creates a row in the wp_blogs table.
- *
- * @since MU (3.0.0)
- * @deprecated MU
- * @deprecated Use wp_install_defaults()
- *
- * @global wpdb $wpdb WordPress database abstraction object.
- *
- * @param int $blog_id Ignored in this function.
- * @param int $user_id
- */
-function install_blog_defaults($blog_id, $user_id)
 {
 }
 /**
@@ -89524,11 +89748,12 @@ function update_posts_count($deprecated = '')
  * Logs the user email, IP, and registration date of a new site.
  *
  * @since MU (3.0.0)
+ * @since 5.1.0 Parameters now support input from the {@see 'wp_initialize_site'} action.
  *
  * @global wpdb $wpdb WordPress database abstraction object.
  *
- * @param int $blog_id
- * @param int $user_id
+ * @param WP_Site|int $blog_id The new site's object or ID.
+ * @param int|array   $user_id User ID, or array of arguments including 'user_id'.
  */
 function wpmu_log_new_registrations($blog_id, $user_id)
 {
@@ -89657,7 +89882,7 @@ function fix_phpmailer_messageid($phpmailer)
  * @since MU (3.0.0)
  *
  * @param string|WP_User $user Optional. Defaults to current user. WP_User object,
- * 	                           or user login name as a string.
+ *                             or user login name as a string.
  * @return bool
  */
 function is_user_spammy($user = \null)
@@ -89735,7 +89960,7 @@ function wp_schedule_update_network_counts()
  * Update the network-wide counts for the current network.
  *
  * @since 3.1.0
- * @since 4.8.0 The $network_id parameter has been added.
+ * @since 4.8.0 The `$network_id` parameter has been added.
  *
  * @param int|null $network_id ID of the network. Default is the current network.
  */
@@ -89749,7 +89974,7 @@ function wp_update_network_counts($network_id = \null)
  * on a network when a site is created or its status is updated.
  *
  * @since 3.7.0
- * @since 4.8.0 The $network_id parameter has been added.
+ * @since 4.8.0 The `$network_id` parameter has been added.
  *
  * @param int|null $network_id ID of the network. Default is the current network.
  */
@@ -89763,7 +89988,7 @@ function wp_maybe_update_network_site_counts($network_id = \null)
  * on a network when a user is created or its status is updated.
  *
  * @since 3.7.0
- * @since 4.8.0 The $network_id parameter has been added.
+ * @since 4.8.0 The `$network_id` parameter has been added.
  *
  * @param int|null $network_id ID of the network. Default is the current network.
  */
@@ -89774,7 +89999,7 @@ function wp_maybe_update_network_user_counts($network_id = \null)
  * Update the network-wide site count.
  *
  * @since 3.7.0
- * @since 4.8.0 The $network_id parameter has been added.
+ * @since 4.8.0 The `$network_id` parameter has been added.
  *
  * @param int|null $network_id ID of the network. Default is the current network.
  */
@@ -89785,7 +90010,7 @@ function wp_update_network_site_counts($network_id = \null)
  * Update the network-wide user count.
  *
  * @since 3.7.0
- * @since 4.8.0 The $network_id parameter has been added.
+ * @since 4.8.0 The `$network_id` parameter has been added.
  *
  * @global wpdb $wpdb WordPress database abstraction object.
  *
@@ -89851,7 +90076,7 @@ function upload_size_limit_filter($size)
  * Plugins can alter this criteria using the {@see 'wp_is_large_network'} filter.
  *
  * @since 3.3.0
- * @since 4.8.0 The $network_id parameter has been added.
+ * @since 4.8.0 The `$network_id` parameter has been added.
  *
  * @param string   $using      'sites or 'users'. Default is 'sites'.
  * @param int|null $network_id ID of the network. Default is the current network.
@@ -90080,6 +90305,572 @@ function wpmu_current_site()
  * @return WP_Network|false Object containing network information if found, false if not.
  */
 function wp_get_network($network)
+{
+}
+/**
+ * Network API
+ *
+ * @package WordPress
+ * @subpackage Multisite
+ * @since 5.1.0
+ */
+/**
+ * Retrieves network data given a network ID or network object.
+ *
+ * Network data will be cached and returned after being passed through a filter.
+ * If the provided network is empty, the current network global will be used.
+ *
+ * @since 4.6.0
+ *
+ * @global WP_Network $current_site
+ *
+ * @param WP_Network|int|null $network Optional. Network to retrieve. Default is the current network.
+ * @return WP_Network|null The network object or null if not found.
+ */
+function get_network($network = \null)
+{
+}
+/**
+ * Retrieves a list of networks.
+ *
+ * @since 4.6.0
+ *
+ * @param string|array $args Optional. Array or string of arguments. See WP_Network_Query::parse_query()
+ *                           for information on accepted arguments. Default empty array.
+ * @return array|int List of WP_Network objects, a list of network ids when 'fields' is set to 'ids',
+ *                   or the number of networks when 'count' is passed as a query var.
+ */
+function get_networks($args = array())
+{
+}
+/**
+ * Removes a network from the object cache.
+ *
+ * @since 4.6.0
+ *
+ * @global bool $_wp_suspend_cache_invalidation
+ *
+ * @param int|array $ids Network ID or an array of network IDs to remove from cache.
+ */
+function clean_network_cache($ids)
+{
+}
+/**
+ * Updates the network cache of given networks.
+ *
+ * Will add the networks in $networks to the cache. If network ID already exists
+ * in the network cache then it will not be updated. The network is added to the
+ * cache using the network group with the key using the ID of the networks.
+ *
+ * @since 4.6.0
+ *
+ * @param array $networks Array of network row objects.
+ */
+function update_network_cache($networks)
+{
+}
+/**
+ * Adds any networks from the given IDs to the cache that do not already exist in cache.
+ *
+ * @since 4.6.0
+ * @access private
+ *
+ * @see update_network_cache()
+ * @global wpdb $wpdb WordPress database abstraction object.
+ *
+ * @param array $network_ids Array of network IDs.
+ */
+function _prime_network_caches($network_ids)
+{
+}
+/**
+ * Site API
+ *
+ * @package WordPress
+ * @subpackage Multisite
+ * @since 5.1.0
+ */
+/**
+ * Inserts a new site into the database.
+ *
+ * @since 5.1.0
+ *
+ * @global wpdb $wpdb WordPress database abstraction object.
+ *
+ * @param array $data {
+ *     Data for the new site that should be inserted.
+ *
+ *     @type string $domain       Site domain. Default empty string.
+ *     @type string $path         Site path. Default '/'.
+ *     @type int    $network_id   The site's network ID. Default is the current network ID.
+ *     @type string $registered   When the site was registered, in SQL datetime format. Default is
+ *                                the current time.
+ *     @type string $last_updated When the site was last updated, in SQL datetime format. Default is
+ *                                the value of $registered.
+ *     @type int    $public       Whether the site is public. Default 1.
+ *     @type int    $archived     Whether the site is archived. Default 0.
+ *     @type int    $mature       Whether the site is mature. Default 0.
+ *     @type int    $spam         Whether the site is spam. Default 0.
+ *     @type int    $deleted      Whether the site is deleted. Default 0.
+ *     @type int    $lang_id      The site's language ID. Currently unused. Default 0.
+ * }
+ * @return int|WP_Error The new site's ID on success, or error object on failure.
+ * @phpstan-param array{
+ *   domain?: string,
+ *   path?: string,
+ *   network_id?: int,
+ *   registered?: string,
+ *   last_updated?: string,
+ *   public?: int,
+ *   archived?: int,
+ *   mature?: int,
+ *   spam?: int,
+ *   deleted?: int,
+ *   lang_id?: int,
+ * } $data
+ */
+function wp_insert_site(array $data)
+{
+}
+/**
+ * Updates a site in the database.
+ *
+ * @since 5.1.0
+ *
+ * @global wpdb $wpdb WordPress database abstraction object.
+ *
+ * @param int   $site_id ID of the site that should be updated.
+ * @param array $data    Site data to update. See {@see wp_insert_site()} for the list of supported keys.
+ * @return int|WP_Error The updated site's ID on success, or error object on failure.
+ */
+function wp_update_site($site_id, array $data)
+{
+}
+/**
+ * Deletes a site from the database.
+ *
+ * @since 5.1.0
+ *
+ * @global wpdb $wpdb WordPress database abstraction object.
+ *
+ * @param int $site_id ID of the site that should be deleted.
+ * @return WP_Site|WP_Error The deleted site object on success, or error object on failure.
+ */
+function wp_delete_site($site_id)
+{
+}
+/**
+ * Retrieves site data given a site ID or site object.
+ *
+ * Site data will be cached and returned after being passed through a filter.
+ * If the provided site is empty, the current site global will be used.
+ *
+ * @since 4.6.0
+ *
+ * @param WP_Site|int|null $site Optional. Site to retrieve. Default is the current site.
+ * @return WP_Site|null The site object or null if not found.
+ */
+function get_site($site = \null)
+{
+}
+/**
+ * Adds any sites from the given ids to the cache that do not already exist in cache.
+ *
+ * @since 4.6.0
+ * @since 5.1.0 Introduced the `$update_meta_cache` parameter.
+ * @access private
+ *
+ * @see update_site_cache()
+ * @global wpdb $wpdb WordPress database abstraction object.
+ *
+ * @param array $ids               ID list.
+ * @param bool  $update_meta_cache Optional. Whether to update the meta cache. Default true.
+ */
+function _prime_site_caches($ids, $update_meta_cache = \true)
+{
+}
+/**
+ * Updates sites in cache.
+ *
+ * @since 4.6.0
+ * @since 5.1.0 Introduced the `$update_meta_cache` parameter.
+ *
+ * @param array $sites             Array of site objects.
+ * @param bool  $update_meta_cache Whether to update site meta cache. Default true.
+ */
+function update_site_cache($sites, $update_meta_cache = \true)
+{
+}
+/**
+ * Updates metadata cache for list of site IDs.
+ *
+ * Performs SQL query to retrieve all metadata for the sites matching `$site_ids` and stores them in the cache.
+ * Subsequent calls to `get_site_meta()` will not need to query the database.
+ *
+ * @since 5.1.0
+ *
+ * @param array $site_ids List of site IDs.
+ * @return array|false Returns false if there is nothing to update. Returns an array of metadata on success.
+ */
+function update_sitemeta_cache($site_ids)
+{
+}
+/**
+ * Retrieves a list of sites matching requested arguments.
+ *
+ * @since 4.6.0
+ * @since 4.8.0 Introduced the 'lang_id', 'lang__in', and 'lang__not_in' parameters.
+ *
+ * @see WP_Site_Query::parse_query()
+ *
+ * @param string|array $args {
+ *     Optional. Array or query string of site query parameters. Default empty.
+ *
+ *     @type array        $site__in          Array of site IDs to include. Default empty.
+ *     @type array        $site__not_in      Array of site IDs to exclude. Default empty.
+ *     @type bool         $count             Whether to return a site count (true) or array of site objects.
+ *                                           Default false.
+ *     @type array        $date_query        Date query clauses to limit sites by. See WP_Date_Query.
+ *                                           Default null.
+ *     @type string       $fields            Site fields to return. Accepts 'ids' (returns an array of site IDs)
+ *                                           or empty (returns an array of complete site objects). Default empty.
+ *     @type int          $ID                A site ID to only return that site. Default empty.
+ *     @type int          $number            Maximum number of sites to retrieve. Default 100.
+ *     @type int          $offset            Number of sites to offset the query. Used to build LIMIT clause.
+ *                                           Default 0.
+ *     @type bool         $no_found_rows     Whether to disable the `SQL_CALC_FOUND_ROWS` query. Default true.
+ *     @type string|array $orderby           Site status or array of statuses. Accepts 'id', 'domain', 'path',
+ *                                           'network_id', 'last_updated', 'registered', 'domain_length',
+ *                                           'path_length', 'site__in' and 'network__in'. Also accepts false,
+ *                                           an empty array, or 'none' to disable `ORDER BY` clause.
+ *                                           Default 'id'.
+ *     @type string       $order             How to order retrieved sites. Accepts 'ASC', 'DESC'. Default 'ASC'.
+ *     @type int          $network_id        Limit results to those affiliated with a given network ID. If 0,
+ *                                           include all networks. Default 0.
+ *     @type array        $network__in       Array of network IDs to include affiliated sites for. Default empty.
+ *     @type array        $network__not_in   Array of network IDs to exclude affiliated sites for. Default empty.
+ *     @type string       $domain            Limit results to those affiliated with a given domain. Default empty.
+ *     @type array        $domain__in        Array of domains to include affiliated sites for. Default empty.
+ *     @type array        $domain__not_in    Array of domains to exclude affiliated sites for. Default empty.
+ *     @type string       $path              Limit results to those affiliated with a given path. Default empty.
+ *     @type array        $path__in          Array of paths to include affiliated sites for. Default empty.
+ *     @type array        $path__not_in      Array of paths to exclude affiliated sites for. Default empty.
+ *     @type int          $public            Limit results to public sites. Accepts '1' or '0'. Default empty.
+ *     @type int          $archived          Limit results to archived sites. Accepts '1' or '0'. Default empty.
+ *     @type int          $mature            Limit results to mature sites. Accepts '1' or '0'. Default empty.
+ *     @type int          $spam              Limit results to spam sites. Accepts '1' or '0'. Default empty.
+ *     @type int          $deleted           Limit results to deleted sites. Accepts '1' or '0'. Default empty.
+ *     @type int          $lang_id           Limit results to a language ID. Default empty.
+ *     @type array        $lang__in          Array of language IDs to include affiliated sites for. Default empty.
+ *     @type array        $lang__not_in      Array of language IDs to exclude affiliated sites for. Default empty.
+ *     @type string       $search            Search term(s) to retrieve matching sites for. Default empty.
+ *     @type array        $search_columns    Array of column names to be searched. Accepts 'domain' and 'path'.
+ *                                           Default empty array.
+ *     @type bool         $update_site_cache Whether to prime the cache for found sites. Default true.
+ * }
+ * @return array|int List of WP_Site objects, a list of site ids when 'fields' is set to 'ids',
+ *                   or the number of sites when 'count' is passed as a query var.
+ * @phpstan-param array{
+ *   site__in?: array,
+ *   site__not_in?: array,
+ *   count?: bool,
+ *   date_query?: array,
+ *   fields?: string,
+ *   ID?: int,
+ *   number?: int,
+ *   offset?: int,
+ *   no_found_rows?: bool,
+ *   orderby?: string|array,
+ *   order?: string,
+ *   network_id?: int,
+ *   network__in?: array,
+ *   network__not_in?: array,
+ *   domain?: string,
+ *   domain__in?: array,
+ *   domain__not_in?: array,
+ *   path?: string,
+ *   path__in?: array,
+ *   path__not_in?: array,
+ *   public?: int,
+ *   archived?: int,
+ *   mature?: int,
+ *   spam?: int,
+ *   deleted?: int,
+ *   lang_id?: int,
+ *   lang__in?: array,
+ *   lang__not_in?: array,
+ *   search?: string,
+ *   search_columns?: array,
+ *   update_site_cache?: bool,
+ * } $args
+ */
+function get_sites($args = array())
+{
+}
+/**
+ * Prepares site data for insertion or update in the database.
+ *
+ * @since 5.1.0
+ *
+ * @param array        $data     Associative array of site data passed to the respective function.
+ *                               See {@see wp_insert_site()} for the possibly included data.
+ * @param array        $defaults Site data defaults to parse $data against.
+ * @param WP_Site|null $old_site Optional. Old site object if an update, or null if an insertion.
+ *                               Default null.
+ * @return array|WP_Error Site data ready for a database transaction, or WP_Error in case a validation
+ *                        error occurred.
+ */
+function wp_prepare_site_data($data, $defaults, $old_site = \null)
+{
+}
+/**
+ * Normalizes data for a site prior to inserting or updating in the database.
+ *
+ * @since 5.1.0
+ *
+ * @param array $data Associative array of site data passed to the respective function.
+ *                    See {@see wp_insert_site()} for the possibly included data.
+ * @return array Normalized site data.
+ */
+function wp_normalize_site_data($data)
+{
+}
+/**
+ * Validates data for a site prior to inserting or updating in the database.
+ *
+ * @since 5.1.0
+ *
+ * @param WP_Error     $errors   Error object, passed by reference. Will contain validation errors if
+ *                               any occurred.
+ * @param array        $data     Associative array of complete site data. See {@see wp_insert_site()}
+ *                               for the included data.
+ * @param WP_Site|null $old_site The old site object if the data belongs to a site being updated,
+ *                               or null if it is a new site being inserted.
+ */
+function wp_validate_site_data($errors, $data, $old_site = \null)
+{
+}
+/**
+ * Runs the initialization routine for a given site.
+ *
+ * This process includes creating the site's database tables and
+ * populating them with defaults.
+ *
+ * @since 5.1.0
+ *
+ * @global wpdb     $wpdb     WordPress database abstraction object.
+ * @global WP_Roles $wp_roles WordPress role management object.
+ *
+ * @param int|WP_Site $site_id Site ID or object.
+ * @param array       $args    {
+ *     Optional. Arguments to modify the initialization behavior.
+ *
+ *     @type int    $user_id Required. User ID for the site administrator.
+ *     @type string $title   Site title. Default is 'Site %d' where %d is the
+ *                           site ID.
+ *     @type array  $options Custom option $key => $value pairs to use. Default
+ *                           empty array.
+ *     @type array  $meta    Custom site metadata $key => $value pairs to use.
+ *                           Default empty array.
+ * }
+ * @return bool|WP_Error True on success, or error object on failure.
+ * @phpstan-param array{
+ *   user_id?: int,
+ *   title?: string,
+ *   options?: array,
+ *   meta?: array,
+ * } $args
+ */
+function wp_initialize_site($site_id, array $args = array())
+{
+}
+/**
+ * Runs the uninitialization routine for a given site.
+ *
+ * This process includes dropping the site's database tables and deleting its uploads directory.
+ *
+ * @since 5.1.0
+ *
+ * @global wpdb $wpdb WordPress database abstraction object.
+ *
+ * @param int|WP_Site $site_id Site ID or object.
+ * @return bool|WP_Error True on success, or error object on failure.
+ */
+function wp_uninitialize_site($site_id)
+{
+}
+/**
+ * Checks whether a site is initialized.
+ *
+ * A site is considered initialized when its database tables are present.
+ *
+ * @since 5.1.0
+ *
+ * @global wpdb $wpdb WordPress database abstraction object.
+ *
+ * @param int|WP_Site $site_id Site ID or object.
+ * @return bool True if the site is initialized, false otherwise.
+ */
+function wp_is_site_initialized($site_id)
+{
+}
+/**
+ * Clean the blog cache
+ *
+ * @since 3.5.0
+ *
+ * @global bool $_wp_suspend_cache_invalidation
+ *
+ * @param WP_Site|int $blog The site object or ID to be cleared from cache.
+ */
+function clean_blog_cache($blog)
+{
+}
+/**
+ * Adds metadata to a site.
+ *
+ * @since 5.1.0
+ *
+ * @param int    $site_id    Site ID.
+ * @param string $meta_key   Metadata name.
+ * @param mixed  $meta_value Metadata value. Must be serializable if non-scalar.
+ * @param bool   $unique     Optional. Whether the same key should not be added.
+ *                           Default false.
+ * @return int|false Meta ID on success, false on failure.
+ */
+function add_site_meta($site_id, $meta_key, $meta_value, $unique = \false)
+{
+}
+/**
+ * Removes metadata matching criteria from a site.
+ *
+ * You can match based on the key, or key and value. Removing based on key and
+ * value, will keep from removing duplicate metadata with the same key. It also
+ * allows removing all metadata matching key, if needed.
+ *
+ * @since 5.1.0
+ *
+ * @param int    $site_id    Site ID.
+ * @param string $meta_key   Metadata name.
+ * @param mixed  $meta_value Optional. Metadata value. Must be serializable if
+ *                           non-scalar. Default empty.
+ * @return bool True on success, false on failure.
+ */
+function delete_site_meta($site_id, $meta_key, $meta_value = '')
+{
+}
+/**
+ * Retrieves metadata for a site.
+ *
+ * @since 5.1.0
+ *
+ * @param int    $site_id Site ID.
+ * @param string $key     Optional. The meta key to retrieve. By default, returns
+ *                        data for all keys. Default empty.
+ * @param bool   $single  Optional. Whether to return a single value. Default false.
+ * @return mixed Will be an array if $single is false. Will be value of meta data
+ *               field if $single is true.
+ */
+function get_site_meta($site_id, $key = '', $single = \false)
+{
+}
+/**
+ * Updates metadata for a site.
+ *
+ * Use the $prev_value parameter to differentiate between meta fields with the
+ * same key and site ID.
+ *
+ * If the meta field for the site does not exist, it will be added.
+ *
+ * @since 5.1.0
+ *
+ * @param int    $site_id    Site ID.
+ * @param string $meta_key   Metadata key.
+ * @param mixed  $meta_value Metadata value. Must be serializable if non-scalar.
+ * @param mixed  $prev_value Optional. Previous value to check before removing.
+ *                           Default empty.
+ * @return int|bool Meta ID if the key didn't exist, true on successful update,
+ *                  false on failure.
+ */
+function update_site_meta($site_id, $meta_key, $meta_value, $prev_value = '')
+{
+}
+/**
+ * Deletes everything from site meta matching meta key.
+ *
+ * @since 5.1.0
+ *
+ * @param string $meta_key Metadata key to search for when deleting.
+ * @return bool Whether the site meta key was deleted from the database.
+ */
+function delete_site_meta_by_key($meta_key)
+{
+}
+/**
+ * Updates the count of sites for a network based on a changed site.
+ *
+ * @since 5.1.0
+ *
+ * @param WP_Site      $new_site The site object that has been inserted, updated or deleted.
+ * @param WP_Site|null $old_site Optional. If $new_site has been updated, this must be the previous
+ *                               state of that site. Default null.
+ */
+function wp_maybe_update_network_site_counts_on_update($new_site, $old_site = \null)
+{
+}
+/**
+ * Triggers actions on site status updates.
+ *
+ * @since 5.1.0
+ *
+ * @param WP_Site      $new_site The site object after the update.
+ * @param WP_Site|null $old_site Optional. If $new_site has been updated, this must be the previous
+ *                               state of that site. Default null.
+ */
+function wp_maybe_transition_site_statuses_on_update($new_site, $old_site = \null)
+{
+}
+/**
+ * Cleans the necessary caches after specific site data has been updated.
+ *
+ * @since 5.1.0
+ *
+ * @param WP_Site $new_site The site object after the update.
+ * @param WP_Site $old_site The site obejct prior to the update.
+ */
+function wp_maybe_clean_new_site_cache_on_update($new_site, $old_site)
+{
+}
+/**
+ * Updates the `blog_public` option for a given site ID.
+ *
+ * @since 5.1.0
+ *
+ * @param int    $site_id Site ID.
+ * @param string $public  The value of the site status.
+ */
+function wp_update_blog_public_option_on_site_update($site_id, $public)
+{
+}
+/**
+ * Sets the last changed time for the 'sites' cache group.
+ *
+ * @since 5.1.0
+ */
+function wp_cache_set_sites_last_changed()
+{
+}
+/**
+ * Aborts calls to site meta if it is not supported.
+ *
+ * @since 5.1.0
+ *
+ * @global wpdb $wpdb WordPress database abstraction object.
+ *
+ * @param mixed $check Skip-value for whether to proceed site meta function execution.
+ * @return mixed Original value of $check, or false if site meta is not supported.
+ */
+function wp_check_site_meta_support_prefilter($check)
 {
 }
 /**
@@ -90395,7 +91186,6 @@ function _is_valid_nav_menu_item($item)
  *
  * @since 3.0.0
  *
- * @global string $_menu_item_sort_prop
  * @staticvar array $fetched
  *
  * @param int|string|WP_Term $menu Menu ID, slug, name, or object.
@@ -90479,7 +91269,6 @@ function wp_get_associated_nav_menu_items($object_id = 0, $object_type = 'post_t
  * @access private
  *
  * @param int $object_id The ID of the original object being trashed.
- *
  */
 function _wp_delete_post_menu_item($object_id = 0)
 {
@@ -90900,7 +91689,7 @@ function update_site_option($option, $value)
  *
  * @see get_option()
  *
- * @global wpdb $wpdb
+ * @global wpdb $wpdb WordPress database abstraction object.
  *
  * @param int      $network_id ID of the network. Can be null to default to the current network ID.
  * @param string   $option     Name of option to retrieve. Expected to not be SQL-escaped.
@@ -90919,7 +91708,7 @@ function get_network_option($network_id, $option, $default = \false)
  *
  * @see add_option()
  *
- * @global wpdb $wpdb
+ * @global wpdb $wpdb WordPress database abstraction object.
  *
  * @param int    $network_id ID of the network. Can be null to default to the current network ID.
  * @param string $option     Name of option to add. Expected to not be SQL-escaped.
@@ -90936,7 +91725,7 @@ function add_network_option($network_id, $option, $value)
  *
  * @see delete_option()
  *
- * @global wpdb $wpdb
+ * @global wpdb $wpdb WordPress database abstraction object.
  *
  * @param int    $network_id ID of the network. Can be null to default to the current network ID.
  * @param string $option     Name of option to remove. Expected to not be SQL-escaped.
@@ -90952,7 +91741,7 @@ function delete_network_option($network_id, $option)
  *
  * @see update_option()
  *
- * @global wpdb $wpdb
+ * @global wpdb $wpdb WordPress database abstraction object.
  *
  * @param int      $network_id ID of the network. Can be null to default to the current network ID.
  * @param string   $option     Name of option. Expected to not be SQL-escaped.
@@ -91029,7 +91818,7 @@ function register_initial_settings()
  * @global array $wp_registered_settings
  *
  * @param string $option_group A settings group name. Should correspond to a whitelisted option key name.
- * 	Default whitelisted option key names include "general," "discussion," and "reading," among others.
+ *  Default whitelisted option key names include "general," "discussion," and "reading," among others.
  * @param string $option_name The name of an option to sanitize and save.
  * @param array  $args {
  *     Data used to describe the setting when registered.
@@ -91059,6 +91848,7 @@ function register_setting($option_group, $option_name, $args = array())
  * @since 4.7.0 `$sanitize_callback` was deprecated. The callback from `register_setting()` is now used instead.
  *
  * @global array $new_whitelist_options
+ * @global array $wp_registered_settings
  *
  * @param string   $option_group      The settings group name used during registration.
  * @param string   $option_name       The name of the option to unregister.
@@ -91071,6 +91861,8 @@ function unregister_setting($option_group, $option_name, $deprecated = '')
  * Retrieves an array of registered settings.
  *
  * @since 4.7.0
+ *
+ * @global array $wp_registered_settings
  *
  * @return array List of registered settings, keyed by option name.
  */
@@ -91478,21 +92270,23 @@ function check_ajax_referer($action = -1, $query_arg = \false, $die = \true)
  *     exit;
  *
  * Exiting can also be selectively manipulated by using wp_redirect() as a conditional
- * in conjunction with the {@see 'wp_redirect'} and {@see 'wp_redirect_location'} hooks:
+ * in conjunction with the {@see 'wp_redirect'} and {@see 'wp_redirect_location'} filters:
  *
  *     if ( wp_redirect( $url ) ) {
  *         exit;
  *     }
  *
  * @since 1.5.1
+ * @since 5.1.0 The `$x_redirect_by` parameter was added.
  *
  * @global bool $is_IIS
  *
- * @param string $location The path to redirect to.
- * @param int    $status   Status code to use.
- * @return bool False if $location is not provided, true otherwise.
+ * @param string $location      The path or URL to redirect to.
+ * @param int    $status        Optional. HTTP response status code to use. Default '302' (Moved Temporarily).
+ * @param string $x_redirect_by Optional. The application doing the redirect. Default 'WordPress'.
+ * @return bool False if the redirect was cancelled, true otherwise.
  */
-function wp_redirect($location, $status = 302)
+function wp_redirect($location, $status = 302, $x_redirect_by = 'WordPress')
 {
 }
 /**
@@ -91502,7 +92296,7 @@ function wp_redirect($location, $status = 302)
  *
  * @param string $location The path to redirect to.
  * @return string Redirect-sanitized URL.
- **/
+ */
 function wp_sanitize_redirect($location)
 {
 }
@@ -91532,12 +92326,28 @@ function _wp_sanitize_utf8_in_redirect($matches)
  * instead. This prevents malicious redirects which redirect to another host,
  * but only used in a few places.
  *
- * @since 2.3.0
+ * Note: wp_safe_redirect() does not exit automatically, and should almost always be
+ * followed by a call to `exit;`:
  *
- * @param string $location The path to redirect to.
- * @param int    $status   Status code to use.
+ *     wp_safe_redirect( $url );
+ *     exit;
+ *
+ * Exiting can also be selectively manipulated by using wp_safe_redirect() as a conditional
+ * in conjunction with the {@see 'wp_redirect'} and {@see 'wp_redirect_location'} filters:
+ *
+ *     if ( wp_safe_redirect( $url ) ) {
+ *         exit;
+ *     }
+ *
+ * @since 2.3.0
+ * @since 5.1.0 The return value from wp_redirect() is now passed on, and the `$x_redirect_by` parameter was added.
+ *
+ * @param string $location      The path or URL to redirect to.
+ * @param int    $status        Optional. HTTP response status code to use. Default '302' (Moved Temporarily).
+ * @param string $x_redirect_by Optional. The application doing the redirect. Default 'WordPress'.
+ * @return bool  $redirect False if the redirect was cancelled, true otherwise.
  */
-function wp_safe_redirect($location, $status = 302)
+function wp_safe_redirect($location, $status = 302, $x_redirect_by = 'WordPress')
 {
 }
 /**
@@ -91554,7 +92364,7 @@ function wp_safe_redirect($location, $status = 302)
  * @param string $location The redirect to validate
  * @param string $default  The value to return if $location is not allowed
  * @return string redirect-sanitized URL
- **/
+ */
 function wp_validate_redirect($location, $default = '')
 {
 }
@@ -91739,7 +92549,7 @@ function wp_hash_password($password)
  * @since 2.5.0
  *
  * @global PasswordHash $wp_hasher PHPass object used for checking the password
- *	against the $hash + $password
+ *  against the $hash + $password
  * @uses PasswordHash::CheckPassword
  *
  * @param string     $password Plaintext user's password
@@ -91752,6 +92562,9 @@ function wp_check_password($password, $hash, $user_id = '')
 }
 /**
  * Generates a random password drawn from the defined set of characters.
+ *
+ * Uses wp_rand() is used to create passwords with far less predictability
+ * than similar native PHP functions like `rand()` or `mt_rand()`.
  *
  * @since 2.5.0
  *
@@ -91766,14 +92579,14 @@ function wp_generate_password($length = 12, $special_chars = \true, $extra_speci
 {
 }
 /**
- * Generates a random number
+ * Generates a random number.
  *
  * @since 2.6.2
  * @since 4.4.0 Uses PHP7 random_int() or the random_compat library if available.
  *
  * @global string $rnd_value
  * @staticvar string $seed
- * @staticvar bool $external_rand_source_available
+ * @staticvar bool $use_random_int_functionality
  *
  * @param int $min Lower limit for the generated number
  * @param int $max Upper limit for the generated number
@@ -91859,11 +92672,11 @@ function get_avatar($id_or_email, $size = 96, $default = '', $alt = '', $args = 
  * The arguments supported and can be changed are listed below.
  *
  * 'title' : Default is an empty string. Titles the diff in a manner compatible
- *		with the output.
+ *      with the output.
  * 'title_left' : Default is an empty string. Change the HTML to the left of the
- *		title.
+ *      title.
  * 'title_right' : Default is an empty string. Change the HTML to the right of
- *		the title.
+ *      the title.
  *
  * @since 2.6.0
  *
@@ -92764,7 +93577,8 @@ function the_content($more_link_text = \null, $strip_teaser = \false)
  * @global int   $page      Page number of a single post/page.
  * @global int   $more      Boolean indicator for whether single post/page is being viewed.
  * @global bool  $preview   Whether post/page is in preview mode.
- * @global array $pages     Array of all pages in post/page. Each array element contains part of the content separated by the <!--nextpage--> tag.
+ * @global array $pages     Array of all pages in post/page. Each array element contains
+ *                          part of the content separated by the `<!--nextpage-->` tag.
  * @global int   $multipage Boolean indicator for whether multiple pages are in play.
  *
  * @param string $more_link_text Optional. Content for when there is more text.
@@ -92796,9 +93610,9 @@ function get_the_excerpt($post = \null)
 }
 /**
  * Determines whether the post has a custom excerpt.
- * 
+ *
  * For more information on this and similar theme functions, check out
- * the {@link https://developer.wordpress.org/themes/basics/conditional-tags/ 
+ * the {@link https://developer.wordpress.org/themes/basics/conditional-tags/
  * Conditional Tags} article in the Theme Developer Handbook.
  *
  * @since 2.3.0
@@ -92810,7 +93624,7 @@ function has_excerpt($post = 0)
 {
 }
 /**
- * Display the classes for the post div.
+ * Displays the classes for the post container element.
  *
  * @since 2.7.0
  *
@@ -92821,7 +93635,7 @@ function post_class($class = '', $post_id = \null)
 {
 }
 /**
- * Retrieves the classes for the post div as an array.
+ * Retrieves an array of the class names for the post container element.
  *
  * The class names are many. If the post is a sticky, then the 'sticky'
  * class name. The class 'hentry' is always added to each post. If the post has a
@@ -92830,39 +93644,39 @@ function post_class($class = '', $post_id = \null)
  * eg 'category-foo' or 'my_custom_taxonomy-bar'.
  *
  * The 'post_tag' taxonomy is a special
- * case; the class has the 'tag-' prefix instead of 'post_tag-'. All classes are
- * passed through the filter, {@see 'post_class'}, with the list of classes, followed by
+ * case; the class has the 'tag-' prefix instead of 'post_tag-'. All class names are
+ * passed through the filter, {@see 'post_class'}, with the list of class names, followed by
  * $class parameter value, with the post ID as the last parameter.
  *
  * @since 2.7.0
- * @since 4.2.0 Custom taxonomy classes were added.
+ * @since 4.2.0 Custom taxonomy class names were added.
  *
- * @param string|array $class   One or more classes to add to the class list.
- * @param int|WP_Post  $post_id Optional. Post ID or post object.
- * @return array Array of classes.
+ * @param string|string[] $class   Space-separated string or array of class names to add to the class list.
+ * @param int|WP_Post     $post_id Optional. Post ID or post object.
+ * @return string[] Array of class names.
  */
 function get_post_class($class = '', $post_id = \null)
 {
 }
 /**
- * Display the classes for the body element.
+ * Displays the class names for the body element.
  *
  * @since 2.8.0
  *
- * @param string|array $class One or more classes to add to the class list.
+ * @param string|string[] $class Space-separated string or array of class names to add to the class list.
  */
 function body_class($class = '')
 {
 }
 /**
- * Retrieve the classes for the body element as an array.
+ * Retrieves an array of the class names for the body element.
  *
  * @since 2.8.0
  *
  * @global WP_Query $wp_query
  *
- * @param string|array $class One or more classes to add to the class list.
- * @return array Array of classes.
+ * @param string|string[] $class Space-separated string or array of class names to add to the class list.
+ * @return string[] Array of class names.
  */
 function get_body_class($class = '')
 {
@@ -92884,10 +93698,11 @@ function post_password_required($post = \null)
 /**
  * The formatted output of a list of pages.
  *
- * Displays page links for paginated posts (i.e. includes the <!--nextpage-->.
+ * Displays page links for paginated posts (i.e. including the `<!--nextpage-->`
  * Quicktag one or more times). This tag must be within The Loop.
  *
  * @since 1.2.0
+ * @since 5.1.0 Added the `aria_current` argument.
  *
  * @global int $page
  * @global int $numpages
@@ -92903,6 +93718,8 @@ function post_password_required($post = \null)
  *                                          Also prepended to the current item, which is not linked. Default empty.
  *     @type string       $link_after       HTML or text to append to each Pages link inside the `<a>` tag.
  *                                          Also appended to the current item, which is not linked. Default empty.
+ *     @type string       $aria_current     The value for the aria-current attribute. Possible values are 'page',
+ *                                          'step', 'location', 'date', 'time', 'true', 'false'. Default is 'page'.
  *     @type string       $next_or_number   Indicates whether page numbers should be used. Valid values are number
  *                                          and next. Default is 'number'.
  *     @type string       $separator        Text between pagination links. Default is ' '.
@@ -92919,6 +93736,7 @@ function post_password_required($post = \null)
  *   after?: string,
  *   link_before?: string,
  *   link_after?: string,
+ *   aria_current?: string,
  *   next_or_number?: string,
  *   separator?: string,
  *   nextpagelink?: string,
@@ -92959,7 +93777,7 @@ function post_custom($key = '')
 {
 }
 /**
- * Display list of post custom fields.
+ * Display a list of post custom fields.
  *
  * @since 1.2.0
  *
@@ -92972,14 +93790,16 @@ function the_meta()
 // Pages
 //
 /**
- * Retrieve or display list of pages as a dropdown (select list).
+ * Retrieve or display a list of pages as a dropdown (select list).
  *
  * @since 2.1.0
  * @since 4.2.0 The `$value_field` argument was added.
  * @since 4.3.0 The `$class` argument was added.
  *
+ * @see get_pages()
+ *
  * @param array|string $args {
- *     Optional. Array or string of arguments to generate a pages drop-down element.
+ *     Optional. Array or string of arguments to generate a page dropdown. See `get_pages()` for additional arguments.
  *
  *     @type int          $depth                 Maximum depth. Default 0.
  *     @type int          $child_of              Page ID to retrieve child pages of. Default 0.
@@ -93016,7 +93836,7 @@ function wp_dropdown_pages($args = '')
 {
 }
 /**
- * Retrieve or display list of pages (or hierarchical post type items) in list (li) format.
+ * Retrieve or display a list of pages (or hierarchical post type items) in list (li) format.
  *
  * @since 1.5.0
  * @since 4.7.0 Added the `item_spacing` argument.
@@ -93026,7 +93846,7 @@ function wp_dropdown_pages($args = '')
  * @global WP_Query $wp_query
  *
  * @param array|string $args {
- *     Array or string of arguments. Optional.
+ *     Optional. Array or string of arguments to generate a list of pages. See `get_pages()` for additional arguments.
  *
  *     @type int          $child_of     Display only the sub-pages of a single page by ID. Default 0 (all pages).
  *     @type string       $authors      Comma-separated list of author IDs. Default empty (all authors).
@@ -93079,7 +93899,7 @@ function wp_list_pages($args = '')
 /**
  * Displays or retrieves a list of pages with an optional home link.
  *
- * The arguments are listed below and part of the arguments are for wp_list_pages()} function.
+ * The arguments are listed below and part of the arguments are for wp_list_pages() function.
  * Check that function for more info on those arguments.
  *
  * @since 2.7.0
@@ -93087,7 +93907,7 @@ function wp_list_pages($args = '')
  * @since 4.7.0 Added the `item_spacing` argument.
  *
  * @param array|string $args {
- *     Optional. Arguments to generate a page menu. See wp_list_pages() for additional arguments.
+ *     Optional. Array or string of arguments to generate a page menu. See `wp_list_pages()` for additional arguments.
  *
  *     @type string          $sort_column  How to sort the list of pages. Accepts post column names.
  *                                         Default 'menu_order, post_title'.
@@ -93102,7 +93922,8 @@ function wp_list_pages($args = '')
  *     @type string          $link_after   The HTML or text to append to $show_home text. Default empty.
  *     @type string          $before       The HTML or text to prepend to the menu. Default is '<ul>'.
  *     @type string          $after        The HTML or text to append to the menu. Default is '</ul>'.
- *     @type string          $item_spacing Whether to preserve whitespace within the menu's HTML. Accepts 'preserve' or 'discard'. Default 'discard'.
+ *     @type string          $item_spacing Whether to preserve whitespace within the menu's HTML. Accepts 'preserve'
+ *                                         or 'discard'. Default 'discard'.
  *     @type Walker          $walker       Walker instance to use for listing pages. Default empty (Walker_Page).
  * }
  * @return string|void HTML menu
@@ -93117,22 +93938,6 @@ function wp_list_pages($args = '')
  *   link_after?: string,
  *   before?: string,
  *   after?: string,
- *   item_spacing?: string,
- *   walker?: Walker,
- *   child_of?: int,
- *   authors?: string,
- *   date_format?: string,
- *   depth?: int,
- *   echo?: bool,
- *   exclude?: string,
- *   include?: array,
- *   link_after?: string,
- *   link_before?: string,
- *   post_type?: string,
- *   post_status?: string|array,
- *   show_date?: string,
- *   sort_column?: string,
- *   title_li?: string,
  *   item_spacing?: string,
  *   walker?: Walker,
  * } $args
@@ -93237,11 +94042,11 @@ function get_the_password_form($post = 0)
  * This template tag allows you to determine if you are in a page template.
  * You can optionally provide a template name or array of template names
  * and then the check will be specific to that template.
- * 
+ *
  * For more information on this and similar theme functions, check out
- * the {@link https://developer.wordpress.org/themes/basics/conditional-tags/ 
+ * the {@link https://developer.wordpress.org/themes/basics/conditional-tags/
  * Conditional Tags} article in the Theme Developer Handbook.
- * 
+ *
  * @since 2.5.0
  * @since 4.2.0 The `$template` parameter was changed to also accept an array of page templates.
  * @since 4.7.0 Now works with any post type, not just pages.
@@ -93260,7 +94065,7 @@ function is_page_template($template = '')
  *
  * @param int|WP_Post $post Optional. Post ID or WP_Post object. Default is global $post.
  * @return string|false Page template filename. Returns an empty string when the default page template
- * 	is in use. Returns false if the post does not exist.
+ *  is in use. Returns false if the post does not exist.
  */
 function get_page_template_slug($post = \null)
 {
@@ -93290,7 +94095,7 @@ function wp_post_revision_title_expanded($revision, $link = \true)
 {
 }
 /**
- * Display list of a post's revisions.
+ * Display a list of a post's revisions.
  *
  * Can output either a UL with edit links or a TABLE with diff interface, and
  * restore action links.
@@ -93314,9 +94119,9 @@ function wp_list_post_revisions($post_id = 0, $type = 'all')
  */
 /**
  * Determines whether a post has an image attached.
- * 
+ *
  * For more information on this and similar theme functions, check out
- * the {@link https://developer.wordpress.org/themes/basics/conditional-tags/ 
+ * the {@link https://developer.wordpress.org/themes/basics/conditional-tags/
  * Conditional Tags} article in the Theme Developer Handbook.
  *
  * @since 2.9.0
@@ -93504,6 +94309,7 @@ function update_attached_file($attachment_id, $file)
  * The path is relative to the current upload dir.
  *
  * @since 2.9.0
+ * @access private
  *
  * @param string $path Full path to the file.
  * @return string Relative path on success, unchanged path on failure.
@@ -93632,7 +94438,7 @@ function get_post_ancestors($post)
  * @see sanitize_post_field()
  *
  * @param string      $field   Post field name.
- * @param int|WP_Post $post    Optional. Post ID or post object. Defaults to current post.
+ * @param int|WP_Post $post    Optional. Post ID or post object. Defaults to global $post.
  * @param string      $context Optional. How to filter the field. Accepts 'raw', 'edit', 'db',
  *                             or 'display'. Default 'display'.
  * @return string The value of the post field on success, empty string on failure.
@@ -93648,24 +94454,24 @@ function get_post_field($field, $post = \null, $context = 'display')
  *
  * @since 2.0.0
  *
- * @param int|WP_Post $ID Optional. Post ID or post object. Default empty.
+ * @param int|WP_Post $post Optional. Post ID or post object. Defaults to global $post.
  * @return string|false The mime type on success, false on failure.
  */
-function get_post_mime_type($ID = '')
+function get_post_mime_type($post = \null)
 {
 }
 /**
- * Retrieve the post status based on the Post ID.
+ * Retrieve the post status based on the post ID.
  *
  * If the post ID is of an attachment, then the parent post status will be given
  * instead.
  *
  * @since 2.0.0
  *
- * @param int|WP_Post $ID Optional. Post ID or post object. Default empty.
+ * @param int|WP_Post $post Optional. Post ID or post object. Defaults to global $post..
  * @return string|false Post status on success, false on failure.
  */
-function get_post_status($ID = '')
+function get_post_status($post = \null)
 {
 }
 /**
@@ -93698,6 +94504,7 @@ function get_page_statuses()
  * Return statuses for privacy requests.
  *
  * @since 4.9.6
+ * @access private
  *
  * @return array
  */
@@ -93846,7 +94653,7 @@ function get_post_type($post = \null)
  * Retrieves a post type object by name.
  *
  * @since 3.0.0
- * @since 4.6.0 Object returned is now an instance of WP_Post_Type.
+ * @since 4.6.0 Object returned is now an instance of `WP_Post_Type`.
  *
  * @global array $wp_post_types List of post types.
  *
@@ -93874,7 +94681,7 @@ function get_post_type_object($post_type)
  * @param string       $operator Optional. The logical operation to perform. 'or' means only one
  *                               element from the array needs to match; 'and' means all elements
  *                               must match; 'not' means no elements may match. Default 'and'.
- * @return array A list of post type names or objects.
+ * @return string[]|WP_Post_Type[] An array of post type names or objects.
  * @phpstan-return ($output is 'names' ? array<int, string> : array<int, \WP_Post_Type>)
  */
 function get_post_types($args = array(), $output = 'names', $operator = 'and')
@@ -93898,8 +94705,8 @@ function get_post_types($args = array(), $output = 'names', $operator = 'and')
  * @since 3.0.0 The `show_ui` argument is now enforced on the new post screen.
  * @since 4.4.0 The `show_ui` argument is now enforced on the post type listing
  *              screen and post editing screen.
- * @since 4.6.0 Post type object returned is now an instance of WP_Post_Type.
- * @since 4.7.0 Introduced `show_in_rest`, 'rest_base' and 'rest_controller_class'
+ * @since 4.6.0 Post type object returned is now an instance of `WP_Post_Type`.
+ * @since 4.7.0 Introduced `show_in_rest`, `rest_base` and `rest_controller_class`
  *              arguments to register the post type in REST API.
  *
  * @global array $wp_post_types List of post types.
@@ -94199,7 +95006,7 @@ function _post_type_meta_capabilities($capabilities = \null)
  *              and `use_featured_image` labels.
  * @since 4.4.0 Added the `archives`, `insert_into_item`, `uploaded_to_this_item`, `filter_items_list`,
  *              `items_list_navigation`, and `items_list` labels.
- * @since 4.6.0 Converted the `$post_type` parameter to accept a WP_Post_Type object.
+ * @since 4.6.0 Converted the `$post_type` parameter to accept a `WP_Post_Type` object.
  * @since 4.7.0 Added the `view_items` and `attributes` labels.
  * @since 5.0.0 Added the `item_published`, `item_published_privately`, `item_reverted_to_draft`,
  *              `item_scheduled`, and `item_updated` labels.
@@ -94340,7 +95147,8 @@ function set_post_type($post_id = 0, $post_type = 'post')
  *
  * @since 4.4.0
  * @since 4.5.0 Added the ability to pass a post type name in addition to object.
- * @since 4.6.0 Converted the `$post_type` parameter to accept a WP_Post_Type object.
+ * @since 4.6.0 Converted the `$post_type` parameter to accept a `WP_Post_Type` object.
+ * @since 5.9.0 Added `is_post_type_viewable` hook to filter the result.
  *
  * @param string|WP_Post_Type $post_type Post type name or object.
  * @return bool Whether the post type should be considered viewable.
@@ -94378,7 +95186,7 @@ function is_post_publicly_viewable($post = \null)
 {
 }
 /**
- * Retrieve list of latest posts or posts matching criteria.
+ * Retrieves an array of the latest posts, or posts matching the given criteria.
  *
  * The defaults are as follows:
  *
@@ -94399,7 +95207,7 @@ function is_post_publicly_viewable($post = \null)
  *     @type array      $exclude          An array of post IDs not to retrieve. Default empty array.
  *     @type bool       $suppress_filters Whether to suppress filters. Default true.
  * }
- * @return array List of posts.
+ * @return WP_Post[]|int[] Array of post objects or post IDs.
  * @phpstan-param array{
  *   numberposts?: int,
  *   category?: int|string,
@@ -94428,6 +95236,7 @@ function is_post_publicly_viewable($post = \null)
  *   ignore_sticky_posts?: int|bool,
  *   m?: int,
  *   meta_compare?: string,
+ *   meta_compare_key?: string,
  *   meta_key?: string,
  *   meta_query?: array,
  *   meta_value?: string,
@@ -94485,7 +95294,7 @@ function get_posts($args = \null)
 // Post meta functions
 //
 /**
- * Add meta data field to a post.
+ * Adds a meta field to the given post.
  *
  * Post meta data is called "Custom Fields" on the Administration Screen.
  *
@@ -94502,11 +95311,11 @@ function add_post_meta($post_id, $meta_key, $meta_value, $unique = \false)
 {
 }
 /**
- * Remove metadata matching criteria from a post.
+ * Deletes a post meta field for the given post ID.
  *
  * You can match based on the key, or key and value. Removing based on key and
  * value, will keep from removing duplicate metadata with the same key. It also
- * allows removing all metadata matching key, if needed.
+ * allows removing all metadata matching the key, if needed.
  *
  * @since 1.5.0
  *
@@ -94520,43 +95329,45 @@ function delete_post_meta($post_id, $meta_key, $meta_value = '')
 {
 }
 /**
- * Retrieve post meta field for a post.
+ * Retrieves a post meta field for the given post ID.
  *
  * @since 1.5.0
  *
  * @param int    $post_id Post ID.
  * @param string $key     Optional. The meta key to retrieve. By default, returns
  *                        data for all keys. Default empty.
- * @param bool   $single  Optional. Whether to return a single value. Default false.
- * @return mixed Will be an array if $single is false. Will be value of meta data
+ * @param bool   $single  Optional. If true, returns only the first value for the specified meta key.
+ *                        This parameter has no effect if $key is not specified. Default false.
+ * @return mixed Will be an array if $single is false. Will be value of the meta
  *               field if $single is true.
  */
 function get_post_meta($post_id, $key = '', $single = \false)
 {
 }
 /**
- * Update post meta field based on post ID.
+ * Updates a post meta field based on the given post ID.
  *
- * Use the $prev_value parameter to differentiate between meta fields with the
+ * Use the `$prev_value` parameter to differentiate between meta fields with the
  * same key and post ID.
  *
- * If the meta field for the post does not exist, it will be added.
+ * If the meta field for the post does not exist, it will be added and its ID returned.
+ *
+ * Can be used in place of add_post_meta().
  *
  * @since 1.5.0
  *
  * @param int    $post_id    Post ID.
  * @param string $meta_key   Metadata key.
  * @param mixed  $meta_value Metadata value. Must be serializable if non-scalar.
- * @param mixed  $prev_value Optional. Previous value to check before removing.
- *                           Default empty.
- * @return int|bool Meta ID if the key didn't exist, true on successful update,
- *                  false on failure.
+ * @param mixed  $prev_value Optional. Previous value to check before updating.
+ * @return int|bool The new meta field ID if a field with the given key didn't exist and was
+ *                  therefore added, true on successful update, false on failure.
  */
 function update_post_meta($post_id, $meta_key, $meta_value, $prev_value = '')
 {
 }
 /**
- * Delete everything from post meta matching meta key.
+ * Deletes everything from post meta matching the given meta key.
  *
  * @since 2.3.0
  *
@@ -94726,6 +95537,7 @@ function unstick_post($post_id)
  * Return the cache key for wp_count_posts() based on the passed arguments.
  *
  * @since 3.9.0
+ * @access private
  *
  * @param string $type Optional. Post type to retrieve count Default 'post'.
  * @param string $perm Optional. 'readable' or empty. Default empty.
@@ -95135,7 +95947,7 @@ function wp_get_recent_posts($args = array(), $output = \ARRAY_A)
  *     @type int    $menu_order            The order the post should be displayed in. Default 0.
  *     @type string $post_mime_type        The mime type of the post. Default empty.
  *     @type string $guid                  Global Unique ID for referencing the post. Default empty.
- *     @type array  $post_category         Array of category names, slugs, or IDs.
+ *     @type array  $post_category         Array of category IDs.
  *                                         Defaults to value of the 'default_category' option.
  *     @type array  $tags_input            Array of tag names, slugs, or IDs. Default empty.
  *     @type array  $tax_input             Array of taxonomy terms keyed by their taxonomy name. Default empty.
@@ -95292,7 +96104,9 @@ function wp_set_post_tags($post_id = 0, $tags = '', $append = \false)
  *
  * @param int          $post_id  Optional. The Post ID. Does not default to the ID of the global $post.
  * @param string|array $tags     Optional. An array of terms to set for the post, or a string of terms
- *                               separated by commas. Default empty.
+ *                               separated by commas. Hierarchical taxonomies must always pass IDs rather
+ *                               than names so that children with the same names but different parents
+ *                               aren't confused. Default empty.
  * @param string       $taxonomy Optional. Taxonomy name. Default 'post_tag'.
  * @param bool         $append   Optional. If true, don't delete existing terms, just add on. If false,
  *                               replace the terms with the new terms. Default false.
@@ -95311,10 +96125,10 @@ function wp_set_post_terms($post_id = 0, $tags = '', $taxonomy = 'post_tag', $ap
  *
  * @param int       $post_ID         Optional. The Post ID. Does not default to the ID
  *                                   of the global $post. Default 0.
- * @param array|int $post_categories Optional. List of categories or ID of category.
+ * @param array|int $post_categories Optional. List of category IDs, or the ID of a single category.
  *                                   Default empty array.
- * @param bool      $append         If true, don't delete existing categories, just add on.
- *                                  If false, replace the categories with the new categories.
+ * @param bool      $append          If true, don't delete existing categories, just add on.
+ *                                   If false, replace the categories with the new categories.
  * @return array|false|WP_Error Array of term taxonomy IDs of affected categories. WP_Error or false on failure.
  */
 function wp_set_post_categories($post_ID = 0, $post_categories = array(), $append = \false)
@@ -95351,8 +96165,8 @@ function wp_transition_post_status($new_status, $old_status, $post)
  * Add a URL to those already pinged.
  *
  * @since 1.5.0
- * @since 4.7.0 $post_id can be a WP_Post object.
- * @since 4.7.0 $uri can be an array of URIs.
+ * @since 4.7.0 `$post_id` can be a WP_Post object.
+ * @since 4.7.0 `$uri` can be an array of URIs.
  *
  * @global wpdb $wpdb WordPress database abstraction object.
  *
@@ -95379,10 +96193,10 @@ function get_enclosed($post_id)
  *
  * @since 1.5.0
  *
- * @since 4.7.0 $post_id can be a WP_Post object.
+ * @since 4.7.0 `$post_id` can be a WP_Post object.
  *
  * @param int|WP_Post $post_id Post ID or object.
- * @return array
+ * @return bool|string[] Array of URLs already pinged for the given post, false if the post is not found.
  */
 function get_pung($post_id)
 {
@@ -95391,7 +96205,7 @@ function get_pung($post_id)
  * Retrieve URLs that need to be pinged.
  *
  * @since 1.5.0
- * @since 4.7.0 $post_id can be a WP_Post object.
+ * @since 4.7.0 `$post_id` can be a WP_Post object.
  *
  * @param int|WP_Post $post_id Post Object or ID
  * @return array
@@ -95511,6 +96325,7 @@ function get_page_hierarchy(&$pages, $page_id = 0)
  * $children contains parent-children relations
  *
  * @since 2.9.0
+ * @access private
  *
  * @see _page_traverse_name()
  *
@@ -96053,15 +96868,14 @@ function _publish_post_hook($post_id)
 {
 }
 /**
- * Return the post's parent's post_ID
+ * Returns the ID of the post's parent.
  *
  * @since 3.1.0
  *
- * @param int $post_ID
- *
- * @return int|false Post parent ID, otherwise false.
+ * @param int|WP_Post $post Post ID or post object. Defaults to global $post.
+ * @return int|false Post parent ID (which can be 0 if there is no parent), or false if the post does not exist.
  */
-function wp_get_post_parent_id($post_ID)
+function wp_get_post_parent_id($post)
 {
 }
 /**
@@ -96082,7 +96896,7 @@ function wp_check_post_hierarchy_for_loops($post_parent, $post_ID)
 {
 }
 /**
- * Set a post thumbnail.
+ * Sets the post thumbnail (featured image) for the given post.
  *
  * @since 3.1.0
  *
@@ -96094,11 +96908,11 @@ function set_post_thumbnail($post, $thumbnail_id)
 {
 }
 /**
- * Remove a post thumbnail.
+ * Removes the thumbnail (featured image) from the given post.
  *
  * @since 3.3.0
  *
- * @param int|WP_Post $post Post ID or post object where thumbnail should be removed from.
+ * @param int|WP_Post $post Post ID or post object from which the thumbnail should be removed.
  * @return bool True on success, false on failure.
  */
 function delete_post_thumbnail($post)
@@ -96320,11 +97134,11 @@ function wp_reset_postdata()
  * Determines whether the query is for an existing archive page.
  *
  * Month, Year, Category, Author, Post Type archive...
- * 
+ *
  * For more information on this and similar theme functions, check out
- * the {@link https://developer.wordpress.org/themes/basics/conditional-tags/ 
+ * the {@link https://developer.wordpress.org/themes/basics/conditional-tags/
  * Conditional Tags} article in the Theme Developer Handbook.
- * 
+ *
  * @since 1.5.0
  *
  * @global WP_Query $wp_query Global WP_Query instance.
@@ -96336,11 +97150,11 @@ function is_archive()
 }
 /**
  * Determines whether the query is for an existing post type archive page.
- * 
+ *
  * For more information on this and similar theme functions, check out
- * the {@link https://developer.wordpress.org/themes/basics/conditional-tags/ 
+ * the {@link https://developer.wordpress.org/themes/basics/conditional-tags/
  * Conditional Tags} article in the Theme Developer Handbook.
- * 
+ *
  * @since 3.1.0
  *
  * @global WP_Query $wp_query Global WP_Query instance.
@@ -96353,11 +97167,11 @@ function is_post_type_archive($post_types = '')
 }
 /**
  * Determines whether the query is for an existing attachment page.
- * 
+ *
  * For more information on this and similar theme functions, check out
- * the {@link https://developer.wordpress.org/themes/basics/conditional-tags/ 
+ * the {@link https://developer.wordpress.org/themes/basics/conditional-tags/
  * Conditional Tags} article in the Theme Developer Handbook.
- * 
+ *
  * @since 2.0.0
  *
  * @global WP_Query $wp_query Global WP_Query instance.
@@ -96373,11 +97187,11 @@ function is_attachment($attachment = '')
  *
  * If the $author parameter is specified, this function will additionally
  * check if the query is for one of the authors specified.
- * 
+ *
  * For more information on this and similar theme functions, check out
- * the {@link https://developer.wordpress.org/themes/basics/conditional-tags/ 
+ * the {@link https://developer.wordpress.org/themes/basics/conditional-tags/
  * Conditional Tags} article in the Theme Developer Handbook.
- * 
+ *
  * @since 1.5.0
  *
  * @global WP_Query $wp_query Global WP_Query instance.
@@ -96393,11 +97207,11 @@ function is_author($author = '')
  *
  * If the $category parameter is specified, this function will additionally
  * check if the query is for one of the categories specified.
- * 
+ *
  * For more information on this and similar theme functions, check out
- * the {@link https://developer.wordpress.org/themes/basics/conditional-tags/ 
+ * the {@link https://developer.wordpress.org/themes/basics/conditional-tags/
  * Conditional Tags} article in the Theme Developer Handbook.
- * 
+ *
  * @since 1.5.0
  *
  * @global WP_Query $wp_query Global WP_Query instance.
@@ -96413,9 +97227,9 @@ function is_category($category = '')
  *
  * If the $tag parameter is specified, this function will additionally
  * check if the query is for one of the tags specified.
- * 
+ *
  * For more information on this and similar theme functions, check out
- * the {@link https://developer.wordpress.org/themes/basics/conditional-tags/ 
+ * the {@link https://developer.wordpress.org/themes/basics/conditional-tags/
  * Conditional Tags} article in the Theme Developer Handbook.
  *
  * @since 2.3.0
@@ -96437,9 +97251,9 @@ function is_tag($tag = '')
  * If the $term parameter is specified in addition to the $taxonomy parameter,
  * this function will additionally check if the query is for one of the terms
  * specified.
- * 
+ *
  * For more information on this and similar theme functions, check out
- * the {@link https://developer.wordpress.org/themes/basics/conditional-tags/ 
+ * the {@link https://developer.wordpress.org/themes/basics/conditional-tags/
  * Conditional Tags} article in the Theme Developer Handbook.
  *
  * @since 2.5.0
@@ -96455,11 +97269,11 @@ function is_tax($taxonomy = '', $term = '')
 }
 /**
  * Determines whether the query is for an existing date archive.
- * 
+ *
  * For more information on this and similar theme functions, check out
- * the {@link https://developer.wordpress.org/themes/basics/conditional-tags/ 
+ * the {@link https://developer.wordpress.org/themes/basics/conditional-tags/
  * Conditional Tags} article in the Theme Developer Handbook.
- * 
+ *
  * @since 1.5.0
  *
  * @global WP_Query $wp_query Global WP_Query instance.
@@ -96471,6 +97285,8 @@ function is_date()
 }
 /**
  * Determines whether the query is for an existing day archive.
+ *
+ * A conditional check to test whether the page is a date-based archive page displaying posts for the current day.
  *
  * For more information on this and similar theme functions, check out
  * the {@link https://developer.wordpress.org/themes/basics/conditional-tags/
@@ -96487,11 +97303,11 @@ function is_day()
 }
 /**
  * Determines whether the query is for a feed.
- * 
+ *
  * For more information on this and similar theme functions, check out
- * the {@link https://developer.wordpress.org/themes/basics/conditional-tags/ 
+ * the {@link https://developer.wordpress.org/themes/basics/conditional-tags/
  * Conditional Tags} article in the Theme Developer Handbook.
- * 
+ *
  * @since 1.5.0
  *
  * @global WP_Query $wp_query Global WP_Query instance.
@@ -96525,11 +97341,11 @@ function is_comment_feed()
  * true when viewing that page.
  *
  * Otherwise the same as @see is_home()
- * 
+ *
  * For more information on this and similar theme functions, check out
- * the {@link https://developer.wordpress.org/themes/basics/conditional-tags/ 
+ * the {@link https://developer.wordpress.org/themes/basics/conditional-tags/
  * Conditional Tags} article in the Theme Developer Handbook.
- * 
+ *
  * @since 2.5.0
  *
  * @global WP_Query $wp_query Global WP_Query instance.
@@ -96549,11 +97365,11 @@ function is_front_page()
  *
  * If a static page is set for the front page of the site, this function will return true only
  * on the page you set as the "Posts page".
- * 
+ *
  * For more information on this and similar theme functions, check out
- * the {@link https://developer.wordpress.org/themes/basics/conditional-tags/ 
+ * the {@link https://developer.wordpress.org/themes/basics/conditional-tags/
  * Conditional Tags} article in the Theme Developer Handbook.
- * 
+ *
  * @since 1.5.0
  *
  * @see is_front_page()
@@ -96566,11 +97382,11 @@ function is_home()
 }
 /**
  * Determines whether the query is for an existing month archive.
- * 
+ *
  * For more information on this and similar theme functions, check out
- * the {@link https://developer.wordpress.org/themes/basics/conditional-tags/ 
+ * the {@link https://developer.wordpress.org/themes/basics/conditional-tags/
  * Conditional Tags} article in the Theme Developer Handbook.
- * 
+ *
  * @since 1.5.0
  *
  * @global WP_Query $wp_query Global WP_Query instance.
@@ -96585,11 +97401,11 @@ function is_month()
  *
  * If the $page parameter is specified, this function will additionally
  * check if the query is for one of the pages specified.
- * 
+ *
  * For more information on this and similar theme functions, check out
- * the {@link https://developer.wordpress.org/themes/basics/conditional-tags/ 
+ * the {@link https://developer.wordpress.org/themes/basics/conditional-tags/
  * Conditional Tags} article in the Theme Developer Handbook.
- * 
+ *
  * @see is_single()
  * @see is_singular()
  *
@@ -96605,11 +97421,11 @@ function is_page($page = '')
 }
 /**
  * Determines whether the query is for paged results and not for the first page.
- * 
+ *
  * For more information on this and similar theme functions, check out
- * the {@link https://developer.wordpress.org/themes/basics/conditional-tags/ 
+ * the {@link https://developer.wordpress.org/themes/basics/conditional-tags/
  * Conditional Tags} article in the Theme Developer Handbook.
- * 
+ *
  * @since 1.5.0
  *
  * @global WP_Query $wp_query Global WP_Query instance.
@@ -96621,11 +97437,11 @@ function is_paged()
 }
 /**
  * Determines whether the query is for a post or page preview.
- * 
+ *
  * For more information on this and similar theme functions, check out
- * the {@link https://developer.wordpress.org/themes/basics/conditional-tags/ 
+ * the {@link https://developer.wordpress.org/themes/basics/conditional-tags/
  * Conditional Tags} article in the Theme Developer Handbook.
- * 
+ *
  * @since 2.0.0
  *
  * @global WP_Query $wp_query Global WP_Query instance.
@@ -96649,11 +97465,11 @@ function is_robots()
 }
 /**
  * Determines whether the query is for a search.
- * 
+ *
  * For more information on this and similar theme functions, check out
- * the {@link https://developer.wordpress.org/themes/basics/conditional-tags/ 
+ * the {@link https://developer.wordpress.org/themes/basics/conditional-tags/
  * Conditional Tags} article in the Theme Developer Handbook.
- * 
+ *
  * @since 1.5.0
  *
  * @global WP_Query $wp_query Global WP_Query instance.
@@ -96670,11 +97486,11 @@ function is_search()
  *
  * If the $post parameter is specified, this function will additionally
  * check if the query is for one of the Posts specified.
- * 
+ *
  * For more information on this and similar theme functions, check out
- * the {@link https://developer.wordpress.org/themes/basics/conditional-tags/ 
+ * the {@link https://developer.wordpress.org/themes/basics/conditional-tags/
  * Conditional Tags} article in the Theme Developer Handbook.
- * 
+ *
  * @see is_page()
  * @see is_singular()
  *
@@ -96694,11 +97510,11 @@ function is_single($post = '')
  *
  * If the $post_types parameter is specified, this function will additionally
  * check if the query is for one of the Posts Types specified.
- * 
+ *
  * For more information on this and similar theme functions, check out
- * the {@link https://developer.wordpress.org/themes/basics/conditional-tags/ 
+ * the {@link https://developer.wordpress.org/themes/basics/conditional-tags/
  * Conditional Tags} article in the Theme Developer Handbook.
- * 
+ *
  * @see is_page()
  * @see is_single()
  *
@@ -96714,9 +97530,9 @@ function is_singular($post_types = '')
 }
 /**
  * Determines whether the query is for a specific time.
- * 
+ *
  * For more information on this and similar theme functions, check out
- * the {@link https://developer.wordpress.org/themes/basics/conditional-tags/ 
+ * the {@link https://developer.wordpress.org/themes/basics/conditional-tags/
  * Conditional Tags} article in the Theme Developer Handbook.
  *
  * @since 1.5.0
@@ -96730,9 +97546,9 @@ function is_time()
 }
 /**
  * Determines whether the query is for a trackback endpoint call.
- * 
+ *
  * For more information on this and similar theme functions, check out
- * the {@link https://developer.wordpress.org/themes/basics/conditional-tags/ 
+ * the {@link https://developer.wordpress.org/themes/basics/conditional-tags/
  * Conditional Tags} article in the Theme Developer Handbook.
  *
  * @since 1.5.0
@@ -96746,9 +97562,9 @@ function is_trackback()
 }
 /**
  * Determines whether the query is for an existing year archive.
- * 
+ *
  * For more information on this and similar theme functions, check out
- * the {@link https://developer.wordpress.org/themes/basics/conditional-tags/ 
+ * the {@link https://developer.wordpress.org/themes/basics/conditional-tags/
  * Conditional Tags} article in the Theme Developer Handbook.
  *
  * @since 1.5.0
@@ -96762,11 +97578,11 @@ function is_year()
 }
 /**
  * Determines whether the query has resulted in a 404 (returns no results).
- * 
+ *
  * For more information on this and similar theme functions, check out
- * the {@link https://developer.wordpress.org/themes/basics/conditional-tags/ 
+ * the {@link https://developer.wordpress.org/themes/basics/conditional-tags/
  * Conditional Tags} article in the Theme Developer Handbook.
- * 
+ *
  * @since 1.5.0
  *
  * @global WP_Query $wp_query Global WP_Query instance.
@@ -96790,11 +97606,11 @@ function is_embed()
 }
 /**
  * Determines whether the query is the main query.
- * 
+ *
  * For more information on this and similar theme functions, check out
- * the {@link https://developer.wordpress.org/themes/basics/conditional-tags/ 
+ * the {@link https://developer.wordpress.org/themes/basics/conditional-tags/
  * Conditional Tags} article in the Theme Developer Handbook.
- * 
+ *
  * @since 3.3.0
  *
  * @global WP_Query $wp_query Global WP_Query instance.
@@ -96822,9 +97638,9 @@ function have_posts()
 }
 /**
  * Determines whether the caller is in the Loop.
- * 
+ *
  * For more information on this and similar theme functions, check out
- * the {@link https://developer.wordpress.org/themes/basics/conditional-tags/ 
+ * the {@link https://developer.wordpress.org/themes/basics/conditional-tags/
  * Conditional Tags} article in the Theme Developer Handbook.
  *
  * @since 2.0.0
@@ -96942,7 +97758,10 @@ function setup_postdata($post)
 /**
  * Registers a REST API route.
  *
+ * Note: Do not use before the {@see 'rest_api_init'} hook.
+ *
  * @since 4.4.0
+ * @since 5.1.0 Added a _doing_it_wrong() notice when not called on or after the rest_api_init hook.
  *
  * @param string $namespace The first URL segment after core prefix. Should be unique to your package/plugin.
  * @param string $route     The base URL for route you are adding.
@@ -97823,7 +98642,7 @@ function add_feed($feedname, $function)
  * @global WP_Rewrite $wp_rewrite
  *
  * @param bool $hard Whether to update .htaccess (hard flush) or just update
- * 	                 rewrite_rules transient (soft flush). Default is true (hard).
+ *                   rewrite_rules transient (soft flush). Default is true (hard).
  */
 function flush_rewrite_rules($hard = \true)
 {
@@ -98383,6 +99202,7 @@ function get_shortcode_regex($tagnames = \null)
 }
 /**
  * Regular Expression callable for do_shortcode() for calling shortcode hook.
+ *
  * @see get_shortcode_regex for details of the match array contents.
  *
  * @since 2.5.0
@@ -98534,7 +99354,7 @@ function create_initial_taxonomies()
  * @param string $operator Optional. The logical operation to perform. Accepts 'and' or 'or'. 'or' means only
  *                         one element from the array needs to match; 'and' means all elements must match.
  *                         Default 'and'.
- * @return array A list of taxonomy names or objects.
+ * @return string[]|WP_Taxonomy[] An array of taxonomy names or objects.
  * @phpstan-return ($output is 'names' ? array<int, string> : array<int, \WP_Taxonomy>)
  */
 function get_taxonomies($args = array(), $output = 'names', $operator = 'and')
@@ -98585,9 +99405,9 @@ function get_taxonomy($taxonomy)
  * Determines whether the taxonomy name exists.
  *
  * Formerly is_taxonomy(), introduced in 2.3.0.
- * 
+ *
  * For more information on this and similar theme functions, check out
- * the {@link https://developer.wordpress.org/themes/basics/conditional-tags/ 
+ * the {@link https://developer.wordpress.org/themes/basics/conditional-tags/
  * Conditional Tags} article in the Theme Developer Handbook.
  *
  * @since 3.0.0
@@ -98607,9 +99427,9 @@ function taxonomy_exists($taxonomy)
  * object, and finally returns the hierarchical value in the object.
  *
  * A false return value might also mean that the taxonomy does not exist.
- * 
+ *
  * For more information on this and similar theme functions, check out
- * the {@link https://developer.wordpress.org/themes/basics/conditional-tags/ 
+ * the {@link https://developer.wordpress.org/themes/basics/conditional-tags/
  * Conditional Tags} article in the Theme Developer Handbook.
  *
  * @since 2.3.0
@@ -98637,6 +99457,7 @@ function is_taxonomy_hierarchical($taxonomy)
  * @since 4.5.0 Introduced `publicly_queryable` argument.
  * @since 4.7.0 Introduced `show_in_rest`, 'rest_base' and 'rest_controller_class'
  *              arguments to register the Taxonomy in REST API.
+ * @since 5.1.0 Introduced `meta_box_sanitize_cb` argument.
  *
  * @global array $wp_taxonomies Registered taxonomies.
  *
@@ -98679,6 +99500,9 @@ function is_taxonomy_hierarchical($taxonomy)
  *                                                post_categories_meta_box() is used for hierarchical taxonomies, and
  *                                                post_tags_meta_box() is used for non-hierarchical. If false, no meta
  *                                                box is shown.
+ *     @type callable      $meta_box_sanitize_cb  Callback function for sanitizing taxonomy data saved from a meta
+ *                                                box. If no callback is defined, an appropriate one is determined
+ *                                                based on the value of `$meta_box_cb`.
  *     @type array         $capabilities {
  *         Array of capabilities for this taxonomy.
  *
@@ -98724,6 +99548,7 @@ function is_taxonomy_hierarchical($taxonomy)
  *   show_in_quick_edit?: bool,
  *   show_admin_column?: bool,
  *   meta_box_cb?: bool|callable,
+ *   meta_box_sanitize_cb?: callable,
  *   capabilities?: array{
  *     manage_terms?: string,
  *     edit_terms?: string,
@@ -98885,7 +99710,7 @@ function unregister_taxonomy_for_object_type($taxonomy, $object_type)
  * @param string|array $taxonomies String of taxonomy name or Array of string values of taxonomy names.
  * @param array|string $args       Change the order of the object_ids, either ASC or DESC.
  * @return WP_Error|array If the taxonomy does not exist, then WP_Error will be returned. On success.
- *	the array can be empty meaning that there are no $object_ids found or it will return the $object_ids found.
+ *  the array can be empty meaning that there are no $object_ids found or it will return the $object_ids found.
  * @phpstan-param array{order?: string} $args
  */
 function get_objects_in_term($term_ids, $taxonomies, $args = array())
@@ -99251,9 +100076,9 @@ function unregister_term_meta($taxonomy, $meta_key)
  * Determines whether a term exists.
  *
  * Formerly is_term(), introduced in 2.3.0.
- * 
+ *
  * For more information on this and similar theme functions, check out
- * the {@link https://developer.wordpress.org/themes/basics/conditional-tags/ 
+ * the {@link https://developer.wordpress.org/themes/basics/conditional-tags/
  * Conditional Tags} article in the Theme Developer Handbook.
  *
  * @since 3.0.0
@@ -99265,7 +100090,7 @@ function unregister_term_meta($taxonomy, $meta_key)
  * @param int        $parent   Optional. ID of parent term under which to confine the exists search.
  * @return mixed Returns null if the term does not exist. Returns the term ID
  *               if no taxonomy is specified and the term ID exists. Returns
- *               an array of the term ID and the term taxonomy ID the taxonomy
+ *               an array of the term ID and the term taxonomy ID if the taxonomy
  *               is specified and the pairing exists.
  * @phpstan-return ($term is 0 ? 0 : ($term is '' ? null : ($taxonomy is '' ? string|null : array{term_id: string, term_taxonomy_id: string}|null)))
  */
@@ -99407,7 +100232,7 @@ function wp_delete_term($term, $taxonomy, $args = array())
  *
  * @param int $cat_ID Category term ID.
  * @return bool|int|WP_Error Returns true if completes delete action; false if term doesn't exist;
- * 	Zero on attempted deletion of default Category; WP_Error object is also a possibility.
+ *  Zero on attempted deletion of default Category; WP_Error object is also a possibility.
  */
 function wp_delete_category($cat_ID)
 {
@@ -99732,7 +100557,7 @@ function clean_taxonomy_cache($taxonomy)
  * function only fetches relationship data that is already in the cache.
  *
  * @since 2.3.0
- * @since 4.7.0 Returns a WP_Error object if get_term() returns an error for
+ * @since 4.7.0 Returns a `WP_Error` object if `get_term()` returns an error for
  *              any of the matched terms.
  *
  * @param int    $id       Term object ID.
@@ -100161,6 +100986,17 @@ function wp_check_term_hierarchy_for_loops($parent, $term_id, $taxonomy)
 {
 }
 /**
+ * Determines whether a taxonomy is considered "viewable".
+ *
+ * @since 5.1.0
+ *
+ * @param string|WP_Taxonomy $taxonomy Taxonomy name or object.
+ * @return bool Whether the taxonomy should be considered viewable.
+ */
+function is_taxonomy_viewable($taxonomy)
+{
+}
+/**
  * Sets the last changed time for the 'terms' cache group.
  *
  * @since 5.0.0
@@ -100492,7 +101328,7 @@ function get_search_template()
  * @since 4.4.0 `single-{post_type}-{post_name}.php` was added to the top of the template hierarchy.
  * @since 4.7.0 The decoded form of `single-{post_type}-{post_name}.php` was added to the top of the
  *              template hierarchy when the post name contains multibyte characters.
- * @since 4.7.0 {Post Type Template}.php was added to the top of the template hierarchy.
+ * @since 4.7.0 `{Post Type Template}.php` was added to the top of the template hierarchy.
  *
  * @see get_query_template()
  *
@@ -100635,15 +101471,23 @@ function load_template($_template_file, $require_once = \true)
  * @global array $wp_theme_directories
  * @staticvar array $_themes
  *
- * @param array $args The search arguments. Optional.
- * - errors      mixed  True to return themes with errors, false to return themes without errors, null
- *                      to return all themes. Defaults to false.
- * - allowed     mixed  (Multisite) True to return only allowed themes for a site. False to return only
- *                      disallowed themes for a site. 'site' to return only site-allowed themes. 'network'
- *                      to return only network-allowed themes. Null to return all themes. Defaults to null.
- * - blog_id     int    (Multisite) The blog ID used to calculate which themes are allowed. Defaults to 0,
- *                      synonymous for the current blog.
- * @return array Array of WP_Theme objects.
+ * @param array $args {
+ *     Optional. The search arguments.
+ *
+ *     @type mixed $errors  True to return themes with errors, false to return themes without errors, null to return all themes.
+ *                          Defaults to false.
+ *     @type mixed $allowed (Multisite) True to return only allowed themes for a site. False to return only disallowed themes for a site.
+ *                          'site' to return only site-allowed themes. 'network' to return only network-allowed themes.
+ *                          Null to return all themes. Defaults to null.
+ *     @type int   $blog_id (Multisite) The blog ID used to calculate which themes are allowed.
+ *                          Defaults to 0, synonymous for the current blog.
+ * }
+ * @return WP_Theme[] Array of WP_Theme objects.
+ * @phpstan-param array{
+ *   errors?: mixed,
+ *   allowed?: mixed,
+ *   blog_id?: int,
+ * } $args
  */
 function wp_get_themes($args = array())
 {
@@ -100657,7 +101501,7 @@ function wp_get_themes($args = array())
  *
  * @param string $stylesheet Directory name for the theme. Optional. Defaults to current theme.
  * @param string $theme_root Absolute path of the theme root to look in. Optional. If not specified, get_raw_theme_root()
- * 	                         is used to calculate the theme root for the $stylesheet provided (or current theme).
+ *                           is used to calculate the theme root for the $stylesheet provided (or current theme).
  * @return WP_Theme Theme object. Be sure to check the object's exists() method if you need to confirm the theme's existence.
  */
 function wp_get_theme($stylesheet = \null, $theme_root = \null)
@@ -100678,7 +101522,7 @@ function wp_clean_themes_cache($clear_update_cache = \true)
  * @since 3.0.0
  *
  * @return bool true if a child theme is in use, false otherwise.
- **/
+ */
 function is_child_theme()
 {
 }
@@ -100849,9 +101693,9 @@ function get_theme_root($stylesheet_or_template = \false)
  * @global array $wp_theme_directories
  *
  * @param string $stylesheet_or_template Optional. The stylesheet or template name of the theme.
- * 	                                     Default is to leverage the main theme root.
+ *                                       Default is to leverage the main theme root.
  * @param string $theme_root             Optional. The theme root for which calculations will be based, preventing
- * 	                                     the need for a get_raw_theme_root() call.
+ *                                       the need for a get_raw_theme_root() call.
  * @return string Themes URI.
  */
 function get_theme_root_uri($stylesheet_or_template = \false, $theme_root = \false)
@@ -100937,7 +101781,7 @@ function get_theme_mods()
  *
  * @param string      $name    Theme modification name.
  * @param bool|string $default
- * @return string
+ * @return mixed
  */
 function get_theme_mod($name, $default = \false)
 {
@@ -101347,7 +102191,7 @@ function wp_update_custom_css_post($css, $args = array())
  * @global array $editor_styles
  *
  * @param array|string $stylesheet Optional. Stylesheet name or array thereof, relative to theme root.
- * 	                               Defaults to 'editor-style.css'
+ *                                 Defaults to 'editor-style.css'
  */
 function add_editor_style($stylesheet = 'editor-style.css')
 {
@@ -101591,7 +102435,7 @@ function _wp_customize_loader_settings()
  * @since 3.4.0
  *
  * @param string $stylesheet Optional. Theme to customize. Defaults to current theme.
- * 	                         The theme's stylesheet will be urlencoded if necessary.
+ *                           The theme's stylesheet will be urlencoded if necessary.
  * @return string
  */
 function wp_customize_url($stylesheet = \null)
@@ -101724,7 +102568,7 @@ function wp_maybe_auto_update()
  *
  * @since 3.7.0
  *
- * @return array
+ * @return object[] Array of translation objects that have available updates.
  */
 function wp_get_translation_updates()
 {
@@ -102053,7 +102897,7 @@ function get_users($args = array())
  * Get the sites a user belongs to.
  *
  * @since 3.0.0
- * @since 4.7.0 Converted to use get_sites().
+ * @since 4.7.0 Converted to use `get_sites()`.
  *
  * @global wpdb $wpdb WordPress database abstraction object.
  *
@@ -102186,9 +103030,9 @@ function count_users($strategy = 'time', $site_id = \null)
  * @global string  $user_url      The url in the user's profile
  * @global string  $user_identity The display name of the user
  *
- * @param int $for_user_id Optional. User ID to set up global data.
+ * @param int $for_user_id Optional. User ID to set up global data. Default 0.
  */
-function setup_userdata($for_user_id = '')
+function setup_userdata($for_user_id = 0)
 {
 }
 /**
@@ -102349,9 +103193,9 @@ function clean_user_cache($user)
 }
 /**
  * Determines whether the given username exists.
- * 
+ *
  * For more information on this and similar theme functions, check out
- * the {@link https://developer.wordpress.org/themes/basics/conditional-tags/ 
+ * the {@link https://developer.wordpress.org/themes/basics/conditional-tags/
  * Conditional Tags} article in the Theme Developer Handbook.
  *
  * @since 2.0.0
@@ -102364,9 +103208,9 @@ function username_exists($username)
 }
 /**
  * Determines whether the given email exists.
- * 
+ *
  * For more information on this and similar theme functions, check out
- * the {@link https://developer.wordpress.org/themes/basics/conditional-tags/ 
+ * the {@link https://developer.wordpress.org/themes/basics/conditional-tags/
  * Conditional Tags} article in the Theme Developer Handbook.
  *
  * @since 2.1.0
@@ -102481,7 +103325,7 @@ function wp_insert_user($userdata)
  *
  * @see wp_insert_user() For what fields can be set in $userdata.
  *
- * @param object|WP_User $userdata An array of user data or a user object of type stdClass or WP_User.
+ * @param array|object|WP_User $userdata An array of user data or a user object of type stdClass or WP_User.
  * @return int|WP_Error The updated user's ID or a WP_Error object if the user could not be updated.
  */
 function wp_update_user($userdata)
@@ -102716,7 +103560,6 @@ function _wp_get_current_user()
  * @since 4.9.0 This function was moved from wp-admin/includes/ms.php so it's no longer Multisite specific.
  *
  * @global WP_Error $errors WP_Error object.
- * @global wpdb     $wpdb   WordPress database object.
  */
 function send_confirmation_on_profile_email()
 {
@@ -102849,7 +103692,7 @@ function wp_user_request_action_description($action_name)
  * @since 4.9.6
  *
  * @param string $request_id ID of the request created via wp_create_user_request().
- * @return WP_Error|bool Will return true/false based on the success of sending the email, or a WP_Error object.
+ * @return bool|WP_Error True on success, `WP_Error` on failure.
  */
 function wp_send_user_request($request_id)
 {
@@ -102892,7 +103735,7 @@ function wp_get_user_request_data($request_id)
  * Test if the current browser runs on a mobile device (smart phone, tablet, etc.)
  *
  * @since 3.4.0
- * 
+ *
  * @return bool
  */
 function wp_is_mobile()
@@ -102949,7 +103792,7 @@ function unregister_widget($widget)
  *
  * @see register_sidebar() The second parameter is documented by register_sidebar() and is the same here.
  *
- * @global array $wp_registered_sidebars
+ * @global array $wp_registered_sidebars The new sidebars are stored in this array by sidebar ID.
  *
  * @param int          $number Optional. Number of sidebars to create. Default 1.
  * @param array|string $args {
@@ -103030,7 +103873,7 @@ function register_sidebar($args = array())
  *
  * @since 2.2.0
  *
- * @global array $wp_registered_sidebars Stores the new sidebar in this array by sidebar ID.
+ * @global array $wp_registered_sidebars Removes the sidebar from this array by sidebar ID.
  *
  * @param string|int $sidebar_id The ID of the sidebar when it was registered.
  */
@@ -103109,7 +103952,7 @@ function wp_widget_description($id)
  *
  * @since 2.9.0
  *
- * @global array $wp_registered_sidebars
+ * @global array $wp_registered_sidebars Registered sidebars.
  *
  * @param string $id sidebar ID.
  * @return string|void Sidebar description, if available.
@@ -103220,7 +104063,7 @@ function wp_unregister_widget_control($id)
  *
  * @since 2.2.0
  *
- * @global array $wp_registered_sidebars
+ * @global array $wp_registered_sidebars Registered sidebars.
  * @global array $wp_registered_widgets
  *
  * @param int|string $index Optional, default is 1. Index, name or ID of dynamic sidebar.
@@ -103241,11 +104084,11 @@ function dynamic_sidebar($index = 1)
  *
  * NOTE: $widget_id and $id_base are the same for single widgets. To be effective
  * this function has to run after widgets have initialized, at action {@see 'init'} or later.
- * 
+ *
  * For more information on this and similar theme functions, check out
- * the {@link https://developer.wordpress.org/themes/basics/conditional-tags/ 
+ * the {@link https://developer.wordpress.org/themes/basics/conditional-tags/
  * Conditional Tags} article in the Theme Developer Handbook.
- * 
+ *
  * @since 2.2.0
  *
  * @global array $wp_registered_widgets
@@ -103261,15 +104104,15 @@ function is_active_widget($callback = \false, $widget_id = \false, $id_base = \f
 }
 /**
  * Determines whether the dynamic sidebar is enabled and used by the theme.
- * 
+ *
  * For more information on this and similar theme functions, check out
- * the {@link https://developer.wordpress.org/themes/basics/conditional-tags/ 
+ * the {@link https://developer.wordpress.org/themes/basics/conditional-tags/
  * Conditional Tags} article in the Theme Developer Handbook.
- * 
+ *
  * @since 2.2.0
  *
  * @global array $wp_registered_widgets
- * @global array $wp_registered_sidebars
+ * @global array $wp_registered_sidebars Registered sidebars.
  *
  * @return bool True, if using widgets. False, if not using widgets.
  */
@@ -103278,11 +104121,11 @@ function is_dynamic_sidebar()
 }
 /**
  * Determines whether a sidebar is in use.
- * 
+ *
  * For more information on this and similar theme functions, check out
- * the {@link https://developer.wordpress.org/themes/basics/conditional-tags/ 
+ * the {@link https://developer.wordpress.org/themes/basics/conditional-tags/
  * Conditional Tags} article in the Theme Developer Handbook.
- * 
+ *
  * @since 2.8.0
  *
  * @param string|int $index Sidebar name, id or number to check.
@@ -103330,7 +104173,7 @@ function wp_set_sidebars_widgets($sidebars_widgets)
  * @since 2.2.0
  * @access private
  *
- * @global array $wp_registered_sidebars
+ * @global array $wp_registered_sidebars Registered sidebars.
  *
  * @return array
  */
@@ -103410,7 +104253,7 @@ function _wp_sidebars_changed()
  *
  * @since 2.8.0
  *
- * @global array $wp_registered_sidebars
+ * @global array $wp_registered_sidebars Registered sidebars.
  * @global array $sidebars_widgets
  * @global array $wp_registered_widgets
  *
@@ -103506,6 +104349,8 @@ function wp_widgets_init()
 /**
  * Output the login page header.
  *
+ * @since 2.1.0
+ *
  * @param string   $title    Optional. WordPress login Page title to display in the `<title>` element.
  *                           Default 'Log In'.
  * @param string   $message  Optional. Message to display in header. Default empty.
@@ -103518,18 +104363,24 @@ function login_header($title = 'Log In', $message = '', $wp_error = \null)
 /**
  * Outputs the footer for the login page.
  *
- * @param string $input_id Which input to auto-focus
+ * @since 3.1.0
+ *
+ * @param string $input_id Which input to auto-focus.
  */
 function login_footer($input_id = '')
 {
 }
 /**
+ * Outputs the Javascript to handle the form shaking.
+ *
  * @since 3.0.0
  */
 function wp_shake_js()
 {
 }
 /**
+ * Outputs the viewport meta tag.
+ *
  * @since 3.7.0
  */
 function wp_login_viewport_meta()
@@ -103537,6 +104388,8 @@ function wp_login_viewport_meta()
 }
 /**
  * Handles sending password retrieval email to user.
+ *
+ * @since 2.5.0
  *
  * @return bool|WP_Error True: when finish. WP_Error on error
  */
@@ -103616,7 +104469,13 @@ function signup_another_blog($blogname = '', $blog_title = '', $errors = '')
 {
 }
 /**
- * Validate a new site signup.
+ * Validate a new site signup for an existing user.
+ *
+ * @global string          $blogname   The new site's subdomain or directory name.
+ * @global string          $blog_title The new site's title.
+ * @global WP_Error        $errors     Existing errors in the global scope.
+ * @global string          $domain     The new site's domain.
+ * @global string          $path       The new site's path.
  *
  * @since MU (3.0.0)
  *
