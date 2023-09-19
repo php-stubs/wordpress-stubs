@@ -7,4 +7,4 @@ parameters:
         - tests/data/
     level: 8
     featureToggles:
-        listType: false
+        listType: true
