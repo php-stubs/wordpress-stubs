@@ -6,3 +6,4 @@ parameters:
         - tests/
     excludePaths:
         - tests/data/
+    listType: false
