@@ -1,9 +1,10 @@
 parameters:
-    level: 8
     paths:
         - finder.php
         - visitor.php
         - tests/
     excludePaths:
         - tests/data/
-    listType: false
+    level: 8
+    featureToggles:
+        listType: false
