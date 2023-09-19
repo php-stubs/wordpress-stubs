@@ -89,6 +89,7 @@ return [
     'get_post_stati' => ["(\$output is 'names' ? array<string, string> : array<string, \stdClass>)"],
     'get_comment' => ["(\$output is 'ARRAY_A' ? array<string, mixed>|null : (\$output is 'ARRAY_N' ? array<int, mixed>|null : \WP_Comment|null))"],
     'get_post' => ["(\$output is 'ARRAY_A' ? array<string, mixed>|null : (\$output is 'ARRAY_N' ? array<int, mixed>|null : \WP_Post|null))"],
+    'get_term_by' => ["(\$output is 'ARRAY_A' ? array<string, string|int>|\WP_Error|false : (\$output is 'ARRAY_N' ? list<string|int>|\WP_Error|false : \WP_Term|\WP_Error|false))"],
     'get_page_by_path' => ["(\$output is 'ARRAY_A' ? array<string, mixed>|null : (\$output is 'ARRAY_N' ? array<int, mixed>|null : \WP_Post|null))"],
     'has_action' => ['($callback is false ? bool : false|int)'],
     'has_filter' => ['($callback is false ? bool : false|int)'],
