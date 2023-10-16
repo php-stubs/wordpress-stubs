@@ -43,7 +43,7 @@ abstract class WithChildren
             }
         }
 
-        return true;
+        return $this->hasChildren();
     }
 
     public function isMixedShape(): bool
@@ -59,6 +59,11 @@ abstract class WithChildren
         }
 
         return false;
+    }
+
+    public function hasChildren(): bool
+    {
+        return count($this->children) > 0;
     }
 }
 
@@ -89,6 +94,17 @@ final class WordPressTag extends WithChildren
      */
     public function format(): array
     {
+        if (! $this->hasChildren()) {
+            return [
+                sprintf(
+                    '%s %s%s',
+                    $this->tag,
+                    $this->type,
+                    ($this->name !== null) ? (' $' . $this->name) : ''
+                )
+            ];
+        }
+
         if ($this->isMixedShape()) {
             return [];
         }
@@ -566,15 +582,15 @@ return new class extends NodeVisitor {
             return [];
         }
 
-        $typeName = self::getTypeNameFromType($type);
-
-        if ($typeName === null) {
-            return [];
-        }
-
         $paramDescription = $param->getDescription();
 
         if ($paramDescription === null) {
+            return [];
+        }
+
+        $typeName = self::getTypeNameFromType($type);
+
+        if ($typeName === null) {
             return [];
         }
 
@@ -711,6 +727,17 @@ return new class extends NodeVisitor {
             return null;
         }
 
+        $tagDescriptionType = self::getTypeNameFromDescription($tagDescription, $tagVariableType);
+
+        if ($tagDescriptionType !== null) {
+            $tag = new WordPressTag();
+            $tag->tag = '@phpstan-param';
+            $tag->type = $tagDescriptionType;
+            $tag->name = $tagVariableName;
+
+            return $tag;
+        }
+
         $elements = self::getElementsFromDescription($tagDescription, true);
 
         if (count($elements) === 0) {
@@ -744,6 +771,16 @@ return new class extends NodeVisitor {
         // Skip if information we need is missing.
         if (!$tagDescription || !$tagVariableType) {
             return null;
+        }
+
+        $tagDescriptionType = self::getTypeNameFromDescription($tagDescription, $tagVariableType);
+
+        if ($tagDescriptionType !== null) {
+            $tag = new WordPressTag();
+            $tag->tag = '@phpstan-return';
+            $tag->type = $tagDescriptionType;
+
+            return $tag;
         }
 
         $elements = self::getElementsFromDescription($tagDescription, false);
@@ -794,6 +831,57 @@ return new class extends NodeVisitor {
         $tag->children = $elements;
 
         return $tag;
+    }
+
+    private static function getTypeNameFromDescription(Description $tagVariableDescription, Type $tagVariableType): ?string
+    {
+        if (!($tagVariableType instanceof \phpDocumentor\Reflection\Types\String_)) {
+            return null;
+        }
+
+        return self::getTypeNameFromDescriptionString($tagVariableDescription->__toString());
+    }
+
+    private static function getTypeNameFromDescriptionString(string $tagDescription = null): ?string
+    {
+        if ($tagDescription === null) {
+            return null;
+        }
+
+        if (str_contains($tagDescription, '@type')) {
+            return null;
+        }
+
+        $fullDescription = str_replace("\n", ' ', $tagDescription);
+
+        /**
+         * This matches phrases that contain a list of two or more single-quoted strings, with the last
+         * item separated by 'or'. The Oxford comma is optional. For example:
+         *
+         * - Either 'am', 'pm', 'AM', or 'PM'
+         * - Accepts 'comment' or 'term'
+         * - Either 'plugin' or 'theme'
+         * - Accepts 'big', or 'little'.
+         * - One of 'default', 'theme', or 'custom'
+         * - Either 'network-active', 'active' or 'inactive'
+         */
+        $matched = preg_match("#(?>returns|either|one of|accepts) ('.+'),? or '([^']+)'#i", $fullDescription, $matches);
+
+        if (! $matched) {
+            return null;
+        }
+
+        list(, $items, $final) = $matches;
+
+        // Pluck out phrases between single quotes, so messy sentences are handled:
+        preg_match_all("#'([^']+)'#", $items, $matches);
+
+        list(,$accepted) = $matches;
+
+        // Append the final item:
+        $accepted[] = $final;
+
+        return "'" . implode("'|'", $accepted) . "'";
     }
 
     private static function getTypeNameFromType(Type $tagVariableType): ?string

@@ -22,12 +22,10 @@ $filesystemDirlistReturnType = "false|array<string, array{name: string, perms: s
  * @link https://github.com/phpstan/phpstan-src/blob/1.5.x/resources/functionMap.php
  */
 return [
-    'add_meta_box' => ['void', 'context'=>'"normal"|"side"|"advanced"', 'priority'=>'"high"|"core"|"default"|"low"'],
     'addslashes_gpc' => ['T', '@phpstan-template'=>'T', 'gpc'=>'T'],
     'get_objects_in_term' => [null, 'args'=>'array{order?: string}'],
     'have_posts' => [null, '@phpstan-impure'=>''],
     'rawurlencode_deep' => ['T', '@phpstan-template'=>'T', 'value'=>'T'],
-    'remove_meta_box' => ['void', 'context'=>'"normal"|"side"|"advanced"'],
     'sanitize_category' => ['T', '@phpstan-template'=>'T of array|object', 'category'=>'T'],
     'sanitize_post' => ['T', '@phpstan-template'=>'T of array|object', 'post'=>'T'],
     'sanitize_term' => ['T', '@phpstan-template'=>'T of array|object', 'term'=>'T'],
