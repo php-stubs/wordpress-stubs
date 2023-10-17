@@ -865,7 +865,7 @@ return new class extends NodeVisitor {
          * - One of 'default', 'theme', or 'custom'
          * - Either 'network-active', 'active' or 'inactive'
          */
-        $matched = preg_match("#(?>returns|either|one of|accepts) ('.+'),? or '([^']+)'#i", $fullDescription, $matches);
+        $matched = preg_match("#(?>returns|either|one of|accepts|:) ('.+'),? (?>or|and) '([^']+)'#i", $fullDescription, $matches);
 
         if (! $matched) {
             return null;
