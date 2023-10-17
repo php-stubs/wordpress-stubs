@@ -582,15 +582,15 @@ return new class extends NodeVisitor {
             return [];
         }
 
-        $paramDescription = $param->getDescription();
-
-        if ($paramDescription === null) {
-            return [];
-        }
-
         $typeName = self::getTypeNameFromType($type);
 
         if ($typeName === null) {
+            return [];
+        }
+
+        $paramDescription = $param->getDescription();
+
+        if ($paramDescription === null) {
             return [];
         }
 
@@ -845,10 +845,6 @@ return new class extends NodeVisitor {
     private static function getTypeNameFromDescriptionString(string $tagDescription = null): ?string
     {
         if ($tagDescription === null) {
-            return null;
-        }
-
-        if (str_contains($tagDescription, '@type')) {
             return null;
         }
 
