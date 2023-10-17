@@ -856,7 +856,7 @@ return new class extends NodeVisitor {
 
         /**
          * This matches phrases that contain a list of two or more single-quoted strings, with the last
-         * item separated by 'or'. The Oxford comma is optional. For example:
+         * item separated by 'or' or 'and'. The Oxford comma is optional. For example:
          *
          * - Either 'am', 'pm', 'AM', or 'PM'
          * - Accepts 'comment' or 'term'
@@ -864,8 +864,9 @@ return new class extends NodeVisitor {
          * - Accepts 'big', or 'little'.
          * - One of 'default', 'theme', or 'custom'
          * - Either 'network-active', 'active' or 'inactive'
+         * - : 'top' or 'bottom'
          */
-        $matched = preg_match("#(?>returns|either|one of|accepts|:) ('.+'),? (?>or|and) '([^']+)'#i", $fullDescription, $matches);
+        $matched = preg_match("#(?>returns|either|one of|accepts|values are|:) ('.+'),? (?>or|and) '([^']+)'#i", $fullDescription, $matches);
 
         if (! $matched) {
             return null;
