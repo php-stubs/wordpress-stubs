@@ -289,7 +289,6 @@ return new class extends NodeVisitor {
 
     public function enterNode(Node $node)
     {
-
         $neverReturn = self::isNeverReturn($node);
 
         parent::enterNode($node);
@@ -307,7 +306,7 @@ return new class extends NodeVisitor {
         $symbolName = self::getNodeName($node);
 
         if ($node instanceof ClassMethod) {
-            /** @var \PhpParser\Node\Stmt\Class_ $parent */
+            /** @var \PhpParser\Node\Stmt\ClassLike $parent */
             $parent = $this->stack[count($this->stack) - 2];
 
             if (isset($parent->name)) {
