@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<ruleset>
+    <file>visitor.php</file>
+
+    <rule ref="PSR12NeutronRuleset">
+        <exclude name="Generic.Files.LineLength"/>
+        <exclude name="PEAR.Commenting.ClassComment"/>
+        <exclude name="PEAR.Commenting.FileComment"/>
+    </rule>
+</ruleset>
