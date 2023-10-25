@@ -317,16 +317,14 @@ return new class extends NodeVisitor {
                 );
             }
         }
-
-        $additions = $this->generateAdditionalTagsFromDoc($docComment);
         $node->setAttribute('fullSymbolName', $symbolName);
 
+        $additions = $this->generateAdditionalTagsFromDoc($docComment, $symbolName);
         if (count($additions) > 0) {
             $this->additionalTags[ $symbolName ] = $additions;
         }
 
         $additions = $this->getAdditionalTagsFromMap($symbolName);
-
         if (count($additions) > 0) {
             $this->additionalTagStrings[ $symbolName ] = $additions;
         }
@@ -424,7 +422,7 @@ return new class extends NodeVisitor {
     /**
      * @return array<int, WordPressTag>
      */
-    private function generateAdditionalTagsFromDoc(Doc $docComment): array
+    private function generateAdditionalTagsFromDoc(Doc $docComment, string $symbolName): array
     {
         $docCommentText = $docComment->getText();
 
@@ -447,6 +445,8 @@ return new class extends NodeVisitor {
 
         /** @var WordPressTag[] $additions */
         $additions = [];
+
+        $this->checkParameterNames($params, $symbolName);
 
         foreach ($params as $param) {
             if (! $param instanceof Param) {
@@ -654,9 +654,33 @@ return new class extends NodeVisitor {
     }
 
     /**
-     * @return string[]
+     * @param \phpDocumentor\Reflection\DocBlock\Tags\Param[] $params
      */
-    private function getAdditionalTagsFromMap(string $symbolName): array
+    private function checkParameterNames(array $params, string $symbolName): void
+    {
+        $mapParams = $this->getParametersFromMap($symbolName);
+        if (count($mapParams) === 0) {
+            return;
+        }
+
+        // Remove return type from array.
+        unset($mapParams[0]);
+
+        $params = array_map( function ($param) {
+            return $param->getVariableName();
+        }, $params);
+
+        foreach ($mapParams as $mapParamName => $mapParamType) {
+            if (strpos($mapParamName, '@') === 0 || $mapParamType === '') {
+                continue;
+            }
+            if (!in_array($mapParamName, $params)) {
+                throw new UnexpectedValueException("Parameter $mapParamName not found in $symbolName()");
+            }
+        }
+    }
+
+    private function getParametersFromMap(string $symbolName): array
     {
         if (! isset($this->functionMap)) {
             $this->functionMap = require __DIR__ . '/functionMap.php';
@@ -666,7 +690,19 @@ return new class extends NodeVisitor {
             return [];
         }
 
-        $parameters = $this->functionMap[$symbolName];
+        return $this->functionMap[$symbolName];
+    }
+
+    /**
+     * @return string[]
+     */
+    private function getAdditionalTagsFromMap(string $symbolName): array
+    {
+        $parameters = $this->getParametersFromMap($symbolName);
+        if (count($parameters) === 0) {
+            return [];
+        }
+
         $returnType = array_shift($parameters);
         $additions = [];
 
