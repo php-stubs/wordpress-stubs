@@ -681,7 +681,6 @@ return new class extends NodeVisitor {
         $returnType = array_shift($parameters);
 
         /** @var array<string, string> $parameters */
-
         $additions = [];
         foreach ($parameters as $paramName => $paramType) {
             if (strpos($paramName, '@') === 0) {
