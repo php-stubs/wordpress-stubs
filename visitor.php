@@ -600,6 +600,7 @@ return new class extends NodeVisitor {
         }
 
         $description = str_replace("\n", ' ', $description);
+        $description = str_replace('@see \\', '@see ', $description);
         $additions = [];
 
         foreach ($this->additionalTags as $symbolName => $tags) {
