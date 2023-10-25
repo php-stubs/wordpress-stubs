@@ -7,7 +7,7 @@ if (file_exists(__DIR__ . '/source/wordpress/wp-includes/Requests/Cookie/Jar.php
 }
 $cronArgsType = 'list<mixed>';
 $wpWidgetRssFormArgsType = 'array{number: int, error: bool, title?: string, url?: string, items?: int, show_summary?: int, show_author?: int, show_date?: int}';
-$wpWidgetRssFormInputType = 'array{title?: bool, url?: bool, items?: bool, show_summary?: bool, show_author?: bool, show_date?: bool}';
+$wpWidgetRssFormInputsType = 'array{title?: bool, url?: bool, items?: bool, show_summary?: bool, show_author?: bool, show_date?: bool}';
 $filesystemDirlistReturnType = "false|array<string, array{name: string, perms: string, permsn: string, owner: string|false, size: int|string|false, lastmodunix: int|string|false, lastmod: string|false, time: string|false, type: 'f'|'d'|'l', group?: string|false, number?: int|string|false, files?: array|false}>";
 
 /**
@@ -57,7 +57,7 @@ return [
     'wp_slash' => ['T', '@phpstan-template' => 'T', 'value' => 'T'],
     'wp_unschedule_event' => ['($wp_error is false ? bool : true|\WP_Error)', 'args'=>$cronArgsType],
     'wp_unslash' => ['T', '@phpstan-template' => 'T', 'value' => 'T'],
-    'wp_widget_rss_form' => ['void', 'args'=>$wpWidgetRssFormArgsType, 'input'=>$wpWidgetRssFormInputType],
+    'wp_widget_rss_form' => ['void', 'args' => $wpWidgetRssFormArgsType, 'inputs' => $wpWidgetRssFormInputType],
     'WP_REST_Request' => [null, '@phpstan-template' => 'T of array', '@phpstan-implements' => 'ArrayAccess<key-of<T>, value-of<T>>'],
     'WP_REST_Request::offsetExists' => [null, 'offset' => '@param key-of<T>'],
     'WP_REST_Request::offsetGet' => ['T[TOffset]', '@phpstan-template' => 'TOffset of key-of<T>', 'offset' => 'TOffset'],
