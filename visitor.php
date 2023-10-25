@@ -666,6 +666,8 @@ return new class extends NodeVisitor {
         // Remove return type from array.
         unset($mapParams[0]);
 
+        /** @var array<string, string> $mapParams */
+
         $params = array_map( function ($param) {
             return $param->getVariableName();
         }, $params);
@@ -680,6 +682,9 @@ return new class extends NodeVisitor {
         }
     }
 
+    /**
+     * @return array<int|string, string|null>
+     */
     private function getParametersFromMap(string $symbolName): array
     {
         if (! isset($this->functionMap)) {
@@ -703,9 +708,12 @@ return new class extends NodeVisitor {
             return [];
         }
 
+        /** @var string $returnType */
         $returnType = array_shift($parameters);
-        $additions = [];
 
+        /** @var array<string, string> $parameters */
+
+        $additions = [];
         foreach ($parameters as $paramName => $paramType) {
             if (strpos($paramName, '@') === 0) {
                 $format = ( $paramType === '' ) ? '%s' : '%s %s';
