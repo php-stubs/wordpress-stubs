@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 use phpDocumentor\Reflection\DocBlock;
 use phpDocumentor\Reflection\DocBlock\Description;
@@ -30,9 +30,7 @@ use StubsGenerator\NodeVisitor;
 
 abstract class WithChildren
 {
-    /**
-     * @var \WordPressArg[]
-     */
+    /** @var list<\WordPressArg> */
     public $children = [];
 
     public function isArrayShape(): bool
@@ -82,7 +80,7 @@ final class WordPressTag extends WithChildren
     public $description = null;
 
     /**
-     * @return string[]
+     * @return list<string>
      */
     public function format(): array
     {
@@ -139,7 +137,6 @@ final class WordPressTag extends WithChildren
                     $this->type,
                     $name
                 );
-
                 return $strings;
             }
         }
@@ -151,19 +148,9 @@ final class WordPressTag extends WithChildren
             $description = ' ' . $this->description;
         }
 
-        if ($this->isArrayShape()) {
-            $strings[] = sprintf(
-                '}%s%s',
-                $name,
-                $description
-            );
-        } else {
-            $strings[] = sprintf(
-                '}>%s%s',
-                $name,
-                $description
-            );
-        }
+        $strings[] = $this->isArrayShape()
+            ? sprintf('}%s%s', $name, $description)
+            : sprintf('}>%s%s', $name, $description);
 
         return $strings;
     }
@@ -180,7 +167,7 @@ final class WordPressArg extends WithChildren
     /** @var ?string */
     public $name = null;
 
-    /** @return string[] */
+    /** @return list<string> */
     public function format(int $level = 1): array
     {
         $strings = [];
@@ -334,7 +321,7 @@ return new class extends NodeVisitor {
     }
 
     /**
-     * @return \PhpParser\Node[]
+     * @return list<\PhpParser\Node>
      */
     public function getStubStmts(): array
     {
@@ -343,7 +330,6 @@ return new class extends NodeVisitor {
         foreach ($stmts as $stmt) {
             $this->postProcessNode($stmt);
         }
-
         return $stmts;
     }
 
@@ -409,16 +395,16 @@ return new class extends NodeVisitor {
             return [];
         }
 
-        /** @var \phpDocumentor\Reflection\DocBlock\Tags\Param[] */
+        /** @var list<\phpDocumentor\Reflection\DocBlock\Tags\Param> $params*/
         $params = $docblock->getTagsByName('param');
 
-        /** @var \phpDocumentor\Reflection\DocBlock\Tags\Return_[] */
+        /** @var list<\phpDocumentor\Reflection\DocBlock\Tags\Return_> $returns */
         $returns = $docblock->getTagsByName('return');
 
-        /** @var \phpDocumentor\Reflection\DocBlock\Tags\Var_[] */
+        /** @var list<\phpDocumentor\Reflection\DocBlock\Tags\Var_> $vars */
         $vars = $docblock->getTagsByName('var');
 
-        /** @var \WordPressTag[] $additions */
+        /** @var list<\WordPressTag> $additions */
         $additions = [];
 
         $this->checkParameterNames($params, $symbolName);
@@ -477,16 +463,19 @@ return new class extends NodeVisitor {
 
         $additions = $this->discoverInheritedArgs($docblock, $additions);
 
-        /** @var string[] $additionStrings */
-        $additionStrings = array_map(static function (WordPressTag $tag): string {
-            $lines = $tag->format();
+        /** @var list<string> $additionStrings */
+        $additionStrings = array_map(
+            static function (WordPressTag $tag): string {
+                $lines = $tag->format();
 
-            if (count($lines) === 0) {
-                return '';
-            }
+                if (count($lines) === 0) {
+                    return '';
+                }
 
-            return ' * ' . implode("\n * ", $lines);
-        }, $additions);
+                return ' * ' . implode("\n * ", $lines);
+            },
+            $additions
+        );
 
         $additionStrings = array_filter($additionStrings);
 
@@ -509,12 +498,15 @@ return new class extends NodeVisitor {
      */
     private function discoverInheritedArgs(DocBlock $docblock, array $additions): array
     {
-        /** @var \phpDocumentor\Reflection\DocBlock\Tags\Param[] $params */
+        /** @var list<\phpDocumentor\Reflection\DocBlock\Tags\Param> $params */
         $params = $docblock->getTagsByName('param');
 
-        $phpStanParams = array_filter($additions, static function (WordPressTag $addition): bool {
-            return $addition->tag === '@phpstan-param';
-        });
+        $phpStanParams = array_filter(
+            $additions,
+            static function (WordPressTag $addition): bool {
+                return $addition->tag === '@phpstan-param';
+            }
+        );
 
         foreach ($params as $param) {
             $inherited = $this->getInheritedTagsForParam($param);
@@ -605,9 +597,12 @@ return new class extends NodeVisitor {
             'options',
             'query',
         ];
-        $matchingTags = array_filter($tags, static function(WordPressTag $tag) use ($matchNames): bool {
-            return in_array($tag->name, $matchNames, true);
-        });
+        $matchingTags = array_filter(
+            $tags,
+            static function (WordPressTag $tag) use ($matchNames): bool {
+                return in_array($tag->name, $matchNames, true);
+            }
+        );
 
         foreach ($matchingTags as $tag) {
             $addTag = clone $tag;
@@ -624,7 +619,7 @@ return new class extends NodeVisitor {
     }
 
     /**
-     * @param \phpDocumentor\Reflection\DocBlock\Tags\Param[] $params
+     * @param list<\phpDocumentor\Reflection\DocBlock\Tags\Param> $params
      */
     private function checkParameterNames(array $params, string $symbolName): void
     {
@@ -636,17 +631,27 @@ return new class extends NodeVisitor {
         // Remove return type from array.
         unset($mapParams[0]);
 
-        /** @var array<string, string> $mapParams */
-        $params = array_map(static function (Param $param): string {
-            return $param->getVariableName();
-        }, $params);
+        /** @var list<string> */
+        $params = array_map(
+            static function (Param $param): ?string {
+                return $param->getVariableName();
+            },
+            $params
+        );
 
+        /** @var array<string, string> $mapParams */
         foreach ($mapParams as $mapParamName => $mapParamType) {
             if (strpos($mapParamName, '@') === 0 || $mapParamType === '') {
                 continue;
             }
             if (!in_array($mapParamName, $params, true)) {
-                throw new \UnexpectedValueException("Parameter $mapParamName not found in $symbolName()");
+                throw new \UnexpectedValueException(
+                    sprintf(
+                        'Parameter %s not found in %s()',
+                        $mapParamName,
+                        $symbolName
+                    )
+                );
             }
         }
     }
@@ -668,7 +673,7 @@ return new class extends NodeVisitor {
     }
 
     /**
-     * @return string[]
+     * @return list<string>
      */
     private function getAdditionalTagsFromMap(string $symbolName): array
     {
@@ -682,6 +687,7 @@ return new class extends NodeVisitor {
 
         /** @var array<string, string> $parameters */
         $additions = [];
+
         foreach ($parameters as $paramName => $paramType) {
             if (strpos($paramName, '@') === 0) {
                 $format = ( $paramType === '' ) ? '%s' : '%s %s';
@@ -712,7 +718,7 @@ return new class extends NodeVisitor {
 
     private function addStringTags(string $name, Doc $docComment): ?Doc
     {
-        if ( !isset($this->additionalTagStrings[$name])) {
+        if (!isset($this->additionalTagStrings[$name])) {
             return null;
         }
 
@@ -929,7 +935,7 @@ return new class extends NodeVisitor {
     }
 
     /**
-     * @return \WordPressArg[]
+     * @return list<\WordPressArg>
      */
     private static function getElementsFromDescription(Description $tagDescription, bool $optional): array
     {
@@ -945,7 +951,7 @@ return new class extends NodeVisitor {
     }
 
     /**
-     * @return \WordPressArg[]
+     * @return list<\WordPressArg>
      */
     private static function getTypesAtLevel(string $text, bool $optional, int $level): array
     {
