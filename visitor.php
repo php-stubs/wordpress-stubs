@@ -1006,7 +1006,7 @@ return new class extends NodeVisitor {
             if (is_numeric($nameTrimmed)) {
                 $optionalArg = false;
             } elseif ($optional && ($level > 1)) {
-                $optionalArg = isset($parts[2]) && self::isOptional($parts[2]);
+                $optionalArg = self::isOptional($parts[2]);
             }
 
             if (strpos($name, '...$') !== false) {
