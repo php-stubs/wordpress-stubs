@@ -1057,7 +1057,7 @@ return new class extends NodeVisitor {
             $name = $stmt->expr->name;
             // If a first level statement is a call to wp_send_json(_success/error),
             // it's return type never.
-            if ($name instanceof Name && strpos($name->toString(), 'wp_send_json') === 0) {
+            if (strpos($name->toString(), 'wp_send_json') === 0) {
                 return 'never';
             }
             // Skip all functions but wp_die().
