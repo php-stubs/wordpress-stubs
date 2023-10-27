@@ -1029,7 +1029,7 @@ return new class extends NodeVisitor {
             // If there is at least one return statement that is not void,
             // it's not return type void.
             if (
-                $this->nodeFinder->findFirst($return, function (Node $node) {
+                $this->nodeFinder->findFirst($return, function (Node $node): bool {
                     return isset($node->expr);
                 })
             ) {
