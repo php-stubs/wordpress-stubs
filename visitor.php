@@ -337,8 +337,8 @@ return new class extends NodeVisitor {
             $addition = sprintf(
                 '@phpstan-return %s',
                 $voidOrNever === 'never'
-                    ? (new Never_)->__toString()
-                    : (new Void_)->__toString()
+                    ? (new Never_())->__toString()
+                    : (new Void_())->__toString()
             );
             if (
                 !isset($this->additionalTagStrings[$symbolName])
@@ -1007,8 +1007,7 @@ return new class extends NodeVisitor {
         return (stripos($description, 'Optional') !== false)
             || (stripos($description, 'Default ') !== false)
             || (stripos($description, 'Default: ') !== false)
-            || (stripos($description, 'Defaults to ') !== false)
-        ;
+            || (stripos($description, 'Defaults to ') !== false);
     }
 
     private function voidOrNever(Node $node): string
@@ -1017,7 +1016,7 @@ return new class extends NodeVisitor {
             return '';
         }
 
-        if (empty($node->stmts) ) {
+        if (!isset($node->stmts) || count($node->stmts) === 0) {
             // Interfaces and abstract methods.
             return '';
         }
@@ -1029,9 +1028,12 @@ return new class extends NodeVisitor {
             // If there is at least one return statement that is not void,
             // it's not return type void.
             if (
-                $this->nodeFinder->findFirst($return, function (Node $node): bool {
-                    return isset($node->expr);
-                })
+                $this->nodeFinder->findFirst(
+                    $return,
+                    static function (Node $node): bool {
+                        return isset($node->expr);
+                    }
+                ) !== null
             ) {
                 return '';
             }
@@ -1072,7 +1074,7 @@ return new class extends NodeVisitor {
             if (!($argValue instanceof Array_)) {
                 continue;
             }
-            foreach ($argValue->items as $item ) {
+            foreach ($argValue->items as $item) {
                 if (!($item instanceof ArrayItem && $item->key instanceof String_ && $item->key->value === 'exit')) {
                     continue;
                 }
