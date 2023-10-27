@@ -1077,7 +1077,7 @@ return new class extends NodeVisitor {
                     continue;
                 }
                 if (
-                    $item->value instanceof Node\Expr\ConstFetch && strtolower($item->value->name->toString()) === 'true' ||
+                    ($item->value instanceof Node\Expr\ConstFetch && strtolower($item->value->name->toString()) === 'true') ||
                     ($item->value instanceof Node\Scalar\LNumber && $item->value->value === 1) ||
                     ($item->value instanceof Node\Scalar\String_ && $item->value->value !== '' && $item->value->value !== '0')
                 ) {
