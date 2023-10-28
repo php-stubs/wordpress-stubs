@@ -11,7 +11,6 @@ use phpDocumentor\Reflection\Type;
 use phpDocumentor\Reflection\Types\Never_;
 use phpDocumentor\Reflection\Types\Void_;
 use PhpParser\Comment\Doc;
-use PhpParser\ConstExprEvaluationException;
 use PhpParser\ConstExprEvaluator;
 use PhpParser\Node;
 use PhpParser\NodeFinder;
@@ -1093,7 +1092,7 @@ return new class extends NodeVisitor {
             // If wp_die is called with 3rd parameter, we need additional checks.
             try {
                 $arg = (new ConstExprEvaluator())->evaluateSilently($args[2]->value);
-            } catch (ConstExprEvaluationException $e) {
+            } catch (\PhpParser\ConstExprEvaluationException $e) {
                 // If we don't know the value of the 3rd parameter, we can't be sure.
                 continue;
             }
