@@ -11,15 +11,14 @@ use phpDocumentor\Reflection\Type;
 use phpDocumentor\Reflection\Types\Never_;
 use phpDocumentor\Reflection\Types\Void_;
 use PhpParser\Comment\Doc;
+use PhpParser\ConstExprEvaluationException;
+use PhpParser\ConstExprEvaluator;
 use PhpParser\Node;
 use PhpParser\NodeFinder;
 use PhpParser\Node\Identifier;
 use PhpParser\Node\Name;
-use PhpParser\Node\Expr\Array_;
-use PhpParser\Node\Expr\ArrayItem;
 use PhpParser\Node\Expr\Exit_;
 use PhpParser\Node\Expr\FuncCall;
-use PhpParser\Node\Scalar\String_;
 use PhpParser\Node\Stmt\Class_;
 use PhpParser\Node\Stmt\ClassMethod;
 use PhpParser\Node\Stmt\Expression;
@@ -1117,23 +1116,23 @@ return new class extends NodeVisitor {
                 return 'never';
             }
             // If wp_die is called with 3rd parameter, we need additional checks.
-            $argValue = $args[2]->value;
-            if (!($argValue instanceof Array_)) {
+            try {
+                $arg = (new ConstExprEvaluator())->evaluateSilently($args[2]->value);
+            } catch (ConstExprEvaluationException $e) {
+                // If we don't know the value of the 3rd parameter, we can't be sure.
                 continue;
             }
-            foreach ($argValue->items as $item) {
-                if (!($item instanceof ArrayItem && $item->key instanceof String_ && $item->key->value === 'exit')) {
-                    continue;
-                }
-                if (
-                    ($item->value instanceof Node\Expr\ConstFetch && strtolower($item->value->name->toString()) === 'true')
-                    || ($item->value instanceof Node\Scalar\LNumber && $item->value->value === 1)
-                    || ($item->value instanceof Node\Scalar\String_ && $item->value->value !== '' && $item->value->value !== '0')
-                ) {
+
+            if (is_int($arg)) {
+                return 'never';
+            }
+            if (is_array($arg)) {
+                if (!isset($arg['exit']) || (bool)$arg['exit'] === true) {
                     return 'never';
                 }
-                return '';
             }
+
+            continue;
         }
         return '';
     }
