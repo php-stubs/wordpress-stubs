@@ -9,6 +9,7 @@ use phpDocumentor\Reflection\DocBlock\Tags\Return_;
 use phpDocumentor\Reflection\DocBlock\Tags\Var_;
 use phpDocumentor\Reflection\Type;
 use phpDocumentor\Reflection\Types\Never_;
+use phpDocumentor\Reflection\Types\Void_;
 use PhpParser\Comment\Doc;
 use PhpParser\Node;
 use PhpParser\NodeFinder;
@@ -18,7 +19,6 @@ use PhpParser\Node\Expr\Array_;
 use PhpParser\Node\Expr\ArrayItem;
 use PhpParser\Node\Expr\Exit_;
 use PhpParser\Node\Expr\FuncCall;
-use PhpParser\Node\Expr\Variable;
 use PhpParser\Node\Scalar\String_;
 use PhpParser\Node\Stmt\Class_;
 use PhpParser\Node\Stmt\ClassMethod;
@@ -282,14 +282,18 @@ return new class extends NodeVisitor {
      */
     private $additionalTagStrings = [];
 
+    /** @var \PhpParser\NodeFinder */
+    private $nodeFinder;
+
     public function __construct()
     {
         $this->docBlockFactory = \phpDocumentor\Reflection\DocBlockFactory::createInstance();
+        $this->nodeFinder = new NodeFinder();
     }
 
     public function enterNode(Node $node)
     {
-        $neverReturn = self::isNeverReturn($node);
+        $voidOrNever = $this->voidOrNever($node);
 
         parent::enterNode($node);
 
@@ -329,14 +333,19 @@ return new class extends NodeVisitor {
             $this->additionalTagStrings[ $symbolName ] = $additions;
         }
 
-        if ($neverReturn) {
-            $never = new Never_();
-            $this->additionalTagStrings[ $symbolName ] = [
-                sprintf(
-                    '@phpstan-return %s',
-                    $never->__toString()
-                )
-            ];
+        if ($voidOrNever !== '') {
+            $addition = sprintf(
+                '@phpstan-return %s',
+                $voidOrNever === 'never'
+                    ? (new Never_())->__toString()
+                    : (new Void_())->__toString()
+            );
+            if (
+                !isset($this->additionalTagStrings[$symbolName])
+                || !in_array($addition, $this->additionalTagStrings[$symbolName], true)
+            ) {
+                $this->additionalTagStrings[$symbolName][] = $addition;
+            }
         }
 
         return null;
@@ -1045,66 +1054,87 @@ return new class extends NodeVisitor {
         return (stripos($description, 'Optional') !== false)
             || (stripos($description, 'Default ') !== false)
             || (stripos($description, 'Default: ') !== false)
-            || (stripos($description, 'Defaults to ') !== false)
-        ;
+            || (stripos($description, 'Defaults to ') !== false);
     }
 
-    private static function isNeverReturn(Node $node): bool
+    private function voidOrNever(Node $node): string
     {
-        if (! $node instanceof Function_ && ! $node instanceof ClassMethod) {
-            return false;
-        }
-        if (empty($node->stmts) ) {
-            return false;
+        if (!($node instanceof Function_) && !($node instanceof ClassMethod)) {
+            return '';
         }
 
-        $nodeFinder = new NodeFinder();
-        if ($nodeFinder->findFirstInstanceOf($node, Stmt_Return::class) instanceof Stmt_Return) {
-            // If there is a return statement, it's not return type never.
-            return false;
-        };
-
-        $lastStmt = end($node->stmts);
-        if (! $lastStmt instanceof Expression) {
-            return false;
-        }
-        // If the last statement is exit, it's return type never.
-        if ($lastStmt->expr instanceof Exit_) {
-            return true;
-        }
-        if (! $lastStmt->expr instanceof FuncCall || ! $lastStmt->expr->name instanceof Name) {
-            return false;
+        if (!isset($node->stmts) || count($node->stmts) === 0) {
+            // Interfaces and abstract methods.
+            return '';
         }
 
-        // If the last statement is a call to wp_send_json(_success/error),
-        // it's return type never.
-        if (strpos($lastStmt->expr->name->toString(), 'wp_send_json') === 0) {
-            return true;
+        $return = $this->nodeFinder->findInstanceOf($node, Stmt_Return::class);
+
+        // If there is a return statement, it's not return type never.
+        if (count($return) !== 0) {
+            // If there is at least one return statement that is not void,
+            // it's not return type void.
+            if (
+                $this->nodeFinder->findFirst(
+                    $return,
+                    static function (Node $node): bool {
+                        return isset($node->expr);
+                    }
+                ) !== null
+            ) {
+                return '';
+            }
+            // If there is no return statement that is not void,
+            // it's return type void.
+            return 'void';
         }
 
-        // Skip all functions but wp_die().
-        if (strpos($lastStmt->expr->name->toString(), 'wp_die') !== 0) {
-            return false;
-        }
-
-        // If wp_die is called without 3rd parameter, it's return type never.
-        $args = $lastStmt->expr->getArgs();
-        if (count($args) < 3) {
-            return true;
-        }
-
-        // If wp_die is called with 3rd parameter, we need additional checks.
-        $argValue = $args[2]->value;
-        if ($argValue instanceof Variable) {
-            return false;
-        }
-        if ($argValue instanceof Array_) {
-            foreach ($argValue->items as $item ) {
-                if ($item instanceof ArrayItem && $item->key instanceof String_ && $item->key->value === 'exit') {
-                    return false;
+        // Check for never return type.
+        foreach ($node->stmts as $stmt) {
+            if (!($stmt instanceof Expression)) {
+                continue;
+            }
+            // If a first level statement is exit/die, it's return type never.
+            if ($stmt->expr instanceof Exit_) {
+                return 'never';
+            }
+            if (!($stmt->expr instanceof FuncCall) || !($stmt->expr->name instanceof Name)) {
+                continue;
+            }
+            $name = $stmt->expr->name;
+            // If a first level statement is a call to wp_send_json(_success/error),
+            // it's return type never.
+            if (strpos($name->toString(), 'wp_send_json') === 0) {
+                return 'never';
+            }
+            // Skip all functions but wp_die().
+            if (strpos($name->toString(), 'wp_die') !== 0) {
+                continue;
+            }
+            $args = $stmt->expr->getArgs();
+             // If wp_die is called without 3rd parameter, it's return type never.
+            if (count($args) < 3) {
+                return 'never';
+            }
+            // If wp_die is called with 3rd parameter, we need additional checks.
+            $argValue = $args[2]->value;
+            if (!($argValue instanceof Array_)) {
+                continue;
+            }
+            foreach ($argValue->items as $item) {
+                if (!($item instanceof ArrayItem && $item->key instanceof String_ && $item->key->value === 'exit')) {
+                    continue;
                 }
+                if (
+                    ($item->value instanceof Node\Expr\ConstFetch && strtolower($item->value->name->toString()) === 'true')
+                    || ($item->value instanceof Node\Scalar\LNumber && $item->value->value === 1)
+                    || ($item->value instanceof Node\Scalar\String_ && $item->value->value !== '' && $item->value->value !== '0')
+                ) {
+                    return 'never';
+                }
+                return '';
             }
         }
-        return true;
+        return '';
     }
 };
