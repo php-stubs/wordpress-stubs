@@ -1,5 +1,7 @@
 <?xml version="1.0"?>
 <ruleset>
+    <file>finder.php</file>
+    <file>functionMap.php</file>
     <file>visitor.php</file>
 
     <rule ref="PSR12NeutronRuleset">
