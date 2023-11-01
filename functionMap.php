@@ -32,7 +32,7 @@ return [
     'stripslashes_deep' => ['T', '@phpstan-template'=>'T', 'value'=>'T'],
     'urldecode_deep' => ['T', '@phpstan-template'=>'T', 'value'=>'T'],
     'urlencode_deep' => ['T', '@phpstan-template'=>'T', 'value'=>'T'],
-    'wp_clear_scheduled_hook' => ['($wp_error is false ? 0|positive-int|false : 0|positive-int|\WP_Error)', 'args'=>$cronArgsType],
+    'wp_clear_scheduled_hook' => ['(0|positive-int|($wp_error is false ? false : \WP_Error))', 'args'=>$cronArgsType],
     'wp_get_schedule' => [null, 'args'=>$cronArgsType],
     'wp_get_scheduled_event' => [null, 'args'=>$cronArgsType],
     'WP_Http::get' => [$httpReturnType],
