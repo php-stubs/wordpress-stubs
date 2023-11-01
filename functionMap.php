@@ -128,5 +128,6 @@ return [
     'WP_Filesystem_SSH2::dirlist' => [$filesystemDirlistReturnType],
     'WP_Filesystem_ftpsockets::dirlist' => [$filesystemDirlistReturnType],
     'wpdb::prepare' => [null, 'query'=>'literal-string'],
-    'wpdb::get_row' => ["(null|void)|(\$output is 'ARRAY_A' ?  array<string, mixed> : (\$output is 'ARRAY_N' ? array<int, mixed> : \stdClass))", 'output'=>"'OBJECT'|'ARRAY_A'|'ARRAY_N'", 'y'=>'0|positive-int'],
+    'wpdb::get_row' => ["null|void|(\$output is 'ARRAY_A' ?  array<string, mixed> : (\$output is 'ARRAY_N' ? array<int, mixed> : \stdClass))", 'output' => "'OBJECT'|'ARRAY_A'|'ARRAY_N'", 'y'=>'0|positive-int'],
+    'wpdb::get_results' => ["null|(\$output is 'ARRAY_A' ?  array<string, mixed> : (\$output is 'ARRAY_N' ? array<int, mixed> : (\$output is 'OBJECT_K' ? array<string, \stdClass> : \stdClass)))", 'output' => "'OBJECT'|'OBJECT_K'|'ARRAY_A'|'ARRAY_N'"],
 ];
