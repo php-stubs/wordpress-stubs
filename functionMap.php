@@ -19,7 +19,7 @@ $filesystemDirlistReturnType = "false|array<string, array{name: string, perms: s
  *
  * '<class_name>' => [null, '<arg_name>'=>'<arg_type>']
  *
- * @link https://github.com/phpstan/phpstan-src/blob/1.5.x/resources/functionMap.php
+ * @link https://github.com/phpstan/phpstan-src/blob/1.10.x/resources/functionMap.php
  */
 return [
     'addslashes_gpc' => ['T', '@phpstan-template'=>'T', 'gpc'=>'T'],
@@ -128,7 +128,8 @@ return [
     'WP_Filesystem_SSH2::dirlist' => [$filesystemDirlistReturnType],
     'WP_Filesystem_ftpsockets::dirlist' => [$filesystemDirlistReturnType],
     'wpdb::prepare' => [null, 'query'=>'literal-string'],
-    'wpdb::get_row' => ["null|void|(\$output is 'ARRAY_A' ?  array<string, mixed> : (\$output is 'ARRAY_N' ? array<int, mixed> : \stdClass))", 'output' => "'OBJECT'|'ARRAY_A'|'ARRAY_N'", 'y'=>'0|positive-int'],
-    'wpdb::get_results' => ["null|(\$output is 'ARRAY_A' ?  array<string, mixed> : (\$output is 'ARRAY_N' ? array<int, mixed> : (\$output is 'OBJECT_K' ? array<string, \stdClass> : \stdClass)))", 'output' => "'OBJECT'|'OBJECT_K'|'ARRAY_A'|'ARRAY_N'"],
-    'get_bookmark' => ["null|(\$output is 'ARRAY_A' ?  array<string, mixed> : (\$output is 'ARRAY_N' ? array<int, mixed> : \stdClass))", 'output' => "'OBJECT'|'ARRAY_A'|'ARRAY_N'"],
+    'wpdb::get_row' => ["null|void|(\$output is 'ARRAY_A' ? array<string, mixed> : (\$output is 'ARRAY_N' ? array<int, mixed> : \stdClass))", 'output' => "'OBJECT'|'ARRAY_A'|'ARRAY_N'", 'y'=>'0|positive-int'],
+    'wpdb::get_results' => ["null|(\$output is 'ARRAY_A' ? array<string, mixed> : (\$output is 'ARRAY_N' ? array<int, mixed> : (\$output is 'OBJECT_K' ? array<string, \stdClass> : \stdClass)))", 'output' => "'OBJECT'|'OBJECT_K'|'ARRAY_A'|'ARRAY_N'"],
+    'get_bookmark' => ["null|(\$output is 'ARRAY_A' ? array<string, mixed> : (\$output is 'ARRAY_N' ? array<int, mixed> : \stdClass))", 'output' => "'OBJECT'|'ARRAY_A'|'ARRAY_N'"],
+    'get_category' => ["(\$category is object ? array<array-key, mixed>|\WP_Term : array<array-key, mixed>|\WP_Term|WP_Error|null) & (\$output is 'ARRAY_A' ? array<string, mixed>|WP_Error|null : (\$output is 'ARRAY_N' ? array<int, mixed>|WP_Error|null : \WP_Term|WP_Error|null))", 'output' => "'OBJECT'|'ARRAY_A'|'ARRAY_N'"],
 ];
