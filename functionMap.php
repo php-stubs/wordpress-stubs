@@ -88,7 +88,7 @@ return [
     'get_post' => ["(\$post is \WP_Post ? array<array-key, mixed>|\WP_Post : array<array-key, mixed>|\WP_Post|null) & (\$output is 'ARRAY_A' ? array<string, mixed>|null : (\$output is 'ARRAY_N' ? array<int, mixed>|null : \WP_Post|null))", 'output'=>"'OBJECT'|'ARRAY_A'|'ARRAY_N'" ],
     'get_term_by' => ["(\$output is 'ARRAY_A' ? array<string, string|int>|\WP_Error|false : (\$output is 'ARRAY_N' ? list<string|int>|\WP_Error|false : \WP_Term|\WP_Error|false))"],
     'get_page_by_path' => ["(\$output is 'ARRAY_A' ? array<string, mixed>|null : (\$output is 'ARRAY_N' ? array<int, mixed>|null : \WP_Post|null))"],
-    'get_term' => ["(\$output is 'ARRAY_A' ? array<string, string|int>|\WP_Error|null : (\$output is 'ARRAY_N' ? list<string|int>|\WP_Error|null : \WP_Term|\WP_Error|null))"],
+    'get_term' => ["(\$output is 'ARRAY_A' ? array<string, string|int>|\WP_Error|null : (\$output is 'ARRAY_N' ? list<string|int>|\WP_Error|null : \WP_Term|\WP_Error|null))", 'output'=>"'OBJECT'|'ARRAY_A'|'ARRAY_N'"],
     'has_action' => ['($callback is false ? bool : false|int)'],
     'has_filter' => ['($callback is false ? bool : false|int)'],
     'get_permalink' => ['($post is \WP_Post ? string : string|false)'],
