@@ -132,4 +132,5 @@ return [
     'wpdb::get_results' => ["null|(\$output is 'ARRAY_A' ? array<string, mixed> : (\$output is 'ARRAY_N' ? array<int, mixed> : (\$output is 'OBJECT_K' ? array<string, \stdClass> : \stdClass)))", 'output' => "'OBJECT'|'OBJECT_K'|'ARRAY_A'|'ARRAY_N'"],
     'get_bookmark' => ["null|(\$output is 'ARRAY_A' ? array<string, mixed> : (\$output is 'ARRAY_N' ? array<int, mixed> : \stdClass))", 'output' => "'OBJECT'|'ARRAY_A'|'ARRAY_N'"],
     'get_category' => ["(\$category is object ? array<array-key, mixed>|\WP_Term : array<array-key, mixed>|\WP_Term|\WP_Error|null) & (\$output is 'ARRAY_A' ? array<string, mixed>|\WP_Error|null : (\$output is 'ARRAY_N' ? array<int, mixed>|\WP_Error|null : \WP_Term|\WP_Error|null))", 'output' => "'OBJECT'|'ARRAY_A'|'ARRAY_N'"],
+    'get_category_by_path' => ["(\$output is 'ARRAY_A' ? array<string, mixed>|\WP_Error|null : (\$output is 'ARRAY_N' ? array<int, mixed>|\WP_Error|null : \WP_Term|\WP_Error|null))", 'output' => "'OBJECT'|'ARRAY_A'|'ARRAY_N'"]
 ];
