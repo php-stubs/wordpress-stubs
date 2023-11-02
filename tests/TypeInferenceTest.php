@@ -12,6 +12,9 @@ class TypeInferenceTest extends \PHPStan\Testing\TypeInferenceTestCase
         yield from $this->gatherAssertTypes(__DIR__ . '/data/current_time.php');
         yield from $this->gatherAssertTypes(__DIR__ . '/data/echo_parameter.php');
         yield from $this->gatherAssertTypes(__DIR__ . '/data/get_attachment_taxonomies.php');
+        yield from $this->gatherAssertTypes(__DIR__ . '/data/get_bookmark.php');
+        yield from $this->gatherAssertTypes(__DIR__ . '/data/get_category.php');
+        yield from $this->gatherAssertTypes(__DIR__ . '/data/get_category_by_path.php');
         yield from $this->gatherAssertTypes(__DIR__ . '/data/get_comment.php');
         yield from $this->gatherAssertTypes(__DIR__ . '/data/get_object_taxonomies.php');
         yield from $this->gatherAssertTypes(__DIR__ . '/data/get_post.php');
@@ -27,8 +30,10 @@ class TypeInferenceTest extends \PHPStan\Testing\TypeInferenceTestCase
         yield from $this->gatherAssertTypes(__DIR__ . '/data/is_wp_error.php');
         yield from $this->gatherAssertTypes(__DIR__ . '/data/mysql2date.php');
         yield from $this->gatherAssertTypes(__DIR__ . '/data/term_exists.php');
+        yield from $this->gatherAssertTypes(__DIR__ . '/data/wp_clear_scheduled_hook.php');
         yield from $this->gatherAssertTypes(__DIR__ . '/data/wp_error_parameter.php');
         yield from $this->gatherAssertTypes(__DIR__ . '/data/wp_theme.php');
+        yield from $this->gatherAssertTypes(__DIR__ . '/data/wpdb.php');
     }
 
     /**
