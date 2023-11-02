@@ -7,22 +7,24 @@ namespace PhpStubs\WordPress\Core\Tests;
 use function get_comment;
 use function PHPStan\Testing\assertType;
 
-/** @var \WP_Comment|int $comment */
-$comment = $comment;
+/** @var \WP_Comment|int|string|null $comment */
+$comment;
 
 // Default output
 assertType('WP_Comment|null', get_comment());
 assertType('WP_Comment|null', get_comment($comment));
-assertType('WP_Comment|null', get_comment($comment, OBJECT));
+assertType('WP_Comment|null', get_comment($comment, 'OBJECT'));
 
 // Associative array output
-assertType('array<string, mixed>|null', get_comment($comment, ARRAY_A));
+assertType('array<string, mixed>|null', get_comment($comment, 'ARRAY_A'));
 
 // Numeric array output
-assertType('array<int, mixed>|null', get_comment($comment, ARRAY_N));
+assertType('array<int, mixed>|null', get_comment($comment, 'ARRAY_N'));
 
-// Unknown output
-assertType('array<int|string, mixed>|WP_Comment|null', get_comment($comment, (string)$_GET['unknown_string']));
+/** @var \WP_Comment $comment */
+$comment;
 
-// Unexpected output
-assertType('WP_Comment|null', get_comment($comment, 'Hello'));
+assertType('WP_Comment', get_comment($comment));
+assertType('WP_Comment', get_comment($comment, 'OBJECT'));
+assertType('array<string, mixed>', get_comment($comment, 'ARRAY_A'));
+assertType('array<int, mixed>', get_comment($comment, 'ARRAY_N'));
