@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace PhpStubs\WordPress\Core;
 
-use FunctionMap;
 use phpDocumentor\Reflection\DocBlock;
 use phpDocumentor\Reflection\DocBlock\Description;
 use phpDocumentor\Reflection\DocBlock\Tags\Param;
@@ -27,8 +26,6 @@ use PhpParser\Node\Stmt\Expression;
 use PhpParser\Node\Stmt\Function_;
 use PhpParser\Node\Stmt\Property;
 use PhpParser\Node\Stmt\Return_ as Stmt_Return;
-use WordPressTag;
-use WordPressArg;
 
 class Visitor extends \StubsGenerator\NodeVisitor
 {
