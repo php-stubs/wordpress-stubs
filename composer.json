@@ -27,7 +27,10 @@
     "autoload-dev": {
         "classmap": [
             "tests/"
-        ]
+        ],
+        "psr-4": {
+            "PhpStubs\\WordPress\\Core\\": "src/"
+        }
     },
     "config": {
         "allow-plugins": {

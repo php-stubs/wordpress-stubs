@@ -2,8 +2,8 @@ parameters:
     level: 8
     paths:
         - finder.php
-        - functionMap.php
         - visitor.php
+        - src/
         - tests/
     excludePaths:
         - tests/data/
