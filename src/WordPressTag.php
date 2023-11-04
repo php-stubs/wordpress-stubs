@@ -13,17 +13,24 @@ final class WordPressTag extends \PhpStubs\WordPress\Core\WithChildrenAbstract
     public $type;
 
     /** @var ?string */
-    public $name = null;
+    public $name;
 
     /** @var ?string */
-    public $description = null;
+    public $description;
 
-    public function __construct(string $tag = '', string $type = '', ?string $name = null, ?string $description = null)
+    /** @var list<\PhpStubs\WordPress\Core\WordPressArg> $children */
+    public $children;
+
+    /**
+     * @param array<\PhpStubs\WordPress\Core\WordPressArg> $children
+     */
+    public function __construct(string $tag = '', string $type = '', ?string $name = null, ?string $description = null, array $children = [])
     {
         $this->tag = $tag;
         $this->type = $type;
         $this->name = $name;
         $this->description = $description;
+        $this->children = $children;
     }
 
     /**
@@ -78,8 +85,8 @@ final class WordPressTag extends \PhpStubs\WordPress\Core\WithChildrenAbstract
     }
 
     /**
-     * @param list<string> $childStrings
-     * @return list<string>
+     * @param array<string> $childStrings
+     * @return array<string>
      */
     private function formatArrayShape(array $childStrings): array
     {
@@ -91,8 +98,8 @@ final class WordPressTag extends \PhpStubs\WordPress\Core\WithChildrenAbstract
     }
 
     /**
-     * @param list<string> $childStrings
-     * @return list<string>
+     * @param array<string> $childStrings
+     * @return array<string>
      */
     private function formatNonArrayShape(array $childStrings): array
     {
