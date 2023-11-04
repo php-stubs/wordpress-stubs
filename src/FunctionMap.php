@@ -17,7 +17,7 @@ class FunctionMap
      *
      * @link https://github.com/phpstan/phpstan-src/blob/1.10.x/resources/functionMap.php
      *
-     * @var ?array<string, array{0: ?string, 1?: array<int|string, string>}>
+     * @var ?array<string, array<0|string, ?string>>
      */
     private $map;
 
@@ -25,7 +25,7 @@ class FunctionMap
     private $httpReturnType;
 
     /**
-     * @phpstan-assert array<string, array{0: ?string, 1?: array<int|string, string>}> $this->map
+     * @phpstan-assert array<string, array<0|string, ?string>> $this->map
      */
     private function initializeMap(): void
     {
@@ -143,8 +143,8 @@ class FunctionMap
     }
 
     /**
-     * @phpstan-assert array<string, array{0: ?string, 1?: array<int|string, string>}> $this->map
-     * @return array<string, array{0: ?string, 1?: array<int|string, string>}>
+     * @phpstan-assert array<string, array<0|string, ?string>> $this->map
+     * @return array<string, array<0|string, ?string>>
      */
     public function getMap(): array
     {
@@ -155,15 +155,35 @@ class FunctionMap
     }
 
     /**
-     * @phpstan-assert array<string, array{0: ?string, 1?: array<int|string, string>}> $this->map
-     * @return array{0: ?string, 1?: array<int|string, string>}
+     * @phpstan-assert array<string, array<0|string, ?string>> $this->map
+     * @return array<0|string, ?string>
      */
-    public function getFunction(string $name): ?array
+    public function getFunction(string $name): array
     {
         if (!isset($this->map)) {
             $this->initializeMap();
         }
-        return $this->map[$name] ?? null;
+        return $this->map[$name] ?? [];
+    }
+
+    /**
+     * @phpstan-assert array<string, array<0|string, ?string>> $this->map
+     */
+    public function getReturnType(string $name): ?string
+    {
+        $function = $this->getFunction($name);
+        return $function[0] ?? null;
+    }
+
+    /**
+     * @phpstan-assert array<string, array<0|string, ?string>> $this->map
+     * @return array<string, ?string>
+     */
+    public function getParameters(string $name): array
+    {
+        $function = $this->getFunction($name);
+        unset($function[0]);
+        return $function;
     }
 
     /**
