@@ -9,31 +9,31 @@ class TypeInferenceTest extends \PHPStan\Testing\TypeInferenceTestCase
     /** @return iterable<mixed> */
     public function dataFileAsserts(): iterable
     {
-        yield from $this->gatherAssertTypes(__DIR__ . '/data/current_time.php');
-        yield from $this->gatherAssertTypes(__DIR__ . '/data/echo_parameter.php');
-        yield from $this->gatherAssertTypes(__DIR__ . '/data/get_attachment_taxonomies.php');
-        yield from $this->gatherAssertTypes(__DIR__ . '/data/get_bookmark.php');
-        yield from $this->gatherAssertTypes(__DIR__ . '/data/get_category.php');
-        yield from $this->gatherAssertTypes(__DIR__ . '/data/get_category_by_path.php');
-        yield from $this->gatherAssertTypes(__DIR__ . '/data/get_comment.php');
-        yield from $this->gatherAssertTypes(__DIR__ . '/data/get_object_taxonomies.php');
-        yield from $this->gatherAssertTypes(__DIR__ . '/data/get_post.php');
-        yield from $this->gatherAssertTypes(__DIR__ . '/data/get_post_stati.php');
-        yield from $this->gatherAssertTypes(__DIR__ . '/data/get_post_types.php');
-        yield from $this->gatherAssertTypes(__DIR__ . '/data/get_page_by_path.php');
-        yield from $this->gatherAssertTypes(__DIR__ . '/data/get_permalink.php');
-        yield from $this->gatherAssertTypes(__DIR__ . '/data/get_term_by.php');
-        yield from $this->gatherAssertTypes(__DIR__ . '/data/get_taxonomies.php');
-        yield from $this->gatherAssertTypes(__DIR__ . '/data/get_term.php');
-        yield from $this->gatherAssertTypes(__DIR__ . '/data/get_taxonomies_for_attachments.php');
-        yield from $this->gatherAssertTypes(__DIR__ . '/data/has_filter.php');
-        yield from $this->gatherAssertTypes(__DIR__ . '/data/is_wp_error.php');
-        yield from $this->gatherAssertTypes(__DIR__ . '/data/mysql2date.php');
-        yield from $this->gatherAssertTypes(__DIR__ . '/data/term_exists.php');
-        yield from $this->gatherAssertTypes(__DIR__ . '/data/wp_clear_scheduled_hook.php');
-        yield from $this->gatherAssertTypes(__DIR__ . '/data/wp_error_parameter.php');
-        yield from $this->gatherAssertTypes(__DIR__ . '/data/wp_theme.php');
-        yield from $this->gatherAssertTypes(__DIR__ . '/data/wpdb.php');
+        yield from self::gatherAssertTypes(__DIR__ . '/data/current_time.php');
+        yield from self::gatherAssertTypes(__DIR__ . '/data/echo_parameter.php');
+        yield from self::gatherAssertTypes(__DIR__ . '/data/get_attachment_taxonomies.php');
+        yield from self::gatherAssertTypes(__DIR__ . '/data/get_bookmark.php');
+        yield from self::gatherAssertTypes(__DIR__ . '/data/get_category.php');
+        yield from self::gatherAssertTypes(__DIR__ . '/data/get_category_by_path.php');
+        yield from self::gatherAssertTypes(__DIR__ . '/data/get_comment.php');
+        yield from self::gatherAssertTypes(__DIR__ . '/data/get_object_taxonomies.php');
+        yield from self::gatherAssertTypes(__DIR__ . '/data/get_post.php');
+        yield from self::gatherAssertTypes(__DIR__ . '/data/get_post_stati.php');
+        yield from self::gatherAssertTypes(__DIR__ . '/data/get_post_types.php');
+        yield from self::gatherAssertTypes(__DIR__ . '/data/get_page_by_path.php');
+        yield from self::gatherAssertTypes(__DIR__ . '/data/get_permalink.php');
+        yield from self::gatherAssertTypes(__DIR__ . '/data/get_term_by.php');
+        yield from self::gatherAssertTypes(__DIR__ . '/data/get_taxonomies.php');
+        yield from self::gatherAssertTypes(__DIR__ . '/data/get_term.php');
+        yield from self::gatherAssertTypes(__DIR__ . '/data/get_taxonomies_for_attachments.php');
+        yield from self::gatherAssertTypes(__DIR__ . '/data/has_filter.php');
+        yield from self::gatherAssertTypes(__DIR__ . '/data/is_wp_error.php');
+        yield from self::gatherAssertTypes(__DIR__ . '/data/mysql2date.php');
+        yield from self::gatherAssertTypes(__DIR__ . '/data/term_exists.php');
+        yield from self::gatherAssertTypes(__DIR__ . '/data/wp_clear_scheduled_hook.php');
+        yield from self::gatherAssertTypes(__DIR__ . '/data/wp_error_parameter.php');
+        yield from self::gatherAssertTypes(__DIR__ . '/data/wp_theme.php');
+        yield from self::gatherAssertTypes(__DIR__ . '/data/wpdb.php');
     }
 
     /**
