@@ -31,74 +31,85 @@ final class WordPressTag extends \PhpStubs\WordPress\Core\WithChildrenAbstract
      */
     public function format(): array
     {
-        if (! $this->hasChildren()) {
-            return [
-                sprintf(
-                    '%s %s%s',
-                    $this->tag,
-                    $this->type,
-                    ($this->name !== null) ? sprintf(' $%s', $this->name) : ''
-                ),
-            ];
+        if (!$this->hasChildren()) {
+            return [$this->formatChildless()];
         }
 
         if ($this->isMixedShape()) {
             return [];
         }
 
-        $strings = [];
-        $childStrings = [];
-        $level = 1;
-
-        if (! $this->isArrayShape()) {
-            $level = 0;
-        }
-
-        foreach ($this->children as $child) {
-            $childStrings = array_merge($childStrings, $child->format($level));
-        }
+        $level = $this->isArrayShape() ? 1 : 0;
+        $childStrings = $this->formatChildren($level);
 
         if (count($childStrings) === 0) {
             return [];
         }
 
-        $name = ($this->name !== null) ? sprintf(' $%s', $this->name) : '';
-
-        if ($this->isArrayShape()) {
-            $strings[] = sprintf(
-                '%s %s{',
-                $this->tag,
-                $this->type
-            );
-        } else {
-            if (count($this->children) > 0 && count($this->children[0]->children) > 0) {
-                $strings[] = sprintf(
-                    '%s %s<int|string, array{',
-                    $this->tag,
-                    $this->type
-                );
-            } else {
-                $strings[] = sprintf(
-                    '%s array<int|string, %s>%s',
-                    $this->tag,
-                    $this->type,
-                    $name
-                );
-                return $strings;
-            }
+        if (!$this->isArrayShape() && count($this->children) > 0 && count($this->children[0]->children) === 0) {
+            return [sprintf('%s array<int|string, %s>%s', $this->tag, $this->type, $this->formatName())];
         }
 
+        return $this->isArrayShape()
+            ? $this->formatArrayShape($childStrings)
+            : $this->formatNonArrayShape($childStrings);
+    }
+
+    private function formatChildless(): string
+    {
+        return sprintf(
+            '%s %s%s',
+            $this->tag,
+            $this->type,
+            ($this->name !== null) ? sprintf(' $%s', $this->name) : ''
+        );
+    }
+
+    /**
+     * @return list<string>
+     */
+    private function formatChildren(int $level): array
+    {
+        $childStrings = [];
+        foreach ($this->children as $child) {
+            $childStrings = array_merge($childStrings, $child->format($level));
+        }
+        return $childStrings;
+    }
+
+    /**
+     * @param list<string> $childStrings
+     * @return list<string>
+     */
+    private function formatArrayShape(array $childStrings): array
+    {
+        $strings = [sprintf('%s %s{', $this->tag, $this->type)];
         $strings = array_merge($strings, $childStrings);
-        $description = '';
-
-        if ($this->description !== null) {
-            $description = sprintf(' %s', $this->description);
-        }
-
-        $strings[] = $this->isArrayShape()
-            ? sprintf('}%s%s', $name, $description)
-            : sprintf('}>%s%s', $name, $description);
+        $strings[] = sprintf('}%s%s', $this->formatName(), $this->formatDescription());
 
         return $strings;
+    }
+
+    /**
+     * @param list<string> $childStrings
+     * @return list<string>
+     */
+    private function formatNonArrayShape(array $childStrings): array
+    {
+        $strings = [sprintf('%s %s<int|string, array{', $this->tag, $this->type)];
+        $strings = array_merge($strings, $childStrings);
+        $strings[] = sprintf('}>%s%s', $this->formatName(), $this->formatDescription());
+
+        return $strings;
+    }
+
+    private function formatName(): string
+    {
+        return ($this->name !== null) ? sprintf(' $%s', $this->name) : '';
+    }
+
+    private function formatDescription(): string
+    {
+        return ($this->description !== null) ? sprintf(' %s', $this->description) : '';
     }
 }
