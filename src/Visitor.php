@@ -8,6 +8,7 @@ use phpDocumentor\Reflection\DocBlock;
 use phpDocumentor\Reflection\DocBlock\Description;
 use phpDocumentor\Reflection\DocBlock\Tags\Param;
 use phpDocumentor\Reflection\DocBlock\Tags\Return_;
+use phpDocumentor\Reflection\DocBlock\Tags\TagWithType;
 use phpDocumentor\Reflection\DocBlock\Tags\Var_;
 use phpDocumentor\Reflection\Type;
 use phpDocumentor\Reflection\Types\Never_;
@@ -32,7 +33,7 @@ class Visitor extends \StubsGenerator\NodeVisitor
     /** @var \phpDocumentor\Reflection\DocBlockFactory */
     private $docBlockFactory;
 
-    /** @var ?\PhpStubs\WordPress\Core\FunctionMap */
+    /** @var \PhpStubs\WordPress\Core\FunctionMap */
     private $functionMap;
 
     /** @var array<string, array<int, \PhpStubs\WordPress\Core\WordPressTag>> */
@@ -48,6 +49,7 @@ class Visitor extends \StubsGenerator\NodeVisitor
     {
         $this->docBlockFactory = \phpDocumentor\Reflection\DocBlockFactory::createInstance();
         $this->nodeFinder = new NodeFinder();
+        $this->functionMap = new FunctionMap();
     }
 
     public function enterNode(Node $node)
@@ -189,7 +191,7 @@ class Visitor extends \StubsGenerator\NodeVisitor
     }
 
     /**
-     * @return array<int, \PhpStubs\WordPress\Core\WordPressTag>
+     * @return list<\PhpStubs\WordPress\Core\WordPressTag>
      */
     private function generateAdditionalTagsFromDoc(Doc $docComment, string $symbolName): array
     {
@@ -203,54 +205,21 @@ class Visitor extends \StubsGenerator\NodeVisitor
             return [];
         }
 
-        /** @var list<\phpDocumentor\Reflection\DocBlock\Tags\Param> $params*/
-        $params = $docblock->getTagsByName('param');
+        $tags = $docblock->getTagsWithTypeByName('param');
+        array_push($tags, ...$docblock->getTagsWithTypeByName('return'));
+        array_push($tags, ...$docblock->getTagsWithTypeByName('var'));
 
-        /** @var list<\phpDocumentor\Reflection\DocBlock\Tags\Return_> $returns */
-        $returns = $docblock->getTagsByName('return');
-
-        /** @var list<\phpDocumentor\Reflection\DocBlock\Tags\Var_> $vars */
-        $vars = $docblock->getTagsByName('var');
+        if (count($tags) === 0) {
+            return [];
+        }
 
         /** @var list<\PhpStubs\WordPress\Core\WordPressTag> $additions */
         $additions = [];
 
-        $this->checkParameterNames($params, $symbolName);
+        $this->checkParameterNames($tags, $symbolName);
 
-        foreach ($params as $param) {
-            if (! $param instanceof Param) {
-                continue;
-            }
-
-            $addition = self::getAdditionFromParam($param);
-
-            if ($addition === null) {
-                continue;
-            }
-
-            $additions[] = $addition;
-        }
-
-        foreach ($returns as $return) {
-            if (! $return instanceof Return_) {
-                continue;
-            }
-
-            $addition = self::getAdditionFromReturn($return);
-
-            if ($addition === null) {
-                continue;
-            }
-
-            $additions[] = $addition;
-        }
-
-        foreach ($vars as $var) {
-            if (! $var instanceof Var_) {
-                continue;
-            }
-
-            $addition = self::getAdditionFromVar($var);
+        foreach ($tags as $tag) {
+            $addition = self::getAdditionFromTag($tag);
 
             if ($addition === null) {
                 continue;
@@ -435,17 +404,28 @@ class Visitor extends \StubsGenerator\NodeVisitor
     }
 
     /**
-     * @param list<\phpDocumentor\Reflection\DocBlock\Tags\Param> $params
+     * @param array<\phpDocumentor\Reflection\DocBlock\Tags\TagWithType> $tags
      */
-    private function checkParameterNames(array $params, string $symbolName): void
+    private function checkParameterNames(array $tags, string $symbolName): void
     {
-        $mapParams = $this->getParametersFromMap($symbolName);
-        if (count($mapParams) === 0) {
+        /**
+         * @var array<int, \phpDocumentor\Reflection\DocBlock\Tags\Param> $params
+         */
+        $params = array_filter(
+            $tags,
+            static function (TagWithType $tag): bool {
+                return $tag instanceof Param;
+            }
+        );
+
+        if (count($params) === 0) {
             return;
         }
 
-        // Remove return type from array.
-        unset($mapParams[0]);
+        $mapParams = $this->functionMap->getParameters($symbolName);
+        if (count($mapParams) === 0) {
+            return;
+        }
 
         /** @var list<string> */
         $params = array_map(
@@ -473,30 +453,12 @@ class Visitor extends \StubsGenerator\NodeVisitor
     }
 
     /**
-     * @phpstan-assert \PhpStubs\WordPress\Core\FunctionMap $this->functionMap
-     * @return array{0?: ?string, 1?: array<int|string, string>}
-     */
-    private function getParametersFromMap(string $symbolName): array
-    {
-        if (!isset($this->functionMap)) {
-            $this->functionMap = new FunctionMap();
-        }
-
-        return $this->functionMap->getFunction($symbolName) ?? [];
-    }
-
-    /**
      * @return list<string>
      */
     private function getAdditionalTagsFromMap(string $symbolName): array
     {
-        $parameters = $this->getParametersFromMap($symbolName);
-        if (count($parameters) === 0) {
-            return [];
-        }
-
-        /** @var ?string $returnType */
-        $returnType = array_shift($parameters);
+        $parameters = $this->functionMap->getParameters($symbolName);
+        $returnType = $this->functionMap->getReturnType($symbolName);
 
         /** @var array<string, string> $parameters */
         $additions = [];
@@ -547,24 +509,35 @@ class Visitor extends \StubsGenerator\NodeVisitor
         return new Doc($newDocComment, $docComment->getStartLine(), $docComment->getStartFilePos());
     }
 
-    private function getAdditionFromParam(Param $tag): ?WordPressTag
+    private static function getAdditionFromTag(TagWithType $tag): ?WordPressTag
     {
+        if (!$tag instanceof Param && !$tag instanceof Return_ && !$tag instanceof Var_) {
+            return null;
+        }
+
         $tagDescription = $tag->getDescription();
-        $tagVariableName = $tag->getVariableName();
         $tagVariableType = $tag->getType();
+        $tagVariableName = $tag instanceof Param ? $tag->getVariableName() : null;
 
         // Skip if information we need is missing.
-        if (!$tagDescription || !$tagVariableName || !$tagVariableType) {
+        if (!$tagDescription || !$tagVariableType || ($tag instanceof Param && !$tagVariableName)) {
             return null;
         }
 
         $tagDescriptionType = self::getTypeNameFromDescription($tagDescription, $tagVariableType);
 
-        if ($tagDescriptionType !== null) {
-            return new WordPressTag('@phpstan-param', $tagDescriptionType, $tagVariableName);
+        if (($tag instanceof Param || $tag instanceof Return_) && $tagDescriptionType !== null) {
+            return new WordPressTag(
+                sprintf('@phpstan-%s', $tag->getName()),
+                $tagDescriptionType,
+                $tagVariableName
+            );
         }
 
-        $elements = self::getElementsFromDescription($tagDescription, true);
+        $elements = self::getElementsFromDescription(
+            $tagDescription,
+            $tag instanceof Param ? true : false
+        );
 
         if (count($elements) === 0) {
             return null;
@@ -576,76 +549,20 @@ class Visitor extends \StubsGenerator\NodeVisitor
             return null;
         }
 
-        // It's common for an args parameter to accept a query var string or array with `string|array`.
-        // Remove the accepted string type for these so we get the strongest typing we can manage.
-        $tagVariableType = str_replace(['|string', 'string|'], '', $tagVariableType);
-
-        $tag = new WordPressTag('@phpstan-param', $tagVariableType, $tagVariableName);
-        $tag->children = $elements;
-
-        return $tag;
-    }
-
-    private function getAdditionFromReturn(Return_ $tag): ?WordPressTag
-    {
-        $tagDescription = $tag->getDescription();
-        $tagVariableType = $tag->getType();
-
-        // Skip if information we need is missing.
-        if (!$tagDescription || !$tagVariableType) {
-            return null;
+        if ($tag instanceof Param) {
+            // It's common for an args parameter to accept a query var string or
+            // array with `string|array`. Remove the accepted string type for
+            // these so we get the strongest typing we can manage.
+            $tagVariableType = str_replace(['|string', 'string|'], '', $tagVariableType);
         }
 
-        $tagDescriptionType = self::getTypeNameFromDescription($tagDescription, $tagVariableType);
-
-        if ($tagDescriptionType !== null) {
-            return new WordPressTag('@phpstan-return', $tagDescriptionType);
-        }
-
-        $elements = self::getElementsFromDescription($tagDescription, false);
-
-        if (count($elements) === 0) {
-            return null;
-        }
-
-        $tagVariableType = self::getTypeNameFromType($tagVariableType);
-
-        if ($tagVariableType === null) {
-            return null;
-        }
-
-        $tag = new WordPressTag('@phpstan-return', $tagVariableType);
-        $tag->children = $elements;
-
-        return $tag;
-    }
-
-    private static function getAdditionFromVar(Var_ $tag): ?WordPressTag
-    {
-        $tagDescription = $tag->getDescription();
-        $tagVariableType = $tag->getType();
-
-        // Skip if information we need is missing.
-        if (!$tagDescription || !$tagVariableType) {
-            return null;
-        }
-
-        $elements = self::getElementsFromDescription($tagDescription, false);
-
-        if (count($elements) === 0) {
-            return null;
-        }
-
-        $tagVariableType = self::getTypeNameFromType($tagVariableType);
-
-        if ($tagVariableType === null) {
-            return null;
-        }
-
-        $tag = new WordPressTag('@phpstan-var', $tagVariableType);
-        $tag->children = $elements;
-
-        return $tag;
+        return new WordPressTag(
+            sprintf('@phpstan-%s', $tag->getName()),
+            $tagVariableType,
+            $tagVariableName,
+            null,
+            $elements
+        );
     }
 
     private static function getTypeNameFromDescription(Description $tagVariableDescription, Type $tagVariableType): ?string
