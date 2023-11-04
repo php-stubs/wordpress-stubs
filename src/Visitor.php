@@ -69,8 +69,8 @@ class Visitor extends \StubsGenerator\NodeVisitor
         $symbolName = self::getNodeName($node);
 
         if ($node instanceof ClassMethod) {
-            /** @var \PhpParser\Node\Stmt\ClassLike $parent */
             $parent = $this->stack[count($this->stack) - 2];
+            \assert($parent instanceof \PhpParser\Node\Stmt\ClassLike);
 
             if (isset($parent->name)) {
                 $symbolName = sprintf(
@@ -181,9 +181,11 @@ class Visitor extends \StubsGenerator\NodeVisitor
 
         $newDocComment = $this->addStringTags($name, $docComment);
 
-        if ($newDocComment !== null) {
-            $node->setDocComment($newDocComment);
+        if ($newDocComment === null) {
+            return;
         }
+
+        $node->setDocComment($newDocComment);
     }
 
     /**
@@ -222,9 +224,11 @@ class Visitor extends \StubsGenerator\NodeVisitor
 
             $addition = self::getAdditionFromParam($param);
 
-            if ($addition !== null) {
-                $additions[] = $addition;
+            if ($addition === null) {
+                continue;
             }
+
+            $additions[] = $addition;
         }
 
         foreach ($returns as $return) {
@@ -234,9 +238,11 @@ class Visitor extends \StubsGenerator\NodeVisitor
 
             $addition = self::getAdditionFromReturn($return);
 
-            if ($addition !== null) {
-                $additions[] = $addition;
+            if ($addition === null) {
+                continue;
             }
+
+            $additions[] = $addition;
         }
 
         foreach ($vars as $var) {
@@ -246,9 +252,11 @@ class Visitor extends \StubsGenerator\NodeVisitor
 
             $addition = self::getAdditionFromVar($var);
 
-            if ($addition !== null) {
-                $additions[] = $addition;
+            if ($addition === null) {
+                continue;
             }
+
+            $additions[] = $addition;
         }
 
         return $additions;
@@ -383,9 +391,11 @@ class Visitor extends \StubsGenerator\NodeVisitor
 
             $match = self::getMatchingInheritedTag($param, $tags, $symbolName);
 
-            if ($match !== null) {
-                $additions[] = $match;
+            if ($match === null) {
+                continue;
             }
+
+            $additions[] = $match;
         }
 
         return $additions;
