@@ -8,6 +8,7 @@ use function comment_class;
 use function edit_term_link;
 use function get_calendar;
 use function next_posts;
+use function PHPStan\Testing\assertType;
 use function post_type_archive_title;
 use function previous_posts;
 use function single_cat_title;
@@ -21,8 +22,6 @@ use function the_title;
 use function wp_loginout;
 use function wp_register;
 use function wp_title;
-
-use function PHPStan\Testing\assertType;
 
 // Default value of true
 assertType('void', comment_class());

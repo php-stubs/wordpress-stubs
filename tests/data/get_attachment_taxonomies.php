@@ -7,20 +7,22 @@ namespace PhpStubs\WordPress\Core\Tests;
 use function get_attachment_taxonomies;
 use function PHPStan\Testing\assertType;
 
+$type = new TypeHelper();
+
 // Default
-assertType('array<int, string>', get_attachment_taxonomies((int)$id));
-assertType('array<int, string>', get_attachment_taxonomies((int)$id, 'names'));
+assertType('array<int, string>', get_attachment_taxonomies($type->int));
+assertType('array<int, string>', get_attachment_taxonomies($type->int, 'names'));
 
 // Objects
-assertType('array<string, WP_Taxonomy>', get_attachment_taxonomies((int)$id, 'objects'));
+assertType('array<string, WP_Taxonomy>', get_attachment_taxonomies($type->int, 'objects'));
 
 // Unexpected
-assertType('array<string, WP_Taxonomy>', get_attachment_taxonomies((int)$id, 'Hello'));
+assertType('array<string, WP_Taxonomy>', get_attachment_taxonomies($type->int, 'Hello'));
 
 // Unknown
-assertType('array<int|string, string|WP_Taxonomy>', get_attachment_taxonomies((int)$id, (string)$_GET['string']));
+assertType('array<int|string, string|WP_Taxonomy>', get_attachment_taxonomies($type->int, $type->string));
 
 // Unions
-assertType('array<int|string, string|WP_Taxonomy>', get_attachment_taxonomies((int)$id, $_GET['foo'] ? 'names' : 'objects'));
-assertType('array<int|string, string|WP_Taxonomy>', get_attachment_taxonomies((int)$id, $_GET['foo'] ? (string)$_GET['string'] : 'names'));
-assertType('array<int|string, string|WP_Taxonomy>', get_attachment_taxonomies((int)$id, $_GET['foo'] ? (string)$_GET['string'] : 'objects'));
+assertType('array<int|string, string|WP_Taxonomy>', get_attachment_taxonomies($type->int, $type::or('names', 'objects')));
+assertType('array<int|string, string|WP_Taxonomy>', get_attachment_taxonomies($type->int, $type::or($type->string, 'names')));
+assertType('array<int|string, string|WP_Taxonomy>', get_attachment_taxonomies($type->int, $type::or($type->string, 'objects')));

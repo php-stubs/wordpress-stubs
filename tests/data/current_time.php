@@ -7,6 +7,8 @@ namespace PhpStubs\WordPress\Core\Tests;
 use function current_time;
 use function PHPStan\Testing\assertType;
 
+$type = new TypeHelper();
+
 // Integer types
 assertType('int', current_time('timestamp'));
 assertType('int', current_time('U'));
@@ -16,4 +18,4 @@ assertType('string', current_time('mysql'));
 assertType('string', current_time('Hello'));
 
 // Unknown string
-assertType('int|string', current_time((string)$_GET['unknown_string']));
+assertType('int|string', current_time($type->string));

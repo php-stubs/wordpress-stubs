@@ -7,12 +7,12 @@ namespace PhpStubs\WordPress\Core\Tests;
 use function mysql2date;
 use function PHPStan\Testing\assertType;
 
-$time = '1970-01-01 00:00:00';
+$type = new TypeHelper();
 
 // Constant strings
-assertType('int|false', mysql2date('G', $time));
-assertType('int|false', mysql2date('U', $time));
-assertType('string|false', mysql2date('Y-m-d H:i:s', $time));
+assertType('int|false', mysql2date('G', $type->string));
+assertType('int|false', mysql2date('U', $type->string));
+assertType('string|false', mysql2date('Y-m-d H:i:s', $type->string));
 
 // Unknown string
-assertType('int|string|false', mysql2date((string)$_GET['unknown_string'], $time));
+assertType('int|string|false', mysql2date($type->string, $type->string));

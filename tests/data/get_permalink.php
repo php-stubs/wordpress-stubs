@@ -9,23 +9,22 @@ use function get_post_permalink;
 use function get_the_permalink;
 use function PHPStan\Testing\assertType;
 
-/** @var \WP_Post $post */
-$post = $post;
+$type = new TypeHelper();
 
 // get_permalink()
 assertType('string|false', get_permalink());
-assertType('string|false', get_permalink(1));
-assertType('string|false', get_permalink($_GET['foo']));
-assertType('string', get_permalink($post));
+assertType('string|false', get_permalink($type->int));
+assertType('string|false', get_permalink($type->intOrWpPost));
+assertType('string', get_permalink($type->wpPost));
 
 // get_the_permalink()
 assertType('string|false', get_the_permalink());
-assertType('string|false', get_the_permalink(1));
-assertType('string|false', get_the_permalink($_GET['foo']));
-assertType('string', get_the_permalink($post));
+assertType('string|false', get_the_permalink($type->int));
+assertType('string|false', get_the_permalink($type->intOrWpPost));
+assertType('string', get_the_permalink($type->wpPost));
 
 // get_post_permalink()
 assertType('string|false', get_post_permalink());
-assertType('string|false', get_post_permalink(1));
-assertType('string|false', get_post_permalink($_GET['foo']));
-assertType('string', get_post_permalink($post));
+assertType('string|false', get_post_permalink($type->int));
+assertType('string|false', get_post_permalink($type->intOrWpPost));
+assertType('string', get_post_permalink($type->wpPost));
