@@ -14,7 +14,7 @@ class TypeHelper
     public int $posInt;
 
     /** @var negative-int $negInt */
-    public int $NegInt;
+    public int $negInt;
 
     public string $string;
 
