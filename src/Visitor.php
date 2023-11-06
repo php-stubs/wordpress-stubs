@@ -84,7 +84,7 @@ class Visitor extends \StubsGenerator\NodeVisitor
         }
         $node->setAttribute('fullSymbolName', $symbolName);
 
-        $additions = $this->generateAdditionalTagsFromDoc($docComment, $symbolName);
+        $additions = $this->generateAdditionalTagsFromDoc($docComment);
         if (count($additions) > 0) {
             $this->additionalTags[$symbolName] = $additions;
         }
@@ -193,7 +193,7 @@ class Visitor extends \StubsGenerator\NodeVisitor
     /**
      * @return list<\PhpStubs\WordPress\Core\WordPressTag>
      */
-    private function generateAdditionalTagsFromDoc(Doc $docComment, string $symbolName): array
+    private function generateAdditionalTagsFromDoc(Doc $docComment): array
     {
         $docCommentText = $docComment->getText();
 
@@ -215,8 +215,6 @@ class Visitor extends \StubsGenerator\NodeVisitor
 
         /** @var list<\PhpStubs\WordPress\Core\WordPressTag> $additions */
         $additions = [];
-
-        $this->checkParameterNames($tags, $symbolName);
 
         foreach ($tags as $tag) {
             $addition = self::getAdditionFromTag($tag);
@@ -401,55 +399,6 @@ class Visitor extends \StubsGenerator\NodeVisitor
         }
 
         return null;
-    }
-
-    /**
-     * @param array<\phpDocumentor\Reflection\DocBlock\Tags\TagWithType> $tags
-     */
-    private function checkParameterNames(array $tags, string $symbolName): void
-    {
-        /**
-         * @var array<int, \phpDocumentor\Reflection\DocBlock\Tags\Param> $params
-         */
-        $params = array_filter(
-            $tags,
-            static function (TagWithType $tag): bool {
-                return $tag instanceof Param;
-            }
-        );
-
-        if (count($params) === 0) {
-            return;
-        }
-
-        $mapParams = $this->functionMap->getParameters($symbolName);
-        if (count($mapParams) === 0) {
-            return;
-        }
-
-        /** @var list<string> */
-        $params = array_map(
-            static function (Param $param): ?string {
-                return $param->getVariableName();
-            },
-            $params
-        );
-
-        /** @var array<string, string> $mapParams */
-        foreach ($mapParams as $mapParamName => $mapParamType) {
-            if (strpos($mapParamName, '@') === 0 || $mapParamType === '') {
-                continue;
-            }
-            if (!in_array($mapParamName, $params, true)) {
-                throw new \UnexpectedValueException(
-                    sprintf(
-                        'Parameter %s not found in %s()',
-                        $mapParamName,
-                        $symbolName
-                    )
-                );
-            }
-        }
     }
 
     /**
