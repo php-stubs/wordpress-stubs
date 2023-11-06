@@ -9,7 +9,7 @@ use function PHPStan\Testing\assertType;
 
 $type = new TypeHelper();
 
-assertType('WP_Error|WP_Term|null', get_category_by_path($ype->string, $type->bool, ));
-assertType('WP_Error|WP_Term|null', get_category_by_path($ype->string, $type->bool, 'OBJECT'));
-assertType('array<string, mixed>|WP_Error|null', get_category_by_path($ype->string, $type->bool, 'ARRAY_A'));
-assertType('array<int, mixed>|WP_Error|null', get_category_by_path($ype->string, $type->bool, 'ARRAY_N'));
+assertType('WP_Error|WP_Term|null', get_category_by_path($type->string, $type->bool, ));
+assertType('WP_Error|WP_Term|null', get_category_by_path($type->string, $type->bool, 'OBJECT'));
+assertType('array<string, mixed>|WP_Error|null', get_category_by_path($type->string, $type->bool, 'ARRAY_A'));
+assertType('array<int, mixed>|WP_Error|null', get_category_by_path($type->string, $type->bool, 'ARRAY_N'));
