@@ -10,11 +10,13 @@
     "homepage": "https://github.com/php-stubs/wordpress-stubs",
     "require-dev": {
         "php": "^7.4 || ~8.0.0",
+        "dealerdirect/phpcodesniffer-composer-installer": "^1.0",
         "nikic/php-parser": "^4.13",
         "php-stubs/generator": "^0.8.3",
         "phpdocumentor/reflection-docblock": "^5.3",
         "phpstan/phpstan": "^1.10.12",
-        "phpunit/phpunit": "^9.5"
+        "phpunit/phpunit": "^9.5",
+        "szepeviktor/phpcs-psr-12-neutron-hybrid-ruleset": "^0.8"
     },
     "suggest": {
         "paragonie/sodium_compat": "Pure PHP implementation of libsodium",
@@ -41,9 +43,12 @@
         "post-update-cmd": "@composer --working-dir=source/ update --no-interaction",
         "cleanup": "git status --short --ignored | sed -n -e 's#^!! ##p' | xargs -r rm -vrf",
         "test": [
+            "@test:cs",
             "@test:phpstan",
             "@test:phpunit"
         ],
+        "test:cs": "phpcs",
+        "test:cs:fix": "phpcbf",
         "test:phpstan": "phpstan analyze",
         "test:phpunit": "phpunit"
     },
