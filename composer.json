@@ -29,7 +29,8 @@
     },
     "config": {
         "allow-plugins": {
-            "php-stubs/generator": true
+            "php-stubs/generator": true,
+            "dealerdirect/phpcodesniffer-composer-installer": true
         },
         "platform": {
             "php": "7.4.30"
