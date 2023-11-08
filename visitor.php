@@ -26,7 +26,6 @@ use PhpParser\Node\Stmt\Expression;
 use PhpParser\Node\Stmt\Function_;
 use PhpParser\Node\Stmt\Property;
 use PhpParser\Node\Stmt\Return_ as Stmt_Return;
-use PhpParser\NodeDumper;
 use StubsGenerator\NodeVisitor;
 
 abstract class WithChildren
