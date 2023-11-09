@@ -200,9 +200,7 @@ final class WordPressArg extends WithChildren
 
         if ($this->isArrayShape()) {
             if ($this->name === null) {
-                $strings = array_merge($strings, $childStrings);
-
-                return $strings;
+                return array_merge($strings, $childStrings);
             }
 
             $strings[] = sprintf(
@@ -218,7 +216,7 @@ final class WordPressArg extends WithChildren
             return $strings;
         }
 
-        // Not an array with a shape
+        // Array without shape
         $strings[] = sprintf(
             '%s%s%s: array<int|string, %s{',
             $padding,
