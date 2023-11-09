@@ -176,47 +176,7 @@ final class WordPressArg extends WithChildren
             return [];
         }
 
-        if (count($this->children) > 0) {
-            $childStrings = [];
-
-            foreach ($this->children as $child) {
-                $childStrings = array_merge($childStrings, $child->format($level + 1));
-            }
-
-            if (count($childStrings) === 0) {
-                return [];
-            }
-
-            if ($this->isArrayShape()) {
-                if ($this->name !== null) {
-                    $strings[] = sprintf(
-                        '%s%s%s: %s{',
-                        $padding,
-                        $this->name,
-                        ($this->optional) ? '?' : '',
-                        $this->type
-                    );
-                }
-            } else {
-                $strings[] = sprintf(
-                    '%s%s%s: array<int|string, %s{',
-                    $padding,
-                    $this->name,
-                    ($this->optional) ? '?' : '',
-                    $this->type
-                );
-            }
-
-            $strings = array_merge($strings, $childStrings);
-
-            if ($this->isArrayShape()) {
-                if ($this->name !== null) {
-                    $strings[] = "$padding},";
-                }
-            } else {
-                $strings[] = "$padding}>,";
-            }
-        } else {
+        if (count($this->children) === 0) {
             $strings[] = sprintf(
                 '%s%s%s: %s,',
                 $padding,
@@ -224,7 +184,50 @@ final class WordPressArg extends WithChildren
                 ($this->optional) ? '?' : '',
                 $this->type
             );
+
+            return $strings;
         }
+
+        $childStrings = [];
+
+        foreach ($this->children as $child) {
+            $childStrings = array_merge($childStrings, $child->format($level + 1));
+        }
+
+        if (count($childStrings) === 0) {
+            return [];
+        }
+
+        if ($this->isArrayShape()) {
+            if ($this->name === null) {
+                $strings = array_merge($strings, $childStrings);
+
+                return $strings;
+            }
+
+            $strings[] = sprintf(
+                '%s%s%s: %s{',
+                $padding,
+                $this->name,
+                ($this->optional) ? '?' : '',
+                $this->type
+            );
+            $strings = array_merge($strings, $childStrings);
+            $strings[] = sprintf('%s},', $padding);
+
+            return $strings;
+        }
+
+        // Not an array with a shape
+        $strings[] = sprintf(
+            '%s%s%s: array<int|string, %s{',
+            $padding,
+            $this->name,
+            ($this->optional) ? '?' : '',
+            $this->type
+        );
+        $strings = array_merge($strings, $childStrings);
+        $strings[] = sprintf('%s}>,', $padding);
 
         return $strings;
     }
