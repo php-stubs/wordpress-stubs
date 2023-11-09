@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace PhpStubs\WordPress\Core\Tests;
 
+use function PHPStan\Testing\assertType;
+
 assertType('array<int, WP_Post>', get_posts());
 assertType('array<int, WP_Post>', get_posts(['key' => 'value']));
 assertType('array<int, WP_Post>', get_posts(['fields' => '']));
