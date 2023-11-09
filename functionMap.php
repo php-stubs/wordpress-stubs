@@ -1,8 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 $httpReturnType = 'array{headers: \WpOrg\Requests\Utility\CaseInsensitiveDictionary, body: string, response: array{code: int,message: string}, cookies: array<int, \WP_HTTP_Cookie>, filename: string|null, http_response: \WP_HTTP_Requests_Response}|\WP_Error';
 
-if (file_exists(__DIR__ . '/source/wordpress/wp-includes/Requests/Cookie/Jar.php')) {
+if (file_exists(sprintf('%s/source/wordpress/wp-includes/Requests/Cookie/Jar.php', __DIR__))) {
     $httpReturnType = 'array{headers: \Requests_Utility_CaseInsensitiveDictionary, body: string, response: array{code: int,message: string}, cookies: array<int, \WP_HTTP_Cookie>, filename: string|null, http_response: \WP_HTTP_Requests_Response}|\WP_Error';
 }
 $cronArgsType = 'list<mixed>';
@@ -81,11 +83,11 @@ return [
     'get_attachment_taxonomies' => ["(\$output is 'names' ? array<int, string> : array<string, \WP_Taxonomy>)"],
     'get_taxonomies_for_attachments' => ["(\$output is 'names' ? array<int, string> : array<string, \WP_Taxonomy>)"],
     'get_post_stati' => ["(\$output is 'names' ? array<string, string> : array<string, \stdClass>)"],
-    'get_comment' => ["(\$comment is \WP_Comment ? array<array-key, mixed>|\WP_Comment : array<array-key, mixed>|\WP_Comment|null) & (\$output is 'ARRAY_A' ? array<string, mixed>|null : (\$output is 'ARRAY_N' ? array<int, mixed>|null : \WP_Comment|null))", 'output'=>"'OBJECT'|'ARRAY_A'|'ARRAY_N'"],
-    'get_post' => ["(\$post is \WP_Post ? array<array-key, mixed>|\WP_Post : array<array-key, mixed>|\WP_Post|null) & (\$output is 'ARRAY_A' ? array<string, mixed>|null : (\$output is 'ARRAY_N' ? array<int, mixed>|null : \WP_Post|null))", 'output'=>"'OBJECT'|'ARRAY_A'|'ARRAY_N'" ],
+    'get_comment' => ["(\$comment is \WP_Comment ? array<array-key, mixed>|\WP_Comment : array<array-key, mixed>|\WP_Comment|null) & (\$output is 'ARRAY_A' ? array<string, mixed>|null : (\$output is 'ARRAY_N' ? array<int, mixed>|null : \WP_Comment|null))", 'output' => "'OBJECT'|'ARRAY_A'|'ARRAY_N'"],
+    'get_post' => ["(\$post is \WP_Post ? array<array-key, mixed>|\WP_Post : array<array-key, mixed>|\WP_Post|null) & (\$output is 'ARRAY_A' ? array<string, mixed>|null : (\$output is 'ARRAY_N' ? array<int, mixed>|null : \WP_Post|null))", 'output' => "'OBJECT'|'ARRAY_A'|'ARRAY_N'" ],
     'get_term_by' => ["(\$output is 'ARRAY_A' ? array<string, string|int>|\WP_Error|false : (\$output is 'ARRAY_N' ? list<string|int>|\WP_Error|false : \WP_Term|\WP_Error|false))"],
     'get_page_by_path' => ["(\$output is 'ARRAY_A' ? array<string, mixed>|null : (\$output is 'ARRAY_N' ? array<int, mixed>|null : \WP_Post|null))"],
-    'get_term' => ["(\$output is 'ARRAY_A' ? array<string, string|int>|\WP_Error|null : (\$output is 'ARRAY_N' ? list<string|int>|\WP_Error|null : \WP_Term|\WP_Error|null))", 'output'=>"'OBJECT'|'ARRAY_A'|'ARRAY_N'"],
+    'get_term' => ["(\$output is 'ARRAY_A' ? array<string, string|int>|\WP_Error|null : (\$output is 'ARRAY_N' ? list<string|int>|\WP_Error|null : \WP_Term|\WP_Error|null))", 'output' => "'OBJECT'|'ARRAY_A'|'ARRAY_N'"],
     'has_action' => ['($callback is false ? bool : false|int)'],
     'has_filter' => ['($callback is false ? bool : false|int)'],
     'get_permalink' => ['($post is \WP_Post ? string : string|false)'],

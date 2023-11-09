@@ -18,6 +18,7 @@ use PhpParser\Node\Identifier;
 use PhpParser\Node\Name;
 use PhpParser\Node\Expr\Exit_;
 use PhpParser\Node\Expr\FuncCall;
+use PhpParser\Node\Scalar\String_;
 use PhpParser\Node\Stmt\Class_;
 use PhpParser\Node\Stmt\ClassMethod;
 use PhpParser\Node\Stmt\Expression;
@@ -88,7 +89,7 @@ final class WordPressTag extends WithChildren
                     '%s %s%s',
                     $this->tag,
                     $this->type,
-                    ($this->name !== null) ? (' $' . $this->name) : ''
+                    $this->name !== null ? " \$$this->name" : ''
                 ),
             ];
         }
@@ -113,7 +114,7 @@ final class WordPressTag extends WithChildren
             return [];
         }
 
-        $name = ($this->name !== null) ? (' $' . $this->name) : '';
+        $name = $this->name !== null ? " \$$this->name" : '';
 
         if ($this->isArrayShape()) {
             $strings[] = sprintf(
@@ -143,7 +144,7 @@ final class WordPressTag extends WithChildren
         $description = '';
 
         if ($this->description !== null) {
-            $description = ' ' . $this->description;
+            $description = " $this->description";
         }
 
         $strings[] = $this->isArrayShape()
@@ -210,10 +211,10 @@ final class WordPressArg extends WithChildren
 
             if ($this->isArrayShape()) {
                 if ($this->name !== null) {
-                    $strings[] = $padding . '},';
+                    $strings[] = "$padding},";
                 }
             } else {
-                $strings[] = $padding . '}>,';
+                $strings[] = "$padding}>,";
             }
         } else {
             $strings[] = sprintf(
@@ -624,7 +625,7 @@ return new class extends NodeVisitor {
     }
 
     /**
-     * @return string[]
+     * @return list<string>
      */
     private function getAdditionalTagsFromMap(string $symbolName): array
     {
@@ -866,10 +867,15 @@ return new class extends NodeVisitor {
             return null;
         }
 
-        $tagVariableType = str_replace([
+        $tagVariableType = str_replace(
+            [
             'stdClass',
             '\\object',
-        ], 'object', $tagVariableType);
+            ],
+            'object',
+            $tagVariableType
+        );
+
         $supportedTypes = [
             'object',
             'array',
