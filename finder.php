@@ -1,6 +1,8 @@
-<?php // phpcs:disable Squiz.PHP.CommentedOutCode
+<?php
 
 declare(strict_types=1);
+
+// phpcs:disable Squiz.PHP.CommentedOutCode
 
 return \StubsGenerator\Finder::create()
     ->in('source/wordpress')
