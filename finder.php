@@ -2,6 +2,8 @@
 
 declare(strict_types=1);
 
+// phpcs:disable Squiz.PHP.CommentedOutCode
+
 return \StubsGenerator\Finder::create()
     ->in('source/wordpress')
     // Shim for load-styles.php and load-scripts.php.
