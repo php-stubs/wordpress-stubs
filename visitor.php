@@ -208,25 +208,28 @@ final class WordPressArg extends WithChildren
                     $this->type
                 );
             }
-        } else {
-            $strings[] = sprintf(
-                '%s%s%s: array<int|string, %s{',
-                $padding,
-                $this->name,
-                ($this->optional) ? '?' : '',
-                $this->type
-            );
+
+            $strings = array_merge($strings, $childStrings);
+
+            if ($this->name !== null) {
+                $strings[] = sprintf('%s},', $padding);
+            }
+
+            return $strings;
         }
+
+        // Not an array with a shape
+        $strings[] = sprintf(
+            '%s%s%s: array<int|string, %s{',
+            $padding,
+            $this->name,
+            ($this->optional) ? '?' : '',
+            $this->type
+        );
 
         $strings = array_merge($strings, $childStrings);
 
-        if ($this->isArrayShape()) {
-            if ($this->name !== null) {
-                $strings[] = "$padding},";
-            }
-        } else {
-            $strings[] = "$padding}>,";
-        }
+        $strings[] = sprintf('%s}>,', $padding);
 
         return $strings;
     }
