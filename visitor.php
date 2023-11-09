@@ -199,21 +199,21 @@ final class WordPressArg extends WithChildren
         }
 
         if ($this->isArrayShape()) {
-            if ($this->name !== null) {
-                $strings[] = sprintf(
-                    '%s%s%s: %s{',
-                    $padding,
-                    $this->name,
-                    ($this->optional) ? '?' : '',
-                    $this->type
-                );
+            if ($this->name === null) {
+                $strings = array_merge($strings, $childStrings);
+
+                return $strings;
             }
 
+            $strings[] = sprintf(
+                '%s%s%s: %s{',
+                $padding,
+                $this->name,
+                ($this->optional) ? '?' : '',
+                $this->type
+            );
             $strings = array_merge($strings, $childStrings);
-
-            if ($this->name !== null) {
-                $strings[] = sprintf('%s},', $padding);
-            }
+            $strings[] = sprintf('%s},', $padding);
 
             return $strings;
         }
@@ -226,9 +226,7 @@ final class WordPressArg extends WithChildren
             ($this->optional) ? '?' : '',
             $this->type
         );
-
         $strings = array_merge($strings, $childStrings);
-
         $strings[] = sprintf('%s}>,', $padding);
 
         return $strings;
