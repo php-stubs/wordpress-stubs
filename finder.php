@@ -1,4 +1,4 @@
-<?php
+<?php // phpcs:disable Squiz.PHP.CommentedOutCode
 
 declare(strict_types=1);
 
