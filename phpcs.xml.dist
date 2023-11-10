@@ -2,7 +2,7 @@
 <ruleset>
     <file>finder.php</file>
     <file>functionMap.php</file>
-    <!-- <file>visitor.php</file> -->
+    <file>visitor.php</file>
 
     <rule ref="PSR12NeutronRuleset">
         <exclude name="Generic.Files.LineLength"/>
