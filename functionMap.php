@@ -24,7 +24,7 @@ $filesystemDirlistReturnType = "false|array<string, array{name: string, perms: s
  * @link https://github.com/phpstan/phpstan-src/blob/1.10.x/resources/functionMap.php
  */
 return [
-    'get_posts' => ["(\$args is array{'fields': 'id=>parent'}|array{'fields': 'ids'} ? array<int, int> : array<int, WP_Post>)"],
+    'get_posts' => ["(\$args is array{'fields': 'id=>parent'|'ids'} ? array<int, int> : array<int, WP_Post>)"],
     'addslashes_gpc' => ['T', '@phpstan-template' => 'T', 'gpc' => 'T'],
     'have_posts' => [null, '@phpstan-impure' => ''],
     'rawurlencode_deep' => ['T', '@phpstan-template' => 'T', 'value' => 'T'],
