@@ -177,15 +177,7 @@ final class WordPressArg extends WithChildren
         }
 
         if (count($this->children) === 0) {
-            $strings[] = sprintf(
-                '%s%s%s: %s,',
-                $padding,
-                $this->name,
-                ($this->optional) ? '?' : '',
-                $this->type
-            );
-
-            return $strings;
+            return $this->formatChildless($strings, $padding);
         }
 
         $childStrings = [];
@@ -202,32 +194,57 @@ final class WordPressArg extends WithChildren
             if ($this->name === null) {
                 return array_merge($strings, $childStrings);
             }
-
-            $strings[] = sprintf(
-                '%s%s%s: %s{',
-                $padding,
-                $this->name,
-                ($this->optional) ? '?' : '',
-                $this->type
-            );
-            $strings = array_merge($strings, $childStrings);
-            $strings[] = sprintf('%s},', $padding);
-
-            return $strings;
+            return $this->formatArrayShape($strings, $childStrings, $padding);
         }
 
-        // Array without shape
-        $strings[] = sprintf(
-            '%s%s%s: array<int|string, %s{',
+        return $this->formatArrayWithoutShape($strings, $childStrings, $padding);
+    }
+
+    /**
+     * @param list<string> $strings
+     * @return list<string>
+     */
+    private function formatChildless(array $strings, string $padding): array
+    {
+        $strings[] = $this->formatLine('%s%s%s: %s,', $padding);
+        return $strings;
+    }
+
+    /**
+     * @param list<string> $strings
+     * @param list<string> $childStrings
+     * @return list<string>
+     */
+    private function formatArrayShape(array $strings, array $childStrings, string $padding): array
+    {
+        $strings[] = $this->formatLine('%s%s%s: %s{', $padding);
+        $strings = array_merge($strings, $childStrings);
+        $strings[] = sprintf('%s},', $padding);
+        return $strings;
+    }
+
+    /**
+     * @param list<string> $strings
+     * @param list<string> $childStrings
+     * @return list<string>
+     */
+    private function formatArrayWithoutShape(array $strings, array $childStrings, string $padding): array
+    {
+        $strings[] = $this->formatLine('%s%s%s: array<array-key, %s{', $padding);
+        $strings = array_merge($strings, $childStrings);
+        $strings[] = sprintf('%s}>,', $padding);
+        return $strings;
+    }
+
+    private function formatLine(string $format, string $padding): string
+    {
+        return sprintf(
+            $format,
             $padding,
             $this->name,
             ($this->optional) ? '?' : '',
             $this->type
         );
-        $strings = array_merge($strings, $childStrings);
-        $strings[] = sprintf('%s}>,', $padding);
-
-        return $strings;
     }
 }
 
