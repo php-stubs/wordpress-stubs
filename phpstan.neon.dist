@@ -7,3 +7,6 @@ parameters:
         - tests/
     excludePaths:
         - tests/data/
+    featureToggles:
+        alwaysTrueAlwaysReported: true
+        instanceofType: true
