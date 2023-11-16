@@ -347,7 +347,7 @@ return new class extends NodeVisitor {
     }
 
     /**
-     * @return list<\PhpParser\Node>
+     * @return array<\PhpParser\Node>
      */
     public function getStubStmts(): array
     {
@@ -434,10 +434,6 @@ return new class extends NodeVisitor {
         $additions = [];
 
         foreach ($params as $param) {
-            if (! $param instanceof Param) {
-                continue;
-            }
-
             $addition = self::getAdditionFromParam($param);
 
             if ($addition !== null) {
@@ -446,10 +442,6 @@ return new class extends NodeVisitor {
         }
 
         foreach ($returns as $return) {
-            if (! $return instanceof Return_) {
-                continue;
-            }
-
             $addition = self::getAdditionFromReturn($return);
 
             if ($addition !== null) {
@@ -458,10 +450,6 @@ return new class extends NodeVisitor {
         }
 
         foreach ($vars as $var) {
-            if (! $var instanceof Var_) {
-                continue;
-            }
-
             $addition = self::getAdditionFromVar($var);
 
             if ($addition !== null) {

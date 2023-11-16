@@ -1,5 +1,4 @@
 parameters:
-    level: 8
     paths:
         - finder.php
         - functionMap.php
@@ -7,3 +6,7 @@ parameters:
         - tests/
     excludePaths:
         - tests/data/
+    level: 8
+    featureToggles:
+        alwaysTrueAlwaysReported: true
+        instanceofType: true
