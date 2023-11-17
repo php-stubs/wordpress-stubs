@@ -11,11 +11,11 @@ use function PHPStan\Testing\assertType;
 assertType('stdClass|void|null', wpdb::get_row());
 assertType('stdClass|void|null', wpdb::get_row(null, 'OBJECT'));
 assertType('array|void|null', wpdb::get_row(null, 'ARRAY_A'));
-assertType('array<int, mixed>|void|null', wpdb::get_row(null, 'ARRAY_N'));
+assertType('list<mixed>|void|null', wpdb::get_row(null, 'ARRAY_N'));
 
 // wpdb::get_results()
-assertType('array<int, array>|null', wpdb::get_results(null, 'ARRAY_A'));
-assertType('array<int, array<int, mixed>>|null', wpdb::get_results(null, 'ARRAY_N'));
-assertType('array<int, stdClass>|null', wpdb::get_results());
-assertType('array<int, stdClass>|null', wpdb::get_results(null, 'OBJECT'));
+assertType('list<array>|null', wpdb::get_results(null, 'ARRAY_A'));
+assertType('list<array<int, mixed>>|null', wpdb::get_results(null, 'ARRAY_N'));
+assertType('list<stdClass>|null', wpdb::get_results());
+assertType('list<stdClass>|null', wpdb::get_results(null, 'OBJECT'));
 assertType('array<stdClass>|null', wpdb::get_results(null, 'OBJECT_K'));

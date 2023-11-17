@@ -13,5 +13,5 @@ assertType( 'WP_Error|WP_Term|null', get_term( 2 ) );
 
 assertType( 'array<string, int|string>|WP_Error|null', get_term( 2, '', ARRAY_A ) );
 assertType( 'array<string, int|string>|WP_Error|null', get_term( 2, 'category', ARRAY_A ) );
-assertType( 'array<int, int|string>|WP_Error|null', get_term( 2, '', ARRAY_N ) );
-assertType( 'array<int, int|string>|WP_Error|null', get_term( 2, 'category', ARRAY_N ) );
+assertType( 'list<int|string>|WP_Error|null', get_term( 2, '', ARRAY_N ) );
+assertType( 'list<int|string>|WP_Error|null', get_term( 2, 'category', ARRAY_N ) );
