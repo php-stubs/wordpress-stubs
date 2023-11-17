@@ -29,4 +29,4 @@ assertType('array<int, array<string, mixed>>|null', wpdb::get_results(null, 'ARR
 assertType('array<int, array<int, mixed>>|null', wpdb::get_results(null, 'ARRAY_N'));
 assertType('array<int, stdClass>|null', wpdb::get_results());
 assertType('array<int, stdClass>|null', wpdb::get_results(null, 'OBJECT'));
-assertType('array<string, stdClass>|null', wpdb::get_results(null, 'OBJECT_K'));
+assertType('array<array-key, stdClass>|null', wpdb::get_results(null, 'OBJECT_K'));
