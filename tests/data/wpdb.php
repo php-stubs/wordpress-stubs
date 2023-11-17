@@ -26,7 +26,7 @@ assertType('array<int, mixed>|void|null', wpdb::get_row(null, 'ARRAY_N'));
 	 *                       of each row's first column's value.
      */
 assertType('array<int, array<string, mixed>>|null', wpdb::get_results(null, 'ARRAY_A'));
-assertType('array<int, array<string, mixed>>|null', wpdb::get_results(null, 'ARRAY_N'));
+assertType('array<int, array<int, mixed>>|null', wpdb::get_results(null, 'ARRAY_N'));
 assertType('array<int, stdClass>|null', wpdb::get_results());
 assertType('array<int, stdClass>|null', wpdb::get_results(null, 'OBJECT'));
 assertType('array<string, stdClass>|null', wpdb::get_results(null, 'OBJECT_K'));
