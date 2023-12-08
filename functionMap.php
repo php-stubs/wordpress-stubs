@@ -77,7 +77,7 @@ return [
     'is_wp_error' => ['($thing is \WP_Error ? true : false)', '@phpstan-assert-if-true' => '\WP_Error $thing'],
     'current_time' => ["(\$type is 'timestamp'|'U' ? int : string)"],
     'mysql2date' => ["(\$format is 'G'|'U' ? int|false : string|false)"],
-    'get_post_types' => ["(\$output is 'names' ? array<int, string> : array<int, \WP_Post_Type>)"],
+    'get_post_types' => ["(\$output is 'names' ? array<string, string> : array<string, \WP_Post_Type>)"],
     'get_taxonomies' => ["(\$output is 'names' ? array<int, string> : array<int, \WP_Taxonomy>)"],
     'get_object_taxonomies' => ["(\$output is 'names' ? array<int, string> : array<string, \WP_Taxonomy>)"],
     'get_attachment_taxonomies' => ["(\$output is 'names' ? array<int, string> : array<string, \WP_Taxonomy>)"],
