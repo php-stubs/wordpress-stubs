@@ -16,7 +16,7 @@
         "phpdocumentor/reflection-docblock": "^5.3",
         "phpstan/phpstan": "^1.10.12",
         "phpunit/phpunit": "^9.5",
-        "szepeviktor/phpcs-psr-12-neutron-hybrid-ruleset": "^0.8"
+        "szepeviktor/phpcs-psr-12-neutron-hybrid-ruleset": "^0.11"
     },
     "suggest": {
         "paragonie/sodium_compat": "Pure PHP implementation of libsodium",
