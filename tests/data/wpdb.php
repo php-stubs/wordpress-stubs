@@ -8,10 +8,10 @@ use wpdb;
 use function PHPStan\Testing\assertType;
 
 // wpdb::get_row()
-assertType('stdClass|void|null', wpdb::get_row());
-assertType('stdClass|void|null', wpdb::get_row(null, 'OBJECT'));
-assertType('array|void|null', wpdb::get_row(null, 'ARRAY_A'));
-assertType('list<mixed>|void|null', wpdb::get_row(null, 'ARRAY_N'));
+assertType('stdClass|null', wpdb::get_row());
+assertType('stdClass|null', wpdb::get_row(null, 'OBJECT'));
+assertType('array|null', wpdb::get_row(null, 'ARRAY_A'));
+assertType('list<mixed>|null', wpdb::get_row(null, 'ARRAY_N'));
 
 // wpdb::get_results()
 assertType('list<array>|null', wpdb::get_results(null, 'ARRAY_A'));
