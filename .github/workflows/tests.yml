@@ -1,0 +1,44 @@
+name: Tests
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+permissions:
+  contents: read
+
+jobs:
+  tests:
+    name: Tests
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        php-version:
+          - "7.4"
+          - "8.0"
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+
+    - name: Install PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        coverage: none
+        ini-file: development
+        php-version: "${{ matrix.php-version }}"
+
+    - name: Install dependencies
+      run: composer install --no-interaction --no-progress --prefer-dist
+
+    - name: Tests
+      run: |
+        ./generate.sh # Generate stubs
+        php -l wordpress-stubs.php # Check stubs syntax
+        git diff --exit-code # Check stubs changes compared to repository
+        php -f wordpress-stubs.php # Execute stubs
+        composer run test # Run all tests
+
