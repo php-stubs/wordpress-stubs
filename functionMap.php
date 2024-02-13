@@ -25,6 +25,7 @@ $filesystemDirlistReturnType = "false|array<string, array{name: string, perms: s
  */
 return [
     'addslashes_gpc' => ['T', '@phpstan-template' => 'T', 'gpc' => 'T'],
+    'add_submenu_page' => [null, 'callback' => "''|callable"],
     'have_posts' => [null, '@phpstan-impure' => ''],
     'rawurlencode_deep' => ['T', '@phpstan-template' => 'T', 'value' => 'T'],
     'sanitize_category' => ['T', '@phpstan-template' => 'T of array|object', 'category' => 'T'],
