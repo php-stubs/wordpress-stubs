@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-$httpReturnType = 'array{headers: \WpOrg\Requests\Utility\CaseInsensitiveDictionary, body: string, response: array{code: int,message: string}, cookies: array<int, \WP_HTTP_Cookie>, filename: string|null, http_response: \WP_HTTP_Requests_Response}|\WP_Error';
+$httpReturnType = 'array{headers: \WpOrg\Requests\Utility\CaseInsensitiveDictionary, body: string, response: array{code: int,message: string}, cookies: array<int, \WP_Http_Cookie>, filename: string|null, http_response: \WP_HTTP_Requests_Response}|\WP_Error';
 
 if (file_exists(sprintf('%s/source/wordpress/wp-includes/Requests/Cookie/Jar.php', __DIR__))) {
-    $httpReturnType = 'array{headers: \Requests_Utility_CaseInsensitiveDictionary, body: string, response: array{code: int,message: string}, cookies: array<int, \WP_HTTP_Cookie>, filename: string|null, http_response: \WP_HTTP_Requests_Response}|\WP_Error';
+    $httpReturnType = 'array{headers: \Requests_Utility_CaseInsensitiveDictionary, body: string, response: array{code: int,message: string}, cookies: array<int, \WP_Http_Cookie>, filename: string|null, http_response: \WP_HTTP_Requests_Response}|\WP_Error';
 }
 $cronArgsType = 'list<mixed>';
 $wpWidgetRssFormArgsType = 'array{number: int, error: bool, title?: string, url?: string, items?: int, show_summary?: int, show_author?: int, show_date?: int}';
@@ -25,6 +25,7 @@ $filesystemDirlistReturnType = "false|array<string, array{name: string, perms: s
  */
 return [
     'addslashes_gpc' => ['T', '@phpstan-template' => 'T', 'gpc' => 'T'],
+    'add_submenu_page' => [null, 'callback' => "''|callable"],
     'have_posts' => [null, '@phpstan-impure' => ''],
     'rawurlencode_deep' => ['T', '@phpstan-template' => 'T', 'value' => 'T'],
     'sanitize_category' => ['T', '@phpstan-template' => 'T of array|object', 'category' => 'T'],
@@ -77,7 +78,7 @@ return [
     'is_wp_error' => ['($thing is \WP_Error ? true : false)', '@phpstan-assert-if-true' => '\WP_Error $thing'],
     'current_time' => ["(\$type is 'timestamp'|'U' ? int : string)"],
     'mysql2date' => ["(\$format is 'G'|'U' ? int|false : string|false)"],
-    'get_post_types' => ["(\$output is 'names' ? array<int, string> : array<int, \WP_Post_Type>)"],
+    'get_post_types' => ["(\$output is 'names' ? array<string, string> : array<string, \WP_Post_Type>)"],
     'get_taxonomies' => ["(\$output is 'names' ? array<int, string> : array<int, \WP_Taxonomy>)"],
     'get_object_taxonomies' => ["(\$output is 'names' ? array<int, string> : array<string, \WP_Taxonomy>)"],
     'get_attachment_taxonomies' => ["(\$output is 'names' ? array<int, string> : array<string, \WP_Taxonomy>)"],
@@ -127,8 +128,8 @@ return [
     'WP_Filesystem_SSH2::dirlist' => [$filesystemDirlistReturnType],
     'WP_Filesystem_ftpsockets::dirlist' => [$filesystemDirlistReturnType],
     'wpdb::prepare' => [null, 'query' => 'literal-string'],
-    'wpdb::get_row' => ["null|void|(\$output is 'ARRAY_A' ? array<string, mixed> : (\$output is 'ARRAY_N' ? array<int, mixed> : \stdClass))", 'output' => "'OBJECT'|'ARRAY_A'|'ARRAY_N'", 'y' => '0|positive-int'],
-    'wpdb::get_results' => ["null|(\$output is 'ARRAY_A' ? array<string, mixed> : (\$output is 'ARRAY_N' ? array<int, mixed> : (\$output is 'OBJECT_K' ? array<string, \stdClass> : \stdClass)))", 'output' => "'OBJECT'|'OBJECT_K'|'ARRAY_A'|'ARRAY_N'"],
+    'wpdb::get_row' => ["null|void|(\$output is 'ARRAY_A' ? array<array-key, mixed> : (\$output is 'ARRAY_N' ? list<mixed> : \stdClass))", 'output' => "'OBJECT'|'ARRAY_A'|'ARRAY_N'", 'y' => '0|positive-int'],
+    'wpdb::get_results' => ["null|(\$output is 'ARRAY_A' ? list<array<array-key, mixed>> : (\$output is 'ARRAY_N' ? list<array<int, mixed>> : (\$output is 'OBJECT_K' ? array<array-key, \stdClass> : list<\stdClass>)))", 'output' => "'OBJECT'|'OBJECT_K'|'ARRAY_A'|'ARRAY_N'"],
     'get_bookmark' => ["null|(\$output is 'ARRAY_A' ? array<string, mixed> : (\$output is 'ARRAY_N' ? array<int, mixed> : \stdClass))", 'output' => "'OBJECT'|'ARRAY_A'|'ARRAY_N'"],
     'get_category' => ["(\$category is object ? array<array-key, mixed>|\WP_Term : array<array-key, mixed>|\WP_Term|\WP_Error|null) & (\$output is 'ARRAY_A' ? array<string, mixed>|\WP_Error|null : (\$output is 'ARRAY_N' ? array<int, mixed>|\WP_Error|null : \WP_Term|\WP_Error|null))", 'output' => "'OBJECT'|'ARRAY_A'|'ARRAY_N'"],
     'get_category_by_path' => ["(\$output is 'ARRAY_A' ? array<string, mixed>|\WP_Error|null : (\$output is 'ARRAY_N' ? array<int, mixed>|\WP_Error|null : \WP_Term|\WP_Error|null))", 'output' => "'OBJECT'|'ARRAY_A'|'ARRAY_N'"],

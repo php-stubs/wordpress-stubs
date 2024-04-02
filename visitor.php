@@ -1047,7 +1047,7 @@ return new class extends NodeVisitor {
                 continue;
             }
             $args = $stmt->expr->getArgs();
-             // If wp_die is called without 3rd parameter, it's return type never.
+            // If wp_die is called without 3rd parameter, it's return type never.
             if (count($args) < 3) {
                 return 'never';
             }

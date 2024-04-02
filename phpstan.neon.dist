@@ -9,4 +9,4 @@ parameters:
     level: 8
     featureToggles:
         alwaysTrueAlwaysReported: true
-        instanceofType: true
+        listType: true
