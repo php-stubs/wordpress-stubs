@@ -52,7 +52,7 @@ if [ -r source/wordpress/wp-includes/Requests/Cookie/Jar.php ]; then
     )
     for METHOD in "${REQUESTS_V1_METHODS[@]}"; do
         # Get the line number where the method is defined.
-        LINE="$(php -r "require 'wordpress-stubs.php'; print (new ReflectionMethod('${METHOD}'))->getStartLine();")"
+        LINE="$(php -d error_reporting="E_ERROR" -r "require 'wordpress-stubs.php'; print (new ReflectionMethod('${METHOD}'))->getStartLine();")"
         if [ -z "${LINE}" ]; then
             continue
         fi
