@@ -131,4 +131,8 @@ return [
     'get_bookmark' => ["null|(\$output is 'ARRAY_A' ? array<string, mixed> : (\$output is 'ARRAY_N' ? array<int, mixed> : \stdClass))", 'output' => "'OBJECT'|'ARRAY_A'|'ARRAY_N'"],
     'get_category' => ["(\$category is object ? array<array-key, mixed>|\WP_Term : array<array-key, mixed>|\WP_Term|\WP_Error|null) & (\$output is 'ARRAY_A' ? array<string, mixed>|\WP_Error|null : (\$output is 'ARRAY_N' ? array<int, mixed>|\WP_Error|null : \WP_Term|\WP_Error|null))", 'output' => "'OBJECT'|'ARRAY_A'|'ARRAY_N'"],
     'get_category_by_path' => ["(\$output is 'ARRAY_A' ? array<string, mixed>|\WP_Error|null : (\$output is 'ARRAY_N' ? array<int, mixed>|\WP_Error|null : \WP_Term|\WP_Error|null))", 'output' => "'OBJECT'|'ARRAY_A'|'ARRAY_N'"],
+    'WP_Widget' => [null, '@phpstan-template' => 'T of array<string, mixed>'],
+    'WP_Widget::form' => [null, 'instance' => 'T'],
+    'WP_Widget::update' => [null, 'new_instance' => 'T', 'old_instance' => 'T'],
+    'WP_Widget::widget' => [null, 'instance' => 'T', 'args' => 'array{name:string,id:string,description:string,class:string,before_widget:string,after_widget:string,before_title:string,after_title:string,before_sidebar:string,after_sidebar:string,show_in_rest:boolean,widget_id:string,widget_name:string}'],
 ];
