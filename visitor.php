@@ -385,7 +385,7 @@ return new class extends NodeVisitor {
 
         $newDocComment = $this->addTags($name, $docComment);
 
-        if ($newDocComment !== null) {
+        if ($newDocComment instanceof Doc) {
             $node->setDocComment($newDocComment);
         }
 
@@ -401,7 +401,7 @@ return new class extends NodeVisitor {
 
         $newDocComment = $this->addStringTags($name, $docComment);
 
-        if ($newDocComment !== null) {
+        if ($newDocComment instanceof Doc) {
             $node->setDocComment($newDocComment);
         }
     }
@@ -436,7 +436,7 @@ return new class extends NodeVisitor {
         foreach ($params as $param) {
             $addition = self::getAdditionFromParam($param);
 
-            if ($addition !== null) {
+            if ($addition instanceof WordPressTag) {
                 $additions[] = $addition;
             }
         }
@@ -444,7 +444,7 @@ return new class extends NodeVisitor {
         foreach ($returns as $return) {
             $addition = self::getAdditionFromReturn($return);
 
-            if ($addition !== null) {
+            if ($addition instanceof WordPressTag) {
                 $additions[] = $addition;
             }
         }
@@ -452,7 +452,7 @@ return new class extends NodeVisitor {
         foreach ($vars as $var) {
             $addition = self::getAdditionFromVar($var);
 
-            if ($addition !== null) {
+            if ($addition instanceof WordPressTag) {
                 $additions[] = $addition;
             }
         }
@@ -551,7 +551,7 @@ return new class extends NodeVisitor {
     {
         $type = $param->getType();
 
-        if ($type === null) {
+        if (!$type instanceof Type) {
             return [];
         }
 
@@ -563,7 +563,7 @@ return new class extends NodeVisitor {
 
         $paramDescription = $param->getDescription();
 
-        if ($paramDescription === null) {
+        if (!$paramDescription instanceof Description) {
             return [];
         }
 
@@ -589,7 +589,7 @@ return new class extends NodeVisitor {
 
             $match = self::getMatchingInheritedTag($param, $tags, $symbolName);
 
-            if ($match !== null) {
+            if ($match instanceof WordPressTag) {
                 $additions[] = $match;
             }
         }
@@ -700,7 +700,7 @@ return new class extends NodeVisitor {
         $tagVariableType = $tag->getType();
 
         // Skip if information we need is missing.
-        if (!$tagDescription || !$tagVariableName || !$tagVariableType) {
+        if (!$tagDescription instanceof Description || !$tagVariableName || !$tagVariableType instanceof Type) {
             return null;
         }
 
@@ -746,7 +746,7 @@ return new class extends NodeVisitor {
         $tagVariableType = $tag->getType();
 
         // Skip if information we need is missing.
-        if (!$tagDescription || !$tagVariableType) {
+        if (!$tagDescription instanceof Description || !$tagVariableType instanceof Type) {
             return null;
         }
 
@@ -786,7 +786,7 @@ return new class extends NodeVisitor {
         $tagVariableType = $tag->getType();
 
         // Skip if information we need is missing.
-        if (!$tagDescription || !$tagVariableType) {
+        if (!$tagDescription instanceof Description || !$tagVariableType instanceof Type) {
             return null;
         }
 
@@ -1010,7 +1010,7 @@ return new class extends NodeVisitor {
                     static function (Node $node): bool {
                         return isset($node->expr);
                     }
-                ) !== null
+                ) instanceof Node
             ) {
                 return '';
             }
