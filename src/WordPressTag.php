@@ -27,7 +27,7 @@ final class WordPressTag extends WithChildren
                     '%s %s%s',
                     $this->tag,
                     $this->type,
-                    $this->name !== null ? " \$$this->name" : ''
+                    $this->name !== null ? " \${$this->name}" : ''
                 ),
             ];
         }
@@ -52,7 +52,7 @@ final class WordPressTag extends WithChildren
             return [];
         }
 
-        $name = $this->name !== null ? " \$$this->name" : '';
+        $name = $this->name !== null ? " \${$this->name}" : '';
 
         if ($this->isArrayShape()) {
             $strings[] = sprintf(
@@ -82,7 +82,7 @@ final class WordPressTag extends WithChildren
         $description = '';
 
         if ($this->description !== null) {
-            $description = " $this->description";
+            $description = " {$this->description}";
         }
 
         $strings[] = $this->isArrayShape()

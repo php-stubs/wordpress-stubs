@@ -48,6 +48,7 @@ class StubsVisitor extends NodeVisitor
         $this->nodeFinder = new NodeFinder();
     }
 
+    /** @return int|null */
     public function enterNode(Node $node)
     {
         $voidOrNever = $this->voidOrNever($node);
