@@ -2,6 +2,8 @@
 
 declare(strict_types=1);
 
+namespace PhpStubs\WordPress\Core;
+
 final class WordPressTag extends WithChildren
 {
     /** @var string */

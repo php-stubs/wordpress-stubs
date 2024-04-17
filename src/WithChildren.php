@@ -2,9 +2,11 @@
 
 declare(strict_types=1);
 
+namespace PhpStubs\WordPress\Core;
+
 abstract class WithChildren
 {
-    /** @var list<\WordPressArg> */
+    /** @var list<\PhpStubs\WordPress\Core\WordPressArg> */
     public $children = [];
 
     public function isArrayShape(): bool

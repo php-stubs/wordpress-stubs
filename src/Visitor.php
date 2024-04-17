@@ -2,6 +2,8 @@
 
 declare(strict_types=1);
 
+namespace PhpStubs\WordPress\Core;
+
 use phpDocumentor\Reflection\DocBlock;
 use phpDocumentor\Reflection\DocBlock\Description;
 use phpDocumentor\Reflection\DocBlock\Tags\Param;
@@ -27,14 +29,14 @@ use PhpParser\Node\Stmt\Property;
 use PhpParser\Node\Stmt\Return_ as Stmt_Return;
 use StubsGenerator\NodeVisitor;
 
-class StubsVisitor extends NodeVisitor
+class Visitor extends NodeVisitor
 {
     private \phpDocumentor\Reflection\DocBlockFactory $docBlockFactory;
 
     /** @var ?array<string,array<int|string,string>> */
     private $functionMap = null;
 
-    /** @var array<string, array<int, \WordPressTag>> */
+    /** @var array<string, array<int, \PhpStubs\WordPress\Core\WordPressTag>> */
     private $additionalTags = [];
 
     /** @var array<string, array<int, string>> */
@@ -188,7 +190,7 @@ class StubsVisitor extends NodeVisitor
     }
 
     /**
-     * @return array<int, \WordPressTag>
+     * @return array<int, \PhpStubs\WordPress\Core\WordPressTag>
      */
     private function generateAdditionalTagsFromDoc(Doc $docComment): array
     {
@@ -211,7 +213,7 @@ class StubsVisitor extends NodeVisitor
         /** @var list<\phpDocumentor\Reflection\DocBlock\Tags\Var_> $vars */
         $vars = $docblock->getTagsByName('var');
 
-        /** @var list<\WordPressTag> $additions */
+        /** @var list<\PhpStubs\WordPress\Core\WordPressTag> $additions */
         $additions = [];
 
         foreach ($params as $param) {
@@ -292,8 +294,8 @@ class StubsVisitor extends NodeVisitor
     }
 
     /**
-     * @param array<int, \WordPressTag> $additions
-     * @return array<int, \WordPressTag>
+     * @param array<int, \PhpStubs\WordPress\Core\WordPressTag> $additions
+     * @return array<int, \PhpStubs\WordPress\Core\WordPressTag>
      */
     private function discoverInheritedArgs(DocBlock $docblock, array $additions): array
     {
@@ -332,7 +334,7 @@ class StubsVisitor extends NodeVisitor
     }
 
     /**
-     * @return array<int, \WordPressTag>
+     * @return array<int, \PhpStubs\WordPress\Core\WordPressTag>
      */
     private function getInheritedTagsForParam(Param $param): array
     {
@@ -387,7 +389,7 @@ class StubsVisitor extends NodeVisitor
     }
 
     /**
-     * @param array<int, \WordPressTag> $tags
+     * @param array<int, \PhpStubs\WordPress\Core\WordPressTag> $tags
      */
     private static function getMatchingInheritedTag(Param $param, array $tags, string $symbolName): ?WordPressTag
     {
@@ -688,7 +690,7 @@ class StubsVisitor extends NodeVisitor
     }
 
     /**
-     * @return list<\WordPressArg>
+     * @return list<\PhpStubs\WordPress\Core\WordPressArg>
      */
     private static function getElementsFromDescription(Description $tagDescription, bool $optional): array
     {
@@ -704,7 +706,7 @@ class StubsVisitor extends NodeVisitor
     }
 
     /**
-     * @return list<\WordPressArg>
+     * @return list<\PhpStubs\WordPress\Core\WordPressArg>
      */
     private static function getTypesAtLevel(string $text, bool $optional, int $level): array
     {

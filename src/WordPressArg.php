@@ -2,6 +2,8 @@
 
 declare(strict_types=1);
 
+namespace PhpStubs\WordPress\Core;
+
 final class WordPressArg extends WithChildren
 {
     /** @var string */
