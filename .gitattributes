@@ -10,5 +10,6 @@
 /phpunit.xml.dist export-ignore
 /release-latest-versions.sh export-ignore
 /source/ export-ignore
+/src/ export-ignore
 /visitor.php export-ignore
 /tests/ export-ignore
