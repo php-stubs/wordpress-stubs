@@ -10,7 +10,7 @@ if (file_exists(sprintf('%s/source/wordpress/wp-includes/Requests/Cookie/Jar.php
 $cronArgsType = 'list<mixed>';
 $wpWidgetRssFormArgsType = 'array{number: int, error: bool, title?: string, url?: string, items?: int, show_summary?: int, show_author?: int, show_date?: int}';
 $wpWidgetRssFormInputsType = 'array{title?: bool, url?: bool, items?: bool, show_summary?: bool, show_author?: bool, show_date?: bool}';
-$filesystemDirlistReturnType = "false|array<string, array{name: string, perms: string, permsn: string, owner: string|false, size: int|string|false, lastmodunix: int|string|false, lastmod: string|false, time: string|false, type: 'f'|'d'|'l', group?: string|false, number?: int|string|false, files?: array|false}>";
+$filesystemDirlistReturnType = "false|array<string, array{name: string, perms: string, permsn: string, owner: string|false, size: int|string|false, lastmodunix: int|string|false, lastmod: string|false, time: string|false, type: 'f'|'d'|'l', group: string|false, number: int|string|false, files?: array|false}>";
 
 /**
  * This array is in the same format as the function map array in PHPStan:
@@ -41,8 +41,6 @@ return [
     'WP_Http::head' => [$httpReturnType],
     'WP_Http::post' => [$httpReturnType],
     'WP_Http::request' => [$httpReturnType],
-    'WP_List_Table::display_tablenav' => ['void', 'which' => '"top"|"bottom"'],
-    'WP_List_Table::pagination' => ['void', 'which' => '"top"|"bottom"'],
     'WP_List_Table::set_pagination_args' => ['void', 'args' => 'array{total_items?: int, total_pages?: int, per_page?: int}'],
     'wp_next_scheduled' => [null, 'args' => $cronArgsType],
     'WP_Query::have_posts' => [null, '@phpstan-impure' => ''],
@@ -133,4 +131,8 @@ return [
     'get_bookmark' => ["null|(\$output is 'ARRAY_A' ? array<string, mixed> : (\$output is 'ARRAY_N' ? array<int, mixed> : \stdClass))", 'output' => "'OBJECT'|'ARRAY_A'|'ARRAY_N'"],
     'get_category' => ["(\$category is object ? array<array-key, mixed>|\WP_Term : array<array-key, mixed>|\WP_Term|\WP_Error|null) & (\$output is 'ARRAY_A' ? array<string, mixed>|\WP_Error|null : (\$output is 'ARRAY_N' ? array<int, mixed>|\WP_Error|null : \WP_Term|\WP_Error|null))", 'output' => "'OBJECT'|'ARRAY_A'|'ARRAY_N'"],
     'get_category_by_path' => ["(\$output is 'ARRAY_A' ? array<string, mixed>|\WP_Error|null : (\$output is 'ARRAY_N' ? array<int, mixed>|\WP_Error|null : \WP_Term|\WP_Error|null))", 'output' => "'OBJECT'|'ARRAY_A'|'ARRAY_N'"],
+    'WP_Widget' => [null, '@phpstan-template' => 'T of array<string, mixed>'],
+    'WP_Widget::form' => [null, 'instance' => 'T'],
+    'WP_Widget::update' => [null, 'new_instance' => 'T', 'old_instance' => 'T'],
+    'WP_Widget::widget' => [null, 'instance' => 'T', 'args' => 'array{name:string,id:string,description:string,class:string,before_widget:string,after_widget:string,before_title:string,after_title:string,before_sidebar:string,after_sidebar:string,show_in_rest:boolean,widget_id:string,widget_name:string}'],
 ];

@@ -13,7 +13,7 @@
         "dealerdirect/phpcodesniffer-composer-installer": "^1.0",
         "nikic/php-parser": "^4.13",
         "php-stubs/generator": "^0.8.3",
-        "phpdocumentor/reflection-docblock": "^5.3",
+        "phpdocumentor/reflection-docblock": "5.3",
         "phpstan/phpstan": "^1.10.49",
         "phpunit/phpunit": "^9.5",
         "szepeviktor/phpcs-psr-12-neutron-hybrid-ruleset": "^0.11"
@@ -25,6 +25,9 @@
     },
     "minimum-stability": "stable",
     "autoload-dev": {
+        "psr-4": {
+            "PhpStubs\\WordPress\\Core\\": "src/"
+        },
         "classmap": [
             "tests/"
         ]
@@ -43,9 +46,9 @@
         "post-update-cmd": "@composer --working-dir=source/ update --no-interaction",
         "cleanup": "git status --short --ignored | sed -n -e 's#^!! ##p' | xargs -r rm -vrf",
         "test": [
-            "@test:cs",
+            "@test:phpunit",
             "@test:phpstan",
-            "@test:phpunit"
+            "@test:cs"
         ],
         "test:cs": "phpcs",
         "test:cs:fix": "phpcbf",
