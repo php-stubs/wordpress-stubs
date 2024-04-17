@@ -249,8 +249,7 @@ final class WordPressArg extends WithChildren
 }
 
 return new class extends NodeVisitor {
-    /** @var \phpDocumentor\Reflection\DocBlockFactory */
-    private $docBlockFactory;
+    private \phpDocumentor\Reflection\DocBlockFactory $docBlockFactory;
 
     /** @var ?array<string,array<int|string,string>> */
     private $functionMap = null;
@@ -261,8 +260,7 @@ return new class extends NodeVisitor {
     /** @var array<string, array<int, string>> */
     private $additionalTagStrings = [];
 
-    /** @var \PhpParser\NodeFinder */
-    private $nodeFinder;
+    private \PhpParser\NodeFinder $nodeFinder;
 
     public function __construct()
     {
