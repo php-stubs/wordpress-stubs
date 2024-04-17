@@ -35,6 +35,7 @@ abstract class WithChildren
         return false;
     }
 
+    /** @phpstan-assert-if-false array{} $this->children */
     public function hasChildren(): bool
     {
         return count($this->children) > 0;
