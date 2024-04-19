@@ -59,13 +59,14 @@ final class WordPressTag extends WithChildren
                 $this->type
             );
         } else {
-            if (count($this->children) <= 0 || count($this->children[0]->children) <= 0) {
+            if (! $this->hasChildren() || ! $this->children[0]->hasChildren()) {
                 $strings[] = sprintf(
                     '%s array<int|string, %s>%s',
                     $this->tag,
                     $this->type,
                     $name
                 );
+
                 return $strings;
             }
 

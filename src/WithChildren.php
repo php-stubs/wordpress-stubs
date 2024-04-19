@@ -35,6 +35,7 @@ abstract class WithChildren
         return false;
     }
 
+    /** @phpstan-assert-if-true non-empty-list<\PhpStubs\WordPress\Core\WordPressArg> $this->children */
     public function hasChildren(): bool
     {
         return count($this->children) > 0;
