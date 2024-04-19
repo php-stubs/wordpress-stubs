@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace PhpStubs\WordPress\Core;
 
+// phpcs:disable NeutronStandard.Functions.LongFunction.LongFunction
+
 final class WordPressTag extends WithChildren
 {
     public string $tag;

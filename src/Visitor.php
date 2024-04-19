@@ -29,6 +29,8 @@ use PhpParser\Node\Stmt\Property;
 use PhpParser\Node\Stmt\Return_ as Stmt_Return;
 use StubsGenerator\NodeVisitor;
 
+// phpcs:disable NeutronStandard.Functions.LongFunction.LongFunction,NeutronStandard.Functions.TypeHint.NoReturnType
+
 class Visitor extends NodeVisitor
 {
     private \phpDocumentor\Reflection\DocBlockFactory $docBlockFactory;
@@ -51,7 +53,8 @@ class Visitor extends NodeVisitor
     }
 
     /**
-     * @return ?int
+     * @return int|null
+     * phpcs:ignore NeutronStandard.Functions.TypeHint
      */
     public function enterNode(Node $node)
     {
