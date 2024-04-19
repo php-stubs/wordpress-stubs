@@ -6,17 +6,13 @@ namespace PhpStubs\WordPress\Core;
 
 final class WordPressTag extends WithChildren
 {
-    /** @var string */
-    public $tag;
+    public string $tag;
 
-    /** @var string */
-    public $type;
+    public string $type;
 
-    /** @var ?string */
-    public $name = null;
+    public ?string $name = null;
 
-    /** @var ?string */
-    public $description = null;
+    public ?string $description = null;
 
     /**
      * @return list<string>
