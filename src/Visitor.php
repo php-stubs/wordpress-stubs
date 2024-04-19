@@ -54,7 +54,6 @@ class Visitor extends NodeVisitor
 
     /**
      * @return int|null
-     * phpcs:ignore NeutronStandard.Functions.TypeHint
      */
     public function enterNode(Node $node)
     {
