@@ -36,10 +36,10 @@ class Visitor extends NodeVisitor
     /** @var ?array<string,array<int|string,string>> */
     private $functionMap = null;
 
-    /** @var array<string, array<int, \PhpStubs\WordPress\Core\WordPressTag>> */
+    /** @var array<string, list<\PhpStubs\WordPress\Core\WordPressTag>> */
     private $additionalTags = [];
 
-    /** @var array<string, array<int, string>> */
+    /** @var array<string, list<string>> */
     private $additionalTagStrings = [];
 
     private \PhpParser\NodeFinder $nodeFinder;
@@ -50,7 +50,9 @@ class Visitor extends NodeVisitor
         $this->nodeFinder = new NodeFinder();
     }
 
-    /** @return int|null */
+    /**
+     * @return ?int
+     */
     public function enterNode(Node $node)
     {
         $voidOrNever = $this->voidOrNever($node);
@@ -190,7 +192,7 @@ class Visitor extends NodeVisitor
     }
 
     /**
-     * @return array<int, \PhpStubs\WordPress\Core\WordPressTag>
+     * @return list<\PhpStubs\WordPress\Core\WordPressTag>
      */
     private function generateAdditionalTagsFromDoc(Doc $docComment): array
     {
@@ -204,20 +206,20 @@ class Visitor extends NodeVisitor
             return [];
         }
 
-        /** @var list<\phpDocumentor\Reflection\DocBlock\Tags\Param> $params*/
-        $params = $docblock->getTagsByName('param');
+        /** @var list<\phpDocumentor\Reflection\DocBlock\Tags\Param> $paramTags*/
+        $paramTags = $docblock->getTagsByName('param');
 
-        /** @var list<\phpDocumentor\Reflection\DocBlock\Tags\Return_> $returns */
-        $returns = $docblock->getTagsByName('return');
+        /** @var list<\phpDocumentor\Reflection\DocBlock\Tags\Return_> $returnTags */
+        $returnTags = $docblock->getTagsByName('return');
 
-        /** @var list<\phpDocumentor\Reflection\DocBlock\Tags\Var_> $vars */
-        $vars = $docblock->getTagsByName('var');
+        /** @var list<\phpDocumentor\Reflection\DocBlock\Tags\Var_> $varTags */
+        $varTags = $docblock->getTagsByName('var');
 
         /** @var list<\PhpStubs\WordPress\Core\WordPressTag> $additions */
         $additions = [];
 
-        foreach ($params as $param) {
-            $addition = self::getAdditionFromParam($param);
+        foreach ($paramTags as $paramTag) {
+            $addition = self::getAdditionFromParam($paramTag);
 
             if (! ($addition instanceof WordPressTag)) {
                 continue;
@@ -226,8 +228,8 @@ class Visitor extends NodeVisitor
             $additions[] = $addition;
         }
 
-        foreach ($returns as $return) {
-            $addition = self::getAdditionFromReturn($return);
+        foreach ($returnTags as $returnTag) {
+            $addition = self::getAdditionFromReturn($returnTag);
 
             if (! ($addition instanceof WordPressTag)) {
                 continue;
@@ -236,8 +238,8 @@ class Visitor extends NodeVisitor
             $additions[] = $addition;
         }
 
-        foreach ($vars as $var) {
-            $addition = self::getAdditionFromVar($var);
+        foreach ($varTags as $varTag) {
+            $addition = self::getAdditionFromVar($varTag);
 
             if (! ($addition instanceof WordPressTag)) {
                 continue;
@@ -273,7 +275,7 @@ class Visitor extends NodeVisitor
                     return '';
                 }
 
-                return ' * ' . implode("\n * ", $lines);
+                return sprintf(' * %s', implode("\n * ", $lines));
             },
             $additions
         );
@@ -294,8 +296,8 @@ class Visitor extends NodeVisitor
     }
 
     /**
-     * @param array<int, \PhpStubs\WordPress\Core\WordPressTag> $additions
-     * @return array<int, \PhpStubs\WordPress\Core\WordPressTag>
+     * @param list<\PhpStubs\WordPress\Core\WordPressTag> $additions
+     * @return list<\PhpStubs\WordPress\Core\WordPressTag>
      */
     private function discoverInheritedArgs(DocBlock $docblock, array $additions): array
     {
@@ -334,7 +336,7 @@ class Visitor extends NodeVisitor
     }
 
     /**
-     * @return array<int, \PhpStubs\WordPress\Core\WordPressTag>
+     * @return list<\PhpStubs\WordPress\Core\WordPressTag>
      */
     private function getInheritedTagsForParam(Param $param): array
     {
@@ -356,7 +358,7 @@ class Visitor extends NodeVisitor
             return [];
         }
 
-        list($description) = explode("\n\n", $paramDescription->__toString());
+        $description = explode("\n\n", $paramDescription->__toString())[0];
 
         if (strpos($description, '()') === false) {
             return [];
@@ -389,7 +391,7 @@ class Visitor extends NodeVisitor
     }
 
     /**
-     * @param array<int, \PhpStubs\WordPress\Core\WordPressTag> $tags
+     * @param list<\PhpStubs\WordPress\Core\WordPressTag> $tags
      */
     private static function getMatchingInheritedTag(Param $param, array $tags, string $symbolName): ?WordPressTag
     {
@@ -427,7 +429,7 @@ class Visitor extends NodeVisitor
     private function getAdditionalTagsFromMap(string $symbolName): array
     {
         if (! isset($this->functionMap)) {
-            $this->functionMap = require dirname(__DIR__) . '/functionMap.php';
+            $this->functionMap = require sprintf('%s/functionMap.php', dirname(__DIR__));
         }
 
         if (! isset($this->functionMap[$symbolName])) {
@@ -636,17 +638,18 @@ class Visitor extends NodeVisitor
             return null;
         }
 
-        list(, $items, $final) = $matches;
+        $items = $matches[1];
+        $final = $matches[2];
 
         // Pluck out phrases between single quotes, so messy sentences are handled:
         preg_match_all("#'([^']+)'#", $items, $matches);
 
-        list(,$accepted) = $matches;
+        $accepted = $matches[1];
 
         // Append the final item:
         $accepted[] = $final;
 
-        return "'" . implode("'|'", $accepted) . "'";
+        return sprintf("'%s'", implode("'|'", $accepted));
     }
 
     private static function getTypeNameFromType(Type $tagVariableType): ?string
@@ -683,7 +686,7 @@ class Visitor extends NodeVisitor
                 continue;
             }
             // Move the type that uses the hash notation to the end of union types so the shape works.
-            $tagVariableType = str_replace("{$supportedType}|", '', $tagVariableType) . "|{$supportedType}";
+            $tagVariableType = sprintf('%s|%s', str_replace("{$supportedType}|", '', $tagVariableType), $supportedType);
         }
 
         return $tagVariableType;
@@ -728,7 +731,8 @@ class Visitor extends NodeVisitor
                 return [];
             }
 
-            list($type, $name) = $parts;
+            $type = $parts[0];
+            $name = $parts[1];
 
             $optionalArg = $optional;
             $nameTrimmed = ltrim($name, '$');
@@ -789,15 +793,15 @@ class Visitor extends NodeVisitor
             return '';
         }
 
-        $return = $this->nodeFinder->findInstanceOf($node, Stmt_Return::class);
+        $returnStmts = $this->nodeFinder->findInstanceOf($node, Stmt_Return::class);
 
         // If there is a return statement, it's not return type never.
-        if (count($return) !== 0) {
+        if (count($returnStmts) !== 0) {
             // If there is at least one return statement that is not void,
             // it's not return type void.
             if (
                 $this->nodeFinder->findFirst(
-                    $return,
+                    $returnStmts,
                     static function (Node $node): bool {
                         return isset($node->expr);
                     }
