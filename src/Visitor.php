@@ -491,7 +491,7 @@ class Visitor extends NodeVisitor
         $tagVariableType = $tag->getType();
 
         // Skip if information we need is missing.
-        if (! $tagDescription instanceof Description || ! $tagVariableName || ! $tagVariableType instanceof Type) {
+        if (! $tagDescription instanceof Description || $tagVariableName === null || $tagVariableName === '' || ! $tagVariableType instanceof Type) {
             return null;
         }
 
@@ -632,7 +632,7 @@ class Visitor extends NodeVisitor
          */
         $matched = preg_match("#(?>returns|either|one of|accepts|values are|:) ('.+'),? (?>or|and) '([^']+)'#i", $fullDescription, $matches);
 
-        if (! $matched) {
+        if ($matched !== 1) {
             return null;
         }
 
