@@ -864,8 +864,6 @@ class Visitor extends NodeVisitor
                     return 'never';
                 }
             }
-
-            continue;
         }
         return '';
     }
