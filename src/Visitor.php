@@ -36,13 +36,13 @@ class Visitor extends NodeVisitor
     private \phpDocumentor\Reflection\DocBlockFactory $docBlockFactory;
 
     /** @var ?array<string,array<int|string,string>> */
-    private $functionMap = null;
+    private ?array $functionMap = null;
 
     /** @var array<string, list<\PhpStubs\WordPress\Core\WordPressTag>> */
-    private $additionalTags = [];
+    private array $additionalTags = [];
 
     /** @var array<string, list<string>> */
-    private $additionalTagStrings = [];
+    private array $additionalTagStrings = [];
 
     private \PhpParser\NodeFinder $nodeFinder;
 
