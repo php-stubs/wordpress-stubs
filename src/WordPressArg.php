@@ -6,14 +6,11 @@ namespace PhpStubs\WordPress\Core;
 
 final class WordPressArg extends WithChildren
 {
-    /** @var string */
-    public $type;
+    public string $type;
 
-    /** @var bool */
-    public $optional = false;
+    public bool $optional = false;
 
-    /** @var ?string */
-    public $name = null;
+    public ?string $name = null;
 
     /** @return list<string> */
     public function format(int $level = 1): array
