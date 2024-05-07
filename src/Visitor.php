@@ -859,10 +859,13 @@ class Visitor extends NodeVisitor
             if (is_int($arg)) {
                 return 'never';
             }
-            if (is_array($arg)) {
-                if (! isset($arg['exit']) || (bool)$arg['exit'] === true) {
-                    return 'never';
-                }
+
+            if (! is_array($arg)) {
+                continue;
+            }
+
+            if (! isset($arg['exit']) || (bool)$arg['exit'] === true) {
+                return 'never';
             }
         }
         return '';
