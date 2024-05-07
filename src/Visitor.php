@@ -202,9 +202,7 @@ class Visitor extends NodeVisitor
 
         try {
             $docblock = $this->docBlockFactory->create($docCommentText);
-        } catch (\RuntimeException $e) {
-            return [];
-        } catch (\InvalidArgumentException $e) {
+        } catch (\RuntimeException|\InvalidArgumentException $e) {
             return [];
         }
 
@@ -260,9 +258,7 @@ class Visitor extends NodeVisitor
 
         try {
             $docblock = $this->docBlockFactory->create($docCommentText);
-        } catch (\RuntimeException $e) {
-            return null;
-        } catch (\InvalidArgumentException $e) {
+        } catch (\RuntimeException|\InvalidArgumentException $e) {
             return null;
         }
 
