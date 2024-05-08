@@ -77,7 +77,7 @@ class Visitor extends NodeVisitor
             $parent = $this->stack[count($this->stack) - 2];
             \assert($parent instanceof \PhpParser\Node\Stmt\ClassLike);
 
-            if (isset($parent->name)) {
+            if ($parent->name !== null) {
                 $symbolName = sprintf(
                     '%1$s::%2$s',
                     $parent->name->name,
@@ -146,7 +146,7 @@ class Visitor extends NodeVisitor
 
     private function postProcessNode(Node $node): void
     {
-        if (isset($node->stmts) && is_array($node->stmts)) {
+        if (property_exists($node, 'stmts') && is_array($node->stmts)) {
             foreach ($node->stmts as $stmt) {
                 $this->postProcessNode($stmt);
             }
@@ -426,7 +426,7 @@ class Visitor extends NodeVisitor
      */
     private function getAdditionalTagsFromMap(string $symbolName): array
     {
-        if (! isset($this->functionMap)) {
+        if ($this->functionMap === null) {
             $this->functionMap = require sprintf('%s/functionMap.php', dirname(__DIR__));
         }
 
@@ -801,7 +801,7 @@ class Visitor extends NodeVisitor
                 $this->nodeFinder->findFirst(
                     $returnStmts,
                     static function (Node $node): bool {
-                        return isset($node->expr);
+                        return property_exists($node, 'expr') && $node->expr !== null;
                     }
                 ) instanceof Node
             ) {
@@ -861,7 +861,7 @@ class Visitor extends NodeVisitor
                 continue;
             }
 
-            if (! isset($arg['exit']) || (bool)$arg['exit'] === true) {
+            if (! array_key_exists('exit', $arg) || (bool)$arg['exit']) {
                 return 'never';
             }
         }
