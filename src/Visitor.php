@@ -36,13 +36,13 @@ class Visitor extends NodeVisitor
     private \phpDocumentor\Reflection\DocBlockFactory $docBlockFactory;
 
     /** @var ?array<string,array<int|string,string>> */
-    private $functionMap = null;
+    private ?array $functionMap = null;
 
     /** @var array<string, list<\PhpStubs\WordPress\Core\WordPressTag>> */
-    private $additionalTags = [];
+    private array $additionalTags = [];
 
     /** @var array<string, list<string>> */
-    private $additionalTagStrings = [];
+    private array $additionalTagStrings = [];
 
     private \PhpParser\NodeFinder $nodeFinder;
 
@@ -77,7 +77,7 @@ class Visitor extends NodeVisitor
             $parent = $this->stack[count($this->stack) - 2];
             \assert($parent instanceof \PhpParser\Node\Stmt\ClassLike);
 
-            if (isset($parent->name)) {
+            if ($parent->name !== null) {
                 $symbolName = sprintf(
                     '%1$s::%2$s',
                     $parent->name->name,
@@ -146,7 +146,7 @@ class Visitor extends NodeVisitor
 
     private function postProcessNode(Node $node): void
     {
-        if (isset($node->stmts) && is_array($node->stmts)) {
+        if (property_exists($node, 'stmts') && is_array($node->stmts)) {
             foreach ($node->stmts as $stmt) {
                 $this->postProcessNode($stmt);
             }
@@ -202,9 +202,7 @@ class Visitor extends NodeVisitor
 
         try {
             $docblock = $this->docBlockFactory->create($docCommentText);
-        } catch (\RuntimeException $e) {
-            return [];
-        } catch (\InvalidArgumentException $e) {
+        } catch (\RuntimeException | \InvalidArgumentException $e) {
             return [];
         }
 
@@ -260,9 +258,7 @@ class Visitor extends NodeVisitor
 
         try {
             $docblock = $this->docBlockFactory->create($docCommentText);
-        } catch (\RuntimeException $e) {
-            return null;
-        } catch (\InvalidArgumentException $e) {
+        } catch (\RuntimeException | \InvalidArgumentException $e) {
             return null;
         }
 
@@ -430,7 +426,7 @@ class Visitor extends NodeVisitor
      */
     private function getAdditionalTagsFromMap(string $symbolName): array
     {
-        if (! isset($this->functionMap)) {
+        if ($this->functionMap === null) {
             $this->functionMap = require sprintf('%s/functionMap.php', dirname(__DIR__));
         }
 
@@ -495,7 +491,7 @@ class Visitor extends NodeVisitor
         $tagVariableType = $tag->getType();
 
         // Skip if information we need is missing.
-        if (! $tagDescription instanceof Description || ! $tagVariableName || ! $tagVariableType instanceof Type) {
+        if (! $tagDescription instanceof Description || $tagVariableName === null || $tagVariableName === '' || ! $tagVariableType instanceof Type) {
             return null;
         }
 
@@ -636,7 +632,7 @@ class Visitor extends NodeVisitor
          */
         $matched = preg_match("#(?>returns|either|one of|accepts|values are|:) ('.+'),? (?>or|and) '([^']+)'#i", $fullDescription, $matches);
 
-        if (! $matched) {
+        if ($matched !== 1) {
             return null;
         }
 
@@ -805,7 +801,7 @@ class Visitor extends NodeVisitor
                 $this->nodeFinder->findFirst(
                     $returnStmts,
                     static function (Node $node): bool {
-                        return isset($node->expr);
+                        return property_exists($node, 'expr') && $node->expr !== null;
                     }
                 ) instanceof Node
             ) {
@@ -823,10 +819,11 @@ class Visitor extends NodeVisitor
             }
             // If a first level statement is exit/die, it's return type never.
             if ($stmt->expr instanceof Exit_) {
-                if ($stmt->expr->expr instanceof String_) {
-                    if (strpos($stmt->expr->expr->value, 'must be overridden') !== false) {
-                        return '';
-                    }
+                if (! $stmt->expr->expr instanceof String_) {
+                    return 'never';
+                }
+                if (strpos($stmt->expr->expr->value, 'must be overridden') !== false) {
+                    return '';
                 }
                 return 'never';
             }
@@ -859,13 +856,14 @@ class Visitor extends NodeVisitor
             if (is_int($arg)) {
                 return 'never';
             }
-            if (is_array($arg)) {
-                if (! isset($arg['exit']) || (bool)$arg['exit'] === true) {
-                    return 'never';
-                }
+
+            if (! is_array($arg)) {
+                continue;
             }
 
-            continue;
+            if (! array_key_exists('exit', $arg) || (bool)$arg['exit']) {
+                return 'never';
+            }
         }
         return '';
     }
