@@ -7,7 +7,7 @@ namespace PhpStubs\WordPress\Core;
 abstract class WithChildren
 {
     /** @var list<\PhpStubs\WordPress\Core\WordPressArg> */
-    public $children = [];
+    public array $children = [];
 
     public function isArrayShape(): bool
     {
@@ -35,6 +35,7 @@ abstract class WithChildren
         return false;
     }
 
+    /** @phpstan-assert-if-true non-empty-list<\PhpStubs\WordPress\Core\WordPressArg> $this->children */
     public function hasChildren(): bool
     {
         return count($this->children) > 0;
