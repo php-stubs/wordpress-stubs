@@ -22,9 +22,11 @@ use PhpParser\Node\Expr\Exit_;
 use PhpParser\Node\Expr\FuncCall;
 use PhpParser\Node\Scalar\String_;
 use PhpParser\Node\Stmt\Class_;
+use PhpParser\Node\Stmt\ClassLike;
 use PhpParser\Node\Stmt\ClassMethod;
 use PhpParser\Node\Stmt\Expression;
 use PhpParser\Node\Stmt\Function_;
+use PhpParser\Node\Stmt\Namespace_;
 use PhpParser\Node\Stmt\Property;
 use PhpParser\Node\Stmt\Return_ as Stmt_Return;
 use StubsGenerator\NodeVisitor;
@@ -35,8 +37,8 @@ class Visitor extends NodeVisitor
 {
     private \phpDocumentor\Reflection\DocBlockFactory $docBlockFactory;
 
-    /** @var ?array<string,array<int|string,string>> */
-    private ?array $functionMap = null;
+    /** @var array<string,array<int|string,string>> */
+    private array $functionMap;
 
     /** @var array<string, list<\PhpStubs\WordPress\Core\WordPressTag>> */
     private array $additionalTags = [];
@@ -50,6 +52,7 @@ class Visitor extends NodeVisitor
     {
         $this->docBlockFactory = \phpDocumentor\Reflection\DocBlockFactory::createInstance();
         $this->nodeFinder = new NodeFinder();
+        $this->functionMap = require sprintf('%s/functionMap.php', dirname(__DIR__));
     }
 
     /**
@@ -146,7 +149,7 @@ class Visitor extends NodeVisitor
 
     private function postProcessNode(Node $node): void
     {
-        if (property_exists($node, 'stmts') && is_array($node->stmts)) {
+        if ($node instanceof ClassLike || $node instanceof Namespace_) {
             foreach ($node->stmts as $stmt) {
                 $this->postProcessNode($stmt);
             }
@@ -156,9 +159,10 @@ class Visitor extends NodeVisitor
             return;
         }
 
-        $name = $node->getAttribute('fullSymbolName');
+        /** @var ?string $fullSymbolName */
+        $fullSymbolName = $node->getAttribute('fullSymbolName');
 
-        if ($name === null) {
+        if ($fullSymbolName === null) {
             return;
         }
 
@@ -168,13 +172,13 @@ class Visitor extends NodeVisitor
             return;
         }
 
-        $newDocComment = $this->addTags($name, $docComment);
+        $newDocComment = $this->addTags($fullSymbolName, $docComment);
 
         if ($newDocComment instanceof Doc) {
             $node->setDocComment($newDocComment);
         }
 
-        if (! isset($this->additionalTagStrings[$name])) {
+        if (! isset($this->additionalTagStrings[$fullSymbolName])) {
             return;
         }
 
@@ -184,7 +188,7 @@ class Visitor extends NodeVisitor
             return;
         }
 
-        $newDocComment = $this->addStringTags($name, $docComment);
+        $newDocComment = $this->addStringTags($fullSymbolName, $docComment);
 
         if (! ($newDocComment instanceof Doc)) {
             return;
@@ -426,16 +430,14 @@ class Visitor extends NodeVisitor
      */
     private function getAdditionalTagsFromMap(string $symbolName): array
     {
-        if ($this->functionMap === null) {
-            $this->functionMap = require sprintf('%s/functionMap.php', dirname(__DIR__));
-        }
-
-        if (! isset($this->functionMap[$symbolName])) {
+        if (! array_key_exists($symbolName, $this->functionMap)) {
             return [];
         }
 
         $parameters = $this->functionMap[$symbolName];
         $returnType = array_shift($parameters);
+        /** @var array<string, string> $parameters */
+
         $additions = [];
 
         foreach ($parameters as $paramName => $paramType) {
