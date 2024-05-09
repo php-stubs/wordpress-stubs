@@ -35,8 +35,8 @@ class Visitor extends NodeVisitor
 {
     private \phpDocumentor\Reflection\DocBlockFactory $docBlockFactory;
 
-    /** @var ?array<string,array<int|string,string>> */
-    private ?array $functionMap = null;
+    /** @var array<string,array<int|string,string>> */
+    private array $functionMap;
 
     /** @var array<string, list<\PhpStubs\WordPress\Core\WordPressTag>> */
     private array $additionalTags = [];
@@ -50,6 +50,7 @@ class Visitor extends NodeVisitor
     {
         $this->docBlockFactory = \phpDocumentor\Reflection\DocBlockFactory::createInstance();
         $this->nodeFinder = new NodeFinder();
+        $this->functionMap = require sprintf('%s/functionMap.php', dirname(__DIR__));
     }
 
     /**
@@ -426,16 +427,14 @@ class Visitor extends NodeVisitor
      */
     private function getAdditionalTagsFromMap(string $symbolName): array
     {
-        if ($this->functionMap === null) {
-            $this->functionMap = require sprintf('%s/functionMap.php', dirname(__DIR__));
-        }
-
-        if (! isset($this->functionMap[$symbolName])) {
+        if (! array_key_exists($symbolName, $this->functionMap)) {
             return [];
         }
 
         $parameters = $this->functionMap[$symbolName];
         $returnType = array_shift($parameters);
+        /** @var array<string, string> $parameters */
+
         $additions = [];
 
         foreach ($parameters as $paramName => $paramType) {
