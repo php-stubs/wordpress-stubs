@@ -157,9 +157,10 @@ class Visitor extends NodeVisitor
             return;
         }
 
-        $name = $node->getAttribute('fullSymbolName');
+        /** @var ?string $fullSymbolName */
+        $fullSymbolName = $node->getAttribute('fullSymbolName');
 
-        if ($name === null) {
+        if ($fullSymbolName === null) {
             return;
         }
 
@@ -169,13 +170,13 @@ class Visitor extends NodeVisitor
             return;
         }
 
-        $newDocComment = $this->addTags($name, $docComment);
+        $newDocComment = $this->addTags($fullSymbolName, $docComment);
 
         if ($newDocComment instanceof Doc) {
             $node->setDocComment($newDocComment);
         }
 
-        if (! isset($this->additionalTagStrings[$name])) {
+        if (! isset($this->additionalTagStrings[$fullSymbolName])) {
             return;
         }
 
@@ -185,7 +186,7 @@ class Visitor extends NodeVisitor
             return;
         }
 
-        $newDocComment = $this->addStringTags($name, $docComment);
+        $newDocComment = $this->addStringTags($fullSymbolName, $docComment);
 
         if (! ($newDocComment instanceof Doc)) {
             return;
