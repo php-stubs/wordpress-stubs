@@ -7,7 +7,7 @@ parameters:
         - tests/
     excludePaths:
         - tests/data/
-    level: 8
+    level: 9
     featureToggles:
         alwaysTrueAlwaysReported: true
         listType: true
