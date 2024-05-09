@@ -22,9 +22,11 @@ use PhpParser\Node\Expr\Exit_;
 use PhpParser\Node\Expr\FuncCall;
 use PhpParser\Node\Scalar\String_;
 use PhpParser\Node\Stmt\Class_;
+use PhpParser\Node\Stmt\ClassLike;
 use PhpParser\Node\Stmt\ClassMethod;
 use PhpParser\Node\Stmt\Expression;
 use PhpParser\Node\Stmt\Function_;
+use PhpParser\Node\Stmt\Namespace_;
 use PhpParser\Node\Stmt\Property;
 use PhpParser\Node\Stmt\Return_ as Stmt_Return;
 use StubsGenerator\NodeVisitor;
@@ -147,7 +149,7 @@ class Visitor extends NodeVisitor
 
     private function postProcessNode(Node $node): void
     {
-        if (property_exists($node, 'stmts') && is_array($node->stmts)) {
+        if ($node instanceof ClassLike || $node instanceof Namespace_) {
             foreach ($node->stmts as $stmt) {
                 $this->postProcessNode($stmt);
             }
