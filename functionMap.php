@@ -60,7 +60,7 @@ return [
     'wp_unslash' => ['T', '@phpstan-template' => 'T', 'value' => 'T'],
     'wp_widget_rss_form' => ['void', 'args' => $wpWidgetRssFormArgsType, 'inputs' => $wpWidgetRssFormInputsType],
     'WP_REST_Request' => [null, '@phpstan-template' => 'T of array', '@phpstan-implements' => 'ArrayAccess<key-of<T>, value-of<T>>'],
-    'WP_REST_Request::offsetExists' => [null, 'offset' => '@param key-of<T>'],
+    'WP_REST_Request::offsetExists' => [null, 'offset' => 'key-of<T>'],
     'WP_REST_Request::offsetGet' => ['T[TOffset]', '@phpstan-template' => 'TOffset of key-of<T>', 'offset' => 'TOffset'],
     'WP_REST_Request::offsetSet' => ['void', '@phpstan-template' => 'TOffset of key-of<T>', 'offset' => 'TOffset', 'value' => 'T[TOffset]'],
     'WP_REST_Request::offsetUnset' => ['void', '@phpstan-template' => 'TOffset of key-of<T>', 'offset' => 'TOffset'],
