@@ -59,6 +59,7 @@ return [
     'wp_unschedule_event' => ['($wp_error is false ? bool : true|\WP_Error)', 'args' => $cronArgsType],
     'wp_unslash' => ['T', '@phpstan-template' => 'T', 'value' => 'T'],
     'wp_widget_rss_form' => ['void', 'args' => $wpWidgetRssFormArgsType, 'inputs' => $wpWidgetRssFormInputsType],
+    'rest_ensure_response' => ['($response is WP_Error ? WP_Error : WP_REST_Response)'],
     'WP_REST_Request' => [null, '@phpstan-template' => 'T of array', '@phpstan-implements' => 'ArrayAccess<key-of<T>, value-of<T>>'],
     'WP_REST_Request::offsetExists' => [null, 'offset' => 'key-of<T>'],
     'WP_REST_Request::offsetGet' => ['T[TOffset]', '@phpstan-template' => 'TOffset of key-of<T>', 'offset' => 'TOffset'],
