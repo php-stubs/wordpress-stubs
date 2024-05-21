@@ -35,7 +35,7 @@ use StubsGenerator\NodeVisitor;
 
 class Visitor extends NodeVisitor
 {
-    private \phpDocumentor\Reflection\DocBlockFactory $docBlockFactory;
+    private \phpDocumentor\Reflection\DocBlockFactoryInterface $docBlockFactory;
 
     /** @var array<string,array<int|string,string>> */
     private array $functionMap;
