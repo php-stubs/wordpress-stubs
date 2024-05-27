@@ -9,4 +9,4 @@ use function PHPStan\Testing\assertType;
 
 assertType('string', wp_debug_backtrace_summary());
 assertType('string', wp_debug_backtrace_summary( null, 0, true ));
-assertType('array<int, string>', wp_debug_backtrace_summary( null, 0, false ));
+assertType('list<string>', wp_debug_backtrace_summary( null, 0, false ));
