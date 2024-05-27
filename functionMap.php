@@ -118,6 +118,7 @@ return [
     'the_date' => ['($display is true ? void : string)'],
     'the_modified_date' => ['($display is true ? void : string)'],
     'the_title' => ['($display is true ? void : string|void)'],
+    'wp_debug_backtrace_summary' => ['($pretty is true ? string : list<string>)'],
     'wp_loginout' => ['($display is true ? void : string)'],
     'wp_register' => ['($display is true ? void : string)'],
     'wp_title' => ['($display is true ? void : string)'],
