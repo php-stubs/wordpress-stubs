@@ -436,21 +436,32 @@ class Visitor extends NodeVisitor
 
         $parameters = $this->functionMap[$symbolName];
         $returnType = array_shift($parameters);
+        /** @var array<string, string|array<int, string>> $parameters */
+
+        $otherTags = array_filter(
+            $parameters,
+            static function ($paramName): bool {
+                return strpos($paramName, '@') === 0;
+            },
+            ARRAY_FILTER_USE_KEY
+        );
+
+        $parameters = array_diff_key($parameters, $otherTags);
         /** @var array<string, string> $parameters */
 
         $additions = [];
 
-        foreach ($parameters as $paramName => $paramType) {
-            if (strpos($paramName, '@') === 0) {
-                $format = ( $paramType === '' ) ? '%s' : '%s %s';
+        foreach ($otherTags as $tagName => $tagValues) {
+            foreach ((array)$tagValues as $tagValue) {
                 $additions[] = sprintf(
-                    $format,
-                    $paramName,
-                    $paramType
+                    ($tagValue === '') ? '%s' : '%s %s',
+                    $tagName,
+                    $tagValue
                 );
-                continue;
             }
+        }
 
+        foreach ($parameters as $paramName => $paramType) {
             $additions[] = sprintf(
                 '@phpstan-param %s $%s',
                 $paramType,
