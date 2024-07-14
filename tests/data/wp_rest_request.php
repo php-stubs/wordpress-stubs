@@ -31,16 +31,16 @@ $request = new WP_REST_Request();
 assertType('string', $request->get_param('stringParam'));
 assertType('int', $request->get_param('intParam'));
 assertType('bool', $request->get_param('boolParam'));
-assertType('null', $request->get_param('unknownParam'));
+assertType('null', $request->get_param('nonExistentParam'));
 
 assertType('string', $request['stringParam']);
 assertType('int', $request['intParam']);
 assertType('bool', $request['boolParam']);
-assertType('null', $request['unknownParam']);
+assertType('null', $request['nonExistentParam']);
 
 assertType('array{stringParam: string, intParam: int, boolParam: bool}', $request->get_params());
 
 assertType('bool', $request->has_param('stringParam'));
 assertType('bool', $request->has_param('intParam'));
 assertType('bool', $request->has_param('boolParam'));
-assertType('bool', $request->has_param('unknownParam'));
+assertType('bool', $request->has_param('nonExistentParam'));
