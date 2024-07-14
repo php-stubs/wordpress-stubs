@@ -24,7 +24,7 @@ assertType('int', $request['intParam']);
 assertType('bool', $request['boolParam']);
 assertType('bool|int|string', $request['unknownParam']);
 
-assertType( 'array{stringParam: string, intParam: int, boolParam: bool}', $request->get_params() );
+assertType('array{stringParam: string, intParam: int, boolParam: bool}', $request->get_params());
 
 assertType('bool', $request->has_param( 'stringParam'  ) );
 assertType('bool', $request->has_param( 'intParam'  ) );
