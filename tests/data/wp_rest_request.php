@@ -20,6 +20,19 @@ assertType('array', $request->get_params());
 assertType('bool', $request->has_param('maybeParam'));
 
 /**
+ * @var \WP_REST_Request<array<string, string>> $request
+ */
+$request = new WP_REST_Request();
+
+assertType('string|null', $request->get_param('maybeParam'));
+
+assertType('string|null', $request['maybeParam']);
+
+assertType('array<string, string>', $request->get_params());
+
+assertType('bool', $request->has_param('maybeParam'));
+
+/**
  * @var \WP_REST_Request<array{
  *      stringParam: string,
  *      intParam: int,
@@ -28,15 +41,15 @@ assertType('bool', $request->has_param('maybeParam'));
  */
 $request = new WP_REST_Request();
 
-assertType('string', $request->get_param('stringParam'));
-assertType('int', $request->get_param('intParam'));
-assertType('bool', $request->get_param('boolParam'));
-assertType('null', $request->get_param('nonExistentParam'));
+assertType('string|null', $request->get_param('stringParam'));
+assertType('int|null', $request->get_param('intParam'));
+assertType('bool|null', $request->get_param('boolParam'));
+assertType('bool|int|string|null', $request->get_param('nonExistentParam'));
 
-assertType('string', $request['stringParam']);
-assertType('int', $request['intParam']);
-assertType('bool', $request['boolParam']);
-assertType('null', $request['nonExistentParam']);
+assertType('string|null', $request['stringParam']);
+assertType('int|null', $request['intParam']);
+assertType('bool|null', $request['boolParam']);
+assertType('bool|int|string|null', $request['nonExistentParam']);
 
 assertType('array{stringParam: string, intParam: int, boolParam: bool}', $request->get_params());
 
