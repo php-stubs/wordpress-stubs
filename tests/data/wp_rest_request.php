@@ -18,11 +18,12 @@ $request = new WP_REST_Request();
 assertType('string', $request->get_param('stringParam'));
 assertType('int', $request->get_param('intParam'));
 assertType('bool', $request->get_param('boolParam'));
+assertType('null', $request->get_param('unknownParam'));
 
 assertType('string', $request['stringParam']);
 assertType('int', $request['intParam']);
 assertType('bool', $request['boolParam']);
-assertType('bool|int|string', $request['unknownParam']);
+assertType('null', $request['unknownParam']);
 
 assertType('array{stringParam: string, intParam: int, boolParam: bool}', $request->get_params());
 
