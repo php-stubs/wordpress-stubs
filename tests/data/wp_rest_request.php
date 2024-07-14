@@ -6,7 +6,7 @@ namespace PhpStubs\WordPress\Core\Tests;
 
 use function PHPStan\Testing\assertType;
 
-/** 
+/**
  * @var \WP_REST_Request<array{
  *      stringParam: string,
  *      intParam: int,
