@@ -27,7 +27,7 @@ $filesystemDirlistReturnType = "false|array<string, array{name: string, perms: s
  *
  * For class properties:
  *
- * '<class_name::$property_name>' => [null, '@phpstan-var' => 'property_type>']
+ * '<class_name::$property_name>' => [null, '@phpstan-var' => '<property_type>']
  *
  * @link https://github.com/phpstan/phpstan-src/blob/1.10.x/resources/functionMap.php
  */
