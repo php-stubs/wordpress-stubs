@@ -45,4 +45,11 @@ return \StubsGenerator\Finder::create()
     //->notPath('wp-includes/theme-compat/footer.php')
     //->notPath('wp-includes/theme-compat/header.php')
     //->notPath('wp-includes/theme-compat/sidebar.php')
+/*
+    ->notPath('wp-includes/SimplePie')
+    ->notPath('wp-includes/class-simplepie.php')
+    ->notPath('wp-includes/class-wp-feed-cache.php')
+    ->notPath('wp-includes/class-wp-simplepie-file.php')
+    ->notPath('wp-includes/class-wp-simplepie-sanitize-kses.php')
+*/
     ->sortByName();
