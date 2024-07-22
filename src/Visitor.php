@@ -69,11 +69,6 @@ class Visitor extends NodeVisitor
         }
 
         $docComment = $node->getDocComment();
-
-        if (! ($docComment instanceof Doc)) {
-            return null;
-        }
-
         $symbolName = self::getNodeName($node);
 
         if ($node instanceof ClassMethod || $node instanceof Property) {
@@ -91,9 +86,11 @@ class Visitor extends NodeVisitor
         }
         $node->setAttribute('fullSymbolName', $symbolName);
 
-        $additions = $this->generateAdditionalTagsFromDoc($docComment);
-        if (count($additions) > 0) {
-            $this->additionalTags[$symbolName] = $additions;
+        if ($docComment instanceof Doc) {
+            $additions = $this->generateAdditionalTagsFromDoc($docComment);
+            if (count($additions) > 0) {
+                $this->additionalTags[$symbolName] = $additions;
+            }
         }
 
         $additions = $this->getAdditionalTagsFromMap($symbolName);
@@ -178,6 +175,7 @@ class Visitor extends NodeVisitor
             $node->setAttribute('comments', []);
         }
 
+        $docComment = $node->getDocComment();
         $newDocComment = $this->addTags($fullSymbolName, $docComment);
 
         if ($newDocComment instanceof Doc) {
@@ -189,11 +187,6 @@ class Visitor extends NodeVisitor
         }
 
         $docComment = $node->getDocComment();
-
-        if (! ($docComment instanceof Doc)) {
-            return;
-        }
-
         $newDocComment = $this->addStringTags($fullSymbolName, $docComment);
 
         if (! ($newDocComment instanceof Doc)) {
@@ -314,10 +307,10 @@ class Visitor extends NodeVisitor
         return new Doc($newDocComment);
     }
 
-    private function addTags(string $name, Doc $docComment): ?Doc
+    private function addTags(string $name, ?Doc $docComment): ?Doc
     {
         $additions = $this->additionalTags[$name] ?? [];
-        $docCommentText = $docComment->getText();
+        $docCommentText = $docComment ? $docComment->getText() : '';
 
         try {
             $docblock = $this->docBlockFactory->create($docCommentText);
@@ -527,7 +520,7 @@ class Visitor extends NodeVisitor
         return $additions;
     }
 
-    private function addStringTags(string $name, Doc $docComment): ?Doc
+    private function addStringTags(string $name, ?Doc $docComment): ?Doc
     {
         if (! isset($this->additionalTagStrings[$name])) {
             return null;
@@ -535,7 +528,7 @@ class Visitor extends NodeVisitor
 
         $additions = $this->additionalTagStrings[$name];
 
-        $docCommentText = $docComment->getText();
+        $docCommentText = $docComment ? $docComment->getText() : '';
         $newDocComment = sprintf(
             "%s\n * %s\n */",
             substr($docCommentText, 0, -4),
