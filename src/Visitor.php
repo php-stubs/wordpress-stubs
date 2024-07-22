@@ -170,6 +170,14 @@ class Visitor extends NodeVisitor
             return;
         }
 
+        $newDocComment = $this->removeUnwantedDocs($docComment);
+
+        if ($newDocComment instanceof Doc) {
+            $node->setDocComment($newDocComment);
+        } else {
+            $node->setAttribute('comments', []);
+        }
+
         $newDocComment = $this->addTags($fullSymbolName, $docComment);
 
         if ($newDocComment instanceof Doc) {
@@ -251,6 +259,59 @@ class Visitor extends NodeVisitor
         }
 
         return $additions;
+    }
+
+    private function removeUnwantedDocs(Doc $docComment): ?Doc
+    {
+        $retain = [
+            'access',
+            'deprecated',
+            'ignore',
+            'internal',
+            'param',
+            'property-read',
+            'property-write',
+            'property',
+            'return',
+            'throws',
+            'var',
+        ];
+        $docCommentText = $docComment->getText();
+
+        try {
+            $docblock = $this->docBlockFactory->create($docCommentText);
+        } catch (\RuntimeException | \InvalidArgumentException $e) {
+            return null;
+        }
+
+        $tags = [];
+
+        foreach ($retain as $tag) {
+            $new = $docblock->getTagsByName($tag);
+            foreach ( $new as $add ) {
+                $tags[] = $add;
+            }
+        }
+
+        if ( empty( $tags ) ) {
+            return null;
+        }
+
+        // re-construct the docblock with only the tags we want to keep
+        $newDocComment = "/**\n";
+        foreach ($tags as $tag) {
+            // use reflection to set the description property of the tag to null
+            $ref = new \ReflectionObject($tag);
+            $prop = $ref->getProperty('description');
+            $prop->setAccessible(true);
+            $prop->setValue($tag, null);
+
+            $line = trim('@' . $tag->getName() . ' ' . $tag);
+            $newDocComment .= sprintf(" * %s\n", $line);
+        }
+        $newDocComment .= " */";
+
+        return new Doc($newDocComment, $docComment->getStartLine(), $docComment->getStartFilePos());
     }
 
     private function addTags(string $name, Doc $docComment): ?Doc
