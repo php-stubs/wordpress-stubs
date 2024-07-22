@@ -311,7 +311,7 @@ class Visitor extends NodeVisitor
         }
         $newDocComment .= " */";
 
-        return new Doc($newDocComment, $docComment->getStartLine(), $docComment->getStartFilePos());
+        return new Doc($newDocComment);
     }
 
     private function addTags(string $name, Doc $docComment): ?Doc
@@ -353,7 +353,7 @@ class Visitor extends NodeVisitor
             implode("\n", $additionStrings)
         );
 
-        return new Doc($newDocComment, $docComment->getStartLine(), $docComment->getStartFilePos());
+        return new Doc($newDocComment);
     }
 
     /**
@@ -542,7 +542,7 @@ class Visitor extends NodeVisitor
             implode("\n * ", $additions)
         );
 
-        return new Doc($newDocComment, $docComment->getStartLine(), $docComment->getStartFilePos());
+        return new Doc($newDocComment);
     }
 
     private function getAdditionFromParam(Param $tag): ?WordPressTag
