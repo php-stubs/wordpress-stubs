@@ -257,7 +257,6 @@ class Visitor extends NodeVisitor
     private function removeUnwantedDocs(Doc $docComment): ?Doc
     {
         $retain = [
-            'access',
             'deprecated',
             'ignore',
             'internal',

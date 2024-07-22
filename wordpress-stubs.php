@@ -330,7 +330,6 @@ namespace {
         {
         }
         /**
-         * @access
          * @param array $nested_files
          * @param string $path
          * @return array
@@ -2783,8 +2782,6 @@ namespace {
         public function print_column_headers($with_id = \true)
         {
         }
-        /**
-         * @access
          * @phpstan-return void
          */
         public function print_table_description()
@@ -5410,7 +5407,6 @@ namespace {
         {
         }
         /**
-         * @access
          * @return array
          */
         protected function get_installed_plugins()
@@ -5732,7 +5728,6 @@ namespace {
         {
         }
         /**
-         * @access
          * @param string $post_type
          * @phpstan-return void
          */
@@ -6035,7 +6030,6 @@ namespace {
         {
         }
         /**
-         * @access
          * @param int $post_id
          * @phpstan-return void
          */
@@ -7089,82 +7083,66 @@ namespace {
     class WP_User_Search
     {
         /**
-         * @access
          * @var mixed
          */
         var $results;
         /**
-         * @access
          * @var string
          */
         var $search_term;
         /**
-         * @access
          * @var int
          */
         var $page;
         /**
-         * @access
          * @var string
          */
         var $role;
         /**
-         * @access
          * @var int|bool
          */
         var $raw_page;
         /**
-         * @access
          * @var int
          */
         var $users_per_page = 50;
         /**
-         * @access
          * @var int
          */
         var $first_user;
         /**
-         * @access
          * @var int
          */
         var $last_user;
         /**
-         * @access
          * @var string
          */
         var $query_limit;
         /**
-         * @access
          * @var string
          */
         var $query_orderby;
         /**
-         * @access
          * @var string
          */
         var $query_from;
         /**
-         * @access
          * @var string
          */
         var $query_where;
         /**
-         * @access
          * @var int
          */
         var $total_users_for_query = 0;
         /**
-         * @access
          * @var bool
          */
         var $too_many_total_users = \false;
         /**
-         * @access
          * @var \WP_Error
          */
         var $search_errors;
         /**
-         * @access
          * @var string
          */
         var $paging_text;
@@ -7186,52 +7164,34 @@ namespace {
         public function WP_User_Search($search_term = '', $page = '', $role = '')
         {
         }
-        /**
-         * @access
-         */
         public function prepare_query()
         {
         }
-        /**
-         * @access
-         */
         public function query()
         {
         }
-        /**
-         * @access
-         */
         function prepare_vars_for_template_usage()
         {
         }
-        /**
-         * @access
-         */
         public function do_paging()
         {
         }
         /**
-         * @access
          * @return array
          */
         public function get_results()
         {
         }
-        /**
-         * @access
-         */
         function page_links()
         {
         }
         /**
-         * @access
          * @return bool
          */
         function results_are_paged()
         {
         }
         /**
-         * @access
          * @return bool
          */
         function is_search()
@@ -14352,113 +14312,91 @@ namespace {
     class SimplePie
     {
         /**
-         * @access
          * @var array
          */
         public $data = array();
         /**
-         * @access
          * @var mixed
          */
         public $error;
         /**
-         * @access
          * @var int
          */
         public $status_code;
         /**
-         * @access
          * @var object
          */
         public $sanitize;
         /**
-         * @access
          * @var string
          */
         public $useragent = \SIMPLEPIE_USERAGENT;
         /**
-         * @access
          * @var string
          */
         public $feed_url;
         /**
-         * @access
          * @var string
          */
         public $permanent_url = \null;
         /**
-         * @access
          * @var object
          */
         public $file;
         /**
-         * @access
          * @var string
          */
         public $raw_data;
         /**
-         * @access
          * @var int
          */
         public $timeout = 10;
         /**
-         * @access
          * @var array
          */
         public $curl_options = array();
         /**
-         * @access
          * @var bool
          */
         public $force_fsockopen = \false;
         /**
-         * @access
          * @var bool
          */
         public $force_feed = \false;
         /**
-         * @access
          * @var bool
          */
         public $cache = \true;
         /**
-         * @access
          * @var bool
          */
         public $force_cache_fallback = \false;
         /**
-         * @access
          * @var int
          */
         public $cache_duration = 3600;
         /**
-         * @access
          * @var int
          */
         public $autodiscovery_cache_duration = 604800;
         // 7 Days.
         /**
-         * @access
          * @var string
          */
         public $cache_location = './cache';
         /**
-         * @access
          * @var string
          */
         public $cache_name_function = 'md5';
         /**
-         * @access
          * @var bool
          */
         public $order_by_date = \true;
         /**
-         * @access
          * @var mixed
          */
         public $input_encoding = \false;
         /**
-         * @access
          * @var int
          */
         public $autodiscovery = \SIMPLEPIE_LOCATOR_ALL;
@@ -14467,37 +14405,30 @@ namespace {
          */
         public $registry;
         /**
-         * @access
          * @var int
          */
         public $max_checked_feeds = 10;
         /**
-         * @access
          * @var array
          */
         public $all_discovered_feeds = array();
         /**
-         * @access
          * @var string
          */
         public $image_handler = '';
         /**
-         * @access
          * @var array
          */
         public $multifeed_url = array();
         /**
-         * @access
          * @var array
          */
         public $multifeed_objects = array();
         /**
-         * @access
          * @var array
          */
         public $config_settings = \null;
         /**
-         * @access
          * @var int
          */
         public $item_limit = 0;
@@ -14506,22 +14437,18 @@ namespace {
          */
         public $check_modified = \false;
         /**
-         * @access
          * @var array
          */
         public $strip_attributes = array('bgsound', 'class', 'expr', 'id', 'style', 'onclick', 'onerror', 'onfinish', 'onmouseover', 'onmouseout', 'onfocus', 'onblur', 'lowsrc', 'dynsrc');
         /**
-         * @access
          * @var array
          */
         public $add_attributes = array('audio' => array('preload' => 'none'), 'iframe' => array('sandbox' => 'allow-scripts allow-same-origin'), 'video' => array('preload' => 'none'));
         /**
-         * @access
          * @var array
          */
         public $strip_htmltags = array('base', 'blink', 'body', 'doctype', 'embed', 'font', 'form', 'frame', 'frameset', 'html', 'iframe', 'input', 'marquee', 'meta', 'noscript', 'object', 'param', 'script', 'style');
         /**
-         * @access
          * @var bool
          */
         public $enable_exceptions = \false;
@@ -14854,7 +14781,6 @@ namespace {
         {
         }
         /**
-         * @access
          * @param string $data
          * @param int $type
          * @param string $base
@@ -15036,7 +14962,6 @@ namespace {
         {
         }
         /**
-         * @access
          * @param \SimplePie $a
          * @param \SimplePie $b
          * @return bool
@@ -15191,58 +15116,45 @@ namespace {
     class SimplePie_Decode_HTML_Entities
     {
         /**
-         * @access
          * @var string
          */
         var $data = '';
         /**
-         * @access
          * @var string
          */
         var $consumed = '';
         /**
-         * @access
          * @var int
          */
         var $position = 0;
         /**
-         * @access
          * @param string $data
          */
         public function __construct($data)
         {
         }
         /**
-         * @access
          * @return string
          */
         public function parse()
         {
         }
         /**
-         * @access
          * @return mixed
          */
         public function consume()
         {
         }
         /**
-         * @access
          * @param string $chars
          * @return mixed
          */
         public function consume_range($chars)
         {
         }
-        /**
-         * @access
-         */
         public function unconsume()
         {
         }
-        /**
-         * @access
-         */
         public function entity()
         {
         }
@@ -15972,12 +15884,10 @@ namespace {
     class SimplePie_Item
     {
         /**
-         * @access
          * @var \SimplePie
          */
         var $feed;
         /**
-         * @access
          * @var array
          */
         var $data = array();
@@ -16023,7 +15933,6 @@ namespace {
         {
         }
         /**
-         * @access
          * @param string $data
          * @param int $type
          * @param string $base
@@ -16458,12 +16367,10 @@ namespace {
     class SimplePie_Parse_Date
     {
         /**
-         * @access
          * @var string
          */
         var $date;
         /**
-         * @access
          * @var array
          */
         var $day = array(
@@ -16565,7 +16472,6 @@ namespace {
             'Вс.' => 7,
         );
         /**
-         * @access
          * @var array
          */
         var $month = array(
@@ -16744,44 +16650,32 @@ namespace {
             'декабря' => 12,
         );
         /**
-         * @access
          * @var array
          */
         var $timezone = array('ACDT' => 37800, 'ACIT' => 28800, 'ACST' => 34200, 'ACT' => -18000, 'ACWDT' => 35100, 'ACWST' => 31500, 'AEDT' => 39600, 'AEST' => 36000, 'AFT' => 16200, 'AKDT' => -28800, 'AKST' => -32400, 'AMDT' => 18000, 'AMT' => -14400, 'ANAST' => 46800, 'ANAT' => 43200, 'ART' => -10800, 'AZOST' => -3600, 'AZST' => 18000, 'AZT' => 14400, 'BIOT' => 21600, 'BIT' => -43200, 'BOT' => -14400, 'BRST' => -7200, 'BRT' => -10800, 'BST' => 3600, 'BTT' => 21600, 'CAST' => 18000, 'CAT' => 7200, 'CCT' => 23400, 'CDT' => -18000, 'CEDT' => 7200, 'CEST' => 7200, 'CET' => 3600, 'CGST' => -7200, 'CGT' => -10800, 'CHADT' => 49500, 'CHAST' => 45900, 'CIST' => -28800, 'CKT' => -36000, 'CLDT' => -10800, 'CLST' => -14400, 'COT' => -18000, 'CST' => -21600, 'CVT' => -3600, 'CXT' => 25200, 'DAVT' => 25200, 'DTAT' => 36000, 'EADT' => -18000, 'EAST' => -21600, 'EAT' => 10800, 'ECT' => -18000, 'EDT' => -14400, 'EEST' => 10800, 'EET' => 7200, 'EGT' => -3600, 'EKST' => 21600, 'EST' => -18000, 'FJT' => 43200, 'FKDT' => -10800, 'FKST' => -14400, 'FNT' => -7200, 'GALT' => -21600, 'GEDT' => 14400, 'GEST' => 10800, 'GFT' => -10800, 'GILT' => 43200, 'GIT' => -32400, 'GST' => 14400, 'GST' => -7200, 'GYT' => -14400, 'HAA' => -10800, 'HAC' => -18000, 'HADT' => -32400, 'HAE' => -14400, 'HAP' => -25200, 'HAR' => -21600, 'HAST' => -36000, 'HAT' => -9000, 'HAY' => -28800, 'HKST' => 28800, 'HMT' => 18000, 'HNA' => -14400, 'HNC' => -21600, 'HNE' => -18000, 'HNP' => -28800, 'HNR' => -25200, 'HNT' => -12600, 'HNY' => -32400, 'IRDT' => 16200, 'IRKST' => 32400, 'IRKT' => 28800, 'IRST' => 12600, 'JFDT' => -10800, 'JFST' => -14400, 'JST' => 32400, 'KGST' => 21600, 'KGT' => 18000, 'KOST' => 39600, 'KOVST' => 28800, 'KOVT' => 25200, 'KRAST' => 28800, 'KRAT' => 25200, 'KST' => 32400, 'LHDT' => 39600, 'LHST' => 37800, 'LINT' => 50400, 'LKT' => 21600, 'MAGST' => 43200, 'MAGT' => 39600, 'MAWT' => 21600, 'MDT' => -21600, 'MESZ' => 7200, 'MEZ' => 3600, 'MHT' => 43200, 'MIT' => -34200, 'MNST' => 32400, 'MSDT' => 14400, 'MSST' => 10800, 'MST' => -25200, 'MUT' => 14400, 'MVT' => 18000, 'MYT' => 28800, 'NCT' => 39600, 'NDT' => -9000, 'NFT' => 41400, 'NMIT' => 36000, 'NOVST' => 25200, 'NOVT' => 21600, 'NPT' => 20700, 'NRT' => 43200, 'NST' => -12600, 'NUT' => -39600, 'NZDT' => 46800, 'NZST' => 43200, 'OMSST' => 25200, 'OMST' => 21600, 'PDT' => -25200, 'PET' => -18000, 'PETST' => 46800, 'PETT' => 43200, 'PGT' => 36000, 'PHOT' => 46800, 'PHT' => 28800, 'PKT' => 18000, 'PMDT' => -7200, 'PMST' => -10800, 'PONT' => 39600, 'PST' => -28800, 'PWT' => 32400, 'PYST' => -10800, 'PYT' => -14400, 'RET' => 14400, 'ROTT' => -10800, 'SAMST' => 18000, 'SAMT' => 14400, 'SAST' => 7200, 'SBT' => 39600, 'SCDT' => 46800, 'SCST' => 43200, 'SCT' => 14400, 'SEST' => 3600, 'SGT' => 28800, 'SIT' => 28800, 'SRT' => -10800, 'SST' => -39600, 'SYST' => 10800, 'SYT' => 7200, 'TFT' => 18000, 'THAT' => -36000, 'TJT' => 18000, 'TKT' => -36000, 'TMT' => 18000, 'TOT' => 46800, 'TPT' => 32400, 'TRUT' => 36000, 'TVT' => 43200, 'TWT' => 28800, 'UYST' => -7200, 'UYT' => -10800, 'UZT' => 18000, 'VET' => -14400, 'VLAST' => 39600, 'VLAT' => 36000, 'VOST' => 21600, 'VUT' => 39600, 'WAST' => 7200, 'WAT' => 3600, 'WDT' => 32400, 'WEST' => 3600, 'WFT' => 43200, 'WIB' => 25200, 'WIT' => 32400, 'WITA' => 28800, 'WKST' => 18000, 'WST' => 28800, 'YAKST' => 36000, 'YAKT' => 32400, 'YAPT' => 36000, 'YEKST' => 21600, 'YEKT' => 18000);
         /**
-         * @access
          * @var string
          */
         var $day_pcre;
         /**
-         * @access
          * @var string
          */
         var $month_pcre;
         /**
-         * @access
          * @var array
          */
         var $built_in = array();
         /**
-         * @access
          * @var array
          */
         var $user = array();
-        /**
-         * @access
-         */
         public function __construct()
         {
         }
-        /**
-         * @access
-         */
         public static function get()
         {
         }
         /**
-         * @access
          * @param string $date
          * @return int
          */
@@ -16789,21 +16683,18 @@ namespace {
         {
         }
         /**
-         * @access
          * @param callable $callback
          */
         public function add_callback($callback)
         {
         }
         /**
-         * @access
          * @return int
          */
         public function date_w3cdtf($date)
         {
         }
         /**
-         * @access
          * @param string $data
          * @return string
          */
@@ -16811,28 +16702,24 @@ namespace {
         {
         }
         /**
-         * @access
          * @return int
          */
         public function date_rfc2822($date)
         {
         }
         /**
-         * @access
          * @return int
          */
         public function date_rfc850($date)
         {
         }
         /**
-         * @access
          * @return int
          */
         public function date_asctime($date)
         {
         }
         /**
-         * @access
          * @return int
          */
         public function date_strtotime($date)
@@ -17192,56 +17079,46 @@ namespace {
     class SimplePie_XML_Declaration_Parser
     {
         /**
-         * @access
          * @var string
          */
         var $version = '1.0';
         /**
-         * @access
          * @var string
          */
         var $encoding = 'UTF-8';
         /**
-         * @access
          * @var bool
          */
         var $standalone = \false;
         /**
-         * @access
          * @var string
          */
         var $state = 'before_version_name';
         /**
-         * @access
          * @var string
          */
         var $data = '';
         /**
-         * @access
          * @var int
          */
         var $data_length = 0;
         /**
-         * @access
          * @var int
          */
         var $position = 0;
         /**
-         * @access
          * @param string $data
          */
         public function __construct($data)
         {
         }
         /**
-         * @access
          * @return bool
          */
         public function parse()
         {
         }
         /**
-         * @access
          * @return bool
          */
         public function has_data()
@@ -17290,72 +17167,58 @@ namespace {
     class SimplePie_gzdecode
     {
         /**
-         * @access
          * @var string
          */
         var $compressed_data;
         /**
-         * @access
          * @var int
          */
         var $compressed_size;
         /**
-         * @access
          * @var int
          */
         var $min_compressed_size = 18;
         /**
-         * @access
          * @var int
          */
         var $position = 0;
         /**
-         * @access
          * @var int
          */
         var $flags;
         /**
-         * @access
          * @var string
          */
         var $data;
         /**
-         * @access
          * @var int
          */
         var $MTIME;
         /**
-         * @access
          * @var int
          */
         var $XFL;
         /**
-         * @access
          * @var int
          */
         var $OS;
         /**
-         * @access
          * @var string
          */
         var $SI1;
         /**
-         * @access
          * @var string
          */
         var $SI2;
         /**
-         * @access
          * @var string
          */
         var $extra_field;
         /**
-         * @access
          * @var string
          */
         var $filename;
         /**
-         * @access
          * @var string
          */
         var $comment;
@@ -17448,7 +17311,6 @@ namespace {
         {
         }
         /**
-         * @access
          * @return string
          */
         static function _getTempDir()
@@ -17473,9 +17335,6 @@ namespace {
         {
         }
     }
-    /**
-     * @access
-     */
     class Text_Diff_Op
     {
         var $orig;
@@ -17490,9 +17349,6 @@ namespace {
         {
         }
     }
-    /**
-     * @access
-     */
     class Text_Diff_Op_copy extends \Text_Diff_Op
     {
         function __construct($orig, $final = \false)
@@ -17505,9 +17361,6 @@ namespace {
         {
         }
     }
-    /**
-     * @access
-     */
     class Text_Diff_Op_delete extends \Text_Diff_Op
     {
         function __construct($lines)
@@ -17520,9 +17373,6 @@ namespace {
         {
         }
     }
-    /**
-     * @access
-     */
     class Text_Diff_Op_add extends \Text_Diff_Op
     {
         function __construct($lines)
@@ -17535,9 +17385,6 @@ namespace {
         {
         }
     }
-    /**
-     * @access
-     */
     class Text_Diff_Op_change extends \Text_Diff_Op
     {
         function __construct($orig, $final)
@@ -17592,7 +17439,6 @@ namespace {
         {
         }
         /**
-         * @access
          * @param array $text_lines
          * @param int $line_no
          * @param int $end
@@ -17757,17 +17603,14 @@ namespace {
     class AtomFeed
     {
         /**
-         * @access
          * @var array
          */
         var $links = array();
         /**
-         * @access
          * @var array
          */
         var $categories = array();
         /**
-         * @access
          * @var array
          */
         var $entries = array();
@@ -17775,12 +17618,10 @@ namespace {
     class AtomEntry
     {
         /**
-         * @access
          * @var array
          */
         var $links = array();
         /**
-         * @access
          * @var array
          */
         var $categories = array();
@@ -18724,17 +18565,6 @@ namespace {
         {
         }
     }
-    /**
-     * Block Bindings API: WP_Block_Bindings_Source class.
-     *
-     *
-     * @package WordPress
-     * @subpackage Block Bindings
-     * @since 6.5.0
-     */
-    /**
-     * @access
-     */
     final class WP_Block_Bindings_Source
     {
         /**
@@ -18793,17 +18623,14 @@ namespace {
     class WP_Block_List implements \Iterator, \ArrayAccess, \Countable
     {
         /**
-         * @access
          * @var array[]|\WP_Block[]
          */
         protected $blocks;
         /**
-         * @access
          * @var array
          */
         protected $available_context;
         /**
-         * @access
          * @var \WP_Block_Type_Registry
          */
         protected $registry;
@@ -19212,16 +19039,6 @@ namespace {
         {
         }
     }
-    /**
-     * Block support flags.
-     *
-     * @package WordPress
-     *
-     * @since 5.6.0
-     */
-    /**
-     * @access
-     */
     #[\AllowDynamicProperties]
     class WP_Block_Supports
     {
@@ -19624,12 +19441,10 @@ namespace {
          */
         public $context = array();
         /**
-         * @access
          * @var array
          */
         protected $available_context;
         /**
-         * @access
          * @var \WP_Block_Type_Registry
          */
         protected $registry;
@@ -19678,15 +19493,6 @@ namespace {
         {
         }
     }
-    /**
-     * WP_Classic_To_Block_Menu_Converter class
-     *
-     * @package WordPress
-     * @since 6.3.0
-     */
-    /**
-     * @access
-     */
     class WP_Classic_To_Block_Menu_Converter
     {
         /**
@@ -22213,17 +22019,6 @@ namespace {
         {
         }
     }
-    /**
-     * Dependencies API: _WP_Dependency class
-     *
-     * @since 4.7.0
-     *
-     * @package WordPress
-     * @subpackage Dependencies
-     */
-    /**
-     * @access
-     */
     #[\AllowDynamicProperties]
     class _WP_Dependency
     {
@@ -22283,41 +22078,6 @@ namespace {
         {
         }
     }
-    /**
-     * WP_Duotone class
-     *
-     * Parts of this source were derived and modified from colord,
-     * released under the MIT license.
-     *
-     * https://github.com/omgovich/colord
-     *
-     * Copyright (c) 2020 Vlad Shilov omgovich@ya.ru
-     *
-     * Permission is hereby granted, free of charge, to any person obtaining
-     * a copy of this software and associated documentation files (the
-     * "Software"), to deal in the Software without restriction, including
-     * without limitation the rights to use, copy, modify, merge, publish,
-     * distribute, sublicense, and/or sell copies of the Software, and to
-     * permit persons to whom the Software is furnished to do so, subject to
-     * the following conditions:
-     *
-     * The above copyright notice and this permission notice shall be
-     * included in all copies or substantial portions of the Software.
-     *
-     * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-     * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-     * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-     * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
-     * LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
-     * OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
-     * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-     *
-     * @package WordPress
-     * @since 6.3.0
-     */
-    /**
-     * @access
-     */
     class WP_Duotone
     {
         /**
@@ -24704,18 +24464,6 @@ namespace {
         {
         }
     }
-    /**
-     * WP_Navigation_Fallback class
-     *
-     * Manages fallback behavior for Navigation menus.
-     *
-     * @package WordPress
-     * @subpackage Navigation
-     * @since 6.3.0
-     */
-    /**
-     * @access
-     */
     class WP_Navigation_Fallback
     {
         /**
@@ -28905,16 +28653,6 @@ namespace {
         {
         }
     }
-    /**
-     * WP_Theme_JSON_Resolver class
-     *
-     * @package WordPress
-     * @subpackage Theme
-     * @since 5.8.0
-     */
-    /**
-     * @access
-     */
     #[\AllowDynamicProperties]
     class WP_Theme_JSON_Resolver
     {
@@ -29072,16 +28810,6 @@ namespace {
         {
         }
     }
-    /**
-     * WP_Theme_JSON_Schema class
-     *
-     * @package WordPress
-     * @subpackage Theme
-     * @since 5.9.0
-     */
-    /**
-     * @access
-     */
     #[\AllowDynamicProperties]
     class WP_Theme_JSON_Schema
     {
@@ -29100,16 +28828,6 @@ namespace {
         {
         }
     }
-    /**
-     * WP_Theme_JSON class
-     *
-     * @package WordPress
-     * @subpackage Theme
-     * @since 5.8.0
-     */
-    /**
-     * @access
-     */
     #[\AllowDynamicProperties]
     class WP_Theme_JSON
     {
@@ -34358,16 +34076,6 @@ namespace {
         {
         }
     }
-    /**
-     * WP_Font_Face_Resolver class.
-     *
-     * @package    WordPress
-     * @subpackage Fonts
-     * @since      6.4.0
-     */
-    /**
-     * @access
-     */
     class WP_Font_Face_Resolver
     {
         /**
@@ -34427,22 +34135,9 @@ namespace {
         {
         }
     }
-    /**
-     * Font Utils class.
-     *
-     * Provides utility functions for working with font families.
-     *
-     * @package    WordPress
-     * @subpackage Fonts
-     * @since      6.5.0
-     */
-    /**
-     * @access
-     */
     class WP_Font_Utils
     {
         /**
-         * @access
          * @param string $font_family
          * @return string
          */
@@ -34450,7 +34145,6 @@ namespace {
         {
         }
         /**
-         * @access
          * @param array $settings
          * @return string
          * @phpstan-param array{
@@ -34465,7 +34159,6 @@ namespace {
         {
         }
         /**
-         * @access
          * @param array $tree
          * @param array $schema
          * @return array
@@ -34474,23 +34167,12 @@ namespace {
         {
         }
         /**
-         * @access
          * @return string[]
          */
         public static function get_allowed_font_mime_types()
         {
         }
     }
-    /**
-     * HTML API: WP_HTML_Active_Formatting_Elements class
-     *
-     * @package WordPress
-     * @subpackage HTML-API
-     * @since 6.4.0
-     */
-    /**
-     * @access
-     */
     class WP_HTML_Active_Formatting_Elements
     {
         /**
@@ -34532,16 +34214,6 @@ namespace {
         {
         }
     }
-    /**
-     * HTML API: WP_HTML_Attribute_Token class
-     *
-     * @package WordPress
-     * @subpackage HTML-API
-     * @since 6.2.0
-     */
-    /**
-     * @access
-     */
     class WP_HTML_Attribute_Token
     {
         /**
@@ -34606,7 +34278,6 @@ namespace {
         {
         }
         /**
-         * @access
          * @param string $context
          * @param string $text
          * @return string
@@ -34632,16 +34303,6 @@ namespace {
         {
         }
     }
-    /**
-     * HTML API: WP_HTML_Open_Elements class
-     *
-     * @package WordPress
-     * @subpackage HTML-API
-     * @since 6.4.0
-     */
-    /**
-     * @access
-     */
     class WP_HTML_Open_Elements
     {
         /**
@@ -34784,16 +34445,6 @@ namespace {
         {
         }
     }
-    /**
-     * HTML API: WP_HTML_Processor_State class
-     *
-     * @package WordPress
-     * @subpackage HTML-API
-     * @since 6.4.0
-     */
-    /**
-     * @access
-     */
     class WP_HTML_Processor_State
     {
         /*
@@ -35288,7 +34939,6 @@ namespace {
         {
         }
         /**
-         * @access
          * @param string $html
          * @param string|null $use_the_static_create_methods_instead
          */
@@ -35317,7 +34967,6 @@ namespace {
         {
         }
         /**
-         * @access
          * @return bool
          */
         public function next_token()
@@ -35558,16 +35207,6 @@ namespace {
          */
         const CONSTRUCTOR_UNLOCK_CODE = 'Use WP_HTML_Processor::create_fragment() instead of calling the class constructor directly.';
     }
-    /**
-     * HTML API: WP_HTML_Span class
-     *
-     * @package WordPress
-     * @subpackage HTML-API
-     * @since 6.2.0
-     */
-    /**
-     * @access
-     */
     class WP_HTML_Span
     {
         /**
@@ -35586,16 +35225,6 @@ namespace {
         {
         }
     }
-    /**
-     * HTML API: WP_HTML_Stack_Event class
-     *
-     * @package WordPress
-     * @subpackage HTML-API
-     * @since 6.6.0
-     */
-    /**
-     * @access
-     */
     class WP_HTML_Stack_Event
     {
         /**
@@ -35631,16 +35260,6 @@ namespace {
         {
         }
     }
-    /**
-     * HTML API: WP_HTML_Text_Replacement class
-     *
-     * @package WordPress
-     * @subpackage HTML-API
-     * @since 6.2.0
-     */
-    /**
-     * @access
-     */
     class WP_HTML_Text_Replacement
     {
         /**
@@ -35664,16 +35283,6 @@ namespace {
         {
         }
     }
-    /**
-     * HTML API: WP_HTML_Token class
-     *
-     * @package WordPress
-     * @subpackage HTML-API
-     * @since 6.4.0
-     */
-    /**
-     * @access
-     */
     class WP_HTML_Token
     {
         /**
@@ -35708,29 +35317,9 @@ namespace {
         {
         }
     }
-    /**
-     * HTML API: WP_HTML_Unsupported_Exception class
-     *
-     * @package WordPress
-     * @subpackage HTML-API
-     * @since 6.4.0
-     */
-    /**
-     * @access
-     */
     class WP_HTML_Unsupported_Exception extends \Exception
     {
     }
-    /**
-     * Interactivity API: WP_Interactivity_API_Directives_Processor class.
-     *
-     * @package WordPress
-     * @subpackage Interactivity API
-     * @since 6.5.0
-     */
-    /**
-     * @access
-     */
     final class WP_Interactivity_API_Directives_Processor extends \WP_HTML_Tag_Processor
     {
         /**
@@ -35741,14 +35330,12 @@ namespace {
          */
         const TAGS_THAT_DONT_VISIT_CLOSER_TAG = array('SCRIPT', 'IFRAME', 'NOEMBED', 'NOFRAMES', 'STYLE', 'TEXTAREA', 'TITLE', 'XMP');
         /**
-         * @access
          * @return string|null
          */
         public function get_content_between_balanced_template_tags()
         {
         }
         /**
-         * @access
          * @param string $new_content
          * @return bool
          */
@@ -35756,7 +35343,6 @@ namespace {
         {
         }
         /**
-         * @access
          * @param string $new_content
          * @return bool
          */
@@ -35764,21 +35350,18 @@ namespace {
         {
         }
         /**
-         * @access
          * @return bool
          */
         public function skip_to_tag_closer() : bool
         {
         }
         /**
-         * @access
          * @return bool
          */
         public function next_balanced_tag_closer_tag() : bool
         {
         }
         /**
-         * @access
          * @return bool
          */
         public function has_and_visits_its_closer_tag() : bool
@@ -36568,7 +36151,6 @@ namespace {
         {
         }
         /**
-         * @access
          * @param string $text
          * @param string $char
          */
@@ -37528,7 +37110,6 @@ namespace {
         {
         }
         /**
-         * @access
          * @param \WP_REST_Request $request
          * @return array|\WP_Error
          */
@@ -37536,7 +37117,6 @@ namespace {
         {
         }
         /**
-         * @access
          * @param \WP_REST_Request $request
          * @param string $route
          * @param array $handler
@@ -39365,7 +38945,6 @@ namespace {
         {
         }
         /**
-         * @access
          * @param string $path
          * @return string
          */
@@ -42715,16 +42294,6 @@ namespace {
         {
         }
     }
-    /**
-     * Style Engine: WP_Style_Engine class
-     *
-     * @package WordPress
-     * @subpackage StyleEngine
-     * @since 6.1.0
-     */
-    /**
-     * @access
-     */
     #[\AllowDynamicProperties]
     final class WP_Style_Engine
     {
@@ -43209,7 +42778,6 @@ namespace {
         {
         }
         /**
-         * @access
          * @param array $instance
          * @return bool
          */
@@ -43674,19 +43242,12 @@ namespace {
     // Ajax helpers.
     //
     /**
-     * @access
      * @param int $comment_id
      * @param int $delta
      */
     function _wp_ajax_delete_comment_response($comment_id, $delta = -1)
     {
     }
-    //
-    // POST-based Ajax handlers.
-    //
-    /**
-     * @access
-     */
     function _wp_ajax_add_hierarchical_term()
     {
     }
@@ -44197,8 +43758,6 @@ namespace {
     function wp_update_link($linkdata)
     {
     }
-    /**
-     * @access
      * @phpstan-return void
      */
     function wp_link_manager_disabled_message()
@@ -44371,7 +43930,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @param string $display_name
      * @param string $username
      * @param string $profiles
@@ -44380,7 +43938,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @param string $data
      */
     function _wp_credits_build_object_link(&$data)
@@ -44419,7 +43976,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @param mixed $dashboard
      * @param array $meta_box
      */
@@ -44450,7 +44006,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @param \WP_Comment $comment
      * @param bool $show_date
      */
@@ -45030,7 +44585,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @deprecated 3.9.0
      * @param int $old_ID
      * @param int $new_ID
@@ -45077,7 +44631,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @deprecated 5.3.0
      */
     function _wp_privacy_requests_screen_options()
@@ -45177,7 +44730,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @param array $file
      * @param array|false $overrides
      * @param string $time
@@ -45274,7 +44826,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @param string $file
      * @param string $to
      * @param string[] $needed_dirs
@@ -45284,7 +44835,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @param string $file
      * @param string $to
      * @param string[] $needed_dirs
@@ -45508,7 +45058,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @param array $saved_data
      * @param string $original_file
      * @param array $image_meta
@@ -45527,7 +45076,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @param array $new_sizes
      * @param string $file
      * @param array $image_meta
@@ -45599,7 +45147,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @param int $attachment_id
      * @param string|int[] $size
      * @return string|false
@@ -45608,7 +45155,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @param int $attachment_id
      * @return string|false
      */
@@ -45628,7 +45174,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @param array $a
      * @param array $b
      * @return int
@@ -45744,7 +45289,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @param array $matches
      * @return string
      */
@@ -46307,7 +45851,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @param array $allowed_files
      * @return array
      */
@@ -46315,7 +45858,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @param array|string $tree
      * @param int $level
      * @param int $size
@@ -46325,7 +45867,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @param array $plugin_editable_files
      * @return array
      */
@@ -46333,7 +45874,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @param array|string $tree
      * @param string $label
      * @param int $level
@@ -46502,7 +46042,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @param string $title
      * @param \WP_Post $page
      * @return string
@@ -46667,8 +46206,6 @@ namespace {
     function format_code_lang($code = '')
     {
     }
-    /**
-     * @access
      * @phpstan-return void
      */
     function _access_denied_splash()
@@ -46713,9 +46250,6 @@ namespace {
     function can_edit_network($network_id)
     {
     }
-    /**
-     * @access
-     */
     function _thickbox_path_admin_subfolder()
     {
     }
@@ -46825,7 +46359,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @param object $data_object
      * @return object
      */
@@ -46845,9 +46378,6 @@ namespace {
     function wp_nav_menu_manage_columns()
     {
     }
-    /**
-     * @access
-     */
     function _wp_delete_orphaned_draft_menu_items()
     {
     }
@@ -46860,7 +46390,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @ignore
      * @phpstan-return void
      */
@@ -47070,7 +46599,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @param string $plugin_file
      * @param array $plugin_data
      * @param bool $markup
@@ -47101,7 +46629,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @param array $a
      * @param array $b
      * @return int
@@ -47523,8 +47050,6 @@ namespace {
     function paused_plugins_notice()
     {
     }
-    /**
-     * @access
      * @phpstan-return void
      */
     function deactivated_plugins_notice()
@@ -47652,7 +47177,6 @@ namespace {
     // Private.
     //
     /**
-     * @access
      * @param int|\WP_Post $post
      * @return void|int|\WP_Error
      */
@@ -47813,7 +47337,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @param bool $value
      * @param string $post_type
      * @return bool
@@ -47822,7 +47345,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @param \WP_Post $post
      * @phpstan-return void
      */
@@ -47830,7 +47352,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @param \WP_Post $post
      * @phpstan-return void
      */
@@ -47844,7 +47365,6 @@ namespace {
      * @subpackage Administration
      */
     /**
-     * @access
      * @param int $request_id
      * @return true|\WP_Error
      */
@@ -47852,22 +47372,15 @@ namespace {
     {
     }
     /**
-     * @access
      * @param int $request_id
      * @return int|\WP_Error
      */
     function _wp_privacy_completed_request($request_id)
     {
     }
-    /**
-     * @access
-     */
     function _wp_personal_data_handle_actions()
     {
     }
-    /**
-     * @access
-     */
     function _wp_personal_data_cleanup_requests()
     {
     }
@@ -48341,7 +47854,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @param callable $callback
      * @return array|null
      */
@@ -48545,9 +48057,6 @@ namespace {
     function convert_to_screen($hook_name)
     {
     }
-    /**
-     * @access
-     */
     function _local_storage_notice()
     {
     }
@@ -48633,7 +48142,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @param string $fullpath
      * @param string $containingfolder
      * @return string
@@ -48818,7 +48326,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @ignore
      */
     function _upgrade_core_deactivate_incompatible_plugins()
@@ -49329,7 +48836,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @ignore
      * @param string $setting
      * @return mixed
@@ -49484,9 +48990,6 @@ namespace {
     function default_password_nag()
     {
     }
-    /**
-     * @access
-     */
     function delete_users_add_js()
     {
     }
@@ -49528,7 +49031,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @param array $a
      * @param array $b
      * @return int
@@ -49585,7 +49087,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @param resource $parser
      * @param string $tag_name
      * @param array $attrs
@@ -49594,7 +49095,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @param resource $parser
      * @param string $tag_name
      */
@@ -49602,7 +49102,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @param array $menu
      * @param array $submenu
      * @param bool $submenu_as_parent
@@ -49610,14 +49109,9 @@ namespace {
     function _wp_menu_output($menu, $submenu, $submenu_as_parent = \true)
     {
     }
-    /**
-     * @access
-     */
     function _add_themes_utility_last()
     {
     }
-    /**
-     * @access
      * @phpstan-return void
      */
     function _add_plugin_file_editor_to_tools()
@@ -49708,7 +49202,6 @@ namespace {
      * @since 3.1.0
      */
     /**
-     * @access
      * @return bool
      */
     function _wp_admin_bar_init()
@@ -49858,7 +49351,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @param string $context
      * @param int $user
      * @return bool
@@ -49983,9 +49475,6 @@ namespace {
     function is_multi_author()
     {
     }
-    /**
-     * @access
-     */
     function __clear_multi_author_cache()
     {
     }
@@ -50039,7 +49528,6 @@ namespace {
      * @subpackage Block Bindings
      */
     /**
-     * @access
      * @param array $source_args
      * @param \WP_Block $block_instance
      * @param string $attribute_name
@@ -50048,9 +49536,6 @@ namespace {
     function _block_bindings_pattern_overrides_get_value(array $source_args, $block_instance, string $attribute_name)
     {
     }
-    /**
-     * @access
-     */
     function _register_block_bindings_pattern_overrides_source()
     {
     }
@@ -50062,7 +49547,6 @@ namespace {
      * @subpackage Block Bindings
      */
     /**
-     * @access
      * @param array $source_args
      * @param \WP_Block $block_instance
      * @return mixed
@@ -50070,9 +49554,6 @@ namespace {
     function _block_bindings_post_meta_get_value(array $source_args, $block_instance)
     {
     }
-    /**
-     * @access
-     */
     function _register_block_bindings_post_meta_source()
     {
     }
@@ -50116,7 +49597,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @return array
      * @phpstan-return array{
      *   styles: string|false,
@@ -50135,7 +49615,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @return array|null
      */
     function wp_get_post_content_block_attributes()
@@ -50169,14 +49648,10 @@ namespace {
     function get_classic_theme_supports_block_editor_settings()
     {
     }
-    /**
-     * @access
-     */
     function _register_core_block_patterns_and_categories()
     {
     }
     /**
-     * @access
      * @param array $pattern
      * @return array
      */
@@ -50195,15 +49670,11 @@ namespace {
     function _load_remote_featured_patterns()
     {
     }
-    /**
-     * @access
      * @phpstan-return void
      */
     function _register_remote_theme_patterns()
     {
     }
-    /**
-     * @access
      * @phpstan-return void
      */
     function _register_theme_block_patterns()
@@ -50216,14 +49687,12 @@ namespace {
      * @since 5.6.0
      */
     /**
-     * @access
      * @param \WP_Block_Type $block_type
      */
     function wp_register_alignment_support($block_type)
     {
     }
     /**
-     * @access
      * @param \WP_Block_Type $block_type
      * @param array $block_attributes
      * @return array
@@ -50238,7 +49707,6 @@ namespace {
      * @since 6.4.0
      */
     /**
-     * @access
      * @param \WP_Block_Type $block_type
      * @phpstan-return void
      */
@@ -50246,7 +49714,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @param string $block_content
      * @param array $block
      * @return string
@@ -50262,7 +49729,6 @@ namespace {
      * @since 6.6.0
      */
     /**
-     * @access
      * @param array $block
      * @param string $variation
      * @return string
@@ -50278,7 +49744,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @param array $variation_data
      * @param array $theme_json
      */
@@ -50286,7 +49751,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @param array $parsed_block
      * @return array
      */
@@ -50294,7 +49758,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @param string $block_content
      * @param array $block
      * @return string
@@ -50302,14 +49765,10 @@ namespace {
     function wp_render_block_style_variation_class_name($block_content, $block)
     {
     }
-    /**
-     * @access
-     */
     function wp_enqueue_block_style_variation_styles()
     {
     }
     /**
-     * @access
      * @param array $variations
      * @phpstan-return void
      */
@@ -50323,14 +49782,12 @@ namespace {
      * @since 5.8.0
      */
     /**
-     * @access
      * @param \WP_Block_Type $block_type
      */
     function wp_register_border_support($block_type)
     {
     }
     /**
-     * @access
      * @param \WP_Block_Type $block_type
      * @param array $block_attributes
      * @return array
@@ -50339,7 +49796,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @param \WP_Block_Type $block_type
      * @param string $feature
      * @param mixed $default_value
@@ -50355,14 +49811,12 @@ namespace {
      * @since 5.6.0
      */
     /**
-     * @access
      * @param \WP_Block_Type $block_type
      */
     function wp_register_colors_support($block_type)
     {
     }
     /**
-     * @access
      * @param \WP_Block_Type $block_type
      * @param array $block_attributes
      * @return array
@@ -50377,14 +49831,12 @@ namespace {
      * @since 5.6.0
      */
     /**
-     * @access
      * @param \WP_Block_Type $block_type
      */
     function wp_register_custom_classname_support($block_type)
     {
     }
     /**
-     * @access
      * @param \WP_Block_Type $block_type
      * @param array $block_attributes
      * @return array
@@ -50403,7 +49855,6 @@ namespace {
      * @since 5.9.0
      */
     /**
-     * @access
      * @param \WP_Block_Type $block_type
      * @phpstan-return void
      */
@@ -50411,7 +49862,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @param \WP_Block_Type $block_type
      * @param array $block_attributes
      * @return array
@@ -50420,7 +49870,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @param string $block_content
      * @param array $block
      * @return string
@@ -50435,7 +49884,6 @@ namespace {
      * @since 5.8.0
      */
     /**
-     * @access
      * @param array $block
      * @return string
      */
@@ -50443,7 +49891,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @param array $block
      * @param array $options
      * @return bool
@@ -50452,7 +49899,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @param array $parsed_block
      * @return array
      */
@@ -50474,7 +49920,6 @@ namespace {
      * @since 5.6.0
      */
     /**
-     * @access
      * @param string $block_name
      * @return string
      */
@@ -50482,7 +49927,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @param \WP_Block_Type $block_type
      * @return array
      */
@@ -50496,21 +49940,18 @@ namespace {
      * @since 5.8.0
      */
     /**
-     * @access
      * @return array[]
      */
     function wp_get_layout_definitions()
     {
     }
     /**
-     * @access
      * @param \WP_Block_Type $block_type
      */
     function wp_register_layout_support($block_type)
     {
     }
     /**
-     * @access
      * @param string $selector
      * @param array $layout
      * @param bool $has_block_gap_support
@@ -50524,7 +49965,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @param string $block_content
      * @param array $block
      * @return string
@@ -50533,7 +49973,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @param array $parsed_block
      * @param array $source_block
      * @param \WP_Block $parent_block
@@ -50543,7 +49982,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @param string $block_content
      * @param array $block
      * @return string
@@ -50552,7 +49990,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @param string $block_content
      * @param array $block
      * @return string
@@ -50567,14 +50004,12 @@ namespace {
      * @since 6.2.0
      */
     /**
-     * @access
      * @param \WP_Block_Type $block_type
      */
     function wp_register_position_support($block_type)
     {
     }
     /**
-     * @access
      * @param string $block_content
      * @param array $block
      * @return string
@@ -50589,7 +50024,6 @@ namespace {
      * @since 6.2.0
      */
     /**
-     * @access
      * @internal
      * @param array $block
      * @return string
@@ -50598,7 +50032,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @internal
      * @param string $block_content
      * @param array $block
@@ -50608,7 +50041,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @internal
      * @param string|null $pre_render
      * @param array $block
@@ -50624,7 +50056,6 @@ namespace {
      * @since 6.3.0
      */
     /**
-     * @access
      * @param \WP_Block_Type $block_type
      * @phpstan-return void
      */
@@ -50632,7 +50063,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @param \WP_Block_Type $block_type
      * @param array $block_attributes
      * @return array
@@ -50650,14 +50080,12 @@ namespace {
      * @since 5.8.0
      */
     /**
-     * @access
      * @param \WP_Block_Type $block_type
      */
     function wp_register_spacing_support($block_type)
     {
     }
     /**
-     * @access
      * @param \WP_Block_Type $block_type
      * @param array $block_attributes
      * @return array
@@ -50672,7 +50100,6 @@ namespace {
      * @since 5.6.0
      */
     /**
-     * @access
      * @param \WP_Block_Type $block_type
      * @phpstan-return void
      */
@@ -50680,7 +50107,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @param \WP_Block_Type $block_type
      * @param array $block_attributes
      * @return array
@@ -50718,7 +50144,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @param array $args
      * @return string|null
      * @phpstan-param array{
@@ -50753,7 +50178,6 @@ namespace {
      * @since 6.0.0
      */
     /**
-     * @access
      * @param \WP_Block_Type $block_type
      * @param string $feature_set
      * @param string $feature
@@ -50797,7 +50221,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @param string $type
      * @return string
      */
@@ -50805,7 +50228,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @param string $base_directory
      * @return string[]
      */
@@ -50813,7 +50235,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @param string $template_type
      * @param string $slug
      * @return array|null
@@ -50832,7 +50253,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @param string $template_type
      * @param array $query
      * @return array
@@ -50848,7 +50268,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @param array $template_item
      * @return array
      */
@@ -50856,7 +50275,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @param array $template_info
      * @return array
      */
@@ -50864,7 +50282,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @param array $blocks
      * @return array
      */
@@ -50872,21 +50289,18 @@ namespace {
     {
     }
     /**
-     * @access
      * @param array $block
      */
     function _inject_theme_attribute_in_template_part_block(&$block)
     {
     }
     /**
-     * @access
      * @param array $block
      */
     function _remove_theme_attribute_from_template_part_block(&$block)
     {
     }
     /**
-     * @access
      * @param array $template_file
      * @param string $template_type
      * @return \WP_Block_Template
@@ -50896,7 +50310,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @param string $post_type
      * @param string $slug
      * @param \WP_Block_Template $template
@@ -50906,7 +50319,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @param string $taxonomy
      * @param string $slug
      * @param \WP_Block_Template $template
@@ -50916,7 +50328,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @param \WP_Post $post
      * @param array $terms
      * @param array $meta
@@ -50926,7 +50337,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @param \WP_Post $post
      * @return \WP_Block_Template|\WP_Error
      */
@@ -51002,7 +50412,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @param \stdClass $changes
      * @param \WP_REST_Request $deprecated
      * @return \stdClass|\WP_Error
@@ -51010,14 +50419,6 @@ namespace {
     function inject_ignored_hooked_blocks_metadata_attributes($changes, $deprecated = \null)
     {
     }
-    /**
-     * Block template loader functions.
-     *
-     * @package WordPress
-     */
-    /**
-     * @access
-     */
     function _add_template_loader_filters()
     {
     }
@@ -51031,7 +50432,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @param string $template_type
      * @param string[] $template_hierarchy
      * @param string $fallback_template
@@ -51040,27 +50440,19 @@ namespace {
     function resolve_block_template($template_type, $template_hierarchy, $fallback_template)
     {
     }
-    /**
-     * @access
-     */
     function _block_template_render_title_tag()
     {
     }
     /**
-     * @access
      * @return string
      */
     function get_the_block_template_html()
     {
     }
-    /**
-     * @access
-     */
     function _block_template_viewport_meta_tag()
     {
     }
     /**
-     * @access
      * @param string $template_file
      * @return string
      */
@@ -51068,7 +50460,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @param array $context
      * @return array
      */
@@ -51076,7 +50467,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @param \WP_Query $wp_query
      * @phpstan-return void
      */
@@ -51197,7 +50587,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @param array $parsed_anchor_block
      * @param string $relative_position
      * @param array $hooked_blocks
@@ -51209,7 +50598,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @param array $parsed_anchor_block
      * @param string $relative_position
      * @param array $hooked_blocks
@@ -51221,7 +50609,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @param string $content
      * @param \WP_Block_Template|\WP_Post|array $context
      * @param callable $callback
@@ -51231,7 +50618,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @param string $serialized_block
      * @return string
      */
@@ -51239,7 +50625,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @param \stdClass $post
      * @return \stdClass
      */
@@ -51247,7 +50632,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @param array $parsed_anchor_block
      * @param string $relative_position
      * @param array $hooked_blocks
@@ -51267,7 +50651,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @param array $hooked_blocks
      * @param \WP_Block_Template|\WP_Post|array $context
      * @param callable $callback
@@ -51277,7 +50660,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @param array $hooked_blocks
      * @param \WP_Block_Template|\WP_Post|array $context
      * @param callable $callback
@@ -51338,7 +50720,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @param array $block
      * @param callable $pre_callback
      * @param callable $post_callback
@@ -51355,7 +50736,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @param array[] $blocks
      * @param callable $pre_callback
      * @param callable $post_callback
@@ -51374,7 +50754,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @param array $matches
      * @return string
      */
@@ -51424,7 +50803,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @param array $parsed_block
      * @param array $allowed_blocks
      * @return string
@@ -51468,7 +50846,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @param string $content
      * @return string
      */
@@ -51547,33 +50924,22 @@ namespace {
     {
     }
     /**
-     * @access
      * @param string $footnotes
      * @return string
      */
     function _wp_filter_post_meta_footnotes($footnotes)
     {
     }
-    /**
-     * @access
-     */
     function _wp_footnotes_kses_init_filters()
     {
     }
-    /**
-     * @access
-     */
     function _wp_footnotes_remove_filters()
     {
     }
-    /**
-     * @access
-     */
     function _wp_footnotes_kses_init()
     {
     }
     /**
-     * @access
      * @param string $arg
      * @return string
      */
@@ -52521,7 +51887,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @param \stdClass $post
      * @return \stdClass
      */
@@ -53326,7 +52691,6 @@ namespace {
      * @subpackage Template
      */
     /**
-     * @access
      * @param array $bookmarks
      * @param string|array $args
      * @return string
@@ -53621,7 +52985,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @param string $query_string
      * @param array $args_to_check
      * @param string $url
@@ -53948,7 +53311,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @param object $a
      * @param object $b
      * @return int
@@ -53957,7 +53319,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @param object $a
      * @param object $b
      * @return int
@@ -54218,7 +53579,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @param array|object|\WP_Term $category
      */
     function _make_cat_compat(&$category)
@@ -54683,7 +54043,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @param int|\WP_Post $post
      * @return int
      */
@@ -55044,7 +54403,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @param string $new_status
      * @param string $old_status
      */
@@ -55297,7 +54655,6 @@ namespace {
     // Internal.
     //
     /**
-     * @access
      * @param \WP_Post $posts
      * @param \WP_Query $query
      * @return array
@@ -55306,7 +54663,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @param bool $open
      * @param int $post_id
      * @return bool
@@ -55499,7 +54855,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @return int|false
      */
     function _wp_cron()
@@ -55534,14 +54889,12 @@ namespace {
     // Private functions.
     //
     /**
-     * @access
      * @return array[]
      */
     function _get_cron_array()
     {
     }
     /**
-     * @access
      * @param array[] $cron
      * @param bool $wp_error
      * @return bool|\WP_Error
@@ -55550,7 +54903,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @param array $cron
      * @return array
      */
@@ -56515,7 +55867,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @deprecated 3.0.0
      * @param array $matches
      * @return string
@@ -56856,7 +56207,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @deprecated 3.7.0
      * @param string $t
      * @return string
@@ -56872,7 +56222,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @deprecated 3.9.0
      * @param int $count
      * @return int
@@ -56911,7 +56260,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @deprecated 4.3.0
      * @return string
      */
@@ -56919,7 +56267,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @deprecated 4.3.0
      * @return string
      */
@@ -56927,7 +56274,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @deprecated 4.3.0
      * @param string $content
      * @return string
@@ -56936,7 +56282,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @deprecated 4.3.0
      * @param array $matches
      * @return string
@@ -57037,7 +56382,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @deprecated 4.7.0
      * @param object $a
      * @param object $b
@@ -57047,7 +56391,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @deprecated 4.7.0
      * @param object $a
      * @param object $b
@@ -57057,7 +56400,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @deprecated 4.7.0
      * @param object $a
      * @param object $b
@@ -57102,7 +56444,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @deprecated 5.5.0
      */
     function wp_unregister_GLOBALS()
@@ -57122,7 +56463,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @deprecated 5.5.0
      * @param array $args
      * @param array $default_args
@@ -57185,7 +56525,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @deprecated 5.8.0
      * @param array $columns
      * @param array $allowed_blocks
@@ -57203,7 +56542,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @deprecated 6.0.0
      * @param \WP_Block_Type $block_type
      * @return bool
@@ -57212,7 +56550,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @deprecated 6.0.0
      * @param \WP_Block_type $block_type
      * @return bool
@@ -57221,7 +56558,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @deprecated 6.0.0
      * @param \WP_Block_Type $block_type
      * @return bool
@@ -57244,7 +56580,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @deprecated 6.1.0
      * @param string $domain
      * @param bool $reset
@@ -57254,7 +56589,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @deprecated 6.1.0
      * @param string $domain
      * @return string|false
@@ -57271,7 +56605,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @deprecated 6.1.0
      * @param array $attributes
      * @param string $feature
@@ -57289,7 +56622,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @deprecated 6.0.3
      * @param array $clauses
      * @return array
@@ -57308,7 +56640,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @deprecated 6.2.0
      * @return array|null
      */
@@ -57346,7 +56677,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @deprecated 6.3.0
      * @param mixed $n
      * @param int $max
@@ -57356,7 +56686,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @deprecated 6.3.0
      * @param mixed $n
      * @return float
@@ -57365,7 +56694,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @deprecated 6.3.0
      * @param array $rgb_color
      * @return array
@@ -57374,7 +56702,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @deprecated 6.3.0
      * @param float $p
      * @param float $q
@@ -57385,7 +56712,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @deprecated 6.3.0
      * @param array $hsl_color
      * @return array
@@ -57394,7 +56720,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @deprecated 6.3.0
      * @param string $color_str
      * @return array
@@ -57403,7 +56728,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @deprecated 6.3.0
      * @param array $preset
      * @return string
@@ -57412,7 +56736,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @deprecated 6.3.0
      * @param array $preset
      * @return string
@@ -57421,7 +56744,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @deprecated 6.3.0
      * @param array $preset
      * @return string
@@ -57430,7 +56752,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @deprecated 6.3.0
      * @param \WP_Block_Type $block_type
      */
@@ -57438,7 +56759,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @deprecated 6.3.0
      * @param string $block_content
      * @param array $block
@@ -57472,7 +56792,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @deprecated 6.4.0
      */
     function _wp_theme_json_webfonts_handler()
@@ -57504,7 +56823,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @deprecated 6.4.0
      * @phpstan-return void
      */
@@ -57521,7 +56839,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @deprecated 6.4.0
      * @param string $template_content
      * @return string
@@ -57530,7 +56847,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @deprecated 6.4.0
      * @param string $template_content
      * @return string
@@ -57539,7 +56855,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @deprecated 6.4.0
      * @phpstan-return void
      */
@@ -57565,7 +56880,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @deprecated 6.6.0
      * @param string $block_content
      * @param array $block
@@ -57630,7 +56944,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @return \WP_oEmbed
      */
     function _wp_oembed_get_object()
@@ -57765,7 +57078,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @param bool $served
      * @param \WP_HTTP_Response $result
      * @param \WP_REST_Request $request
@@ -57776,7 +57088,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @param array $data
      * @param \SimpleXMLElement $node
      * @return string|false
@@ -57831,7 +57142,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @param string $content
      * @return string
      */
@@ -58156,7 +57466,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @param string $font_dir
      * @return string
      */
@@ -58164,7 +57473,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @param int $post_id
      * @param \WP_Post $post
      * @phpstan-return void
@@ -58173,7 +57481,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @param int $post_id
      * @param \WP_Post $post
      * @phpstan-return void
@@ -58181,9 +57488,6 @@ namespace {
     function _wp_before_delete_font_face($post_id, $post)
     {
     }
-    /**
-     * @access
-     */
     function _wp_register_default_font_collections()
     {
     }
@@ -58214,7 +57518,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @param string $text
      * @param string[] $stack
      * @param string[] $disabled_elements
@@ -58245,7 +57548,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @ignore
      * @internal
      * @param string $shortcode_regex
@@ -58255,7 +57557,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @ignore
      * @param string[] $tagnames
      * @return string
@@ -58272,7 +57573,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @param array $matches
      * @return string
      */
@@ -58294,7 +57594,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @param string $text
      * @param int|string $quote_style
      * @param false|string $charset
@@ -58540,7 +57839,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @param array $matches
      * @return string
      */
@@ -58548,7 +57846,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @param array $matches
      * @return string
      */
@@ -58556,7 +57853,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @param array $matches
      * @return string
      */
@@ -58578,7 +57874,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @param string $text
      * @param int $goal
      * @return array
@@ -58666,7 +57961,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @param array $matches
      * @return string
      */
@@ -58753,7 +58047,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @param string|array $search
      * @param string $subject
      * @return string
@@ -58930,7 +58223,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @param string $m
      * @return string
      */
@@ -58947,7 +58239,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @param string $m
      * @return string
      */
@@ -58984,7 +58275,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @param string $str
      * @param bool $keep_newlines
      * @return string
@@ -59067,7 +58357,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @ignore
      */
     function _print_emoji_detection_script()
@@ -59095,7 +58384,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @param string $type
      * @return array
      * @phpstan-param 'partials'|'entities' $type
@@ -59317,7 +58605,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @param array|object $data
      * @param string $prefix
      * @param string $sep
@@ -59573,7 +58860,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @param string|null $time
      * @return array
      */
@@ -59590,7 +58876,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @param string[] $filenames
      * @param string $dir
      * @param array $files
@@ -59600,7 +58885,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @param string $filename
      * @param array $files
      * @return bool
@@ -59722,7 +59006,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @param string|\WP_Error $message
      * @param string $title
      * @param string|array $args
@@ -59731,7 +59014,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @param string $message
      * @param string $title
      * @param string|array $args
@@ -59740,7 +59022,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @param string $message
      * @param string $title
      * @param string|array $args
@@ -59749,7 +59030,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @param string $message
      * @param string $title
      * @param string|array $args
@@ -59758,7 +59038,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @param string $message
      * @param string $title
      * @param string|array $args
@@ -59767,7 +59046,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @param string $message
      * @param string $title
      * @param string|array $args
@@ -59776,7 +59054,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @param string $message
      * @param string $title
      * @param string|array $args
@@ -59785,7 +59062,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @param string|\WP_Error $message
      * @param string $title
      * @param string|array $args
@@ -59809,7 +59085,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @ignore
      * @param mixed $value
      * @param int $depth
@@ -59820,7 +59095,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @ignore
      * @param string $input_string
      * @return string
@@ -59829,7 +59103,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @deprecated 5.3.0
      * @ignore
      * @param mixed $value
@@ -59883,7 +59156,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @param string $url
      * @return string
      */
@@ -59891,21 +59163,16 @@ namespace {
     {
     }
     /**
-     * @access
      * @param string $url
      * @return string
      */
     function _config_wp_siteurl($url = '')
     {
     }
-    /**
-     * @access
-     */
     function _delete_option_fresh_site()
     {
     }
     /**
-     * @access
      * @param array $mce_init
      * @return array
      */
@@ -59967,7 +59234,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @internal
      * @param array $input_array
      * @param array $path
@@ -59978,7 +59244,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @internal
      * @param array $input_array
      * @param array $path
@@ -60108,7 +59373,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @param string $hook
      * @param string $version
      * @param string $replacement
@@ -60230,7 +59494,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @param array $a
      * @param array $b
      * @return int
@@ -60247,7 +59510,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @param string $str
      * @return string
      */
@@ -60314,7 +59576,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @param callable $callback
      * @param int $start
      * @param int $start_parent
@@ -60325,7 +59586,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @param callable $callback
      * @param int $start
      * @param array $override
@@ -60371,7 +59631,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @return bool
      */
     function _device_can_upload()
@@ -60424,7 +59683,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @param string $charset
      * @return string
      */
@@ -60577,7 +59835,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @return string
      */
     function wp_get_default_update_php_url()
@@ -60616,7 +59873,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @return string
      */
     function wp_get_default_update_https_url()
@@ -61095,7 +60351,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @ignore
      * @phpstan-return void
      */
@@ -61624,7 +60879,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @param mixed $helper
      * @param mixed $current
      * @param bool $display
@@ -61700,7 +60954,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @param array $path
      * @return string
      */
@@ -61753,7 +61006,6 @@ namespace {
      * @subpackage HTTP
      */
     /**
-     * @access
      * @return \WP_Http
      */
     function _wp_http_get_object()
@@ -61965,7 +61217,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @internal
      * @param array|false $url_parts
      * @param int $component
@@ -61975,7 +61226,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @internal
      * @param int $constant
      * @return string|false
@@ -62013,14 +61263,10 @@ namespace {
     function wp_is_https_supported()
     {
     }
-    /**
-     * @access
-     */
     function wp_get_https_detection_errors()
     {
     }
     /**
-     * @access
      * @param string $html
      * @return bool|null
      */
@@ -62053,7 +61299,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @param mixed $old_url
      * @param mixed $new_url
      * @phpstan-return void
@@ -62170,7 +61415,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @ignore
      * @param array $matches
      * @return string
@@ -62179,7 +61423,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @ignore
      * @param string $content
      * @param array[]|string $allowed_html
@@ -62290,7 +61533,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @ignore
      * @param string $scheme
      * @param string[] $allowed_protocols
@@ -62323,7 +61565,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @ignore
      * @param array $matches
      * @return string
@@ -62332,7 +61573,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @ignore
      * @param array $matches
      * @return string
@@ -62355,7 +61595,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @ignore
      * @param array $matches
      * @return string
@@ -62364,7 +61603,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @ignore
      * @param array $matches
      * @return string
@@ -62439,7 +61677,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @ignore
      * @param array $value
      * @return array
@@ -62448,7 +61685,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @ignore
      * @param string $url
      * @return bool
@@ -62734,7 +61970,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @param string $domain
      * @return bool
      */
@@ -62849,7 +62084,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @param string|string[]|array[]|object $i18n_schema
      * @param string|string[]|array[] $settings
      * @param string $textdomain
@@ -62943,7 +62177,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @param int|\WP_Post $post
      * @param bool $leavename
      * @param bool $sample
@@ -63497,7 +62730,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @param string $links
      * @param string $css_class
      * @param string $screen_reader_text
@@ -63887,9 +63119,6 @@ namespace {
     function wp_get_server_protocol()
     {
     }
-    /**
-     * @access
-     */
     function wp_fix_server_vars()
     {
     }
@@ -63898,9 +63127,6 @@ namespace {
     function wp_populate_basic_auth_from_authorization_header()
     {
     }
-    /**
-     * @access
-     */
     function wp_check_php_mysql_versions()
     {
     }
@@ -63930,8 +63156,6 @@ namespace {
     function wp_favicon_request()
     {
     }
-    /**
-     * @access
      * @phpstan-return void
      */
     function wp_maintenance()
@@ -63950,7 +63174,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @return bool
      */
     function timer_start()
@@ -63964,16 +63187,11 @@ namespace {
     function timer_stop($display = 0, $precision = 3)
     {
     }
-    /**
-     * @access
      * @phpstan-return void
      */
     function wp_debug_mode()
     {
     }
-    /**
-     * @access
-     */
     function wp_set_lang_dir()
     {
     }
@@ -63982,9 +63200,6 @@ namespace {
     function require_wp_db()
     {
     }
-    /**
-     * @access
-     */
     function wp_set_wpdb_vars()
     {
     }
@@ -63995,28 +63210,21 @@ namespace {
     function wp_using_ext_object_cache($using = \null)
     {
     }
-    /**
-     * @access
-     */
     function wp_start_object_cache()
     {
     }
-    /**
-     * @access
      * @phpstan-return void
      */
     function wp_not_installed()
     {
     }
     /**
-     * @access
      * @return string[]
      */
     function wp_get_mu_plugins()
     {
     }
     /**
-     * @access
      * @return string[]
      */
     function wp_get_active_and_valid_plugins()
@@ -64030,7 +63238,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @return string[]
      */
     function wp_get_active_and_valid_themes()
@@ -64061,21 +63268,12 @@ namespace {
     function is_protected_ajax_action()
     {
     }
-    /**
-     * @access
-     */
     function wp_set_internal_encoding()
     {
     }
-    /**
-     * @access
-     */
     function wp_magic_quotes()
     {
     }
-    /**
-     * @access
-     */
     function shutdown_action_hook()
     {
     }
@@ -64135,8 +63333,6 @@ namespace {
     function get_current_network_id()
     {
     }
-    /**
-     * @access
      * @phpstan-return void
      */
     function wp_load_translations_early()
@@ -64479,7 +63675,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @param string $file
      * @return string
      */
@@ -64487,7 +63682,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @param string $size_name
      * @param array $image_meta
      * @return array|false
@@ -64641,7 +63835,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @ignore
      * @param string $context
      * @return string
@@ -64650,14 +63843,12 @@ namespace {
     {
     }
     /**
-     * @access
      * @ignore
      */
     function _wp_post_thumbnail_context_filter_add()
     {
     }
     /**
-     * @access
      * @ignore
      */
     function _wp_post_thumbnail_context_filter_remove()
@@ -65058,9 +64249,6 @@ namespace {
     function wp_media_personal_data_exporter($email_address, $page = 1)
     {
     }
-    /**
-     * @access
-     */
     function _wp_add_additional_image_sizes()
     {
     }
@@ -65121,7 +64309,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @param int $amount
      * @return int
      */
@@ -65129,7 +64316,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @param array $loading_attrs
      * @param string $tag_name
      * @param array $attr
@@ -65139,7 +64325,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @param bool $value
      * @return bool
      */
@@ -65376,7 +64561,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @param array $args
      * @param array $default_args
      * @return array
@@ -66325,7 +65509,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @return string[]
      */
     function wp_get_active_network_plugins()
@@ -66357,7 +65540,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @param string $domain
      * @param string $path
      * @param bool $subdomain
@@ -66367,7 +65549,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @param string $domain
      * @param string $path
      * @phpstan-return never
@@ -66376,7 +65557,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @deprecated 3.9.0
      * @param \WP_Network $current_site
      * @return \WP_Network
@@ -66385,7 +65565,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @deprecated 3.9.0
      * @return \WP_Network
      */
@@ -66704,7 +65883,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @param array $menu_items
      */
     function _wp_menu_item_classes_by_context(&$menu_items)
@@ -66720,7 +65898,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @param string $id
      * @param object $item
      * @return string
@@ -66852,7 +66029,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @param object $item
      * @return bool
      */
@@ -66900,14 +66076,12 @@ namespace {
     {
     }
     /**
-     * @access
      * @param int $object_id
      */
     function _wp_delete_post_menu_item($object_id)
     {
     }
     /**
-     * @access
      * @param int $object_id
      * @param int $tt_id
      * @param string $taxonomy
@@ -66916,7 +66090,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @param string $new_status
      * @param string $old_status
      * @param \WP_Post $post
@@ -66926,16 +66099,12 @@ namespace {
     {
     }
     /**
-     * @access
      * @param int $post_id
      * @phpstan-return void
      */
     function _wp_delete_customize_changeset_dependent_auto_drafts($post_id)
     {
     }
-    /**
-     * @access
-     */
     function _wp_menus_changed()
     {
     }
@@ -66948,7 +66117,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @param array $menu_item_data
      * @return array
      */
@@ -67079,7 +66247,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @param string $option
      * @param mixed $value
      * @param mixed $serialized_value
@@ -67090,7 +66257,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @param bool|null $autoload
      * @param string $option
      * @param mixed $value
@@ -67165,7 +66331,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @param array $user_settings
      * @return bool|null
      */
@@ -67536,7 +66701,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @ignore
      * @param array $matches
      * @return string
@@ -67929,14 +67093,12 @@ namespace {
     {
     }
     /**
-     * @access
      * @param array $args
      */
     function _wp_call_all_hook($args)
     {
     }
     /**
-     * @access
      * @param string $hook_name
      * @param callable|string|array $callback
      * @param int $priority
@@ -68001,7 +67163,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @param array $qvs
      * @return array
      */
@@ -68009,7 +67170,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @param string $link
      * @param \WP_Term $term
      * @param string $taxonomy
@@ -68019,7 +67179,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @param object $term
      * @return object
      */
@@ -68027,7 +67186,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @param array $terms
      * @param string|array $taxonomies
      * @param array $args
@@ -68037,7 +67195,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @param array $terms
      * @return array
      */
@@ -68188,7 +67345,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @param int $i
      * @return string
      */
@@ -68486,7 +67642,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @param string $path
      * @return string
      */
@@ -68569,7 +67724,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @return string[]
      */
     function _wp_privacy_statuses()
@@ -68720,14 +67874,12 @@ namespace {
     {
     }
     /**
-     * @access
      * @param string[] $capabilities
      */
     function _post_type_meta_capabilities($capabilities = \null)
     {
     }
     /**
-     * @access
      * @param object|\WP_Post_Type $post_type_object
      * @return object
      */
@@ -68735,7 +67887,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @param object $data_object
      * @param array $nohier_vs_hier_defaults
      * @return object
@@ -68743,9 +67894,6 @@ namespace {
     function _get_custom_object_labels($data_object, $nohier_vs_hier_defaults)
     {
     }
-    /**
-     * @access
-     */
     function _add_post_type_submenus()
     {
     }
@@ -68962,7 +68110,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @param string $type
      * @param string $perm
      * @return string
@@ -69016,7 +68163,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @param int $post_id
      */
     function _reset_front_page_settings_for_post($post_id)
@@ -69168,7 +68314,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @param string $slug
      * @param int $length
      * @return string
@@ -69314,7 +68459,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @param int $page_id
      * @param array $children
      * @param string[] $result
@@ -69514,7 +68658,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @param string $timezone
      * @param string $field
      * @param string $post_type
@@ -69580,7 +68723,6 @@ namespace {
     // Hooks.
     //
     /**
-     * @access
      * @param string $new_status
      * @param string $old_status
      * @param \WP_Post $post
@@ -69589,7 +68731,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @param int $deprecated
      * @param \WP_Post $post
      */
@@ -69597,7 +68738,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @param int $post_id
      * @phpstan-return void
      */
@@ -69644,7 +68784,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @param string $new_status
      * @param string $old_status
      * @param \WP_Post $post
@@ -69668,7 +68807,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @param string $post_name
      * @param int $post_id
      */
@@ -69676,7 +68814,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @param \WP_Post $post
      * @return string
      */
@@ -70019,7 +69156,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @param string $post_type
      * @return int
      */
@@ -70027,7 +69163,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @param string $post_type
      * @return int
      */
@@ -70677,7 +69812,6 @@ namespace {
      * @subpackage Post_Revisions
      */
     /**
-     * @access
      * @param array|\WP_Post $post
      * @param bool $deprecated
      * @return string[]
@@ -70686,7 +69820,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @param array|\WP_Post $post
      * @param bool $autosave
      * @return array
@@ -70733,7 +69866,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @param int|\WP_Post|array|null $post
      * @param bool $autosave
      * @return int|\WP_Error
@@ -70846,21 +69978,16 @@ namespace {
     {
     }
     /**
-     * @access
      * @param \WP_Post $post
      * @return \WP_Post|false
      */
     function _set_preview($post)
     {
     }
-    /**
-     * @access
-     */
     function _show_post_preview()
     {
     }
     /**
-     * @access
      * @param array $terms
      * @param int $post_id
      * @param string $taxonomy
@@ -70870,7 +69997,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @param null|array|string $value
      * @param int $post_id
      * @param string $meta_key
@@ -70880,7 +70006,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @param \WP_Post $revision
      * @return int|false
      */
@@ -70888,7 +70013,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @param \WP_Post $post
      * @param array $revisions
      * @return bool
@@ -70967,7 +70091,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @param string $base
      * @return string
      */
@@ -71276,7 +70399,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @param string $css
      * @param string $stylesheet_url
      * @return string
@@ -71331,7 +70453,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @param string $contents
      * @return string
      */
@@ -71446,7 +70567,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @return string
      */
     function _filter_do_shortcode_context()
@@ -71460,7 +70580,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @param array $m
      * @return string
      * @phpstan-param array{
@@ -72184,7 +71303,6 @@ namespace {
     // Private.
     //
     /**
-     * @access
      * @param string $taxonomy
      * @return array
      */
@@ -72192,7 +71310,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @param int $term_id
      * @param array $terms
      * @param string $taxonomy
@@ -72203,7 +71320,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @param object[]|\WP_Term[] $terms
      * @param string $taxonomy
      * @phpstan-return void
@@ -72222,7 +71338,6 @@ namespace {
     // Default callbacks.
     //
     /**
-     * @access
      * @param int[] $terms
      * @param \WP_Taxonomy $taxonomy
      */
@@ -72578,9 +71693,6 @@ namespace {
     function wp_attach_theme_preview_middleware()
     {
     }
-    /**
-     * @access
-     */
     function wp_block_theme_activate_nonce()
     {
     }
@@ -72595,7 +71707,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @param string $override_slug
      * @param string $slug
      * @param int $post_id
@@ -72606,16 +71717,11 @@ namespace {
     function wp_filter_wp_template_unique_post_slug($override_slug, $slug, $post_id, $post_status, $post_type)
     {
     }
-    /**
-     * @access
      * @phpstan-return void
      */
     function wp_enqueue_block_template_skip_link()
     {
     }
-    /**
-     * @access
-     */
     function wp_enable_block_templates()
     {
     }
@@ -72845,7 +71951,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @return object
      */
     function _get_random_header_data()
@@ -73020,15 +72125,9 @@ namespace {
     function add_theme_support($feature, ...$args)
     {
     }
-    /**
-     * @access
-     */
     function _custom_header_background_just_in_time()
     {
     }
-    /**
-     * @access
-     */
     function _custom_logo_header_styles()
     {
     }
@@ -73048,7 +72147,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @param string $feature
      * @return bool
      */
@@ -73103,7 +72201,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @param int $id
      */
     function _delete_attachment_theme_mod($id)
@@ -73118,7 +72215,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @param string $new_status
      * @param string $old_status
      * @param \WP_Post $changeset_post
@@ -73155,7 +72251,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @param string $new_status
      * @param string $old_status
      * @param \WP_Post $post
@@ -73180,9 +72275,6 @@ namespace {
     function wp_theme_get_element_class_name($element)
     {
     }
-    /**
-     * @access
-     */
     function _add_default_theme_supports()
     {
     }
@@ -73233,15 +72325,11 @@ namespace {
     function _maybe_update_core()
     {
     }
-    /**
-     * @access
      * @phpstan-return void
      */
     function _maybe_update_plugins()
     {
     }
-    /**
-     * @access
      * @phpstan-return void
      */
     function _maybe_update_themes()
@@ -73259,7 +72347,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @return void|\WP_Error
      */
     function _wp_delete_all_temp_backups()
@@ -73662,7 +72749,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @param \WP_User $user
      * @return string[]
      */
@@ -73677,7 +72763,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @param \WP_User|null $user
      * @return string[]
      */
@@ -73764,7 +72849,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @return \WP_User
      */
     function _wp_get_current_user()
@@ -73777,7 +72861,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @return string[]
      */
     function _wp_privacy_action_request_types()
@@ -73802,7 +72885,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @param int $request_id
      * @phpstan-return void
      */
@@ -73824,7 +72906,6 @@ namespace {
     {
     }
     /**
-     * @access
      * @param int $request_id
      * @return string
      */
@@ -73896,9 +72977,6 @@ namespace {
     function wp_is_application_passwords_available_for_user($user)
     {
     }
-    /**
-     * @access
-     */
     function wp_register_persisted_preferences_meta()
     {
     }
@@ -74090,7 +73168,6 @@ namespace {
     // Internal Functions.
     //
     /**
-     * @access
      * @param bool $deprecated
      * @return array
      */
@@ -74105,14 +73182,12 @@ namespace {
     {
     }
     /**
-     * @access
      * @param array $sidebars_widgets
      */
     function wp_set_sidebars_widgets($sidebars_widgets)
     {
     }
     /**
-     * @access
      * @return array
      */
     function wp_get_widget_defaults()
@@ -74149,9 +73224,6 @@ namespace {
     function _get_widget_id_base($id)
     {
     }
-    /**
-     * @access
-     */
     function _wp_sidebars_changed()
     {
     }
@@ -74208,9 +73280,6 @@ namespace {
     function wp_widgets_init()
     {
     }
-    /**
-     * @access
-     */
     function wp_setup_widgets_block_editor()
     {
     }
@@ -74256,14 +73325,9 @@ namespace {
     function wp_render_widget_control($id)
     {
     }
-    /**
-     * @access
-     */
     function wp_check_widget_editor_deps()
     {
     }
-    /**
-     * @access
      * @phpstan-return void
      */
     function _wp_block_theme_register_classic_sidebars()
