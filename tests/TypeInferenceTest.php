@@ -20,6 +20,7 @@ class TypeInferenceTest extends \PHPStan\Testing\TypeInferenceTestCase
         yield from $this->gatherAssertTypes(__DIR__ . '/data/get_post.php');
         yield from $this->gatherAssertTypes(__DIR__ . '/data/get_post_stati.php');
         yield from $this->gatherAssertTypes(__DIR__ . '/data/get_post_types.php');
+        yield from $this->gatherAssertTypes(__DIR__ . '/data/get_posts.php');
         yield from $this->gatherAssertTypes(__DIR__ . '/data/get_page_by_path.php');
         yield from $this->gatherAssertTypes(__DIR__ . '/data/get_permalink.php');
         yield from $this->gatherAssertTypes(__DIR__ . '/data/get_term_by.php');
