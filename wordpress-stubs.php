@@ -10,7 +10,7 @@ namespace {
     class WP_Upgrader_Skin
     {
         /**
-         * @var \WP_Upgrader
+         * @var WP_Upgrader
          */
         public $upgrader;
         /**
@@ -22,7 +22,7 @@ namespace {
          */
         public $done_footer = \false;
         /**
-         * @var string|bool|\WP_Error
+         * @var string|bool|WP_Error
          */
         public $result = \false;
         /**
@@ -36,7 +36,7 @@ namespace {
         {
         }
         /**
-         * @param \WP_Upgrader $upgrader
+         * @param WP_Upgrader $upgrader
          */
         public function set_upgrader(&$upgrader)
         {
@@ -45,13 +45,13 @@ namespace {
         {
         }
         /**
-         * @param string|bool|\WP_Error $result
+         * @param string|bool|WP_Error $result
          */
         public function set_result($result)
         {
         }
         /**
-         * @param bool|\WP_Error $error
+         * @param bool|WP_Error $error
          * @param string $context
          * @param bool $allow_relaxed_file_ownership
          * @return bool
@@ -72,7 +72,7 @@ namespace {
         {
         }
         /**
-         * @param string|\WP_Error $errors
+         * @param string|WP_Error $errors
          */
         public function error($errors)
         {
@@ -105,7 +105,7 @@ namespace {
         {
         }
         /**
-         * @param \WP_Error $wp_error
+         * @param WP_Error $wp_error
          * @return bool
          */
         public function hide_process_failed($wp_error)
@@ -116,7 +116,7 @@ namespace {
     {
         protected $messages = array();
         /**
-         * @param bool|\WP_Error $error
+         * @param bool|WP_Error $error
          * @param string $context
          * @param bool $allow_relaxed_file_ownership
          * @return bool
@@ -131,7 +131,7 @@ namespace {
         {
         }
         /**
-         * @param string|array|\WP_Error $feedback
+         * @param string|array|WP_Error $feedback
          * @param mixed $args
          * @phpstan-return void
          */
@@ -179,7 +179,7 @@ namespace {
         {
         }
         /**
-         * @param string|\WP_Error $errors
+         * @param string|WP_Error $errors
          */
         public function error($errors)
         {
@@ -237,7 +237,7 @@ namespace {
     class Bulk_Theme_Upgrader_Skin extends \Bulk_Upgrader_Skin
     {
         /**
-         * @var \WP_Theme|false
+         * @var WP_Theme|false
          */
         public $theme_info = \false;
         public function add_strings()
@@ -267,11 +267,11 @@ namespace {
          */
         public $strings = array();
         /**
-         * @var \Automatic_Upgrader_Skin|\WP_Upgrader_Skin
+         * @var Automatic_Upgrader_Skin|WP_Upgrader_Skin
          */
         public $skin = \null;
         /**
-         * @phpstan-var \WP_Error|array{
+         * @phpstan-var WP_Error|array{
          *   source: string,
          *   source_files: string,
          *   destination: string,
@@ -291,7 +291,7 @@ namespace {
          */
         public $update_current = 0;
         /**
-         * @param \WP_Upgrader_Skin $skin
+         * @param WP_Upgrader_Skin $skin
          */
         public function __construct($skin = \null)
         {
@@ -308,7 +308,7 @@ namespace {
         /**
          * @param string[] $directories
          * @param bool $allow_relaxed_file_ownership
-         * @return bool|\WP_Error
+         * @return bool|WP_Error
          */
         public function fs_connect($directories = array(), $allow_relaxed_file_ownership = \false)
         {
@@ -317,7 +317,7 @@ namespace {
          * @param string $package
          * @param bool $check_signatures
          * @param array $hook_extra
-         * @return string|\WP_Error
+         * @return string|WP_Error
          */
         public function download_package($package, $check_signatures = \false, $hook_extra = array())
         {
@@ -325,7 +325,7 @@ namespace {
         /**
          * @param string $package
          * @param bool $delete_package
-         * @return string|\WP_Error
+         * @return string|WP_Error
          */
         public function unpack_package($package, $delete_package = \true)
         {
@@ -340,7 +340,7 @@ namespace {
         }
         /**
          * @param string $remote_destination
-         * @return true|\WP_Error
+         * @return true|WP_Error
          */
         public function clear_destination($remote_destination)
         {
@@ -354,7 +354,7 @@ namespace {
          *   abort_if_destination_exists?: bool,
          *   hook_extra?: array,
          * } $args
-         * @return array|\WP_Error
+         * @return array|WP_Error
          */
         public function install_package($args = array())
         {
@@ -369,7 +369,7 @@ namespace {
          *   is_multi?: bool,
          *   hook_extra?: array,
          * } $options
-         * @return array|false|\WP_Error
+         * @return array|false|WP_Error
          */
         public function run($options)
         {
@@ -401,7 +401,7 @@ namespace {
          *   src?: string,
          *   dir?: string,
          * } $args
-         * @return bool|\WP_Error
+         * @return bool|WP_Error
          */
         public function move_to_temp_backup_dir($args)
         {
@@ -412,7 +412,7 @@ namespace {
          *   slug: string,
          *   src: string,
          * }> $temp_backups
-         * @return bool|\WP_Error
+         * @return bool|WP_Error
          */
         public function restore_temp_backup(array $temp_backups = array())
         {
@@ -423,7 +423,7 @@ namespace {
          *   slug: string,
          *   src: string,
          * }> $temp_backups
-         * @return bool|\WP_Error
+         * @return bool|WP_Error
          */
         public function delete_temp_backup(array $temp_backups = array())
         {
@@ -441,7 +441,7 @@ namespace {
          *   attempt_rollback?: bool,
          *   do_rollback?: bool,
          * } $args
-         * @return string|false|\WP_Error
+         * @return string|false|WP_Error
          */
         public function upgrade($current, $args = array())
         {
@@ -689,7 +689,7 @@ namespace {
         {
         }
         /**
-         * @param \WP_Customize_Manager $wp_customize
+         * @param WP_Customize_Manager $wp_customize
          * @phpstan-return void
          */
         public function customize_set_last_used($wp_customize)
@@ -1036,7 +1036,7 @@ namespace {
         {
         }
         /**
-         * @param string|\WP_Error $errors
+         * @param string|WP_Error $errors
          */
         public function error($errors)
         {
@@ -1051,7 +1051,7 @@ namespace {
     class Language_Pack_Upgrader extends \WP_Upgrader
     {
         /**
-         * @var array|\WP_Error
+         * @var array|WP_Error
          */
         public $result;
         /**
@@ -1059,7 +1059,7 @@ namespace {
          */
         public $bulk = \true;
         /**
-         * @param false|\WP_Upgrader $upgrader
+         * @param false|WP_Upgrader $upgrader
          * @phpstan-return void
          */
         public static function async_upgrade($upgrader = \false)
@@ -1071,7 +1071,7 @@ namespace {
         /**
          * @param string|false $update
          * @param array $args
-         * @return array|bool|\WP_Error
+         * @return array|bool|WP_Error
          * @phpstan-param array{
          *   clear_update_cache?: bool,
          * } $args See Language_Pack_Upgrader::bulk_upgrade()
@@ -1084,15 +1084,15 @@ namespace {
          * @phpstan-param array{
          *   clear_update_cache?: bool,
          * } $args
-         * @return array|bool|\WP_Error
+         * @return array|bool|WP_Error
          */
         public function bulk_upgrade($language_updates = array(), $args = array())
         {
         }
         /**
-         * @param string|\WP_Error $source
+         * @param string|WP_Error $source
          * @param string $remote_source
-         * @return string|\WP_Error
+         * @return string|WP_Error
          */
         public function check_package($source, $remote_source)
         {
@@ -1106,7 +1106,7 @@ namespace {
         }
         /**
          * @param string $remote_destination
-         * @return bool|\WP_Error
+         * @return bool|WP_Error
          */
         public function clear_destination($remote_destination)
         {
@@ -1925,7 +1925,7 @@ namespace {
         {
         }
         /**
-         * @param \WP_Error $wp_error
+         * @param WP_Error $wp_error
          * @return bool
          */
         public function hide_process_failed($wp_error)
@@ -1965,7 +1965,7 @@ namespace {
     class Plugin_Upgrader extends \WP_Upgrader
     {
         /**
-         * @var array|\WP_Error
+         * @var array|WP_Error
          */
         public $result;
         /**
@@ -1987,7 +1987,7 @@ namespace {
          * @phpstan-param array{
          *   clear_update_cache?: bool,
          * } $args
-         * @return bool|\WP_Error
+         * @return bool|WP_Error
          */
         public function install($package, $args = array())
         {
@@ -1997,7 +1997,7 @@ namespace {
          * @phpstan-param array{
          *   clear_update_cache?: bool,
          * } $args
-         * @return bool|\WP_Error
+         * @return bool|WP_Error
          */
         public function upgrade($plugin, $args = array())
         {
@@ -2014,7 +2014,7 @@ namespace {
         }
         /**
          * @param string $source
-         * @return string|\WP_Error
+         * @return string|WP_Error
          */
         public function check_package($source)
         {
@@ -2026,35 +2026,35 @@ namespace {
         {
         }
         /**
-         * @param bool|\WP_Error $response
+         * @param bool|WP_Error $response
          * @param array $plugin
-         * @return bool|\WP_Error
+         * @return bool|WP_Error
          */
         public function deactivate_plugin_before_upgrade($response, $plugin)
         {
         }
         /**
-         * @param bool|\WP_Error $response
+         * @param bool|WP_Error $response
          * @param array $plugin
-         * @return bool|\WP_Error
+         * @return bool|WP_Error
          */
         public function active_before($response, $plugin)
         {
         }
         /**
-         * @param bool|\WP_Error $response
+         * @param bool|WP_Error $response
          * @param array $plugin
-         * @return bool|\WP_Error
+         * @return bool|WP_Error
          */
         public function active_after($response, $plugin)
         {
         }
         /**
-         * @param bool|\WP_Error $removed
+         * @param bool|WP_Error $removed
          * @param string $local_destination
          * @param string $remote_destination
          * @param array $plugin
-         * @return bool|\WP_Error
+         * @return bool|WP_Error
          */
         public function delete_old_plugin($removed, $local_destination, $remote_destination, $plugin)
         {
@@ -2076,7 +2076,7 @@ namespace {
         {
         }
         /**
-         * @param \WP_Error $wp_error
+         * @param WP_Error $wp_error
          * @return bool
          */
         public function hide_process_failed($wp_error)
@@ -2108,7 +2108,7 @@ namespace {
     class Theme_Upgrader extends \WP_Upgrader
     {
         /**
-         * @var array|\WP_Error
+         * @var array|WP_Error
          */
         public $result;
         /**
@@ -2146,7 +2146,7 @@ namespace {
          * @phpstan-param array{
          *   clear_update_cache?: bool,
          * } $args
-         * @return bool|\WP_Error
+         * @return bool|WP_Error
          */
         public function install($package, $args = array())
         {
@@ -2156,7 +2156,7 @@ namespace {
          * @phpstan-param array{
          *   clear_update_cache?: bool,
          * } $args
-         * @return bool|\WP_Error
+         * @return bool|WP_Error
          */
         public function upgrade($theme, $args = array())
         {
@@ -2173,23 +2173,23 @@ namespace {
         }
         /**
          * @param string $source
-         * @return string|\WP_Error
+         * @return string|WP_Error
          */
         public function check_package($source)
         {
         }
         /**
-         * @param bool|\WP_Error $response
+         * @param bool|WP_Error $response
          * @param array $theme
-         * @return bool|\WP_Error
+         * @return bool|WP_Error
          */
         public function current_before($response, $theme)
         {
         }
         /**
-         * @param bool|\WP_Error $response
+         * @param bool|WP_Error $response
          * @param array $theme
-         * @return bool|\WP_Error
+         * @return bool|WP_Error
          */
         public function current_after($response, $theme)
         {
@@ -2206,7 +2206,7 @@ namespace {
         }
         /**
          * @param string $theme
-         * @return \WP_Theme|false
+         * @return WP_Theme|false
          */
         public function theme_info($theme = \null)
         {
@@ -2355,7 +2355,7 @@ namespace {
         }
         /**
          * @param string $output
-         * @param \WP_Term $data_object
+         * @param WP_Term $data_object
          * @param int $depth
          * @param array $args
          * @param int $current_object_id
@@ -2374,7 +2374,7 @@ namespace {
         }
         /**
          * @param string $output
-         * @param \WP_Term $data_object
+         * @param WP_Term $data_object
          * @param int $depth
          * @param array $args
          * @phpstan-param array{
@@ -2404,7 +2404,7 @@ namespace {
         /**
          * @param string $output
          * @param int $depth
-         * @param \stdClass $args
+         * @param stdClass $args
          */
         public function start_lvl(&$output, $depth = 0, $args = \null)
         {
@@ -2412,16 +2412,16 @@ namespace {
         /**
          * @param string $output
          * @param int $depth
-         * @param \stdClass $args
+         * @param stdClass $args
          */
         public function end_lvl(&$output, $depth = 0, $args = \null)
         {
         }
         /**
          * @param string $output
-         * @param \WP_Post $data_object
+         * @param WP_Post $data_object
          * @param int $depth
-         * @param \stdClass $args
+         * @param stdClass $args
          * @param int $current_object_id
          */
         public function start_el(&$output, $data_object, $depth = 0, $args = \null, $current_object_id = 0)
@@ -2429,9 +2429,9 @@ namespace {
         }
         /**
          * @param string $output
-         * @param \WP_Post $data_object
+         * @param WP_Post $data_object
          * @param int $depth
-         * @param \stdClass $args
+         * @param stdClass $args
          */
         public function end_el(&$output, $data_object, $depth = 0, $args = \null)
         {
@@ -2455,7 +2455,7 @@ namespace {
         /**
          * @param string $output
          * @param int $depth
-         * @param \stdClass $args
+         * @param stdClass $args
          */
         public function start_lvl(&$output, $depth = 0, $args = \null)
         {
@@ -2463,16 +2463,16 @@ namespace {
         /**
          * @param string $output
          * @param int $depth
-         * @param \stdClass $args
+         * @param stdClass $args
          */
         public function end_lvl(&$output, $depth = 0, $args = \null)
         {
         }
         /**
          * @param string $output
-         * @param \WP_Post $data_object
+         * @param WP_Post $data_object
          * @param int $depth
-         * @param \stdClass $args
+         * @param stdClass $args
          * @param int $current_object_id
          */
         public function start_el(&$output, $data_object, $depth = 0, $args = \null, $current_object_id = 0)
@@ -2484,7 +2484,7 @@ namespace {
         /**
          * @param string $output
          * @param int $depth
-         * @param \stdClass $args
+         * @param stdClass $args
          */
         public function start_lvl(&$output, $depth = 0, $args = \null)
         {
@@ -2492,16 +2492,16 @@ namespace {
         /**
          * @param string $output
          * @param int $depth
-         * @param \stdClass $args
+         * @param stdClass $args
          */
         public function end_lvl(&$output, $depth = 0, $args = \null)
         {
         }
         /**
          * @param string $output
-         * @param \WP_Post $data_object
+         * @param WP_Post $data_object
          * @param int $depth
-         * @param \stdClass $args
+         * @param stdClass $args
          * @param int $current_object_id
          */
         public function start_el(&$output, $data_object, $depth = 0, $args = \null, $current_object_id = 0)
@@ -2515,11 +2515,11 @@ namespace {
          */
         public $plugin_info = array();
         /**
-         * @var \WP_Theme|false
+         * @var WP_Theme|false
          */
         public $theme_info = \false;
         /**
-         * @var null|\WP_Error
+         * @var null|WP_Error
          */
         protected $errors = \null;
         /**
@@ -2530,7 +2530,7 @@ namespace {
         {
         }
         /**
-         * @return \WP_Error
+         * @return WP_Error
          */
         public function get_errors()
         {
@@ -2542,14 +2542,14 @@ namespace {
         {
         }
         /**
-         * @param string|\WP_Error $errors
+         * @param string|WP_Error $errors
          * @param mixed $args
          */
         public function error($errors, ...$args)
         {
         }
         /**
-         * @param string|array|\WP_Error $feedback
+         * @param string|array|WP_Error $feedback
          * @param mixed $args
          */
         public function feedback($feedback, ...$args)
@@ -2572,7 +2572,7 @@ namespace {
          */
         protected $_pagination_args = array();
         /**
-         * @var \WP_Screen
+         * @var WP_Screen
          */
         protected $screen;
         /**
@@ -3009,7 +3009,7 @@ namespace {
         /**
          * @param string $type
          * @param object $item
-         * @return null|\WP_Error
+         * @return null|WP_Error
          */
         public function update($type, $item)
         {
@@ -3149,13 +3149,13 @@ namespace {
         {
         }
         /**
-         * @param \WP_Comment $item
+         * @param WP_Comment $item
          */
         public function single_row($item)
         {
         }
         /**
-         * @param \WP_Comment $item
+         * @param WP_Comment $item
          * @param string $column_name
          * @param string $primary
          * @return string
@@ -3164,38 +3164,38 @@ namespace {
         {
         }
         /**
-         * @param \WP_Comment $item
+         * @param WP_Comment $item
          */
         public function column_cb($item)
         {
         }
         /**
-         * @param \WP_Comment $comment
+         * @param WP_Comment $comment
          */
         public function column_comment($comment)
         {
         }
         /**
-         * @param \WP_Comment $comment
+         * @param WP_Comment $comment
          */
         public function column_author($comment)
         {
         }
         /**
-         * @param \WP_Comment $comment
+         * @param WP_Comment $comment
          */
         public function column_date($comment)
         {
         }
         /**
-         * @param \WP_Comment $comment
+         * @param WP_Comment $comment
          * @phpstan-return void
          */
         public function column_response($comment)
         {
         }
         /**
-         * @param \WP_Comment $item
+         * @param WP_Comment $item
          * @param string $column_name
          */
         public function column_default($item, $column_name)
@@ -3228,7 +3228,7 @@ namespace {
         /**
          * @param string $location_search
          * @param string $timezone
-         * @return array|\WP_Error
+         * @return array|WP_Error
          */
         public function get_events($location_search = '', $timezone = '')
         {
@@ -3355,7 +3355,7 @@ namespace {
          */
         public $method = '';
         /**
-         * @var \WP_Error
+         * @var WP_Error
          */
         public $errors = \null;
         public $options = array();
@@ -4141,7 +4141,7 @@ namespace {
     class WP_Filesystem_ftpsockets extends \WP_Filesystem_Base
     {
         /**
-         * @var \ftp
+         * @var ftp
          */
         public $ftp;
         /**
@@ -4874,7 +4874,7 @@ namespace {
         public $_screen;
         public $_columns;
         /**
-         * @param string|\WP_Screen $screen
+         * @param string|WP_Screen $screen
          * @param string[] $columns
          */
         public function __construct($screen, $columns = array())
@@ -4964,49 +4964,49 @@ namespace {
         {
         }
         /**
-         * @param \WP_Post $item
+         * @param WP_Post $item
          */
         public function column_cb($item)
         {
         }
         /**
-         * @param \WP_Post $post
+         * @param WP_Post $post
          */
         public function column_title($post)
         {
         }
         /**
-         * @param \WP_Post $post
+         * @param WP_Post $post
          */
         public function column_author($post)
         {
         }
         /**
-         * @param \WP_Post $post
+         * @param WP_Post $post
          */
         public function column_desc($post)
         {
         }
         /**
-         * @param \WP_Post $post
+         * @param WP_Post $post
          */
         public function column_date($post)
         {
         }
         /**
-         * @param \WP_Post $post
+         * @param WP_Post $post
          */
         public function column_parent($post)
         {
         }
         /**
-         * @param \WP_Post $post
+         * @param WP_Post $post
          */
         public function column_comments($post)
         {
         }
         /**
-         * @param \WP_Post $item
+         * @param WP_Post $item
          * @param string $column_name
          * @phpstan-return void
          */
@@ -5023,7 +5023,7 @@ namespace {
         {
         }
         /**
-         * @param \WP_Post $item
+         * @param WP_Post $item
          * @param string $column_name
          * @param string $primary
          * @return string
@@ -5196,7 +5196,7 @@ namespace {
         {
         }
         /**
-         * @param \WP_Theme $theme
+         * @param WP_Theme $theme
          * @return bool
          */
         public function _search_callback($theme)
@@ -5248,44 +5248,44 @@ namespace {
         {
         }
         /**
-         * @param \WP_Theme $item
+         * @param WP_Theme $item
          */
         public function column_cb($item)
         {
         }
         /**
-         * @param \WP_Theme $theme
+         * @param WP_Theme $theme
          */
         public function column_name($theme)
         {
         }
         /**
-         * @param \WP_Theme $theme
+         * @param WP_Theme $theme
          */
         public function column_description($theme)
         {
         }
         /**
-         * @param \WP_Theme $theme
+         * @param WP_Theme $theme
          */
         public function column_autoupdates($theme)
         {
         }
         /**
-         * @param \WP_Theme $item
+         * @param WP_Theme $item
          * @param string $column_name
          */
         public function column_default($item, $column_name)
         {
         }
         /**
-         * @param \WP_Theme $item
+         * @param WP_Theme $item
          */
         public function single_row_columns($item)
         {
         }
         /**
-         * @param \WP_Theme $theme
+         * @param WP_Theme $theme
          */
         public function single_row($theme)
         {
@@ -5336,44 +5336,44 @@ namespace {
         {
         }
         /**
-         * @param \WP_User $item
+         * @param WP_User $item
          * @phpstan-return void
          */
         public function column_cb($item)
         {
         }
         /**
-         * @param \WP_User $user
+         * @param WP_User $user
          */
         public function column_id($user)
         {
         }
         /**
-         * @param \WP_User $user
+         * @param WP_User $user
          */
         public function column_username($user)
         {
         }
         /**
-         * @param \WP_User $user
+         * @param WP_User $user
          */
         public function column_name($user)
         {
         }
         /**
-         * @param \WP_User $user
+         * @param WP_User $user
          */
         public function column_email($user)
         {
         }
         /**
-         * @param \WP_User $user
+         * @param WP_User $user
          */
         public function column_registered($user)
         {
         }
         /**
-         * @param \WP_User $user
+         * @param WP_User $user
          * @param string $classes
          * @param string $data
          * @param string $primary
@@ -5382,14 +5382,14 @@ namespace {
         {
         }
         /**
-         * @param \WP_User $user
+         * @param WP_User $user
          * @phpstan-return void
          */
         public function column_blogs($user)
         {
         }
         /**
-         * @param \WP_User $item
+         * @param WP_User $item
          * @param string $column_name
          */
         public function column_default($item, $column_name)
@@ -5405,7 +5405,7 @@ namespace {
         {
         }
         /**
-         * @param \WP_User $item
+         * @param WP_User $item
          * @param string $column_name
          * @param string $primary
          * @return string
@@ -5832,13 +5832,13 @@ namespace {
         {
         }
         /**
-         * @param \WP_Post $item
+         * @param WP_Post $item
          */
         public function column_cb($item)
         {
         }
         /**
-         * @param \WP_Post $post
+         * @param WP_Post $post
          * @param string $classes
          * @param string $data
          * @param string $primary
@@ -5847,31 +5847,31 @@ namespace {
         {
         }
         /**
-         * @param \WP_Post $post
+         * @param WP_Post $post
          */
         public function column_title($post)
         {
         }
         /**
-         * @param \WP_Post $post
+         * @param WP_Post $post
          */
         public function column_date($post)
         {
         }
         /**
-         * @param \WP_Post $post
+         * @param WP_Post $post
          */
         public function column_comments($post)
         {
         }
         /**
-         * @param \WP_Post $post
+         * @param WP_Post $post
          */
         public function column_author($post)
         {
         }
         /**
-         * @param \WP_Post $item
+         * @param WP_Post $item
          * @param string $column_name
          * @phpstan-return void
          */
@@ -5879,7 +5879,7 @@ namespace {
         {
         }
         /**
-         * @param int|\WP_Post $post
+         * @param int|WP_Post $post
          * @param int $level
          */
         public function single_row($post, $level = 0)
@@ -5892,7 +5892,7 @@ namespace {
         {
         }
         /**
-         * @param \WP_Post $item
+         * @param WP_Post $item
          * @param string $column_name
          * @param string $primary
          * @return string
@@ -5966,14 +5966,14 @@ namespace {
         {
         }
         /**
-         * @param \WP_User_Request $item
+         * @param WP_User_Request $item
          * @return string
          */
         public function column_cb($item)
         {
         }
         /**
-         * @param \WP_User_Request $item
+         * @param WP_User_Request $item
          * @return string
          */
         public function column_status($item)
@@ -5987,34 +5987,34 @@ namespace {
         {
         }
         /**
-         * @param \WP_User_Request $item
+         * @param WP_User_Request $item
          * @param string $column_name
          */
         public function column_default($item, $column_name)
         {
         }
         /**
-         * @param \WP_User_Request $item
+         * @param WP_User_Request $item
          * @return string
          */
         public function column_created_timestamp($item)
         {
         }
         /**
-         * @param \WP_User_Request $item
+         * @param WP_User_Request $item
          * @return string
          */
         public function column_email($item)
         {
         }
         /**
-         * @param \WP_User_Request $item
+         * @param WP_User_Request $item
          */
         public function column_next_steps($item)
         {
         }
         /**
-         * @param \WP_User_Request $item
+         * @param WP_User_Request $item
          */
         public function single_row($item)
         {
@@ -6034,14 +6034,14 @@ namespace {
          */
         protected $post_type = 'user_request';
         /**
-         * @param \WP_User_Request $item
+         * @param WP_User_Request $item
          * @return string
          */
         public function column_email($item)
         {
         }
         /**
-         * @param \WP_User_Request $item
+         * @param WP_User_Request $item
          */
         public function column_next_steps($item)
         {
@@ -6058,14 +6058,14 @@ namespace {
          */
         protected $post_type = 'user_request';
         /**
-         * @param \WP_User_Request $item
+         * @param WP_User_Request $item
          * @return string
          */
         public function column_email($item)
         {
         }
         /**
-         * @param \WP_User_Request $item
+         * @param WP_User_Request $item
          */
         public function column_next_steps($item)
         {
@@ -6105,7 +6105,7 @@ namespace {
         {
         }
         /**
-         * @param \WP_Post|null $post
+         * @param WP_Post|null $post
          * @phpstan-return void
          */
         public static function notice($post = \null)
@@ -6170,8 +6170,8 @@ namespace {
          */
         public $is_block_editor = \false;
         /**
-         * @param string|\WP_Screen $hook_name
-         * @return \WP_Screen
+         * @param string|WP_Screen $hook_name
+         * @return WP_Screen
          */
         public static function get($hook_name = '')
         {
@@ -6194,7 +6194,7 @@ namespace {
         {
         }
         /**
-         * @param \WP_Screen $screen
+         * @param WP_Screen $screen
          * @param string $help
          */
         public static function add_old_compat_help($screen, $help)
@@ -6468,7 +6468,7 @@ namespace {
         {
         }
         /**
-         * @return \WP_Site_Health|null
+         * @return WP_Site_Health|null
          */
         public static function get_instance()
         {
@@ -6655,13 +6655,13 @@ namespace {
         {
         }
         /**
-         * @return bool|\WP_Error
+         * @return bool|WP_Error
          */
         public function has_missed_cron()
         {
         }
         /**
-         * @return bool|\WP_Error
+         * @return bool|WP_Error
          */
         public function has_late_cron()
         {
@@ -6842,21 +6842,21 @@ namespace {
         {
         }
         /**
-         * @param \WP_Term $tag
+         * @param WP_Term $tag
          * @param int $level
          */
         public function single_row($tag, $level = 0)
         {
         }
         /**
-         * @param \WP_Term $item
+         * @param WP_Term $item
          * @return string
          */
         public function column_cb($item)
         {
         }
         /**
-         * @param \WP_Term $tag
+         * @param WP_Term $tag
          * @return string
          */
         public function column_name($tag)
@@ -6869,7 +6869,7 @@ namespace {
         {
         }
         /**
-         * @param \WP_Term $item
+         * @param WP_Term $item
          * @param string $column_name
          * @param string $primary
          * @return string
@@ -6878,35 +6878,35 @@ namespace {
         {
         }
         /**
-         * @param \WP_Term $tag
+         * @param WP_Term $tag
          * @return string
          */
         public function column_description($tag)
         {
         }
         /**
-         * @param \WP_Term $tag
+         * @param WP_Term $tag
          * @return string
          */
         public function column_slug($tag)
         {
         }
         /**
-         * @param \WP_Term $tag
+         * @param WP_Term $tag
          * @return string
          */
         public function column_posts($tag)
         {
         }
         /**
-         * @param \WP_Term $tag
+         * @param WP_Term $tag
          * @return string
          */
         public function column_links($tag)
         {
         }
         /**
-         * @param \WP_Term $item
+         * @param WP_Term $item
          * @param string $column_name
          * @return string
          */
@@ -6968,7 +6968,7 @@ namespace {
         {
         }
         /**
-         * @param \WP_Theme $theme
+         * @param WP_Theme $theme
          * @return bool
          */
         public function search_theme($theme)
@@ -7034,13 +7034,13 @@ namespace {
         {
         }
         /**
-         * @param \stdClass $theme
+         * @param stdClass $theme
          */
         public function theme_installer_single($theme)
         {
         }
         /**
-         * @param \stdClass $theme
+         * @param stdClass $theme
          * @phpstan-return void
          */
         public function install_theme_info($theme)
@@ -7121,7 +7121,7 @@ namespace {
         {
         }
         /**
-         * @param \WP_User $user_object
+         * @param WP_User $user_object
          * @param string $style
          * @param string $role
          * @param int $numposts
@@ -7137,7 +7137,7 @@ namespace {
         {
         }
         /**
-         * @param \WP_User $user_object
+         * @param WP_User $user_object
          * @return string[]
          */
         protected function get_role_list($user_object)
@@ -7203,7 +7203,7 @@ namespace {
          */
         var $too_many_total_users = \false;
         /**
-         * @var \WP_Error
+         * @var WP_Error
          */
         var $search_errors;
         /**
@@ -7214,7 +7214,7 @@ namespace {
          * @param string $search_term
          * @param int $page
          * @param string $role
-         * @return \WP_User_Search
+         * @return WP_User_Search
          */
         function __construct($search_term = '', $page = '', $role = '')
         {
@@ -7223,7 +7223,7 @@ namespace {
          * @param string $search_term
          * @param int $page
          * @param string $role
-         * @return \WP_User_Search
+         * @return WP_User_Search
          */
         public function WP_User_Search($search_term = '', $page = '', $role = '')
         {
@@ -7554,7 +7554,7 @@ namespace {
         {
         }
         /**
-         * @param \SimpleXMLElement|array|mixed $XMLobject
+         * @param SimpleXMLElement|array|mixed $XMLobject
          * @return mixed
          */
         public static function SimpleXMLelement2array($XMLobject)
@@ -8161,7 +8161,7 @@ namespace {
     abstract class getid3_handler
     {
         /**
-         * @var \getID3
+         * @var getID3
          */
         protected $getid3;
         // pointer
@@ -8182,7 +8182,7 @@ namespace {
          */
         protected $data_string_length = 0;
         /**
-         * @param \getID3 $getid3
+         * @param getID3 $getid3
          * @param string $call_module
          */
         public function __construct(\getID3 $getid3, $call_module = \null)
@@ -8285,7 +8285,7 @@ namespace {
         protected static $ASFMediaObjectIndexParametersObjectIndexSpecifiersIndexTypes = array(1 => 'Nearest Past Data Packet', 2 => 'Nearest Past Media Object', 3 => 'Nearest Past Cleanpoint', 0xff => 'Frame Number Offset');
         protected static $ASFTimecodeIndexParametersObjectIndexSpecifiersIndexTypes = array(2 => 'Nearest Past Media Object', 3 => 'Nearest Past Cleanpoint');
         /**
-         * @param \getID3 $getid3
+         * @param getID3 $getid3
          */
         public function __construct(\getID3 $getid3)
         {
@@ -8530,11 +8530,11 @@ namespace {
     class AMFReader
     {
         /**
-         * @var \AMFStream
+         * @var AMFStream
          */
         public $stream;
         /**
-         * @param \AMFStream $stream
+         * @param AMFStream $stream
          */
         public function __construct(\AMFStream $stream)
         {
@@ -10287,7 +10287,7 @@ namespace PHPMailer\PHPMailer {
          */
         protected $SMTPXClient = [];
         /**
-         * @var \OAuthTokenProvider
+         * @var OAuthTokenProvider
          */
         protected $oauth;
         /**
@@ -10300,7 +10300,7 @@ namespace PHPMailer\PHPMailer {
          */
         public $SMTPDebug = 0;
         /**
-         * @var string|callable|\Psr\Log\LoggerInterface
+         * @var string|callable|PsrLogLoggerInterface
          */
         public $Debugoutput = 'echo';
         /**
@@ -10368,7 +10368,7 @@ namespace PHPMailer\PHPMailer {
          */
         public static $validator = 'php';
         /**
-         * @var \SMTP
+         * @var SMTP
          */
         protected $smtp;
         /**
@@ -10703,13 +10703,13 @@ namespace PHPMailer\PHPMailer {
         {
         }
         /**
-         * @return \SMTP
+         * @return SMTP
          */
         public function getSMTPInstance()
         {
         }
         /**
-         * @return \SMTP
+         * @return SMTP
          */
         public function setSMTPInstance(\PHPMailer\PHPMailer\SMTP $smtp)
         {
@@ -11309,7 +11309,7 @@ namespace PHPMailer\PHPMailer {
         {
         }
         /**
-         * @return \OAuthTokenProvider
+         * @return OAuthTokenProvider
          */
         public function getOAuth()
         {
@@ -11397,7 +11397,7 @@ namespace PHPMailer\PHPMailer {
          */
         public $do_debug = self::DEBUG_OFF;
         /**
-         * @var string|callable|\Psr\Log\LoggerInterface
+         * @var string|callable|PsrLogLoggerInterface
          */
         public $Debugoutput = 'echo';
         /**
@@ -11482,7 +11482,7 @@ namespace PHPMailer\PHPMailer {
          * @param string $username
          * @param string $password
          * @param string $authtype
-         * @param \OAuthTokenProvider $OAuth
+         * @param OAuthTokenProvider $OAuth
          * @return bool
          */
         public function authenticate($username, $password, $authtype = null, $OAuth = null)
@@ -11737,7 +11737,7 @@ namespace WpOrg\Requests {
     interface Auth
     {
         /**
-         * @param \WpOrg\Requests\Hooks $hooks
+         * @param WpOrgRequestsHooks $hooks
          */
         public function register(\WpOrg\Requests\Hooks $hooks);
     }
@@ -11761,13 +11761,13 @@ namespace WpOrg\Requests\Auth {
         {
         }
         /**
-         * @param \WpOrg\Requests\Hooks $hooks
+         * @param WpOrgRequestsHooks $hooks
          */
         public function register(\WpOrg\Requests\Hooks $hooks)
         {
         }
         /**
-         * @param resource|\CurlHandle $handle
+         * @param resource|CurlHandle $handle
          */
         public function curl_before_send(&$handle)
         {
@@ -11838,7 +11838,7 @@ namespace WpOrg\Requests {
          */
         public $value;
         /**
-         * @var \WpOrg\Requests\Utility\CaseInsensitiveDictionary|array
+         * @var WpOrgRequestsUtilityCaseInsensitiveDictionary|array
          */
         public $attributes = [];
         /**
@@ -11852,7 +11852,7 @@ namespace WpOrg\Requests {
         /**
          * @param string $name
          * @param string $value
-         * @param array|\WpOrg\Requests\Utility\CaseInsensitiveDictionary $attributes
+         * @param array|WpOrgRequestsUtilityCaseInsensitiveDictionary $attributes
          * @param array $flags
          * @param int|null $reference_time
          */
@@ -11869,7 +11869,7 @@ namespace WpOrg\Requests {
         {
         }
         /**
-         * @param \WpOrg\Requests\Iri $uri
+         * @param WpOrgRequestsIri $uri
          * @return bool
          */
         public function uri_matches(\WpOrg\Requests\Iri $uri)
@@ -11919,14 +11919,14 @@ namespace WpOrg\Requests {
          * @param string $cookie_header
          * @param string $name
          * @param int|null $reference_time
-         * @return \WpOrg\Requests\Cookie
+         * @return WpOrgRequestsCookie
          */
         public static function parse($cookie_header, $name = '', $reference_time = null)
         {
         }
         /**
-         * @param \WpOrg\Requests\Response\Headers $headers
-         * @param \WpOrg\Requests\Iri|null $origin
+         * @param WpOrgRequestsResponseHeaders $headers
+         * @param WpOrgRequestsIri|null $origin
          * @param int|null $time
          * @return array
          */
@@ -11949,9 +11949,9 @@ namespace WpOrg\Requests\Cookie {
         {
         }
         /**
-         * @param string|\WpOrg\Requests\Cookie $cookie
+         * @param string|WpOrgRequestsCookie $cookie
          * @param string $key
-         * @return \WpOrg\Requests\Cookie
+         * @return WpOrgRequestsCookie
          */
         public function normalize_cookie($cookie, $key = '')
         {
@@ -11988,14 +11988,14 @@ namespace WpOrg\Requests\Cookie {
         {
         }
         /**
-         * @return \ArrayIterator
+         * @return ArrayIterator
          */
         #[\ReturnTypeWillChange]
         public function getIterator()
         {
         }
         /**
-         * @param \WpOrg\Requests\HookManager $hooks
+         * @param WpOrgRequestsHookManager $hooks
          */
         public function register(\WpOrg\Requests\HookManager $hooks)
         {
@@ -12011,7 +12011,7 @@ namespace WpOrg\Requests\Cookie {
         {
         }
         /**
-         * @param \WpOrg\Requests\Response $response
+         * @param WpOrgRequestsResponse $response
          */
         public function before_redirect_check(\WpOrg\Requests\Response $response)
         {
@@ -12059,7 +12059,7 @@ namespace WpOrg\Requests\Exception {
          * @param string $expected
          * @param int $received
          * @param string $type
-         * @return \WpOrg\Requests\Exception\ArgumentCount
+         * @return WpOrgRequestsExceptionArgumentCount
          */
         public static function create($expected, $received, $type)
         {
@@ -12214,7 +12214,7 @@ namespace WpOrg\Requests\Exception {
          * @param string $name
          * @param string $expected
          * @param string $received
-         * @return \WpOrg\Requests\Exception\InvalidArgument
+         * @return WpOrgRequestsExceptionInvalidArgument
          */
         public static function create($position, $name, $expected, $received)
         {
@@ -12328,7 +12328,7 @@ namespace WpOrg\Requests {
         const BOOTSTRAP_INITIAL_N = 128;
         /**#@-*/
         /**
-         * @param string|\Stringable $hostname
+         * @param string|Stringable $hostname
          * @return string
          */
         public static function encode($hostname)
@@ -12389,7 +12389,7 @@ namespace WpOrg\Requests {
     final class Ipv6
     {
         /**
-         * @param string|\Stringable $ip
+         * @param string|Stringable $ip
          * @return string
          */
         public static function uncompress($ip)
@@ -12478,15 +12478,15 @@ namespace WpOrg\Requests {
         {
         }
         /**
-         * @param string|\Stringable|null $iri
+         * @param string|Stringable|null $iri
          */
         public function __construct($iri = null)
         {
         }
         /**
-         * @param \WpOrg\Requests\Iri|string $base
-         * @param \WpOrg\Requests\Iri|string $relative
-         * @return \WpOrg\Requests\Iri|false
+         * @param WpOrgRequestsIri|string $base
+         * @param WpOrgRequestsIri|string $relative
+         * @return WpOrgRequestsIri|false
          */
         public static function absolutize($base, $relative)
         {
@@ -12678,7 +12678,7 @@ namespace WpOrg\Requests {
     interface Proxy
     {
         /**
-         * @param \WpOrg\Requests\Hooks $hooks
+         * @param WpOrgRequestsHooks $hooks
          */
         public function register(\WpOrg\Requests\Hooks $hooks);
     }
@@ -12711,13 +12711,13 @@ namespace WpOrg\Requests\Proxy {
         {
         }
         /**
-         * @param \WpOrg\Requests\Hooks $hooks
+         * @param WpOrgRequestsHooks $hooks
          */
         public function register(\WpOrg\Requests\Hooks $hooks)
         {
         }
         /**
-         * @param resource|\CurlHandle $handle
+         * @param resource|CurlHandle $handle
          */
         public function curl_before_send(&$handle)
         {
@@ -12859,7 +12859,7 @@ namespace WpOrg\Requests {
         }
         /**
          * @param array<string,bool> $capabilities
-         * @return \WpOrg\Requests\Transport
+         * @return WpOrgRequestsTransport
          */
         protected static function get_transport(array $capabilities = [])
         {
@@ -12897,12 +12897,12 @@ namespace WpOrg\Requests {
         }
         /**#@-*/
         /**
-         * @param string|\Stringable $url
+         * @param string|Stringable $url
          * @param array $headers
          * @param array|null $data
          * @param string $type
          * @param array $options
-         * @return \WpOrg\Requests\Response
+         * @return WpOrgRequestsResponse
          */
         public static function request($url, $headers = [], $data = [], $type = self::GET, $options = [])
         {
@@ -12929,7 +12929,7 @@ namespace WpOrg\Requests {
         {
         }
         /**
-         * @param string|\Stringable|bool $path
+         * @param string|Stringable|bool $path
          */
         public static function set_certificate_path($path)
         {
@@ -12951,7 +12951,7 @@ namespace WpOrg\Requests {
          * @param array $req_headers
          * @param array $req_data
          * @param array $options
-         * @return \WpOrg\Requests\Response
+         * @return WpOrgRequestsResponse
          */
         protected static function parse_response($headers, $url, $req_headers, $req_data, $options)
         {
@@ -13005,7 +13005,7 @@ namespace WpOrg\Requests {
          */
         public $raw = '';
         /**
-         * @var \WpOrg\Requests\Response\Headers
+         * @var WpOrgRequestsResponseHeaders
          */
         public $headers = [];
         /**
@@ -13033,7 +13033,7 @@ namespace WpOrg\Requests {
          */
         public $history = [];
         /**
-         * @var \WpOrg\Requests\Cookie\Jar
+         * @var WpOrgRequestsCookieJar
          */
         public $cookies = [];
         public function __construct()
@@ -13107,7 +13107,7 @@ namespace WpOrg\Requests\Utility {
         {
         }
         /**
-         * @return \ArrayIterator
+         * @return ArrayIterator
          */
         #[\ReturnTypeWillChange]
         public function getIterator()
@@ -13153,7 +13153,7 @@ namespace WpOrg\Requests\Response {
         {
         }
         /**
-         * @return \ArrayIterator
+         * @return ArrayIterator
          */
         public function getIterator()
         {
@@ -13180,7 +13180,7 @@ namespace WpOrg\Requests {
          */
         public $options = [];
         /**
-         * @param string|\Stringable|null $url
+         * @param string|Stringable|null $url
          * @param array $headers
          * @param array $data
          * @param array $options
@@ -13239,7 +13239,7 @@ namespace WpOrg\Requests {
          * @param array|null $data
          * @param string $type
          * @param array $options
-         * @return \WpOrg\Requests\Response
+         * @return WpOrgRequestsResponse
          */
         public function request($url, $headers = [], $data = [], $type = \WpOrg\Requests\Requests::GET, $options = [])
         {
@@ -13267,7 +13267,7 @@ namespace WpOrg\Requests {
     final class Ssl
     {
         /**
-         * @param string|\Stringable $host
+         * @param string|Stringable $host
          * @param array $cert
          * @return bool
          */
@@ -13275,15 +13275,15 @@ namespace WpOrg\Requests {
         {
         }
         /**
-         * @param string|\Stringable $reference
+         * @param string|Stringable $reference
          * @return bool
          */
         public static function verify_reference_name($reference)
         {
         }
         /**
-         * @param string|\Stringable $host
-         * @param string|\Stringable $reference
+         * @param string|Stringable $host
+         * @param string|Stringable $reference
          * @return bool
          */
         public static function match_domain($host, $reference)
@@ -13352,7 +13352,7 @@ namespace WpOrg\Requests\Transport {
         {
         }
         /**
-         * @param string|\Stringable $url
+         * @param string|Stringable $url
          * @param array $headers
          * @param string|array $data
          * @param array $options
@@ -13374,7 +13374,7 @@ namespace WpOrg\Requests\Transport {
          * @param array $headers
          * @param string|array $data
          * @param array $options
-         * @return resource|\CurlHandle
+         * @return resource|CurlHandle
          */
         public function &get_subrequest_handle($url, $headers, $data, $options)
         {
@@ -13388,7 +13388,7 @@ namespace WpOrg\Requests\Transport {
         {
         }
         /**
-         * @param resource|\CurlHandle $handle
+         * @param resource|CurlHandle $handle
          * @param string $headers
          * @return int
          */
@@ -13396,7 +13396,7 @@ namespace WpOrg\Requests\Transport {
         {
         }
         /**
-         * @param resource|\CurlHandle $handle
+         * @param resource|CurlHandle $handle
          * @param string $data
          * @return int
          */
@@ -13428,7 +13428,7 @@ namespace WpOrg\Requests\Transport {
          */
         public $info;
         /**
-         * @param string|\Stringable $url
+         * @param string|Stringable $url
          * @param array $headers
          * @param string|array $data
          * @param array $options
@@ -13614,7 +13614,7 @@ namespace {
          * @param string $location
          * @param string $filename
          * @param string $extension
-         * @return \SimplePie_Cache_Base
+         * @return SimplePie_Cache_Base
          */
         public static function get_handler($location, $filename, $extension)
         {
@@ -13708,7 +13708,7 @@ namespace {
          */
         public function __construct($location, $name, $type);
         /**
-         * @param array|\SimplePie $data
+         * @param array|SimplePie $data
          * @return bool
          */
         public function save($data);
@@ -13732,7 +13732,7 @@ namespace {
     abstract class SimplePie_Cache_DB implements \SimplePie_Cache_Base
     {
         /**
-         * @param \SimplePie $data
+         * @param SimplePie $data
          * @return array
          */
         protected static function prepare_simplepie_object_for_cache($data)
@@ -13766,7 +13766,7 @@ namespace {
         {
         }
         /**
-         * @param array|\SimplePie $data
+         * @param array|SimplePie $data
          * @return bool
          */
         public function save($data)
@@ -13800,7 +13800,7 @@ namespace {
     class SimplePie_Cache_Memcache implements \SimplePie_Cache_Base
     {
         /**
-         * @var \Memcache
+         * @var Memcache
          */
         protected $cache;
         /**
@@ -13820,7 +13820,7 @@ namespace {
         {
         }
         /**
-         * @param array|\SimplePie $data
+         * @param array|SimplePie $data
          * @return bool
          */
         public function save($data)
@@ -13854,7 +13854,7 @@ namespace {
     class SimplePie_Cache_Memcached implements \SimplePie_Cache_Base
     {
         /**
-         * @var \Memcached
+         * @var Memcached
          */
         protected $cache;
         /**
@@ -13874,7 +13874,7 @@ namespace {
         {
         }
         /**
-         * @param array|\SimplePie $data
+         * @param array|SimplePie $data
          * @return bool
          */
         public function save($data)
@@ -13908,7 +13908,7 @@ namespace {
     class SimplePie_Cache_MySQL extends \SimplePie_Cache_DB
     {
         /**
-         * @var \PDO
+         * @var PDO
          */
         protected $mysql;
         /**
@@ -13929,7 +13929,7 @@ namespace {
         {
         }
         /**
-         * @param array|\SimplePie $data
+         * @param array|SimplePie $data
          * @return bool
          */
         public function save($data)
@@ -13963,7 +13963,7 @@ namespace {
     class SimplePie_Cache_Redis implements \SimplePie_Cache_Base
     {
         /**
-         * @var \Redis
+         * @var Redis
          */
         protected $cache;
         /**
@@ -13975,7 +13975,7 @@ namespace {
          */
         protected $name;
         /**
-         * @var \type
+         * @var type
          */
         protected $data;
         /**
@@ -13987,13 +13987,13 @@ namespace {
         {
         }
         /**
-         * @param \Redis $cache
+         * @param Redis $cache
          */
         public function setRedisClient(\Redis $cache)
         {
         }
         /**
-         * @param array|\SimplePie $data
+         * @param array|SimplePie $data
          * @return bool
          */
         public function save($data)
@@ -14148,11 +14148,11 @@ namespace {
     class SimplePie_Content_Type_Sniffer
     {
         /**
-         * @var \SimplePie_File
+         * @var SimplePie_File
          */
         var $file;
         /**
-         * @param \SimplePie_Content_Type_Sniffer $file
+         * @param SimplePie_Content_Type_Sniffer $file
          */
         public function __construct($file)
         {
@@ -14312,7 +14312,7 @@ namespace {
          */
         public $autodiscovery = \SIMPLEPIE_LOCATOR_ALL;
         /**
-         * @var \SimplePie_Registry
+         * @var SimplePie_Registry
          */
         public $registry;
         /**
@@ -14385,7 +14385,7 @@ namespace {
         {
         }
         /**
-         * @param \SimplePie_File $file
+         * @param SimplePie_File $file
          * @return bool
          */
         public function set_file(&$file)
@@ -14471,7 +14471,7 @@ namespace {
         {
         }
         /**
-         * @return \SimplePie_Registry
+         * @return SimplePie_Registry
          */
         public function &get_registry()
         {
@@ -14608,7 +14608,7 @@ namespace {
         {
         }
         /**
-         * @param \SimplePie_Cache_Base|false $cache
+         * @param SimplePie_Cache_Base|false $cache
          * @return array|true
          */
         protected function fetch_data(&$cache)
@@ -14705,7 +14705,7 @@ namespace {
         }
         /**
          * @param int $key
-         * @return \SimplePie_Category|null
+         * @return SimplePie_Category|null
          */
         public function get_category($key = 0)
         {
@@ -14718,7 +14718,7 @@ namespace {
         }
         /**
          * @param int $key
-         * @return \SimplePie_Author|null
+         * @return SimplePie_Author|null
          */
         public function get_author($key = 0)
         {
@@ -14731,7 +14731,7 @@ namespace {
         }
         /**
          * @param int $key
-         * @return \SimplePie_Author|null
+         * @return SimplePie_Author|null
          */
         public function get_contributor($key = 0)
         {
@@ -14835,7 +14835,7 @@ namespace {
         }
         /**
          * @param int $key
-         * @return \SimplePie_Item|null
+         * @return SimplePie_Item|null
          */
         public function get_item($key = 0)
         {
@@ -14843,7 +14843,7 @@ namespace {
         /**
          * @param int $start
          * @param int $end
-         * @return \SimplePie_Item[]|null
+         * @return SimplePie_Item[]|null
          */
         public function get_items($start = 0, $end = 0)
         {
@@ -14863,8 +14863,8 @@ namespace {
         {
         }
         /**
-         * @param \SimplePie $a
-         * @param \SimplePie $b
+         * @param SimplePie $a
+         * @param SimplePie $b
          * @return bool
          */
         public static function sort_items($a, $b)
@@ -14991,7 +14991,7 @@ namespace {
          */
         var $channels;
         /**
-         * @var \SimplePie_Copyright
+         * @var SimplePie_Copyright
          */
         var $copyright;
         /**
@@ -15099,7 +15099,7 @@ namespace {
         }
         /**
          * @param int $key
-         * @return \SimplePie_Caption|null
+         * @return SimplePie_Caption|null
          */
         public function get_caption($key = 0)
         {
@@ -15112,7 +15112,7 @@ namespace {
         }
         /**
          * @param int $key
-         * @return \SimplePie_Category|null
+         * @return SimplePie_Category|null
          */
         public function get_category($key = 0)
         {
@@ -15130,14 +15130,14 @@ namespace {
         {
         }
         /**
-         * @return \SimplePie_Copyright|null
+         * @return SimplePie_Copyright|null
          */
         public function get_copyright()
         {
         }
         /**
          * @param int $key
-         * @return \SimplePie_Credit|null
+         * @return SimplePie_Credit|null
          */
         public function get_credit($key = 0)
         {
@@ -15249,7 +15249,7 @@ namespace {
         }
         /**
          * @param int $key
-         * @return \SimplePie_Rating|null
+         * @return SimplePie_Rating|null
          */
         public function get_rating($key = 0)
         {
@@ -15262,7 +15262,7 @@ namespace {
         }
         /**
          * @param int $key
-         * @return \SimplePie_Restriction|null
+         * @return SimplePie_Restriction|null
          */
         public function get_restriction($key = 0)
         {
@@ -15553,9 +15553,9 @@ namespace {
         {
         }
         /**
-         * @param \IRI|string $base
-         * @param \IRI|string $relative
-         * @return \IRI|false
+         * @param IRI|string $base
+         * @param IRI|string $relative
+         * @return IRI|false
          */
         public static function absolutize($base, $relative)
         {
@@ -15696,7 +15696,7 @@ namespace {
     class SimplePie_Item
     {
         /**
-         * @var \SimplePie
+         * @var SimplePie
          */
         var $feed;
         /**
@@ -15704,18 +15704,18 @@ namespace {
          */
         var $data = array();
         /**
-         * @var \SimplePie_Registry
+         * @var SimplePie_Registry
          */
         protected $registry;
         /**
-         * @param \SimplePie $feed
+         * @param SimplePie $feed
          * @param array $data
          */
         public function __construct($feed, $data)
         {
         }
         /**
-         * @param \SimplePie_Registry $registry
+         * @param SimplePie_Registry $registry
          */
         public function set_registry(\SimplePie_Registry $registry)
         {
@@ -15754,7 +15754,7 @@ namespace {
         {
         }
         /**
-         * @return \SimplePie
+         * @return SimplePie
          */
         public function get_feed()
         {
@@ -15795,39 +15795,39 @@ namespace {
         }
         /**
          * @param int $key
-         * @return \SimplePie_Category|null
+         * @return SimplePie_Category|null
          */
         public function get_category($key = 0)
         {
         }
         /**
-         * @return \SimplePie_Category[]|null
+         * @return SimplePie_Category[]|null
          */
         public function get_categories()
         {
         }
         /**
          * @param int $key
-         * @return \SimplePie_Author|null
+         * @return SimplePie_Author|null
          */
         public function get_author($key = 0)
         {
         }
         /**
          * @param int $key
-         * @return \SimplePie_Author|null
+         * @return SimplePie_Author|null
          */
         public function get_contributor($key = 0)
         {
         }
         /**
-         * @return \SimplePie_Author[]|null
+         * @return SimplePie_Author[]|null
          */
         public function get_contributors()
         {
         }
         /**
-         * @return \SimplePie_Author[]|null
+         * @return SimplePie_Author[]|null
          */
         public function get_authors()
         {
@@ -15896,13 +15896,13 @@ namespace {
         }
         /**
          * @param int $key
-         * @return \SimplePie_Enclosure|null
+         * @return SimplePie_Enclosure|null
          */
         public function get_enclosure($key = 0, $prefer = \null)
         {
         }
         /**
-         * @return \SimplePie_Enclosure[]|null
+         * @return SimplePie_Enclosure[]|null
          */
         public function get_enclosures()
         {
@@ -15920,7 +15920,7 @@ namespace {
         {
         }
         /**
-         * @return \SimplePie_Source|null
+         * @return SimplePie_Source|null
          */
         public function get_source()
         {
@@ -16116,7 +16116,7 @@ namespace {
         }
         /**
          * @param string $data
-         * @param \SimplePie_Registry $registry
+         * @param SimplePie_Registry $registry
          * @return array
          */
         public static function xml_encoding($data, $registry)
@@ -17083,7 +17083,7 @@ namespace {
         {
         }
         /**
-         * @return \Text_Diff
+         * @return Text_Diff
          */
         function reverse()
         {
@@ -17305,7 +17305,7 @@ namespace {
         {
         }
         /**
-         * @param \Text_Diff $diff
+         * @param Text_Diff $diff
          * @return string
          */
         function render($diff)
@@ -17469,7 +17469,7 @@ namespace {
         {
         }
         /**
-         * @param \indexish $p
+         * @param indexish $p
          * @param array $n
          * @return string
          */
@@ -17518,7 +17518,7 @@ namespace {
         /**
          * @param array $attributes
          * @param string $content
-         * @param \WP_Block $block
+         * @param WP_Block $block
          * @return string
          */
         public static function render($attributes, $content, $block)
@@ -17580,7 +17580,7 @@ namespace Avifinfo {
         // Dim_Prop[]
         public $chan_props = array();
         /**
-         * @return \Status
+         * @return Status
          */
         public function get_primary_item_features()
         {
@@ -17600,10 +17600,10 @@ namespace Avifinfo {
         public $content_size;
         // 'size' minus the header size.
         /**
-         * @param \stream $handle
+         * @param stream $handle
          * @param int $num_parsed_boxes
          * @param int $num_remaining_bytes
-         * @return \Status
+         * @return Status
          */
         public function parse($handle, &$num_parsed_boxes, $num_remaining_bytes = MAX_SIZE)
         {
@@ -17781,7 +17781,7 @@ namespace {
         public $db_fields = array('parent' => 'parent', 'id' => 'term_id');
         /**
          * @param string $output
-         * @param \WP_Term $data_object
+         * @param WP_Term $data_object
          * @param int $depth
          * @param array $args
          * @param int $current_object_id
@@ -17882,7 +17882,7 @@ namespace {
         }
         /**
          * @param string $output
-         * @param \WP_Term $data_object
+         * @param WP_Term $data_object
          * @param int $depth
          * @param array $args
          * @param int $current_object_id
@@ -17969,7 +17969,7 @@ namespace {
         {
         }
         /**
-         * @param \WP_Comment $element
+         * @param WP_Comment $element
          * @param array $children_elements
          * @param int $max_depth
          * @param int $depth
@@ -17982,7 +17982,7 @@ namespace {
         }
         /**
          * @param string $output
-         * @param \WP_Comment $data_object
+         * @param WP_Comment $data_object
          * @param int $depth
          * @param array $args
          * @param int $current_object_id
@@ -17993,7 +17993,7 @@ namespace {
         }
         /**
          * @param string $output
-         * @param \WP_Comment $data_object
+         * @param WP_Comment $data_object
          * @param int $depth
          * @param array $args
          * @phpstan-return void
@@ -18002,7 +18002,7 @@ namespace {
         {
         }
         /**
-         * @param \WP_Comment $comment
+         * @param WP_Comment $comment
          * @param int $depth
          * @param array $args
          */
@@ -18011,14 +18011,14 @@ namespace {
         }
         /**
          * @param string $comment_text
-         * @param \WP_Comment|null $comment
+         * @param WP_Comment|null $comment
          * @return string
          */
         public function filter_comment_text($comment_text, $comment)
         {
         }
         /**
-         * @param \WP_Comment $comment
+         * @param WP_Comment $comment
          * @param int $depth
          * @param array $args
          */
@@ -18026,7 +18026,7 @@ namespace {
         {
         }
         /**
-         * @param \WP_Comment $comment
+         * @param WP_Comment $comment
          * @param int $depth
          * @param array $args
          */
@@ -18046,7 +18046,7 @@ namespace {
         public $db_fields = array('parent' => 'post_parent', 'id' => 'ID');
         /**
          * @param string $output
-         * @param \WP_Post $data_object
+         * @param WP_Post $data_object
          * @param int $depth
          * @param array $args
          * @param int $current_object_id
@@ -18096,7 +18096,7 @@ namespace {
         }
         /**
          * @param string $output
-         * @param \WP_Post $data_object
+         * @param WP_Post $data_object
          * @param int $depth
          * @param array $args
          * @param int $current_object_id
@@ -18106,7 +18106,7 @@ namespace {
         }
         /**
          * @param string $output
-         * @param \WP_Post $data_object
+         * @param WP_Post $data_object
          * @param int $depth
          * @param array $args
          */
@@ -18324,7 +18324,7 @@ namespace {
          *   name?: string,
          *   app_id?: string,
          * } $args
-         * @phpstan-return \WP_Error|array{
+         * @phpstan-return WP_Error|array{
          *   0: string,
          *   1: array{
          *     uuid: string,
@@ -18375,7 +18375,7 @@ namespace {
          * @param int $user_id
          * @param string $uuid
          * @param array $update
-         * @return true|\WP_Error
+         * @return true|WP_Error
          */
         public static function update_application_password($user_id, $uuid, $update = array())
         {
@@ -18383,7 +18383,7 @@ namespace {
         /**
          * @param int $user_id
          * @param string $uuid
-         * @return true|\WP_Error
+         * @return true|WP_Error
          */
         public static function record_application_password_usage($user_id, $uuid)
         {
@@ -18391,14 +18391,14 @@ namespace {
         /**
          * @param int $user_id
          * @param string $uuid
-         * @return true|\WP_Error
+         * @return true|WP_Error
          */
         public static function delete_application_password($user_id, $uuid)
         {
         }
         /**
          * @param int $user_id
-         * @return int|\WP_Error
+         * @return int|WP_Error
          */
         public static function delete_all_application_passwords($user_id)
         {
@@ -18428,27 +18428,27 @@ namespace {
          *   get_value_callback?: callable,
          *   uses_context?: string[],
          * } $source_properties
-         * @return \WP_Block_Bindings_Source|false
+         * @return WP_Block_Bindings_Source|false
          */
         public function register(string $source_name, array $source_properties)
         {
         }
         /**
          * @param string $source_name
-         * @return \WP_Block_Bindings_Source|false
+         * @return WP_Block_Bindings_Source|false
          */
         public function unregister(string $source_name)
         {
         }
         /**
-         * @return \WP_Block_Bindings_Source[]
+         * @return WP_Block_Bindings_Source[]
          */
         public function get_all_registered()
         {
         }
         /**
          * @param string $source_name
-         * @return \WP_Block_Bindings_Source|null
+         * @return WP_Block_Bindings_Source|null
          */
         public function get_registered(string $source_name)
         {
@@ -18467,7 +18467,7 @@ namespace {
         {
         }
         /**
-         * @return \WP_Block_Bindings_Registry
+         * @return WP_Block_Bindings_Registry
          */
         public static function get_instance()
         {
@@ -18496,7 +18496,7 @@ namespace {
         }
         /**
          * @param array $source_args
-         * @param \WP_Block $block_instance
+         * @param WP_Block $block_instance
          * @param string $attribute_name
          * @return mixed
          */
@@ -18515,7 +18515,7 @@ namespace {
          */
         public $name = 'core/edit-post';
         /**
-         * @var \WP_Post|null
+         * @var WP_Post|null
          */
         public $post = \null;
         /**
@@ -18538,7 +18538,7 @@ namespace {
     class WP_Block_List implements \Iterator, \ArrayAccess, \Countable
     {
         /**
-         * @var array[]|\WP_Block[]
+         * @var array[]|WP_Block[]
          */
         protected $blocks;
         /**
@@ -18546,13 +18546,13 @@ namespace {
          */
         protected $available_context;
         /**
-         * @var \WP_Block_Type_Registry
+         * @var WP_Block_Type_Registry
          */
         protected $registry;
         /**
-         * @param array[]|\WP_Block[] $blocks
+         * @param array[]|WP_Block[] $blocks
          * @param array $available_context
-         * @param \WP_Block_Type_Registry $registry
+         * @param WP_Block_Type_Registry $registry
          */
         public function __construct($blocks, $available_context = array(), $registry = \null)
         {
@@ -18641,7 +18641,7 @@ namespace {
          */
         public $attrs;
         /**
-         * @var \WP_Block_Parser_Block[]
+         * @var WP_Block_Parser_Block[]
          */
         public $innerBlocks;
         // phpcs:ignore WordPress.NamingConventions.ValidVariableName
@@ -18669,7 +18669,7 @@ namespace {
     class WP_Block_Parser_Frame
     {
         /**
-         * @var \WP_Block_Parser_Block
+         * @var WP_Block_Parser_Block
          */
         public $block;
         /**
@@ -18689,7 +18689,7 @@ namespace {
          */
         public $leading_html_start;
         /**
-         * @param \WP_Block_Parser_Block $block
+         * @param WP_Block_Parser_Block $block
          * @param int $token_start
          * @param int $token_length
          * @param int $prev_offset
@@ -18710,11 +18710,11 @@ namespace {
          */
         public $offset;
         /**
-         * @var \WP_Block_Parser_Block[]
+         * @var WP_Block_Parser_Block[]
          */
         public $output;
         /**
-         * @var \WP_Block_Parser_Frame[]
+         * @var WP_Block_Parser_Frame[]
          */
         public $stack;
         /**
@@ -18738,7 +18738,7 @@ namespace {
         }
         /**
          * @param string $inner_html
-         * @return \WP_Block_Parser_Block
+         * @return WP_Block_Parser_Block
          */
         public function freeform($inner_html)
         {
@@ -18751,7 +18751,7 @@ namespace {
         {
         }
         /**
-         * @param \WP_Block_Parser_Block $block
+         * @param WP_Block_Parser_Block $block
          * @param int $token_start
          * @param int $token_length
          * @param int|null $last_offset
@@ -18808,7 +18808,7 @@ namespace {
         {
         }
         /**
-         * @return \WP_Block_Pattern_Categories_Registry
+         * @return WP_Block_Pattern_Categories_Registry
          */
         public static function get_instance()
         {
@@ -18869,7 +18869,7 @@ namespace {
         {
         }
         /**
-         * @return \WP_Block_Patterns_Registry
+         * @return WP_Block_Patterns_Registry
          */
         public static function get_instance()
         {
@@ -18931,7 +18931,7 @@ namespace {
         {
         }
         /**
-         * @return \WP_Block_Styles_Registry
+         * @return WP_Block_Styles_Registry
          */
         public static function get_instance()
         {
@@ -18945,7 +18945,7 @@ namespace {
          */
         public static $block_to_render = \null;
         /**
-         * @return \WP_Block_Supports
+         * @return WP_Block_Supports
          */
         public static function get_instance()
         {
@@ -19043,9 +19043,9 @@ namespace {
     final class WP_Block_Type_Registry
     {
         /**
-         * @param string|\WP_Block_Type $name
+         * @param string|WP_Block_Type $name
          * @param array $args
-         * @return \WP_Block_Type|false
+         * @return WP_Block_Type|false
          * @phpstan-param array{
          *   api_version?: string,
          *   title?: string,
@@ -19080,21 +19080,21 @@ namespace {
         {
         }
         /**
-         * @param string|\WP_Block_Type $name
-         * @return \WP_Block_Type|false
+         * @param string|WP_Block_Type $name
+         * @return WP_Block_Type|false
          */
         public function unregister($name)
         {
         }
         /**
          * @param string $name
-         * @return \WP_Block_Type|null
+         * @return WP_Block_Type|null
          */
         public function get_registered($name)
         {
         }
         /**
-         * @return \WP_Block_Type[]
+         * @return WP_Block_Type[]
          */
         public function get_all_registered()
         {
@@ -19110,7 +19110,7 @@ namespace {
         {
         }
         /**
-         * @return \WP_Block_Type_Registry
+         * @return WP_Block_Type_Registry
          */
         public static function get_instance()
         {
@@ -19379,7 +19379,7 @@ namespace {
          */
         public $name;
         /**
-         * @var \WP_Block_Type
+         * @var WP_Block_Type
          */
         public $block_type;
         /**
@@ -19391,11 +19391,11 @@ namespace {
          */
         protected $available_context;
         /**
-         * @var \WP_Block_Type_Registry
+         * @var WP_Block_Type_Registry
          */
         protected $registry;
         /**
-         * @var \WP_Block_List
+         * @var WP_Block_List
          */
         public $inner_blocks = array();
         /**
@@ -19415,7 +19415,7 @@ namespace {
          *   innerContent?: array,
          * } $block
          * @param array $available_context
-         * @param \WP_Block_Type_Registry $registry
+         * @param WP_Block_Type_Registry $registry
          */
         public function __construct($block, $available_context = array(), $registry = \null)
         {
@@ -19440,8 +19440,8 @@ namespace {
     class WP_Classic_To_Block_Menu_Converter
     {
         /**
-         * @param \WP_Term $menu
-         * @return string|\WP_Error
+         * @param WP_Term $menu
+         * @return string|WP_Error
          */
         public static function convert($menu)
         {
@@ -19455,7 +19455,7 @@ namespace {
          */
         public $request;
         /**
-         * @var \WP_Meta_Query
+         * @var WP_Meta_Query
          */
         public $meta_query = \false;
         /**
@@ -19471,7 +19471,7 @@ namespace {
          */
         protected $filtered_where_clause;
         /**
-         * @var \WP_Date_Query
+         * @var WP_Date_Query
          */
         public $date_query = \false;
         /**
@@ -19483,7 +19483,7 @@ namespace {
          */
         public $query_var_defaults;
         /**
-         * @var int[]|\WP_Comment[]
+         * @var int[]|WP_Comment[]
          */
         public $comments;
         /**
@@ -19619,7 +19619,7 @@ namespace {
         {
         }
         /**
-         * @return int|int[]|\WP_Comment[]
+         * @return int|int[]|WP_Comment[]
          */
         public function get_comments()
         {
@@ -19631,7 +19631,7 @@ namespace {
         {
         }
         /**
-         * @param \WP_Comment[] $comments
+         * @param WP_Comment[] $comments
          * @return array
          */
         protected function fill_descendants($comments)
@@ -19725,13 +19725,13 @@ namespace {
         public $user_id = 0;
         /**
          * @param int $id
-         * @return \WP_Comment|false
+         * @return WP_Comment|false
          */
         public static function get_instance($id)
         {
         }
         /**
-         * @param \WP_Comment $comment
+         * @param WP_Comment $comment
          */
         public function __construct($comment)
         {
@@ -19749,20 +19749,20 @@ namespace {
          *   hierarchical?: string,
          *   orderby?: string|array,
          * } $args
-         * @return \WP_Comment[]
+         * @return WP_Comment[]
          */
         public function get_children($args = array())
         {
         }
         /**
-         * @param \WP_Comment $child
+         * @param WP_Comment $child
          */
         public function add_child(\WP_Comment $child)
         {
         }
         /**
          * @param int $child_id
-         * @return \WP_Comment|false
+         * @return WP_Comment|false
          */
         public function get_child($child_id)
         {
@@ -19800,7 +19800,7 @@ namespace {
          */
         public $instance_number;
         /**
-         * @var \WP_Customize_Manager
+         * @var WP_Customize_Manager
          */
         public $manager;
         /**
@@ -19812,7 +19812,7 @@ namespace {
          */
         public $settings;
         /**
-         * @var string|\WP_Customize_Setting|null
+         * @var string|WP_Customize_Setting|null
          */
         public $setting = 'default';
         /**
@@ -19860,7 +19860,7 @@ namespace {
          */
         public $active_callback = '';
         /**
-         * @param \WP_Customize_Manager $manager
+         * @param WP_Customize_Manager $manager
          * @param string $id
          * @phpstan-param array{
          *   instance_number?: int,
@@ -19969,15 +19969,15 @@ namespace {
     final class WP_Customize_Manager
     {
         /**
-         * @var \WP_Customize_Widgets
+         * @var WP_Customize_Widgets
          */
         public $widgets;
         /**
-         * @var \WP_Customize_Nav_Menus
+         * @var WP_Customize_Nav_Menus
          */
         public $nav_menus;
         /**
-         * @var \WP_Customize_Selective_Refresh
+         * @var WP_Customize_Selective_Refresh
          */
         public $selective_refresh;
         /**
@@ -20055,7 +20055,7 @@ namespace {
         {
         }
         /**
-         * @return \WP_Theme
+         * @return WP_Theme
          */
         public function theme()
         {
@@ -20149,7 +20149,7 @@ namespace {
         {
         }
         /**
-         * @param \WP_Customize_Setting $setting
+         * @param WP_Customize_Setting $setting
          * @param mixed $default_value
          * @return string|mixed
          */
@@ -20263,7 +20263,7 @@ namespace {
         {
         }
         /**
-         * @param true|\WP_Error $validity
+         * @param true|WP_Error $validity
          * @return true|array
          */
         public function prepare_setting_validity_for_js($validity)
@@ -20282,7 +20282,7 @@ namespace {
          *   starter_content?: bool,
          *   autosave?: bool,
          * } $args
-         * @return array|\WP_Error
+         * @return array|WP_Error
          */
         public function save_changeset_post($args = array())
         {
@@ -20297,7 +20297,7 @@ namespace {
         {
         }
         /**
-         * @param int|\WP_Post $post
+         * @param int|WP_Post $post
          * @return mixed
          */
         public function trash_changeset_post($post)
@@ -20357,8 +20357,8 @@ namespace {
         }
         /**
          * @param bool $post_has_changed
-         * @param \WP_Post $latest_revision
-         * @param \WP_Post $post
+         * @param WP_Post $latest_revision
+         * @param WP_Post $post
          * @return bool
          */
         public function _filter_revision_post_has_changed($post_has_changed, $latest_revision, $post)
@@ -20366,7 +20366,7 @@ namespace {
         }
         /**
          * @param int $changeset_post_id
-         * @return true|\WP_Error
+         * @return true|WP_Error
          */
         public function _publish_changeset_values($changeset_post_id)
         {
@@ -20384,9 +20384,9 @@ namespace {
         {
         }
         /**
-         * @param \WP_Customize_Setting|string $id
+         * @param WP_Customize_Setting|string $id
          * @param array $args
-         * @return \WP_Customize_Setting
+         * @return WP_Customize_Setting
          * @phpstan-param array{
          *   type?: string,
          *   capability?: string,
@@ -20411,7 +20411,7 @@ namespace {
         }
         /**
          * @param string $id
-         * @return \WP_Customize_Setting|void
+         * @return WP_Customize_Setting|void
          */
         public function get_setting($id)
         {
@@ -20423,9 +20423,9 @@ namespace {
         {
         }
         /**
-         * @param \WP_Customize_Panel|string $id
+         * @param WP_Customize_Panel|string $id
          * @param array $args
-         * @return \WP_Customize_Panel
+         * @return WP_Customize_Panel
          * @phpstan-param array{
          *   priority?: int,
          *   capability?: string,
@@ -20441,7 +20441,7 @@ namespace {
         }
         /**
          * @param string $id
-         * @return \WP_Customize_Panel|void
+         * @return WP_Customize_Panel|void
          */
         public function get_panel($id)
         {
@@ -20462,9 +20462,9 @@ namespace {
         {
         }
         /**
-         * @param \WP_Customize_Section|string $id
+         * @param WP_Customize_Section|string $id
          * @param array $args
-         * @return \WP_Customize_Section
+         * @return WP_Customize_Section
          * @phpstan-param array{
          *   priority?: int,
          *   panel?: string,
@@ -20482,7 +20482,7 @@ namespace {
         }
         /**
          * @param string $id
-         * @return \WP_Customize_Section|void
+         * @return WP_Customize_Section|void
          */
         public function get_section($id)
         {
@@ -20503,9 +20503,9 @@ namespace {
         {
         }
         /**
-         * @param \WP_Customize_Control|string $id
+         * @param WP_Customize_Control|string $id
          * @param array $args
-         * @return \WP_Customize_Control
+         * @return WP_Customize_Control
          * @phpstan-param array{
          *   instance_number?: int,
          *   manager?: WP_Customize_Manager,
@@ -20530,7 +20530,7 @@ namespace {
         }
         /**
          * @param string $id
-         * @return \WP_Customize_Control|void
+         * @return WP_Customize_Control|void
          */
         public function get_control($id)
         {
@@ -20672,15 +20672,15 @@ namespace {
         }
         /**
          * @param string $value
-         * @param \WP_Customize_Setting $setting
-         * @return string|\WP_Error
+         * @param WP_Customize_Setting $setting
+         * @return string|WP_Error
          */
         public function _sanitize_background_setting($value, $setting)
         {
         }
         /**
          * @param array $response
-         * @param \WP_Customize_Selective_Refresh $selective_refresh
+         * @param WP_Customize_Selective_Refresh $selective_refresh
          * @param array $partials
          * @return array
          */
@@ -20688,7 +20688,7 @@ namespace {
         {
         }
         /**
-         * @param \WP_Error $validity
+         * @param WP_Error $validity
          * @param mixed $value
          * @return mixed
          */
@@ -20696,7 +20696,7 @@ namespace {
         {
         }
         /**
-         * @param \WP_Error $validity
+         * @param WP_Error $validity
          * @param mixed $value
          * @return mixed
          */
@@ -20721,11 +20721,11 @@ namespace {
     final class WP_Customize_Nav_Menus
     {
         /**
-         * @var \WP_Customize_Manager
+         * @var WP_Customize_Manager
          */
         public $manager;
         /**
-         * @param \WP_Customize_Manager $manager
+         * @param WP_Customize_Manager $manager
          * @phpstan-return void
          */
         public function __construct($manager)
@@ -20748,7 +20748,7 @@ namespace {
          * @param string $object_type
          * @param string $object_name
          * @param int $page
-         * @return array|\WP_Error
+         * @return array|WP_Error
          */
         public function load_available_items_query($object_type = 'post_type', $object_name = 'page', $page = 0)
         {
@@ -20806,7 +20806,7 @@ namespace {
          *   post_name?: string,
          *   post_content?: string,
          * } $postarr
-         * @return \WP_Post|\WP_Error
+         * @return WP_Post|WP_Error
          */
         public function insert_auto_draft_post($postarr)
         {
@@ -20849,7 +20849,7 @@ namespace {
         {
         }
         /**
-         * @param \WP_Customize_Setting $setting
+         * @param WP_Customize_Setting $setting
          */
         public function save_nav_menus_created_posts($setting)
         {
@@ -20890,7 +20890,7 @@ namespace {
         {
         }
         /**
-         * @param \WP_Customize_Partial $partial
+         * @param WP_Customize_Partial $partial
          * @param array $nav_menu_args
          * @return string|false
          */
@@ -20910,7 +20910,7 @@ namespace {
          */
         public $instance_number;
         /**
-         * @var \WP_Customize_Manager
+         * @var WP_Customize_Manager
          */
         public $manager;
         /**
@@ -20954,7 +20954,7 @@ namespace {
          */
         public $active_callback = '';
         /**
-         * @param \WP_Customize_Manager $manager
+         * @param WP_Customize_Manager $manager
          * @param string $id
          * @phpstan-param array{
          *   priority?: int,
@@ -21033,7 +21033,7 @@ namespace {
          */
         public $instance_number;
         /**
-         * @var \WP_Customize_Manager
+         * @var WP_Customize_Manager
          */
         public $manager;
         /**
@@ -21081,7 +21081,7 @@ namespace {
          */
         public $description_hidden = \false;
         /**
-         * @param \WP_Customize_Manager $manager
+         * @param WP_Customize_Manager $manager
          * @param string $id
          * @phpstan-param array{
          *   priority?: int,
@@ -21148,7 +21148,7 @@ namespace {
     class WP_Customize_Setting
     {
         /**
-         * @var \WP_Customize_Manager
+         * @var WP_Customize_Manager
          */
         public $manager;
         /**
@@ -21208,7 +21208,7 @@ namespace {
          */
         protected $is_multidimensional_aggregated = \false;
         /**
-         * @param \WP_Customize_Manager $manager
+         * @param WP_Customize_Manager $manager
          * @param string $id
          * @phpstan-param array{
          *   type?: string,
@@ -21292,14 +21292,14 @@ namespace {
         }
         /**
          * @param string|array $value
-         * @return string|array|null|\WP_Error
+         * @return string|array|null|WP_Error
          */
         public function sanitize($value)
         {
         }
         /**
          * @param mixed $value
-         * @return true|\WP_Error
+         * @return true|WP_Error
          */
         public function validate($value)
         {
@@ -21395,11 +21395,11 @@ namespace {
     final class WP_Customize_Widgets
     {
         /**
-         * @var \WP_Customize_Manager
+         * @var WP_Customize_Manager
          */
         public $manager;
         /**
-         * @param \WP_Customize_Manager $manager
+         * @param WP_Customize_Manager $manager
          * @phpstan-return void
          */
         public function __construct($manager)
@@ -21487,7 +21487,7 @@ namespace {
         }
         /**
          * @param string $setting_id
-         * @return array|\WP_Error
+         * @return array|WP_Error
          */
         public function parse_widget_setting_id($setting_id)
         {
@@ -21639,7 +21639,7 @@ namespace {
         }
         /**
          * @param string $widget_id
-         * @return array|\WP_Error
+         * @return array|WP_Error
          */
         public function call_widget_update($widget_id)
         {
@@ -21704,7 +21704,7 @@ namespace {
         {
         }
         /**
-         * @param \WP_Customize_Partial $partial
+         * @param WP_Customize_Partial $partial
          * @phpstan-param array{
          *   sidebar_id?: string,
          *   sidebar_instance_number?: int,
@@ -21895,7 +21895,7 @@ namespace {
     class WP_Dependencies
     {
         /**
-         * @var \_WP_Dependency[]
+         * @var _WP_Dependency[]
          */
         public $registered = array();
         /**
@@ -22004,7 +22004,7 @@ namespace {
         /**
          * @param string $handle
          * @param string $status
-         * @return bool|\_WP_Dependency
+         * @return bool|_WP_Dependency
          */
         public function query($handle, $status = 'registered')
         {
@@ -22095,7 +22095,7 @@ namespace {
         {
         }
         /**
-         * @param \WP_Block_Type $block_type
+         * @param WP_Block_Type $block_type
          */
         public static function register_duotone_support($block_type)
         {
@@ -22103,7 +22103,7 @@ namespace {
         /**
          * @param string $block_content
          * @param array $block
-         * @param \WP_Block $wp_block
+         * @param WP_Block $wp_block
          * @return string
          */
         public static function render_duotone_support($block_content, $block, $wp_block)
@@ -22483,20 +22483,20 @@ namespace {
         {
         }
         /**
-         * @param \WP_Error $error
+         * @param WP_Error $error
          */
         public function merge_from(\WP_Error $error)
         {
         }
         /**
-         * @param \WP_Error $error
+         * @param WP_Error $error
          */
         public function export_to(\WP_Error $error)
         {
         }
         /**
-         * @param \WP_Error $from
-         * @param \WP_Error $to
+         * @param WP_Error $from
+         * @param WP_Error $to
          */
         protected static function copy_errors(\WP_Error $from, \WP_Error $to)
         {
@@ -22526,7 +22526,7 @@ namespace {
         }
         /**
          * @param array $error
-         * @param true|\WP_Error $handled
+         * @param true|WP_Error $handled
          * @phpstan-return void
          */
         protected function display_error_template($error, $handled)
@@ -22534,7 +22534,7 @@ namespace {
         }
         /**
          * @param array $error
-         * @param true|\WP_Error $handled
+         * @param true|WP_Error $handled
          */
         protected function display_default_error_template($error, $handled)
         {
@@ -22564,7 +22564,7 @@ namespace {
         {
         }
         /**
-         * @param \SimplePie $data
+         * @param SimplePie $data
          * @return true
          */
         public function save($data)
@@ -22602,7 +22602,7 @@ namespace {
          * @param string $location
          * @param string $filename
          * @param string $extension
-         * @return \WP_Feed_Cache_Transient
+         * @return WP_Feed_Cache_Transient
          */
         public function create($location, $filename, $extension)
         {
@@ -22682,7 +22682,7 @@ namespace {
         }
         /**
          * @param array $filters
-         * @return \WP_Hook[]
+         * @return WP_Hook[]
          */
         public static function build_preinitialized_hooks($filters)
         {
@@ -22834,7 +22834,7 @@ namespace {
         /**
          * @param string $url
          * @param string|array $args
-         * @return array|\WP_Error
+         * @return array|WP_Error
          */
         public function request($url, $args = array())
         {
@@ -22907,7 +22907,7 @@ namespace {
     {
         public $scheme;
         /**
-         * @var \IXR_Error
+         * @var IXR_Error
          */
         public $error;
         /**
@@ -23089,7 +23089,7 @@ namespace {
     class WP_HTTP_Requests_Response extends \WP_HTTP_Response
     {
         /**
-         * @var \WpOrg\Requests\Response
+         * @var WpOrgRequestsResponse
          */
         protected $response;
         /**
@@ -23097,20 +23097,20 @@ namespace {
          */
         protected $filename;
         /**
-         * @param \WpOrg\Requests\Response $response
+         * @param WpOrgRequestsResponse $response
          * @param string $filename
          */
         public function __construct(\WpOrg\Requests\Response $response, $filename = '')
         {
         }
         /**
-         * @return \WpOrg\Requests\Response
+         * @return WpOrgRequestsResponse
          */
         public function get_response_object()
         {
         }
         /**
-         * @return \WpOrg\Requests\Utility\CaseInsensitiveDictionary
+         * @return WpOrgRequestsUtilityCaseInsensitiveDictionary
          */
         public function get_headers()
         {
@@ -23154,7 +23154,7 @@ namespace {
         {
         }
         /**
-         * @return \WP_HTTP_Cookie[]
+         * @return WP_HTTP_Cookie[]
          */
         public function get_cookies()
         {
@@ -23172,7 +23172,7 @@ namespace {
         /**
          * @param string $url
          * @param string|array $args
-         * @return array|\WP_Error
+         * @return array|WP_Error
          */
         public function request($url, $args = array())
         {
@@ -23283,15 +23283,15 @@ namespace {
          *   filename?: string,
          *   limit_response_size?: int,
          * } $args
-         * @return array|\WP_Error
-         * @phpstan-return array{headers: \WpOrg\Requests\Utility\CaseInsensitiveDictionary, body: string, response: array{code: int,message: string}, cookies: array<int, \WP_Http_Cookie>, filename: string|null, http_response: \WP_HTTP_Requests_Response}|\WP_Error
+         * @return array|WP_Error
+         * @phpstan-return array{headers: WpOrgRequestsUtilityCaseInsensitiveDictionary, body: string, response: array{code: int,message: string}, cookies: array<int, WP_Http_Cookie>, filename: string|null, http_response: WP_HTTP_Requests_Response}|WP_Error
          */
         public function request($url, $args = array())
         {
         }
         /**
          * @param array $cookies
-         * @return \WpOrg\Requests\Cookie\Jar
+         * @return WpOrgRequestsCookieJar
          */
         public static function normalize_cookies($cookies)
         {
@@ -23301,7 +23301,7 @@ namespace {
          * @param array $headers
          * @param string|array $data
          * @param array $options
-         * @param \WpOrg\Requests\Response $original
+         * @param WpOrgRequestsResponse $original
          */
         public static function browser_redirect_compatibility($location, $headers, $data, &$options, $original)
         {
@@ -23323,8 +23323,8 @@ namespace {
         /**
          * @param string $url
          * @param string|array $args
-         * @return array|\WP_Error
-         * @phpstan-return array{headers: \WpOrg\Requests\Utility\CaseInsensitiveDictionary, body: string, response: array{code: int,message: string}, cookies: array<int, \WP_Http_Cookie>, filename: string|null, http_response: \WP_HTTP_Requests_Response}|\WP_Error
+         * @return array|WP_Error
+         * @phpstan-return array{headers: WpOrgRequestsUtilityCaseInsensitiveDictionary, body: string, response: array{code: int,message: string}, cookies: array<int, WP_Http_Cookie>, filename: string|null, http_response: WP_HTTP_Requests_Response}|WP_Error
          */
         public function post($url, $args = array())
         {
@@ -23332,8 +23332,8 @@ namespace {
         /**
          * @param string $url
          * @param string|array $args
-         * @return array|\WP_Error
-         * @phpstan-return array{headers: \WpOrg\Requests\Utility\CaseInsensitiveDictionary, body: string, response: array{code: int,message: string}, cookies: array<int, \WP_Http_Cookie>, filename: string|null, http_response: \WP_HTTP_Requests_Response}|\WP_Error
+         * @return array|WP_Error
+         * @phpstan-return array{headers: WpOrgRequestsUtilityCaseInsensitiveDictionary, body: string, response: array{code: int,message: string}, cookies: array<int, WP_Http_Cookie>, filename: string|null, http_response: WP_HTTP_Requests_Response}|WP_Error
          */
         public function get($url, $args = array())
         {
@@ -23341,8 +23341,8 @@ namespace {
         /**
          * @param string $url
          * @param string|array $args
-         * @return array|\WP_Error
-         * @phpstan-return array{headers: \WpOrg\Requests\Utility\CaseInsensitiveDictionary, body: string, response: array{code: int,message: string}, cookies: array<int, \WP_Http_Cookie>, filename: string|null, http_response: \WP_HTTP_Requests_Response}|\WP_Error
+         * @return array|WP_Error
+         * @phpstan-return array{headers: WpOrgRequestsUtilityCaseInsensitiveDictionary, body: string, response: array{code: int,message: string}, cookies: array<int, WP_Http_Cookie>, filename: string|null, http_response: WP_HTTP_Requests_Response}|WP_Error
          */
         public function head($url, $args = array())
         {
@@ -23411,7 +23411,7 @@ namespace {
          * @param string $url
          * @param array $args
          * @param array $response
-         * @return array|false|\WP_Error
+         * @return array|false|WP_Error
          */
         public static function handle_redirects($url, $args, $response)
         {
@@ -23456,13 +23456,13 @@ namespace {
         {
         }
         /**
-         * @return true|\WP_Error
+         * @return true|WP_Error
          */
         public abstract function load();
         /**
          * @param string $destfilename
          * @param string $mime_type
-         * @phpstan-return \WP_Error|array{
+         * @phpstan-return WP_Error|array{
          *   path: string,
          *   file: string,
          *   width: int,
@@ -23479,7 +23479,7 @@ namespace {
          *   0: string,
          *   1: string,
          * } $crop
-         * @return true|\WP_Error
+         * @return true|WP_Error
          */
         public abstract function resize($max_w, $max_h, $crop = \false);
         /**
@@ -23499,23 +23499,23 @@ namespace {
          * @param int $dst_w
          * @param int $dst_h
          * @param bool $src_abs
-         * @return true|\WP_Error
+         * @return true|WP_Error
          */
         public abstract function crop($src_x, $src_y, $src_w, $src_h, $dst_w = \null, $dst_h = \null, $src_abs = \false);
         /**
          * @param float $angle
-         * @return true|\WP_Error
+         * @return true|WP_Error
          */
         public abstract function rotate($angle);
         /**
          * @param bool $horz
          * @param bool $vert
-         * @return true|\WP_Error
+         * @return true|WP_Error
          */
         public abstract function flip($horz, $vert);
         /**
          * @param string $mime_type
-         * @return true|\WP_Error
+         * @return true|WP_Error
          */
         public abstract function stream($mime_type = \null);
         /**
@@ -23543,7 +23543,7 @@ namespace {
         }
         /**
          * @param int $quality
-         * @return true|\WP_Error
+         * @return true|WP_Error
          */
         public function set_quality($quality = \null)
         {
@@ -23579,7 +23579,7 @@ namespace {
         {
         }
         /**
-         * @return bool|\WP_Error
+         * @return bool|WP_Error
          */
         public function maybe_exif_rotate()
         {
@@ -23611,7 +23611,7 @@ namespace {
     class WP_Image_Editor_GD extends \WP_Image_Editor
     {
         /**
-         * @var resource|\GdImage
+         * @var resource|GdImage
          */
         protected $image;
         public function __destruct()
@@ -23632,7 +23632,7 @@ namespace {
         {
         }
         /**
-         * @return true|\WP_Error
+         * @return true|WP_Error
          */
         public function load()
         {
@@ -23652,7 +23652,7 @@ namespace {
          *   0: string,
          *   1: string,
          * } $crop
-         * @return true|\WP_Error
+         * @return true|WP_Error
          */
         public function resize($max_w, $max_h, $crop = \false)
         {
@@ -23664,7 +23664,7 @@ namespace {
          *   0: string,
          *   1: string,
          * } $crop
-         * @return resource|\GdImage|\WP_Error
+         * @return resource|GdImage|WP_Error
          */
         protected function _resize($max_w, $max_h, $crop = \false)
         {
@@ -23686,7 +23686,7 @@ namespace {
          *   height?: int,
          *   crop?: bool|array,
          * } $size_data
-         * @return array|\WP_Error
+         * @return array|WP_Error
          */
         public function make_subsize($size_data)
         {
@@ -23699,14 +23699,14 @@ namespace {
          * @param int $dst_w
          * @param int $dst_h
          * @param bool $src_abs
-         * @return true|\WP_Error
+         * @return true|WP_Error
          */
         public function crop($src_x, $src_y, $src_w, $src_h, $dst_w = \null, $dst_h = \null, $src_abs = \false)
         {
         }
         /**
          * @param float $angle
-         * @return true|\WP_Error
+         * @return true|WP_Error
          */
         public function rotate($angle)
         {
@@ -23714,7 +23714,7 @@ namespace {
         /**
          * @param bool $horz
          * @param bool $vert
-         * @return true|\WP_Error
+         * @return true|WP_Error
          */
         public function flip($horz, $vert)
         {
@@ -23722,7 +23722,7 @@ namespace {
         /**
          * @param string|null $destfilename
          * @param string|null $mime_type
-         * @phpstan-return \WP_Error|array{
+         * @phpstan-return WP_Error|array{
          *   path: string,
          *   file: string,
          *   width: int,
@@ -23735,10 +23735,10 @@ namespace {
         {
         }
         /**
-         * @param resource|\GdImage $image
+         * @param resource|GdImage $image
          * @param string|null $filename
          * @param string|null $mime_type
-         * @phpstan-return \WP_Error|array{
+         * @phpstan-return WP_Error|array{
          *   path: string,
          *   file: string,
          *   width: int,
@@ -23770,7 +23770,7 @@ namespace {
     class WP_Image_Editor_Imagick extends \WP_Image_Editor
     {
         /**
-         * @var \Imagick
+         * @var Imagick
          */
         protected $image;
         public function __destruct()
@@ -23791,14 +23791,14 @@ namespace {
         {
         }
         /**
-         * @return true|\WP_Error
+         * @return true|WP_Error
          */
         public function load()
         {
         }
         /**
          * @param int $quality
-         * @return true|\WP_Error
+         * @return true|WP_Error
          */
         public function set_quality($quality = \null)
         {
@@ -23806,7 +23806,7 @@ namespace {
         /**
          * @param int $width
          * @param int $height
-         * @return true|\WP_Error
+         * @return true|WP_Error
          */
         protected function update_size($width = \null, $height = \null)
         {
@@ -23824,7 +23824,7 @@ namespace {
          *   0: string,
          *   1: string,
          * } $crop
-         * @return true|\WP_Error
+         * @return true|WP_Error
          */
         public function resize($max_w, $max_h, $crop = \false)
         {
@@ -23834,7 +23834,7 @@ namespace {
          * @param int $dst_h
          * @param string $filter_name
          * @param bool $strip_meta
-         * @return void|\WP_Error
+         * @return void|WP_Error
          */
         protected function thumbnail_image($dst_w, $dst_h, $filter_name = 'FILTER_TRIANGLE', $strip_meta = \true)
         {
@@ -23856,7 +23856,7 @@ namespace {
          *   height?: int,
          *   crop?: bool|array,
          * } $size_data
-         * @return array|\WP_Error
+         * @return array|WP_Error
          */
         public function make_subsize($size_data)
         {
@@ -23869,14 +23869,14 @@ namespace {
          * @param int $dst_w
          * @param int $dst_h
          * @param bool $src_abs
-         * @return true|\WP_Error
+         * @return true|WP_Error
          */
         public function crop($src_x, $src_y, $src_w, $src_h, $dst_w = \null, $dst_h = \null, $src_abs = \false)
         {
         }
         /**
          * @param float $angle
-         * @return true|\WP_Error
+         * @return true|WP_Error
          */
         public function rotate($angle)
         {
@@ -23884,13 +23884,13 @@ namespace {
         /**
          * @param bool $horz
          * @param bool $vert
-         * @return true|\WP_Error
+         * @return true|WP_Error
          */
         public function flip($horz, $vert)
         {
         }
         /**
-         * @return bool|\WP_Error
+         * @return bool|WP_Error
          */
         public function maybe_exif_rotate()
         {
@@ -23898,7 +23898,7 @@ namespace {
         /**
          * @param string $destfilename
          * @param string $mime_type
-         * @phpstan-return \WP_Error|array{
+         * @phpstan-return WP_Error|array{
          *   path: string,
          *   file: string,
          *   width: int,
@@ -23914,10 +23914,10 @@ namespace {
         {
         }
         /**
-         * @param \Imagick $image
+         * @param Imagick $image
          * @param string $filename
          * @param string $mime_type
-         * @phpstan-return \WP_Error|array{
+         * @phpstan-return WP_Error|array{
          *   path: string,
          *   file: string,
          *   width: int,
@@ -23931,25 +23931,25 @@ namespace {
         }
         /**
          * @param string $mime_type
-         * @return true|\WP_Error
+         * @return true|WP_Error
          */
         public function stream($mime_type = \null)
         {
         }
         /**
-         * @return true|\WP_Error
+         * @return true|WP_Error
          */
         protected function strip_meta()
         {
         }
         /**
-         * @return string|\WP_Error
+         * @return string|WP_Error
          */
         protected function pdf_setup()
         {
         }
         /**
-         * @return true|\WP_Error
+         * @return true|WP_Error
          */
         protected function pdf_load_source()
         {
@@ -24374,14 +24374,14 @@ namespace {
         /**
          * @phpstan-param 'term'|'comment' $object_type
          * @param array $object_ids
-         * @return void|\WP_Error
+         * @return void|WP_Error
          */
         public function queue_objects($object_type, $object_ids)
         {
         }
         /**
          * @phpstan-param 'comment'|'term' $object_type
-         * @return void|\WP_Error
+         * @return void|WP_Error
          */
         public function reset_queue($object_type)
         {
@@ -24422,7 +24422,7 @@ namespace {
         {
         }
         /**
-         * @return \WP_Post|null
+         * @return WP_Post|null
          */
         public static function get_fallback()
         {
@@ -24571,13 +24571,13 @@ namespace {
         public $site_name = '';
         /**
          * @param int $network_id
-         * @return \WP_Network|false
+         * @return WP_Network|false
          */
         public static function get_instance($network_id)
         {
         }
         /**
-         * @param \WP_Network|object $network
+         * @param WP_Network|object $network
          */
         public function __construct($network)
         {
@@ -24607,7 +24607,7 @@ namespace {
          * @param string $domain
          * @param string $path
          * @param int|null $segments
-         * @return \WP_Network|false
+         * @return WP_Network|false
          */
         public static function get_by_path($domain = '', $path = '', $segments = \null)
         {
@@ -24815,21 +24815,21 @@ namespace {
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return array|\WP_Error
+         * @param WP_REST_Request $request
+         * @return array|WP_Error
          */
         public function get_item($request)
         {
         }
         /**
-         * @return true|\WP_Error
+         * @return true|WP_Error
          */
         public function get_proxy_item_permissions_check()
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return object|\WP_Error
+         * @param WP_REST_Request $request
+         * @return object|WP_Error
          */
         public function get_proxy_item($request)
         {
@@ -25217,7 +25217,7 @@ namespace {
          */
         public $label;
         /**
-         * @var \stdClass
+         * @var stdClass
          */
         public $labels;
         /**
@@ -25313,7 +25313,7 @@ namespace {
          */
         public $_edit_link = 'post.php?post=%d';
         /**
-         * @var \stdClass
+         * @var stdClass
          */
         public $cap;
         /**
@@ -25341,7 +25341,7 @@ namespace {
          */
         public $rest_controller_class;
         /**
-         * @var \WP_REST_Controller
+         * @var WP_REST_Controller
          */
         public $rest_controller;
         /**
@@ -25349,7 +25349,7 @@ namespace {
          */
         public $revisions_rest_controller_class;
         /**
-         * @var \WP_REST_Controller
+         * @var WP_REST_Controller
          */
         public $revisions_rest_controller;
         /**
@@ -25357,7 +25357,7 @@ namespace {
          */
         public $autosave_rest_controller_class;
         /**
-         * @var \WP_REST_Controller
+         * @var WP_REST_Controller
          */
         public $autosave_rest_controller;
         /**
@@ -25451,19 +25451,19 @@ namespace {
         {
         }
         /**
-         * @return \WP_REST_Controller|null
+         * @return WP_REST_Controller|null
          */
         public function get_rest_controller()
         {
         }
         /**
-         * @return \WP_REST_Controller|null
+         * @return WP_REST_Controller|null
          */
         public function get_revisions_rest_controller()
         {
         }
         /**
-         * @return \WP_REST_Controller|null
+         * @return WP_REST_Controller|null
          */
         public function get_autosave_rest_controller()
         {
@@ -25579,13 +25579,13 @@ namespace {
         public $filter;
         /**
          * @param int $post_id
-         * @return \WP_Post|false
+         * @return WP_Post|false
          */
         public static function get_instance($post_id)
         {
         }
         /**
-         * @param \WP_Post|object $post
+         * @param WP_Post|object $post
          */
         public function __construct($post)
         {
@@ -25606,7 +25606,7 @@ namespace {
         }
         /**
          * @param string $filter
-         * @return \WP_Post
+         * @return WP_Post
          */
         public function filter($filter)
         {
@@ -25630,19 +25630,19 @@ namespace {
          */
         public $query_vars = array();
         /**
-         * @var \WP_Tax_Query|null
+         * @var WP_Tax_Query|null
          */
         public $tax_query;
         /**
-         * @var \WP_Meta_Query
+         * @var WP_Meta_Query
          */
         public $meta_query = \false;
         /**
-         * @var \WP_Date_Query
+         * @var WP_Date_Query
          */
         public $date_query = \false;
         /**
-         * @var \WP_Term|\WP_Post_Type|\WP_Post|\WP_User|null
+         * @var WP_Term|WP_Post_Type|WP_Post|WP_User|null
          */
         public $queried_object;
         /**
@@ -25654,7 +25654,7 @@ namespace {
          */
         public $request;
         /**
-         * @var \WP_Post[]|int[]
+         * @var WP_Post[]|int[]
          */
         public $posts;
         /**
@@ -25674,11 +25674,11 @@ namespace {
          */
         public $in_the_loop = \false;
         /**
-         * @var \WP_Post|null
+         * @var WP_Post|null
          */
         public $post;
         /**
-         * @var \WP_Comment[]
+         * @var WP_Comment[]
          */
         public $comments;
         /**
@@ -25690,7 +25690,7 @@ namespace {
          */
         public $current_comment = -1;
         /**
-         * @var \WP_Comment
+         * @var WP_Comment
          */
         public $comment;
         /**
@@ -25990,13 +25990,13 @@ namespace {
         {
         }
         /**
-         * @return \WP_Post[]|int[]
+         * @return WP_Post[]|int[]
          */
         public function get_posts()
         {
         }
         /**
-         * @return \WP_Post
+         * @return WP_Post
          */
         public function next_post()
         {
@@ -26006,7 +26006,7 @@ namespace {
         }
         /**
          * @return bool
-         * @phpstan-impure
+         * @phpstan-impure 
          */
         public function have_posts()
         {
@@ -26015,7 +26015,7 @@ namespace {
         {
         }
         /**
-         * @return \WP_Comment
+         * @return WP_Comment
          */
         public function next_comment()
         {
@@ -26034,13 +26034,13 @@ namespace {
         }
         /**
          * @param string|array $query
-         * @return \WP_Post[]|int[]
+         * @return WP_Post[]|int[]
          */
         public function query($query)
         {
         }
         /**
-         * @return \WP_Term|\WP_Post_Type|\WP_Post|\WP_User|null
+         * @return WP_Term|WP_Post_Type|WP_Post|WP_User|null
          */
         public function get_queried_object()
         {
@@ -26271,14 +26271,14 @@ namespace {
         {
         }
         /**
-         * @param \WP_Post|object|int $post
+         * @param WP_Post|object|int $post
          * @return true
          */
         public function setup_postdata($post)
         {
         }
         /**
-         * @param \WP_Post|object|int $post
+         * @param WP_Post|object|int $post
          * @return array|false
          */
         public function generate_postdata($post)
@@ -26329,14 +26329,14 @@ namespace {
         }
         /**
          * @param string $cookie
-         * @return true|\WP_Error
+         * @return true|WP_Error
          */
         public function validate_cookie($cookie = '')
         {
         }
         /**
          * @param string $cookie
-         * @return string|\WP_Error
+         * @return string|WP_Error
          */
         public function get_session_id_from_cookie($cookie = '')
         {
@@ -26347,7 +26347,7 @@ namespace {
     {
         const RATE_LIMIT_OPTION = 'recovery_mode_email_last_sent';
         /**
-         * @param \WP_Recovery_Mode_Link_Service $link_service
+         * @param WP_Recovery_Mode_Link_Service $link_service
          */
         public function __construct(\WP_Recovery_Mode_Link_Service $link_service)
         {
@@ -26359,7 +26359,7 @@ namespace {
          *   slug?: string,
          *   type?: string,
          * } $extension
-         * @return true|\WP_Error
+         * @return true|WP_Error
          */
         public function maybe_send_recovery_mode_email($rate_limit, $error, $extension)
         {
@@ -26391,7 +26391,7 @@ namespace {
          * @param string $token
          * @param string $key
          * @param int $ttl
-         * @return true|\WP_Error
+         * @return true|WP_Error
          */
         public function validate_recovery_mode_key($token, $key, $ttl)
         {
@@ -26409,8 +26409,8 @@ namespace {
         const LOGIN_ACTION_ENTER = 'enter_recovery_mode';
         const LOGIN_ACTION_ENTERED = 'entered_recovery_mode';
         /**
-         * @param \WP_Recovery_Mode_Cookie_Service $cookie_service
-         * @param \WP_Recovery_Mode_Key_Service $key_service
+         * @param WP_Recovery_Mode_Cookie_Service $cookie_service
+         * @param WP_Recovery_Mode_Key_Service $key_service
          */
         public function __construct(\WP_Recovery_Mode_Cookie_Service $cookie_service, \WP_Recovery_Mode_Key_Service $key_service)
         {
@@ -26462,7 +26462,7 @@ namespace {
         }
         /**
          * @param array $error
-         * @return true|\WP_Error
+         * @return true|WP_Error
          */
         public function handle_error(array $error)
         {
@@ -26945,7 +26945,7 @@ namespace {
          */
         public $roles;
         /**
-         * @var \WP_Role[]
+         * @var WP_Role[]
          */
         public $role_objects = array();
         /**
@@ -26988,7 +26988,7 @@ namespace {
          * @param string $role
          * @param string $display_name
          * @param bool[] $capabilities
-         * @return \WP_Role|void
+         * @return WP_Role|void
          */
         public function add_role($role, $display_name, $capabilities = array())
         {
@@ -27019,7 +27019,7 @@ namespace {
         }
         /**
          * @param string $role
-         * @return \WP_Role|null
+         * @return WP_Role|null
          */
         public function get_role($role)
         {
@@ -27327,7 +27327,7 @@ namespace {
         }
         /**
          * @param int $user_id
-         * @return \WP_Session_Tokens
+         * @return WP_Session_Tokens
          */
         public static final function get_instance($user_id)
         {
@@ -27458,7 +27458,7 @@ namespace {
          */
         protected $sql_clauses = array('select' => '', 'from' => '', 'where' => array(), 'groupby' => '', 'orderby' => '', 'limits' => '');
         /**
-         * @var \WP_Meta_Query
+         * @var WP_Meta_Query
          */
         public $meta_query = \false;
         /**
@@ -27466,7 +27466,7 @@ namespace {
          */
         protected $meta_query_clauses;
         /**
-         * @var \WP_Date_Query
+         * @var WP_Date_Query
          */
         public $date_query = \false;
         /**
@@ -27677,13 +27677,13 @@ namespace {
         public $lang_id = '0';
         /**
          * @param int $site_id
-         * @return \WP_Site|false
+         * @return WP_Site|false
          */
         public static function get_instance($site_id)
         {
         }
         /**
-         * @param \WP_Site|object $site
+         * @param WP_Site|object $site
          */
         public function __construct($site)
         {
@@ -27942,7 +27942,7 @@ namespace {
          */
         public $label;
         /**
-         * @var \stdClass
+         * @var stdClass
          */
         public $labels;
         /**
@@ -27998,7 +27998,7 @@ namespace {
          */
         public $object_type = \null;
         /**
-         * @var \stdClass
+         * @var stdClass
          */
         public $cap;
         /**
@@ -28030,7 +28030,7 @@ namespace {
          */
         public $rest_controller_class;
         /**
-         * @var \WP_REST_Controller
+         * @var WP_REST_Controller
          */
         public $rest_controller;
         /**
@@ -28118,7 +28118,7 @@ namespace {
         {
         }
         /**
-         * @return \WP_REST_Controller|null
+         * @return WP_REST_Controller|null
          */
         public function get_rest_controller()
         {
@@ -28141,7 +28141,7 @@ namespace {
          */
         public $request;
         /**
-         * @var \WP_Meta_Query
+         * @var WP_Meta_Query
          */
         public $meta_query = \false;
         /**
@@ -28249,13 +28249,13 @@ namespace {
         }
         /**
          * @param string|array $query
-         * @return \WP_Term[]|int[]|string[]|string
+         * @return WP_Term[]|int[]|string[]|string
          */
         public function query($query)
         {
         }
         /**
-         * @return \WP_Term[]|int[]|string[]|string
+         * @return WP_Term[]|int[]|string[]|string
          */
         public function get_terms()
         {
@@ -28268,9 +28268,9 @@ namespace {
         {
         }
         /**
-         * @param \WP_Term[] $term_objects
+         * @param WP_Term[] $term_objects
          * @param string $_fields
-         * @return \WP_Term[]|int[]|string[]
+         * @return WP_Term[]|int[]|string[]
          */
         protected function format_terms($term_objects, $_fields)
         {
@@ -28298,7 +28298,7 @@ namespace {
         }
         /**
          * @param object[]|int[] $terms
-         * @return \WP_Term[]
+         * @return WP_Term[]
          */
         protected function populate_terms($terms)
         {
@@ -28358,13 +28358,13 @@ namespace {
         /**
          * @param int $term_id
          * @param string $taxonomy
-         * @return \WP_Term|\WP_Error|false
+         * @return WP_Term|WP_Error|false
          */
         public static function get_instance($term_id, $taxonomy = \null)
         {
         }
         /**
-         * @param \WP_Term|object $term
+         * @param WP_Term|object $term
          */
         public function __construct($term)
         {
@@ -28647,7 +28647,7 @@ namespace {
         {
         }
         /**
-         * @param \WP_Upgrader $upgrader
+         * @param WP_Upgrader $upgrader
          * @phpstan-param array{
          *   action?: string,
          *   type?: string,
@@ -28679,7 +28679,7 @@ namespace {
         }
         /**
          * @param array $new_data
-         * @return \WP_Theme_JSON_Data
+         * @return WP_Theme_JSON_Data
          */
         public function update_with($new_data)
         {
@@ -28691,7 +28691,7 @@ namespace {
         {
         }
         /**
-         * @return \WP_Theme_JSON
+         * @return WP_Theme_JSON
          */
         public function get_theme_json()
         {
@@ -28705,19 +28705,19 @@ namespace {
          */
         protected static $blocks_cache = array('core' => array(), 'blocks' => array(), 'theme' => array(), 'user' => array());
         /**
-         * @var \WP_Theme_JSON
+         * @var WP_Theme_JSON
          */
         protected static $core = \null;
         /**
-         * @var \WP_Theme_JSON
+         * @var WP_Theme_JSON
          */
         protected static $blocks = \null;
         /**
-         * @var \WP_Theme_JSON
+         * @var WP_Theme_JSON
          */
         protected static $theme = \null;
         /**
-         * @var \WP_Theme_JSON
+         * @var WP_Theme_JSON
          */
         protected static $user = \null;
         /**
@@ -28754,7 +28754,7 @@ namespace {
         {
         }
         /**
-         * @return \WP_Theme_JSON
+         * @return WP_Theme_JSON
          */
         public static function get_core_data()
         {
@@ -28771,19 +28771,19 @@ namespace {
          * @phpstan-param array{
          *   with_supports?: bool,
          * } $options
-         * @return \WP_Theme_JSON
+         * @return WP_Theme_JSON
          */
         public static function get_theme_data($deprecated = array(), $options = array())
         {
         }
         /**
-         * @return \WP_Theme_JSON
+         * @return WP_Theme_JSON
          */
         public static function get_block_data()
         {
         }
         /**
-         * @param \WP_Theme $theme
+         * @param WP_Theme $theme
          * @param bool $create_post
          * @param array $post_status_filter
          * @return array
@@ -28792,14 +28792,14 @@ namespace {
         {
         }
         /**
-         * @return \WP_Theme_JSON
+         * @return WP_Theme_JSON
          */
         public static function get_user_data()
         {
         }
         /**
          * @phpstan-param 'default'|'blocks'|'theme'|'custom' $origin
-         * @return \WP_Theme_JSON
+         * @return WP_Theme_JSON
          */
         public static function get_merged_data($origin = 'custom')
         {
@@ -28835,15 +28835,15 @@ namespace {
         {
         }
         /**
-         * @param \WP_Theme_JSON $theme_json
+         * @param WP_Theme_JSON $theme_json
          * @return array
          */
         public static function get_resolved_theme_uris($theme_json)
         {
         }
         /**
-         * @param \WP_Theme_JSON $theme_json
-         * @return \WP_Theme_JSON
+         * @param WP_Theme_JSON $theme_json
+         * @return WP_Theme_JSON
          */
         public static function resolve_theme_file_uris($theme_json)
         {
@@ -29449,7 +29449,7 @@ namespace {
         {
         }
         /**
-         * @param \WP_Theme_JSON $incoming
+         * @param WP_Theme_JSON $incoming
          */
         public function merge($incoming)
         {
@@ -29579,8 +29579,8 @@ namespace {
         {
         }
         /**
-         * @param \WP_Theme_JSON $theme_json
-         * @return \WP_Theme_JSON
+         * @param WP_Theme_JSON $theme_json
+         * @return WP_Theme_JSON
          */
         public static function resolve_variables($theme_json)
         {
@@ -29613,7 +29613,7 @@ namespace {
         /**
          * @param string $theme_dir
          * @param string $theme_root
-         * @param \WP_Theme|null $_child
+         * @param WP_Theme|null $_child
          * @phpstan-return void
          */
         public function __construct($theme_dir, $theme_root, $_child = \null)
@@ -29673,7 +29673,7 @@ namespace {
         {
         }
         /**
-         * @return \WP_Error|false
+         * @return WP_Error|false
          */
         public function errors()
         {
@@ -29685,7 +29685,7 @@ namespace {
         {
         }
         /**
-         * @return \WP_Theme|false
+         * @return WP_Theme|false
          */
         public function parent()
         {
@@ -29784,7 +29784,7 @@ namespace {
         {
         }
         /**
-         * @param \WP_Post|null $post
+         * @param WP_Post|null $post
          * @param string $post_type
          * @return string[]
          */
@@ -29819,7 +29819,7 @@ namespace {
         {
         }
         /**
-         * @return \WP_Theme|false
+         * @return WP_Theme|false
          */
         public static function get_core_default_theme()
         {
@@ -29877,7 +29877,7 @@ namespace {
         {
         }
         /**
-         * @param \WP_Theme[] $themes
+         * @param WP_Theme[] $themes
          */
         public static function sort_by_name(&$themes)
         {
@@ -29903,7 +29903,7 @@ namespace {
         /**
          * @param array $mappings
          * @param int $key_length
-         * @return \WP_Token_Map|null
+         * @return WP_Token_Map|null
          */
         public static function from_array($mappings, $key_length = 2)
         {
@@ -29917,7 +29917,7 @@ namespace {
          *   small_words?: string,
          *   small_mappings?: array,
          * } $state
-         * @return \WP_Token_Map
+         * @return WP_Token_Map
          */
         public static function from_precomputed_table($state)
         {
@@ -30010,7 +30010,7 @@ namespace {
          */
         public $query_vars = array();
         /**
-         * @var \WP_Meta_Query
+         * @var WP_Meta_Query
          */
         public $meta_query = \false;
         /**
@@ -30262,7 +30262,7 @@ namespace {
          */
         public $confirm_key = '';
         /**
-         * @param \WP_Post|object $post
+         * @param WP_Post|object $post
          */
         public function __construct($post)
         {
@@ -30272,7 +30272,7 @@ namespace {
     class WP_User
     {
         /**
-         * @var \stdClass
+         * @var stdClass
          */
         public $data;
         /**
@@ -30300,7 +30300,7 @@ namespace {
          */
         public $filter = \null;
         /**
-         * @param int|string|\stdClass|\WP_User $id
+         * @param int|string|stdClass|WP_User $id
          * @param string $name
          * @param int $site_id
          * @phpstan-return void
@@ -30494,13 +30494,13 @@ namespace {
         {
         }
         /**
-         * @param string|\WP_Widget $widget
+         * @param string|WP_Widget $widget
          */
         public function register($widget)
         {
         }
         /**
-         * @param string|\WP_Widget $widget
+         * @param string|WP_Widget $widget
          */
         public function unregister($widget)
         {
@@ -30510,7 +30510,7 @@ namespace {
         }
         /**
          * @param string $id_base
-         * @return \WP_Widget|null
+         * @return WP_Widget|null
          */
         public function get_widget_object($id_base)
         {
@@ -30746,7 +30746,7 @@ namespace {
          */
         public $blog_options;
         /**
-         * @var \IXR_Error
+         * @var IXR_Error
          */
         public $error;
         /**
@@ -30759,7 +30759,7 @@ namespace {
         /**
          * @param string $name
          * @param array $arguments
-         * @return array|\IXR_Error|false
+         * @return array|IXR_Error|false
          */
         public function __call($name, $arguments)
         {
@@ -30786,7 +30786,7 @@ namespace {
         /**
          * @param string $username
          * @param string $password
-         * @return \WP_User|false
+         * @return WP_User|false
          */
         public function login($username, $password)
         {
@@ -30807,7 +30807,7 @@ namespace {
         {
         }
         /**
-         * @param \IXR_Error|string $error
+         * @param IXR_Error|string $error
          * @param false $message
          */
         public function error($error, $message = \false)
@@ -30849,7 +30849,7 @@ namespace {
          *   0: string,
          *   1: string,
          * } $args
-         * @return array|\IXR_Error
+         * @return array|IXR_Error
          */
         public function wp_getUsersBlogs($args)
         {
@@ -30863,7 +30863,7 @@ namespace {
         {
         }
         /**
-         * @param \WP_Taxonomy $taxonomy
+         * @param WP_Taxonomy $taxonomy
          * @param array $fields
          * @return array
          */
@@ -30879,7 +30879,7 @@ namespace {
         }
         /**
          * @param string $date
-         * @return \IXR_Date
+         * @return IXR_Date
          */
         protected function _convert_date($date)
         {
@@ -30887,7 +30887,7 @@ namespace {
         /**
          * @param string $date_gmt
          * @param string $date
-         * @return \IXR_Date
+         * @return IXR_Date
          */
         protected function _convert_date_gmt($date_gmt, $date)
         {
@@ -30901,7 +30901,7 @@ namespace {
         {
         }
         /**
-         * @param \WP_Post_Type $post_type
+         * @param WP_Post_Type $post_type
          * @param array $fields
          * @return array
          */
@@ -30909,7 +30909,7 @@ namespace {
         {
         }
         /**
-         * @param \WP_Post $media_item
+         * @param WP_Post $media_item
          * @param string $thumbnail_size
          * @return array
          */
@@ -30917,21 +30917,21 @@ namespace {
         {
         }
         /**
-         * @param \WP_Post $page
+         * @param WP_Post $page
          * @return array
          */
         protected function _prepare_page($page)
         {
         }
         /**
-         * @param \WP_Comment $comment
+         * @param WP_Comment $comment
          * @return array
          */
         protected function _prepare_comment($comment)
         {
         }
         /**
-         * @param \WP_User $user
+         * @param WP_User $user
          * @param array $fields
          * @return array
          */
@@ -30967,15 +30967,15 @@ namespace {
          *     },
          *   },
          * } $args
-         * @return int|\IXR_Error
+         * @return int|IXR_Error
          */
         public function wp_newPost($args)
         {
         }
         /**
-         * @param \WP_User $user
-         * @param array|\IXR_Error $content_struct
-         * @return \IXR_Error|string
+         * @param WP_User $user
+         * @param array|IXR_Error $content_struct
+         * @return IXR_Error|string
          */
         protected function _insert_post($user, $content_struct)
         {
@@ -30988,7 +30988,7 @@ namespace {
          *   3: int,
          *   4: array,
          * } $args
-         * @return true|\IXR_Error
+         * @return true|IXR_Error
          */
         public function wp_editPost($args)
         {
@@ -31000,7 +31000,7 @@ namespace {
          *   2: string,
          *   3: int,
          * } $args
-         * @return true|\IXR_Error
+         * @return true|IXR_Error
          */
         public function wp_deletePost($args)
         {
@@ -31013,7 +31013,7 @@ namespace {
          *   3: int,
          *   4: array,
          * } $args
-         * @return array|\IXR_Error
+         * @return array|IXR_Error
          */
         public function wp_getPost($args)
         {
@@ -31026,7 +31026,7 @@ namespace {
          *   3: array,
          *   4: array,
          * } $args
-         * @return array|\IXR_Error
+         * @return array|IXR_Error
          */
         public function wp_getPosts($args)
         {
@@ -31038,7 +31038,7 @@ namespace {
          *   2: string,
          *   3: array,
          * } $args
-         * @return int|\IXR_Error
+         * @return int|IXR_Error
          */
         public function wp_newTerm($args)
         {
@@ -31051,7 +31051,7 @@ namespace {
          *   3: int,
          *   4: array,
          * } $args
-         * @return true|\IXR_Error
+         * @return true|IXR_Error
          */
         public function wp_editTerm($args)
         {
@@ -31064,7 +31064,7 @@ namespace {
          *   3: string,
          *   4: int,
          * } $args
-         * @return true|\IXR_Error
+         * @return true|IXR_Error
          */
         public function wp_deleteTerm($args)
         {
@@ -31077,7 +31077,7 @@ namespace {
          *   3: string,
          *   4: int,
          * } $args
-         * @return array|\IXR_Error
+         * @return array|IXR_Error
          */
         public function wp_getTerm($args)
         {
@@ -31090,7 +31090,7 @@ namespace {
          *   3: string,
          *   4: array,
          * } $args
-         * @return array|\IXR_Error
+         * @return array|IXR_Error
          */
         public function wp_getTerms($args)
         {
@@ -31103,7 +31103,7 @@ namespace {
          *   3: string,
          *   4: array,
          * } $args
-         * @return array|\IXR_Error
+         * @return array|IXR_Error
          */
         public function wp_getTaxonomy($args)
         {
@@ -31116,7 +31116,7 @@ namespace {
          *   3: array,
          *   4: array,
          * } $args
-         * @return array|\IXR_Error
+         * @return array|IXR_Error
          */
         public function wp_getTaxonomies($args)
         {
@@ -31129,7 +31129,7 @@ namespace {
          *   3: int,
          *   4: array,
          * } $args
-         * @return array|\IXR_Error
+         * @return array|IXR_Error
          */
         public function wp_getUser($args)
         {
@@ -31142,7 +31142,7 @@ namespace {
          *   3: array,
          *   4: array,
          * } $args
-         * @return array|\IXR_Error
+         * @return array|IXR_Error
          */
         public function wp_getUsers($args)
         {
@@ -31154,7 +31154,7 @@ namespace {
          *   2: string,
          *   3: array,
          * } $args
-         * @return array|\IXR_Error
+         * @return array|IXR_Error
          */
         public function wp_getProfile($args)
         {
@@ -31166,7 +31166,7 @@ namespace {
          *   2: string,
          *   3: array,
          * } $args
-         * @return true|\IXR_Error
+         * @return true|IXR_Error
          */
         public function wp_editProfile($args)
         {
@@ -31178,7 +31178,7 @@ namespace {
          *   2: string,
          *   3: string,
          * } $args
-         * @return array|\IXR_Error
+         * @return array|IXR_Error
          */
         public function wp_getPage($args)
         {
@@ -31190,7 +31190,7 @@ namespace {
          *   2: string,
          *   3: int,
          * } $args
-         * @return array|\IXR_Error
+         * @return array|IXR_Error
          */
         public function wp_getPages($args)
         {
@@ -31202,7 +31202,7 @@ namespace {
          *   2: string,
          *   3: array,
          * } $args
-         * @return int|\IXR_Error
+         * @return int|IXR_Error
          */
         public function wp_newPage($args)
         {
@@ -31214,7 +31214,7 @@ namespace {
          *   2: string,
          *   3: int,
          * } $args
-         * @return true|\IXR_Error
+         * @return true|IXR_Error
          */
         public function wp_deletePage($args)
         {
@@ -31228,7 +31228,7 @@ namespace {
          *   4: string,
          *   5: int,
          * } $args
-         * @return array|\IXR_Error
+         * @return array|IXR_Error
          */
         public function wp_editPage($args)
         {
@@ -31239,7 +31239,7 @@ namespace {
          *   1: string,
          *   2: string,
          * } $args
-         * @return array|\IXR_Error
+         * @return array|IXR_Error
          */
         public function wp_getPageList($args)
         {
@@ -31250,7 +31250,7 @@ namespace {
          *   1: string,
          *   2: string,
          * } $args
-         * @return array|\IXR_Error
+         * @return array|IXR_Error
          */
         public function wp_getAuthors($args)
         {
@@ -31261,7 +31261,7 @@ namespace {
          *   1: string,
          *   2: string,
          * } $args
-         * @return array|\IXR_Error
+         * @return array|IXR_Error
          */
         public function wp_getTags($args)
         {
@@ -31273,7 +31273,7 @@ namespace {
          *   2: string,
          *   3: array,
          * } $args
-         * @return int|\IXR_Error
+         * @return int|IXR_Error
          */
         public function wp_newCategory($args)
         {
@@ -31285,7 +31285,7 @@ namespace {
          *   2: string,
          *   3: int,
          * } $args
-         * @return bool|\IXR_Error
+         * @return bool|IXR_Error
          */
         public function wp_deleteCategory($args)
         {
@@ -31298,7 +31298,7 @@ namespace {
          *   3: array,
          *   4: int,
          * } $args
-         * @return array|\IXR_Error
+         * @return array|IXR_Error
          */
         public function wp_suggestCategories($args)
         {
@@ -31310,7 +31310,7 @@ namespace {
          *   2: string,
          *   3: int,
          * } $args
-         * @return array|\IXR_Error
+         * @return array|IXR_Error
          */
         public function wp_getComment($args)
         {
@@ -31322,7 +31322,7 @@ namespace {
          *   2: string,
          *   3: array,
          * } $args
-         * @return array|\IXR_Error
+         * @return array|IXR_Error
          */
         public function wp_getComments($args)
         {
@@ -31334,7 +31334,7 @@ namespace {
          *   2: string,
          *   3: int,
          * } $args
-         * @return bool|\IXR_Error
+         * @return bool|IXR_Error
          */
         public function wp_deleteComment($args)
         {
@@ -31347,7 +31347,7 @@ namespace {
          *   3: int,
          *   4: array,
          * } $args
-         * @return true|\IXR_Error
+         * @return true|IXR_Error
          */
         public function wp_editComment($args)
         {
@@ -31360,7 +31360,7 @@ namespace {
          *   3: string|int,
          *   4: array,
          * } $args
-         * @return int|\IXR_Error
+         * @return int|IXR_Error
          */
         public function wp_newComment($args)
         {
@@ -31371,7 +31371,7 @@ namespace {
          *   1: string,
          *   2: string,
          * } $args
-         * @return array|\IXR_Error
+         * @return array|IXR_Error
          */
         public function wp_getCommentStatusList($args)
         {
@@ -31383,7 +31383,7 @@ namespace {
          *   2: string,
          *   3: int,
          * } $args
-         * @return array|\IXR_Error
+         * @return array|IXR_Error
          */
         public function wp_getCommentCount($args)
         {
@@ -31394,7 +31394,7 @@ namespace {
          *   1: string,
          *   2: string,
          * } $args
-         * @return array|\IXR_Error
+         * @return array|IXR_Error
          */
         public function wp_getPostStatusList($args)
         {
@@ -31405,7 +31405,7 @@ namespace {
          *   1: string,
          *   2: string,
          * } $args
-         * @return array|\IXR_Error
+         * @return array|IXR_Error
          */
         public function wp_getPageStatusList($args)
         {
@@ -31416,7 +31416,7 @@ namespace {
          *   1: string,
          *   2: string,
          * } $args
-         * @return array|\IXR_Error
+         * @return array|IXR_Error
          */
         public function wp_getPageTemplates($args)
         {
@@ -31428,7 +31428,7 @@ namespace {
          *   2: string,
          *   3: array,
          * } $args
-         * @return array|\IXR_Error
+         * @return array|IXR_Error
          */
         public function wp_getOptions($args)
         {
@@ -31447,7 +31447,7 @@ namespace {
          *   2: string,
          *   3: array,
          * } $args
-         * @return array|\IXR_Error
+         * @return array|IXR_Error
          */
         public function wp_setOptions($args)
         {
@@ -31459,7 +31459,7 @@ namespace {
          *   2: string,
          *   3: int,
          * } $args
-         * @return array|\IXR_Error
+         * @return array|IXR_Error
          */
         public function wp_getMediaItem($args)
         {
@@ -31471,7 +31471,7 @@ namespace {
          *   2: string,
          *   3: array,
          * } $args
-         * @return array|\IXR_Error
+         * @return array|IXR_Error
          */
         public function wp_getMediaLibrary($args)
         {
@@ -31482,7 +31482,7 @@ namespace {
          *   1: string,
          *   2: string,
          * } $args
-         * @return array|\IXR_Error
+         * @return array|IXR_Error
          */
         public function wp_getPostFormats($args)
         {
@@ -31495,7 +31495,7 @@ namespace {
          *   3: string,
          *   4: array,
          * } $args
-         * @return array|\IXR_Error
+         * @return array|IXR_Error
          */
         public function wp_getPostType($args)
         {
@@ -31508,7 +31508,7 @@ namespace {
          *   3: array,
          *   4: array,
          * } $args
-         * @return array|\IXR_Error
+         * @return array|IXR_Error
          */
         public function wp_getPostTypes($args)
         {
@@ -31521,7 +31521,7 @@ namespace {
          *   3: int,
          *   4: array,
          * } $args
-         * @return array|\IXR_Error
+         * @return array|IXR_Error
          */
         public function wp_getRevisions($args)
         {
@@ -31533,7 +31533,7 @@ namespace {
          *   2: string,
          *   3: int,
          * } $args
-         * @return bool|\IXR_Error
+         * @return bool|IXR_Error
          */
         public function wp_restoreRevision($args)
         {
@@ -31548,7 +31548,7 @@ namespace {
          *   1: string,
          *   2: string,
          * } $args
-         * @return array|\IXR_Error
+         * @return array|IXR_Error
          */
         public function blogger_getUsersBlogs($args)
         {
@@ -31559,7 +31559,7 @@ namespace {
          *   1: string,
          *   2: string,
          * } $args
-         * @return array|\IXR_Error
+         * @return array|IXR_Error
          */
         protected function _multisite_getUsersBlogs($args)
         {
@@ -31570,7 +31570,7 @@ namespace {
          *   1: string,
          *   2: string,
          * } $args
-         * @return array|\IXR_Error
+         * @return array|IXR_Error
          */
         public function blogger_getUserInfo($args)
         {
@@ -31582,7 +31582,7 @@ namespace {
          *   2: string,
          *   3: string,
          * } $args
-         * @return array|\IXR_Error
+         * @return array|IXR_Error
          */
         public function blogger_getPost($args)
         {
@@ -31595,21 +31595,21 @@ namespace {
          *   3: string,
          *   4: int,
          * } $args
-         * @return array|\IXR_Error
+         * @return array|IXR_Error
          */
         public function blogger_getRecentPosts($args)
         {
         }
         /**
          * @param array $args
-         * @return \IXR_Error
+         * @return IXR_Error
          */
         public function blogger_getTemplate($args)
         {
         }
         /**
          * @param array $args
-         * @return \IXR_Error
+         * @return IXR_Error
          */
         public function blogger_setTemplate($args)
         {
@@ -31623,7 +31623,7 @@ namespace {
          *   4: string,
          *   5: int,
          * } $args
-         * @return int|\IXR_Error
+         * @return int|IXR_Error
          */
         public function blogger_newPost($args)
         {
@@ -31637,7 +31637,7 @@ namespace {
          *   4: string,
          *   5: int,
          * } $args
-         * @return true|\IXR_Error
+         * @return true|IXR_Error
          */
         public function blogger_editPost($args)
         {
@@ -31649,7 +31649,7 @@ namespace {
          *   2: string,
          *   3: string,
          * } $args
-         * @return true|\IXR_Error
+         * @return true|IXR_Error
          */
         public function blogger_deletePost($args)
         {
@@ -31666,7 +31666,7 @@ namespace {
          *   3: array,
          *   4: int,
          * } $args
-         * @return int|\IXR_Error
+         * @return int|IXR_Error
          */
         public function mw_newPost($args)
         {
@@ -31693,7 +31693,7 @@ namespace {
          *   3: array,
          *   4: int,
          * } $args
-         * @return true|\IXR_Error
+         * @return true|IXR_Error
          */
         public function mw_editPost($args)
         {
@@ -31704,7 +31704,7 @@ namespace {
          *   1: string,
          *   2: string,
          * } $args
-         * @return array|\IXR_Error
+         * @return array|IXR_Error
          */
         public function mw_getPost($args)
         {
@@ -31716,7 +31716,7 @@ namespace {
          *   2: string,
          *   3: int,
          * } $args
-         * @return array|\IXR_Error
+         * @return array|IXR_Error
          */
         public function mw_getRecentPosts($args)
         {
@@ -31727,7 +31727,7 @@ namespace {
          *   1: string,
          *   2: string,
          * } $args
-         * @return array|\IXR_Error
+         * @return array|IXR_Error
          */
         public function mw_getCategories($args)
         {
@@ -31739,7 +31739,7 @@ namespace {
          *   2: string,
          *   3: array,
          * } $args
-         * @return array|\IXR_Error
+         * @return array|IXR_Error
          */
         public function mw_newMediaObject($args)
         {
@@ -31755,7 +31755,7 @@ namespace {
          *   2: string,
          *   3: int,
          * } $args
-         * @return array|\IXR_Error
+         * @return array|IXR_Error
          */
         public function mt_getRecentPostTitles($args)
         {
@@ -31766,7 +31766,7 @@ namespace {
          *   1: string,
          *   2: string,
          * } $args
-         * @return array|\IXR_Error
+         * @return array|IXR_Error
          */
         public function mt_getCategoryList($args)
         {
@@ -31777,7 +31777,7 @@ namespace {
          *   1: string,
          *   2: string,
          * } $args
-         * @return array|\IXR_Error
+         * @return array|IXR_Error
          */
         public function mt_getPostCategories($args)
         {
@@ -31789,7 +31789,7 @@ namespace {
          *   2: string,
          *   3: array,
          * } $args
-         * @return true|\IXR_Error
+         * @return true|IXR_Error
          */
         public function mt_setPostCategories($args)
         {
@@ -31805,7 +31805,7 @@ namespace {
         }
         /**
          * @param int $post_id
-         * @return array|\IXR_Error
+         * @return array|IXR_Error
          */
         public function mt_getTrackbackPings($post_id)
         {
@@ -31816,7 +31816,7 @@ namespace {
          *   1: string,
          *   2: string,
          * } $args
-         * @return int|\IXR_Error
+         * @return int|IXR_Error
          */
         public function mt_publishPost($args)
         {
@@ -31830,14 +31830,14 @@ namespace {
          *   0: string,
          *   1: string,
          * } $args
-         * @return string|\IXR_Error
+         * @return string|IXR_Error
          */
         public function pingback_ping($args)
         {
         }
         /**
          * @param string $url
-         * @return array|\IXR_Error
+         * @return array|IXR_Error
          */
         public function pingback_extensions_getPingbacks($url)
         {
@@ -31845,7 +31845,7 @@ namespace {
         /**
          * @param int $code
          * @param string $message
-         * @return \IXR_Error
+         * @return IXR_Error
          */
         protected function pingback_error($code, $message)
         {
@@ -31980,11 +31980,11 @@ namespace {
          */
         public $last_query;
         /**
-         * @var \stdClass[]|null
+         * @var stdClass[]|null
          */
         public $last_result;
         /**
-         * @var \mysqli_result|bool|null
+         * @var mysqli_result|bool|null
          */
         protected $result;
         /**
@@ -32165,7 +32165,7 @@ namespace {
          */
         protected $dbhost;
         /**
-         * @var \mysqli|false|null
+         * @var mysqli|false|null
          */
         protected $dbh;
         /**
@@ -32185,7 +32185,7 @@ namespace {
          */
         public $time_start = \null;
         /**
-         * @var \WP_Error|string
+         * @var WP_Error|string
          */
         public $error = \null;
         /**
@@ -32241,7 +32241,7 @@ namespace {
         {
         }
         /**
-         * @param \mysqli $dbh
+         * @param mysqli $dbh
          * @param string $charset
          * @param string $collate
          */
@@ -32258,7 +32258,7 @@ namespace {
         /**
          * @param string $prefix
          * @param bool $set_table_names
-         * @return string|\WP_Error
+         * @return string|WP_Error
          */
         public function set_prefix($prefix, $set_table_names = \true)
         {
@@ -32289,7 +32289,7 @@ namespace {
         }
         /**
          * @param string $db
-         * @param \mysqli $dbh
+         * @param mysqli $dbh
          */
         public function select($db, $dbh = \null)
         {
@@ -32567,7 +32567,7 @@ namespace {
          * @return array|object|null|void
          * @phpstan-param 'OBJECT'|'ARRAY_A'|'ARRAY_N' $output
          * @phpstan-param 0|positive-int $y
-         * @phpstan-return null|void|($output is 'ARRAY_A' ? array<array-key, mixed> : ($output is 'ARRAY_N' ? list<mixed> : \stdClass))
+         * @phpstan-return null|void|($output is 'ARRAY_A' ? array<array-key, mixed> : ($output is 'ARRAY_N' ? list<mixed> : stdClass))
          */
         public function get_row($query = \null, $output = \OBJECT, $y = 0)
         {
@@ -32585,14 +32585,14 @@ namespace {
          * @param string $output
          * @return array|object|null
          * @phpstan-param 'OBJECT'|'OBJECT_K'|'ARRAY_A'|'ARRAY_N' $output
-         * @phpstan-return null|($output is 'ARRAY_A' ? list<array<array-key, mixed>> : ($output is 'ARRAY_N' ? list<array<int, mixed>> : ($output is 'OBJECT_K' ? array<array-key, \stdClass> : list<\stdClass>)))
+         * @phpstan-return null|($output is 'ARRAY_A' ? list<array<array-key, mixed>> : ($output is 'ARRAY_N' ? list<array<int, mixed>> : ($output is 'OBJECT_K' ? array<array-key, stdClass> : list<stdClass>)))
          */
         public function get_results($query = \null, $output = \OBJECT)
         {
         }
         /**
          * @param string $table
-         * @return string|\WP_Error
+         * @return string|WP_Error
          */
         protected function get_table_charset($table)
         {
@@ -32600,7 +32600,7 @@ namespace {
         /**
          * @param string $table
          * @param string $column
-         * @return string|false|\WP_Error
+         * @return string|false|WP_Error
          */
         public function get_col_charset($table, $column)
         {
@@ -32608,7 +32608,7 @@ namespace {
         /**
          * @param string $table
          * @param string $column
-         * @phpstan-return false|\WP_Error|array{
+         * @phpstan-return false|WP_Error|array{
          *   type: string,
          *   length: int,
          * }
@@ -32632,14 +32632,14 @@ namespace {
         }
         /**
          * @param array $data
-         * @return array|\WP_Error
+         * @return array|WP_Error
          */
         protected function strip_invalid_text($data)
         {
         }
         /**
          * @param string $query
-         * @return string|\WP_Error
+         * @return string|WP_Error
          */
         protected function strip_invalid_text_from_query($query)
         {
@@ -32648,7 +32648,7 @@ namespace {
          * @param string $table
          * @param string $column
          * @param string $value
-         * @return string|\WP_Error
+         * @return string|WP_Error
          */
         public function strip_invalid_text_for_column($table, $column, $value)
         {
@@ -32701,7 +32701,7 @@ namespace {
         {
         }
         /**
-         * @return void|\WP_Error
+         * @return void|WP_Error
          */
         public function check_database_version()
         {
@@ -32759,7 +32759,7 @@ namespace {
          */
         public $button_labels = array();
         /**
-         * @param \WP_Customize_Manager $manager
+         * @param WP_Customize_Manager $manager
          * @param string $id
          * @param array $args
          * @phpstan-param array{
@@ -32868,7 +32868,7 @@ namespace {
          */
         public $type = 'background';
         /**
-         * @param \WP_Customize_Manager $manager
+         * @param WP_Customize_Manager $manager
          */
         public function __construct($manager)
         {
@@ -32948,7 +32948,7 @@ namespace {
          */
         public $mode = 'full';
         /**
-         * @param \WP_Customize_Manager $manager
+         * @param WP_Customize_Manager $manager
          * @param string $id
          * @param array $args
          * @phpstan-param array{
@@ -33034,7 +33034,7 @@ namespace {
          */
         public $stylesheet = '';
         /**
-         * @param \WP_Customize_Manager $manager
+         * @param WP_Customize_Manager $manager
          * @param string $id
          * @param array $args
          */
@@ -33063,7 +33063,7 @@ namespace {
         }
         /**
          * @param string $value
-         * @return true|\WP_Error
+         * @return true|WP_Error
          */
         public function validate($value)
         {
@@ -33161,7 +33161,7 @@ namespace {
          */
         public $default_headers;
         /**
-         * @param \WP_Customize_Manager $manager
+         * @param WP_Customize_Manager $manager
          */
         public function __construct($manager)
         {
@@ -33240,11 +33240,11 @@ namespace {
          */
         public $type = 'nav_menu_item';
         /**
-         * @var \WP_Customize_Nav_Menu_Item_Setting
+         * @var WP_Customize_Nav_Menu_Item_Setting
          */
         public $setting;
         /**
-         * @param \WP_Customize_Manager $manager
+         * @param WP_Customize_Manager $manager
          * @param string $id
          * @param array $args
          * @phpstan-param array{
@@ -33347,11 +33347,11 @@ namespace {
          */
         public $update_status;
         /**
-         * @var \WP_Error
+         * @var WP_Error
          */
         public $update_error;
         /**
-         * @param \WP_Customize_Manager $manager
+         * @param WP_Customize_Manager $manager
          * @param string $id
          * @param array $args
          */
@@ -33398,32 +33398,32 @@ namespace {
         {
         }
         /**
-         * @param \WP_Post[] $items
-         * @param \WP_Term $menu
+         * @param WP_Post[] $items
+         * @param WP_Term $menu
          * @param array $args
-         * @return \WP_Post[]
+         * @return WP_Post[]
          */
         public function filter_wp_get_nav_menu_items($items, $menu, $args)
         {
         }
         /**
-         * @param \WP_Post[] $items
-         * @param \WP_Term $menu
+         * @param WP_Post[] $items
+         * @param WP_Term $menu
          * @param array $args
-         * @return \WP_Post[]
+         * @return WP_Post[]
          */
         public static function sort_wp_get_nav_menu_items($items, $menu, $args)
         {
         }
         /**
-         * @return \WP_Post
+         * @return WP_Post
          */
         public function value_as_wp_post_nav_menu_item()
         {
         }
         /**
          * @param array $value
-         * @return array|false|null|\WP_Error
+         * @return array|false|null|WP_Error
          */
         public function sanitize($value)
         {
@@ -33537,11 +33537,11 @@ namespace {
          */
         public $update_status;
         /**
-         * @var \WP_Error
+         * @var WP_Error
          */
         public $update_error;
         /**
-         * @param \WP_Customize_Manager $manager
+         * @param WP_Customize_Manager $manager
          * @param string $id
          * @param array $args
          */
@@ -33561,9 +33561,9 @@ namespace {
         {
         }
         /**
-         * @param \WP_Term[] $menus
+         * @param WP_Term[] $menus
          * @param array $args
-         * @return \WP_Term[]
+         * @return WP_Term[]
          */
         public function filter_wp_get_nav_menus($menus, $args)
         {
@@ -33659,7 +33659,7 @@ namespace {
          */
         public $type = 'new_menu';
         /**
-         * @param \WP_Customize_Manager $manager
+         * @param WP_Customize_Manager $manager
          * @param string $id
          * @param array $args
          * @phpstan-param array{
@@ -33695,7 +33695,7 @@ namespace {
          */
         public $type = 'new_menu';
         /**
-         * @param \WP_Customize_Manager $manager
+         * @param WP_Customize_Manager $manager
          * @param string $id
          * @param array $args
          */
@@ -33710,7 +33710,7 @@ namespace {
     class WP_Customize_Partial
     {
         /**
-         * @var \WP_Customize_Selective_Refresh
+         * @var WP_Customize_Selective_Refresh
          */
         public $component;
         /**
@@ -33757,7 +33757,7 @@ namespace {
          */
         public $fallback_refresh = \true;
         /**
-         * @param \WP_Customize_Selective_Refresh $component
+         * @param WP_Customize_Selective_Refresh $component
          * @param string $id
          * @phpstan-param array{
          *   type?: string,
@@ -33790,7 +33790,7 @@ namespace {
         {
         }
         /**
-         * @param \WP_Customize_Partial $partial
+         * @param WP_Customize_Partial $partial
          * @param array $context
          * @return string|array|false
          */
@@ -33820,11 +33820,11 @@ namespace {
          */
         const RENDER_QUERY_VAR = 'wp_customize_render_partials';
         /**
-         * @var \WP_Customize_Manager
+         * @var WP_Customize_Manager
          */
         public $manager;
         /**
-         * @param \WP_Customize_Manager $manager
+         * @param WP_Customize_Manager $manager
          */
         public function __construct(\WP_Customize_Manager $manager)
         {
@@ -33836,9 +33836,9 @@ namespace {
         {
         }
         /**
-         * @param \WP_Customize_Partial|string $id
+         * @param WP_Customize_Partial|string $id
          * @param array $args
-         * @return \WP_Customize_Partial
+         * @return WP_Customize_Partial
          * @phpstan-param array{
          *   type?: string,
          *   selector?: string,
@@ -33855,7 +33855,7 @@ namespace {
         }
         /**
          * @param string $id
-         * @return \WP_Customize_Partial|null
+         * @return WP_Customize_Partial|null
          */
         public function get_partial($id)
         {
@@ -33877,7 +33877,7 @@ namespace {
         }
         /**
          * @param string[] $partial_ids
-         * @return \WP_Customize_Partial[]
+         * @return WP_Customize_Partial[]
          */
         public function add_dynamic_partials($partial_ids)
         {
@@ -33935,7 +33935,7 @@ namespace {
          */
         public $type = 'site_icon';
         /**
-         * @param \WP_Customize_Manager $manager
+         * @param WP_Customize_Manager $manager
          * @param string $id
          * @param array $args
          * @phpstan-param array{
@@ -33971,7 +33971,7 @@ namespace {
          */
         public $type = 'theme';
         /**
-         * @var \WP_Theme
+         * @var WP_Theme
          */
         public $theme;
         public function to_json()
@@ -34121,7 +34121,7 @@ namespace {
         {
         }
         /**
-         * @return array|\WP_Error
+         * @return array|WP_Error
          */
         public function get_data()
         {
@@ -34172,7 +34172,7 @@ namespace {
         /**
          * @param string $slug
          * @param array $args
-         * @return \WP_Font_Collection|\WP_Error
+         * @return WP_Font_Collection|WP_Error
          * @phpstan-param array{
          *   name?: string,
          *   description?: string,
@@ -34198,13 +34198,13 @@ namespace {
         }
         /**
          * @param string $slug
-         * @return \WP_Font_Collection|null
+         * @return WP_Font_Collection|null
          */
         public function get_font_collection(string $slug)
         {
         }
         /**
-         * @return \WP_Font_Library
+         * @return WP_Font_Library
          */
         public static function get_instance()
         {
@@ -34250,7 +34250,7 @@ namespace {
     class WP_HTML_Active_Formatting_Elements
     {
         /**
-         * @param \WP_HTML_Token $token
+         * @param WP_HTML_Token $token
          * @return bool
          */
         public function contains_node($token)
@@ -34263,19 +34263,19 @@ namespace {
         {
         }
         /**
-         * @return \WP_HTML_Token|null
+         * @return WP_HTML_Token|null
          */
         public function current_node()
         {
         }
         /**
-         * @param \WP_HTML_Token $token
+         * @param WP_HTML_Token $token
          */
         public function push($token)
         {
         }
         /**
-         * @param \WP_HTML_Token $token
+         * @param WP_HTML_Token $token
          * @return bool
          */
         public function remove_node($token)
@@ -34380,23 +34380,23 @@ namespace {
     class WP_HTML_Open_Elements
     {
         /**
-         * @var \WP_HTML_Token[]
+         * @var WP_HTML_Token[]
          */
         public $stack = array();
         /**
-         * @param \Closure $handler
+         * @param Closure $handler
          */
         public function set_pop_handler(\Closure $handler)
         {
         }
         /**
-         * @param \Closure $handler
+         * @param Closure $handler
          */
         public function set_push_handler(\Closure $handler)
         {
         }
         /**
-         * @param \WP_HTML_Token $token
+         * @param WP_HTML_Token $token
          * @return bool
          */
         public function contains_node($token)
@@ -34409,7 +34409,7 @@ namespace {
         {
         }
         /**
-         * @return \WP_HTML_Token|null
+         * @return WP_HTML_Token|null
          */
         public function current_node()
         {
@@ -34477,13 +34477,13 @@ namespace {
         {
         }
         /**
-         * @param \WP_HTML_Token $stack_item
+         * @param WP_HTML_Token $stack_item
          */
         public function push($stack_item)
         {
         }
         /**
-         * @param \WP_HTML_Token $token
+         * @param WP_HTML_Token $token
          * @return bool
          */
         public function remove_node($token)
@@ -34493,7 +34493,7 @@ namespace {
         {
         }
         /**
-         * @param ?\WP_HTML_Token $above_this_node
+         * @param ?WP_HTML_Token $above_this_node
          */
         public function walk_up($above_this_node = \null)
         {
@@ -34502,13 +34502,13 @@ namespace {
          * Internal helpers.
          */
         /**
-         * @param \WP_HTML_Token $item
+         * @param WP_HTML_Token $item
          */
         public function after_element_push($item)
         {
         }
         /**
-         * @param \WP_HTML_Token $item
+         * @param WP_HTML_Token $item
          */
         public function after_element_pop($item)
         {
@@ -34556,15 +34556,15 @@ namespace {
          */
         const INSERTION_MODE_IN_BODY = 'insertion-mode-in-body';
         /**
-         * @var \WP_HTML_Open_Elements
+         * @var WP_HTML_Open_Elements
          */
         public $stack_of_open_elements = \null;
         /**
-         * @var \WP_HTML_Active_Formatting_Elements
+         * @var WP_HTML_Active_Formatting_Elements
          */
         public $active_formatting_elements = \null;
         /**
-         * @var \WP_HTML_Token|null
+         * @var WP_HTML_Token|null
          */
         public $current_token = \null;
         /**
@@ -34615,14 +34615,14 @@ namespace {
          */
         protected $comment_type = \null;
         /**
-         * @var \WP_HTML_Span[]
+         * @var WP_HTML_Span[]
          */
         protected $bookmarks = array();
         const ADD_CLASS = \true;
         const REMOVE_CLASS = \false;
         const SKIP_CLASS = \null;
         /**
-         * @var \WP_HTML_Text_Replacement[]
+         * @var WP_HTML_Text_Replacement[]
          */
         protected $lexical_updates = array();
         /**
@@ -35056,7 +35056,7 @@ namespace {
         {
         }
         /**
-         * @param ?\WP_HTML_Token $node
+         * @param ?WP_HTML_Token $node
          * @return bool
          */
         public function expects_closer($node = \null)
@@ -35308,7 +35308,7 @@ namespace {
          */
         const PUSH = 'push';
         /**
-         * @var \WP_HTML_Token
+         * @var WP_HTML_Token
          */
         public $token;
         /**
@@ -35320,7 +35320,7 @@ namespace {
          */
         public $provenance;
         /**
-         * @param \WP_HTML_Token $token
+         * @param WP_HTML_Token $token
          * @param string $operation
          * @param string $provenance
          */
@@ -35486,7 +35486,7 @@ namespace {
     final class WP_Translation_Controller
     {
         /**
-         * @return \WP_Translation_Controller
+         * @return WP_Translation_Controller
          */
         public static function get_instance() : \WP_Translation_Controller
         {
@@ -35513,7 +35513,7 @@ namespace {
         {
         }
         /**
-         * @param \WP_Translation_File|string $file
+         * @param WP_Translation_File|string $file
          * @param string $textdomain
          * @param string $locale
          * @return bool
@@ -35611,7 +35611,7 @@ namespace {
         /**
          * @param string $file
          * @param string|null $filetype
-         * @return false|\WP_Translation_File
+         * @return false|WP_Translation_File
          */
         public static function create(string $file, ?string $filetype = \null)
         {
@@ -35677,7 +35677,7 @@ namespace {
         {
         }
         /**
-         * @param \WP_Translation_File $source
+         * @param WP_Translation_File $source
          * @return bool
          */
         protected function import(\WP_Translation_File $source) : bool
@@ -35744,11 +35744,11 @@ namespace {
          */
         protected $textdomain = 'default';
         /**
-         * @var \WP_Translation_Controller
+         * @var WP_Translation_Controller
          */
         protected $controller;
         /**
-         * @param \WP_Translation_Controller $controller
+         * @param WP_Translation_Controller $controller
          * @param string $textdomain
          */
         public function __construct(\WP_Translation_Controller $controller, string $textdomain = 'default')
@@ -35830,7 +35830,7 @@ namespace {
         {
         }
         /**
-         * @param \Translation_Entry $other
+         * @param Translation_Entry $other
          */
         public function merge_with(&$other)
         {
@@ -35840,7 +35840,7 @@ namespace {
     class Translations
     {
         /**
-         * @var \Translation_Entry[]
+         * @var Translation_Entry[]
          */
         public $entries = array();
         /**
@@ -35848,14 +35848,14 @@ namespace {
          */
         public $headers = array();
         /**
-         * @param array|\Translation_Entry $entry
+         * @param array|Translation_Entry $entry
          * @return bool
          */
         public function add_entry($entry)
         {
         }
         /**
-         * @param array|\Translation_Entry $entry
+         * @param array|Translation_Entry $entry
          * @return bool
          */
         public function add_entry_or_merge($entry)
@@ -35882,8 +35882,8 @@ namespace {
         {
         }
         /**
-         * @param \Translation_Entry $entry
-         * @return \Translation_Entry|false
+         * @param Translation_Entry $entry
+         * @return Translation_Entry|false
          */
         public function translate_entry(&$entry)
         {
@@ -35920,13 +35920,13 @@ namespace {
         {
         }
         /**
-         * @param \Translations $other
+         * @param Translations $other
          */
         public function merge_with(&$other)
         {
         }
         /**
-         * @param \Translations $other
+         * @param Translations $other
          */
         public function merge_originals_with(&$other)
         {
@@ -36019,7 +36019,7 @@ namespace {
         {
         }
         /**
-         * @param \Translation_Entry $entry
+         * @param Translation_Entry $entry
          * @return bool
          */
         public function is_entry_good_for_export($entry)
@@ -36033,14 +36033,14 @@ namespace {
         {
         }
         /**
-         * @param \Translation_Entry $entry
+         * @param Translation_Entry $entry
          * @return string
          */
         public function export_original($entry)
         {
         }
         /**
-         * @param \Translation_Entry $entry
+         * @param Translation_Entry $entry
          * @return string
          */
         public function export_translations($entry)
@@ -36060,7 +36060,7 @@ namespace {
         {
         }
         /**
-         * @param \POMO_FileReader $reader
+         * @param POMO_FileReader $reader
          * @return bool
          */
         public function import_from_reader($reader)
@@ -36069,7 +36069,7 @@ namespace {
         /**
          * @param string $original
          * @param string $translation
-         * @return \Translation_Entry
+         * @return Translation_Entry
          */
         public function &make_entry($original, $translation)
         {
@@ -36209,7 +36209,7 @@ namespace {
         {
         }
         /**
-         * @param \Translation_Entry $entry
+         * @param Translation_Entry $entry
          * @return string|false
          */
         public static function export_entry($entry)
@@ -36249,7 +36249,7 @@ namespace {
         {
         }
         /**
-         * @param \Translation_Entry $entry
+         * @param Translation_Entry $entry
          * @param string $po_comment_line
          */
         public function add_comment_to_entry(&$entry, $po_comment_line)
@@ -36449,7 +36449,7 @@ namespace {
     class NOOP_Translations
     {
         /**
-         * @var \Translation_Entry[]
+         * @var Translation_Entry[]
          */
         public $entries = array();
         /**
@@ -36480,7 +36480,7 @@ namespace {
         {
         }
         /**
-         * @param \Translation_Entry $entry
+         * @param Translation_Entry $entry
          * @return false
          */
         public function translate_entry(&$entry)
@@ -36517,7 +36517,7 @@ namespace {
         {
         }
         /**
-         * @param \Translations $other
+         * @param Translations $other
          */
         public function merge_with(&$other)
         {
@@ -36776,7 +36776,7 @@ namespace {
         {
         }
         /**
-         * @return true|\WP_Error
+         * @return true|WP_Error
          */
         protected function parse_json_params()
         {
@@ -36812,13 +36812,13 @@ namespace {
         {
         }
         /**
-         * @return true|\WP_Error
+         * @return true|WP_Error
          */
         public function sanitize_params()
         {
         }
         /**
-         * @return true|\WP_Error
+         * @return true|WP_Error
          */
         public function has_valid_params()
         {
@@ -36867,7 +36867,7 @@ namespace {
         }
         /**
          * @param string $url
-         * @return \WP_REST_Request|false
+         * @return WP_REST_Request|false
          */
         public static function from_url($url)
         {
@@ -36954,7 +36954,7 @@ namespace {
         {
         }
         /**
-         * @return \WP_Error|null
+         * @return WP_Error|null
          */
         public function as_error()
         {
@@ -37028,14 +37028,14 @@ namespace {
         {
         }
         /**
-         * @return \WP_Error|null|true
+         * @return WP_Error|null|true
          */
         public function check_authentication()
         {
         }
         /**
-         * @param \WP_Error $error
-         * @return \WP_REST_Response
+         * @param WP_Error $error
+         * @return WP_REST_Response
          */
         protected function error_to_response($error)
         {
@@ -37050,7 +37050,7 @@ namespace {
         {
         }
         /**
-         * @param \WP_REST_Request $request
+         * @param WP_REST_Request $request
          * @return int
          */
         protected function get_json_encode_options(\WP_REST_Request $request)
@@ -37064,7 +37064,7 @@ namespace {
         {
         }
         /**
-         * @param \WP_REST_Response $response
+         * @param WP_REST_Response $response
          * @param bool|string[] $embed
          * @phpstan-return array{
          *   _links: array,
@@ -37075,14 +37075,14 @@ namespace {
         {
         }
         /**
-         * @param \WP_REST_Response $response
+         * @param WP_REST_Response $response
          * @return array
          */
         public static function get_response_links($response)
         {
         }
         /**
-         * @param \WP_REST_Response $response
+         * @param WP_REST_Response $response
          * @return array
          */
         public static function get_compact_response_links($response)
@@ -37100,9 +37100,9 @@ namespace {
         {
         }
         /**
-         * @param \WP_REST_Response $response
+         * @param WP_REST_Response $response
          * @param bool|string[] $embed
-         * @return \WP_REST_Response
+         * @return WP_REST_Response
          */
         public function envelope_response($response, $embed)
         {
@@ -37137,8 +37137,8 @@ namespace {
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return \WP_REST_Response
+         * @param WP_REST_Request $request
+         * @return WP_REST_Response
          */
         public function dispatch($request)
         {
@@ -37150,18 +37150,18 @@ namespace {
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return array|\WP_Error
+         * @param WP_REST_Request $request
+         * @return array|WP_Error
          */
         protected function match_request_to_handler($request)
         {
         }
         /**
-         * @param \WP_REST_Request $request
+         * @param WP_REST_Request $request
          * @param string $route
          * @param array $handler
-         * @param \WP_Error|null $response
-         * @return \WP_REST_Response
+         * @param WP_Error|null $response
+         * @return WP_REST_Response
          */
         protected function respond_to_request($request, $route, $handler, $response)
         {
@@ -37176,31 +37176,31 @@ namespace {
          * @phpstan-param array{
          *   context?: string,
          * } $request
-         * @return \WP_REST_Response
+         * @return WP_REST_Response
          */
         public function get_index($request)
         {
         }
         /**
-         * @param \WP_REST_Response $response
+         * @param WP_REST_Response $response
          */
         protected function add_active_theme_link_to_index(\WP_REST_Response $response)
         {
         }
         /**
-         * @param \WP_REST_Response $response
+         * @param WP_REST_Response $response
          */
         protected function add_site_logo_to_index(\WP_REST_Response $response)
         {
         }
         /**
-         * @param \WP_REST_Response $response
+         * @param WP_REST_Response $response
          */
         protected function add_site_icon_to_index(\WP_REST_Response $response)
         {
         }
         /**
-         * @param \WP_REST_Response $response
+         * @param WP_REST_Response $response
          * @param int $image_id
          * @param string $type
          */
@@ -37208,8 +37208,8 @@ namespace {
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return \WP_REST_Response|\WP_Error
+         * @param WP_REST_Request $request
+         * @return WP_REST_Response|WP_Error
          */
         public function get_namespace_index($request)
         {
@@ -37238,8 +37238,8 @@ namespace {
         {
         }
         /**
-         * @param \WP_REST_Request $batch_request
-         * @return \WP_REST_Response
+         * @param WP_REST_Request $batch_request
+         * @return WP_REST_Response
          */
         public function serve_batch_request_v1(\WP_REST_Request $batch_request)
         {
@@ -37302,92 +37302,92 @@ namespace {
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return true|\WP_Error
+         * @param WP_REST_Request $request
+         * @return true|WP_Error
          */
         public function get_items_permissions_check($request)
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return \WP_REST_Response|\WP_Error
+         * @param WP_REST_Request $request
+         * @return WP_REST_Response|WP_Error
          */
         public function get_items($request)
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return true|\WP_Error
+         * @param WP_REST_Request $request
+         * @return true|WP_Error
          */
         public function get_item_permissions_check($request)
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return \WP_REST_Response|\WP_Error
+         * @param WP_REST_Request $request
+         * @return WP_REST_Response|WP_Error
          */
         public function get_item($request)
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return true|\WP_Error
+         * @param WP_REST_Request $request
+         * @return true|WP_Error
          */
         public function create_item_permissions_check($request)
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return \WP_REST_Response|\WP_Error
+         * @param WP_REST_Request $request
+         * @return WP_REST_Response|WP_Error
          */
         public function create_item($request)
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return true|\WP_Error
+         * @param WP_REST_Request $request
+         * @return true|WP_Error
          */
         public function update_item_permissions_check($request)
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return \WP_REST_Response|\WP_Error
+         * @param WP_REST_Request $request
+         * @return WP_REST_Response|WP_Error
          */
         public function update_item($request)
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return true|\WP_Error
+         * @param WP_REST_Request $request
+         * @return true|WP_Error
          */
         public function delete_item_permissions_check($request)
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return \WP_REST_Response|\WP_Error
+         * @param WP_REST_Request $request
+         * @return WP_REST_Response|WP_Error
          */
         public function delete_item($request)
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return object|\WP_Error
+         * @param WP_REST_Request $request
+         * @return object|WP_Error
          */
         protected function prepare_item_for_database($request)
         {
         }
         /**
          * @param mixed $item
-         * @param \WP_REST_Request $request
-         * @return \WP_REST_Response|\WP_Error
+         * @param WP_REST_Request $request
+         * @return WP_REST_Response|WP_Error
          */
         public function prepare_item_for_response($item, $request)
         {
         }
         /**
-         * @param \WP_REST_Response $response
+         * @param WP_REST_Response $response
          * @return array|mixed
          */
         public function prepare_response_for_collection($response)
@@ -37428,7 +37428,7 @@ namespace {
         }
         /**
          * @param array $response_data
-         * @param \WP_REST_Request $request
+         * @param WP_REST_Request $request
          * @return array
          */
         protected function add_additional_fields_to_object($response_data, $request)
@@ -37436,8 +37436,8 @@ namespace {
         }
         /**
          * @param object $data_object
-         * @param \WP_REST_Request $request
-         * @return true|\WP_Error
+         * @param WP_REST_Request $request
+         * @return true|WP_Error
          */
         protected function update_additional_fields_for_object($data_object, $request)
         {
@@ -37463,7 +37463,7 @@ namespace {
         {
         }
         /**
-         * @param \WP_REST_Request $request
+         * @param WP_REST_Request $request
          * @return string[]
          */
         public function get_fields_for_response($request)
@@ -37493,127 +37493,127 @@ namespace {
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return true|\WP_Error
+         * @param WP_REST_Request $request
+         * @return true|WP_Error
          */
         public function get_items_permissions_check($request)
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return \WP_REST_Response|\WP_Error
+         * @param WP_REST_Request $request
+         * @return WP_REST_Response|WP_Error
          */
         public function get_items($request)
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return true|\WP_Error
+         * @param WP_REST_Request $request
+         * @return true|WP_Error
          */
         public function get_item_permissions_check($request)
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return \WP_REST_Response|\WP_Error
+         * @param WP_REST_Request $request
+         * @return WP_REST_Response|WP_Error
          */
         public function get_item($request)
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return true|\WP_Error
+         * @param WP_REST_Request $request
+         * @return true|WP_Error
          */
         public function create_item_permissions_check($request)
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return \WP_REST_Response|\WP_Error
+         * @param WP_REST_Request $request
+         * @return WP_REST_Response|WP_Error
          */
         public function create_item($request)
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return true|\WP_Error
+         * @param WP_REST_Request $request
+         * @return true|WP_Error
          */
         public function update_item_permissions_check($request)
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return \WP_REST_Response|\WP_Error
+         * @param WP_REST_Request $request
+         * @return WP_REST_Response|WP_Error
          */
         public function update_item($request)
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return true|\WP_Error
+         * @param WP_REST_Request $request
+         * @return true|WP_Error
          */
         public function delete_items_permissions_check($request)
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return \WP_REST_Response|\WP_Error
+         * @param WP_REST_Request $request
+         * @return WP_REST_Response|WP_Error
          */
         public function delete_items($request)
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return true|\WP_Error
+         * @param WP_REST_Request $request
+         * @return true|WP_Error
          */
         public function delete_item_permissions_check($request)
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return \WP_REST_Response|\WP_Error
+         * @param WP_REST_Request $request
+         * @return WP_REST_Response|WP_Error
          */
         public function delete_item($request)
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return true|\WP_Error
+         * @param WP_REST_Request $request
+         * @return true|WP_Error
          */
         public function get_current_item_permissions_check($request)
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return \WP_REST_Response|\WP_Error
+         * @param WP_REST_Request $request
+         * @return WP_REST_Response|WP_Error
          */
         public function get_current_item($request)
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return true|\WP_Error
+         * @param WP_REST_Request $request
+         * @return true|WP_Error
          */
         protected function do_permissions_check($request)
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return object|\WP_Error
+         * @param WP_REST_Request $request
+         * @return object|WP_Error
          */
         protected function prepare_item_for_database($request)
         {
         }
         /**
          * @param array $item
-         * @param \WP_REST_Request $request
-         * @return \WP_REST_Response|\WP_Error
+         * @param WP_REST_Request $request
+         * @return WP_REST_Response|WP_Error
          */
         public function prepare_item_for_response($item, $request)
         {
         }
         /**
-         * @param \WP_User $user
+         * @param WP_User $user
          * @param array $item
          * @return array
          */
@@ -37621,15 +37621,15 @@ namespace {
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return \WP_User|\WP_Error
+         * @param WP_REST_Request $request
+         * @return WP_User|WP_Error
          */
         protected function get_user($request)
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return array|\WP_Error
+         * @param WP_REST_Request $request
+         * @return array|WP_Error
          */
         protected function get_application_password($request)
         {
@@ -37654,7 +37654,7 @@ namespace {
          */
         protected $post_type;
         /**
-         * @var \WP_REST_Post_Meta_Fields
+         * @var WP_REST_Post_Meta_Fields
          */
         protected $meta;
         /**
@@ -37675,101 +37675,101 @@ namespace {
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return true|\WP_Error
+         * @param WP_REST_Request $request
+         * @return true|WP_Error
          */
         public function get_items_permissions_check($request)
         {
         }
         /**
          * @param bool $required
-         * @param \WP_Post $post
+         * @param WP_Post $post
          * @return bool
          */
         public function check_password_required($required, $post)
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return \WP_REST_Response|\WP_Error
+         * @param WP_REST_Request $request
+         * @return WP_REST_Response|WP_Error
          */
         public function get_items($request)
         {
         }
         /**
          * @param int $id
-         * @return \WP_Post|\WP_Error
+         * @return WP_Post|WP_Error
          */
         protected function get_post($id)
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return bool|\WP_Error
+         * @param WP_REST_Request $request
+         * @return bool|WP_Error
          */
         public function get_item_permissions_check($request)
         {
         }
         /**
-         * @param \WP_Post $post
-         * @param \WP_REST_Request $request
+         * @param WP_Post $post
+         * @param WP_REST_Request $request
          * @return bool
          */
         public function can_access_password_content($post, $request)
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return \WP_REST_Response|\WP_Error
+         * @param WP_REST_Request $request
+         * @return WP_REST_Response|WP_Error
          */
         public function get_item($request)
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return true|\WP_Error
+         * @param WP_REST_Request $request
+         * @return true|WP_Error
          */
         public function create_item_permissions_check($request)
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return \WP_REST_Response|\WP_Error
+         * @param WP_REST_Request $request
+         * @return WP_REST_Response|WP_Error
          */
         public function create_item($request)
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return true|\WP_Error
+         * @param WP_REST_Request $request
+         * @return true|WP_Error
          */
         public function update_item_permissions_check($request)
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return \WP_REST_Response|\WP_Error
+         * @param WP_REST_Request $request
+         * @return WP_REST_Response|WP_Error
          */
         public function update_item($request)
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return true|\WP_Error
+         * @param WP_REST_Request $request
+         * @return true|WP_Error
          */
         public function delete_item_permissions_check($request)
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return \WP_REST_Response|\WP_Error
+         * @param WP_REST_Request $request
+         * @return WP_REST_Response|WP_Error
          */
         public function delete_item($request)
         {
         }
         /**
          * @param array $prepared_args
-         * @param \WP_REST_Request $request
+         * @param WP_REST_Request $request
          * @return array
          */
         protected function prepare_items_query($prepared_args = array(), $request = \null)
@@ -37784,25 +37784,25 @@ namespace {
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return \stdClass|\WP_Error
+         * @param WP_REST_Request $request
+         * @return stdClass|WP_Error
          */
         protected function prepare_item_for_database($request)
         {
         }
         /**
          * @param string $status
-         * @param \WP_REST_Request $request
+         * @param WP_REST_Request $request
          * @param string $param
-         * @return true|\WP_Error
+         * @return true|WP_Error
          */
         public function check_status($status, $request, $param)
         {
         }
         /**
          * @param string $post_status
-         * @param \WP_Post_Type $post_type
-         * @return string|\WP_Error
+         * @param WP_Post_Type $post_type
+         * @return string|WP_Error
          */
         protected function handle_status_param($post_status, $post_type)
         {
@@ -37810,15 +37810,15 @@ namespace {
         /**
          * @param int $featured_media
          * @param int $post_id
-         * @return bool|\WP_Error
+         * @return bool|WP_Error
          */
         protected function handle_featured_media($featured_media, $post_id)
         {
         }
         /**
          * @param string $template
-         * @param \WP_REST_Request $request
-         * @return true|\WP_Error
+         * @param WP_REST_Request $request
+         * @return true|WP_Error
          */
         public function check_template($template, $request)
         {
@@ -37833,58 +37833,58 @@ namespace {
         }
         /**
          * @param int $post_id
-         * @param \WP_REST_Request $request
-         * @return null|\WP_Error
+         * @param WP_REST_Request $request
+         * @return null|WP_Error
          */
         protected function handle_terms($post_id, $request)
         {
         }
         /**
-         * @param \WP_REST_Request $request
+         * @param WP_REST_Request $request
          * @return bool
          */
         protected function check_assign_terms_permission($request)
         {
         }
         /**
-         * @param \WP_Post_Type|string $post_type
+         * @param WP_Post_Type|string $post_type
          * @return bool
          */
         protected function check_is_post_type_allowed($post_type)
         {
         }
         /**
-         * @param \WP_Post $post
+         * @param WP_Post $post
          * @return bool
          */
         public function check_read_permission($post)
         {
         }
         /**
-         * @param \WP_Post $post
+         * @param WP_Post $post
          * @return bool
          */
         protected function check_update_permission($post)
         {
         }
         /**
-         * @param \WP_Post $post
+         * @param WP_Post $post
          * @return bool
          */
         protected function check_create_permission($post)
         {
         }
         /**
-         * @param \WP_Post $post
+         * @param WP_Post $post
          * @return bool
          */
         protected function check_delete_permission($post)
         {
         }
         /**
-         * @param \WP_Post $item
-         * @param \WP_REST_Request $request
-         * @return \WP_REST_Response
+         * @param WP_Post $item
+         * @param WP_REST_Request $request
+         * @return WP_REST_Response
          */
         public function prepare_item_for_response($item, $request)
         {
@@ -37896,15 +37896,15 @@ namespace {
         {
         }
         /**
-         * @param \WP_Post $post
+         * @param WP_Post $post
          * @return array
          */
         protected function prepare_links($post)
         {
         }
         /**
-         * @param \WP_Post $post
-         * @param \WP_REST_Request $request
+         * @param WP_Post $post
+         * @param WP_REST_Request $request
          * @return array
          */
         protected function get_available_actions($post, $request)
@@ -37930,9 +37930,9 @@ namespace {
         }
         /**
          * @param string|array $statuses
-         * @param \WP_REST_Request $request
+         * @param WP_REST_Request $request
          * @param string $parameter
-         * @return array|\WP_Error
+         * @return array|WP_Error
          */
         public function sanitize_post_statuses($statuses, $request, $parameter)
         {
@@ -37949,29 +37949,29 @@ namespace {
         }
         /**
          * @param array $prepared_args
-         * @param \WP_REST_Request $request
+         * @param WP_REST_Request $request
          * @return array
          */
         protected function prepare_items_query($prepared_args = array(), $request = \null)
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return true|\WP_Error
+         * @param WP_REST_Request $request
+         * @return true|WP_Error
          */
         public function create_item_permissions_check($request)
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return \WP_REST_Response|\WP_Error
+         * @param WP_REST_Request $request
+         * @return WP_REST_Response|WP_Error
          */
         public function create_item($request)
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return array|\WP_Error
+         * @param WP_REST_Request $request
+         * @return array|WP_Error
          */
         protected function insert_attachment($request)
         {
@@ -37979,57 +37979,57 @@ namespace {
         /**
          * @param int $featured_media
          * @param int $post_id
-         * @return bool|\WP_Error
+         * @return bool|WP_Error
          */
         protected function handle_featured_media($featured_media, $post_id)
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return \WP_REST_Response|\WP_Error
+         * @param WP_REST_Request $request
+         * @return WP_REST_Response|WP_Error
          */
         public function update_item($request)
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return \WP_REST_Response|\WP_Error
+         * @param WP_REST_Request $request
+         * @return WP_REST_Response|WP_Error
          */
         public function post_process_item($request)
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return true|\WP_Error
+         * @param WP_REST_Request $request
+         * @return true|WP_Error
          */
         public function post_process_item_permissions_check($request)
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return true|\WP_Error
+         * @param WP_REST_Request $request
+         * @return true|WP_Error
          */
         public function edit_media_item_permissions_check($request)
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return \WP_REST_Response|\WP_Error
+         * @param WP_REST_Request $request
+         * @return WP_REST_Response|WP_Error
          */
         public function edit_media_item($request)
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return \stdClass|\WP_Error
+         * @param WP_REST_Request $request
+         * @return stdClass|WP_Error
          */
         protected function prepare_item_for_database($request)
         {
         }
         /**
-         * @param \WP_Post $item
-         * @param \WP_REST_Request $request
-         * @return \WP_REST_Response
+         * @param WP_Post $item
+         * @param WP_REST_Request $request
+         * @return WP_REST_Response
          */
         public function prepare_item_for_response($item, $request)
         {
@@ -38044,7 +38044,7 @@ namespace {
          * @param string $data
          * @param array $headers
          * @param string|null $time
-         * @return array|\WP_Error
+         * @return array|WP_Error
          */
         protected function upload_from_data($data, $headers, $time = \null)
         {
@@ -38066,7 +38066,7 @@ namespace {
          * @param array $files
          * @param array $headers
          * @param string|null $time
-         * @return array|\WP_Error
+         * @return array|WP_Error
          */
         protected function upload_from_file($files, $headers, $time = \null)
         {
@@ -38079,7 +38079,7 @@ namespace {
         }
         /**
          * @param array $file
-         * @return true|\WP_Error
+         * @return true|WP_Error
          */
         protected function check_upload_size($file)
         {
@@ -38094,7 +38094,7 @@ namespace {
     class WP_REST_Revisions_Controller extends \WP_REST_Controller
     {
         /**
-         * @var \WP_REST_Post_Meta_Fields
+         * @var WP_REST_Post_Meta_Fields
          */
         protected $meta;
         /**
@@ -38108,72 +38108,72 @@ namespace {
         }
         /**
          * @param int $parent_post_id
-         * @return \WP_Post|\WP_Error
+         * @return WP_Post|WP_Error
          */
         protected function get_parent($parent_post_id)
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return true|\WP_Error
+         * @param WP_REST_Request $request
+         * @return true|WP_Error
          */
         public function get_items_permissions_check($request)
         {
         }
         /**
          * @param int $id
-         * @return \WP_Post|\WP_Error
+         * @return WP_Post|WP_Error
          */
         protected function get_revision($id)
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return \WP_REST_Response|\WP_Error
+         * @param WP_REST_Request $request
+         * @return WP_REST_Response|WP_Error
          */
         public function get_items($request)
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return true|\WP_Error
+         * @param WP_REST_Request $request
+         * @return true|WP_Error
          */
         public function get_item_permissions_check($request)
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return \WP_REST_Response|\WP_Error
+         * @param WP_REST_Request $request
+         * @return WP_REST_Response|WP_Error
          */
         public function get_item($request)
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return true|\WP_Error
+         * @param WP_REST_Request $request
+         * @return true|WP_Error
          */
         public function delete_item_permissions_check($request)
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return \WP_REST_Response|\WP_Error
+         * @param WP_REST_Request $request
+         * @return WP_REST_Response|WP_Error
          */
         public function delete_item($request)
         {
         }
         /**
          * @param array $prepared_args
-         * @param \WP_REST_Request $request
+         * @param WP_REST_Request $request
          * @return array
          */
         protected function prepare_items_query($prepared_args = array(), $request = \null)
         {
         }
         /**
-         * @param \WP_Post $item
-         * @param \WP_REST_Request $request
-         * @return \WP_REST_Response
+         * @param WP_Post $item
+         * @param WP_REST_Request $request
+         * @return WP_REST_Response
          */
         public function prepare_item_for_response($item, $request)
         {
@@ -38200,7 +38200,7 @@ namespace {
         }
         /**
          * @param string $excerpt
-         * @param \WP_Post $post
+         * @param WP_Post $post
          * @return string
          */
         protected function prepare_excerpt_response($excerpt, $post)
@@ -38220,42 +38220,42 @@ namespace {
         }
         /**
          * @param int $parent_id
-         * @return \WP_Post|\WP_Error
+         * @return WP_Post|WP_Error
          */
         protected function get_parent($parent_id)
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return true|\WP_Error
+         * @param WP_REST_Request $request
+         * @return true|WP_Error
          */
         public function get_items_permissions_check($request)
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return true|\WP_Error
+         * @param WP_REST_Request $request
+         * @return true|WP_Error
          */
         public function create_item_permissions_check($request)
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return \WP_REST_Response|\WP_Error
+         * @param WP_REST_Request $request
+         * @return WP_REST_Response|WP_Error
          */
         public function create_item($request)
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return \WP_Post|\WP_Error
+         * @param WP_REST_Request $request
+         * @return WP_Post|WP_Error
          */
         public function get_item($request)
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return \WP_REST_Response|\WP_Error
+         * @param WP_REST_Request $request
+         * @return WP_REST_Response|WP_Error
          */
         public function get_items($request)
         {
@@ -38275,9 +38275,9 @@ namespace {
         {
         }
         /**
-         * @param \WP_Post $item
-         * @param \WP_REST_Request $request
-         * @return \WP_REST_Response
+         * @param WP_Post $item
+         * @param WP_REST_Request $request
+         * @return WP_REST_Response
          */
         public function prepare_item_for_response($item, $request)
         {
@@ -38298,23 +38298,23 @@ namespace {
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return true|\WP_Error
+         * @param WP_REST_Request $request
+         * @return true|WP_Error
          */
         public function get_items_permissions_check($request)
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return \WP_REST_Response|\WP_Error
+         * @param WP_REST_Request $request
+         * @return WP_REST_Response|WP_Error
          */
         public function get_items($request)
         {
         }
         /**
          * @param array $item
-         * @param \WP_REST_Request $request
-         * @return \WP_REST_Response|\WP_Error
+         * @param WP_REST_Request $request
+         * @return WP_REST_Response|WP_Error
          */
         public function prepare_item_for_response($item, $request)
         {
@@ -38355,23 +38355,23 @@ namespace {
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return true|\WP_Error
+         * @param WP_REST_Request $request
+         * @return true|WP_Error
          */
         public function get_items_permissions_check($request)
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return \WP_Error|\WP_REST_Response
+         * @param WP_REST_Request $request
+         * @return WP_Error|WP_REST_Response
          */
         public function get_items($request)
         {
         }
         /**
          * @param array $item
-         * @param \WP_REST_Request $request
-         * @return \WP_REST_Response|\WP_Error
+         * @param WP_REST_Request $request
+         * @return WP_REST_Response|WP_Error
          */
         public function prepare_item_for_response($item, $request)
         {
@@ -38396,15 +38396,15 @@ namespace {
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return true|\WP_Error
+         * @param WP_REST_Request $request
+         * @return true|WP_Error
          */
         public function get_items_permissions_check($request)
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return \WP_REST_Response|\WP_Error
+         * @param WP_REST_Request $request
+         * @return WP_REST_Response|WP_Error
          */
         public function get_items($request)
         {
@@ -38418,8 +38418,8 @@ namespace {
         }
         /**
          * @param array $item
-         * @param \WP_REST_Request $request
-         * @return \WP_REST_Response|\WP_Error
+         * @param WP_REST_Request $request
+         * @return WP_REST_Response|WP_Error
          */
         public function prepare_item_for_response($item, $request)
         {
@@ -38440,15 +38440,15 @@ namespace {
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return true|\WP_Error
+         * @param WP_REST_Request $request
+         * @return true|WP_Error
          */
         public function get_item_permissions_check($request)
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return \WP_REST_Response|\WP_Error
+         * @param WP_REST_Request $request
+         * @return WP_REST_Response|WP_Error
          */
         public function get_item($request)
         {
@@ -38464,11 +38464,11 @@ namespace {
     {
         const NAME_PATTERN = '^[a-z][a-z0-9-]*/[a-z][a-z0-9-]*$';
         /**
-         * @var \WP_Block_Type_Registry
+         * @var WP_Block_Type_Registry
          */
         protected $block_registry;
         /**
-         * @var \WP_Block_Styles_Registry
+         * @var WP_Block_Styles_Registry
          */
         protected $style_registry;
         public function __construct()
@@ -38478,56 +38478,56 @@ namespace {
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return true|\WP_Error
+         * @param WP_REST_Request $request
+         * @return true|WP_Error
          */
         public function get_items_permissions_check($request)
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return \WP_REST_Response|\WP_Error
+         * @param WP_REST_Request $request
+         * @return WP_REST_Response|WP_Error
          */
         public function get_items($request)
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return true|\WP_Error
+         * @param WP_REST_Request $request
+         * @return true|WP_Error
          */
         public function get_item_permissions_check($request)
         {
         }
         /**
-         * @return true|\WP_Error
+         * @return true|WP_Error
          */
         protected function check_read_permission()
         {
         }
         /**
          * @param string $name
-         * @return \WP_Block_Type|\WP_Error
+         * @return WP_Block_Type|WP_Error
          */
         protected function get_block($name)
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return \WP_REST_Response|\WP_Error
+         * @param WP_REST_Request $request
+         * @return WP_REST_Response|WP_Error
          */
         public function get_item($request)
         {
         }
         /**
-         * @param \WP_Block_Type $item
-         * @param \WP_REST_Request $request
-         * @return \WP_REST_Response
+         * @param WP_Block_Type $item
+         * @param WP_REST_Request $request
+         * @return WP_REST_Response
          */
         public function prepare_item_for_response($item, $request)
         {
         }
         /**
-         * @param \WP_Block_Type $block_type
+         * @param WP_Block_Type $block_type
          * @return array
          */
         protected function prepare_links($block_type)
@@ -38549,7 +38549,7 @@ namespace {
     class WP_REST_Blocks_Controller extends \WP_REST_Posts_Controller
     {
         /**
-         * @param \WP_Post $post
+         * @param WP_Post $post
          * @return bool
          */
         public function check_read_permission($post)
@@ -38573,7 +38573,7 @@ namespace {
     class WP_REST_Comments_Controller extends \WP_REST_Controller
     {
         /**
-         * @var \WP_REST_Comment_Meta_Fields
+         * @var WP_REST_Comment_Meta_Fields
          */
         protected $meta;
         public function __construct()
@@ -38583,92 +38583,92 @@ namespace {
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return true|\WP_Error
+         * @param WP_REST_Request $request
+         * @return true|WP_Error
          */
         public function get_items_permissions_check($request)
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return \WP_REST_Response|\WP_Error
+         * @param WP_REST_Request $request
+         * @return WP_REST_Response|WP_Error
          */
         public function get_items($request)
         {
         }
         /**
          * @param int $id
-         * @return \WP_Comment|\WP_Error
+         * @return WP_Comment|WP_Error
          */
         protected function get_comment($id)
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return true|\WP_Error
+         * @param WP_REST_Request $request
+         * @return true|WP_Error
          */
         public function get_item_permissions_check($request)
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return \WP_REST_Response|\WP_Error
+         * @param WP_REST_Request $request
+         * @return WP_REST_Response|WP_Error
          */
         public function get_item($request)
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return true|\WP_Error
+         * @param WP_REST_Request $request
+         * @return true|WP_Error
          */
         public function create_item_permissions_check($request)
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return \WP_REST_Response|\WP_Error
+         * @param WP_REST_Request $request
+         * @return WP_REST_Response|WP_Error
          */
         public function create_item($request)
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return true|\WP_Error
+         * @param WP_REST_Request $request
+         * @return true|WP_Error
          */
         public function update_item_permissions_check($request)
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return \WP_REST_Response|\WP_Error
+         * @param WP_REST_Request $request
+         * @return WP_REST_Response|WP_Error
          */
         public function update_item($request)
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return true|\WP_Error
+         * @param WP_REST_Request $request
+         * @return true|WP_Error
          */
         public function delete_item_permissions_check($request)
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return \WP_REST_Response|\WP_Error
+         * @param WP_REST_Request $request
+         * @return WP_REST_Response|WP_Error
          */
         public function delete_item($request)
         {
         }
         /**
-         * @param \WP_Comment $item
-         * @param \WP_REST_Request $request
-         * @return \WP_REST_Response
+         * @param WP_Comment $item
+         * @param WP_REST_Request $request
+         * @return WP_REST_Response
          */
         public function prepare_item_for_response($item, $request)
         {
         }
         /**
-         * @param \WP_Comment $comment
+         * @param WP_Comment $comment
          * @return array
          */
         protected function prepare_links($comment)
@@ -38689,8 +38689,8 @@ namespace {
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return array|\WP_Error
+         * @param WP_REST_Request $request
+         * @return array|WP_Error
          */
         protected function prepare_item_for_database($request)
         {
@@ -38716,23 +38716,23 @@ namespace {
         {
         }
         /**
-         * @param \WP_Post $post
-         * @param \WP_REST_Request $request
+         * @param WP_Post $post
+         * @param WP_REST_Request $request
          * @return bool
          */
         protected function check_read_post_permission($post, $request)
         {
         }
         /**
-         * @param \WP_Comment $comment
-         * @param \WP_REST_Request $request
+         * @param WP_Comment $comment
+         * @param WP_REST_Request $request
          * @return bool
          */
         protected function check_read_permission($comment, $request)
         {
         }
         /**
-         * @param \WP_Comment $comment
+         * @param WP_Comment $comment
          * @return bool
          */
         protected function check_edit_permission($comment)
@@ -38740,9 +38740,9 @@ namespace {
         }
         /**
          * @param string $value
-         * @param \WP_REST_Request $request
+         * @param WP_REST_Request $request
          * @param string $param
-         * @return string|\WP_Error
+         * @return string|WP_Error
          */
         public function check_comment_author_email($value, $request, $param)
         {
@@ -38764,13 +38764,13 @@ namespace {
         {
         }
         /**
-         * @return \WP_Error|true
+         * @return WP_Error|true
          */
         public function permissions_check()
         {
         }
         /**
-         * @return \WP_Error|void
+         * @return WP_Error|void
          */
         public function export()
         {
@@ -38785,22 +38785,22 @@ namespace {
         {
         }
         /**
-         * @return \WP_REST_Response|\WP_Error
+         * @return WP_REST_Response|WP_Error
          */
         public function get_items($request)
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return \WP_REST_Response|\WP_Error
+         * @param WP_REST_Request $request
+         * @return WP_REST_Response|WP_Error
          */
         public function get_item($request)
         {
         }
         /**
-         * @param \WP_Font_Collection $item
-         * @param \WP_REST_Request $request
-         * @return \WP_REST_Response|\WP_Error
+         * @param WP_Font_Collection $item
+         * @param WP_REST_Request $request
+         * @return WP_REST_Response|WP_Error
          */
         public function prepare_item_for_response($item, $request)
         {
@@ -38812,7 +38812,7 @@ namespace {
         {
         }
         /**
-         * @param \WP_Font_Collection $collection
+         * @param WP_Font_Collection $collection
          * @return array
          */
         protected function prepare_links($collection)
@@ -38825,7 +38825,7 @@ namespace {
         {
         }
         /**
-         * @return true|\WP_Error
+         * @return true|WP_Error
          */
         public function get_items_permissions_check($request)
         {
@@ -38848,23 +38848,23 @@ namespace {
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return true|\WP_Error
+         * @param WP_REST_Request $request
+         * @return true|WP_Error
          */
         public function get_items_permissions_check($request)
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return true|\WP_Error
+         * @param WP_REST_Request $request
+         * @return true|WP_Error
          */
         public function get_item_permissions_check($request)
         {
         }
         /**
          * @param string $value
-         * @param \WP_REST_Request $request
-         * @return true|\WP_Error
+         * @param WP_REST_Request $request
+         * @return true|WP_Error
          */
         public function validate_create_font_face_settings($value, $request)
         {
@@ -38877,37 +38877,37 @@ namespace {
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return \WP_REST_Response|\WP_Error
+         * @param WP_REST_Request $request
+         * @return WP_REST_Response|WP_Error
          */
         public function get_items($request)
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return \WP_REST_Response|\WP_Error
+         * @param WP_REST_Request $request
+         * @return WP_REST_Response|WP_Error
          */
         public function get_item($request)
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return \WP_REST_Response|\WP_Error
+         * @param WP_REST_Request $request
+         * @return WP_REST_Response|WP_Error
          */
         public function create_item($request)
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return \WP_REST_Response|\WP_Error
+         * @param WP_REST_Request $request
+         * @return WP_REST_Response|WP_Error
          */
         public function delete_item($request)
         {
         }
         /**
-         * @param \WP_Post $item
-         * @param \WP_REST_Request $request
-         * @return \WP_REST_Response
+         * @param WP_Post $item
+         * @param WP_REST_Request $request
+         * @return WP_REST_Response
          */
         public function prepare_item_for_response($item, $request)
         {
@@ -38938,21 +38938,21 @@ namespace {
         }
         /**
          * @param int $font_family_id
-         * @return \WP_Post|\WP_Error
+         * @return WP_Post|WP_Error
          */
         protected function get_parent_font_family_post($font_family_id)
         {
         }
         /**
-         * @param \WP_Post $post
+         * @param WP_Post $post
          * @return array
          */
         protected function prepare_links($post)
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return \stdClass
+         * @param WP_REST_Request $request
+         * @return stdClass
          */
         protected function prepare_item_for_database($request)
         {
@@ -38966,7 +38966,7 @@ namespace {
         }
         /**
          * @param array $file
-         * @return array|\WP_Error
+         * @return array|WP_Error
          */
         protected function handle_font_file_upload($file)
         {
@@ -38974,7 +38974,7 @@ namespace {
         /**
          * @param array $file
          * @param string $message
-         * @return \WP_Error
+         * @return WP_Error
          */
         public function handle_font_file_upload_error($file, $message)
         {
@@ -38987,7 +38987,7 @@ namespace {
         {
         }
         /**
-         * @param \WP_Post $post
+         * @param WP_Post $post
          * @return array
          */
         protected function get_settings_from_post($post)
@@ -39008,23 +39008,23 @@ namespace {
          */
         protected $allow_batch = \false;
         /**
-         * @param \WP_REST_Request $request
-         * @return true|\WP_Error
+         * @param WP_REST_Request $request
+         * @return true|WP_Error
          */
         public function get_items_permissions_check($request)
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return true|\WP_Error
+         * @param WP_REST_Request $request
+         * @return true|WP_Error
          */
         public function get_item_permissions_check($request)
         {
         }
         /**
          * @param string $value
-         * @param \WP_REST_Request $request
-         * @return true|\WP_Error
+         * @param WP_REST_Request $request
+         * @return true|WP_Error
          */
         public function validate_font_family_settings($value, $request)
         {
@@ -39037,23 +39037,23 @@ namespace {
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return \WP_REST_Response|\WP_Error
+         * @param WP_REST_Request $request
+         * @return WP_REST_Response|WP_Error
          */
         public function create_item($request)
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return \WP_REST_Response|\WP_Error
+         * @param WP_REST_Request $request
+         * @return WP_REST_Response|WP_Error
          */
         public function delete_item($request)
         {
         }
         /**
-         * @param \WP_Post $item
-         * @param \WP_REST_Request $request
-         * @return \WP_REST_Response
+         * @param WP_Post $item
+         * @param WP_REST_Request $request
+         * @return WP_REST_Response
          */
         public function prepare_item_for_response($item, $request)
         {
@@ -39090,7 +39090,7 @@ namespace {
         {
         }
         /**
-         * @param \WP_Post $post
+         * @param WP_Post $post
          * @return array
          */
         protected function prepare_links($post)
@@ -39104,14 +39104,14 @@ namespace {
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return \stdClass|\WP_Error
+         * @param WP_REST_Request $request
+         * @return stdClass|WP_Error
          */
         protected function prepare_item_for_database($request)
         {
         }
         /**
-         * @param \WP_Post $post
+         * @param WP_Post $post
          * @return array
          */
         protected function get_settings_from_post($post)
@@ -39142,43 +39142,43 @@ namespace {
         }
         /**
          * @param int $id
-         * @return \WP_Post|\WP_Error
+         * @return WP_Post|WP_Error
          */
         protected function get_post($id)
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return true|\WP_Error
+         * @param WP_REST_Request $request
+         * @return true|WP_Error
          */
         public function get_item_permissions_check($request)
         {
         }
         /**
-         * @param \WP_Post $post
+         * @param WP_Post $post
          * @return bool
          */
         public function check_read_permission($post)
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return true|\WP_Error
+         * @param WP_REST_Request $request
+         * @return true|WP_Error
          */
         public function update_item_permissions_check($request)
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return \stdClass|\WP_Error
+         * @param WP_REST_Request $request
+         * @return stdClass|WP_Error
          */
         protected function prepare_item_for_database($request)
         {
         }
         /**
-         * @param \WP_Post $post
-         * @param \WP_REST_Request $request
-         * @return \WP_REST_Response
+         * @param WP_Post $post
+         * @param WP_REST_Request $request
+         * @return WP_REST_Response
          */
         public function prepare_item_for_response($post, $request)
         {
@@ -39191,8 +39191,8 @@ namespace {
         {
         }
         /**
-         * @param \WP_Post $post
-         * @param \WP_REST_Request $request
+         * @param WP_Post $post
+         * @param WP_REST_Request $request
          * @return array
          */
         protected function get_available_actions($post, $request)
@@ -39211,36 +39211,36 @@ namespace {
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return true|\WP_Error
+         * @param WP_REST_Request $request
+         * @return true|WP_Error
          */
         public function get_theme_item_permissions_check($request)
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return \WP_REST_Response|\WP_Error
+         * @param WP_REST_Request $request
+         * @return WP_REST_Response|WP_Error
          */
         public function get_theme_item($request)
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return true|\WP_Error
+         * @param WP_REST_Request $request
+         * @return true|WP_Error
          */
         public function get_theme_items_permissions_check($request)
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return \WP_REST_Response|\WP_Error
+         * @param WP_REST_Request $request
+         * @return WP_REST_Response|WP_Error
          */
         public function get_theme_items($request)
         {
         }
         /**
          * @param string $css
-         * @return true|\WP_Error
+         * @return true|WP_Error
          */
         protected function validate_custom_css($css)
         {
@@ -39267,22 +39267,22 @@ namespace {
         }
         /**
          * @param string $raw_json
-         * @return array|\WP_Error
+         * @return array|WP_Error
          */
         protected function get_decoded_global_styles_json($raw_json)
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return \WP_REST_Response|\WP_Error
+         * @param WP_REST_Request $request
+         * @return WP_REST_Response|WP_Error
          */
         public function get_items($request)
         {
         }
         /**
-         * @param \WP_Post $post
-         * @param \WP_REST_Request $request
-         * @return \WP_REST_Response|\WP_Error
+         * @param WP_Post $post
+         * @param WP_REST_Request $request
+         * @return WP_REST_Response|WP_Error
          */
         public function prepare_item_for_response($post, $request)
         {
@@ -39304,70 +39304,70 @@ namespace {
     {
         /**
          * @param int $id
-         * @return object|\WP_Error
+         * @return object|WP_Error
          */
         protected function get_nav_menu_item($id)
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return true|\WP_Error
+         * @param WP_REST_Request $request
+         * @return true|WP_Error
          */
         public function get_items_permissions_check($request)
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return bool|\WP_Error
+         * @param WP_REST_Request $request
+         * @return bool|WP_Error
          */
         public function get_item_permissions_check($request)
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return true|\WP_Error
+         * @param WP_REST_Request $request
+         * @return true|WP_Error
          */
         protected function check_has_read_only_access($request)
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return \WP_REST_Response|\WP_Error
+         * @param WP_REST_Request $request
+         * @return WP_REST_Response|WP_Error
          */
         public function create_item($request)
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return \WP_REST_Response|\WP_Error
+         * @param WP_REST_Request $request
+         * @return WP_REST_Response|WP_Error
          */
         public function update_item($request)
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return \WP_REST_Response|\WP_Error
+         * @param WP_REST_Request $request
+         * @return WP_REST_Response|WP_Error
          */
         public function delete_item($request)
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return object|\WP_Error
+         * @param WP_REST_Request $request
+         * @return object|WP_Error
          */
         protected function prepare_item_for_database($request)
         {
         }
         /**
-         * @param \WP_Post $item
-         * @param \WP_REST_Request $request
-         * @return \WP_REST_Response
+         * @param WP_Post $item
+         * @param WP_REST_Request $request
+         * @return WP_REST_Response
          */
         public function prepare_item_for_response($item, $request)
         {
         }
         /**
-         * @param \WP_Post $post
+         * @param WP_Post $post
          * @return array
          */
         protected function prepare_links($post)
@@ -39393,7 +39393,7 @@ namespace {
         }
         /**
          * @param array $prepared_args
-         * @param \WP_REST_Request $request
+         * @param WP_REST_Request $request
          * @return array
          */
         protected function prepare_items_query($prepared_args = array(), $request = \null)
@@ -39416,43 +39416,43 @@ namespace {
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return \WP_Error|bool
+         * @param WP_REST_Request $request
+         * @return WP_Error|bool
          */
         public function get_items_permissions_check($request)
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return \WP_Error|\WP_REST_Response
+         * @param WP_REST_Request $request
+         * @return WP_Error|WP_REST_Response
          */
         public function get_items($request)
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return true|\WP_Error
+         * @param WP_REST_Request $request
+         * @return true|WP_Error
          */
         public function get_item_permissions_check($request)
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return \WP_Error|\WP_REST_Response
+         * @param WP_REST_Request $request
+         * @return WP_Error|WP_REST_Response
          */
         public function get_item($request)
         {
         }
         /**
-         * @param \stdClass $item
-         * @param \WP_REST_Request $request
-         * @return \WP_REST_Response
+         * @param stdClass $item
+         * @param WP_REST_Request $request
+         * @return WP_REST_Response
          */
         public function prepare_item_for_response($item, $request)
         {
         }
         /**
-         * @param \stdClass $location
+         * @param stdClass $location
          * @return array
          */
         protected function prepare_links($location)
@@ -39478,7 +39478,7 @@ namespace {
          */
         protected $taxonomy;
         /**
-         * @var \WP_REST_Term_Meta_Fields
+         * @var WP_REST_Term_Meta_Fields
          */
         protected $meta;
         /**
@@ -39503,107 +39503,107 @@ namespace {
         {
         }
         /**
-         * @param \WP_Post $post
-         * @param \WP_REST_Request $request
+         * @param WP_Post $post
+         * @param WP_REST_Request $request
          * @return bool
          */
         public function check_read_terms_permission_for_post($post, $request)
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return bool|\WP_Error
+         * @param WP_REST_Request $request
+         * @return bool|WP_Error
          */
         public function get_items_permissions_check($request)
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return \WP_REST_Response|\WP_Error
+         * @param WP_REST_Request $request
+         * @return WP_REST_Response|WP_Error
          */
         public function get_items($request)
         {
         }
         /**
          * @param int $id
-         * @return \WP_Term|\WP_Error
+         * @return WP_Term|WP_Error
          */
         protected function get_term($id)
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return true|\WP_Error
+         * @param WP_REST_Request $request
+         * @return true|WP_Error
          */
         public function get_item_permissions_check($request)
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return \WP_REST_Response|\WP_Error
+         * @param WP_REST_Request $request
+         * @return WP_REST_Response|WP_Error
          */
         public function get_item($request)
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return true|\WP_Error
+         * @param WP_REST_Request $request
+         * @return true|WP_Error
          */
         public function create_item_permissions_check($request)
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return \WP_REST_Response|\WP_Error
+         * @param WP_REST_Request $request
+         * @return WP_REST_Response|WP_Error
          */
         public function create_item($request)
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return true|\WP_Error
+         * @param WP_REST_Request $request
+         * @return true|WP_Error
          */
         public function update_item_permissions_check($request)
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return \WP_REST_Response|\WP_Error
+         * @param WP_REST_Request $request
+         * @return WP_REST_Response|WP_Error
          */
         public function update_item($request)
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return true|\WP_Error
+         * @param WP_REST_Request $request
+         * @return true|WP_Error
          */
         public function delete_item_permissions_check($request)
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return \WP_REST_Response|\WP_Error
+         * @param WP_REST_Request $request
+         * @return WP_REST_Response|WP_Error
          */
         public function delete_item($request)
         {
         }
         /**
-         * @param \WP_REST_Request $request
+         * @param WP_REST_Request $request
          * @return object
          */
         public function prepare_item_for_database($request)
         {
         }
         /**
-         * @param \WP_Term $item
-         * @param \WP_REST_Request $request
-         * @return \WP_REST_Response
+         * @param WP_Term $item
+         * @param WP_REST_Request $request
+         * @return WP_REST_Response
          */
         public function prepare_item_for_response($item, $request)
         {
         }
         /**
-         * @param \WP_Term $term
+         * @param WP_Term $term
          * @return array
          */
         protected function prepare_links($term)
@@ -39632,72 +39632,72 @@ namespace {
     class WP_REST_Menus_Controller extends \WP_REST_Terms_Controller
     {
         /**
-         * @param \WP_REST_Request $request
-         * @return bool|\WP_Error
+         * @param WP_REST_Request $request
+         * @return bool|WP_Error
          */
         public function get_items_permissions_check($request)
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return true|\WP_Error
+         * @param WP_REST_Request $request
+         * @return true|WP_Error
          */
         public function get_item_permissions_check($request)
         {
         }
         /**
          * @param int $id
-         * @return \WP_Term|\WP_Error
+         * @return WP_Term|WP_Error
          */
         protected function get_term($id)
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return true|\WP_Error
+         * @param WP_REST_Request $request
+         * @return true|WP_Error
          */
         protected function check_has_read_only_access($request)
         {
         }
         /**
-         * @param \WP_Term $term
-         * @param \WP_REST_Request $request
-         * @return \WP_REST_Response
+         * @param WP_Term $term
+         * @param WP_REST_Request $request
+         * @return WP_REST_Response
          */
         public function prepare_item_for_response($term, $request)
         {
         }
         /**
-         * @param \WP_Term $term
+         * @param WP_Term $term
          * @return array
          */
         protected function prepare_links($term)
         {
         }
         /**
-         * @param \WP_REST_Request $request
+         * @param WP_REST_Request $request
          * @return object
          */
         public function prepare_item_for_database($request)
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return \WP_REST_Response|\WP_Error
+         * @param WP_REST_Request $request
+         * @return WP_REST_Response|WP_Error
          */
         public function create_item($request)
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return \WP_REST_Response|\WP_Error
+         * @param WP_REST_Request $request
+         * @return WP_REST_Response|WP_Error
          */
         public function update_item($request)
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return \WP_REST_Response|\WP_Error
+         * @param WP_REST_Request $request
+         * @return WP_REST_Response|WP_Error
          */
         public function delete_item($request)
         {
@@ -39711,7 +39711,7 @@ namespace {
         }
         /**
          * @param int $menu_id
-         * @param \WP_REST_Request $request
+         * @param WP_REST_Request $request
          * @return bool
          */
         protected function handle_auto_add($menu_id, $request)
@@ -39726,8 +39726,8 @@ namespace {
         }
         /**
          * @param int $menu_id
-         * @param \WP_REST_Request $request
-         * @return true|\WP_Error
+         * @param WP_REST_Request $request
+         * @return true|WP_Error
          */
         protected function handle_locations($menu_id, $request)
         {
@@ -39748,15 +39748,15 @@ namespace {
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return true|\WP_Error
+         * @param WP_REST_Request $request
+         * @return true|WP_Error
          */
         public function get_item_permissions_check($request)
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return \WP_REST_Response|\WP_Error
+         * @param WP_REST_Request $request
+         * @return WP_REST_Response|WP_Error
          */
         public function get_item($request)
         {
@@ -39768,9 +39768,9 @@ namespace {
         {
         }
         /**
-         * @param \WP_Post $item
-         * @param \WP_REST_Request $request
-         * @return \WP_REST_Response
+         * @param WP_Post $item
+         * @param WP_REST_Request $request
+         * @return WP_REST_Response
          */
         public function prepare_item_for_response($item, $request)
         {
@@ -39785,23 +39785,23 @@ namespace {
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return true|\WP_Error
+         * @param WP_REST_Request $request
+         * @return true|WP_Error
          */
         public function get_items_permissions_check($request)
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return \WP_REST_Response|\WP_Error
+         * @param WP_REST_Request $request
+         * @return WP_REST_Response|WP_Error
          */
         public function get_items($request)
         {
         }
         /**
          * @param object $item
-         * @param \WP_REST_Request $request
-         * @return \WP_REST_Response
+         * @param WP_REST_Request $request
+         * @return WP_REST_Response
          */
         public function prepare_item_for_response($item, $request)
         {
@@ -39846,86 +39846,86 @@ namespace {
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return true|\WP_Error
+         * @param WP_REST_Request $request
+         * @return true|WP_Error
          */
         public function get_items_permissions_check($request)
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return \WP_REST_Response|\WP_Error
+         * @param WP_REST_Request $request
+         * @return WP_REST_Response|WP_Error
          */
         public function get_items($request)
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return true|\WP_Error
+         * @param WP_REST_Request $request
+         * @return true|WP_Error
          */
         public function get_item_permissions_check($request)
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return \WP_REST_Response|\WP_Error
+         * @param WP_REST_Request $request
+         * @return WP_REST_Response|WP_Error
          */
         public function get_item($request)
         {
         }
         /**
          * @param string $plugin
-         * @return true|\WP_Error
+         * @return true|WP_Error
          */
         protected function check_read_permission($plugin)
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return true|\WP_Error
+         * @param WP_REST_Request $request
+         * @return true|WP_Error
          */
         public function create_item_permissions_check($request)
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return \WP_REST_Response|\WP_Error
+         * @param WP_REST_Request $request
+         * @return WP_REST_Response|WP_Error
          */
         public function create_item($request)
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return true|\WP_Error
+         * @param WP_REST_Request $request
+         * @return true|WP_Error
          */
         public function update_item_permissions_check($request)
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return \WP_REST_Response|\WP_Error
+         * @param WP_REST_Request $request
+         * @return WP_REST_Response|WP_Error
          */
         public function update_item($request)
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return true|\WP_Error
+         * @param WP_REST_Request $request
+         * @return true|WP_Error
          */
         public function delete_item_permissions_check($request)
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return \WP_REST_Response|\WP_Error
+         * @param WP_REST_Request $request
+         * @return WP_REST_Response|WP_Error
          */
         public function delete_item($request)
         {
         }
         /**
          * @param array $item
-         * @param \WP_REST_Request $request
-         * @return \WP_REST_Response|\WP_Error
+         * @param WP_REST_Request $request
+         * @return WP_REST_Response|WP_Error
          */
         public function prepare_item_for_response($item, $request)
         {
@@ -39939,7 +39939,7 @@ namespace {
         }
         /**
          * @param string $plugin
-         * @return array|\WP_Error
+         * @return array|WP_Error
          */
         protected function get_plugin_data($plugin)
         {
@@ -39955,7 +39955,7 @@ namespace {
          * @param string $plugin
          * @param string $new_status
          * @param string $current_status
-         * @return true|\WP_Error
+         * @return true|WP_Error
          */
         protected function plugin_status_permission_check($plugin, $new_status, $current_status)
         {
@@ -39964,7 +39964,7 @@ namespace {
          * @param string $plugin
          * @param string $new_status
          * @param string $current_status
-         * @return true|\WP_Error
+         * @return true|WP_Error
          */
         protected function handle_plugin_status($plugin, $new_status, $current_status)
         {
@@ -39984,7 +39984,7 @@ namespace {
         {
         }
         /**
-         * @param \WP_REST_Request $request
+         * @param WP_REST_Request $request
          * @param array $item
          * @return bool
          */
@@ -39999,7 +39999,7 @@ namespace {
         {
         }
         /**
-         * @return true|\WP_Error
+         * @return true|WP_Error
          */
         protected function is_filesystem_available()
         {
@@ -40026,22 +40026,22 @@ namespace {
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return true|\WP_Error
+         * @param WP_REST_Request $request
+         * @return true|WP_Error
          */
         public function get_items_permissions_check($request)
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return \WP_REST_Response|\WP_Error
+         * @param WP_REST_Request $request
+         * @return WP_REST_Response|WP_Error
          */
         public function get_items($request)
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return true|\WP_Error
+         * @param WP_REST_Request $request
+         * @return true|WP_Error
          */
         public function get_item_permissions_check($request)
         {
@@ -40054,16 +40054,16 @@ namespace {
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return \WP_REST_Response|\WP_Error
+         * @param WP_REST_Request $request
+         * @return WP_REST_Response|WP_Error
          */
         public function get_item($request)
         {
         }
         /**
-         * @param \stdClass $item
-         * @param \WP_REST_Request $request
-         * @return \WP_REST_Response
+         * @param stdClass $item
+         * @param WP_REST_Request $request
+         * @return WP_REST_Response
          */
         public function prepare_item_for_response($item, $request)
         {
@@ -40090,36 +40090,36 @@ namespace {
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return true|\WP_Error
+         * @param WP_REST_Request $request
+         * @return true|WP_Error
          */
         public function get_items_permissions_check($request)
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return \WP_REST_Response|\WP_Error
+         * @param WP_REST_Request $request
+         * @return WP_REST_Response|WP_Error
          */
         public function get_items($request)
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return \WP_REST_Response|\WP_Error
+         * @param WP_REST_Request $request
+         * @return WP_REST_Response|WP_Error
          */
         public function get_item($request)
         {
         }
         /**
-         * @param \WP_Post_Type $item
-         * @param \WP_REST_Request $request
-         * @return \WP_REST_Response
+         * @param WP_Post_Type $item
+         * @param WP_REST_Request $request
+         * @return WP_REST_Response
          */
         public function prepare_item_for_response($item, $request)
         {
         }
         /**
-         * @param \WP_Post_Type $post_type
+         * @param WP_Post_Type $post_type
          * @return array
          */
         protected function prepare_links($post_type)
@@ -40165,7 +40165,7 @@ namespace {
          */
         const TYPE_ANY = 'any';
         /**
-         * @var \WP_REST_Search_Handler[]
+         * @var WP_REST_Search_Handler[]
          */
         protected $search_handlers = array();
         /**
@@ -40178,23 +40178,23 @@ namespace {
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return true|\WP_Error
+         * @param WP_REST_Request $request
+         * @return true|WP_Error
          */
         public function get_items_permission_check($request)
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return \WP_REST_Response|\WP_Error
+         * @param WP_REST_Request $request
+         * @return WP_REST_Response|WP_Error
          */
         public function get_items($request)
         {
         }
         /**
          * @param int|string $item
-         * @param \WP_REST_Request $request
-         * @return \WP_REST_Response
+         * @param WP_REST_Request $request
+         * @return WP_REST_Response
          */
         public function prepare_item_for_response($item, $request)
         {
@@ -40213,16 +40213,16 @@ namespace {
         }
         /**
          * @param string|array $subtypes
-         * @param \WP_REST_Request $request
+         * @param WP_REST_Request $request
          * @param string $parameter
-         * @return string[]|\WP_Error
+         * @return string[]|WP_Error
          */
         public function sanitize_subtypes($subtypes, $request, $parameter)
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return \WP_REST_Search_Handler|\WP_Error
+         * @param WP_REST_Request $request
+         * @return WP_REST_Search_Handler|WP_Error
          */
         protected function get_search_handler($request)
         {
@@ -40237,15 +40237,15 @@ namespace {
         {
         }
         /**
-         * @param \WP_REST_Request $request
+         * @param WP_REST_Request $request
          * @return bool
          */
         public function get_item_permissions_check($request)
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return array|\WP_Error
+         * @param WP_REST_Request $request
+         * @return array|WP_Error
          */
         public function get_item($request)
         {
@@ -40259,8 +40259,8 @@ namespace {
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return array|\WP_Error
+         * @param WP_REST_Request $request
+         * @return array|WP_Error
          */
         public function update_item($request)
         {
@@ -40279,9 +40279,9 @@ namespace {
         }
         /**
          * @param mixed $value
-         * @param \WP_REST_Request $request
+         * @param WP_REST_Request $request
          * @param string $param
-         * @return mixed|\WP_Error
+         * @return mixed|WP_Error
          */
         public function sanitize_callback($value, $request, $param)
         {
@@ -40307,22 +40307,22 @@ namespace {
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return true|\WP_Error
+         * @param WP_REST_Request $request
+         * @return true|WP_Error
          */
         public function get_items_permissions_check($request)
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return \WP_REST_Response
+         * @param WP_REST_Request $request
+         * @return WP_REST_Response
          */
         public function get_items($request)
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return true|\WP_Error
+         * @param WP_REST_Request $request
+         * @return true|WP_Error
          */
         public function get_item_permissions_check($request)
         {
@@ -40335,28 +40335,28 @@ namespace {
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return \WP_REST_Response|\WP_Error
+         * @param WP_REST_Request $request
+         * @return WP_REST_Response|WP_Error
          */
         public function get_item($request)
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return true|\WP_Error
+         * @param WP_REST_Request $request
+         * @return true|WP_Error
          */
         public function update_item_permissions_check($request)
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return \WP_REST_Response
+         * @param WP_REST_Request $request
+         * @return WP_REST_Response
          */
         public function update_item($request)
         {
         }
         /**
-         * @return true|\WP_Error
+         * @return true|WP_Error
          */
         protected function do_permissions_check()
         {
@@ -40373,8 +40373,8 @@ namespace {
         }
         /**
          * @param array $item
-         * @param \WP_REST_Request $request
-         * @return \WP_REST_Response
+         * @param WP_REST_Request $request
+         * @return WP_REST_Response
          */
         public function prepare_item_for_response($item, $request)
         {
@@ -40396,7 +40396,7 @@ namespace {
     class WP_REST_Site_Health_Controller extends \WP_REST_Controller
     {
         /**
-         * @param \WP_Site_Health $site_health
+         * @param WP_Site_Health $site_health
          */
         public function __construct($site_health)
         {
@@ -40448,7 +40448,7 @@ namespace {
         {
         }
         /**
-         * @return array|\WP_Error
+         * @return array|WP_Error
          */
         public function get_directory_sizes()
         {
@@ -40472,43 +40472,43 @@ namespace {
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return true|\WP_Error
+         * @param WP_REST_Request $request
+         * @return true|WP_Error
          */
         public function get_items_permissions_check($request)
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return \WP_REST_Response
+         * @param WP_REST_Request $request
+         * @return WP_REST_Response
          */
         public function get_items($request)
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return true|\WP_Error
+         * @param WP_REST_Request $request
+         * @return true|WP_Error
          */
         public function get_item_permissions_check($request)
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return \WP_REST_Response|\WP_Error
+         * @param WP_REST_Request $request
+         * @return WP_REST_Response|WP_Error
          */
         public function get_item($request)
         {
         }
         /**
-         * @param \WP_Taxonomy $item
-         * @param \WP_REST_Request $request
-         * @return \WP_REST_Response
+         * @param WP_Taxonomy $item
+         * @param WP_REST_Request $request
+         * @return WP_REST_Response
          */
         public function prepare_item_for_response($item, $request)
         {
         }
         /**
-         * @param \WP_Taxonomy $taxonomy
+         * @param WP_Taxonomy $taxonomy
          * @return array
          */
         protected function prepare_links($taxonomy)
@@ -40539,29 +40539,29 @@ namespace {
         {
         }
         /**
-         * @param \WP_Post $item
-         * @param \WP_REST_Request $request
-         * @return \WP_REST_Response
+         * @param WP_Post $item
+         * @param WP_REST_Request $request
+         * @return WP_REST_Response
          */
         public function prepare_item_for_response($item, $request)
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return \WP_Post|\WP_Error
+         * @param WP_REST_Request $request
+         * @return WP_Post|WP_Error
          */
         public function get_item($request)
         {
         }
         /**
          * @param int $parent_id
-         * @return \WP_Post|\WP_Error
+         * @return WP_Post|WP_Error
          */
         protected function get_parent($parent_id)
         {
         }
         /**
-         * @param \WP_Block_Template $template
+         * @param WP_Block_Template $template
          * @return array
          */
         protected function prepare_links($template)
@@ -40587,28 +40587,28 @@ namespace {
         }
         /**
          * @param string $parent_template_id
-         * @return \WP_Post|\WP_Error
+         * @return WP_Post|WP_Error
          */
         protected function get_parent($parent_template_id)
         {
         }
         /**
-         * @param \WP_Post $item
-         * @param \WP_REST_Request $request
-         * @return \WP_REST_Response
+         * @param WP_Post $item
+         * @param WP_REST_Request $request
+         * @return WP_REST_Response
          */
         public function prepare_item_for_response($item, $request)
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return true|\WP_Error
+         * @param WP_REST_Request $request
+         * @return true|WP_Error
          */
         public function delete_item_permissions_check($request)
         {
         }
         /**
-         * @param \WP_Block_Template $template
+         * @param WP_Block_Template $template
          * @return array
          */
         protected function prepare_links($template)
@@ -40637,15 +40637,15 @@ namespace {
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return \WP_REST_Response|\WP_Error
+         * @param WP_REST_Request $request
+         * @return WP_REST_Response|WP_Error
          */
         public function get_template_fallback($request)
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return true|\WP_Error
+         * @param WP_REST_Request $request
+         * @return true|WP_Error
          */
         protected function permissions_check($request)
         {
@@ -40658,86 +40658,86 @@ namespace {
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return true|\WP_Error
+         * @param WP_REST_Request $request
+         * @return true|WP_Error
          */
         public function get_items_permissions_check($request)
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return \WP_REST_Response
+         * @param WP_REST_Request $request
+         * @return WP_REST_Response
          */
         public function get_items($request)
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return true|\WP_Error
+         * @param WP_REST_Request $request
+         * @return true|WP_Error
          */
         public function get_item_permissions_check($request)
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return \WP_REST_Response|\WP_Error
+         * @param WP_REST_Request $request
+         * @return WP_REST_Response|WP_Error
          */
         public function get_item($request)
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return true|\WP_Error
+         * @param WP_REST_Request $request
+         * @return true|WP_Error
          */
         public function update_item_permissions_check($request)
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return \WP_REST_Response|\WP_Error
+         * @param WP_REST_Request $request
+         * @return WP_REST_Response|WP_Error
          */
         public function update_item($request)
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return true|\WP_Error
+         * @param WP_REST_Request $request
+         * @return true|WP_Error
          */
         public function create_item_permissions_check($request)
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return \WP_REST_Response|\WP_Error
+         * @param WP_REST_Request $request
+         * @return WP_REST_Response|WP_Error
          */
         public function create_item($request)
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return true|\WP_Error
+         * @param WP_REST_Request $request
+         * @return true|WP_Error
          */
         public function delete_item_permissions_check($request)
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return \WP_REST_Response|\WP_Error
+         * @param WP_REST_Request $request
+         * @return WP_REST_Response|WP_Error
          */
         public function delete_item($request)
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return \stdClass|\WP_Error
+         * @param WP_REST_Request $request
+         * @return stdClass|WP_Error
          */
         protected function prepare_item_for_database($request)
         {
         }
         /**
-         * @param \WP_Block_Template $item
-         * @param \WP_REST_Request $request
-         * @return \WP_REST_Response
+         * @param WP_Block_Template $item
+         * @param WP_REST_Request $request
+         * @return WP_REST_Response
          */
         public function prepare_item_for_response($item, $request)
         {
@@ -40789,57 +40789,57 @@ namespace {
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return true|\WP_Error
+         * @param WP_REST_Request $request
+         * @return true|WP_Error
          */
         public function get_items_permissions_check($request)
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return true|\WP_Error
+         * @param WP_REST_Request $request
+         * @return true|WP_Error
          */
         public function get_item_permissions_check($request)
         {
         }
         /**
-         * @return true|\WP_Error
+         * @return true|WP_Error
          */
         protected function check_read_active_theme_permission()
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return \WP_REST_Response|\WP_Error
+         * @param WP_REST_Request $request
+         * @return WP_REST_Response|WP_Error
          */
         public function get_item($request)
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return \WP_REST_Response|\WP_Error
+         * @param WP_REST_Request $request
+         * @return WP_REST_Response|WP_Error
          */
         public function get_items($request)
         {
         }
         /**
-         * @param \WP_Theme $item
-         * @param \WP_REST_Request $request
-         * @return \WP_REST_Response
+         * @param WP_Theme $item
+         * @param WP_REST_Request $request
+         * @return WP_REST_Response
          */
         public function prepare_item_for_response($item, $request)
         {
         }
         /**
-         * @param \WP_Theme $theme
+         * @param WP_Theme $theme
          * @return array
          */
         protected function prepare_links($theme)
         {
         }
         /**
-         * @param \WP_Theme $theme_a
-         * @param \WP_Theme $theme_b
+         * @param WP_Theme $theme_a
+         * @param WP_Theme $theme_b
          * @return bool
          */
         protected function is_same_theme($theme_a, $theme_b)
@@ -40849,7 +40849,7 @@ namespace {
          * @param mixed $support
          * @param array $args
          * @param string $feature
-         * @param \WP_REST_Request $request
+         * @param WP_REST_Request $request
          * @return mixed
          */
         protected function prepare_theme_support($support, $args, $feature, $request)
@@ -40869,9 +40869,9 @@ namespace {
         }
         /**
          * @param string|array $statuses
-         * @param \WP_REST_Request $request
+         * @param WP_REST_Request $request
          * @param string $parameter
-         * @return array|\WP_Error
+         * @return array|WP_Error
          */
         public function sanitize_theme_status($statuses, $request, $parameter)
         {
@@ -40892,14 +40892,14 @@ namespace {
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return \WP_REST_Response|\WP_Error
+         * @param WP_REST_Request $request
+         * @return WP_REST_Response|WP_Error
          */
         public function parse_url_details($request)
         {
         }
         /**
-         * @return \WP_Error|bool
+         * @return WP_Error|bool
          */
         public function permissions_check()
         {
@@ -40908,7 +40908,7 @@ namespace {
     class WP_REST_Users_Controller extends \WP_REST_Controller
     {
         /**
-         * @var \WP_REST_User_Meta_Fields
+         * @var WP_REST_User_Meta_Fields
          */
         protected $meta;
         /**
@@ -40923,142 +40923,142 @@ namespace {
         }
         /**
          * @param int|bool $value
-         * @param \WP_REST_Request $request
+         * @param WP_REST_Request $request
          * @param string $param
-         * @return int|bool|\WP_Error
+         * @return int|bool|WP_Error
          */
         public function check_reassign($value, $request, $param)
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return true|\WP_Error
+         * @param WP_REST_Request $request
+         * @return true|WP_Error
          */
         public function get_items_permissions_check($request)
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return \WP_REST_Response|\WP_Error
+         * @param WP_REST_Request $request
+         * @return WP_REST_Response|WP_Error
          */
         public function get_items($request)
         {
         }
         /**
          * @param int $id
-         * @return \WP_User|\WP_Error
+         * @return WP_User|WP_Error
          */
         protected function get_user($id)
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return true|\WP_Error
+         * @param WP_REST_Request $request
+         * @return true|WP_Error
          */
         public function get_item_permissions_check($request)
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return \WP_REST_Response|\WP_Error
+         * @param WP_REST_Request $request
+         * @return WP_REST_Response|WP_Error
          */
         public function get_item($request)
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return \WP_REST_Response|\WP_Error
+         * @param WP_REST_Request $request
+         * @return WP_REST_Response|WP_Error
          */
         public function get_current_item($request)
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return true|\WP_Error
+         * @param WP_REST_Request $request
+         * @return true|WP_Error
          */
         public function create_item_permissions_check($request)
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return \WP_REST_Response|\WP_Error
+         * @param WP_REST_Request $request
+         * @return WP_REST_Response|WP_Error
          */
         public function create_item($request)
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return true|\WP_Error
+         * @param WP_REST_Request $request
+         * @return true|WP_Error
          */
         public function update_item_permissions_check($request)
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return \WP_REST_Response|\WP_Error
+         * @param WP_REST_Request $request
+         * @return WP_REST_Response|WP_Error
          */
         public function update_item($request)
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return true|\WP_Error
+         * @param WP_REST_Request $request
+         * @return true|WP_Error
          */
         public function update_current_item_permissions_check($request)
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return \WP_REST_Response|\WP_Error
+         * @param WP_REST_Request $request
+         * @return WP_REST_Response|WP_Error
          */
         public function update_current_item($request)
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return true|\WP_Error
+         * @param WP_REST_Request $request
+         * @return true|WP_Error
          */
         public function delete_item_permissions_check($request)
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return \WP_REST_Response|\WP_Error
+         * @param WP_REST_Request $request
+         * @return WP_REST_Response|WP_Error
          */
         public function delete_item($request)
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return true|\WP_Error
+         * @param WP_REST_Request $request
+         * @return true|WP_Error
          */
         public function delete_current_item_permissions_check($request)
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return \WP_REST_Response|\WP_Error
+         * @param WP_REST_Request $request
+         * @return WP_REST_Response|WP_Error
          */
         public function delete_current_item($request)
         {
         }
         /**
-         * @param \WP_User $item
-         * @param \WP_REST_Request $request
-         * @return \WP_REST_Response
+         * @param WP_User $item
+         * @param WP_REST_Request $request
+         * @return WP_REST_Response
          */
         public function prepare_item_for_response($item, $request)
         {
         }
         /**
-         * @param \WP_User $user
+         * @param WP_User $user
          * @return array
          */
         protected function prepare_links($user)
         {
         }
         /**
-         * @param \WP_REST_Request $request
+         * @param WP_REST_Request $request
          * @return object
          */
         protected function prepare_item_for_database($request)
@@ -41067,25 +41067,25 @@ namespace {
         /**
          * @param int $user_id
          * @param array $roles
-         * @return true|\WP_Error
+         * @return true|WP_Error
          */
         protected function check_role_update($user_id, $roles)
         {
         }
         /**
          * @param string $value
-         * @param \WP_REST_Request $request
+         * @param WP_REST_Request $request
          * @param string $param
-         * @return string|\WP_Error
+         * @return string|WP_Error
          */
         public function check_username($value, $request, $param)
         {
         }
         /**
          * @param string $value
-         * @param \WP_REST_Request $request
+         * @param WP_REST_Request $request
          * @param string $param
-         * @return string|\WP_Error
+         * @return string|WP_Error
          */
         public function check_user_password($value, $request, $param)
         {
@@ -41112,35 +41112,35 @@ namespace {
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return true|\WP_Error
+         * @param WP_REST_Request $request
+         * @return true|WP_Error
          */
         public function get_items_permissions_check($request)
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return \WP_REST_Response|\WP_Error
+         * @param WP_REST_Request $request
+         * @return WP_REST_Response|WP_Error
          */
         public function get_items($request)
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return true|\WP_Error
+         * @param WP_REST_Request $request
+         * @return true|WP_Error
          */
         public function get_item_permissions_check($request)
         {
         }
         /**
-         * @return true|\WP_Error
+         * @return true|WP_Error
          */
         protected function check_read_permission()
         {
         }
         /**
          * @param string $id
-         * @return array|\WP_Error
+         * @return array|WP_Error
          */
         public function get_widget($id)
         {
@@ -41152,16 +41152,16 @@ namespace {
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return \WP_REST_Response|\WP_Error
+         * @param WP_REST_Request $request
+         * @return WP_REST_Response|WP_Error
          */
         public function get_item($request)
         {
         }
         /**
          * @param array $item
-         * @param \WP_REST_Request $request
-         * @return \WP_REST_Response
+         * @param WP_REST_Request $request
+         * @return WP_REST_Response
          */
         public function prepare_item_for_response($item, $request)
         {
@@ -41180,14 +41180,14 @@ namespace {
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return \WP_REST_Response|\WP_Error
+         * @param WP_REST_Request $request
+         * @return WP_REST_Response|WP_Error
          */
         public function encode_form_data($request)
         {
         }
         /**
-         * @param \WP_REST_Request $request
+         * @param WP_REST_Request $request
          * @return array
          */
         public function render($request)
@@ -41217,22 +41217,22 @@ namespace {
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return true|\WP_Error
+         * @param WP_REST_Request $request
+         * @return true|WP_Error
          */
         public function get_items_permissions_check($request)
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return \WP_REST_Response|\WP_Error
+         * @param WP_REST_Request $request
+         * @return WP_REST_Response|WP_Error
          */
         public function get_items($request)
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return true|\WP_Error
+         * @param WP_REST_Request $request
+         * @return true|WP_Error
          */
         public function get_item_permissions_check($request)
         {
@@ -41245,57 +41245,57 @@ namespace {
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return \WP_REST_Response|\WP_Error
+         * @param WP_REST_Request $request
+         * @return WP_REST_Response|WP_Error
          */
         public function get_item($request)
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return true|\WP_Error
+         * @param WP_REST_Request $request
+         * @return true|WP_Error
          */
         public function create_item_permissions_check($request)
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return \WP_REST_Response|\WP_Error
+         * @param WP_REST_Request $request
+         * @return WP_REST_Response|WP_Error
          */
         public function create_item($request)
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return true|\WP_Error
+         * @param WP_REST_Request $request
+         * @return true|WP_Error
          */
         public function update_item_permissions_check($request)
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return \WP_REST_Response|\WP_Error
+         * @param WP_REST_Request $request
+         * @return WP_REST_Response|WP_Error
          */
         public function update_item($request)
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return true|\WP_Error
+         * @param WP_REST_Request $request
+         * @return true|WP_Error
          */
         public function delete_item_permissions_check($request)
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return \WP_REST_Response|\WP_Error
+         * @param WP_REST_Request $request
+         * @return WP_REST_Response|WP_Error
          */
         public function delete_item($request)
         {
         }
         /**
-         * @param \WP_REST_Request $request
-         * @return true|\WP_Error
+         * @param WP_REST_Request $request
+         * @return true|WP_Error
          */
         protected function permissions_check($request)
         {
@@ -41304,17 +41304,17 @@ namespace {
         {
         }
         /**
-         * @param \WP_REST_Request $request
+         * @param WP_REST_Request $request
          * @param string $sidebar_id
-         * @return string|\WP_Error
+         * @return string|WP_Error
          */
         protected function save_widget($request, $sidebar_id)
         {
         }
         /**
          * @param array $item
-         * @param \WP_REST_Request $request
-         * @return \WP_REST_Response|\WP_Error
+         * @param WP_REST_Request $request
+         * @return WP_REST_Response|WP_Error
          */
         public function prepare_item_for_response($item, $request)
         {
@@ -41361,7 +41361,7 @@ namespace {
         }
         /**
          * @param int $object_id
-         * @param \WP_REST_Request $request
+         * @param WP_REST_Request $request
          * @return array
          */
         public function get_value($object_id, $request)
@@ -41369,7 +41369,7 @@ namespace {
         }
         /**
          * @param mixed $value
-         * @param \WP_REST_Request $request
+         * @param WP_REST_Request $request
          * @param array $args
          * @return mixed
          */
@@ -41379,7 +41379,7 @@ namespace {
         /**
          * @param array $meta
          * @param int $object_id
-         * @return null|\WP_Error
+         * @return null|WP_Error
          */
         public function update_value($meta, $object_id)
         {
@@ -41388,7 +41388,7 @@ namespace {
          * @param int $object_id
          * @param string $meta_key
          * @param string $name
-         * @return true|\WP_Error
+         * @return true|WP_Error
          */
         protected function delete_meta_value($object_id, $meta_key, $name)
         {
@@ -41398,7 +41398,7 @@ namespace {
          * @param string $meta_key
          * @param string $name
          * @param array $values
-         * @return true|\WP_Error
+         * @return true|WP_Error
          */
         protected function update_multi_meta_value($object_id, $meta_key, $name, $values)
         {
@@ -41408,7 +41408,7 @@ namespace {
          * @param string $meta_key
          * @param string $name
          * @param mixed $value
-         * @return true|\WP_Error
+         * @return true|WP_Error
          */
         protected function update_meta_value($object_id, $meta_key, $name, $value)
         {
@@ -41437,7 +41437,7 @@ namespace {
         }
         /**
          * @param mixed $value
-         * @param \WP_REST_Request $request
+         * @param WP_REST_Request $request
          * @param array $args
          * @return mixed
          */
@@ -41446,7 +41446,7 @@ namespace {
         }
         /**
          * @param mixed $value
-         * @param \WP_REST_Request $request
+         * @param WP_REST_Request $request
          * @param string $param
          * @return array|false
          */
@@ -41604,7 +41604,7 @@ namespace {
         {
         }
         /**
-         * @param \WP_REST_Request $request
+         * @param WP_REST_Request $request
          * @return array
          */
         public abstract function search_items(\WP_REST_Request $request);
@@ -41626,7 +41626,7 @@ namespace {
         {
         }
         /**
-         * @param \WP_REST_Request $request
+         * @param WP_REST_Request $request
          * @phpstan-return array{
          *   ids: string[],
          *   total: int,
@@ -41662,7 +41662,7 @@ namespace {
         {
         }
         /**
-         * @param \WP_REST_Request $request
+         * @param WP_REST_Request $request
          * @phpstan-return array{
          *   ids: int[],
          *   total: int,
@@ -41698,7 +41698,7 @@ namespace {
         {
         }
         /**
-         * @param \WP_Post $post
+         * @param WP_Post $post
          * @return string
          */
         protected function detect_rest_item_route($post)
@@ -41711,7 +41711,7 @@ namespace {
         {
         }
         /**
-         * @param \WP_REST_Request $request
+         * @param WP_REST_Request $request
          * @phpstan-return array{
          *   ids: int[],
          *   total: string|int|WP_Error,
@@ -41745,11 +41745,11 @@ namespace {
     class WP_Sitemaps_Index
     {
         /**
-         * @var \WP_Sitemaps_Registry
+         * @var WP_Sitemaps_Registry
          */
         protected $registry;
         /**
-         * @param \WP_Sitemaps_Registry $registry
+         * @param WP_Sitemaps_Registry $registry
          */
         public function __construct(\WP_Sitemaps_Registry $registry)
         {
@@ -41821,7 +41821,7 @@ namespace {
     {
         /**
          * @param string $name
-         * @param \WP_Sitemaps_Provider $provider
+         * @param WP_Sitemaps_Provider $provider
          * @return bool
          */
         public function add_provider($name, \WP_Sitemaps_Provider $provider)
@@ -41829,13 +41829,13 @@ namespace {
         }
         /**
          * @param string $name
-         * @return \WP_Sitemaps_Provider|null
+         * @return WP_Sitemaps_Provider|null
          */
         public function get_provider($name)
         {
         }
         /**
-         * @return \WP_Sitemaps_Provider[]
+         * @return WP_Sitemaps_Provider[]
          */
         public function get_providers()
         {
@@ -41921,15 +41921,15 @@ namespace {
     class WP_Sitemaps
     {
         /**
-         * @var \WP_Sitemaps_Index
+         * @var WP_Sitemaps_Index
          */
         public $index;
         /**
-         * @var \WP_Sitemaps_Registry
+         * @var WP_Sitemaps_Registry
          */
         public $registry;
         /**
-         * @var \WP_Sitemaps_Renderer
+         * @var WP_Sitemaps_Renderer
          */
         public $renderer;
         public function __construct()
@@ -41961,7 +41961,7 @@ namespace {
         }
         /**
          * @param bool $bypass
-         * @param \WP_Query $query
+         * @param WP_Query $query
          * @return bool
          */
         public function redirect_sitemapxml($bypass, $query)
@@ -41982,7 +41982,7 @@ namespace {
         {
         }
         /**
-         * @return \WP_Post_Type[]
+         * @return WP_Post_Type[]
          */
         public function get_object_subtypes()
         {
@@ -42016,7 +42016,7 @@ namespace {
         {
         }
         /**
-         * @return \WP_Taxonomy[]
+         * @return WP_Taxonomy[]
          */
         public function get_object_subtypes()
         {
@@ -42087,28 +42087,28 @@ namespace {
         /**
          * @param string $property
          * @param string $value
-         * @return \WP_Style_Engine_CSS_Declarations
+         * @return WP_Style_Engine_CSS_Declarations
          */
         public function add_declaration($property, $value)
         {
         }
         /**
          * @param string $property
-         * @return \WP_Style_Engine_CSS_Declarations
+         * @return WP_Style_Engine_CSS_Declarations
          */
         public function remove_declaration($property)
         {
         }
         /**
          * @param string[] $declarations
-         * @return \WP_Style_Engine_CSS_Declarations
+         * @return WP_Style_Engine_CSS_Declarations
          */
         public function add_declarations($declarations)
         {
         }
         /**
          * @param string[] $properties
-         * @return \WP_Style_Engine_CSS_Declarations
+         * @return WP_Style_Engine_CSS_Declarations
          */
         public function remove_declarations($properties = array())
         {
@@ -42152,7 +42152,7 @@ namespace {
          */
         protected $selector;
         /**
-         * @var \WP_Style_Engine_CSS_Declarations
+         * @var WP_Style_Engine_CSS_Declarations
          */
         protected $declarations;
         /**
@@ -42161,7 +42161,7 @@ namespace {
         protected $rules_group;
         /**
          * @param string $selector
-         * @param string[]|\WP_Style_Engine_CSS_Declarations $declarations
+         * @param string[]|WP_Style_Engine_CSS_Declarations $declarations
          * @param string $rules_group
          */
         public function __construct($selector = '', $declarations = array(), $rules_group = '')
@@ -42169,21 +42169,21 @@ namespace {
         }
         /**
          * @param string $selector
-         * @return \WP_Style_Engine_CSS_Rule
+         * @return WP_Style_Engine_CSS_Rule
          */
         public function set_selector($selector)
         {
         }
         /**
-         * @param string[]|\WP_Style_Engine_CSS_Declarations $declarations
-         * @return \WP_Style_Engine_CSS_Rule
+         * @param string[]|WP_Style_Engine_CSS_Declarations $declarations
+         * @return WP_Style_Engine_CSS_Rule
          */
         public function add_declarations($declarations)
         {
         }
         /**
          * @param string $rules_group
-         * @return \WP_Style_Engine_CSS_Rule
+         * @return WP_Style_Engine_CSS_Rule
          */
         public function set_rules_group($rules_group)
         {
@@ -42195,7 +42195,7 @@ namespace {
         {
         }
         /**
-         * @return \WP_Style_Engine_CSS_Declarations
+         * @return WP_Style_Engine_CSS_Declarations
          */
         public function get_declarations()
         {
@@ -42219,7 +42219,7 @@ namespace {
     class WP_Style_Engine_CSS_Rules_Store
     {
         /**
-         * @var \WP_Style_Engine_CSS_Rules_Store[]
+         * @var WP_Style_Engine_CSS_Rules_Store[]
          */
         protected static $stores = array();
         /**
@@ -42227,18 +42227,18 @@ namespace {
          */
         protected $name = '';
         /**
-         * @var \WP_Style_Engine_CSS_Rule[]
+         * @var WP_Style_Engine_CSS_Rule[]
          */
         protected $rules = array();
         /**
          * @param string $store_name
-         * @return \WP_Style_Engine_CSS_Rules_Store|void
+         * @return WP_Style_Engine_CSS_Rules_Store|void
          */
         public static function get_store($store_name = 'default')
         {
         }
         /**
-         * @return \WP_Style_Engine_CSS_Rules_Store[]
+         * @return WP_Style_Engine_CSS_Rules_Store[]
          */
         public static function get_stores()
         {
@@ -42259,7 +42259,7 @@ namespace {
         {
         }
         /**
-         * @return \WP_Style_Engine_CSS_Rule[]
+         * @return WP_Style_Engine_CSS_Rule[]
          */
         public function get_all_rules()
         {
@@ -42267,7 +42267,7 @@ namespace {
         /**
          * @param string $selector
          * @param string $rules_group
-         * @return \WP_Style_Engine_CSS_Rule|void
+         * @return WP_Style_Engine_CSS_Rule|void
          */
         public function add_rule($selector, $rules_group = '')
         {
@@ -42283,23 +42283,23 @@ namespace {
     class WP_Style_Engine_Processor
     {
         /**
-         * @var \WP_Style_Engine_CSS_Rules_Store[]
+         * @var WP_Style_Engine_CSS_Rules_Store[]
          */
         protected $stores = array();
         /**
-         * @var \WP_Style_Engine_CSS_Rule[]
+         * @var WP_Style_Engine_CSS_Rule[]
          */
         protected $css_rules = array();
         /**
-         * @param \WP_Style_Engine_CSS_Rules_Store $store
-         * @return \WP_Style_Engine_Processor
+         * @param WP_Style_Engine_CSS_Rules_Store $store
+         * @return WP_Style_Engine_Processor
          */
         public function add_store($store)
         {
         }
         /**
-         * @param \WP_Style_Engine_CSS_Rule|\WP_Style_Engine_CSS_Rule[] $css_rules
-         * @return \WP_Style_Engine_Processor
+         * @param WP_Style_Engine_CSS_Rule|WP_Style_Engine_CSS_Rule[] $css_rules
+         * @return WP_Style_Engine_Processor
          */
         public function add_rules($css_rules)
         {
@@ -42351,7 +42351,7 @@ namespace {
         }
         /**
          * @param string $store_name
-         * @return \WP_Style_Engine_CSS_Rules_Store|null
+         * @return WP_Style_Engine_CSS_Rules_Store|null
          */
         public static function get_store($store_name)
         {
@@ -42379,7 +42379,7 @@ namespace {
         {
         }
         /**
-         * @param \WP_Style_Engine_CSS_Rule[] $css_rules
+         * @param WP_Style_Engine_CSS_Rule[] $css_rules
          * @phpstan-param array{
          *   context?: string|null,
          *   optimize?: bool,
@@ -42675,7 +42675,7 @@ namespace {
         {
         }
         /**
-         * @param int|\WP_Post $attachment
+         * @param int|WP_Post $attachment
          * @param string $mime_type
          * @return bool
          */
@@ -42717,7 +42717,7 @@ namespace {
         }
         /**
          * @param array $states
-         * @param \WP_Post $post
+         * @param WP_Post $post
          * @return array
          */
         public function display_media_state($states, $post = \null)
@@ -43180,15 +43180,15 @@ namespace Avifinfo {
     {
     }
     /**
-     * @param \stream $handle
+     * @param stream $handle
      * @param int $num_bytes
-     * @return \binary
+     * @return binary
      */
     function read($handle, $num_bytes)
     {
     }
     /**
-     * @param \stream $handle
+     * @param stream $handle
      * @param int $num_bytes
      * @return bool
      */
@@ -43785,20 +43785,20 @@ namespace {
      * @subpackage Administration
      */
     /**
-     * @return int|\WP_Error
+     * @return int|WP_Error
      */
     function add_link()
     {
     }
     /**
      * @param int $link_id
-     * @return int|\WP_Error
+     * @return int|WP_Error
      */
     function edit_link($link_id = 0)
     {
     }
     /**
-     * @return \stdClass
+     * @return stdClass
      */
     function get_default_link_to_edit()
     {
@@ -43818,7 +43818,7 @@ namespace {
     {
     }
     /**
-     * @param int|\stdClass $link
+     * @param int|stdClass $link
      * @return object
      */
     function get_link_to_edit($link)
@@ -43841,8 +43841,8 @@ namespace {
      *   link_category?: int,
      * } $linkdata
      * @param bool $wp_error
-     * @return int|\WP_Error
-     * @phpstan-return ($wp_error is false ? 0|positive-int : positive-int|\WP_Error)
+     * @return int|WP_Error
+     * @phpstan-return ($wp_error is false ? 0|positive-int : positive-int|WP_Error)
      */
     function wp_insert_link($linkdata, $wp_error = \false)
     {
@@ -43856,7 +43856,7 @@ namespace {
     }
     /**
      * @param array $linkdata
-     * @return int|\WP_Error
+     * @return int|WP_Error
      * @phpstan-param array{
      *   link_id?: int,
      *   link_url?: string,
@@ -43996,14 +43996,14 @@ namespace {
     {
     }
     /**
-     * @return int|\WP_Error
+     * @return int|WP_Error
      */
     function edit_comment()
     {
     }
     /**
      * @param int $id
-     * @return \WP_Comment|false
+     * @return WP_Comment|false
      */
     function get_comment_to_edit($id)
     {
@@ -44115,14 +44115,14 @@ namespace {
     {
     }
     /**
-     * @param \WP_Post[]|false $drafts
+     * @param WP_Post[]|false $drafts
      * @phpstan-return void
      */
     function wp_dashboard_recent_drafts($drafts = \false)
     {
     }
     /**
-     * @param \WP_Comment $comment
+     * @param WP_Comment $comment
      * @param bool $show_date
      */
     function _wp_dashboard_recent_comments_row(&$comment, $show_date = \true)
@@ -44459,7 +44459,7 @@ namespace {
     {
     }
     /**
-     * @return \WP_Theme[]
+     * @return WP_Theme[]
      */
     function get_allowed_themes()
     {
@@ -44471,7 +44471,7 @@ namespace {
     {
     }
     /**
-     * @return \WP_Theme
+     * @return WP_Theme
      */
     function current_theme_info()
     {
@@ -44484,13 +44484,13 @@ namespace {
     }
     /**
      * @param int $id
-     * @return \WP_Post
+     * @return WP_Post
      */
     function get_post_to_edit($id)
     {
     }
     /**
-     * @return \WP_Post
+     * @return WP_Post
      */
     function get_default_page_to_edit()
     {
@@ -44657,7 +44657,7 @@ namespace {
     {
     }
     /**
-     * @param \WP_Theme $theme
+     * @param WP_Theme $theme
      * @return string[]
      */
     function wp_get_theme_file_editable_extensions($theme)
@@ -44674,7 +44674,7 @@ namespace {
      *   newcontent?: string,
      *   nonce?: string,
      * } $args
-     * @return true|\WP_Error
+     * @return true|WP_Error
      */
     function wp_edit_theme_plugin_file($args)
     {
@@ -44777,7 +44777,7 @@ namespace {
      * @param string $url
      * @param int $timeout
      * @param bool $signature_verification
-     * @return string|\WP_Error
+     * @return string|WP_Error
      */
     function download_url($url, $timeout = 300, $signature_verification = \false)
     {
@@ -44785,7 +44785,7 @@ namespace {
     /**
      * @param string $filename
      * @param string $expected_md5
-     * @return bool|\WP_Error
+     * @return bool|WP_Error
      */
     function verify_file_md5($filename, $expected_md5)
     {
@@ -44794,7 +44794,7 @@ namespace {
      * @param string $filename
      * @param string|array $signatures
      * @param string|false $filename_for_errors
-     * @return bool|\WP_Error
+     * @return bool|WP_Error
      */
     function verify_file_signature($filename, $signatures, $filename_for_errors = \false)
     {
@@ -44815,7 +44815,7 @@ namespace {
     /**
      * @param string $file
      * @param string $to
-     * @return true|\WP_Error
+     * @return true|WP_Error
      */
     function unzip_file($file, $to)
     {
@@ -44824,7 +44824,7 @@ namespace {
      * @param string $file
      * @param string $to
      * @param string[] $needed_dirs
-     * @return true|\WP_Error
+     * @return true|WP_Error
      */
     function _unzip_file_ziparchive($file, $to, $needed_dirs = array())
     {
@@ -44833,7 +44833,7 @@ namespace {
      * @param string $file
      * @param string $to
      * @param string[] $needed_dirs
-     * @return true|\WP_Error
+     * @return true|WP_Error
      */
     function _unzip_file_pclzip($file, $to, $needed_dirs = array())
     {
@@ -44842,7 +44842,7 @@ namespace {
      * @param string $from
      * @param string $to
      * @param string[] $skip_list
-     * @return true|\WP_Error
+     * @return true|WP_Error
      */
     function copy_dir($from, $to, $skip_list = array())
     {
@@ -44851,7 +44851,7 @@ namespace {
      * @param string $from
      * @param string $to
      * @param bool $overwrite
-     * @return true|\WP_Error
+     * @return true|WP_Error
      */
     function move_dir($from, $to, $overwrite = \false)
     {
@@ -44877,7 +44877,7 @@ namespace {
     /**
      * @param string $form_post
      * @param string $type
-     * @param bool|\WP_Error $error
+     * @param bool|WP_Error $error
      * @param string $context
      * @param array $extra_fields
      * @param bool $allow_relaxed_file_ownership
@@ -44921,7 +44921,7 @@ namespace {
     {
     }
     /**
-     * @param \WP_Image_Editor $image
+     * @param WP_Image_Editor $image
      * @param string $mime_type
      * @param int $attachment_id
      * @return bool
@@ -44931,10 +44931,10 @@ namespace {
     }
     /**
      * @param string $filename
-     * @param \WP_Image_Editor $image
+     * @param WP_Image_Editor $image
      * @param string $mime_type
      * @param int $post_id
-     * @phpstan-return \WP_Error|bool|array{
+     * @phpstan-return WP_Error|bool|array{
      *   path: string,
      *   file: string,
      *   width: int,
@@ -44955,37 +44955,37 @@ namespace {
     {
     }
     /**
-     * @param resource|\GdImage $img
+     * @param resource|GdImage $img
      * @param float|int $angle
-     * @return resource|\GdImage|false
+     * @return resource|GdImage|false
      */
     function _rotate_image_resource($img, $angle)
     {
     }
     /**
-     * @param resource|\GdImage $img
+     * @param resource|GdImage $img
      * @param bool $horz
      * @param bool $vert
-     * @return resource|\GdImage
+     * @return resource|GdImage
      */
     function _flip_image_resource($img, $horz, $vert)
     {
     }
     /**
-     * @param resource|\GdImage $img
+     * @param resource|GdImage $img
      * @param float $x
      * @param float $y
      * @param float $w
      * @param float $h
-     * @return resource|\GdImage
+     * @return resource|GdImage
      */
     function _crop_image_resource($img, $x, $y, $w, $h)
     {
     }
     /**
-     * @param \WP_Image_Editor $image
+     * @param WP_Image_Editor $image
      * @param array $changes
-     * @return \WP_Image_Editor
+     * @return WP_Image_Editor
      */
     function image_edit_apply_changes($image, $changes)
     {
@@ -44999,14 +44999,14 @@ namespace {
     }
     /**
      * @param int $post_id
-     * @return \stdClass
+     * @return stdClass
      */
     function wp_restore_image($post_id)
     {
     }
     /**
      * @param int $post_id
-     * @return \stdClass
+     * @return stdClass
      */
     function wp_save_image($post_id)
     {
@@ -45027,7 +45027,7 @@ namespace {
      * @param int $dst_h
      * @param bool|false $src_abs
      * @param string|false $dst_file
-     * @return string|\WP_Error
+     * @return string|WP_Error
      */
     function wp_crop_image($src, $src_x, $src_y, $src_w, $src_h, $dst_w, $dst_h, $src_abs = \false, $dst_file = \false)
     {
@@ -45041,7 +45041,7 @@ namespace {
     }
     /**
      * @param int $attachment_id
-     * @return array|\WP_Error
+     * @return array|WP_Error
      */
     function wp_update_image_subsizes($attachment_id)
     {
@@ -45130,7 +45130,7 @@ namespace {
      * @param int $attachment_id
      * @param string $mime_type
      * @param string|int[] $size
-     * @return resource|\GdImage|false
+     * @return resource|GdImage|false
      */
     function load_image_to_edit($attachment_id, $mime_type, $size = 'full')
     {
@@ -45175,7 +45175,7 @@ namespace {
      * @param string $name
      * @param string $description
      * @param callable $callback
-     * @return void|\WP_Error
+     * @return void|WP_Error
      */
     function register_importer($id, $name, $description, $callback)
     {
@@ -45208,7 +45208,7 @@ namespace {
     /**
      * @param string $class_name
      * @param array $args
-     * @return \WP_List_Table|false
+     * @return WP_List_Table|false
      */
     function _get_list_table($class_name, $args = array())
     {
@@ -45221,7 +45221,7 @@ namespace {
     {
     }
     /**
-     * @param string|\WP_Screen $screen
+     * @param string|WP_Screen $screen
      * @param bool $with_id
      */
     function print_column_headers($screen, $with_id = \true)
@@ -45296,7 +45296,7 @@ namespace {
      * @param int $post_id
      * @param array $post_data
      * @param array $overrides
-     * @return int|\WP_Error
+     * @return int|WP_Error
      */
     function media_handle_upload($file_id, $post_id, $post_data = array(), $overrides = array('test_form' => \false))
     {
@@ -45306,7 +45306,7 @@ namespace {
      * @param int $post_id
      * @param string $desc
      * @param array $post_data
-     * @return int|\WP_Error
+     * @return int|WP_Error
      */
     function media_handle_sideload($file_array, $post_id = 0, $desc = \null, $post_data = array())
     {
@@ -45350,7 +45350,7 @@ namespace {
      * @param int $post_id
      * @param string $desc
      * @param string $return_type
-     * @return string|int|\WP_Error
+     * @return string|int|WP_Error
      */
     function media_sideload_image($file, $post_id = 0, $desc = \null, $return_type = 'html')
     {
@@ -45368,7 +45368,7 @@ namespace {
     {
     }
     /**
-     * @param \WP_Post $post
+     * @param WP_Post $post
      * @param string $checked
      * @return string
      */
@@ -45376,7 +45376,7 @@ namespace {
     {
     }
     /**
-     * @param \WP_Post $post
+     * @param WP_Post $post
      * @param bool|string $check
      * @return array
      */
@@ -45384,7 +45384,7 @@ namespace {
     {
     }
     /**
-     * @param \WP_Post $post
+     * @param WP_Post $post
      * @param string $url_type
      * @return string
      */
@@ -45392,7 +45392,7 @@ namespace {
     {
     }
     /**
-     * @param \WP_Post $edit_post
+     * @param WP_Post $edit_post
      * @return string
      */
     function wp_caption_input_textarea($edit_post)
@@ -45408,7 +45408,7 @@ namespace {
     }
     /**
      * @param array $form_fields
-     * @param \WP_Post $post
+     * @param WP_Post $post
      * @return array
      */
     function media_single_attachment_fields_to_edit($form_fields, $post)
@@ -45416,7 +45416,7 @@ namespace {
     }
     /**
      * @param array $form_fields
-     * @param \WP_Post $post
+     * @param WP_Post $post
      * @return array
      */
     function media_post_single_attachment_fields_to_edit($form_fields, $post)
@@ -45432,7 +45432,7 @@ namespace {
     {
     }
     /**
-     * @param \WP_Post $post
+     * @param WP_Post $post
      * @param array $errors
      * @return array
      */
@@ -45476,7 +45476,7 @@ namespace {
     /**
      * @param string $type
      * @param array $errors
-     * @param int|\WP_Error $id
+     * @param int|WP_Error $id
      */
     function media_upload_type_form($type = 'file', $errors = \null, $id = \null)
     {
@@ -45524,7 +45524,7 @@ namespace {
     {
     }
     /**
-     * @param \WP_Post $post
+     * @param WP_Post $post
      */
     function edit_form_image_editor($post)
     {
@@ -45601,7 +45601,7 @@ namespace {
     // Post-related Meta Boxes.
     //
     /**
-     * @param \WP_Post $post
+     * @param WP_Post $post
      * @phpstan-param array{
      *   id?: string,
      *   title?: string,
@@ -45613,13 +45613,13 @@ namespace {
     {
     }
     /**
-     * @param \WP_Post $post
+     * @param WP_Post $post
      */
     function attachment_submit_meta_box($post)
     {
     }
     /**
-     * @param \WP_Post $post
+     * @param WP_Post $post
      * @phpstan-param array{
      *   id?: string,
      *   title?: string,
@@ -45631,7 +45631,7 @@ namespace {
     {
     }
     /**
-     * @param \WP_Post $post
+     * @param WP_Post $post
      * @phpstan-param array{
      *   id?: string,
      *   title?: string,
@@ -45645,7 +45645,7 @@ namespace {
     {
     }
     /**
-     * @param \WP_Post $post
+     * @param WP_Post $post
      * @phpstan-param array{
      *   id?: string,
      *   title?: string,
@@ -45659,25 +45659,25 @@ namespace {
     {
     }
     /**
-     * @param \WP_Post $post
+     * @param WP_Post $post
      */
     function post_excerpt_meta_box($post)
     {
     }
     /**
-     * @param \WP_Post $post
+     * @param WP_Post $post
      */
     function post_trackback_meta_box($post)
     {
     }
     /**
-     * @param \WP_Post $post
+     * @param WP_Post $post
      */
     function post_custom_meta_box($post)
     {
     }
     /**
-     * @param \WP_Post $post
+     * @param WP_Post $post
      */
     function post_comment_status_meta_box($post)
     {
@@ -45690,25 +45690,25 @@ namespace {
     {
     }
     /**
-     * @param \WP_Post $post
+     * @param WP_Post $post
      */
     function post_comment_meta_box($post)
     {
     }
     /**
-     * @param \WP_Post $post
+     * @param WP_Post $post
      */
     function post_slug_meta_box($post)
     {
     }
     /**
-     * @param \WP_Post $post
+     * @param WP_Post $post
      */
     function post_author_meta_box($post)
     {
     }
     /**
-     * @param \WP_Post $post
+     * @param WP_Post $post
      */
     function post_revisions_meta_box($post)
     {
@@ -45717,7 +45717,7 @@ namespace {
     // Page-related Meta Boxes.
     //
     /**
-     * @param \WP_Post $post
+     * @param WP_Post $post
      */
     function page_attributes_meta_box($post)
     {
@@ -45764,19 +45764,19 @@ namespace {
     {
     }
     /**
-     * @param \WP_Post $post
+     * @param WP_Post $post
      */
     function post_thumbnail_meta_box($post)
     {
     }
     /**
-     * @param \WP_Post $post
+     * @param WP_Post $post
      */
     function attachment_id3_data_meta_box($post)
     {
     }
     /**
-     * @param \WP_Post $post
+     * @param WP_Post $post
      */
     function register_and_do_post_meta_boxes($post)
     {
@@ -45882,7 +45882,7 @@ namespace {
     {
     }
     /**
-     * @param string|\WP_Error $message
+     * @param string|WP_Error $message
      */
     function show_message($message)
     {
@@ -45923,7 +45923,7 @@ namespace {
     {
     }
     /**
-     * @param \DOMDocument $doc
+     * @param DOMDocument $doc
      * @param string $filename
      */
     function saveDomDocument($doc, $filename)
@@ -46030,7 +46030,7 @@ namespace {
     }
     /**
      * @param string $title
-     * @param \WP_Post $page
+     * @param WP_Post $page
      * @return string
      */
     function _wp_privacy_settings_filter_draft_page_titles($title, $page)
@@ -46079,9 +46079,9 @@ namespace {
     {
     }
     /**
-     * @param \WP_Term|array $term
+     * @param WP_Term|array $term
      * @param string $taxonomy
-     * @return \WP_Term|array
+     * @return WP_Term|array
      */
     function sync_category_tag_slugs($term, $taxonomy)
     {
@@ -46313,7 +46313,7 @@ namespace {
     }
     /**
      * @param int $menu_id
-     * @return string|\WP_Error
+     * @return string|WP_Error
      */
     function wp_get_nav_menu_to_edit($menu_id = 0)
     {
@@ -46373,13 +46373,13 @@ namespace {
     {
     }
     /**
-     * @param false|\WP_Error $errors
+     * @param false|WP_Error $errors
      */
     function network_step1($errors = \false)
     {
     }
     /**
-     * @param false|\WP_Error $errors
+     * @param false|WP_Error $errors
      */
     function network_step2($errors = \false)
     {
@@ -46443,14 +46443,14 @@ namespace {
      *     contributors?: bool,
      *   },
      * } $args
-     * @return object|array|\WP_Error
+     * @return object|array|WP_Error
      */
     function plugins_api($action, $args = array())
     {
     }
     /**
      * @param array $args
-     * @return array|\WP_Error
+     * @return array|WP_Error
      */
     function install_popular_tags($args = array())
     {
@@ -46626,7 +46626,7 @@ namespace {
      * @param string $redirect
      * @param bool $network_wide
      * @param bool $silent
-     * @return null|\WP_Error
+     * @return null|WP_Error
      */
     function activate_plugin($plugin, $redirect = '', $network_wide = \false, $silent = \false)
     {
@@ -46644,7 +46644,7 @@ namespace {
      * @param string $redirect
      * @param bool $network_wide
      * @param bool $silent
-     * @return true|\WP_Error
+     * @return true|WP_Error
      */
     function activate_plugins($plugins, $redirect = '', $network_wide = \false, $silent = \false)
     {
@@ -46652,27 +46652,27 @@ namespace {
     /**
      * @param string[] $plugins
      * @param string $deprecated
-     * @return bool|null|\WP_Error
+     * @return bool|null|WP_Error
      */
     function delete_plugins($plugins, $deprecated = '')
     {
     }
     /**
-     * @return \WP_Error[]
+     * @return WP_Error[]
      */
     function validate_active_plugins()
     {
     }
     /**
      * @param string $plugin
-     * @return int|\WP_Error
+     * @return int|WP_Error
      */
     function validate_plugin($plugin)
     {
     }
     /**
      * @param string $plugin
-     * @return true|\WP_Error
+     * @return true|WP_Error
      */
     function validate_plugin_requirements($plugin)
     {
@@ -46981,7 +46981,7 @@ namespace {
     /**
      * @param string $plugin
      * @param string $redirect
-     * @return true|\WP_Error
+     * @return true|WP_Error
      */
     function resume_plugin($plugin, $redirect = '')
     {
@@ -47007,14 +47007,14 @@ namespace {
     /**
      * @param bool $update
      * @param array|null $post_data
-     * @return array|\WP_Error
+     * @return array|WP_Error
      */
     function _wp_translate_postdata($update = \false, $post_data = \null)
     {
     }
     /**
-     * @param array|\WP_Error|null $post_data
-     * @return array|\WP_Error
+     * @param array|WP_Error|null $post_data
+     * @return array|WP_Error
      */
     function _wp_get_allowed_postdata($post_data = \null)
     {
@@ -47036,7 +47036,7 @@ namespace {
     /**
      * @param string $post_type
      * @param bool $create_in_db
-     * @return \WP_Post
+     * @return WP_Post
      */
     function get_default_post_to_edit($post_type = 'post', $create_in_db = \false)
     {
@@ -47053,7 +47053,7 @@ namespace {
     {
     }
     /**
-     * @return int|\WP_Error
+     * @return int|WP_Error
      */
     function wp_write_post()
     {
@@ -47119,8 +47119,8 @@ namespace {
     // Private.
     //
     /**
-     * @param int|\WP_Post $post
-     * @return void|int|\WP_Error
+     * @param int|WP_Post $post
+     * @return void|int|WP_Error
      */
     function _fix_attachment_links($post)
     {
@@ -47162,7 +47162,7 @@ namespace {
     {
     }
     /**
-     * @param int|\WP_Post $post
+     * @param int|WP_Post $post
      * @param string|null $title
      * @param string|null $name
      * @phpstan-return array{
@@ -47174,7 +47174,7 @@ namespace {
     {
     }
     /**
-     * @param int|\WP_Post $post
+     * @param int|WP_Post $post
      * @param string|null $new_title
      * @param string|null $new_slug
      * @return string
@@ -47184,21 +47184,21 @@ namespace {
     }
     /**
      * @param int|null $thumbnail_id
-     * @param int|\WP_Post|null $post
+     * @param int|WP_Post|null $post
      * @return string
      */
     function _wp_post_thumbnail_html($thumbnail_id = \null, $post = \null)
     {
     }
     /**
-     * @param int|\WP_Post $post
+     * @param int|WP_Post $post
      * @return int|false
      */
     function wp_check_post_lock($post)
     {
     }
     /**
-     * @param int|\WP_Post $post
+     * @param int|WP_Post $post
      * @phpstan-return false|array{
      *   0: int,
      *   1: int,
@@ -47215,7 +47215,7 @@ namespace {
     }
     /**
      * @param array|int $post_data
-     * @return int|\WP_Error
+     * @return int|WP_Error
      */
     function wp_create_post_autosave($post_data)
     {
@@ -47272,7 +47272,7 @@ namespace {
     {
     }
     /**
-     * @param \WP_Post $post
+     * @param WP_Post $post
      */
     function the_block_editor_meta_box_post_form_hidden_fields($post)
     {
@@ -47286,14 +47286,14 @@ namespace {
     {
     }
     /**
-     * @param \WP_Post $post
+     * @param WP_Post $post
      * @phpstan-return void
      */
     function _disable_content_editor_for_navigation_post_type($post)
     {
     }
     /**
-     * @param \WP_Post $post
+     * @param WP_Post $post
      * @phpstan-return void
      */
     function _enable_content_editor_for_navigation_post_type($post)
@@ -47307,14 +47307,14 @@ namespace {
      */
     /**
      * @param int $request_id
-     * @return true|\WP_Error
+     * @return true|WP_Error
      */
     function _wp_privacy_resend_request($request_id)
     {
     }
     /**
      * @param int $request_id
-     * @return int|\WP_Error
+     * @return int|WP_Error
      */
     function _wp_privacy_completed_request($request_id)
     {
@@ -47350,7 +47350,7 @@ namespace {
     }
     /**
      * @param int $request_id
-     * @return true|\WP_Error
+     * @return true|WP_Error
      */
     function wp_privacy_send_personal_data_export_email($request_id)
     {
@@ -47387,7 +47387,7 @@ namespace {
      * @since 3.6.0
      */
     /**
-     * @param \WP_Post|int $post
+     * @param WP_Post|int $post
      * @param int $compare_from
      * @param int $compare_to
      * @return array|false
@@ -47396,7 +47396,7 @@ namespace {
     {
     }
     /**
-     * @param \WP_Post|int $post
+     * @param WP_Post|int $post
      * @param int $selected_revision_id
      * @param int $from
      * @return array
@@ -47458,7 +47458,7 @@ namespace {
      * @param string $site_name
      * @param string $path
      * @param bool $subdomain_install
-     * @return true|\WP_Error
+     * @return true|WP_Error
      */
     function populate_network($network_id = 1, $domain = '', $email = '', $site_name = '', $path = '/', $subdomain_install = \false)
     {
@@ -47485,28 +47485,28 @@ namespace {
      * @subpackage Administration
      */
     /**
-     * @param string|\WP_Screen $screen
+     * @param string|WP_Screen $screen
      * @return string[]
      */
     function get_column_headers($screen)
     {
     }
     /**
-     * @param string|\WP_Screen $screen
+     * @param string|WP_Screen $screen
      * @return string[]
      */
     function get_hidden_columns($screen)
     {
     }
     /**
-     * @param \WP_Screen $screen
+     * @param WP_Screen $screen
      * @phpstan-return void
      */
     function meta_box_prefs($screen)
     {
     }
     /**
-     * @param string|\WP_Screen $screen
+     * @param string|WP_Screen $screen
      * @return string[]
      */
     function get_hidden_meta_boxes($screen)
@@ -47521,13 +47521,13 @@ namespace {
     {
     }
     /**
-     * @return \WP_Screen|null
+     * @return WP_Screen|null
      */
     function get_current_screen()
     {
     }
     /**
-     * @param string|\WP_Screen $hook_name
+     * @param string|WP_Screen $hook_name
      */
     function set_current_screen($hook_name = '')
     {
@@ -47559,7 +47559,7 @@ namespace {
     /**
      * @param int|string $cat_name
      * @param int $category_parent
-     * @return int|\WP_Error
+     * @return int|WP_Error
      */
     function wp_create_category($cat_name, $category_parent = 0)
     {
@@ -47582,8 +47582,8 @@ namespace {
      *   category_parent?: int|string,
      * } $catarr
      * @param bool $wp_error
-     * @return int|\WP_Error
-     * @phpstan-return ($wp_error is false ? 0|positive-int : positive-int|\WP_Error)
+     * @return int|WP_Error
+     * @phpstan-return ($wp_error is false ? 0|positive-int : positive-int|WP_Error)
      */
     function wp_insert_category($catarr, $wp_error = \false)
     {
@@ -47608,7 +47608,7 @@ namespace {
     }
     /**
      * @param int|string $tag_name
-     * @return array|\WP_Error
+     * @return array|WP_Error
      */
     function wp_create_tag($tag_name)
     {
@@ -47616,7 +47616,7 @@ namespace {
     /**
      * @param int $post_id
      * @param string $taxonomy
-     * @return string|false|\WP_Error
+     * @return string|false|WP_Error
      */
     function get_tags_to_edit($post_id, $taxonomy = 'post_tag')
     {
@@ -47624,7 +47624,7 @@ namespace {
     /**
      * @param int $post_id
      * @param string $taxonomy
-     * @return string|false|\WP_Error
+     * @return string|false|WP_Error
      */
     function get_terms_to_edit($post_id, $taxonomy = 'post_tag')
     {
@@ -47632,7 +47632,7 @@ namespace {
     /**
      * @param string $tag_name
      * @param string $taxonomy
-     * @return array|\WP_Error
+     * @return array|WP_Error
      */
     function wp_create_term($tag_name, $taxonomy = 'post_tag')
     {
@@ -47645,7 +47645,7 @@ namespace {
      * @param int $descendants_and_self
      * @param int[]|false $selected_cats
      * @param int[]|false $popular_cats
-     * @param \Walker $walker
+     * @param Walker $walker
      * @param bool $checked_ontop
      */
     function wp_category_checklist($post_id = 0, $descendants_and_self = 0, $selected_cats = \false, $popular_cats = \false, $walker = \null, $checked_ontop = \true)
@@ -47685,7 +47685,7 @@ namespace {
     {
     }
     /**
-     * @param \WP_Post $post
+     * @param WP_Post $post
      * @phpstan-return void
      */
     function get_inline_data($post)
@@ -47720,7 +47720,7 @@ namespace {
     {
     }
     /**
-     * @param \WP_Post $post
+     * @param WP_Post $post
      */
     function meta_form($post = \null)
     {
@@ -47746,7 +47746,7 @@ namespace {
      * @param int $default_page
      * @param int $parent_page
      * @param int $level
-     * @param int|\WP_Post $post
+     * @param int|WP_Post $post
      * @return void|false
      */
     function parent_dropdown($default_page = 0, $parent_page = 0, $level = 0, $post = \null)
@@ -47768,7 +47768,7 @@ namespace {
      * @param string $id
      * @param string $title
      * @param callable $callback
-     * @param string|array|\WP_Screen $screen
+     * @param string|array|WP_Screen $screen
      * @param string $context
      * @phpstan-param 'high'|'core'|'default'|'low' $priority
      * @param array $callback_args
@@ -47797,7 +47797,7 @@ namespace {
     {
     }
     /**
-     * @param string|\WP_Screen $screen
+     * @param string|WP_Screen $screen
      * @param string $context
      * @param mixed $data_object
      * @return int
@@ -47807,7 +47807,7 @@ namespace {
     }
     /**
      * @param string $id
-     * @param string|array|\WP_Screen $screen
+     * @param string|array|WP_Screen $screen
      * @param string $context
      * @phpstan-return void
      */
@@ -47907,7 +47907,7 @@ namespace {
     {
     }
     /**
-     * @param int|\WP_Post $post
+     * @param int|WP_Post $post
      * @return string
      */
     function _draft_or_post_title($post = 0)
@@ -47927,7 +47927,7 @@ namespace {
     {
     }
     /**
-     * @param \WP_Post $post
+     * @param WP_Post $post
      * @param bool $display
      * @return string
      */
@@ -47935,14 +47935,14 @@ namespace {
     {
     }
     /**
-     * @param \WP_Post $post
+     * @param WP_Post $post
      * @return string[]
      */
     function get_post_states($post)
     {
     }
     /**
-     * @param \WP_Post $post
+     * @param WP_Post $post
      * @param bool $display
      * @return string
      */
@@ -47950,7 +47950,7 @@ namespace {
     {
     }
     /**
-     * @param \WP_Post $post
+     * @param WP_Post $post
      * @return string[]
      */
     function get_media_states($post)
@@ -47985,7 +47985,7 @@ namespace {
     }
     /**
      * @param string $hook_name
-     * @return \WP_Screen
+     * @return WP_Screen
      */
     function convert_to_screen($hook_name)
     {
@@ -48053,13 +48053,13 @@ namespace {
     /**
      * @param string $stylesheet
      * @param string $redirect
-     * @return bool|null|\WP_Error
+     * @return bool|null|WP_Error
      */
     function delete_theme($stylesheet, $redirect = '')
     {
     }
     /**
-     * @param \WP_Post|null $post
+     * @param WP_Post|null $post
      * @param string $post_type
      * @return string[]
      */
@@ -48075,13 +48075,13 @@ namespace {
     {
     }
     /**
-     * @param \WP_Theme $theme
+     * @param WP_Theme $theme
      */
     function theme_update_available($theme)
     {
     }
     /**
-     * @param \WP_Theme $theme
+     * @param WP_Theme $theme
      * @return string|false
      */
     function get_theme_update_available($theme)
@@ -48128,13 +48128,13 @@ namespace {
      *     extended_author?: bool,
      *   },
      * } $args
-     * @return object|array|\WP_Error
+     * @return object|array|WP_Error
      */
     function themes_api($action, $args = array())
     {
     }
     /**
-     * @param \WP_Theme[] $themes
+     * @param WP_Theme[] $themes
      * @return array
      */
     function wp_prepare_themes_for_js($themes = \null)
@@ -48160,7 +48160,7 @@ namespace {
     /**
      * @param string $theme
      * @param string $redirect
-     * @return bool|\WP_Error
+     * @return bool|WP_Error
      */
     function resume_theme($theme, $redirect = '')
     {
@@ -48180,7 +48180,7 @@ namespace {
     /**
      * @param string $type
      * @param array|object $args
-     * @return array|\WP_Error
+     * @return array|WP_Error
      */
     function translations_api($type, $args = \null)
     {
@@ -48213,7 +48213,7 @@ namespace {
     /**
      * @param string $from
      * @param string $to
-     * @return string|\WP_Error
+     * @return string|WP_Error
      */
     function update_core($from, $to)
     {
@@ -48354,7 +48354,7 @@ namespace {
     }
     /**
      * @param string $theme_key
-     * @param \WP_Theme $theme
+     * @param WP_Theme $theme
      * @return void|false
      */
     function wp_theme_update_row($theme_key, $theme)
@@ -48627,7 +48627,7 @@ namespace {
     {
     }
     /**
-     * @return \stdClass
+     * @return stdClass
      */
     function get_alloptions_110()
     {
@@ -48720,14 +48720,14 @@ namespace {
      * @subpackage Administration
      */
     /**
-     * @return int|\WP_Error
+     * @return int|WP_Error
      */
     function add_user()
     {
     }
     /**
      * @param int $user_id
-     * @return int|\WP_Error
+     * @return int|WP_Error
      */
     function edit_user($user_id = 0)
     {
@@ -48740,7 +48740,7 @@ namespace {
     }
     /**
      * @param int $user_id
-     * @return \WP_User|false
+     * @return WP_User|false
      */
     function get_user_to_edit($user_id)
     {
@@ -48775,7 +48775,7 @@ namespace {
     }
     /**
      * @param int $user_ID
-     * @param \WP_User $old_data
+     * @param WP_User $old_data
      * @phpstan-return void
      */
     function default_password_nag_edit_user($user_ID, $old_data)
@@ -48791,7 +48791,7 @@ namespace {
     {
     }
     /**
-     * @param \WP_User $user
+     * @param WP_User $user
      */
     function use_ssl_preference($user)
     {
@@ -48810,15 +48810,15 @@ namespace {
      *   success_url?: string,
      *   reject_url?: string,
      * } $request
-     * @param \WP_User $user
-     * @return true|\WP_Error
+     * @param WP_User $user
+     * @return true|WP_Error
      */
     function wp_is_authorize_application_password_request_valid($request, $user)
     {
     }
     /**
      * @param string $url
-     * @return true|\WP_Error
+     * @return true|WP_Error
      */
     function wp_is_authorize_application_redirect_url_valid($url)
     {
@@ -49014,117 +49014,117 @@ namespace {
     {
     }
     /**
-     * @param \WP_Admin_Bar $wp_admin_bar
+     * @param WP_Admin_Bar $wp_admin_bar
      */
     function wp_admin_bar_wp_menu($wp_admin_bar)
     {
     }
     /**
-     * @param \WP_Admin_Bar $wp_admin_bar
+     * @param WP_Admin_Bar $wp_admin_bar
      */
     function wp_admin_bar_sidebar_toggle($wp_admin_bar)
     {
     }
     /**
-     * @param \WP_Admin_Bar $wp_admin_bar
+     * @param WP_Admin_Bar $wp_admin_bar
      * @phpstan-return void
      */
     function wp_admin_bar_my_account_item($wp_admin_bar)
     {
     }
     /**
-     * @param \WP_Admin_Bar $wp_admin_bar
+     * @param WP_Admin_Bar $wp_admin_bar
      * @phpstan-return void
      */
     function wp_admin_bar_my_account_menu($wp_admin_bar)
     {
     }
     /**
-     * @param \WP_Admin_Bar $wp_admin_bar
+     * @param WP_Admin_Bar $wp_admin_bar
      * @phpstan-return void
      */
     function wp_admin_bar_site_menu($wp_admin_bar)
     {
     }
     /**
-     * @param \WP_Admin_Bar $wp_admin_bar
+     * @param WP_Admin_Bar $wp_admin_bar
      * @phpstan-return void
      */
     function wp_admin_bar_edit_site_menu($wp_admin_bar)
     {
     }
     /**
-     * @param \WP_Admin_Bar $wp_admin_bar
+     * @param WP_Admin_Bar $wp_admin_bar
      * @phpstan-return void
      */
     function wp_admin_bar_customize_menu($wp_admin_bar)
     {
     }
     /**
-     * @param \WP_Admin_Bar $wp_admin_bar
+     * @param WP_Admin_Bar $wp_admin_bar
      * @phpstan-return void
      */
     function wp_admin_bar_my_sites_menu($wp_admin_bar)
     {
     }
     /**
-     * @param \WP_Admin_Bar $wp_admin_bar
+     * @param WP_Admin_Bar $wp_admin_bar
      * @phpstan-return void
      */
     function wp_admin_bar_shortlink_menu($wp_admin_bar)
     {
     }
     /**
-     * @param \WP_Admin_Bar $wp_admin_bar
+     * @param WP_Admin_Bar $wp_admin_bar
      * @phpstan-return void
      */
     function wp_admin_bar_edit_menu($wp_admin_bar)
     {
     }
     /**
-     * @param \WP_Admin_Bar $wp_admin_bar
+     * @param WP_Admin_Bar $wp_admin_bar
      * @phpstan-return void
      */
     function wp_admin_bar_new_content_menu($wp_admin_bar)
     {
     }
     /**
-     * @param \WP_Admin_Bar $wp_admin_bar
+     * @param WP_Admin_Bar $wp_admin_bar
      * @phpstan-return void
      */
     function wp_admin_bar_comments_menu($wp_admin_bar)
     {
     }
     /**
-     * @param \WP_Admin_Bar $wp_admin_bar
+     * @param WP_Admin_Bar $wp_admin_bar
      * @phpstan-return void
      */
     function wp_admin_bar_appearance_menu($wp_admin_bar)
     {
     }
     /**
-     * @param \WP_Admin_Bar $wp_admin_bar
+     * @param WP_Admin_Bar $wp_admin_bar
      * @phpstan-return void
      */
     function wp_admin_bar_updates_menu($wp_admin_bar)
     {
     }
     /**
-     * @param \WP_Admin_Bar $wp_admin_bar
+     * @param WP_Admin_Bar $wp_admin_bar
      * @phpstan-return void
      */
     function wp_admin_bar_search_menu($wp_admin_bar)
     {
     }
     /**
-     * @param \WP_Admin_Bar $wp_admin_bar
+     * @param WP_Admin_Bar $wp_admin_bar
      * @phpstan-return void
      */
     function wp_admin_bar_recovery_mode_menu($wp_admin_bar)
     {
     }
     /**
-     * @param \WP_Admin_Bar $wp_admin_bar
+     * @param WP_Admin_Bar $wp_admin_bar
      */
     function wp_admin_bar_add_secondary_groups($wp_admin_bar)
     {
@@ -49297,27 +49297,27 @@ namespace {
      *   get_value_callback?: callable,
      *   uses_context?: string[],
      * } $source_properties
-     * @return \WP_Block_Bindings_Source|false
+     * @return WP_Block_Bindings_Source|false
      */
     function register_block_bindings_source(string $source_name, array $source_properties)
     {
     }
     /**
      * @param string $source_name
-     * @return \WP_Block_Bindings_Source|false
+     * @return WP_Block_Bindings_Source|false
      */
     function unregister_block_bindings_source(string $source_name)
     {
     }
     /**
-     * @return \WP_Block_Bindings_Source[]
+     * @return WP_Block_Bindings_Source[]
      */
     function get_all_registered_block_bindings_sources()
     {
     }
     /**
      * @param string $source_name
-     * @return \WP_Block_Bindings_Source|null
+     * @return WP_Block_Bindings_Source|null
      */
     function get_block_bindings_source(string $source_name)
     {
@@ -49331,7 +49331,7 @@ namespace {
      */
     /**
      * @param array $source_args
-     * @param \WP_Block $block_instance
+     * @param WP_Block $block_instance
      * @param string $attribute_name
      * @return mixed
      */
@@ -49350,7 +49350,7 @@ namespace {
      */
     /**
      * @param array $source_args
-     * @param \WP_Block $block_instance
+     * @param WP_Block $block_instance
      * @return mixed
      */
     function _block_bindings_post_meta_get_value(array $source_args, $block_instance)
@@ -49373,14 +49373,14 @@ namespace {
     {
     }
     /**
-     * @param \WP_Post|\WP_Block_Editor_Context $post_or_block_editor_context
+     * @param WP_Post|WP_Block_Editor_Context $post_or_block_editor_context
      * @return array[]
      */
     function get_block_categories($post_or_block_editor_context)
     {
     }
     /**
-     * @param \WP_Block_Editor_Context $block_editor_context
+     * @param WP_Block_Editor_Context $block_editor_context
      * @return bool|string[]
      */
     function get_allowed_block_types($block_editor_context)
@@ -49423,7 +49423,7 @@ namespace {
     }
     /**
      * @param array $custom_settings
-     * @param \WP_Block_Editor_Context $block_editor_context
+     * @param WP_Block_Editor_Context $block_editor_context
      * @return array
      */
     function get_block_editor_settings(array $custom_settings, $block_editor_context)
@@ -49431,7 +49431,7 @@ namespace {
     }
     /**
      * @param (string|string[])[] $preload_paths
-     * @param \WP_Block_Editor_Context $block_editor_context
+     * @param WP_Block_Editor_Context $block_editor_context
      * @phpstan-return void
      */
     function block_editor_rest_api_preload(array $preload_paths, $block_editor_context)
@@ -49460,7 +49460,7 @@ namespace {
     {
     }
     /**
-     * @param \WP_Screen $deprecated
+     * @param WP_Screen $deprecated
      * @phpstan-return void
      */
     function _load_remote_block_patterns($deprecated = \null)
@@ -49491,13 +49491,13 @@ namespace {
      * @since 5.6.0
      */
     /**
-     * @param \WP_Block_Type $block_type
+     * @param WP_Block_Type $block_type
      */
     function wp_register_alignment_support($block_type)
     {
     }
     /**
-     * @param \WP_Block_Type $block_type
+     * @param WP_Block_Type $block_type
      * @param array $block_attributes
      * @return array
      */
@@ -49511,7 +49511,7 @@ namespace {
      * @since 6.4.0
      */
     /**
-     * @param \WP_Block_Type $block_type
+     * @param WP_Block_Type $block_type
      * @phpstan-return void
      */
     function wp_register_background_support($block_type)
@@ -49586,13 +49586,13 @@ namespace {
      * @since 5.8.0
      */
     /**
-     * @param \WP_Block_Type $block_type
+     * @param WP_Block_Type $block_type
      */
     function wp_register_border_support($block_type)
     {
     }
     /**
-     * @param \WP_Block_Type $block_type
+     * @param WP_Block_Type $block_type
      * @param array $block_attributes
      * @return array
      */
@@ -49600,7 +49600,7 @@ namespace {
     {
     }
     /**
-     * @param \WP_Block_Type $block_type
+     * @param WP_Block_Type $block_type
      * @param string $feature
      * @param mixed $default_value
      * @return bool
@@ -49615,13 +49615,13 @@ namespace {
      * @since 5.6.0
      */
     /**
-     * @param \WP_Block_Type $block_type
+     * @param WP_Block_Type $block_type
      */
     function wp_register_colors_support($block_type)
     {
     }
     /**
-     * @param \WP_Block_Type $block_type
+     * @param WP_Block_Type $block_type
      * @param array $block_attributes
      * @return array
      */
@@ -49635,13 +49635,13 @@ namespace {
      * @since 5.6.0
      */
     /**
-     * @param \WP_Block_Type $block_type
+     * @param WP_Block_Type $block_type
      */
     function wp_register_custom_classname_support($block_type)
     {
     }
     /**
-     * @param \WP_Block_Type $block_type
+     * @param WP_Block_Type $block_type
      * @param array $block_attributes
      * @return array
      */
@@ -49659,14 +49659,14 @@ namespace {
      * @since 5.9.0
      */
     /**
-     * @param \WP_Block_Type $block_type
+     * @param WP_Block_Type $block_type
      * @phpstan-return void
      */
     function wp_register_dimensions_support($block_type)
     {
     }
     /**
-     * @param \WP_Block_Type $block_type
+     * @param WP_Block_Type $block_type
      * @param array $block_attributes
      * @return array
      */
@@ -49731,7 +49731,7 @@ namespace {
     {
     }
     /**
-     * @param \WP_Block_Type $block_type
+     * @param WP_Block_Type $block_type
      * @return array
      */
     function wp_apply_generated_classname_support($block_type)
@@ -49750,7 +49750,7 @@ namespace {
     {
     }
     /**
-     * @param \WP_Block_Type $block_type
+     * @param WP_Block_Type $block_type
      */
     function wp_register_layout_support($block_type)
     {
@@ -49779,7 +49779,7 @@ namespace {
     /**
      * @param array $parsed_block
      * @param array $source_block
-     * @param \WP_Block $parent_block
+     * @param WP_Block $parent_block
      * @return array
      */
     function wp_add_parent_layout_to_parsed_block($parsed_block, $source_block, $parent_block)
@@ -49808,7 +49808,7 @@ namespace {
      * @since 6.2.0
      */
     /**
-     * @param \WP_Block_Type $block_type
+     * @param WP_Block_Type $block_type
      */
     function wp_register_position_support($block_type)
     {
@@ -49857,14 +49857,14 @@ namespace {
      * @since 6.3.0
      */
     /**
-     * @param \WP_Block_Type $block_type
+     * @param WP_Block_Type $block_type
      * @phpstan-return void
      */
     function wp_register_shadow_support($block_type)
     {
     }
     /**
-     * @param \WP_Block_Type $block_type
+     * @param WP_Block_Type $block_type
      * @param array $block_attributes
      * @return array
      */
@@ -49881,13 +49881,13 @@ namespace {
      * @since 5.8.0
      */
     /**
-     * @param \WP_Block_Type $block_type
+     * @param WP_Block_Type $block_type
      */
     function wp_register_spacing_support($block_type)
     {
     }
     /**
-     * @param \WP_Block_Type $block_type
+     * @param WP_Block_Type $block_type
      * @param array $block_attributes
      * @return array
      */
@@ -49901,14 +49901,14 @@ namespace {
      * @since 5.6.0
      */
     /**
-     * @param \WP_Block_Type $block_type
+     * @param WP_Block_Type $block_type
      * @phpstan-return void
      */
     function wp_register_typography_support($block_type)
     {
     }
     /**
-     * @param \WP_Block_Type $block_type
+     * @param WP_Block_Type $block_type
      * @param array $block_attributes
      * @return array
      */
@@ -49976,7 +49976,7 @@ namespace {
      * @since 6.0.0
      */
     /**
-     * @param \WP_Block_Type $block_type
+     * @param WP_Block_Type $block_type
      * @param string $feature_set
      * @param string $feature
      * @return bool
@@ -50094,7 +50094,7 @@ namespace {
     /**
      * @param array $template_file
      * @phpstan-param 'wp_template'|'wp_template_part' $template_type
-     * @return \WP_Block_Template
+     * @return WP_Block_Template
      */
     function _build_block_template_result_from_file($template_file, $template_type)
     {
@@ -50102,7 +50102,7 @@ namespace {
     /**
      * @param string $post_type
      * @param string $slug
-     * @param \WP_Block_Template $template
+     * @param WP_Block_Template $template
      * @return bool
      */
     function _wp_build_title_and_description_for_single_post_type_block_template($post_type, $slug, \WP_Block_Template $template)
@@ -50111,24 +50111,24 @@ namespace {
     /**
      * @param string $taxonomy
      * @param string $slug
-     * @param \WP_Block_Template $template
+     * @param WP_Block_Template $template
      * @return bool
      */
     function _wp_build_title_and_description_for_taxonomy_block_template($taxonomy, $slug, \WP_Block_Template $template)
     {
     }
     /**
-     * @param \WP_Post $post
+     * @param WP_Post $post
      * @param array $terms
      * @param array $meta
-     * @return \WP_Block_Template|\WP_Error
+     * @return WP_Block_Template|WP_Error
      */
     function _build_block_template_object_from_post_object($post, $terms = array(), $meta = array())
     {
     }
     /**
-     * @param \WP_Post $post
-     * @return \WP_Block_Template|\WP_Error
+     * @param WP_Post $post
+     * @return WP_Block_Template|WP_Error
      */
     function _build_block_template_result_from_post($post)
     {
@@ -50141,7 +50141,7 @@ namespace {
      *   post_type?: string,
      * } $query
      * @phpstan-param 'wp_template'|'wp_template_part' $template_type
-     * @return \WP_Block_Template[]
+     * @return WP_Block_Template[]
      */
     function get_block_templates($query = array(), $template_type = 'wp_template')
     {
@@ -50149,7 +50149,7 @@ namespace {
     /**
      * @param string $id
      * @phpstan-param 'wp_template'|'wp_template_part' $template_type
-     * @return \WP_Block_Template|null
+     * @return WP_Block_Template|null
      */
     function get_block_template($id, $template_type = 'wp_template')
     {
@@ -50157,7 +50157,7 @@ namespace {
     /**
      * @param string $id
      * @phpstan-param 'wp_template'|'wp_template_part' $template_type
-     * @return \WP_Block_Template|null
+     * @return WP_Block_Template|null
      */
     function get_block_file_template($id, $template_type = 'wp_template')
     {
@@ -50183,7 +50183,7 @@ namespace {
     {
     }
     /**
-     * @return \WP_Error|string
+     * @return WP_Error|string
      */
     function wp_generate_block_templates_export_file()
     {
@@ -50198,9 +50198,9 @@ namespace {
     {
     }
     /**
-     * @param \stdClass $changes
-     * @param \WP_REST_Request $deprecated
-     * @return \stdClass|\WP_Error
+     * @param stdClass $changes
+     * @param WP_REST_Request $deprecated
+     * @return stdClass|WP_Error
      */
     function inject_ignored_hooked_blocks_metadata_attributes($changes, $deprecated = \null)
     {
@@ -50222,7 +50222,7 @@ namespace {
      * @param string $template_type
      * @param string[] $template_hierarchy
      * @param string $fallback_template
-     * @return \WP_Block_Template|null
+     * @return WP_Block_Template|null
      */
     function resolve_block_template($template_type, $template_hierarchy, $fallback_template)
     {
@@ -50254,7 +50254,7 @@ namespace {
     {
     }
     /**
-     * @param \WP_Query $wp_query
+     * @param WP_Query $wp_query
      * @phpstan-return void
      */
     function _resolve_template_for_new_post($wp_query)
@@ -50326,7 +50326,7 @@ namespace {
     /**
      * @param string $file_or_folder
      * @param array $args
-     * @return \WP_Block_Type|false
+     * @return WP_Block_Type|false
      * @phpstan-param array{
      *   api_version?: string,
      *   title?: string,
@@ -50361,9 +50361,9 @@ namespace {
     {
     }
     /**
-     * @param string|\WP_Block_Type $block_type
+     * @param string|WP_Block_Type $block_type
      * @param array $args
-     * @return \WP_Block_Type|false
+     * @return WP_Block_Type|false
      * @phpstan-param array{
      *   api_version?: string,
      *   title?: string,
@@ -50398,14 +50398,14 @@ namespace {
     {
     }
     /**
-     * @param string|\WP_Block_Type $name
-     * @return \WP_Block_Type|false
+     * @param string|WP_Block_Type $name
+     * @return WP_Block_Type|false
      */
     function unregister_block_type($name)
     {
     }
     /**
-     * @param int|string|\WP_Post|null $post
+     * @param int|string|WP_Post|null $post
      * @return bool
      */
     function has_blocks($post = \null)
@@ -50413,7 +50413,7 @@ namespace {
     }
     /**
      * @param string $block_name
-     * @param int|string|\WP_Post|null $post
+     * @param int|string|WP_Post|null $post
      * @return bool
      */
     function has_block($block_name, $post = \null)
@@ -50435,7 +50435,7 @@ namespace {
      * @param array $parsed_anchor_block
      * @phpstan-param 'before'|'after'|'first_child'|'last_child' $relative_position
      * @param array $hooked_blocks
-     * @param \WP_Block_Template|\WP_Post|array $context
+     * @param WP_Block_Template|WP_Post|array $context
      * @return string
      */
     function insert_hooked_blocks(&$parsed_anchor_block, $relative_position, $hooked_blocks, $context)
@@ -50445,7 +50445,7 @@ namespace {
      * @param array $parsed_anchor_block
      * @phpstan-param 'before'|'after'|'first_child'|'last_child' $relative_position
      * @param array $hooked_blocks
-     * @param \WP_Block_Template|\WP_Post|array $context
+     * @param WP_Block_Template|WP_Post|array $context
      * @return string
      */
     function set_ignored_hooked_blocks_metadata(&$parsed_anchor_block, $relative_position, $hooked_blocks, $context)
@@ -50453,7 +50453,7 @@ namespace {
     }
     /**
      * @param string $content
-     * @param \WP_Block_Template|\WP_Post|array $context
+     * @param WP_Block_Template|WP_Post|array $context
      * @param callable $callback
      * @return string
      */
@@ -50468,8 +50468,8 @@ namespace {
     {
     }
     /**
-     * @param \stdClass $post
-     * @return \stdClass
+     * @param stdClass $post
+     * @return stdClass
      */
     function update_ignored_hooked_blocks_postmeta($post)
     {
@@ -50478,23 +50478,23 @@ namespace {
      * @param array $parsed_anchor_block
      * @phpstan-param 'before'|'after'|'first_child'|'last_child' $relative_position
      * @param array $hooked_blocks
-     * @param \WP_Block_Template|\WP_Post|array $context
+     * @param WP_Block_Template|WP_Post|array $context
      * @return string
      */
     function insert_hooked_blocks_and_set_ignored_hooked_blocks_metadata(&$parsed_anchor_block, $relative_position, $hooked_blocks, $context)
     {
     }
     /**
-     * @param \WP_REST_Response $response
-     * @param \WP_Post $post
-     * @return \WP_REST_Response
+     * @param WP_REST_Response $response
+     * @param WP_Post $post
+     * @return WP_REST_Response
      */
     function insert_hooked_blocks_into_rest_response($response, $post)
     {
     }
     /**
      * @param array $hooked_blocks
-     * @param \WP_Block_Template|\WP_Post|array $context
+     * @param WP_Block_Template|WP_Post|array $context
      * @param callable $callback
      * @return callable
      */
@@ -50503,7 +50503,7 @@ namespace {
     }
     /**
      * @param array $hooked_blocks
-     * @param \WP_Block_Template|\WP_Post|array $context
+     * @param WP_Block_Template|WP_Post|array $context
      * @param callable $callback
      * @return callable
      */
@@ -50601,7 +50601,7 @@ namespace {
     {
     }
     /**
-     * @param \WP_Block_Parser_Block $block
+     * @param WP_Block_Parser_Block $block
      * @param array[]|string $allowed_html
      * @param string[] $allowed_protocols
      * @return array
@@ -50722,7 +50722,7 @@ namespace {
     {
     }
     /**
-     * @param \WP_Block_Type $block_type
+     * @param WP_Block_Type $block_type
      * @param string|array $feature
      * @param mixed $default_value
      * @return bool
@@ -50738,7 +50738,7 @@ namespace {
     {
     }
     /**
-     * @param \WP_Block $block
+     * @param WP_Block $block
      * @param int $page
      * @return array
      */
@@ -50746,7 +50746,7 @@ namespace {
     {
     }
     /**
-     * @param \WP_Block $block
+     * @param WP_Block $block
      * @param bool $is_next
      * @return string|null
      */
@@ -50754,14 +50754,14 @@ namespace {
     {
     }
     /**
-     * @param \WP_Block $block
+     * @param WP_Block $block
      * @return array
      */
     function build_comment_query_vars_from_block($block)
     {
     }
     /**
-     * @param \WP_Block $block
+     * @param WP_Block $block
      * @phpstan-param 'next'|'previous' $pagination_type
      * @return string|null
      */
@@ -50814,7 +50814,7 @@ namespace {
     /**
      * @param array $attributes
      * @param string $content
-     * @param \WP_Block $block
+     * @param WP_Block $block
      * @return string
      */
     function render_block_core_avatar($attributes, $content, $block)
@@ -50853,7 +50853,7 @@ namespace {
     /**
      * @param array $attributes
      * @param string $content
-     * @param \WP_Block $block
+     * @param WP_Block $block
      * @return string
      */
     function render_block_core_button($attributes, $content)
@@ -50899,7 +50899,7 @@ namespace {
     /**
      * @param string $new_status
      * @param string $old_status
-     * @param \WP_Post $post
+     * @param WP_Post $post
      * @phpstan-return void
      */
     function block_core_calendar_update_has_published_post_on_transition_post_status($new_status, $old_status, $post)
@@ -50935,7 +50935,7 @@ namespace {
     /**
      * @param array $attributes
      * @param string $content
-     * @param \WP_Block $block
+     * @param WP_Block $block
      * @return string
      */
     function render_block_core_comment_author_name($attributes, $content, $block)
@@ -50952,7 +50952,7 @@ namespace {
     /**
      * @param array $attributes
      * @param string $content
-     * @param \WP_Block $block
+     * @param WP_Block $block
      * @return string
      */
     function render_block_core_comment_content($attributes, $content, $block)
@@ -50969,7 +50969,7 @@ namespace {
     /**
      * @param array $attributes
      * @param string $content
-     * @param \WP_Block $block
+     * @param WP_Block $block
      * @return string
      */
     function render_block_core_comment_date($attributes, $content, $block)
@@ -50986,7 +50986,7 @@ namespace {
     /**
      * @param array $attributes
      * @param string $content
-     * @param \WP_Block $block
+     * @param WP_Block $block
      * @return string
      */
     function render_block_core_comment_edit_link($attributes, $content, $block)
@@ -51003,7 +51003,7 @@ namespace {
     /**
      * @param array $attributes
      * @param string $content
-     * @param \WP_Block $block
+     * @param WP_Block $block
      * @return string
      */
     function render_block_core_comment_reply_link($attributes, $content, $block)
@@ -51018,8 +51018,8 @@ namespace {
      * @package WordPress
      */
     /**
-     * @param \WP_Comment[] $comments
-     * @param \WP_Block $block
+     * @param WP_Comment[] $comments
+     * @param WP_Block $block
      * @return string
      */
     function block_core_comment_template_render_comments($comments, $block)
@@ -51028,7 +51028,7 @@ namespace {
     /**
      * @param array $attributes
      * @param string $content
-     * @param \WP_Block $block
+     * @param WP_Block $block
      * @return string
      */
     function render_block_core_comment_template($attributes, $content, $block)
@@ -51045,7 +51045,7 @@ namespace {
     /**
      * @param array $attributes
      * @param string $content
-     * @param \WP_Block $block
+     * @param WP_Block $block
      * @return string
      */
     function render_block_core_comments_pagination_next($attributes, $content, $block)
@@ -51062,7 +51062,7 @@ namespace {
     /**
      * @param array $attributes
      * @param string $content
-     * @param \WP_Block $block
+     * @param WP_Block $block
      * @return string
      */
     function render_block_core_comments_pagination_numbers($attributes, $content, $block)
@@ -51079,7 +51079,7 @@ namespace {
     /**
      * @param array $attributes
      * @param string $content
-     * @param \WP_Block $block
+     * @param WP_Block $block
      * @return string
      */
     function render_block_core_comments_pagination_previous($attributes, $content, $block)
@@ -51127,7 +51127,7 @@ namespace {
     /**
      * @param array $attributes
      * @param string $content
-     * @param \WP_Block $block
+     * @param WP_Block $block
      * @return string
      */
     function render_block_core_comments($attributes, $content, $block)
@@ -51176,7 +51176,7 @@ namespace {
     /**
      * @param array $attributes
      * @param string $content
-     * @param \WP_Block $block
+     * @param WP_Block $block
      * @return string
      */
     function render_block_core_file($attributes, $content)
@@ -51193,7 +51193,7 @@ namespace {
     /**
      * @param array $attributes
      * @param string $content
-     * @param \WP_Block $block
+     * @param WP_Block $block
      * @return string
      */
     function render_block_core_footnotes($attributes, $content, $block)
@@ -51289,7 +51289,7 @@ namespace {
     /**
      * @param array $attributes
      * @param string $content
-     * @param \WP_Block $block
+     * @param WP_Block $block
      * @return string
      */
     function render_block_core_home_link($attributes, $content, $block)
@@ -51306,7 +51306,7 @@ namespace {
     /**
      * @param array $attributes
      * @param string $content
-     * @param \WP_Block $block
+     * @param WP_Block $block
      * @return string
      */
     function render_block_core_image($attributes, $content, $block)
@@ -51345,7 +51345,7 @@ namespace {
      * @package WordPress
      */
     /**
-     * @param int|\WP_Post $post
+     * @param int|WP_Post $post
      * @return string
      */
     function wp_latest_comments_draft_or_post_title($post = 0)
@@ -51489,14 +51489,14 @@ namespace {
     /**
      * @param array $attributes
      * @param string $content
-     * @param \WP_Block $block
+     * @param WP_Block $block
      * @return string
      */
     function render_block_core_navigation_link($attributes, $content, $block)
     {
     }
     /**
-     * @param \WP_Taxonomy|\WP_Post_Type $entity
+     * @param WP_Taxonomy|WP_Post_Type $entity
      * @param string $kind
      * @return array
      */
@@ -51505,7 +51505,7 @@ namespace {
     }
     /**
      * @param array $variations
-     * @param \WP_Block_Type $block_type
+     * @param WP_Block_Type $block_type
      */
     function block_core_navigation_link_filter_variations($variations, $block_type)
     {
@@ -51540,7 +51540,7 @@ namespace {
     /**
      * @param array $attributes
      * @param string $content
-     * @param \WP_Block $block
+     * @param WP_Block $block
      * @return string
      */
     function render_block_core_navigation_submenu($attributes, $content, $block)
@@ -51565,13 +51565,13 @@ namespace {
     }
     /**
      * @param array $attributes
-     * @return \WP_Block_List
+     * @return WP_Block_List
      */
     function block_core_navigation_get_inner_blocks_from_unstable_location($attributes)
     {
     }
     /**
-     * @param \WP_HTML_Tag_Processor $tags
+     * @param WP_HTML_Tag_Processor $tags
      * @param array $block_attributes
      * @return string
      */
@@ -51606,7 +51606,7 @@ namespace {
     {
     }
     /**
-     * @param \WP_Block_List $inner_blocks
+     * @param WP_Block_List $inner_blocks
      * @return bool
      */
     function block_core_navigation_block_contains_core_navigation($inner_blocks)
@@ -51619,14 +51619,14 @@ namespace {
     {
     }
     /**
-     * @param \WP_Block_List $inner_blocks
+     * @param WP_Block_List $inner_blocks
      * @return array
      */
     function block_core_navigation_get_post_ids($inner_blocks)
     {
     }
     /**
-     * @param \WP_Block $block
+     * @param WP_Block $block
      * @return array
      */
     function block_core_navigation_from_block_get_post_ids($block)
@@ -51635,7 +51635,7 @@ namespace {
     /**
      * @param array $attributes
      * @param string $content
-     * @param \WP_Block $block
+     * @param WP_Block $block
      * @return string
      */
     function render_block_core_navigation($attributes, $content, $block)
@@ -51679,7 +51679,7 @@ namespace {
     {
     }
     /**
-     * @return \WP_Post|null
+     * @return WP_Post|null
      */
     function block_core_navigation_get_most_recently_published_navigation()
     {
@@ -51693,7 +51693,7 @@ namespace {
     }
     /**
      * @param array $inner_blocks
-     * @param \WP_Post $post
+     * @param WP_Post $post
      * @return array
      */
     function block_core_navigation_mock_parsed_block($inner_blocks, $post)
@@ -51701,7 +51701,7 @@ namespace {
     }
     /**
      * @param array $inner_blocks
-     * @param \WP_Post $post
+     * @param WP_Post $post
      * @return string
      */
     function block_core_navigation_insert_hooked_blocks($inner_blocks, $post)
@@ -51709,23 +51709,23 @@ namespace {
     }
     /**
      * @param array $inner_blocks
-     * @param \WP_Post $post
+     * @param WP_Post $post
      * @return string
      */
     function block_core_navigation_set_ignored_hooked_blocks_metadata($inner_blocks, $post)
     {
     }
     /**
-     * @param \stdClass $post
-     * @return \stdClass
+     * @param stdClass $post
+     * @return stdClass
      */
     function block_core_navigation_update_ignore_hooked_blocks_meta($post)
     {
     }
     /**
-     * @param \WP_REST_Response $response
-     * @param \WP_Post $post
-     * @return \WP_REST_Response
+     * @param WP_REST_Response $response
+     * @param WP_Post $post
+     * @return WP_REST_Response
      */
     function block_core_navigation_insert_hooked_blocks_into_rest_response($response, $post)
     {
@@ -51778,7 +51778,7 @@ namespace {
     /**
      * @param array $attributes
      * @param string $content
-     * @param \WP_Block $block
+     * @param WP_Block $block
      * @return string
      */
     function render_block_core_page_list($attributes, $content, $block)
@@ -51805,7 +51805,7 @@ namespace {
     /**
      * @param array $attributes
      * @param string $content
-     * @param \WP_Block $block
+     * @param WP_Block $block
      * @return string
      */
     function render_block_core_post_author_biography($attributes, $content, $block)
@@ -51822,7 +51822,7 @@ namespace {
     /**
      * @param array $attributes
      * @param string $content
-     * @param \WP_Block $block
+     * @param WP_Block $block
      * @return string
      */
     function render_block_core_post_author_name($attributes, $content, $block)
@@ -51839,7 +51839,7 @@ namespace {
     /**
      * @param array $attributes
      * @param string $content
-     * @param \WP_Block $block
+     * @param WP_Block $block
      * @return string
      */
     function render_block_core_post_author($attributes, $content, $block)
@@ -51856,7 +51856,7 @@ namespace {
     /**
      * @param array $attributes
      * @param string $content
-     * @param \WP_Block $block
+     * @param WP_Block $block
      * @return string
      */
     function render_block_core_post_comments_form($attributes, $content, $block)
@@ -51880,7 +51880,7 @@ namespace {
     /**
      * @param array $attributes
      * @param string $content
-     * @param \WP_Block $block
+     * @param WP_Block $block
      * @return string
      */
     function render_block_core_post_content($attributes, $content, $block)
@@ -51897,7 +51897,7 @@ namespace {
     /**
      * @param array $attributes
      * @param string $content
-     * @param \WP_Block $block
+     * @param WP_Block $block
      * @return string
      */
     function render_block_core_post_date($attributes, $content, $block)
@@ -51914,7 +51914,7 @@ namespace {
     /**
      * @param array $attributes
      * @param string $content
-     * @param \WP_Block $block
+     * @param WP_Block $block
      * @return string
      */
     function render_block_core_post_excerpt($attributes, $content, $block)
@@ -51931,7 +51931,7 @@ namespace {
     /**
      * @param array $attributes
      * @param string $content
-     * @param \WP_Block $block
+     * @param WP_Block $block
      * @return string
      */
     function render_block_core_post_featured_image($attributes, $content, $block)
@@ -51976,7 +51976,7 @@ namespace {
      * @package WordPress
      */
     /**
-     * @param \WP_Block_List $inner_blocks
+     * @param WP_Block_List $inner_blocks
      * @return bool
      */
     function block_core_post_template_uses_featured_image($inner_blocks)
@@ -51985,7 +51985,7 @@ namespace {
     /**
      * @param array $attributes
      * @param string $content
-     * @param \WP_Block $block
+     * @param WP_Block $block
      * @return string
      */
     function render_block_core_post_template($attributes, $content, $block)
@@ -52002,7 +52002,7 @@ namespace {
     /**
      * @param array $attributes
      * @param string $content
-     * @param \WP_Block $block
+     * @param WP_Block $block
      * @return string
      */
     function render_block_core_post_terms($attributes, $content, $block)
@@ -52025,7 +52025,7 @@ namespace {
     /**
      * @param array $attributes
      * @param string $content
-     * @param \WP_Block $block
+     * @param WP_Block $block
      * @return string
      */
     function render_block_core_post_title($attributes, $content, $block)
@@ -52042,7 +52042,7 @@ namespace {
     /**
      * @param array $attributes
      * @param string $content
-     * @param \WP_Block $block
+     * @param WP_Block $block
      * @return string
      */
     function render_block_core_query_no_results($attributes, $content, $block)
@@ -52059,7 +52059,7 @@ namespace {
     /**
      * @param array $attributes
      * @param string $content
-     * @param \WP_Block $block
+     * @param WP_Block $block
      * @return string
      */
     function render_block_core_query_pagination_next($attributes, $content, $block)
@@ -52076,7 +52076,7 @@ namespace {
     /**
      * @param array $attributes
      * @param string $content
-     * @param \WP_Block $block
+     * @param WP_Block $block
      * @return string
      */
     function render_block_core_query_pagination_numbers($attributes, $content, $block)
@@ -52093,7 +52093,7 @@ namespace {
     /**
      * @param array $attributes
      * @param string $content
-     * @param \WP_Block $block
+     * @param WP_Block $block
      * @return string
      */
     function render_block_core_query_pagination_previous($attributes, $content, $block)
@@ -52141,7 +52141,7 @@ namespace {
     /**
      * @param array $attributes
      * @param string $content
-     * @param \WP_Block $block
+     * @param WP_Block $block
      * @return string
      */
     function render_block_core_query($attributes, $content, $block)
@@ -52165,7 +52165,7 @@ namespace {
     /**
      * @param array $attributes
      * @param string $content
-     * @param \WP_Block $block
+     * @param WP_Block $block
      * @return string
      */
     function render_block_core_read_more($attributes, $content, $block)
@@ -52197,7 +52197,7 @@ namespace {
     /**
      * @param array $attributes
      * @param string $content
-     * @param \WP_Block $block
+     * @param WP_Block $block
      * @return string
      */
     function render_block_core_search($attributes)
@@ -52379,7 +52379,7 @@ namespace {
     /**
      * @param array $attributes
      * @param string $content
-     * @param \WP_Block $block
+     * @param WP_Block $block
      * @return string
      */
     function render_block_core_social_link($attributes, $content, $block)
@@ -52496,7 +52496,7 @@ namespace {
     /**
      * @param array $attributes
      * @param string $content
-     * @param \WP_Block $block
+     * @param WP_Block $block
      * @return string
      */
     function render_block_core_widget_group($attributes, $content, $block)
@@ -52572,12 +52572,12 @@ namespace {
      * @subpackage Bookmark
      */
     /**
-     * @param int|\stdClass $bookmark
+     * @param int|stdClass $bookmark
      * @param string $output
      * @param string $filter
      * @return array|object|null
      * @phpstan-param 'OBJECT'|'ARRAY_A'|'ARRAY_N' $output
-     * @phpstan-return null|($output is 'ARRAY_A' ? array<string, mixed> : ($output is 'ARRAY_N' ? array<int, mixed> : \stdClass))
+     * @phpstan-return null|($output is 'ARRAY_A' ? array<string, mixed> : ($output is 'ARRAY_N' ? array<int, mixed> : stdClass))
      */
     function get_bookmark($bookmark, $output = \OBJECT, $filter = 'raw')
     {
@@ -52586,7 +52586,7 @@ namespace {
      * @param string $field
      * @param int $bookmark
      * @param string $context
-     * @return string|\WP_Error
+     * @return string|WP_Error
      */
     function get_bookmark_field($field, $bookmark, $context = 'display')
     {
@@ -52610,9 +52610,9 @@ namespace {
     {
     }
     /**
-     * @param \stdClass|array $bookmark
+     * @param stdClass|array $bookmark
      * @param string $context
-     * @return \stdClass|array
+     * @return stdClass|array
      */
     function sanitize_bookmark($bookmark, $context = 'display')
     {
@@ -52868,7 +52868,7 @@ namespace {
     {
     }
     /**
-     * @param int|\WP_Post $post
+     * @param int|WP_Post $post
      * @param string $capability
      * @param mixed $args
      * @return bool
@@ -52877,7 +52877,7 @@ namespace {
     {
     }
     /**
-     * @param int|\WP_User $user
+     * @param int|WP_User $user
      * @param string $capability
      * @param mixed $args
      * @return bool
@@ -52886,14 +52886,14 @@ namespace {
     {
     }
     /**
-     * @return \WP_Roles
+     * @return WP_Roles
      */
     function wp_roles()
     {
     }
     /**
      * @param string $role
-     * @return \WP_Role|null
+     * @return WP_Role|null
      */
     function get_role($role)
     {
@@ -52902,7 +52902,7 @@ namespace {
      * @param string $role
      * @param string $display_name
      * @param bool[] $capabilities
-     * @return \WP_Role|void
+     * @return WP_Role|void
      */
     function add_role($role, $display_name, $capabilities = array())
     {
@@ -52957,7 +52957,7 @@ namespace {
     /**
      * @param bool[] $allcaps
      * @param string[] $caps
-     * @param \WP_User $user
+     * @param WP_User $user
      * @return bool[]
      */
     function wp_maybe_grant_site_health_caps($allcaps, $caps, $args, $user)
@@ -52983,21 +52983,21 @@ namespace {
      * @param string $separator
      * @param bool $nicename
      * @param array $deprecated
-     * @return string|\WP_Error
+     * @return string|WP_Error
      */
     function get_category_parents($category_id, $link = \false, $separator = '/', $nicename = \false, $deprecated = array())
     {
     }
     /**
      * @param int $post_id
-     * @return \WP_Term[]
+     * @return WP_Term[]
      */
     function get_the_category($post_id = \false)
     {
     }
     /**
      * @param int $cat_id
-     * @return string|\WP_Error
+     * @return string|WP_Error
      */
     function get_the_category_by_ID($cat_id)
     {
@@ -53013,7 +53013,7 @@ namespace {
     }
     /**
      * @param int|string|int[]|string[] $category
-     * @param int|\WP_Post $post
+     * @param int|WP_Post $post
      * @return bool
      */
     function in_category($category, $post = \null)
@@ -53156,7 +53156,7 @@ namespace {
     {
     }
     /**
-     * @param \WP_Term[] $tags
+     * @param WP_Term[] $tags
      * @phpstan-param array{
      *   smallest?: int,
      *   largest?: int,
@@ -53221,8 +53221,8 @@ namespace {
     {
     }
     /**
-     * @param int|\WP_Post $post
-     * @return \WP_Term[]|false|\WP_Error
+     * @param int|WP_Post $post
+     * @return WP_Term[]|false|WP_Error
      */
     function get_the_tags($post = 0)
     {
@@ -53232,7 +53232,7 @@ namespace {
      * @param string $sep
      * @param string $after
      * @param int $post_id
-     * @return string|false|\WP_Error
+     * @return string|false|WP_Error
      */
     function get_the_tag_list($before = '', $sep = '', $after = '', $post_id = 0)
     {
@@ -53261,9 +53261,9 @@ namespace {
     {
     }
     /**
-     * @param int|\WP_Post $post
+     * @param int|WP_Post $post
      * @param string $taxonomy
-     * @return \WP_Term[]|false|\WP_Error
+     * @return WP_Term[]|false|WP_Error
      */
     function get_the_terms($post, $taxonomy)
     {
@@ -53274,7 +53274,7 @@ namespace {
      * @param string $before
      * @param string $sep
      * @param string $after
-     * @return string|false|\WP_Error
+     * @return string|false|WP_Error
      */
     function get_the_term_list($post_id, $taxonomy, $before = '', $sep = '', $after = '')
     {
@@ -53288,7 +53288,7 @@ namespace {
      *   link?: bool,
      *   inclusive?: bool,
      * } $args
-     * @return string|\WP_Error
+     * @return string|WP_Error
      */
     function get_term_parents_list($term_id, $taxonomy, $args = array())
     {
@@ -53306,7 +53306,7 @@ namespace {
     }
     /**
      * @param string|int|array $category
-     * @param int|\WP_Post $post
+     * @param int|WP_Post $post
      * @return bool
      */
     function has_category($category = '', $post = \null)
@@ -53314,7 +53314,7 @@ namespace {
     }
     /**
      * @param string|int|array $tag
-     * @param int|\WP_Post $post
+     * @param int|WP_Post $post
      * @return bool
      */
     function has_tag($tag = '', $post = \null)
@@ -53323,7 +53323,7 @@ namespace {
     /**
      * @param string|int|array $term
      * @param string $taxonomy
-     * @param int|\WP_Post $post
+     * @param int|WP_Post $post
      * @return bool
      */
     function has_term($term = '', $taxonomy = '', $post = \null)
@@ -53348,9 +53348,9 @@ namespace {
      * @param int|object $category
      * @param string $output
      * @param string $filter
-     * @return object|array|\WP_Error|null
+     * @return object|array|WP_Error|null
      * @phpstan-param 'OBJECT'|'ARRAY_A'|'ARRAY_N' $output
-     * @phpstan-return ($category is object ? array<array-key, mixed>|\WP_Term : array<array-key, mixed>|\WP_Term|\WP_Error|null) & ($output is 'ARRAY_A' ? array<string, mixed>|\WP_Error|null : ($output is 'ARRAY_N' ? array<int, mixed>|\WP_Error|null : \WP_Term|\WP_Error|null))
+     * @phpstan-return ($category is object ? array<array-key, mixed>|WP_Term : array<array-key, mixed>|WP_Term|WP_Error|null) & ($output is 'ARRAY_A' ? array<string, mixed>|WP_Error|null : ($output is 'ARRAY_N' ? array<int, mixed>|WP_Error|null : WP_Term|WP_Error|null))
      */
     function get_category($category, $output = \OBJECT, $filter = 'raw')
     {
@@ -53359,9 +53359,9 @@ namespace {
      * @param string $category_path
      * @param bool $full_match
      * @param string $output
-     * @return \WP_Term|array|\WP_Error|null
+     * @return WP_Term|array|WP_Error|null
      * @phpstan-param 'OBJECT'|'ARRAY_A'|'ARRAY_N' $output
-     * @phpstan-return ($output is 'ARRAY_A' ? array<string, mixed>|\WP_Error|null : ($output is 'ARRAY_N' ? array<int, mixed>|\WP_Error|null : \WP_Term|\WP_Error|null))
+     * @phpstan-return ($output is 'ARRAY_A' ? array<string, mixed>|WP_Error|null : ($output is 'ARRAY_N' ? array<int, mixed>|WP_Error|null : WP_Term|WP_Error|null))
      */
     function get_category_by_path($category_path, $full_match = \true, $output = \OBJECT)
     {
@@ -53421,16 +53421,16 @@ namespace {
      * @phpstan-param array{
      *   taxonomy?: string,
      * } $args
-     * @return \WP_Term[]|int|\WP_Error
+     * @return WP_Term[]|int|WP_Error
      */
     function get_tags($args = '')
     {
     }
     /**
-     * @param int|\WP_Term|object $tag
+     * @param int|WP_Term|object $tag
      * @param string $output
      * @param string $filter
-     * @return \WP_Term|array|\WP_Error|null
+     * @return WP_Term|array|WP_Error|null
      */
     function get_tag($tag, $output = \OBJECT, $filter = 'raw')
     {
@@ -53443,7 +53443,7 @@ namespace {
     {
     }
     /**
-     * @param array|object|\WP_Term $category
+     * @param array|object|WP_Term $category
      */
     function _make_cat_compat(&$category)
     {
@@ -53517,27 +53517,27 @@ namespace {
      * @subpackage Template
      */
     /**
-     * @param int|\WP_Comment $comment_id
+     * @param int|WP_Comment $comment_id
      * @return string
      */
     function get_comment_author($comment_id = 0)
     {
     }
     /**
-     * @param int|\WP_Comment $comment_id
+     * @param int|WP_Comment $comment_id
      */
     function comment_author($comment_id = 0)
     {
     }
     /**
-     * @param int|\WP_Comment $comment_id
+     * @param int|WP_Comment $comment_id
      * @return string
      */
     function get_comment_author_email($comment_id = 0)
     {
     }
     /**
-     * @param int|\WP_Comment $comment_id
+     * @param int|WP_Comment $comment_id
      */
     function comment_author_email($comment_id = 0)
     {
@@ -53546,7 +53546,7 @@ namespace {
      * @param string $link_text
      * @param string $before
      * @param string $after
-     * @param int|\WP_Comment $comment
+     * @param int|WP_Comment $comment
      */
     function comment_author_email_link($link_text = '', $before = '', $after = '', $comment = \null)
     {
@@ -53555,47 +53555,47 @@ namespace {
      * @param string $link_text
      * @param string $before
      * @param string $after
-     * @param int|\WP_Comment $comment
+     * @param int|WP_Comment $comment
      * @return string
      */
     function get_comment_author_email_link($link_text = '', $before = '', $after = '', $comment = \null)
     {
     }
     /**
-     * @param int|\WP_Comment $comment_id
+     * @param int|WP_Comment $comment_id
      * @return string
      */
     function get_comment_author_link($comment_id = 0)
     {
     }
     /**
-     * @param int|\WP_Comment $comment_id
+     * @param int|WP_Comment $comment_id
      */
     function comment_author_link($comment_id = 0)
     {
     }
     /**
-     * @param int|\WP_Comment $comment_id
+     * @param int|WP_Comment $comment_id
      * @return string
      */
     function get_comment_author_IP($comment_id = 0)
     {
     }
     /**
-     * @param int|\WP_Comment $comment_id
+     * @param int|WP_Comment $comment_id
      */
     function comment_author_IP($comment_id = 0)
     {
     }
     /**
-     * @param int|\WP_Comment $comment_id
+     * @param int|WP_Comment $comment_id
      * @return string
      */
     function get_comment_author_url($comment_id = 0)
     {
     }
     /**
-     * @param int|\WP_Comment $comment_id
+     * @param int|WP_Comment $comment_id
      */
     function comment_author_url($comment_id = 0)
     {
@@ -53604,7 +53604,7 @@ namespace {
      * @param string $link_text
      * @param string $before
      * @param string $after
-     * @param int|\WP_Comment $comment
+     * @param int|WP_Comment $comment
      * @return string
      */
     function get_comment_author_url_link($link_text = '', $before = '', $after = '', $comment = 0)
@@ -53614,15 +53614,15 @@ namespace {
      * @param string $link_text
      * @param string $before
      * @param string $after
-     * @param int|\WP_Comment $comment
+     * @param int|WP_Comment $comment
      */
     function comment_author_url_link($link_text = '', $before = '', $after = '', $comment = 0)
     {
     }
     /**
      * @param string|string[] $css_class
-     * @param int|\WP_Comment $comment
-     * @param int|\WP_Post $post
+     * @param int|WP_Comment $comment
+     * @param int|WP_Post $post
      * @param bool $display
      * @return void|string
      * @phpstan-return ($display is true ? void : string)
@@ -53632,8 +53632,8 @@ namespace {
     }
     /**
      * @param string|string[] $css_class
-     * @param int|\WP_Comment $comment_id
-     * @param int|\WP_Post $post
+     * @param int|WP_Comment $comment_id
+     * @param int|WP_Post $post
      * @return string[]
      */
     function get_comment_class($css_class = '', $comment_id = \null, $post = \null)
@@ -53641,7 +53641,7 @@ namespace {
     }
     /**
      * @param string $format
-     * @param int|\WP_Comment $comment_id
+     * @param int|WP_Comment $comment_id
      * @return string
      */
     function get_comment_date($format = '', $comment_id = 0)
@@ -53649,20 +53649,20 @@ namespace {
     }
     /**
      * @param string $format
-     * @param int|\WP_Comment $comment_id
+     * @param int|WP_Comment $comment_id
      */
     function comment_date($format = '', $comment_id = 0)
     {
     }
     /**
-     * @param int|\WP_Comment $comment_id
+     * @param int|WP_Comment $comment_id
      * @return string
      */
     function get_comment_excerpt($comment_id = 0)
     {
     }
     /**
-     * @param int|\WP_Comment $comment_id
+     * @param int|WP_Comment $comment_id
      */
     function comment_excerpt($comment_id = 0)
     {
@@ -53677,7 +53677,7 @@ namespace {
     {
     }
     /**
-     * @param \WP_Comment|int|null $comment
+     * @param WP_Comment|int|null $comment
      * @phpstan-param array{
      *   type?: string,
      *   page?: int,
@@ -53691,7 +53691,7 @@ namespace {
     {
     }
     /**
-     * @param int|\WP_Post $post
+     * @param int|WP_Post $post
      * @return string
      */
     function get_comments_link($post = 0)
@@ -53705,7 +53705,7 @@ namespace {
     {
     }
     /**
-     * @param int|\WP_Post $post
+     * @param int|WP_Post $post
      * @return string|int
      */
     function get_comments_number($post = 0)
@@ -53715,7 +53715,7 @@ namespace {
      * @param string|false $zero
      * @param string|false $one
      * @param string|false $more
-     * @param int|\WP_Post $post
+     * @param int|WP_Post $post
      */
     function comments_number($zero = \false, $one = \false, $more = \false, $post = 0)
     {
@@ -53724,14 +53724,14 @@ namespace {
      * @param string $zero
      * @param string $one
      * @param string $more
-     * @param int|\WP_Post $post
+     * @param int|WP_Post $post
      * @return string
      */
     function get_comments_number_text($zero = \false, $one = \false, $more = \false, $post = 0)
     {
     }
     /**
-     * @param int|\WP_Comment $comment_id
+     * @param int|WP_Comment $comment_id
      * @param array $args
      * @return string
      */
@@ -53739,7 +53739,7 @@ namespace {
     {
     }
     /**
-     * @param int|\WP_Comment $comment_id
+     * @param int|WP_Comment $comment_id
      * @param array $args
      */
     function comment_text($comment_id = 0, $args = array())
@@ -53749,7 +53749,7 @@ namespace {
      * @param string $format
      * @param bool $gmt
      * @param bool $translate
-     * @param int|\WP_Comment $comment_id
+     * @param int|WP_Comment $comment_id
      * @return string
      */
     function get_comment_time($format = '', $gmt = \false, $translate = \true, $comment_id = 0)
@@ -53757,13 +53757,13 @@ namespace {
     }
     /**
      * @param string $format
-     * @param int|\WP_Comment $comment_id
+     * @param int|WP_Comment $comment_id
      */
     function comment_time($format = '', $comment_id = 0)
     {
     }
     /**
-     * @param int|\WP_Comment $comment_id
+     * @param int|WP_Comment $comment_id
      * @return string
      */
     function get_comment_type($comment_id = 0)
@@ -53798,14 +53798,14 @@ namespace {
     {
     }
     /**
-     * @param int|\WP_Post $post
+     * @param int|WP_Post $post
      * @return bool
      */
     function comments_open($post = \null)
     {
     }
     /**
-     * @param int|\WP_Post $post
+     * @param int|WP_Post $post
      * @return bool
      */
     function pings_open($post = \null)
@@ -53844,8 +53844,8 @@ namespace {
      *   before?: string,
      *   after?: string,
      * } $args
-     * @param int|\WP_Comment $comment
-     * @param int|\WP_Post $post
+     * @param int|WP_Comment $comment
+     * @param int|WP_Post $post
      * @return string|false|null
      */
     function get_comment_reply_link($args = array(), $comment = \null, $post = \null)
@@ -53853,8 +53853,8 @@ namespace {
     }
     /**
      * @param array $args
-     * @param int|\WP_Comment $comment
-     * @param int|\WP_Post $post
+     * @param int|WP_Comment $comment
+     * @param int|WP_Post $post
      */
     function comment_reply_link($args = array(), $comment = \null, $post = \null)
     {
@@ -53868,7 +53868,7 @@ namespace {
      *   before?: string,
      *   after?: string,
      * } $args
-     * @param int|\WP_Post $post
+     * @param int|WP_Post $post
      * @return string|false|null
      */
     function get_post_reply_link($args = array(), $post = \null)
@@ -53876,14 +53876,14 @@ namespace {
     }
     /**
      * @param array $args
-     * @param int|\WP_Post $post
+     * @param int|WP_Post $post
      */
     function post_reply_link($args = array(), $post = \null)
     {
     }
     /**
      * @param string $link_text
-     * @param int|\WP_Post|null $post
+     * @param int|WP_Post|null $post
      * @return string
      */
     function get_cancel_comment_reply_link($link_text = '', $post = \null)
@@ -53896,14 +53896,14 @@ namespace {
     {
     }
     /**
-     * @param int|\WP_Post|null $post
+     * @param int|WP_Post|null $post
      * @return string
      */
     function get_comment_id_fields($post = \null)
     {
     }
     /**
-     * @param int|\WP_Post|null $post
+     * @param int|WP_Post|null $post
      */
     function comment_id_fields($post = \null)
     {
@@ -53912,14 +53912,14 @@ namespace {
      * @param string|false $no_reply_text
      * @param string|false $reply_text
      * @param bool $link_to_parent
-     * @param int|\WP_Post|null $post
+     * @param int|WP_Post|null $post
      * @phpstan-return void
      */
     function comment_form_title($no_reply_text = \false, $reply_text = \false, $link_to_parent = \true, $post = \null)
     {
     }
     /**
-     * @param int|\WP_Post $post
+     * @param int|WP_Post $post
      * @return int
      */
     function _get_comment_reply_id($post = \null)
@@ -53942,7 +53942,7 @@ namespace {
      *   short_ping?: bool,
      *   echo?: bool,
      * } $args
-     * @param \WP_Comment[] $comments
+     * @param WP_Comment[] $comments
      * @return void|string
      */
     function wp_list_comments($args = array(), $comments = \null)
@@ -53980,7 +53980,7 @@ namespace {
      *   submit_field?: string,
      *   format?: string,
      * } $args
-     * @param int|\WP_Post $post
+     * @param int|WP_Post $post
      * @phpstan-return void
      */
     function comment_form($args = array(), $post = \null)
@@ -54059,24 +54059,24 @@ namespace {
      *   update_comment_meta_cache?: bool,
      *   update_comment_post_cache?: bool,
      * } $args
-     * @return \WP_Comment[]|int[]|int
+     * @return WP_Comment[]|int[]|int
      */
     function get_approved_comments($post_id, $args = array())
     {
     }
     /**
-     * @param \WP_Comment|string|int $comment
+     * @param WP_Comment|string|int $comment
      * @param string $output
-     * @return \WP_Comment|array|null
+     * @return WP_Comment|array|null
      * @phpstan-param 'OBJECT'|'ARRAY_A'|'ARRAY_N' $output
-     * @phpstan-return ($comment is \WP_Comment ? array<array-key, mixed>|\WP_Comment : array<array-key, mixed>|\WP_Comment|null) & ($output is 'ARRAY_A' ? array<string, mixed>|null : ($output is 'ARRAY_N' ? array<int, mixed>|null : \WP_Comment|null))
+     * @phpstan-return ($comment is WP_Comment ? array<array-key, mixed>|WP_Comment : array<array-key, mixed>|WP_Comment|null) & ($output is 'ARRAY_A' ? array<string, mixed>|null : ($output is 'ARRAY_N' ? array<int, mixed>|null : WP_Comment|null))
      */
     function get_comment($comment = \null, $output = \OBJECT)
     {
     }
     /**
      * @param string|array $args
-     * @return \WP_Comment[]|int[]|int
+     * @return WP_Comment[]|int[]|int
      * @phpstan-param array{
      *   author_email?: string,
      *   author_url?: string,
@@ -54215,8 +54215,8 @@ namespace {
     {
     }
     /**
-     * @param \WP_Comment $comment
-     * @param \WP_User $user
+     * @param WP_Comment $comment
+     * @param WP_User $user
      * @param bool $cookies_consent
      * @phpstan-return void
      */
@@ -54229,7 +54229,7 @@ namespace {
     /**
      * @param array $commentdata
      * @param bool $wp_error
-     * @return int|string|\WP_Error
+     * @return int|string|WP_Error
      */
     function wp_allow_comment($commentdata, $wp_error = \false)
     {
@@ -54249,14 +54249,14 @@ namespace {
     {
     }
     /**
-     * @param \WP_Comment[] $comments
-     * @return \WP_Comment[]
+     * @param WP_Comment[] $comments
+     * @return WP_Comment[]
      */
     function separate_comments(&$comments)
     {
     }
     /**
-     * @param \WP_Comment[] $comments
+     * @param WP_Comment[] $comments
      * @param int $per_page
      * @param bool $threaded
      * @return int
@@ -54284,7 +54284,7 @@ namespace {
     }
     /**
      * @param array $comment_data
-     * @return \WP_Error|true
+     * @return WP_Error|true
      */
     function wp_check_comment_data_max_lengths($comment_data)
     {
@@ -54317,7 +54317,7 @@ namespace {
     {
     }
     /**
-     * @param int|\WP_Comment $comment_id
+     * @param int|WP_Comment $comment_id
      * @param bool $force_delete
      * @return bool
      */
@@ -54325,35 +54325,35 @@ namespace {
     {
     }
     /**
-     * @param int|\WP_Comment $comment_id
+     * @param int|WP_Comment $comment_id
      * @return bool
      */
     function wp_trash_comment($comment_id)
     {
     }
     /**
-     * @param int|\WP_Comment $comment_id
+     * @param int|WP_Comment $comment_id
      * @return bool
      */
     function wp_untrash_comment($comment_id)
     {
     }
     /**
-     * @param int|\WP_Comment $comment_id
+     * @param int|WP_Comment $comment_id
      * @return bool
      */
     function wp_spam_comment($comment_id)
     {
     }
     /**
-     * @param int|\WP_Comment $comment_id
+     * @param int|WP_Comment $comment_id
      * @return bool
      */
     function wp_unspam_comment($comment_id)
     {
     }
     /**
-     * @param int|\WP_Comment $comment_id
+     * @param int|WP_Comment $comment_id
      * @return string|false
      */
     function wp_get_comment_status($comment_id)
@@ -54362,7 +54362,7 @@ namespace {
     /**
      * @param string $new_status
      * @param string $old_status
-     * @param \WP_Comment $comment
+     * @param WP_Comment $comment
      */
     function wp_transition_comment_status($new_status, $old_status, $comment)
     {
@@ -54446,7 +54446,7 @@ namespace {
      *   comment_author_IP?: string,
      * } $commentdata
      * @param bool $wp_error
-     * @return int|false|\WP_Error
+     * @return int|false|WP_Error
      */
     function wp_new_comment($commentdata, $wp_error = \false)
     {
@@ -54466,11 +54466,11 @@ namespace {
     {
     }
     /**
-     * @param int|\WP_Comment $comment_id
+     * @param int|WP_Comment $comment_id
      * @phpstan-param 'hold'|'approve'|'spam'|'trash' $comment_status
      * @param bool $wp_error
-     * @return bool|\WP_Error
-     * @phpstan-return ($wp_error is false ? bool : true|\WP_Error)
+     * @return bool|WP_Error
+     * @phpstan-return ($wp_error is false ? bool : true|WP_Error)
      */
     function wp_set_comment_status($comment_id, $comment_status, $wp_error = \false)
     {
@@ -54478,8 +54478,8 @@ namespace {
     /**
      * @param array $commentarr
      * @param bool $wp_error
-     * @return int|false|\WP_Error
-     * @phpstan-return ($wp_error is false ? 0|1|false : 0|1|\WP_Error)
+     * @return int|false|WP_Error
+     * @phpstan-return ($wp_error is false ? 0|1|false : 0|1|WP_Error)
      */
     function wp_update_comment($commentarr, $wp_error = \false)
     {
@@ -54530,7 +54530,7 @@ namespace {
     {
     }
     /**
-     * @param int|\WP_Post $post
+     * @param int|WP_Post $post
      * @return void|false
      */
     function do_trackbacks($post)
@@ -54545,7 +54545,7 @@ namespace {
     }
     /**
      * @param string $content
-     * @param int|\WP_Post $post
+     * @param int|WP_Post $post
      * @phpstan-return void
      */
     function pingback($content, $post)
@@ -54583,8 +54583,8 @@ namespace {
     {
     }
     /**
-     * @param \IXR_Error $ixr_error
-     * @return \IXR_Error
+     * @param IXR_Error $ixr_error
+     * @return IXR_Error
      */
     function xmlrpc_pingback_error($ixr_error)
     {
@@ -54599,7 +54599,7 @@ namespace {
     {
     }
     /**
-     * @param \WP_Comment[] $comments
+     * @param WP_Comment[] $comments
      * @param bool $update_meta_cache
      */
     function update_comment_cache($comments, $update_meta_cache = \true)
@@ -54616,8 +54616,8 @@ namespace {
     // Internal.
     //
     /**
-     * @param \WP_Post $posts
-     * @param \WP_Query $query
+     * @param WP_Post $posts
+     * @param WP_Query $query
      * @return array
      */
     function _close_comments_for_old_posts($posts, $query)
@@ -54641,7 +54641,7 @@ namespace {
      *   comment_parent?: string|int,
      *   _wp_unfiltered_html_comment?: string,
      * } $comment_data
-     * @return \WP_Comment|\WP_Error
+     * @return WP_Comment|WP_Error
      */
     function wp_handle_comment_submission($comment_data)
     {
@@ -54706,9 +54706,9 @@ namespace {
      * @param string $hook
      * @param array $args
      * @param bool $wp_error
-     * @return bool|\WP_Error
+     * @return bool|WP_Error
      * @phpstan-param list<mixed> $args
-     * @phpstan-return ($wp_error is false ? bool : true|\WP_Error)
+     * @phpstan-return ($wp_error is false ? bool : true|WP_Error)
      */
     function wp_schedule_single_event($timestamp, $hook, $args = array(), $wp_error = \false)
     {
@@ -54719,9 +54719,9 @@ namespace {
      * @param string $hook
      * @param array $args
      * @param bool $wp_error
-     * @return bool|\WP_Error
+     * @return bool|WP_Error
      * @phpstan-param list<mixed> $args
-     * @phpstan-return ($wp_error is false ? bool : true|\WP_Error)
+     * @phpstan-return ($wp_error is false ? bool : true|WP_Error)
      */
     function wp_schedule_event($timestamp, $recurrence, $hook, $args = array(), $wp_error = \false)
     {
@@ -54732,9 +54732,9 @@ namespace {
      * @param string $hook
      * @param array $args
      * @param bool $wp_error
-     * @return bool|\WP_Error
+     * @return bool|WP_Error
      * @phpstan-param list<mixed> $args
-     * @phpstan-return ($wp_error is false ? bool : true|\WP_Error)
+     * @phpstan-return ($wp_error is false ? bool : true|WP_Error)
      */
     function wp_reschedule_event($timestamp, $recurrence, $hook, $args = array(), $wp_error = \false)
     {
@@ -54744,9 +54744,9 @@ namespace {
      * @param string $hook
      * @param array $args
      * @param bool $wp_error
-     * @return bool|\WP_Error
+     * @return bool|WP_Error
      * @phpstan-param list<mixed> $args
-     * @phpstan-return ($wp_error is false ? bool : true|\WP_Error)
+     * @phpstan-return ($wp_error is false ? bool : true|WP_Error)
      */
     function wp_unschedule_event($timestamp, $hook, $args = array(), $wp_error = \false)
     {
@@ -54755,9 +54755,9 @@ namespace {
      * @param string $hook
      * @param array $args
      * @param bool $wp_error
-     * @return int|false|\WP_Error
+     * @return int|false|WP_Error
      * @phpstan-param list<mixed> $args
-     * @phpstan-return (0|positive-int|($wp_error is false ? false : \WP_Error))
+     * @phpstan-return (0|positive-int|($wp_error is false ? false : WP_Error))
      */
     function wp_clear_scheduled_hook($hook, $args = array(), $wp_error = \false)
     {
@@ -54765,8 +54765,8 @@ namespace {
     /**
      * @param string $hook
      * @param bool $wp_error
-     * @return int|false|\WP_Error
-     * @phpstan-return ($wp_error is false ? 0|positive-int|false : 0|positive-int|\WP_Error)
+     * @return int|false|WP_Error
+     * @phpstan-return ($wp_error is false ? 0|positive-int|false : 0|positive-int|WP_Error)
      */
     function wp_unschedule_hook($hook, $wp_error = \false)
     {
@@ -54851,7 +54851,7 @@ namespace {
     /**
      * @param array[] $cron
      * @param bool $wp_error
-     * @return bool|\WP_Error
+     * @return bool|WP_Error
      */
     function _set_cron_array($cron, $wp_error = \false)
     {
@@ -55797,7 +55797,7 @@ namespace {
     {
     }
     /**
-     * @param \WP_Admin_Bar $wp_admin_bar
+     * @param WP_Admin_Bar $wp_admin_bar
      */
     function wp_admin_bar_dashboard_view_site_menu($wp_admin_bar)
     {
@@ -55917,14 +55917,14 @@ namespace {
     {
     }
     /**
-     * @param \WP_Post $post
+     * @param WP_Post $post
      */
     function _get_post_ancestors(&$post)
     {
     }
     /**
      * @param string $file
-     * @return resource|\GdImage|string
+     * @return resource|GdImage|string
      */
     function wp_load_image($file)
     {
@@ -55945,7 +55945,7 @@ namespace {
     /**
      * @param int $postid
      * @param string $mode
-     * @return \WP_Post|null
+     * @return WP_Post|null
      */
     function wp_get_single_post($postid = 0, $mode = \OBJECT)
     {
@@ -56060,7 +56060,7 @@ namespace {
     {
     }
     /**
-     * @param int|\WP_Post $post
+     * @param int|WP_Post $post
      * @return string|false
      */
     function post_permalink($post = 0)
@@ -56070,7 +56070,7 @@ namespace {
      * @param string $url
      * @param string|bool $file_path
      * @param int $red
-     * @return \WpOrg\Requests\Utility\CaseInsensitiveDictionary|false
+     * @return WpOrgRequestsUtilityCaseInsensitiveDictionary|false
      */
     function wp_get_http($url, $file_path = \false, $red = 1)
     {
@@ -56161,7 +56161,7 @@ namespace {
     }
     /**
      * @param int $request_id
-     * @return \WP_User_Request|false
+     * @return WP_User_Request|false
      */
     function wp_get_user_request_data($request_id)
     {
@@ -56254,21 +56254,21 @@ namespace {
     {
     }
     /**
-     * @param \WP_Block_Type $block_type
+     * @param WP_Block_Type $block_type
      * @return bool
      */
     function wp_skip_border_serialization($block_type)
     {
     }
     /**
-     * @param \WP_Block_type $block_type
+     * @param WP_Block_type $block_type
      * @return bool
      */
     function wp_skip_dimensions_serialization($block_type)
     {
     }
     /**
-     * @param \WP_Block_Type $block_type
+     * @param WP_Block_Type $block_type
      * @return bool
      */
     function wp_skip_spacing_serialization($block_type)
@@ -56332,7 +56332,7 @@ namespace {
      * @param string $page_title
      * @param string $output
      * @param string|array $post_type
-     * @return \WP_Post|array|null
+     * @return WP_Post|array|null
      */
     function get_page_by_title($page_title, $output = \OBJECT, $post_type = 'page')
     {
@@ -56347,7 +56347,7 @@ namespace {
     {
     }
     /**
-     * @param \WP_Comment[] $comments
+     * @param WP_Comment[] $comments
      */
     function wp_queue_comments_for_comment_meta_lazyload($comments)
     {
@@ -56434,7 +56434,7 @@ namespace {
     {
     }
     /**
-     * @param \WP_Block_Type $block_type
+     * @param WP_Block_Type $block_type
      */
     function wp_register_duotone_support($block_type)
     {
@@ -56590,7 +56590,7 @@ namespace {
     {
     }
     /**
-     * @return \WP_oEmbed
+     * @return WP_oEmbed
      */
     function _wp_oembed_get_object()
     {
@@ -56663,7 +56663,7 @@ namespace {
     {
     }
     /**
-     * @param int|\WP_Post $post
+     * @param int|WP_Post $post
      * @return string|false
      */
     function get_post_embed_url($post = \null)
@@ -56680,14 +56680,14 @@ namespace {
     /**
      * @param int $width
      * @param int $height
-     * @param int|\WP_Post $post
+     * @param int|WP_Post $post
      * @return string|false
      */
     function get_post_embed_html($width, $height, $post = \null)
     {
     }
     /**
-     * @param \WP_Post|int $post
+     * @param WP_Post|int $post
      * @param int $width
      * @return array|false
      */
@@ -56704,7 +56704,7 @@ namespace {
     }
     /**
      * @param array $data
-     * @param \WP_Post $post
+     * @param WP_Post $post
      * @param int $width
      * @param int $height
      * @return array
@@ -56721,9 +56721,9 @@ namespace {
     }
     /**
      * @param bool $served
-     * @param \WP_HTTP_Response $result
-     * @param \WP_REST_Request $request
-     * @param \WP_REST_Server $server
+     * @param WP_HTTP_Response $result
+     * @param WP_REST_Request $request
+     * @param WP_REST_Server $server
      * @return true
      */
     function _oembed_rest_pre_serve_request($served, $result, $request, $server)
@@ -56731,7 +56731,7 @@ namespace {
     }
     /**
      * @param array $data
-     * @param \SimpleXMLElement $node
+     * @param SimpleXMLElement $node
      * @return string|false
      */
     function _oembed_create_xml($data, $node = \null)
@@ -56828,13 +56828,13 @@ namespace {
      * @since 5.2.0
      */
     /**
-     * @return \WP_Paused_Extensions_Storage
+     * @return WP_Paused_Extensions_Storage
      */
     function wp_paused_plugins()
     {
     }
     /**
-     * @return \WP_Paused_Extensions_Storage
+     * @return WP_Paused_Extensions_Storage
      */
     function wp_paused_themes()
     {
@@ -56859,7 +56859,7 @@ namespace {
     {
     }
     /**
-     * @return \WP_Recovery_Mode
+     * @return WP_Recovery_Mode
      */
     function wp_recovery_mode()
     {
@@ -56909,7 +56909,7 @@ namespace {
     {
     }
     /**
-     * @param int|\WP_Post $post
+     * @param int|WP_Post $post
      * @return string
      */
     function get_the_title_rss($post = 0)
@@ -56941,20 +56941,20 @@ namespace {
     {
     }
     /**
-     * @param int|\WP_Comment $comment_id
+     * @param int|WP_Comment $comment_id
      */
     function comment_guid($comment_id = \null)
     {
     }
     /**
-     * @param int|\WP_Comment $comment_id
+     * @param int|WP_Comment $comment_id
      * @return string|false
      */
     function get_comment_guid($comment_id = \null)
     {
     }
     /**
-     * @param int|\WP_Comment $comment
+     * @param int|WP_Comment $comment
      */
     function comment_link($comment = \null)
     {
@@ -57037,7 +57037,7 @@ namespace {
     }
     /**
      * @param string|string[] $url
-     * @return \SimplePie|\WP_Error
+     * @return SimplePie|WP_Error
      */
     function fetch_feed($url)
     {
@@ -57081,7 +57081,7 @@ namespace {
      *   font_families?: array|string,
      *   categories?: array,
      * } $args
-     * @return \WP_Font_Collection|\WP_Error
+     * @return WP_Font_Collection|WP_Error
      */
     function wp_register_font_collection(string $slug, array $args)
     {
@@ -57122,7 +57122,7 @@ namespace {
     }
     /**
      * @param int $post_id
-     * @param \WP_Post $post
+     * @param WP_Post $post
      * @phpstan-return void
      */
     function _wp_after_delete_font_family($post_id, $post)
@@ -57130,7 +57130,7 @@ namespace {
     }
     /**
      * @param int $post_id
-     * @param \WP_Post $post
+     * @param WP_Post $post
      * @phpstan-return void
      */
     function _wp_before_delete_font_face($post_id, $post)
@@ -57658,7 +57658,7 @@ namespace {
     }
     /**
      * @param string $text
-     * @param \WP_Post|object|int $post
+     * @param WP_Post|object|int $post
      * @return string
      */
     function wp_trim_excerpt($text = '', $post = \null)
@@ -58080,7 +58080,7 @@ namespace {
     {
     }
     /**
-     * @return \DateTimeImmutable
+     * @return DateTimeImmutable
      */
     function current_datetime()
     {
@@ -58092,7 +58092,7 @@ namespace {
     {
     }
     /**
-     * @return \DateTimeZone
+     * @return DateTimeZone
      */
     function wp_timezone()
     {
@@ -58109,7 +58109,7 @@ namespace {
     /**
      * @param string $format
      * @param int $timestamp
-     * @param \DateTimeZone $timezone
+     * @param DateTimeZone $timezone
      * @return string|false
      */
     function wp_date($format, $timestamp = \null, $timezone = \null)
@@ -58216,7 +58216,7 @@ namespace {
     }
     /**
      * @param string|null $content
-     * @param int|\WP_Post $post
+     * @param int|WP_Post $post
      * @return void|false
      */
     function do_enclose($content, $post)
@@ -58225,7 +58225,7 @@ namespace {
     /**
      * @param string $url
      * @param bool $deprecated
-     * @return \WpOrg\Requests\Utility\CaseInsensitiveDictionary|false
+     * @return WpOrgRequestsUtilityCaseInsensitiveDictionary|false
      */
     function wp_get_http_headers($url, $deprecated = \false)
     {
@@ -58612,7 +58612,7 @@ namespace {
     {
     }
     /**
-     * @param int|\WP_User $user
+     * @param int|WP_User $user
      * @return string[]
      */
     function get_allowed_mime_types($user = \null)
@@ -58625,7 +58625,7 @@ namespace {
     {
     }
     /**
-     * @param string|\WP_Error $message
+     * @param string|WP_Error $message
      * @param string|int $title
      * @phpstan-param int|array{
      *   response?: int,
@@ -58642,7 +58642,7 @@ namespace {
     {
     }
     /**
-     * @param string|\WP_Error $message
+     * @param string|WP_Error $message
      * @param string $title
      * @param string|array $args
      */
@@ -58698,7 +58698,7 @@ namespace {
     {
     }
     /**
-     * @param string|\WP_Error $message
+     * @param string|WP_Error $message
      * @param string $title
      * @param string|array $args
      * @phpstan-return array{
@@ -59604,7 +59604,7 @@ namespace {
      * @subpackage Dependencies
      */
     /**
-     * @return \WP_Scripts
+     * @return WP_Scripts
      */
     function wp_scripts()
     {
@@ -59717,7 +59717,7 @@ namespace {
      * @subpackage Dependencies
      */
     /**
-     * @return \WP_Styles
+     * @return WP_Styles
      */
     function wp_styles()
     {
@@ -60150,7 +60150,7 @@ namespace {
     }
     /**
      * @param string $format
-     * @param int|\WP_Post $post
+     * @param int|WP_Post $post
      * @return string|int|false
      */
     function get_the_date($format = '', $post = \null)
@@ -60169,7 +60169,7 @@ namespace {
     }
     /**
      * @param string $format
-     * @param int|\WP_Post $post
+     * @param int|WP_Post $post
      * @return string|int|false
      */
     function get_the_modified_date($format = '', $post = \null)
@@ -60183,7 +60183,7 @@ namespace {
     }
     /**
      * @param string $format
-     * @param int|\WP_Post $post
+     * @param int|WP_Post $post
      * @return string|int|false
      */
     function get_the_time($format = '', $post = \null)
@@ -60192,7 +60192,7 @@ namespace {
     /**
      * @param string $format
      * @param bool $gmt
-     * @param int|\WP_Post $post
+     * @param int|WP_Post $post
      * @param bool $translate
      * @return string|int|false
      */
@@ -60200,16 +60200,16 @@ namespace {
     {
     }
     /**
-     * @param int|\WP_Post $post
+     * @param int|WP_Post $post
      * @phpstan-param 'date'|'modified' $field
      * @phpstan-param 'local'|'gmt' $source
-     * @return \DateTimeImmutable|false
+     * @return DateTimeImmutable|false
      */
     function get_post_datetime($post = \null, $field = 'date', $source = 'local')
     {
     }
     /**
-     * @param int|\WP_Post $post
+     * @param int|WP_Post $post
      * @phpstan-param 'date'|'modified' $field
      * @return int|false
      */
@@ -60224,7 +60224,7 @@ namespace {
     }
     /**
      * @param string $format
-     * @param int|\WP_Post $post
+     * @param int|WP_Post $post
      * @return string|int|false
      */
     function get_the_modified_time($format = '', $post = \null)
@@ -60233,7 +60233,7 @@ namespace {
     /**
      * @param string $format
      * @param bool $gmt
-     * @param int|\WP_Post $post
+     * @param int|WP_Post $post
      * @param bool $translate
      * @return string|int|false
      */
@@ -60616,7 +60616,7 @@ namespace {
     {
     }
     /**
-     * @param \WP_Block_Type $block_type
+     * @param WP_Block_Type $block_type
      * @param string|array $target
      * @param bool $fallback
      * @return string|null
@@ -60634,7 +60634,7 @@ namespace {
      * @subpackage HTTP
      */
     /**
-     * @return \WP_Http
+     * @return WP_Http
      */
     function _wp_http_get_object()
     {
@@ -60642,8 +60642,8 @@ namespace {
     /**
      * @param string $url
      * @param array $args
-     * @return array|\WP_Error
-     * @phpstan-return array{headers: \WpOrg\Requests\Utility\CaseInsensitiveDictionary, body: string, response: array{code: int,message: string}, cookies: array<int, \WP_Http_Cookie>, filename: string|null, http_response: \WP_HTTP_Requests_Response}|\WP_Error
+     * @return array|WP_Error
+     * @phpstan-return array{headers: WpOrgRequestsUtilityCaseInsensitiveDictionary, body: string, response: array{code: int,message: string}, cookies: array<int, WP_Http_Cookie>, filename: string|null, http_response: WP_HTTP_Requests_Response}|WP_Error
      * @phpstan-param array{
      *   method?: string,
      *   timeout?: float,
@@ -60670,8 +60670,8 @@ namespace {
     /**
      * @param string $url
      * @param array $args
-     * @return array|\WP_Error
-     * @phpstan-return array{headers: \WpOrg\Requests\Utility\CaseInsensitiveDictionary, body: string, response: array{code: int,message: string}, cookies: array<int, \WP_Http_Cookie>, filename: string|null, http_response: \WP_HTTP_Requests_Response}|\WP_Error
+     * @return array|WP_Error
+     * @phpstan-return array{headers: WpOrgRequestsUtilityCaseInsensitiveDictionary, body: string, response: array{code: int,message: string}, cookies: array<int, WP_Http_Cookie>, filename: string|null, http_response: WP_HTTP_Requests_Response}|WP_Error
      * @phpstan-param array{
      *   method?: string,
      *   timeout?: float,
@@ -60698,8 +60698,8 @@ namespace {
     /**
      * @param string $url
      * @param array $args
-     * @return array|\WP_Error
-     * @phpstan-return array{headers: \WpOrg\Requests\Utility\CaseInsensitiveDictionary, body: string, response: array{code: int,message: string}, cookies: array<int, \WP_Http_Cookie>, filename: string|null, http_response: \WP_HTTP_Requests_Response}|\WP_Error
+     * @return array|WP_Error
+     * @phpstan-return array{headers: WpOrgRequestsUtilityCaseInsensitiveDictionary, body: string, response: array{code: int,message: string}, cookies: array<int, WP_Http_Cookie>, filename: string|null, http_response: WP_HTTP_Requests_Response}|WP_Error
      * @phpstan-param array{
      *   method?: string,
      *   timeout?: float,
@@ -60726,8 +60726,8 @@ namespace {
     /**
      * @param string $url
      * @param array $args
-     * @return array|\WP_Error
-     * @phpstan-return array{headers: \WpOrg\Requests\Utility\CaseInsensitiveDictionary, body: string, response: array{code: int,message: string}, cookies: array<int, \WP_Http_Cookie>, filename: string|null, http_response: \WP_HTTP_Requests_Response}|\WP_Error
+     * @return array|WP_Error
+     * @phpstan-return array{headers: WpOrgRequestsUtilityCaseInsensitiveDictionary, body: string, response: array{code: int,message: string}, cookies: array<int, WP_Http_Cookie>, filename: string|null, http_response: WP_HTTP_Requests_Response}|WP_Error
      * @phpstan-param array{
      *   method?: string,
      *   timeout?: float,
@@ -60754,7 +60754,7 @@ namespace {
     /**
      * @param string $url
      * @param array $args
-     * @phpstan-return \WP_Error|array{
+     * @phpstan-return WP_Error|array{
      *   headers: string[],
      *   body: string,
      *   response: array{
@@ -60764,7 +60764,7 @@ namespace {
      *   cookies: WP_HTTP_Cookie[],
      *   http_response: WP_HTTP_Requests_Response|null,
      * }
-     * @phpstan-return array{headers: \WpOrg\Requests\Utility\CaseInsensitiveDictionary, body: string, response: array{code: int,message: string}, cookies: array<int, \WP_Http_Cookie>, filename: string|null, http_response: \WP_HTTP_Requests_Response}|\WP_Error
+     * @phpstan-return array{headers: WpOrgRequestsUtilityCaseInsensitiveDictionary, body: string, response: array{code: int,message: string}, cookies: array<int, WP_Http_Cookie>, filename: string|null, http_response: WP_HTTP_Requests_Response}|WP_Error
      * @phpstan-param array{
      *   method?: string,
      *   timeout?: float,
@@ -60791,8 +60791,8 @@ namespace {
     /**
      * @param string $url
      * @param array $args
-     * @return array|\WP_Error
-     * @phpstan-return array{headers: \WpOrg\Requests\Utility\CaseInsensitiveDictionary, body: string, response: array{code: int,message: string}, cookies: array<int, \WP_Http_Cookie>, filename: string|null, http_response: \WP_HTTP_Requests_Response}|\WP_Error
+     * @return array|WP_Error
+     * @phpstan-return array{headers: WpOrgRequestsUtilityCaseInsensitiveDictionary, body: string, response: array{code: int,message: string}, cookies: array<int, WP_Http_Cookie>, filename: string|null, http_response: WP_HTTP_Requests_Response}|WP_Error
      * @phpstan-param array{
      *   method?: string,
      *   timeout?: float,
@@ -60819,8 +60819,8 @@ namespace {
     /**
      * @param string $url
      * @param array $args
-     * @return array|\WP_Error
-     * @phpstan-return array{headers: \WpOrg\Requests\Utility\CaseInsensitiveDictionary, body: string, response: array{code: int,message: string}, cookies: array<int, \WP_Http_Cookie>, filename: string|null, http_response: \WP_HTTP_Requests_Response}|\WP_Error
+     * @return array|WP_Error
+     * @phpstan-return array{headers: WpOrgRequestsUtilityCaseInsensitiveDictionary, body: string, response: array{code: int,message: string}, cookies: array<int, WP_Http_Cookie>, filename: string|null, http_response: WP_HTTP_Requests_Response}|WP_Error
      * @phpstan-param array{
      *   method?: string,
      *   timeout?: float,
@@ -60847,8 +60847,8 @@ namespace {
     /**
      * @param string $url
      * @param array $args
-     * @return array|\WP_Error
-     * @phpstan-return array{headers: \WpOrg\Requests\Utility\CaseInsensitiveDictionary, body: string, response: array{code: int,message: string}, cookies: array<int, \WP_Http_Cookie>, filename: string|null, http_response: \WP_HTTP_Requests_Response}|\WP_Error
+     * @return array|WP_Error
+     * @phpstan-return array{headers: WpOrgRequestsUtilityCaseInsensitiveDictionary, body: string, response: array{code: int,message: string}, cookies: array<int, WP_Http_Cookie>, filename: string|null, http_response: WP_HTTP_Requests_Response}|WP_Error
      * @phpstan-param array{
      *   method?: string,
      *   timeout?: float,
@@ -60873,14 +60873,14 @@ namespace {
     {
     }
     /**
-     * @param array|\WP_Error $response
-     * @return \WpOrg\Requests\Utility\CaseInsensitiveDictionary|array
+     * @param array|WP_Error $response
+     * @return WpOrgRequestsUtilityCaseInsensitiveDictionary|array
      */
     function wp_remote_retrieve_headers($response)
     {
     }
     /**
-     * @param array|\WP_Error $response
+     * @param array|WP_Error $response
      * @param string $header
      * @return array|string
      */
@@ -60888,43 +60888,43 @@ namespace {
     {
     }
     /**
-     * @param array|\WP_Error $response
+     * @param array|WP_Error $response
      * @return int|string
      */
     function wp_remote_retrieve_response_code($response)
     {
     }
     /**
-     * @param array|\WP_Error $response
+     * @param array|WP_Error $response
      * @return string
      */
     function wp_remote_retrieve_response_message($response)
     {
     }
     /**
-     * @param array|\WP_Error $response
+     * @param array|WP_Error $response
      * @return string
      */
     function wp_remote_retrieve_body($response)
     {
     }
     /**
-     * @param array|\WP_Error $response
-     * @return \WP_Http_Cookie[]
+     * @param array|WP_Error $response
+     * @return WP_Http_Cookie[]
      */
     function wp_remote_retrieve_cookies($response)
     {
     }
     /**
-     * @param array|\WP_Error $response
+     * @param array|WP_Error $response
      * @param string $name
-     * @return \WP_Http_Cookie|string
+     * @return WP_Http_Cookie|string
      */
     function wp_remote_retrieve_cookie($response, $name)
     {
     }
     /**
-     * @param array|\WP_Error $response
+     * @param array|WP_Error $response
      * @param string $name
      * @return string
      */
@@ -61091,7 +61091,7 @@ namespace {
      * @since 6.5.0
      */
     /**
-     * @return \WP_Interactivity_API
+     * @return WP_Interactivity_API
      */
     function wp_interactivity() : \WP_Interactivity_API
     {
@@ -61473,7 +61473,7 @@ namespace {
     {
     }
     /**
-     * @param int|\WP_User $user
+     * @param int|WP_User $user
      * @return string
      */
     function get_user_locale($user = 0)
@@ -61742,7 +61742,7 @@ namespace {
     }
     /**
      * @param string $domain
-     * @return \Translations|\NOOP_Translations
+     * @return Translations|NOOP_Translations
      */
     function get_translations_for_domain($domain)
     {
@@ -61874,7 +61874,7 @@ namespace {
      * @subpackage Template
      */
     /**
-     * @param int|\WP_Post $post
+     * @param int|WP_Post $post
      */
     function the_permalink($post = 0)
     {
@@ -61894,7 +61894,7 @@ namespace {
     {
     }
     /**
-     * @param \WP_Post|int|null $post
+     * @param WP_Post|int|null $post
      * @param bool|null $sample
      * @return bool
      */
@@ -61902,35 +61902,35 @@ namespace {
     {
     }
     /**
-     * @param int|\WP_Post $post
+     * @param int|WP_Post $post
      * @param bool $leavename
      * @return string|false
-     * @phpstan-return ($post is \WP_Post ? string : string|false)
+     * @phpstan-return ($post is WP_Post ? string : string|false)
      */
     function get_the_permalink($post = 0, $leavename = \false)
     {
     }
     /**
-     * @param int|\WP_Post $post
+     * @param int|WP_Post $post
      * @param bool $leavename
      * @return string|false
-     * @phpstan-return ($post is \WP_Post ? string : string|false)
+     * @phpstan-return ($post is WP_Post ? string : string|false)
      */
     function get_permalink($post = 0, $leavename = \false)
     {
     }
     /**
-     * @param int|\WP_Post $post
+     * @param int|WP_Post $post
      * @param bool $leavename
      * @param bool $sample
      * @return string|false
-     * @phpstan-return ($post is \WP_Post ? string : string|false)
+     * @phpstan-return ($post is WP_Post ? string : string|false)
      */
     function get_post_permalink($post = 0, $leavename = \false, $sample = \false)
     {
     }
     /**
-     * @param int|\WP_Post $post
+     * @param int|WP_Post $post
      * @param bool $leavename
      * @param bool $sample
      * @return string
@@ -61939,7 +61939,7 @@ namespace {
     {
     }
     /**
-     * @param int|\WP_Post $post
+     * @param int|WP_Post $post
      * @param bool $leavename
      * @param bool $sample
      * @return string
@@ -61948,7 +61948,7 @@ namespace {
     {
     }
     /**
-     * @param int|\WP_Post $post
+     * @param int|WP_Post $post
      * @param bool $leavename
      * @return string
      */
@@ -62018,7 +62018,7 @@ namespace {
     {
     }
     /**
-     * @param int|\WP_Term|object $cat
+     * @param int|WP_Term|object $cat
      * @param string $feed
      * @return string
      */
@@ -62026,7 +62026,7 @@ namespace {
     {
     }
     /**
-     * @param int|\WP_Term|object $term
+     * @param int|WP_Term|object $term
      * @param string $taxonomy
      * @param string $feed
      * @return string|false
@@ -62035,7 +62035,7 @@ namespace {
     {
     }
     /**
-     * @param int|\WP_Term|object $tag
+     * @param int|WP_Term|object $tag
      * @param string $feed
      * @return string
      */
@@ -62043,7 +62043,7 @@ namespace {
     {
     }
     /**
-     * @param int|\WP_Term|object $tag
+     * @param int|WP_Term|object $tag
      * @param string $taxonomy
      * @return string
      */
@@ -62054,13 +62054,13 @@ namespace {
      * @param string $link
      * @param string $before
      * @param string $after
-     * @param \WP_Term $tag
+     * @param WP_Term $tag
      */
     function edit_tag_link($link = '', $before = '', $after = '', $tag = \null)
     {
     }
     /**
-     * @param int|\WP_Term|object $term
+     * @param int|WP_Term|object $term
      * @param string $taxonomy
      * @param string $object_type
      * @return string|null
@@ -62072,7 +62072,7 @@ namespace {
      * @param string $link
      * @param string $before
      * @param string $after
-     * @param int|\WP_Term|null $term
+     * @param int|WP_Term|null $term
      * @param bool $display
      * @return string|void
      * @phpstan-return ($display is true ? void : string|void)
@@ -62119,7 +62119,7 @@ namespace {
     {
     }
     /**
-     * @param int|\WP_Post $post
+     * @param int|WP_Post $post
      * @param array $query_args
      * @param string $preview_link
      * @return string|null
@@ -62128,7 +62128,7 @@ namespace {
     {
     }
     /**
-     * @param int|\WP_Post $post
+     * @param int|WP_Post $post
      * @param string $context
      * @return string|null
      */
@@ -62139,7 +62139,7 @@ namespace {
      * @param string $text
      * @param string $before
      * @param string $after
-     * @param int|\WP_Post $post
+     * @param int|WP_Post $post
      * @param string $css_class
      * @phpstan-return void
      */
@@ -62147,7 +62147,7 @@ namespace {
     {
     }
     /**
-     * @param int|\WP_Post $post
+     * @param int|WP_Post $post
      * @param string $deprecated
      * @param bool $force_delete
      * @return string|void
@@ -62156,7 +62156,7 @@ namespace {
     {
     }
     /**
-     * @param int|\WP_Comment $comment_id
+     * @param int|WP_Comment $comment_id
      * @return string|void
      */
     function get_edit_comment_link($comment_id = 0)
@@ -62172,7 +62172,7 @@ namespace {
     {
     }
     /**
-     * @param int|\stdClass $link
+     * @param int|stdClass $link
      * @return string|void
      */
     function get_edit_bookmark_link($link = 0)
@@ -62202,7 +62202,7 @@ namespace {
      * @param bool $in_same_term
      * @param int[]|string $excluded_terms
      * @param string $taxonomy
-     * @return \WP_Post|null|string
+     * @return WP_Post|null|string
      */
     function get_previous_post($in_same_term = \false, $excluded_terms = '', $taxonomy = 'category')
     {
@@ -62211,7 +62211,7 @@ namespace {
      * @param bool $in_same_term
      * @param int[]|string $excluded_terms
      * @param string $taxonomy
-     * @return \WP_Post|null|string
+     * @return WP_Post|null|string
      */
     function get_next_post($in_same_term = \false, $excluded_terms = '', $taxonomy = 'category')
     {
@@ -62221,7 +62221,7 @@ namespace {
      * @param int[]|string $excluded_terms
      * @param bool $previous
      * @param string $taxonomy
-     * @return \WP_Post|null|string
+     * @return WP_Post|null|string
      */
     function get_adjacent_post($in_same_term = \false, $excluded_terms = '', $previous = \true, $taxonomy = 'category')
     {
@@ -62802,7 +62802,7 @@ namespace {
     {
     }
     /**
-     * @param int|\WP_Post $post
+     * @param int|WP_Post $post
      * @return string|false
      */
     function wp_get_canonical_url($post = \null)
@@ -63228,8 +63228,8 @@ namespace {
     /**
      * @param mixed $thing
      * @return bool
-     * @phpstan-assert-if-true \WP_Error $thing
-     * @phpstan-return ($thing is \WP_Error ? true : false)
+     * @phpstan-assert-if-true WP_Error $thing
+     * @phpstan-return ($thing is WP_Error ? true : false)
      */
     function is_wp_error($thing)
     {
@@ -63751,7 +63751,7 @@ namespace {
     {
     }
     /**
-     * @param \WP_Post $attachment
+     * @param WP_Post $attachment
      * @param string $context
      * @return string[]
      */
@@ -63847,22 +63847,22 @@ namespace {
     /**
      * @param int|array|object $attachment
      * @param string $output
-     * @return string[]|\WP_Taxonomy[]
-     * @phpstan-return ($output is 'names' ? array<int, string> : array<string, \WP_Taxonomy>)
+     * @return string[]|WP_Taxonomy[]
+     * @phpstan-return ($output is 'names' ? array<int, string> : array<string, WP_Taxonomy>)
      */
     function get_attachment_taxonomies($attachment, $output = 'names')
     {
     }
     /**
      * @phpstan-param 'names'|'objects' $output
-     * @return string[]|\WP_Taxonomy[]
-     * @phpstan-return ($output is 'names' ? array<int, string> : array<string, \WP_Taxonomy>)
+     * @return string[]|WP_Taxonomy[]
+     * @phpstan-return ($output is 'names' ? array<int, string> : array<string, WP_Taxonomy>)
      */
     function get_taxonomies_for_attachments($output = 'names')
     {
     }
     /**
-     * @param resource|\GdImage|false $image
+     * @param resource|GdImage|false $image
      * @return bool
      */
     function is_gd_image($image)
@@ -63871,7 +63871,7 @@ namespace {
     /**
      * @param int $width
      * @param int $height
-     * @return resource|\GdImage|false
+     * @return resource|GdImage|false
      */
     function wp_imagecreatetruecolor($width, $height)
     {
@@ -63898,7 +63898,7 @@ namespace {
     /**
      * @param string $path
      * @param array $args
-     * @return \WP_Image_Editor|\WP_Error
+     * @return WP_Image_Editor|WP_Error
      */
     function wp_get_image_editor($path, $args = array())
     {
@@ -63924,7 +63924,7 @@ namespace {
     {
     }
     /**
-     * @param int|\WP_Post $attachment
+     * @param int|WP_Post $attachment
      * @phpstan-return void|array{
      *   alt: string,
      *   author: string,
@@ -63976,8 +63976,8 @@ namespace {
     }
     /**
      * @param string $type
-     * @param int|\WP_Post $post
-     * @return \WP_Post[]
+     * @param int|WP_Post $post
+     * @return WP_Post[]
      */
     function get_attached_media($type, $post = 0)
     {
@@ -63991,7 +63991,7 @@ namespace {
     {
     }
     /**
-     * @param int|\WP_Post $post
+     * @param int|WP_Post $post
      * @param bool $html
      * @return array
      */
@@ -63999,7 +63999,7 @@ namespace {
     {
     }
     /**
-     * @param int|\WP_Post $post
+     * @param int|WP_Post $post
      * @param bool $html
      * @return string|array
      */
@@ -64007,21 +64007,21 @@ namespace {
     {
     }
     /**
-     * @param int|\WP_Post $post
+     * @param int|WP_Post $post
      * @return array
      */
     function get_post_galleries_images($post = 0)
     {
     }
     /**
-     * @param int|\WP_Post $post
+     * @param int|WP_Post $post
      * @return string[]
      */
     function get_post_gallery_images($post = 0)
     {
     }
     /**
-     * @param \WP_Post $attachment
+     * @param WP_Post $attachment
      * @phpstan-return void
      */
     function wp_maybe_generate_attachment_metadata($attachment)
@@ -64254,7 +64254,7 @@ namespace {
     {
     }
     /**
-     * @return \WP_Metadata_Lazyloader
+     * @return WP_Metadata_Lazyloader
      */
     function wp_metadata_lazyloader()
     {
@@ -64407,7 +64407,7 @@ namespace {
     /**
      * @param int|string|array $fields
      * @param bool $get_all
-     * @return \WP_Site|false
+     * @return WP_Site|false
      */
     function get_blog_details($fields = \null, $get_all = \true)
     {
@@ -64541,7 +64541,7 @@ namespace {
     /**
      * @param string $new_status
      * @param string $old_status
-     * @param \WP_Post $post
+     * @param WP_Post $post
      * @phpstan-return void
      */
     function _update_blog_date_on_post_publish($new_status, $old_status, $post)
@@ -64556,7 +64556,7 @@ namespace {
     }
     /**
      * @param int $post_id
-     * @param \WP_Post $post
+     * @param WP_Post $post
      * @phpstan-return void
      */
     function _update_posts_count_on_delete($post_id, $post)
@@ -64565,7 +64565,7 @@ namespace {
     /**
      * @param string $new_status
      * @param string $old_status
-     * @param \WP_Post $post
+     * @param WP_Post $post
      * @phpstan-return void
      */
     function _update_posts_count_on_transition_post_status($new_status, $old_status, $post = \null)
@@ -64623,7 +64623,7 @@ namespace {
      * Deprecated functions come here to die.
      */
     /**
-     * @return \WP_Site
+     * @return WP_Site
      */
     function get_dashboard_blog()
     {
@@ -64816,7 +64816,7 @@ namespace {
     }
     /**
      * @param int $user_id
-     * @return \WP_Site|void
+     * @return WP_Site|void
      */
     function get_active_blog_for_user($user_id)
     {
@@ -64831,7 +64831,7 @@ namespace {
     /**
      * @param int $blog_id
      * @param int $post_id
-     * @return \WP_Post|null
+     * @return WP_Post|null
      */
     function get_blog_post($blog_id, $post_id)
     {
@@ -64840,7 +64840,7 @@ namespace {
      * @param int $blog_id
      * @param int $user_id
      * @param string $role
-     * @return true|\WP_Error
+     * @return true|WP_Error
      */
     function add_user_to_blog($blog_id, $user_id, $role)
     {
@@ -64849,7 +64849,7 @@ namespace {
      * @param int $user_id
      * @param int $blog_id
      * @param int $reassign
-     * @return true|\WP_Error
+     * @return true|WP_Error
      */
     function remove_user_from_blog($user_id, $blog_id = 0, $reassign = 0)
     {
@@ -64896,7 +64896,7 @@ namespace {
     /**
      * @param string $blogname
      * @param string $blog_title
-     * @param \WP_User|string $user
+     * @param WP_User|string $user
      * @phpstan-return array{
      *   domain: string,
      *   path: string,
@@ -64953,7 +64953,7 @@ namespace {
     }
     /**
      * @param string $key
-     * @return array|\WP_Error
+     * @return array|WP_Error
      */
     function wpmu_activate_signup($key)
     {
@@ -64961,7 +64961,7 @@ namespace {
     /**
      * @param int $id
      * @param int|null $reassign
-     * @param \WP_User $user
+     * @param WP_User $user
      */
     function wp_delete_signup_on_user_delete($id, $reassign, $user)
     {
@@ -64982,13 +64982,13 @@ namespace {
      * @param int $user_id
      * @param array $options
      * @param int $network_id
-     * @return int|\WP_Error
+     * @return int|WP_Error
      */
     function wpmu_create_blog($domain, $path, $title, $user_id, $options = array(), $network_id = 1)
     {
     }
     /**
-     * @param \WP_Site|int $blog_id
+     * @param WP_Site|int $blog_id
      * @param string $deprecated
      * @return bool
      */
@@ -65040,7 +65040,7 @@ namespace {
     {
     }
     /**
-     * @return \WP_Network
+     * @return WP_Network
      */
     function get_current_site()
     {
@@ -65069,7 +65069,7 @@ namespace {
     {
     }
     /**
-     * @param \WP_Site|int $blog_id
+     * @param WP_Site|int $blog_id
      * @param int|array $user_id
      */
     function wpmu_log_new_registrations($blog_id, $user_id)
@@ -65115,7 +65115,7 @@ namespace {
      *   user_id?: int,
      *   role?: string,
      * } $details
-     * @return true|\WP_Error|void
+     * @return true|WP_Error|void
      */
     function add_existing_user_to_blog($details = \false)
     {
@@ -65129,13 +65129,13 @@ namespace {
     {
     }
     /**
-     * @param \PHPMailer $phpmailer
+     * @param PHPMailer $phpmailer
      */
     function fix_phpmailer_messageid($phpmailer)
     {
     }
     /**
-     * @param string|\WP_User $user
+     * @param string|WP_User $user
      * @return bool
      */
     function is_user_spammy($user = \null)
@@ -65306,7 +65306,7 @@ namespace {
      * @param string $domain
      * @param string $path
      * @param int|null $segments
-     * @return \WP_Network|false
+     * @return WP_Network|false
      */
     function get_network_by_path($domain, $path, $segments = \null)
     {
@@ -65315,7 +65315,7 @@ namespace {
      * @param string $domain
      * @param string $path
      * @param int|null $segments
-     * @return \WP_Site|false
+     * @return WP_Site|false
      */
     function get_site_by_path($domain, $path, $segments = \null)
     {
@@ -65338,21 +65338,21 @@ namespace {
     {
     }
     /**
-     * @param \WP_Network $current_site
-     * @return \WP_Network
+     * @param WP_Network $current_site
+     * @return WP_Network
      */
     function get_current_site_name($current_site)
     {
     }
     /**
-     * @return \WP_Network
+     * @return WP_Network
      */
     function wpmu_current_site()
     {
     }
     /**
      * @param object|int $network
-     * @return \WP_Network|false
+     * @return WP_Network|false
      */
     function wp_get_network($network)
     {
@@ -65365,8 +65365,8 @@ namespace {
      * @since 5.1.0
      */
     /**
-     * @param \WP_Network|int|null $network
-     * @return \WP_Network|null
+     * @param WP_Network|int|null $network
+     * @return WP_Network|null
      */
     function get_network($network = \null)
     {
@@ -65423,7 +65423,7 @@ namespace {
      *   options?: array,
      *   meta?: array,
      * } $data
-     * @return int|\WP_Error
+     * @return int|WP_Error
      */
     function wp_insert_site(array $data)
     {
@@ -65431,7 +65431,7 @@ namespace {
     /**
      * @param int $site_id
      * @param array $data
-     * @return int|\WP_Error
+     * @return int|WP_Error
      * @phpstan-param array{
      *   domain?: string,
      *   path?: string,
@@ -65455,14 +65455,14 @@ namespace {
     }
     /**
      * @param int $site_id
-     * @return \WP_Site|\WP_Error
+     * @return WP_Site|WP_Error
      */
     function wp_delete_site($site_id)
     {
     }
     /**
-     * @param \WP_Site|int|null $site
-     * @return \WP_Site|null
+     * @param WP_Site|int|null $site
+     * @return WP_Site|null
      */
     function get_site($site = \null)
     {
@@ -65547,8 +65547,8 @@ namespace {
     /**
      * @param array $data
      * @param array $defaults
-     * @param \WP_Site|null $old_site
-     * @return array|\WP_Error
+     * @param WP_Site|null $old_site
+     * @return array|WP_Error
      * @phpstan-param array{
      *   domain?: string,
      *   path?: string,
@@ -65595,9 +65595,9 @@ namespace {
     {
     }
     /**
-     * @param \WP_Error $errors
+     * @param WP_Error $errors
      * @param array $data
-     * @param \WP_Site|null $old_site
+     * @param WP_Site|null $old_site
      * @phpstan-return void
      * @phpstan-param array{
      *   domain?: string,
@@ -65621,34 +65621,34 @@ namespace {
     {
     }
     /**
-     * @param int|\WP_Site $site_id
+     * @param int|WP_Site $site_id
      * @phpstan-param array{
      *   user_id?: int,
      *   title?: string,
      *   options?: array,
      *   meta?: array,
      * } $args
-     * @return true|\WP_Error
+     * @return true|WP_Error
      */
     function wp_initialize_site($site_id, array $args = array())
     {
     }
     /**
-     * @param int|\WP_Site $site_id
-     * @return true|\WP_Error
+     * @param int|WP_Site $site_id
+     * @return true|WP_Error
      */
     function wp_uninitialize_site($site_id)
     {
     }
     /**
-     * @param int|\WP_Site $site_id
+     * @param int|WP_Site $site_id
      * @return bool
      */
     function wp_is_site_initialized($site_id)
     {
     }
     /**
-     * @param \WP_Site|int $blog
+     * @param WP_Site|int $blog
      * @phpstan-return void
      */
     function clean_blog_cache($blog)
@@ -65700,23 +65700,23 @@ namespace {
     {
     }
     /**
-     * @param \WP_Site $new_site
-     * @param \WP_Site|null $old_site
+     * @param WP_Site $new_site
+     * @param WP_Site|null $old_site
      * @phpstan-return void
      */
     function wp_maybe_update_network_site_counts_on_update($new_site, $old_site = \null)
     {
     }
     /**
-     * @param \WP_Site $new_site
-     * @param \WP_Site|null $old_site
+     * @param WP_Site $new_site
+     * @param WP_Site|null $old_site
      */
     function wp_maybe_transition_site_statuses_on_update($new_site, $old_site = \null)
     {
     }
     /**
-     * @param \WP_Site $new_site
-     * @param \WP_Site $old_site
+     * @param WP_Site $new_site
+     * @param WP_Site $old_site
      */
     function wp_maybe_clean_new_site_cache_on_update($new_site, $old_site)
     {
@@ -65774,7 +65774,7 @@ namespace {
     /**
      * @param array $items
      * @param int $depth
-     * @param \stdClass $args
+     * @param stdClass $args
      * @return string
      */
     function walk_nav_menu_tree($items, $depth, $args)
@@ -65790,8 +65790,8 @@ namespace {
     }
     /**
      * @param string[] $classes
-     * @param \WP_Post $menu_item
-     * @param \stdClass|false $args
+     * @param WP_Post $menu_item
+     * @param stdClass|false $args
      * @param int|false $depth
      * @return string[]
      */
@@ -65806,14 +65806,14 @@ namespace {
      * @since 3.0.0
      */
     /**
-     * @param int|string|\WP_Term $menu
-     * @return \WP_Term|false
+     * @param int|string|WP_Term $menu
+     * @return WP_Term|false
      */
     function wp_get_nav_menu_object($menu)
     {
     }
     /**
-     * @param int|string|\WP_Term $menu
+     * @param int|string|WP_Term $menu
      * @return bool
      */
     function is_nav_menu($menu)
@@ -65874,14 +65874,14 @@ namespace {
     }
     /**
      * @param string $menu_name
-     * @return int|\WP_Error
+     * @return int|WP_Error
      */
     function wp_create_nav_menu($menu_name)
     {
     }
     /**
-     * @param int|string|\WP_Term $menu
-     * @return bool|\WP_Error
+     * @param int|string|WP_Term $menu
+     * @return bool|WP_Error
      */
     function wp_delete_nav_menu($menu)
     {
@@ -65889,7 +65889,7 @@ namespace {
     /**
      * @param int $menu_id
      * @param array $menu_data
-     * @return int|\WP_Error
+     * @return int|WP_Error
      */
     function wp_update_nav_menu_object($menu_id = 0, $menu_data = array())
     {
@@ -65899,14 +65899,14 @@ namespace {
      * @param int $menu_item_db_id
      * @param array $menu_item_data
      * @param bool $fire_after_hooks
-     * @return int|\WP_Error
+     * @return int|WP_Error
      */
     function wp_update_nav_menu_item($menu_id = 0, $menu_item_db_id = 0, $menu_item_data = array(), $fire_after_hooks = \true)
     {
     }
     /**
      * @param array $args
-     * @return \WP_Term[]
+     * @return WP_Term[]
      */
     function wp_get_nav_menus($args = array())
     {
@@ -65919,7 +65919,7 @@ namespace {
     {
     }
     /**
-     * @param int|string|\WP_Term $menu
+     * @param int|string|WP_Term $menu
      * @phpstan-param array{
      *   order?: string,
      *   orderby?: string,
@@ -65936,7 +65936,7 @@ namespace {
     {
     }
     /**
-     * @param \WP_Post[] $menu_items
+     * @param WP_Post[] $menu_items
      */
     function update_menu_item_cache($menu_items)
     {
@@ -65974,7 +65974,7 @@ namespace {
     /**
      * @param string $new_status
      * @param string $old_status
-     * @param \WP_Post $post
+     * @param WP_Post $post
      * @phpstan-return void
      */
     function _wp_auto_add_pages_to_menu($new_status, $old_status, $post)
@@ -66366,13 +66366,13 @@ namespace {
     /**
      * @param int|null $id
      * @param string $name
-     * @return \WP_User
+     * @return WP_User
      */
     function set_current_user($id, $name = '')
     {
     }
     /**
-     * @return bool|\WP_User
+     * @return bool|WP_User
      */
     function get_currentuserinfo()
     {
@@ -66423,20 +66423,20 @@ namespace {
     /**
      * @param int|null $id
      * @param string $name
-     * @return \WP_User
+     * @return WP_User
      */
     function wp_set_current_user($id, $name = '')
     {
     }
     /**
-     * @return \WP_User
+     * @return WP_User
      */
     function wp_get_current_user()
     {
     }
     /**
      * @param int $user_id
-     * @return \WP_User|false
+     * @return WP_User|false
      */
     function get_userdata($user_id)
     {
@@ -66444,7 +66444,7 @@ namespace {
     /**
      * @param string $field
      * @param int|string $value
-     * @return \WP_User|false
+     * @return WP_User|false
      */
     function get_user_by($field, $value)
     {
@@ -66470,7 +66470,7 @@ namespace {
     /**
      * @param string $username
      * @param string $password
-     * @return \WP_User|\WP_Error
+     * @return WP_User|WP_Error
      */
     function wp_authenticate($username, $password)
     {
@@ -66596,7 +66596,7 @@ namespace {
     {
     }
     /**
-     * @param int|\WP_Comment $comment_id
+     * @param int|WP_Comment $comment_id
      * @param string $deprecated
      * @return bool
      */
@@ -66611,7 +66611,7 @@ namespace {
     {
     }
     /**
-     * @param \WP_User $user
+     * @param WP_User $user
      */
     function wp_password_change_notification($user)
     {
@@ -66981,7 +66981,7 @@ namespace {
      * @subpackage Post
      */
     /**
-     * @param int|\WP_Post|null $post
+     * @param int|WP_Post|null $post
      * @return string|false
      */
     function get_post_format($post = \null)
@@ -66989,16 +66989,16 @@ namespace {
     }
     /**
      * @param string|string[] $format
-     * @param \WP_Post|int|null $post
+     * @param WP_Post|int|null $post
      * @return bool
      */
     function has_post_format($format = array(), $post = \null)
     {
     }
     /**
-     * @param int|\WP_Post $post
+     * @param int|WP_Post $post
      * @param string $format
-     * @return array|\WP_Error|false
+     * @return array|WP_Error|false
      */
     function set_post_format($post, $format)
     {
@@ -67024,7 +67024,7 @@ namespace {
     }
     /**
      * @param string $format
-     * @return string|\WP_Error|false
+     * @return string|WP_Error|false
      */
     function get_post_format_link($format)
     {
@@ -67038,7 +67038,7 @@ namespace {
     }
     /**
      * @param string $link
-     * @param \WP_Term $term
+     * @param WP_Term $term
      * @param string $taxonomy
      * @return string
      */
@@ -67100,20 +67100,20 @@ namespace {
     {
     }
     /**
-     * @param int|\WP_Post $post
+     * @param int|WP_Post $post
      * @return string
      */
     function get_the_title($post = 0)
     {
     }
     /**
-     * @param int|\WP_Post $post
+     * @param int|WP_Post $post
      */
     function the_guid($post = 0)
     {
     }
     /**
-     * @param int|\WP_Post $post
+     * @param int|WP_Post $post
      * @return string
      */
     function get_the_guid($post = 0)
@@ -67129,7 +67129,7 @@ namespace {
     /**
      * @param string $more_link_text
      * @param bool $strip_teaser
-     * @param \WP_Post|object|int $post
+     * @param WP_Post|object|int $post
      * @return string
      */
     function get_the_content($more_link_text = \null, $strip_teaser = \false, $post = \null)
@@ -67139,14 +67139,14 @@ namespace {
     {
     }
     /**
-     * @param int|\WP_Post $post
+     * @param int|WP_Post $post
      * @return string
      */
     function get_the_excerpt($post = \null)
     {
     }
     /**
-     * @param int|\WP_Post $post
+     * @param int|WP_Post $post
      * @return bool
      */
     function has_excerpt($post = 0)
@@ -67154,14 +67154,14 @@ namespace {
     }
     /**
      * @param string|string[] $css_class
-     * @param int|\WP_Post $post
+     * @param int|WP_Post $post
      */
     function post_class($css_class = '', $post = \null)
     {
     }
     /**
      * @param string|string[] $css_class
-     * @param int|\WP_Post $post
+     * @param int|WP_Post $post
      * @return string[]
      */
     function get_post_class($css_class = '', $post = \null)
@@ -67181,7 +67181,7 @@ namespace {
     {
     }
     /**
-     * @param int|\WP_Post|null $post
+     * @param int|WP_Post|null $post
      * @return bool
      */
     function post_password_required($post = \null)
@@ -67380,7 +67380,7 @@ namespace {
     // Attachments.
     //
     /**
-     * @param int|\WP_Post $post
+     * @param int|WP_Post $post
      * @param bool $fullsize
      * @param bool $deprecated
      * @param bool $permalink
@@ -67389,7 +67389,7 @@ namespace {
     {
     }
     /**
-     * @param int|\WP_Post $post
+     * @param int|WP_Post $post
      * @param string|int[] $size
      * @param bool $permalink
      * @param bool $icon
@@ -67411,7 +67411,7 @@ namespace {
     // Misc.
     //
     /**
-     * @param int|\WP_Post $post
+     * @param int|WP_Post $post
      * @return string
      */
     function get_the_password_form($post = 0)
@@ -67425,14 +67425,14 @@ namespace {
     {
     }
     /**
-     * @param int|\WP_Post $post
+     * @param int|WP_Post $post
      * @return string|false
      */
     function get_page_template_slug($post = \null)
     {
     }
     /**
-     * @param int|\WP_Post $revision
+     * @param int|WP_Post $revision
      * @param bool $link
      * @return string|false
      */
@@ -67440,7 +67440,7 @@ namespace {
     {
     }
     /**
-     * @param int|\WP_Post $revision
+     * @param int|WP_Post $revision
      * @param bool $link
      * @return string|false
      */
@@ -67448,7 +67448,7 @@ namespace {
     {
     }
     /**
-     * @param int|\WP_Post $post
+     * @param int|WP_Post $post
      * @param string $type
      * @phpstan-return void
      */
@@ -67456,14 +67456,14 @@ namespace {
     {
     }
     /**
-     * @param int|\WP_Post|null $post
-     * @return \WP_Post|null
+     * @param int|WP_Post|null $post
+     * @return WP_Post|null
      */
     function get_post_parent($post = \null)
     {
     }
     /**
-     * @param int|\WP_Post|null $post
+     * @param int|WP_Post|null $post
      * @return bool
      */
     function has_post_parent($post = \null)
@@ -67479,14 +67479,14 @@ namespace {
      * @subpackage Template
      */
     /**
-     * @param int|\WP_Post $post
+     * @param int|WP_Post $post
      * @return bool
      */
     function has_post_thumbnail($post = \null)
     {
     }
     /**
-     * @param int|\WP_Post $post
+     * @param int|WP_Post $post
      * @return int|false
      */
     function get_post_thumbnail_id($post = \null)
@@ -67500,14 +67500,14 @@ namespace {
     {
     }
     /**
-     * @param \WP_Query $wp_query
+     * @param WP_Query $wp_query
      * @phpstan-return void
      */
     function update_post_thumbnail_cache($wp_query = \null)
     {
     }
     /**
-     * @param int|\WP_Post $post
+     * @param int|WP_Post $post
      * @param string|int[] $size
      * @param string|array $attr
      * @return string
@@ -67516,7 +67516,7 @@ namespace {
     {
     }
     /**
-     * @param int|\WP_Post $post
+     * @param int|WP_Post $post
      * @param string|int[] $size
      * @return string|false
      */
@@ -67530,14 +67530,14 @@ namespace {
     {
     }
     /**
-     * @param int|\WP_Post $post
+     * @param int|WP_Post $post
      * @return string
      */
     function get_the_post_thumbnail_caption($post = \null)
     {
     }
     /**
-     * @param int|\WP_Post $post
+     * @param int|WP_Post $post
      */
     function the_post_thumbnail_caption($post = \null)
     {
@@ -67571,7 +67571,7 @@ namespace {
     /**
      * @param mixed $args
      * @param string $output
-     * @return \WP_Post[]|array[]|int[]
+     * @return WP_Post[]|array[]|int[]
      */
     function get_children($args = '', $output = \OBJECT)
     {
@@ -67588,18 +67588,18 @@ namespace {
     {
     }
     /**
-     * @param int|\WP_Post|null $post
+     * @param int|WP_Post|null $post
      * @param string $output
      * @phpstan-param 'raw'|'edit'|'db'|'display' $filter
-     * @return \WP_Post|array|null
+     * @return WP_Post|array|null
      * @phpstan-param 'OBJECT'|'ARRAY_A'|'ARRAY_N' $output
-     * @phpstan-return ($post is \WP_Post ? array<array-key, mixed>|\WP_Post : array<array-key, mixed>|\WP_Post|null) & ($output is 'ARRAY_A' ? array<string, mixed>|null : ($output is 'ARRAY_N' ? array<int, mixed>|null : \WP_Post|null))
+     * @phpstan-return ($post is WP_Post ? array<array-key, mixed>|WP_Post : array<array-key, mixed>|WP_Post|null) & ($output is 'ARRAY_A' ? array<string, mixed>|null : ($output is 'ARRAY_N' ? array<int, mixed>|null : WP_Post|null))
      */
     function get_post($post = \null, $output = \OBJECT, $filter = 'raw')
     {
     }
     /**
-     * @param int|\WP_Post $post
+     * @param int|WP_Post $post
      * @return int[]
      */
     function get_post_ancestors($post)
@@ -67607,7 +67607,7 @@ namespace {
     }
     /**
      * @param string $field
-     * @param int|\WP_Post $post
+     * @param int|WP_Post $post
      * @phpstan-param 'raw'|'edit'|'db'|'display' $context
      * @return string
      */
@@ -67615,14 +67615,14 @@ namespace {
     {
     }
     /**
-     * @param int|\WP_Post $post
+     * @param int|WP_Post $post
      * @return string|false
      */
     function get_post_mime_type($post = \null)
     {
     }
     /**
-     * @param int|\WP_Post $post
+     * @param int|WP_Post $post
      * @return string|false
      */
     function get_post_status($post = \null)
@@ -67669,7 +67669,7 @@ namespace {
     }
     /**
      * @param string $post_status
-     * @return \stdClass|null
+     * @return stdClass|null
      */
     function get_post_status_object($post_status)
     {
@@ -67678,8 +67678,8 @@ namespace {
      * @param array|string $args
      * @phpstan-param 'names'|'objects' $output
      * @param string $operator
-     * @return string[]|\stdClass[]
-     * @phpstan-return ($output is 'names' ? array<string, string> : array<string, \stdClass>)
+     * @return string[]|stdClass[]
+     * @phpstan-return ($output is 'names' ? array<string, string> : array<string, stdClass>)
      */
     function get_post_stati($args = array(), $output = 'names', $operator = 'and')
     {
@@ -67699,7 +67699,7 @@ namespace {
     {
     }
     /**
-     * @param int|\WP_Post|null $post
+     * @param int|WP_Post|null $post
      * @return string|false
      */
     function get_post_type($post = \null)
@@ -67707,7 +67707,7 @@ namespace {
     }
     /**
      * @param string $post_type
-     * @return \WP_Post_Type|null
+     * @return WP_Post_Type|null
      */
     function get_post_type_object($post_type)
     {
@@ -67716,8 +67716,8 @@ namespace {
      * @param array|string $args
      * @phpstan-param 'names'|'objects' $output
      * @param string $operator
-     * @return string[]|\WP_Post_Type[]
-     * @phpstan-return ($output is 'names' ? array<string, string> : array<string, \WP_Post_Type>)
+     * @return string[]|WP_Post_Type[]
+     * @phpstan-return ($output is 'names' ? array<string, string> : array<string, WP_Post_Type>)
      */
     function get_post_types($args = array(), $output = 'names', $operator = 'and')
     {
@@ -67767,14 +67767,14 @@ namespace {
      *   _builtin?: bool,
      *   _edit_link?: string,
      * } $args
-     * @return \WP_Post_Type|\WP_Error
+     * @return WP_Post_Type|WP_Error
      */
     function register_post_type($post_type, $args = array())
     {
     }
     /**
      * @param string $post_type
-     * @return true|\WP_Error
+     * @return true|WP_Error
      */
     function unregister_post_type($post_type)
     {
@@ -67793,7 +67793,7 @@ namespace {
     {
     }
     /**
-     * @param object|\WP_Post_Type $post_type_object
+     * @param object|WP_Post_Type $post_type_object
      * @return object
      */
     function get_post_type_labels($post_type_object)
@@ -67857,21 +67857,21 @@ namespace {
     {
     }
     /**
-     * @param string|\WP_Post_Type $post_type
+     * @param string|WP_Post_Type $post_type
      * @return bool
      */
     function is_post_type_viewable($post_type)
     {
     }
     /**
-     * @param string|\stdClass $post_status
+     * @param string|stdClass $post_status
      * @return bool
      */
     function is_post_status_viewable($post_status)
     {
     }
     /**
-     * @param int|\WP_Post|null $post
+     * @param int|WP_Post|null $post
      * @return bool
      */
     function is_post_publicly_viewable($post = \null)
@@ -67960,7 +67960,7 @@ namespace {
      *   w?: int,
      *   year?: int,
      * } $args
-     * @return \WP_Post[]|int[]
+     * @return WP_Post[]|int[]
      */
     function get_posts($args = \null)
     {
@@ -68071,9 +68071,9 @@ namespace {
     {
     }
     /**
-     * @param object|\WP_Post|array $post
+     * @param object|WP_Post|array $post
      * @phpstan-param 'raw'|'edit'|'db'|'display'|'attribute'|'js' $context
-     * @return object|\WP_Post|array
+     * @return object|WP_Post|array
      * @phpstan-template T of array|object
      * @phpstan-param T $post
      * @phpstan-return T
@@ -68115,14 +68115,14 @@ namespace {
     /**
      * @param string $type
      * @param string $perm
-     * @return \stdClass
+     * @return stdClass
      */
     function wp_count_posts($type = 'post', $perm = '')
     {
     }
     /**
      * @param string|string[] $mime_type
-     * @return \stdClass
+     * @return stdClass
      */
     function wp_count_attachments($mime_type = '')
     {
@@ -68152,7 +68152,7 @@ namespace {
     /**
      * @param int $post_id
      * @param bool $force_delete
-     * @return \WP_Post|false|null
+     * @return WP_Post|false|null
      */
     function wp_delete_post($post_id = 0, $force_delete = \false)
     {
@@ -68165,27 +68165,27 @@ namespace {
     }
     /**
      * @param int $post_id
-     * @return \WP_Post|false|null
+     * @return WP_Post|false|null
      */
     function wp_trash_post($post_id = 0)
     {
     }
     /**
      * @param int $post_id
-     * @return \WP_Post|false|null
+     * @return WP_Post|false|null
      */
     function wp_untrash_post($post_id = 0)
     {
     }
     /**
-     * @param int|\WP_Post|null $post
+     * @param int|WP_Post|null $post
      * @return mixed|void
      */
     function wp_trash_post_comments($post = \null)
     {
     }
     /**
-     * @param int|\WP_Post|null $post
+     * @param int|WP_Post|null $post
      * @return true|void
      */
     function wp_untrash_post_comments($post = \null)
@@ -68194,7 +68194,7 @@ namespace {
     /**
      * @param int $post_id
      * @param array $args
-     * @return array|\WP_Error
+     * @return array|WP_Error
      * @phpstan-param array{
      *   taxonomy?: string|string[],
      *   object_ids?: int|int[],
@@ -68238,7 +68238,7 @@ namespace {
     /**
      * @param int $post_id
      * @param array $args
-     * @return array|\WP_Error
+     * @return array|WP_Error
      * @phpstan-param array{
      *   taxonomy?: string|string[],
      *   object_ids?: int|int[],
@@ -68319,7 +68319,7 @@ namespace {
      *   meta_type_key?: string,
      *   meta_query?: array,
      * } $args
-     * @return array|\WP_Error
+     * @return array|WP_Error
      */
     function wp_get_post_terms($post_id = 0, $taxonomy = 'post_tag', $args = array())
     {
@@ -68363,8 +68363,8 @@ namespace {
      * } $postarr
      * @param bool $wp_error
      * @param bool $fire_after_hooks
-     * @return int|\WP_Error
-     * @phpstan-return ($wp_error is false ? 0|positive-int : positive-int|\WP_Error)
+     * @return int|WP_Error
+     * @phpstan-return ($wp_error is false ? 0|positive-int : positive-int|WP_Error)
      */
     function wp_insert_post($postarr, $wp_error = \false, $fire_after_hooks = \true)
     {
@@ -68373,8 +68373,8 @@ namespace {
      * @param array|object $postarr
      * @param bool $wp_error
      * @param bool $fire_after_hooks
-     * @return int|\WP_Error
-     * @phpstan-return ($wp_error is false ? 0|positive-int : positive-int|\WP_Error)
+     * @return int|WP_Error
+     * @phpstan-return ($wp_error is false ? 0|positive-int : positive-int|WP_Error)
      * @phpstan-param array{
      *   ID?: int,
      *   post_author?: int,
@@ -68408,14 +68408,14 @@ namespace {
     {
     }
     /**
-     * @param int|\WP_Post $post
+     * @param int|WP_Post $post
      * @phpstan-return void
      */
     function wp_publish_post($post)
     {
     }
     /**
-     * @param int|\WP_Post $post
+     * @param int|WP_Post $post
      * @phpstan-return void
      */
     function check_and_publish_future_post($post)
@@ -68451,7 +68451,7 @@ namespace {
     /**
      * @param int $post_id
      * @param string|array $tags
-     * @return array|false|\WP_Error
+     * @return array|false|WP_Error
      */
     function wp_add_post_tags($post_id = 0, $tags = '')
     {
@@ -68460,7 +68460,7 @@ namespace {
      * @param int $post_id
      * @param string|array $tags
      * @param bool $append
-     * @return array|false|\WP_Error
+     * @return array|false|WP_Error
      */
     function wp_set_post_tags($post_id = 0, $tags = '', $append = \false)
     {
@@ -68470,7 +68470,7 @@ namespace {
      * @param string|array $terms
      * @param string $taxonomy
      * @param bool $append
-     * @return array|false|\WP_Error
+     * @return array|false|WP_Error
      */
     function wp_set_post_terms($post_id = 0, $terms = '', $taxonomy = 'post_tag', $append = \false)
     {
@@ -68479,7 +68479,7 @@ namespace {
      * @param int $post_id
      * @param int[]|int $post_categories
      * @param bool $append
-     * @return array|false|\WP_Error
+     * @return array|false|WP_Error
      */
     function wp_set_post_categories($post_id = 0, $post_categories = array(), $append = \false)
     {
@@ -68487,15 +68487,15 @@ namespace {
     /**
      * @param string $new_status
      * @param string $old_status
-     * @param \WP_Post $post
+     * @param WP_Post $post
      */
     function wp_transition_post_status($new_status, $old_status, $post)
     {
     }
     /**
-     * @param int|\WP_Post $post
+     * @param int|WP_Post $post
      * @param bool $update
-     * @param null|\WP_Post $post_before
+     * @param null|WP_Post $post_before
      * @phpstan-return void
      */
     function wp_after_insert_post($post, $update, $post_before)
@@ -68505,7 +68505,7 @@ namespace {
     // Comment, trackback, and pingback functions.
     //
     /**
-     * @param int|\WP_Post $post
+     * @param int|WP_Post $post
      * @param string|array $uri
      * @return int|false
      */
@@ -68520,14 +68520,14 @@ namespace {
     {
     }
     /**
-     * @param int|\WP_Post $post
+     * @param int|WP_Post $post
      * @return string[]|false
      */
     function get_pung($post)
     {
     }
     /**
-     * @param int|\WP_Post $post
+     * @param int|WP_Post $post
      * @return string[]|false
      */
     function get_to_ping($post)
@@ -68550,10 +68550,10 @@ namespace {
     {
     }
     /**
-     * @param int|\WP_Post $page
+     * @param int|WP_Post $page
      * @param string $output
      * @param string $filter
-     * @return \WP_Post|array|null
+     * @return WP_Post|array|null
      */
     function get_page($page, $output = \OBJECT, $filter = 'raw')
     {
@@ -68562,22 +68562,22 @@ namespace {
      * @param string $page_path
      * @param string $output
      * @param string|array $post_type
-     * @return \WP_Post|array|null
-     * @phpstan-return ($output is 'ARRAY_A' ? array<string, mixed>|null : ($output is 'ARRAY_N' ? array<int, mixed>|null : \WP_Post|null))
+     * @return WP_Post|array|null
+     * @phpstan-return ($output is 'ARRAY_A' ? array<string, mixed>|null : ($output is 'ARRAY_N' ? array<int, mixed>|null : WP_Post|null))
      */
     function get_page_by_path($page_path, $output = \OBJECT, $post_type = 'page')
     {
     }
     /**
      * @param int $page_id
-     * @param \WP_Post[] $pages
-     * @return \WP_Post[]
+     * @param WP_Post[] $pages
+     * @return WP_Post[]
      */
     function get_page_children($page_id, $pages)
     {
     }
     /**
-     * @param \WP_Post[] $pages
+     * @param WP_Post[] $pages
      * @param int $page_id
      * @return string[]
      */
@@ -68593,7 +68593,7 @@ namespace {
     {
     }
     /**
-     * @param \WP_Post|object|int $page
+     * @param WP_Post|object|int $page
      * @return string|false
      */
     function get_page_uri($page = 0)
@@ -68617,7 +68617,7 @@ namespace {
      *   post_type?: string,
      *   post_status?: string|array,
      * } $args
-     * @return \WP_Post[]|false
+     * @return WP_Post[]|false
      */
     function get_pages($args = array())
     {
@@ -68638,8 +68638,8 @@ namespace {
      * @param int $parent_post_id
      * @param bool $wp_error
      * @param bool $fire_after_hooks
-     * @return int|\WP_Error
-     * @phpstan-return ($wp_error is false ? 0|positive-int : positive-int|\WP_Error)
+     * @return int|WP_Error
+     * @phpstan-return ($wp_error is false ? 0|positive-int : positive-int|WP_Error)
      */
     function wp_insert_attachment($args, $file = \false, $parent_post_id = 0, $wp_error = \false, $fire_after_hooks = \true)
     {
@@ -68647,7 +68647,7 @@ namespace {
     /**
      * @param int $post_id
      * @param bool $force_delete
-     * @return \WP_Post|false|null
+     * @return WP_Post|false|null
      */
     function wp_delete_attachment($post_id, $force_delete = \false)
     {
@@ -68708,14 +68708,14 @@ namespace {
     }
     /**
      * @param string $type
-     * @param int|\WP_Post $post
+     * @param int|WP_Post $post
      * @return bool
      */
     function wp_attachment_is($type, $post = \null)
     {
     }
     /**
-     * @param int|\WP_Post $post
+     * @param int|WP_Post $post
      * @return bool
      */
     function wp_attachment_is_image($post = \null)
@@ -68731,8 +68731,8 @@ namespace {
     }
     /**
      * @param int $post_id
-     * @param \WP_Post $post
-     * @param \WP_Post $post_before
+     * @param WP_Post $post
+     * @param WP_Post $post_before
      * @phpstan-return void
      */
     function wp_check_for_changed_slugs($post_id, $post, $post_before)
@@ -68740,8 +68740,8 @@ namespace {
     }
     /**
      * @param int $post_id
-     * @param \WP_Post $post
-     * @param \WP_Post $post_before
+     * @param WP_Post $post
+     * @param WP_Post $post_before
      * @phpstan-return void
      */
     function wp_check_for_changed_dates($post_id, $post, $post_before)
@@ -68792,21 +68792,21 @@ namespace {
     {
     }
     /**
-     * @param \WP_Post[] $posts
+     * @param WP_Post[] $posts
      * @phpstan-return void
      */
     function update_post_cache(&$posts)
     {
     }
     /**
-     * @param int|\WP_Post $post
+     * @param int|WP_Post $post
      * @phpstan-return void
      */
     function clean_post_cache($post)
     {
     }
     /**
-     * @param \WP_Post[] $posts
+     * @param WP_Post[] $posts
      * @param string $post_type
      * @param bool $update_term_cache
      * @param bool $update_meta_cache
@@ -68816,14 +68816,14 @@ namespace {
     {
     }
     /**
-     * @param \WP_Post[] $posts
+     * @param WP_Post[] $posts
      * @phpstan-return void
      */
     function update_post_author_caches($posts)
     {
     }
     /**
-     * @param \WP_Post[] $posts
+     * @param WP_Post[] $posts
      */
     function update_post_parent_caches($posts)
     {
@@ -68849,14 +68849,14 @@ namespace {
     /**
      * @param string $new_status
      * @param string $old_status
-     * @param \WP_Post $post
+     * @param WP_Post $post
      */
     function _transition_post_status($new_status, $old_status, $post)
     {
     }
     /**
      * @param int $deprecated
-     * @param \WP_Post $post
+     * @param WP_Post $post
      */
     function _future_post_hook($deprecated, $post)
     {
@@ -68869,7 +68869,7 @@ namespace {
     {
     }
     /**
-     * @param int|\WP_Post|null $post
+     * @param int|WP_Post|null $post
      * @return int|false
      */
     function wp_get_post_parent_id($post = \null)
@@ -68884,7 +68884,7 @@ namespace {
     {
     }
     /**
-     * @param int|\WP_Post $post
+     * @param int|WP_Post $post
      * @param int $thumbnail_id
      * @return int|bool
      */
@@ -68892,7 +68892,7 @@ namespace {
     {
     }
     /**
-     * @param int|\WP_Post $post
+     * @param int|WP_Post $post
      * @return bool
      */
     function delete_post_thumbnail($post)
@@ -68902,7 +68902,7 @@ namespace {
     {
     }
     /**
-     * @param \WP_Post[] $posts
+     * @param WP_Post[] $posts
      */
     function wp_queue_posts_for_term_meta_lazyload($posts)
     {
@@ -68910,7 +68910,7 @@ namespace {
     /**
      * @param string $new_status
      * @param string $old_status
-     * @param \WP_Post $post
+     * @param WP_Post $post
      */
     function _update_term_count_on_transition_post_status($new_status, $old_status, $post)
     {
@@ -68938,7 +68938,7 @@ namespace {
     {
     }
     /**
-     * @param \WP_Post $post
+     * @param WP_Post $post
      * @return string
      */
     function wp_add_trashed_suffix_to_post_name_for_post($post)
@@ -68979,7 +68979,7 @@ namespace {
     {
     }
     /**
-     * @param int|\WP_Post $post
+     * @param int|WP_Post $post
      * @return bool
      */
     function use_block_editor_for_post($post)
@@ -69015,7 +69015,7 @@ namespace {
     {
     }
     /**
-     * @return \WP_Term|\WP_Post_Type|\WP_Post|\WP_User|null
+     * @return WP_Term|WP_Post_Type|WP_Post|WP_User|null
      */
     function get_queried_object()
     {
@@ -69035,7 +69035,7 @@ namespace {
     }
     /**
      * @param array|string $query
-     * @return \WP_Post[]|int[]
+     * @return WP_Post[]|int[]
      */
     function query_posts($query)
     {
@@ -69239,7 +69239,7 @@ namespace {
      */
     /**
      * @return bool
-     * @phpstan-impure
+     * @phpstan-impure 
      */
     function have_posts()
     {
@@ -69298,14 +69298,14 @@ namespace {
     {
     }
     /**
-     * @param \WP_Post|object|int $post
+     * @param WP_Post|object|int $post
      * @return bool
      */
     function setup_postdata($post)
     {
     }
     /**
-     * @param \WP_Post|object|int $post
+     * @param WP_Post|object|int $post
      * @return array|false
      */
     function generate_postdata($post)
@@ -69375,28 +69375,28 @@ namespace {
     {
     }
     /**
-     * @param \WP_REST_Request|string $request
-     * @return \WP_REST_Response
+     * @param WP_REST_Request|string $request
+     * @return WP_REST_Response
      */
     function rest_do_request($request)
     {
     }
     /**
-     * @return \WP_REST_Server
+     * @return WP_REST_Server
      */
     function rest_get_server()
     {
     }
     /**
-     * @param array|string|\WP_REST_Request $request
-     * @return \WP_REST_Request
+     * @param array|string|WP_REST_Request $request
+     * @return WP_REST_Request
      */
     function rest_ensure_request($request)
     {
     }
     /**
-     * @param \WP_REST_Response|\WP_Error|\WP_HTTP_Response|mixed $response
-     * @return \WP_REST_Response|\WP_Error
+     * @param WP_REST_Response|WP_Error|WP_HTTP_Response|mixed $response
+     * @return WP_REST_Response|WP_Error
      * @phpstan-return ($response is WP_Error ? WP_Error : WP_REST_Response)
      */
     function rest_ensure_response($response)
@@ -69438,18 +69438,18 @@ namespace {
     }
     /**
      * @param mixed $response
-     * @param \WP_REST_Server $handler
-     * @param \WP_REST_Request $request
-     * @return \WP_REST_Response
+     * @param WP_REST_Server $handler
+     * @param WP_REST_Request $request
+     * @return WP_REST_Response
      */
     function rest_handle_options_request($response, $handler, $request)
     {
     }
     /**
-     * @param \WP_REST_Response $response
-     * @param \WP_REST_Server $server
-     * @param \WP_REST_Request $request
-     * @return \WP_REST_Response
+     * @param WP_REST_Response $response
+     * @param WP_REST_Server $server
+     * @param WP_REST_Request $request
+     * @return WP_REST_Response
      */
     function rest_send_allow_header($response, $server, $request)
     {
@@ -69463,10 +69463,10 @@ namespace {
     {
     }
     /**
-     * @param \WP_REST_Response $response
-     * @param \WP_REST_Server $server
-     * @param \WP_REST_Request $request
-     * @return \WP_REST_Response
+     * @param WP_REST_Response $response
+     * @param WP_REST_Server $server
+     * @param WP_REST_Request $request
+     * @return WP_REST_Response
      */
     function rest_filter_response_fields($response, $server, $request)
     {
@@ -69498,8 +69498,8 @@ namespace {
     {
     }
     /**
-     * @param \WP_Error|mixed $result
-     * @return \WP_Error|mixed|bool
+     * @param WP_Error|mixed $result
+     * @return WP_Error|mixed|bool
      */
     function rest_cookie_check_errors($result)
     {
@@ -69511,7 +69511,7 @@ namespace {
     {
     }
     /**
-     * @param \WP_Error $user_or_error
+     * @param WP_Error $user_or_error
      * @param array $app_password
      */
     function rest_application_password_collect_status($user_or_error, $app_password = array())
@@ -69524,15 +69524,15 @@ namespace {
     {
     }
     /**
-     * @param \WP_Error|null|true $result
-     * @return \WP_Error|null|true
+     * @param WP_Error|null|true $result
+     * @return WP_Error|null|true
      */
     function rest_application_password_check_errors($result)
     {
     }
     /**
-     * @param \WP_REST_Response $response
-     * @return \WP_REST_Response
+     * @param WP_REST_Response $response
+     * @return WP_REST_Response
      */
     function rest_add_application_passwords_to_index($response)
     {
@@ -69584,16 +69584,16 @@ namespace {
     }
     /**
      * @param mixed $value
-     * @param \WP_REST_Request $request
+     * @param WP_REST_Request $request
      * @param string $param
-     * @return true|\WP_Error
+     * @return true|WP_Error
      */
     function rest_validate_request_arg($value, $request, $param)
     {
     }
     /**
      * @param mixed $value
-     * @param \WP_REST_Request $request
+     * @param WP_REST_Request $request
      * @param string $param
      * @return mixed
      */
@@ -69602,7 +69602,7 @@ namespace {
     }
     /**
      * @param mixed $value
-     * @param \WP_REST_Request $request
+     * @param WP_REST_Request $request
      * @param string $param
      * @return mixed
      */
@@ -69715,7 +69715,7 @@ namespace {
     /**
      * @param string $param
      * @param array $error
-     * @return \WP_Error
+     * @return WP_Error
      */
     function rest_format_combining_operation_error($param, $error)
     {
@@ -69724,7 +69724,7 @@ namespace {
      * @param array $value
      * @param string $param
      * @param array $errors
-     * @return \WP_Error
+     * @return WP_Error
      */
     function rest_get_combining_operation_error($value, $param, $errors)
     {
@@ -69733,7 +69733,7 @@ namespace {
      * @param mixed $value
      * @param array $args
      * @param string $param
-     * @return array|\WP_Error
+     * @return array|WP_Error
      */
     function rest_find_any_matching_schema($value, $args, $param)
     {
@@ -69743,7 +69743,7 @@ namespace {
      * @param array $args
      * @param string $param
      * @param bool $stop_after_first_match
-     * @return array|\WP_Error
+     * @return array|WP_Error
      */
     function rest_find_one_matching_schema($value, $args, $param, $stop_after_first_match = \false)
     {
@@ -69760,7 +69760,7 @@ namespace {
      * @param mixed $value
      * @param array $args
      * @param string $param
-     * @return true|\WP_Error
+     * @return true|WP_Error
      */
     function rest_validate_enum($value, $args, $param)
     {
@@ -69775,7 +69775,7 @@ namespace {
      * @param mixed $value
      * @param array $args
      * @param string $param
-     * @return true|\WP_Error
+     * @return true|WP_Error
      */
     function rest_validate_value_from_schema($value, $args, $param = '')
     {
@@ -69783,7 +69783,7 @@ namespace {
     /**
      * @param mixed $value
      * @param string $param
-     * @return true|\WP_Error
+     * @return true|WP_Error
      */
     function rest_validate_null_value_from_schema($value, $param)
     {
@@ -69791,7 +69791,7 @@ namespace {
     /**
      * @param mixed $value
      * @param string $param
-     * @return true|\WP_Error
+     * @return true|WP_Error
      */
     function rest_validate_boolean_value_from_schema($value, $param)
     {
@@ -69800,7 +69800,7 @@ namespace {
      * @param mixed $value
      * @param array $args
      * @param string $param
-     * @return true|\WP_Error
+     * @return true|WP_Error
      */
     function rest_validate_object_value_from_schema($value, $args, $param)
     {
@@ -69809,7 +69809,7 @@ namespace {
      * @param mixed $value
      * @param array $args
      * @param string $param
-     * @return true|\WP_Error
+     * @return true|WP_Error
      */
     function rest_validate_array_value_from_schema($value, $args, $param)
     {
@@ -69818,7 +69818,7 @@ namespace {
      * @param mixed $value
      * @param array $args
      * @param string $param
-     * @return true|\WP_Error
+     * @return true|WP_Error
      */
     function rest_validate_number_value_from_schema($value, $args, $param)
     {
@@ -69827,7 +69827,7 @@ namespace {
      * @param mixed $value
      * @param array $args
      * @param string $param
-     * @return true|\WP_Error
+     * @return true|WP_Error
      */
     function rest_validate_string_value_from_schema($value, $args, $param)
     {
@@ -69836,7 +69836,7 @@ namespace {
      * @param mixed $value
      * @param array $args
      * @param string $param
-     * @return true|\WP_Error
+     * @return true|WP_Error
      */
     function rest_validate_integer_value_from_schema($value, $args, $param)
     {
@@ -69845,7 +69845,7 @@ namespace {
      * @param mixed $value
      * @param array $args
      * @param string $param
-     * @return mixed|\WP_Error
+     * @return mixed|WP_Error
      */
     function rest_sanitize_value_from_schema($value, $args, $param = '')
     {
@@ -69882,7 +69882,7 @@ namespace {
     {
     }
     /**
-     * @param int|\WP_Post $post
+     * @param int|WP_Post $post
      * @return string
      */
     function rest_get_route_for_post($post)
@@ -69896,7 +69896,7 @@ namespace {
     {
     }
     /**
-     * @param int|\WP_Term $term
+     * @param int|WP_Term $term
      * @return string
      */
     function rest_get_route_for_term($term)
@@ -69924,8 +69924,8 @@ namespace {
     {
     }
     /**
-     * @param \WP_Error $error
-     * @return \WP_REST_Response
+     * @param WP_Error $error
+     * @return WP_REST_Response
      */
     function rest_convert_error_to_response($error)
     {
@@ -69943,7 +69943,7 @@ namespace {
      * @subpackage Post_Revisions
      */
     /**
-     * @param array|\WP_Post $post
+     * @param array|WP_Post $post
      * @param bool $deprecated
      * @return string[]
      */
@@ -69951,7 +69951,7 @@ namespace {
     {
     }
     /**
-     * @param array|\WP_Post $post
+     * @param array|WP_Post $post
      * @param bool $autosave
      * @return array
      */
@@ -69960,7 +69960,7 @@ namespace {
     }
     /**
      * @param int $post_id
-     * @param \WP_Post $post
+     * @param WP_Post $post
      * @param bool $update
      * @phpstan-return void
      */
@@ -69969,7 +69969,7 @@ namespace {
     }
     /**
      * @param int $post_id
-     * @return int|\WP_Error|void
+     * @return int|WP_Error|void
      */
     function wp_save_post_revision($post_id)
     {
@@ -69977,29 +69977,29 @@ namespace {
     /**
      * @param int $post_id
      * @param int $user_id
-     * @return \WP_Post|false
+     * @return WP_Post|false
      */
     function wp_get_post_autosave($post_id, $user_id = 0)
     {
     }
     /**
-     * @param int|\WP_Post $post
+     * @param int|WP_Post $post
      * @return int|false
      */
     function wp_is_post_revision($post)
     {
     }
     /**
-     * @param int|\WP_Post $post
+     * @param int|WP_Post $post
      * @return int|false
      */
     function wp_is_post_autosave($post)
     {
     }
     /**
-     * @param int|\WP_Post|array|null $post
+     * @param int|WP_Post|array|null $post
      * @param bool $autosave
-     * @return int|\WP_Error
+     * @return int|WP_Error
      */
     function _wp_put_post_revision($post = \null, $autosave = \false)
     {
@@ -70013,16 +70013,16 @@ namespace {
     {
     }
     /**
-     * @param int|\WP_Post $post
+     * @param int|WP_Post $post
      * @param string $output
      * @param string $filter
-     * @return \WP_Post|array|null
+     * @return WP_Post|array|null
      */
     function wp_get_post_revision(&$post, $output = \OBJECT, $filter = 'raw')
     {
     }
     /**
-     * @param int|\WP_Post $revision
+     * @param int|WP_Post $revision
      * @param array $fields
      * @return int|false|null
      */
@@ -70054,31 +70054,31 @@ namespace {
     }
     /**
      * @param bool $post_has_changed
-     * @param \WP_Post $last_revision
-     * @param \WP_Post $post
+     * @param WP_Post $last_revision
+     * @param WP_Post $post
      * @return bool
      */
     function wp_check_revisioned_meta_fields_have_changed($post_has_changed, \WP_Post $last_revision, \WP_Post $post)
     {
     }
     /**
-     * @param int|\WP_Post $revision
-     * @return \WP_Post|false|null
+     * @param int|WP_Post $revision
+     * @return WP_Post|false|null
      */
     function wp_delete_post_revision($revision)
     {
     }
     /**
-     * @param int|\WP_Post $post
+     * @param int|WP_Post $post
      * @param array|null $args
-     * @return \WP_Post[]|int[]
+     * @return WP_Post[]|int[]
      */
     function wp_get_post_revisions($post = 0, $args = \null)
     {
     }
     /**
-     * @param int|\WP_Post $post
-     * @phpstan-return \WP_Error|array{
+     * @param int|WP_Post $post
+     * @phpstan-return WP_Error|array{
      *   latest_id: int,
      *   count: int,
      * }
@@ -70087,29 +70087,29 @@ namespace {
     {
     }
     /**
-     * @param int|\WP_Post $post
+     * @param int|WP_Post $post
      * @return string|null
      */
     function wp_get_post_revisions_url($post = 0)
     {
     }
     /**
-     * @param \WP_Post $post
+     * @param WP_Post $post
      * @return bool
      */
     function wp_revisions_enabled($post)
     {
     }
     /**
-     * @param \WP_Post $post
+     * @param WP_Post $post
      * @return int
      */
     function wp_revisions_to_keep($post)
     {
     }
     /**
-     * @param \WP_Post $post
-     * @return \WP_Post|false
+     * @param WP_Post $post
+     * @return WP_Post|false
      */
     function _set_preview($post)
     {
@@ -70136,14 +70136,14 @@ namespace {
     {
     }
     /**
-     * @param \WP_Post $revision
+     * @param WP_Post $revision
      * @return int|false
      */
     function _wp_get_post_revision_version($revision)
     {
     }
     /**
-     * @param \WP_Post $post
+     * @param WP_Post $post
      * @param array $revisions
      * @return bool
      */
@@ -70305,20 +70305,20 @@ namespace {
     {
     }
     /**
-     * @param \WP_Scripts $scripts
+     * @param WP_Scripts $scripts
      * @param bool $force_uncompressed
      */
     function wp_register_tinymce_scripts($scripts, $force_uncompressed = \false)
     {
     }
     /**
-     * @param \WP_Scripts $scripts
+     * @param WP_Scripts $scripts
      */
     function wp_default_packages_vendor($scripts)
     {
     }
     /**
-     * @param \WP_Scripts $scripts
+     * @param WP_Scripts $scripts
      * @param string[] $tests
      * @return string
      */
@@ -70326,20 +70326,20 @@ namespace {
     {
     }
     /**
-     * @param \WP_Scripts $scripts
+     * @param WP_Scripts $scripts
      * @phpstan-return void
      */
     function wp_register_development_scripts($scripts)
     {
     }
     /**
-     * @param \WP_Scripts $scripts
+     * @param WP_Scripts $scripts
      */
     function wp_default_packages_scripts($scripts)
     {
     }
     /**
-     * @param \WP_Scripts $scripts
+     * @param WP_Scripts $scripts
      */
     function wp_default_packages_inline_scripts($scripts)
     {
@@ -70348,7 +70348,7 @@ namespace {
     {
     }
     /**
-     * @param \WP_Scripts $scripts
+     * @param WP_Scripts $scripts
      */
     function wp_default_packages($scripts)
     {
@@ -70361,13 +70361,13 @@ namespace {
     {
     }
     /**
-     * @param \WP_Scripts $scripts
+     * @param WP_Scripts $scripts
      */
     function wp_default_scripts($scripts)
     {
     }
     /**
-     * @param \WP_Styles $styles
+     * @param WP_Styles $styles
      */
     function wp_default_styles($styles)
     {
@@ -70611,7 +70611,7 @@ namespace {
      * @subpackage Script Modules
      */
     /**
-     * @return \WP_Script_Modules
+     * @return WP_Script_Modules
      */
     function wp_script_modules() : \WP_Script_Modules
     {
@@ -70798,20 +70798,20 @@ namespace {
      * @since 5.5.0
      */
     /**
-     * @return \WP_Sitemaps
+     * @return WP_Sitemaps
      */
     function wp_sitemaps_get_server()
     {
     }
     /**
-     * @return \WP_Sitemaps_Provider[]
+     * @return WP_Sitemaps_Provider[]
      */
     function wp_get_sitemap_providers()
     {
     }
     /**
      * @param string $name
-     * @param \WP_Sitemaps_Provider $provider
+     * @param WP_Sitemaps_Provider $provider
      * @return bool
      */
     function wp_register_sitemap_provider($name, \WP_Sitemaps_Provider $provider)
@@ -70893,24 +70893,24 @@ namespace {
      * @param array $args
      * @phpstan-param 'names'|'objects' $output
      * @phpstan-param 'and'|'or' $operator
-     * @return string[]|\WP_Taxonomy[]
-     * @phpstan-return ($output is 'names' ? array<int, string> : array<int, \WP_Taxonomy>)
+     * @return string[]|WP_Taxonomy[]
+     * @phpstan-return ($output is 'names' ? array<int, string> : array<int, WP_Taxonomy>)
      */
     function get_taxonomies($args = array(), $output = 'names', $operator = 'and')
     {
     }
     /**
-     * @param string|string[]|\WP_Post $object_type
+     * @param string|string[]|WP_Post $object_type
      * @phpstan-param 'names'|'objects' $output
-     * @return string[]|\WP_Taxonomy[]
-     * @phpstan-return ($output is 'names' ? array<int, string> : array<string, \WP_Taxonomy>)
+     * @return string[]|WP_Taxonomy[]
+     * @phpstan-return ($output is 'names' ? array<int, string> : array<string, WP_Taxonomy>)
      */
     function get_object_taxonomies($object_type, $output = 'names')
     {
     }
     /**
      * @param string $taxonomy
-     * @return \WP_Taxonomy|false
+     * @return WP_Taxonomy|false
      */
     function get_taxonomy($taxonomy)
     {
@@ -70973,20 +70973,20 @@ namespace {
      *   args?: array,
      *   _builtin?: bool,
      * } $args
-     * @return \WP_Taxonomy|\WP_Error
+     * @return WP_Taxonomy|WP_Error
      */
     function register_taxonomy($taxonomy, $object_type, $args = array())
     {
     }
     /**
      * @param string $taxonomy
-     * @return true|\WP_Error
+     * @return true|WP_Error
      */
     function unregister_taxonomy($taxonomy)
     {
     }
     /**
-     * @param \WP_Taxonomy $tax
+     * @param WP_Taxonomy $tax
      * @phpstan-return object{
      *   name: string,
      *   singular_name: string,
@@ -71047,7 +71047,7 @@ namespace {
      * @phpstan-param array{
      *   order?: string,
      * } $args
-     * @return string[]|\WP_Error
+     * @return string[]|WP_Error
      */
     function get_objects_in_term($term_ids, $taxonomies, $args = array())
     {
@@ -71062,13 +71062,13 @@ namespace {
     {
     }
     /**
-     * @param int|\WP_Term|object $term
+     * @param int|WP_Term|object $term
      * @param string $taxonomy
      * @param string $output
      * @param string $filter
-     * @return \WP_Term|array|\WP_Error|null
+     * @return WP_Term|array|WP_Error|null
      * @phpstan-param 'OBJECT'|'ARRAY_A'|'ARRAY_N' $output
-     * @phpstan-return ($output is 'ARRAY_A' ? array<string, string|int>|\WP_Error|null : ($output is 'ARRAY_N' ? list<string|int>|\WP_Error|null : \WP_Term|\WP_Error|null))
+     * @phpstan-return ($output is 'ARRAY_A' ? array<string, string|int>|WP_Error|null : ($output is 'ARRAY_N' ? list<string|int>|WP_Error|null : WP_Term|WP_Error|null))
      */
     function get_term($term, $taxonomy = '', $output = \OBJECT, $filter = 'raw')
     {
@@ -71079,8 +71079,8 @@ namespace {
      * @param string $taxonomy
      * @param string $output
      * @param string $filter
-     * @return \WP_Term|array|false
-     * @phpstan-return ($output is 'ARRAY_A' ? array<string, string|int>|\WP_Error|false : ($output is 'ARRAY_N' ? list<string|int>|\WP_Error|false : \WP_Term|\WP_Error|false))
+     * @return WP_Term|array|false
+     * @phpstan-return ($output is 'ARRAY_A' ? array<string, string|int>|WP_Error|false : ($output is 'ARRAY_N' ? list<string|int>|WP_Error|false : WP_Term|WP_Error|false))
      */
     function get_term_by($field, $value, $taxonomy = '', $output = \OBJECT, $filter = 'raw')
     {
@@ -71088,17 +71088,17 @@ namespace {
     /**
      * @param int $term_id
      * @param string $taxonomy
-     * @return array|\WP_Error
+     * @return array|WP_Error
      */
     function get_term_children($term_id, $taxonomy)
     {
     }
     /**
      * @param string $field
-     * @param int|\WP_Term $term
+     * @param int|WP_Term $term
      * @param string $taxonomy
      * @param string $context
-     * @return string|int|null|\WP_Error
+     * @return string|int|null|WP_Error
      */
     function get_term_field($field, $term, $taxonomy = '', $context = 'display')
     {
@@ -71106,7 +71106,7 @@ namespace {
     /**
      * @param int|object $id
      * @param string $taxonomy
-     * @return string|int|null|\WP_Error
+     * @return string|int|null|WP_Error
      */
     function get_term_to_edit($id, $taxonomy)
     {
@@ -71114,7 +71114,7 @@ namespace {
     /**
      * @param array|string $args
      * @param array|string $deprecated
-     * @return \WP_Term[]|int[]|string[]|string|\WP_Error
+     * @return WP_Term[]|int[]|string[]|string|WP_Error
      * @phpstan-param array{
      *   taxonomy?: string|string[],
      *   object_ids?: int|int[],
@@ -71160,7 +71160,7 @@ namespace {
      * @param string $meta_key
      * @param mixed $meta_value
      * @param bool $unique
-     * @return int|false|\WP_Error
+     * @return int|false|WP_Error
      */
     function add_term_meta($term_id, $meta_key, $meta_value, $unique = \false)
     {
@@ -71188,7 +71188,7 @@ namespace {
      * @param string $meta_key
      * @param mixed $meta_value
      * @param mixed $prev_value
-     * @return int|bool|\WP_Error
+     * @return int|bool|WP_Error
      */
     function update_term_meta($term_id, $meta_key, $meta_value, $prev_value = '')
     {
@@ -71287,7 +71287,7 @@ namespace {
     /**
      * @param array|string $args
      * @param array|string $deprecated
-     * @return string|\WP_Error
+     * @return string|WP_Error
      * @phpstan-param array{
      *   taxonomy?: string|string[],
      *   object_ids?: int|int[],
@@ -71342,14 +71342,14 @@ namespace {
      *   default?: int,
      *   force_default?: bool,
      * } $args
-     * @return bool|int|\WP_Error
+     * @return bool|int|WP_Error
      */
     function wp_delete_term($term, $taxonomy, $args = array())
     {
     }
     /**
      * @param int $cat_id
-     * @return bool|int|\WP_Error
+     * @return bool|int|WP_Error
      */
     function wp_delete_category($cat_id)
     {
@@ -71358,7 +71358,7 @@ namespace {
      * @param int|int[] $object_ids
      * @param string|string[] $taxonomies
      * @param array|string $args
-     * @return \WP_Term[]|int[]|string[]|string|\WP_Error
+     * @return WP_Term[]|int[]|string[]|string|WP_Error
      * @phpstan-param array{
      *   taxonomy?: string|string[],
      *   object_ids?: int|int[],
@@ -71408,7 +71408,7 @@ namespace {
      *   parent?: int,
      *   slug?: string,
      * } $args
-     * @phpstan-return \WP_Error|array{
+     * @phpstan-return WP_Error|array{
      *   term_id: int,
      *   term_taxonomy_id: int|string,
      * }
@@ -71421,7 +71421,7 @@ namespace {
      * @param string|int|array $terms
      * @param string $taxonomy
      * @param bool $append
-     * @return array|\WP_Error
+     * @return array|WP_Error
      */
     function wp_set_object_terms($object_id, $terms, $taxonomy, $append = \false)
     {
@@ -71430,7 +71430,7 @@ namespace {
      * @param int $object_id
      * @param string|int|array $terms
      * @param array|string $taxonomy
-     * @return array|\WP_Error
+     * @return array|WP_Error
      */
     function wp_add_object_terms($object_id, $terms, $taxonomy)
     {
@@ -71439,7 +71439,7 @@ namespace {
      * @param int $object_id
      * @param string|int|array $terms
      * @param string $taxonomy
-     * @return bool|\WP_Error
+     * @return bool|WP_Error
      */
     function wp_remove_object_terms($object_id, $terms, $taxonomy)
     {
@@ -71461,7 +71461,7 @@ namespace {
      *   parent?: int,
      *   slug?: string,
      * } $args
-     * @return array|\WP_Error
+     * @return array|WP_Error
      */
     function wp_update_term($term_id, $taxonomy, $args = array())
     {
@@ -71519,7 +71519,7 @@ namespace {
     /**
      * @param int $id
      * @param string $taxonomy
-     * @return bool|\WP_Term[]|\WP_Error
+     * @return bool|WP_Term[]|WP_Error
      */
     function get_object_term_cache($id, $taxonomy)
     {
@@ -71533,7 +71533,7 @@ namespace {
     {
     }
     /**
-     * @param \WP_Term[] $terms
+     * @param WP_Term[] $terms
      * @param string $taxonomy
      */
     function update_term_cache($terms, $taxonomy = '')
@@ -71554,13 +71554,13 @@ namespace {
      * @param array $terms
      * @param string $taxonomy
      * @param array $ancestors
-     * @return array|\WP_Error
+     * @return array|WP_Error
      */
     function _get_term_children($term_id, $terms, $taxonomy, &$ancestors = array())
     {
     }
     /**
-     * @param object[]|\WP_Term[] $terms
+     * @param object[]|WP_Term[] $terms
      * @param string $taxonomy
      * @phpstan-return void
      */
@@ -71579,14 +71579,14 @@ namespace {
     //
     /**
      * @param int[] $terms
-     * @param \WP_Taxonomy $taxonomy
+     * @param WP_Taxonomy $taxonomy
      */
     function _update_post_term_count($terms, $taxonomy)
     {
     }
     /**
      * @param int[] $terms
-     * @param \WP_Taxonomy $taxonomy
+     * @param WP_Taxonomy $taxonomy
      */
     function _update_generic_term_count($terms, $taxonomy)
     {
@@ -71595,7 +71595,7 @@ namespace {
      * @param int|object $term_id
      * @param int|object $term_taxonomy_id
      * @param bool $record
-     * @return int|\WP_Error
+     * @return int|WP_Error
      */
     function _split_shared_term($term_id, $term_taxonomy_id, $record = \true)
     {
@@ -71661,9 +71661,9 @@ namespace {
     {
     }
     /**
-     * @param \WP_Term|int|string $term
+     * @param WP_Term|int|string $term
      * @param string $taxonomy
-     * @return string|\WP_Error
+     * @return string|WP_Error
      */
     function get_term_link($term, $taxonomy = '')
     {
@@ -71680,7 +71680,7 @@ namespace {
     {
     }
     /**
-     * @param int|\WP_Post $post
+     * @param int|WP_Post $post
      * @phpstan-param array{
      *   template?: string,
      *   term_template?: string,
@@ -71691,7 +71691,7 @@ namespace {
     {
     }
     /**
-     * @param int|\WP_Post $post
+     * @param int|WP_Post $post
      * @return string[]
      */
     function get_post_taxonomies($post = 0)
@@ -71701,7 +71701,7 @@ namespace {
      * @param int $object_id
      * @param string $taxonomy
      * @param int|string|int[]|string[] $terms
-     * @return bool|\WP_Error
+     * @return bool|WP_Error
      */
     function is_object_in_term($object_id, $taxonomy, $terms = \null)
     {
@@ -71741,14 +71741,14 @@ namespace {
     {
     }
     /**
-     * @param string|\WP_Taxonomy $taxonomy
+     * @param string|WP_Taxonomy $taxonomy
      * @return bool
      */
     function is_taxonomy_viewable($taxonomy)
     {
     }
     /**
-     * @param int|\WP_Term $term
+     * @param int|WP_Term $term
      * @return bool
      */
     function is_term_publicly_viewable($term)
@@ -71970,7 +71970,7 @@ namespace {
      *   allowed?: mixed,
      *   blog_id?: int,
      * } $args
-     * @return \WP_Theme[]
+     * @return WP_Theme[]
      */
     function wp_get_themes($args = array())
     {
@@ -71978,7 +71978,7 @@ namespace {
     /**
      * @param string $stylesheet
      * @param string $theme_root
-     * @return \WP_Theme
+     * @return WP_Theme
      */
     function wp_get_theme($stylesheet = '', $theme_root = '')
     {
@@ -72106,7 +72106,7 @@ namespace {
     }
     /**
      * @param string $stylesheet
-     * @return true|\WP_Error
+     * @return true|WP_Error
      */
     function validate_theme_requirements($stylesheet)
     {
@@ -72304,7 +72304,7 @@ namespace {
     }
     /**
      * @param string $stylesheet
-     * @return \WP_Post|null
+     * @return WP_Post|null
      */
     function wp_get_custom_css_post($stylesheet = '')
     {
@@ -72322,7 +72322,7 @@ namespace {
      *   preprocessed?: string,
      *   stylesheet?: string,
      * } $args
-     * @return \WP_Post|\WP_Error
+     * @return WP_Post|WP_Error
      */
     function wp_update_custom_css_post($css, $args = array())
     {
@@ -72420,7 +72420,7 @@ namespace {
      *     prepare_callback: callable,
      *   },
      * } $args
-     * @return true|\WP_Error
+     * @return true|WP_Error
      * @param string $feature
      */
     function register_theme_feature($feature, $args = array())
@@ -72458,7 +72458,7 @@ namespace {
     /**
      * @param string $new_status
      * @param string $old_status
-     * @param \WP_Post $changeset_post
+     * @param WP_Post $changeset_post
      * @phpstan-return void
      */
     function _wp_customize_publish_changeset($new_status, $old_status, $changeset_post)
@@ -72494,7 +72494,7 @@ namespace {
     /**
      * @param string $new_status
      * @param string $old_status
-     * @param \WP_Post $post
+     * @param WP_Post $post
      * @phpstan-return void
      */
     function _wp_keep_alive_customize_changeset_dependent_auto_drafts($new_status, $old_status, $post)
@@ -72592,7 +72592,7 @@ namespace {
     {
     }
     /**
-     * @return void|\WP_Error
+     * @return void|WP_Error
      */
     function _wp_delete_all_temp_backups()
     {
@@ -72610,43 +72610,43 @@ namespace {
      *   remember?: bool,
      * } $credentials
      * @param string|bool $secure_cookie
-     * @return \WP_User|\WP_Error
+     * @return WP_User|WP_Error
      */
     function wp_signon($credentials = array(), $secure_cookie = '')
     {
     }
     /**
-     * @param \WP_User|\WP_Error|null $user
+     * @param WP_User|WP_Error|null $user
      * @param string $username
      * @param string $password
-     * @return \WP_User|\WP_Error
+     * @return WP_User|WP_Error
      */
     function wp_authenticate_username_password($user, $username, $password)
     {
     }
     /**
-     * @param \WP_User|\WP_Error|null $user
+     * @param WP_User|WP_Error|null $user
      * @param string $email
      * @param string $password
-     * @return \WP_User|\WP_Error
+     * @return WP_User|WP_Error
      */
     function wp_authenticate_email_password($user, $email, $password)
     {
     }
     /**
-     * @param \WP_User|\WP_Error|null $user
+     * @param WP_User|WP_Error|null $user
      * @param string $username
      * @param string $password
-     * @return \WP_User|\WP_Error
+     * @return WP_User|WP_Error
      */
     function wp_authenticate_cookie($user, $username, $password)
     {
     }
     /**
-     * @param \WP_User|\WP_Error|null $input_user
+     * @param WP_User|WP_Error|null $input_user
      * @param string $username
      * @param string $password
-     * @return \WP_User|\WP_Error|null
+     * @return WP_User|WP_Error|null
      */
     function wp_authenticate_application_password($input_user, $username, $password)
     {
@@ -72659,8 +72659,8 @@ namespace {
     {
     }
     /**
-     * @param \WP_User|\WP_Error|null $user
-     * @return \WP_User|\WP_Error
+     * @param WP_User|WP_Error|null $user
+     * @return WP_User|WP_Error
      */
     function wp_authenticate_spam_check($user)
     {
@@ -72977,14 +72977,14 @@ namespace {
     {
     }
     /**
-     * @param object|\WP_User $user
+     * @param object|WP_User $user
      * @return void|false
      */
     function update_user_caches($user)
     {
     }
     /**
-     * @param \WP_User|int $user
+     * @param WP_User|int $user
      * @phpstan-return void
      */
     function clean_user_cache($user)
@@ -73012,7 +73012,7 @@ namespace {
     {
     }
     /**
-     * @phpstan-param \WP_User|object|array{
+     * @phpstan-param WP_User|object|array{
      *   ID?: int,
      *   user_pass?: string,
      *   user_login?: string,
@@ -73037,14 +73037,14 @@ namespace {
      *   locale?: string,
      *   meta_input?: array,
      * } $userdata
-     * @return int|\WP_Error
+     * @return int|WP_Error
      */
     function wp_insert_user($userdata)
     {
     }
     /**
-     * @param array|object|\WP_User $userdata
-     * @return int|\WP_Error
+     * @param array|object|WP_User $userdata
+     * @return int|WP_Error
      */
     function wp_update_user($userdata)
     {
@@ -73053,27 +73053,27 @@ namespace {
      * @param string $username
      * @param string $password
      * @param string $email
-     * @return int|\WP_Error
+     * @return int|WP_Error
      */
     function wp_create_user($username, $password, $email = '')
     {
     }
     /**
-     * @param \WP_User $user
+     * @param WP_User $user
      * @return string[]
      */
     function _get_additional_user_keys($user)
     {
     }
     /**
-     * @param \WP_User|null $user
+     * @param WP_User|null $user
      * @return string[]
      */
     function wp_get_user_contact_methods($user = \null)
     {
     }
     /**
-     * @param \WP_User|null $user
+     * @param WP_User|null $user
      * @return string[]
      */
     function _wp_get_user_contactmethods($user = \null)
@@ -73086,8 +73086,8 @@ namespace {
     {
     }
     /**
-     * @param \WP_User $user
-     * @return string|\WP_Error
+     * @param WP_User $user
+     * @return string|WP_Error
      */
     function get_password_reset_key($user)
     {
@@ -73095,20 +73095,20 @@ namespace {
     /**
      * @param string $key
      * @param string $login
-     * @return \WP_User|\WP_Error
+     * @return WP_User|WP_Error
      */
     function check_password_reset_key($key, $login)
     {
     }
     /**
      * @param string $user_login
-     * @return true|\WP_Error
+     * @return true|WP_Error
      */
     function retrieve_password($user_login = \null)
     {
     }
     /**
-     * @param \WP_User $user
+     * @param WP_User $user
      * @param string $new_pass
      */
     function reset_password($user, $new_pass)
@@ -73117,7 +73117,7 @@ namespace {
     /**
      * @param string $user_login
      * @param string $user_email
-     * @return int|\WP_Error
+     * @return int|WP_Error
      */
     function register_new_user($user_login, $user_email)
     {
@@ -73158,7 +73158,7 @@ namespace {
     {
     }
     /**
-     * @return \WP_User
+     * @return WP_User
      */
     function _wp_get_current_user()
     {
@@ -73225,7 +73225,7 @@ namespace {
      * @param string $action_name
      * @param array $request_data
      * @param string $status
-     * @return int|\WP_Error
+     * @return int|WP_Error
      */
     function wp_create_user_request($email_address = '', $action_name = '', $request_data = array(), $status = 'pending')
     {
@@ -73239,7 +73239,7 @@ namespace {
     }
     /**
      * @param string $request_id
-     * @return true|\WP_Error
+     * @return true|WP_Error
      */
     function wp_send_user_request($request_id)
     {
@@ -73254,14 +73254,14 @@ namespace {
     /**
      * @param string $request_id
      * @param string $key
-     * @return true|\WP_Error
+     * @return true|WP_Error
      */
     function wp_validate_user_request_key($request_id, $key)
     {
     }
     /**
      * @param int $request_id
-     * @return \WP_User_Request|false
+     * @return WP_User_Request|false
      */
     function wp_get_user_request($request_id)
     {
@@ -73279,7 +73279,7 @@ namespace {
     {
     }
     /**
-     * @param int|\WP_User $user
+     * @param int|WP_User $user
      * @return bool
      */
     function wp_is_application_passwords_available_for_user($user)
@@ -73292,8 +73292,8 @@ namespace {
     {
     }
     /**
-     * @param int|\WP_User $user
-     * @return bool|\WP_Error
+     * @param int|WP_User $user
+     * @return bool|WP_Error
      */
     function wp_is_password_reset_allowed_for_user($user)
     {
@@ -73308,13 +73308,13 @@ namespace {
     // Template tags & API functions.
     //
     /**
-     * @param string|\WP_Widget $widget
+     * @param string|WP_Widget $widget
      */
     function register_widget($widget)
     {
     }
     /**
-     * @param string|\WP_Widget $widget
+     * @param string|WP_Widget $widget
      */
     function unregister_widget($widget)
     {
@@ -73651,7 +73651,7 @@ namespace {
     /**
      * @param string|null $title
      * @param string $message
-     * @param \WP_Error|null $wp_error
+     * @param WP_Error|null $wp_error
      */
     function login_header($title = \null, $message = '', $wp_error = \null)
     {
@@ -73678,7 +73678,7 @@ namespace {
     /**
      * @param string $blogname
      * @param string $blog_title
-     * @param \WP_Error|string $errors
+     * @param WP_Error|string $errors
      */
     function show_blog_form($blogname = '', $blog_title = '', $errors = '')
     {
@@ -73692,7 +73692,7 @@ namespace {
     /**
      * @param string $user_name
      * @param string $user_email
-     * @param \WP_Error|string $errors
+     * @param WP_Error|string $errors
      */
     function show_user_form($user_name = '', $user_email = '', $errors = '')
     {
@@ -73706,7 +73706,7 @@ namespace {
     /**
      * @param string $blogname
      * @param string $blog_title
-     * @param \WP_Error|string $errors
+     * @param WP_Error|string $errors
      */
     function signup_another_blog($blogname = '', $blog_title = '', $errors = '')
     {
@@ -73732,7 +73732,7 @@ namespace {
     /**
      * @param string $user_name
      * @param string $user_email
-     * @param \WP_Error|string $errors
+     * @param WP_Error|string $errors
      */
     function signup_user($user_name = '', $user_email = '', $errors = '')
     {
@@ -73755,7 +73755,7 @@ namespace {
      * @param string $user_email
      * @param string $blogname
      * @param string $blog_title
-     * @param \WP_Error|string $errors
+     * @param WP_Error|string $errors
      */
     function signup_blog($user_name = '', $user_email = '', $blogname = '', $blog_title = '', $errors = '')
     {

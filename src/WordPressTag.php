@@ -21,12 +21,17 @@ final class WordPressTag extends WithChildren
      */
     public function format(): array
     {
+        $type = $this->type;
+
+        // Remove allbackslashes from the type
+        $type = str_replace('\\', '', $type);
+
         if (! $this->hasChildren()) {
             return [
                 sprintf(
                     '%s %s%s',
                     $this->tag,
-                    $this->type,
+                    $type,
                     $this->name !== null ? " \${$this->name}" : ''
                 ),
             ];
@@ -58,14 +63,14 @@ final class WordPressTag extends WithChildren
             $strings[] = sprintf(
                 '%s %s{',
                 $this->tag,
-                $this->type
+                $type
             );
         } else {
             if (! $this->hasChildren() || ! $this->children[0]->hasChildren()) {
                 $strings[] = sprintf(
                     '%s array<int|string, %s>%s',
                     $this->tag,
-                    $this->type,
+                    $type,
                     $name
                 );
 
@@ -75,7 +80,7 @@ final class WordPressTag extends WithChildren
             $strings[] = sprintf(
                 '%s %s<int|string, array{',
                 $this->tag,
-                $this->type
+                $type
             );
         }
 
