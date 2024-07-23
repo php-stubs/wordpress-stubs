@@ -59,11 +59,13 @@ namespace {
         public function request_filesystem_credentials($error = \false, $context = '', $allow_relaxed_file_ownership = \false)
         {
         }
+        /**
          * @phpstan-return void
          */
         public function header()
         {
         }
+        /**
          * @phpstan-return void
          */
         public function footer()
@@ -77,7 +79,7 @@ namespace {
         }
         /**
          * @param string $feedback
-         * @param mixed ...$args
+         * @param mixed $args
          * @phpstan-return void
          */
         public function feedback($feedback, ...$args)
@@ -130,7 +132,7 @@ namespace {
         }
         /**
          * @param string|array|\WP_Error $feedback
-         * @param mixed ...$args
+         * @param mixed $args
          * @phpstan-return void
          */
         public function feedback($feedback, ...$args)
@@ -164,7 +166,7 @@ namespace {
         }
         /**
          * @param string $feedback
-         * @param mixed ...$args
+         * @param mixed $args
          * @phpstan-return void
          */
         public function feedback($feedback, ...$args)
@@ -261,15 +263,14 @@ namespace {
     class WP_Upgrader
     {
         /**
-         * @var array $strings
+         * @var array
          */
         public $strings = array();
         /**
-         * @var \Automatic_Upgrader_Skin|\WP_Upgrader_Skin $skin
+         * @var \Automatic_Upgrader_Skin|\WP_Upgrader_Skin
          */
         public $skin = \null;
         /**
-         * @var array|\WP_Error $result
          * @phpstan-var \WP_Error|array{
          *   source: string,
          *   source_files: string,
@@ -282,7 +283,7 @@ namespace {
          */
         public $result = array();
         /**
-         * @var int $update_count
+         * @var int
          */
         public $update_count = 0;
         /**
@@ -345,8 +346,6 @@ namespace {
         {
         }
         /**
-         * @param array|string $args
-         * @return array|\WP_Error
          * @phpstan-param array{
          *   source?: string,
          *   destination?: string,
@@ -355,13 +354,12 @@ namespace {
          *   abort_if_destination_exists?: bool,
          *   hook_extra?: array,
          * } $args
+         * @return array|\WP_Error
          */
         public function install_package($args = array())
         {
         }
         /**
-         * @param array $options
-         * @return array|false|\WP_Error
          * @phpstan-param array{
          *   package?: string,
          *   destination?: string,
@@ -371,6 +369,7 @@ namespace {
          *   is_multi?: bool,
          *   hook_extra?: array,
          * } $options
+         * @return array|false|\WP_Error
          */
         public function run($options)
         {
@@ -397,37 +396,34 @@ namespace {
         {
         }
         /**
-         * @param string[] $args
-         * @return bool|\WP_Error
          * @phpstan-param array{
          *   slug?: string,
          *   src?: string,
          *   dir?: string,
          * } $args
+         * @return bool|\WP_Error
          */
         public function move_to_temp_backup_dir($args)
         {
         }
         /**
-         * @param array[] $temp_backups
-         * @return bool|\WP_Error
          * @phpstan-param array<int|string, array{
          *   dir: string,
          *   slug: string,
          *   src: string,
          * }> $temp_backups
+         * @return bool|\WP_Error
          */
         public function restore_temp_backup(array $temp_backups = array())
         {
         }
         /**
-         * @param array[] $temp_backups
-         * @return bool|\WP_Error
          * @phpstan-param array<int|string, array{
          *   dir: string,
          *   slug: string,
          *   src: string,
          * }> $temp_backups
+         * @return bool|\WP_Error
          */
         public function delete_temp_backup(array $temp_backups = array())
         {
@@ -440,13 +436,12 @@ namespace {
         }
         /**
          * @param object $current
-         * @param array $args
-         * @return string|false|\WP_Error
          * @phpstan-param array{
          *   pre_check_md5?: bool,
          *   attempt_rollback?: bool,
          *   do_rollback?: bool,
          * } $args
+         * @return string|false|\WP_Error
          */
         public function upgrade($current, $args = array())
         {
@@ -483,6 +478,7 @@ namespace {
         public function __construct($admin_header_callback = '', $admin_image_div_callback = '')
         {
         }
+        /**
          * @phpstan-return void
          */
         public function init()
@@ -491,6 +487,7 @@ namespace {
         public function admin_load()
         {
         }
+        /**
          * @phpstan-return void
          */
         public function take_action()
@@ -499,18 +496,19 @@ namespace {
         public function admin_page()
         {
         }
+        /**
          * @phpstan-return void
          */
         public function handle_upload()
         {
         }
+        /**
          * @phpstan-return never
          */
         public function ajax_background_add()
         {
         }
         /**
-         * @deprecated 3.5.0
          * @param array $form_fields
          * @return array
          */
@@ -518,7 +516,6 @@ namespace {
         {
         }
         /**
-         * @deprecated 3.5.0
          * @param array $tabs
          * @return array
          */
@@ -526,7 +523,6 @@ namespace {
         {
         }
         /**
-         * @deprecated 3.5.0
          * @phpstan-return never
          */
         public function wp_set_background_image()
@@ -555,6 +551,7 @@ namespace {
         public function __construct($admin_header_callback, $admin_image_div_callback = '')
         {
         }
+        /**
          * @phpstan-return void
          */
         public function init()
@@ -575,11 +572,13 @@ namespace {
         public function css_includes()
         {
         }
+        /**
          * @phpstan-return void
          */
         public function take_action()
         {
         }
+        /**
          * @phpstan-return void
          */
         public function process_default_headers()
@@ -642,6 +641,7 @@ namespace {
         public final function remove_header_image()
         {
         }
+        /**
          * @phpstan-return void
          */
         public final function reset_header_image()
@@ -655,7 +655,6 @@ namespace {
         {
         }
         /**
-         * @deprecated 6.5.0
          * @param string $cropped
          * @param int $parent_attachment_id
          * @return array
@@ -671,16 +670,19 @@ namespace {
         public final function insert_attachment($attachment, $cropped)
         {
         }
+        /**
          * @phpstan-return never
          */
         public function ajax_header_crop()
         {
         }
+        /**
          * @phpstan-return never
          */
         public function ajax_header_add()
         {
         }
+        /**
          * @phpstan-return never
          */
         public function ajax_header_remove()
@@ -717,15 +719,15 @@ namespace {
     class File_Upload_Upgrader
     {
         /**
-         * @var string $package
+         * @var string
          */
         public $package;
         /**
-         * @var string $filename
+         * @var string
          */
         public $filename;
         /**
-         * @var int $id
+         * @var int
          */
         public $id = 0;
         /**
@@ -1049,11 +1051,11 @@ namespace {
     class Language_Pack_Upgrader extends \WP_Upgrader
     {
         /**
-         * @var array|\WP_Error $result
+         * @var array|\WP_Error
          */
         public $result;
         /**
-         * @var bool $bulk
+         * @var bool
          */
         public $bulk = \true;
         /**
@@ -1070,17 +1072,19 @@ namespace {
          * @param string|false $update
          * @param array $args
          * @return array|bool|\WP_Error
+         * @phpstan-param array{
+         *   clear_update_cache?: bool,
+         * } $args See Language_Pack_Upgrader::bulk_upgrade()
          */
         public function upgrade($update = \false, $args = array())
         {
         }
         /**
          * @param object[] $language_updates
-         * @param array $args
-         * @return array|bool|\WP_Error
          * @phpstan-param array{
          *   clear_update_cache?: bool,
          * } $args
+         * @return array|bool|\WP_Error
          */
         public function bulk_upgrade($language_updates = array(), $args = array())
         {
@@ -1927,6 +1931,7 @@ namespace {
         public function hide_process_failed($wp_error)
         {
         }
+        /**
          * @phpstan-return void
          */
         public function after()
@@ -1960,15 +1965,15 @@ namespace {
     class Plugin_Upgrader extends \WP_Upgrader
     {
         /**
-         * @var array|\WP_Error $result
+         * @var array|\WP_Error
          */
         public $result;
         /**
-         * @var bool $bulk
+         * @var bool
          */
         public $bulk = \false;
         /**
-         * @var array $new_plugin_data
+         * @var array
          */
         public $new_plugin_data = array();
         public function upgrade_strings()
@@ -1979,33 +1984,30 @@ namespace {
         }
         /**
          * @param string $package
-         * @param array $args
-         * @return bool|\WP_Error
          * @phpstan-param array{
          *   clear_update_cache?: bool,
          * } $args
+         * @return bool|\WP_Error
          */
         public function install($package, $args = array())
         {
         }
         /**
          * @param string $plugin
-         * @param array $args
-         * @return bool|\WP_Error
          * @phpstan-param array{
          *   clear_update_cache?: bool,
          * } $args
+         * @return bool|\WP_Error
          */
         public function upgrade($plugin, $args = array())
         {
         }
         /**
          * @param string[] $plugins
-         * @param array $args
-         * @return array|false
          * @phpstan-param array{
          *   clear_update_cache?: bool,
          * } $args
+         * @return array|false
          */
         public function bulk_upgrade($plugins, $args = array())
         {
@@ -2080,6 +2082,7 @@ namespace {
         public function hide_process_failed($wp_error)
         {
         }
+        /**
          * @phpstan-return void
          */
         public function after()
@@ -2105,15 +2108,15 @@ namespace {
     class Theme_Upgrader extends \WP_Upgrader
     {
         /**
-         * @var array|\WP_Error $result
+         * @var array|\WP_Error
          */
         public $result;
         /**
-         * @var bool $bulk
+         * @var bool
          */
         public $bulk = \false;
         /**
-         * @var array $new_theme_data
+         * @var array
          */
         public $new_theme_data = array();
         public function upgrade_strings()
@@ -2140,33 +2143,30 @@ namespace {
         }
         /**
          * @param string $package
-         * @param array $args
-         * @return bool|\WP_Error
          * @phpstan-param array{
          *   clear_update_cache?: bool,
          * } $args
+         * @return bool|\WP_Error
          */
         public function install($package, $args = array())
         {
         }
         /**
          * @param string $theme
-         * @param array $args
-         * @return bool|\WP_Error
          * @phpstan-param array{
          *   clear_update_cache?: bool,
          * } $args
+         * @return bool|\WP_Error
          */
         public function upgrade($theme, $args = array())
         {
         }
         /**
          * @param string[] $themes
-         * @param array $args
-         * @return array[]|false
          * @phpstan-param array{
          *   clear_update_cache?: bool,
          * } $args
+         * @return array[]|false
          */
         public function bulk_upgrade($themes, $args = array())
         {
@@ -2281,7 +2281,7 @@ namespace {
         /**
          * @param array $elements
          * @param int $max_depth
-         * @param mixed ...$args
+         * @param mixed $args
          * @return string
          */
         public function walk($elements, $max_depth, ...$args)
@@ -2292,7 +2292,7 @@ namespace {
          * @param int $max_depth
          * @param int $page_num
          * @param int $per_page
-         * @param mixed ...$args
+         * @param mixed $args
          * @return string
          */
         public function paged_walk($elements, $max_depth, $page_num, $per_page, ...$args)
@@ -2323,6 +2323,15 @@ namespace {
          * @param string $output
          * @param int $depth
          * @param array $args
+         * @phpstan-param array{
+         *   descendants_and_self?: int,
+         *   selected_cats?: int[],
+         *   popular_cats?: int[],
+         *   walker?: Walker,
+         *   taxonomy?: string,
+         *   checked_ontop?: bool,
+         *   echo?: bool,
+         * } $args See wp_terms_checklist()
          */
         public function start_lvl(&$output, $depth = 0, $args = array())
         {
@@ -2331,6 +2340,15 @@ namespace {
          * @param string $output
          * @param int $depth
          * @param array $args
+         * @phpstan-param array{
+         *   descendants_and_self?: int,
+         *   selected_cats?: int[],
+         *   popular_cats?: int[],
+         *   walker?: Walker,
+         *   taxonomy?: string,
+         *   checked_ontop?: bool,
+         *   echo?: bool,
+         * } $args See wp_terms_checklist()
          */
         public function end_lvl(&$output, $depth = 0, $args = array())
         {
@@ -2341,6 +2359,15 @@ namespace {
          * @param int $depth
          * @param array $args
          * @param int $current_object_id
+         * @phpstan-param array{
+         *   descendants_and_self?: int,
+         *   selected_cats?: int[],
+         *   popular_cats?: int[],
+         *   walker?: Walker,
+         *   taxonomy?: string,
+         *   checked_ontop?: bool,
+         *   echo?: bool,
+         * } $args See wp_terms_checklist()
          */
         public function start_el(&$output, $data_object, $depth = 0, $args = array(), $current_object_id = 0)
         {
@@ -2350,6 +2377,15 @@ namespace {
          * @param \WP_Term $data_object
          * @param int $depth
          * @param array $args
+         * @phpstan-param array{
+         *   descendants_and_self?: int,
+         *   selected_cats?: int[],
+         *   popular_cats?: int[],
+         *   walker?: Walker,
+         *   taxonomy?: string,
+         *   checked_ontop?: bool,
+         *   echo?: bool,
+         * } $args See wp_terms_checklist()
          */
         public function end_el(&$output, $data_object, $depth = 0, $args = array())
         {
@@ -2488,6 +2524,7 @@ namespace {
         protected $errors = \null;
         /**
          * @param array $args
+         * @param array $args
          */
         public function __construct($args = array())
         {
@@ -2506,14 +2543,14 @@ namespace {
         }
         /**
          * @param string|\WP_Error $errors
-         * @param mixed ...$args
+         * @param mixed $args
          */
         public function error($errors, ...$args)
         {
         }
         /**
          * @param string|array|\WP_Error $feedback
-         * @param mixed ...$args
+         * @param mixed $args
          */
         public function feedback($feedback, ...$args)
         {
@@ -2555,7 +2592,6 @@ namespace {
          */
         protected $compat_methods = array('set_pagination_args', 'get_views', 'get_bulk_actions', 'bulk_actions', 'row_actions', 'months_dropdown', 'view_switcher', 'comments_bubble', 'get_items_per_page', 'pagination', 'get_sortable_columns', 'get_column_info', 'get_table_classes', 'display_tablenav', 'extra_tablenav', 'single_row_columns');
         /**
-         * @param array|string $args
          * @phpstan-param array{
          *   plural?: string,
          *   singular?: string,
@@ -2642,13 +2678,12 @@ namespace {
         {
         }
         /**
-         * @param array $link_data
-         * @return string[]
          * @phpstan-param array{
          *   url?: string,
          *   label?: string,
          *   current?: bool,
          * } $link_data
+         * @return string[]
          */
         protected function get_views_links($link_data = array())
         {
@@ -2659,6 +2694,7 @@ namespace {
         protected function get_views()
         {
         }
+        /**
          * @phpstan-return void
          */
         public function views()
@@ -2671,7 +2707,6 @@ namespace {
         {
         }
         /**
-         * @param string $which
          * @phpstan-param 'top'|'bottom' $which
          * @phpstan-return void
          */
@@ -2727,7 +2762,6 @@ namespace {
         {
         }
         /**
-         * @param string $which
          * @phpstan-param 'top'|'bottom' $which
          * @phpstan-return void
          */
@@ -2782,6 +2816,7 @@ namespace {
         public function print_column_headers($with_id = \true)
         {
         }
+        /**
          * @phpstan-return void
          */
         public function print_table_description()
@@ -2797,7 +2832,6 @@ namespace {
         {
         }
         /**
-         * @param string $which
          * @phpstan-param 'top'|'bottom' $which
          */
         protected function display_tablenav($which)
@@ -2849,6 +2883,7 @@ namespace {
         protected function handle_row_actions($item, $column_name, $primary)
         {
         }
+        /**
          * @phpstan-return never
          */
         public function ajax_response()
@@ -2907,7 +2942,6 @@ namespace {
         {
         }
         /**
-         * @param string $which
          * @phpstan-param 'top'|'bottom' $which
          */
         protected function display_tablenav($which)
@@ -2980,6 +3014,7 @@ namespace {
         public function update($type, $item)
         {
         }
+        /**
          * @phpstan-return void
          */
         public function run()
@@ -3180,7 +3215,6 @@ namespace {
         protected $user_location = \false;
         /**
          * @param int $user_id
-         * @param false|array $user_location
          * @phpstan-param false|array{
          *   description?: string,
          *   latitude?: string,
@@ -3243,7 +3277,6 @@ namespace {
         {
         }
         /**
-         * @deprecated 5.6.0
          * @param array $response_body
          * @return array
          */
@@ -3258,7 +3291,6 @@ namespace {
         {
         }
         /**
-         * @deprecated 4.9.0
          * @param string $message
          * @param array $details
          * @phpstan-return void
@@ -3275,7 +3307,6 @@ namespace {
         }
         /**
          * @return array
-         * @throws \ImagickException
          */
         public static function debug_data()
         {
@@ -3289,9 +3320,8 @@ namespace {
         }
         /**
          * @param array $info_array
-         * @param string $data_type
-         * @return string
          * @phpstan-param 'info'|'debug' $data_type
+         * @return string
          */
         public static function format($info_array, $data_type)
         {
@@ -3361,7 +3391,6 @@ namespace {
         {
         }
         /**
-         * @deprecated 2.7.0
          * @param string $base
          * @param bool $verbose
          * @return string
@@ -3370,7 +3399,6 @@ namespace {
         {
         }
         /**
-         * @deprecated 2.7.0
          * @param string $base
          * @param bool $verbose
          * @return string
@@ -3620,7 +3648,6 @@ namespace {
          * @param string $path
          * @param bool $include_hidden
          * @param bool $recursive
-         * @return array|false
          * @phpstan-return false|array<int|string, array{
          *   name: string,
          *   perms: string,
@@ -3848,7 +3875,6 @@ namespace {
          * @param string $path
          * @param bool $include_hidden
          * @param bool $recursive
-         * @return array|false
          * @phpstan-return false|array<int|string, array{
          *   name: string,
          *   perms: string,
@@ -4067,7 +4093,6 @@ namespace {
         }
         /**
          * @param string $line
-         * @return array
          * @phpstan-return array{
          *   name: string,
          *   perms: string,
@@ -4090,7 +4115,6 @@ namespace {
          * @param string $path
          * @param bool $include_hidden
          * @param bool $recursive
-         * @return array|false
          * @phpstan-return false|array<int|string, array{
          *   name: string,
          *   perms: string,
@@ -4314,7 +4338,6 @@ namespace {
          * @param string $path
          * @param bool $include_hidden
          * @param bool $recursive
-         * @return array|false
          * @phpstan-return false|array<int|string, array{
          *   name: string,
          *   perms: string,
@@ -4578,7 +4601,6 @@ namespace {
          * @param string $path
          * @param bool $include_hidden
          * @param bool $recursive
-         * @return array|false
          * @phpstan-return false|array<int|string, array{
          *   name: string,
          *   perms: string,
@@ -4960,7 +4982,6 @@ namespace {
         {
         }
         /**
-         * @deprecated 6.2.0
          * @param \WP_Post $post
          */
         public function column_desc($post)
@@ -5048,14 +5069,12 @@ namespace {
         {
         }
         /**
-         * @param string $which
          * @phpstan-param 'top'|'bottom' $which
          */
         protected function pagination($which)
         {
         }
         /**
-         * @param string $which
          * @phpstan-param 'top'|'bottom' $which
          */
         protected function extra_tablenav($which)
@@ -5418,6 +5437,7 @@ namespace {
         protected function get_installed_plugin_slugs()
         {
         }
+        /**
          * @phpstan-return void
          */
         public function prepare_items()
@@ -5463,6 +5483,45 @@ namespace {
         /**
          * @param array $plugin_data
          * @return string
+         * @phpstan-param object|array{
+         *   slug?: string,
+         *   per_page?: int,
+         *   page?: int,
+         *   number?: int,
+         *   search?: string,
+         *   tag?: string,
+         *   author?: string,
+         *   user?: string,
+         *   browse?: string,
+         *   locale?: string,
+         *   installed_plugins?: string,
+         *   is_ssl?: bool,
+         *   fields?: array{
+         *     short_description?: bool,
+         *     description?: bool,
+         *     sections?: bool,
+         *     tested?: bool,
+         *     requires?: bool,
+         *     requires_php?: bool,
+         *     rating?: bool,
+         *     ratings?: bool,
+         *     downloaded?: bool,
+         *     downloadlink?: bool,
+         *     last_updated?: bool,
+         *     added?: bool,
+         *     tags?: bool,
+         *     compatibility?: bool,
+         *     homepage?: bool,
+         *     versions?: bool,
+         *     donate_link?: bool,
+         *     reviews?: bool,
+         *     banners?: bool,
+         *     icons?: bool,
+         *     active_installs?: bool,
+         *     group?: bool,
+         *     contributors?: bool,
+         *   },
+         * } $plugin_data See plugins_api()
          */
         protected function get_dependencies_notice($plugin_data)
         {
@@ -5573,6 +5632,7 @@ namespace {
         public function current_action()
         {
         }
+        /**
          * @phpstan-return void
          */
         public function display_rows()
@@ -5847,11 +5907,11 @@ namespace {
     abstract class WP_Privacy_Requests_Table extends \WP_List_Table
     {
         /**
-         * @var string $request_type
+         * @var string
          */
         protected $request_type = 'INVALID';
         /**
-         * @var string $post_type
+         * @var string
          */
         protected $post_type = 'INVALID';
         /**
@@ -5896,6 +5956,7 @@ namespace {
         protected function get_bulk_actions()
         {
         }
+        /**
          * @phpstan-return void
          */
         public function process_bulk_action()
@@ -5965,11 +6026,11 @@ namespace {
     class WP_Privacy_Data_Export_Requests_List_Table extends \WP_Privacy_Requests_Table
     {
         /**
-         * @var string $request_type
+         * @var string
          */
         protected $request_type = 'export_personal_data';
         /**
-         * @var string $post_type
+         * @var string
          */
         protected $post_type = 'user_request';
         /**
@@ -5989,11 +6050,11 @@ namespace {
     class WP_Privacy_Data_Removal_Requests_List_Table extends \WP_Privacy_Requests_Table
     {
         /**
-         * @var string $request_type
+         * @var string
          */
         protected $request_type = 'remove_personal_data';
         /**
-         * @var string $post_type
+         * @var string
          */
         protected $post_type = 'user_request';
         /**
@@ -6024,6 +6085,7 @@ namespace {
         public static function text_change_check()
         {
         }
+        /**
          * @phpstan-return void
          */
         public static function policy_text_changed_notice()
@@ -6080,12 +6142,10 @@ namespace {
          */
         public $id;
         /**
-         * @deprecated 3.5.0
          * @var bool
          */
         public $is_network;
         /**
-         * @deprecated 3.5.0
          * @var bool
          */
         public $is_user;
@@ -6190,7 +6250,6 @@ namespace {
         {
         }
         /**
-         * @param array $args
          * @phpstan-param array{
          *   title?: string,
          *   id?: string,
@@ -6244,7 +6303,6 @@ namespace {
         {
         }
         /**
-         * @param array $content
          * @phpstan-param array{
          *   heading_views?: string,
          *   heading_pagination?: string,
@@ -6257,6 +6315,7 @@ namespace {
         public function remove_screen_reader_content()
         {
         }
+        /**
          * @phpstan-return void
          */
         public function render_screen_meta()
@@ -6269,7 +6328,6 @@ namespace {
         {
         }
         /**
-         * @param array $options
          * @phpstan-param array{
          *   wrap?: bool,
          * } $options
@@ -6277,26 +6335,31 @@ namespace {
         public function render_screen_options($options = array())
         {
         }
+        /**
          * @phpstan-return void
          */
         public function render_meta_boxes_preferences()
         {
         }
+        /**
          * @phpstan-return void
          */
         public function render_list_table_columns_preferences()
         {
         }
+        /**
          * @phpstan-return void
          */
         public function render_screen_layout()
         {
         }
+        /**
          * @phpstan-return void
          */
         public function render_per_page_options()
         {
         }
+        /**
          * @phpstan-return void
          */
         public function render_view_mode()
@@ -6410,11 +6473,13 @@ namespace {
         public static function get_instance()
         {
         }
+        /**
          * @phpstan-return void
          */
         public function enqueue_scripts()
         {
         }
+        /**
          * @phpstan-return void
          */
         public function check_wp_version_check_exists()
@@ -6679,7 +6744,6 @@ namespace {
         {
         }
         /**
-         * @deprecated 6.5.0
          * @param string $cropped
          * @param int $parent_attachment_id
          * @return array
@@ -6771,6 +6835,7 @@ namespace {
         protected function get_sortable_columns()
         {
         }
+        /**
          * @phpstan-return void
          */
         public function display_rows_or_placeholder()
@@ -6848,6 +6913,7 @@ namespace {
         public function column_default($item, $column_name)
         {
         }
+        /**
          * @phpstan-return void
          */
         public function inline_edit()
@@ -6873,6 +6939,7 @@ namespace {
         public function prepare_items()
         {
         }
+        /**
          * @phpstan-return void
          */
         public function no_items()
@@ -6923,6 +6990,7 @@ namespace {
         public function ajax_user_can()
         {
         }
+        /**
          * @phpstan-return void
          */
         public function prepare_items()
@@ -6944,7 +7012,6 @@ namespace {
         {
         }
         /**
-         * @param \stdClass $theme
          * @phpstan-param object{
          *   name?: string,
          *   slug?: string,
@@ -7077,9 +7144,6 @@ namespace {
         {
         }
     }
-    /**
-     * @deprecated 3.1.0
-     */
     class WP_User_Search
     {
         /**
@@ -7198,18 +7262,12 @@ namespace {
         {
         }
     }
-    /**
-     * @deprecated 5.3.0
-     */
     class WP_Privacy_Data_Export_Requests_Table extends \WP_Privacy_Data_Export_Requests_List_Table
     {
         function __construct($args)
         {
         }
     }
-    /**
-     * @deprecated 5.3.0
-     */
     class WP_Privacy_Data_Removal_Requests_Table extends \WP_Privacy_Data_Removal_Requests_List_Table
     {
         function __construct($args)
@@ -7322,7 +7380,6 @@ namespace {
          * @param bool $synchsafe
          * @param bool $signed
          * @return int|float|false
-         * @throws \Exception
          */
         public static function BigEndian2Int($byteword, $synchsafe = \false, $signed = \false)
         {
@@ -7355,7 +7412,6 @@ namespace {
          * @param bool $synchsafe
          * @param bool $signed
          * @return string
-         * @throws \Exception
          */
         public static function BigEndian2String($number, $minbytes = 1, $synchsafe = \false, $signed = \false)
         {
@@ -7510,19 +7566,16 @@ namespace {
          * @param int $end
          * @param string $algorithm
          * @return string|false
-         * @throws \getid3_exception
          */
         public static function hash_data($file, $offset, $end, $algorithm)
         {
         }
         /**
-         * @deprecated
          * @param string $filename_source
          * @param string $filename_dest
          * @param int $offset
          * @param int $length
          * @return bool
-         * @throws \Exception
          */
         public static function CopyFileParts($filename_source, $filename_dest, $offset, $length)
         {
@@ -7642,7 +7695,6 @@ namespace {
          * @param string $out_charset
          * @param string $string
          * @return string
-         * @throws \Exception
          */
         public static function iconv_fallback($in_charset, $out_charset, $string)
         {
@@ -7740,7 +7792,6 @@ namespace {
          * @param string $sourcefile
          * @param bool $DieOnFailure
          * @return bool
-         * @throws \Exception
          */
         public static function IncludeDependency($filename, $sourcefile, $DieOnFailure = \false)
         {
@@ -7960,7 +8011,6 @@ namespace {
         const ATTACHMENTS_NONE = \false;
         const ATTACHMENTS_INLINE = \true;
         /**
-         * @throws \getid3_exception
          * @phpstan-return void
          */
         public function __construct()
@@ -7990,7 +8040,6 @@ namespace {
          * @param int $filesize
          * @param resource $fp
          * @return bool
-         * @throws \getid3_exception
          */
         public function openfile($filename, $filesize = \null, $fp = \null)
         {
@@ -8097,7 +8146,6 @@ namespace {
         /**
          * @param string $name
          * @return bool
-         * @throws \getid3_exception
          */
         public function include_module($name)
         {
@@ -8165,7 +8213,6 @@ namespace {
         /**
          * @param int $bytes
          * @return string|false
-         * @throws \getid3_exception
          */
         protected function fread($bytes)
         {
@@ -8174,14 +8221,12 @@ namespace {
          * @param int $bytes
          * @param int $whence
          * @return int
-         * @throws \getid3_exception
          */
         protected function fseek($bytes, $whence = \SEEK_SET)
         {
         }
         /**
          * @return string|false
-         * @throws \getid3_exception
          */
         protected function fgets()
         {
@@ -8225,8 +8270,6 @@ namespace {
          * @param int $length
          * @param string $image_mime
          * @return string|null
-         * @throws \Exception
-         * @throws \getid3_exception
          */
         public function saveAttachment($name, $offset, $length, $image_mime = \null)
         {
@@ -8883,7 +8926,6 @@ namespace {
         // default
         /**
          * @return bool
-         * @throws \getid3_exception
          */
         public function Analyze()
         {
@@ -8892,8 +8934,6 @@ namespace {
          * @param int $startoffset
          * @param int $maxoffset
          * @return array|false
-         * @throws \Exception
-         * @throws \getid3_exception
          */
         public function ParseRIFFAMV($startoffset, $maxoffset)
         {
@@ -8902,7 +8942,6 @@ namespace {
          * @param int $startoffset
          * @param int $maxoffset
          * @return array|false
-         * @throws \getid3_exception
          */
         public function ParseRIFF($startoffset, $maxoffset)
         {
@@ -10269,7 +10308,6 @@ namespace PHPMailer\PHPMailer {
          */
         public $SMTPKeepAlive = false;
         /**
-         * @deprecated 6.0.0
          * @var bool
          */
         public $SingleTo = false;
@@ -10512,7 +10550,6 @@ namespace PHPMailer\PHPMailer {
          * @param string $address
          * @param string $name
          * @return bool
-         * @throws \Exception
          */
         public function addAddress($address, $name = '')
         {
@@ -10521,7 +10558,6 @@ namespace PHPMailer\PHPMailer {
          * @param string $address
          * @param string $name
          * @return bool
-         * @throws \Exception
          */
         public function addCC($address, $name = '')
         {
@@ -10530,7 +10566,6 @@ namespace PHPMailer\PHPMailer {
          * @param string $address
          * @param string $name
          * @return bool
-         * @throws \Exception
          */
         public function addBCC($address, $name = '')
         {
@@ -10539,18 +10574,15 @@ namespace PHPMailer\PHPMailer {
          * @param string $address
          * @param string $name
          * @return bool
-         * @throws \Exception
          */
         public function addReplyTo($address, $name = '')
         {
         }
         /**
-         * @param string $kind
+         * @phpstan-param 'to'|'cc'|'bcc'|'ReplyTo' $kind
          * @param string $address
          * @param string $name
          * @return bool
-         * @throws \Exception
-         * @phpstan-param 'to'|'cc'|'bcc'|'ReplyTo' $kind
          */
         protected function addOrEnqueueAnAddress($kind, $address, $name)
         {
@@ -10562,12 +10594,10 @@ namespace PHPMailer\PHPMailer {
         {
         }
         /**
-         * @param string $kind
+         * @phpstan-param 'to'|'cc'|'bcc'|'ReplyTo' $kind
          * @param string $address
          * @param string $name
          * @return bool
-         * @throws \Exception
-         * @phpstan-param 'to'|'cc'|'bcc'|'ReplyTo' $kind
          */
         protected function addAnAddress($kind, $address, $name = '')
         {
@@ -10586,7 +10616,6 @@ namespace PHPMailer\PHPMailer {
          * @param string $name
          * @param bool $auto
          * @return bool
-         * @throws \Exception
          */
         public function setFrom($address, $name = '', $auto = true)
         {
@@ -10620,21 +10649,18 @@ namespace PHPMailer\PHPMailer {
         }
         /**
          * @return bool
-         * @throws \Exception
          */
         public function send()
         {
         }
         /**
          * @return bool
-         * @throws \Exception
          */
         public function preSend()
         {
         }
         /**
          * @return bool
-         * @throws \Exception
          */
         public function postSend()
         {
@@ -10643,7 +10669,6 @@ namespace PHPMailer\PHPMailer {
          * @param string $header
          * @param string $body
          * @return bool
-         * @throws \Exception
          */
         protected function sendmailSend($header, $body)
         {
@@ -10673,7 +10698,6 @@ namespace PHPMailer\PHPMailer {
          * @param string $header
          * @param string $body
          * @return bool
-         * @throws \Exception
          */
         protected function mailSend($header, $body)
         {
@@ -10708,7 +10732,6 @@ namespace PHPMailer\PHPMailer {
          * @param string $header
          * @param string $body
          * @return bool
-         * @throws \Exception
          */
         protected function smtpSend($header, $body)
         {
@@ -10716,7 +10739,6 @@ namespace PHPMailer\PHPMailer {
         /**
          * @param array $options
          * @return bool
-         * @throws \Exception
          */
         public function smtpConnect($options = null)
         {
@@ -10770,6 +10792,7 @@ namespace PHPMailer\PHPMailer {
         public function utf8CharBoundary($encodedText, $maxLength)
         {
         }
+        /**
          * @phpstan-return void
          */
         public function setWordWrap()
@@ -10801,7 +10824,6 @@ namespace PHPMailer\PHPMailer {
         }
         /**
          * @return string
-         * @throws \Exception
          */
         public function createBody()
         {
@@ -10854,7 +10876,6 @@ namespace PHPMailer\PHPMailer {
          * @param string $type
          * @param string $disposition
          * @return bool
-         * @throws \Exception
          */
         public function addAttachment($path, $name = '', $encoding = self::ENCODING_BASE64, $type = '', $disposition = 'attachment')
         {
@@ -10869,7 +10890,6 @@ namespace PHPMailer\PHPMailer {
          * @param string $disposition_type
          * @param string $boundary
          * @return string
-         * @throws \Exception
          */
         protected function attachAll($disposition_type, $boundary)
         {
@@ -10886,7 +10906,6 @@ namespace PHPMailer\PHPMailer {
          * @param string $str
          * @param string $encoding
          * @return string
-         * @throws \Exception
          */
         public function encodeString($str, $encoding = self::ENCODING_BASE64)
         {
@@ -10943,7 +10962,6 @@ namespace PHPMailer\PHPMailer {
          * @param string $type
          * @param string $disposition
          * @return bool
-         * @throws \Exception
          */
         public function addStringAttachment($string, $filename, $encoding = self::ENCODING_BASE64, $type = '', $disposition = 'attachment')
         {
@@ -10956,7 +10974,6 @@ namespace PHPMailer\PHPMailer {
          * @param string $type
          * @param string $disposition
          * @return bool
-         * @throws \Exception
          */
         public function addEmbeddedImage($path, $cid, $name = '', $encoding = self::ENCODING_BASE64, $type = '', $disposition = 'inline')
         {
@@ -10969,7 +10986,6 @@ namespace PHPMailer\PHPMailer {
          * @param string $type
          * @param string $disposition
          * @return bool
-         * @throws \Exception
          */
         public function addStringEmbeddedImage($string, $cid, $name = '', $encoding = self::ENCODING_BASE64, $type = '', $disposition = 'inline')
         {
@@ -11045,7 +11061,6 @@ namespace PHPMailer\PHPMailer {
          * @param string $name
          * @param string|null $value
          * @return bool
-         * @throws \Exception
          */
         public function replaceCustomHeader($name, $value = null)
         {
@@ -11092,7 +11107,6 @@ namespace PHPMailer\PHPMailer {
          * @param string $name
          * @param string|null $value
          * @return bool
-         * @throws \Exception
          */
         public function addCustomHeader($name, $value = null)
         {
@@ -11108,7 +11122,6 @@ namespace PHPMailer\PHPMailer {
          * @param string $basedir
          * @param bool|callable $advanced
          * @return string
-         * @throws \Exception
          */
         public function msgHTML($message, $basedir = '', $advanced = false)
         {
@@ -11211,7 +11224,6 @@ namespace PHPMailer\PHPMailer {
         /**
          * @param string $signHeader
          * @return string
-         * @throws \Exception
          */
         public function DKIM_Sign($signHeader)
         {
@@ -11235,7 +11247,6 @@ namespace PHPMailer\PHPMailer {
          * @param string $subject
          * @param string $body
          * @return string
-         * @throws \Exception
          */
         public function DKIM_Add($headers_line, $subject, $body)
         {
@@ -11744,8 +11755,6 @@ namespace WpOrg\Requests\Auth {
         public $pass;
         /**
          * @param array|null $args
-         * @throws \WpOrg\Requests\Exception\InvalidArgument
-         * @throws \WpOrg\Requests\Exception\ArgumentCount
          * @phpstan-return void
          */
         public function __construct($args = null)
@@ -11781,7 +11790,6 @@ namespace WpOrg\Requests {
     final class Autoload
     {
         /**
-         * @internal
          * @return void
          */
         public static function register()
@@ -11847,11 +11855,6 @@ namespace WpOrg\Requests {
          * @param array|\WpOrg\Requests\Utility\CaseInsensitiveDictionary $attributes
          * @param array $flags
          * @param int|null $reference_time
-         * @throws \WpOrg\Requests\Exception\InvalidArgument
-         * @throws \WpOrg\Requests\Exception\InvalidArgument
-         * @throws \WpOrg\Requests\Exception\InvalidArgument
-         * @throws \WpOrg\Requests\Exception\InvalidArgument
-         * @throws \WpOrg\Requests\Exception\InvalidArgument
          */
         public function __construct($name, $value, $attributes = [], $flags = [], $reference_time = null)
         {
@@ -11917,8 +11920,6 @@ namespace WpOrg\Requests {
          * @param string $name
          * @param int|null $reference_time
          * @return \WpOrg\Requests\Cookie
-         * @throws \WpOrg\Requests\Exception\InvalidArgument
-         * @throws \WpOrg\Requests\Exception\InvalidArgument
          */
         public static function parse($cookie_header, $name = '', $reference_time = null)
         {
@@ -11928,7 +11929,6 @@ namespace WpOrg\Requests {
          * @param \WpOrg\Requests\Iri|null $origin
          * @param int|null $time
          * @return array
-         * @throws \WpOrg\Requests\Exception\InvalidArgument
          */
         public static function parse_from_headers(\WpOrg\Requests\Response\Headers $headers, $origin = null, $time = null)
         {
@@ -11944,7 +11944,6 @@ namespace WpOrg\Requests\Cookie {
         protected $cookies = [];
         /**
          * @param array $cookies
-         * @throws \WpOrg\Requests\Exception\InvalidArgument
          */
         public function __construct($cookies = [])
         {
@@ -11976,7 +11975,6 @@ namespace WpOrg\Requests\Cookie {
         /**
          * @param string $offset
          * @param string $value
-         * @throws \WpOrg\Requests\Exception
          */
         #[\ReturnTypeWillChange]
         public function offsetSet($offset, $value)
@@ -12080,6 +12078,7 @@ namespace WpOrg\Requests\Exception {
         /**
          * @param string|null $reason
          * @param mixed $data
+         * @param array|string|null $args
          */
         public function __construct($reason = null, $data = null)
         {
@@ -12279,9 +12278,6 @@ namespace WpOrg\Requests {
          * @param string $hook
          * @param callable $callback
          * @param int $priority
-         * @throws \WpOrg\Requests\Exception\InvalidArgument
-         * @throws \WpOrg\Requests\Exception\InvalidArgument
-         * @throws \WpOrg\Requests\Exception\InvalidArgument
          */
         public function register($hook, $callback, $priority = 0)
         {
@@ -12290,8 +12286,6 @@ namespace WpOrg\Requests {
          * @param string $hook
          * @param array $parameters
          * @return bool
-         * @throws \WpOrg\Requests\Exception\InvalidArgument
-         * @throws \WpOrg\Requests\Exception\InvalidArgument
          */
         public function dispatch($hook, $parameters = [])
         {
@@ -12336,7 +12330,6 @@ namespace WpOrg\Requests {
         /**
          * @param string|\Stringable $hostname
          * @return string
-         * @throws \WpOrg\Requests\Exception\InvalidArgument
          */
         public static function encode($hostname)
         {
@@ -12344,16 +12337,11 @@ namespace WpOrg\Requests {
         /**
          * @param string $text
          * @return string
-         * @throws \WpOrg\Requests\Exception
-         * @throws \WpOrg\Requests\Exception
-         * @throws \WpOrg\Requests\Exception
-         * @throws \WpOrg\Requests\Exception
          */
         public static function to_ascii($text)
         {
         }
         /**
-         * @internal
          * @param string $text
          * @return bool
          */
@@ -12370,16 +12358,13 @@ namespace WpOrg\Requests {
         /**
          * @param string $input
          * @return array
-         * @throws \WpOrg\Requests\Exception
          */
         protected static function utf8_to_codepoints($input)
         {
         }
         /**
-         * @internal
          * @param string $input
          * @return string
-         * @throws \WpOrg\Requests\Exception
          */
         public static function punycode_encode($input)
         {
@@ -12387,7 +12372,6 @@ namespace WpOrg\Requests {
         /**
          * @param int $digit
          * @return string
-         * @throws \WpOrg\Requests\Exception
          */
         protected static function digit_to_char($digit)
         {
@@ -12407,7 +12391,6 @@ namespace WpOrg\Requests {
         /**
          * @param string|\Stringable $ip
          * @return string
-         * @throws \WpOrg\Requests\Exception\InvalidArgument
          */
         public static function uncompress($ip)
         {
@@ -12427,24 +12410,6 @@ namespace WpOrg\Requests {
         {
         }
     }
-    /**
-     * @property-read string $uri
-     * @property string $iri
-     * @property string $scheme
-     * @property string $authority
-     * @property string $iauthority
-     * @property string $userinfo
-     * @property string $iuserinfo
-     * @property string $host
-     * @property string $ihost
-     * @property string $port
-     * @property string $path
-     * @property string $ipath
-     * @property string $query
-     * @property string $iquery
-     * @property string $fragment
-     * @property string $ifragment
-     */
     class Iri
     {
         /**
@@ -12514,7 +12479,6 @@ namespace WpOrg\Requests {
         }
         /**
          * @param string|\Stringable|null $iri
-         * @throws \WpOrg\Requests\Exception\InvalidArgument
          */
         public function __construct($iri = null)
         {
@@ -12691,11 +12655,8 @@ namespace WpOrg\Requests {
          */
         const HTTPS = 443;
         /**
-         * @param string $type
-         * @return int
-         * @throws \WpOrg\Requests\Exception\InvalidArgument
-         * @throws \WpOrg\Requests\Exception
          * @phpstan-param 'acap'|'dict'|'http'|'https' $type
+         * @return int
          */
         public static function get($type)
         {
@@ -12742,9 +12703,9 @@ namespace WpOrg\Requests\Proxy {
          */
         public $use_authentication;
         /**
+         * @param string|null $reason
+         * @param mixed $data
          * @param array|string|null $args
-         * @throws \WpOrg\Requests\Exception\InvalidArgument
-         * @throws \WpOrg\Requests\Exception\ArgumentCount
          */
         public function __construct($args = null)
         {
@@ -12899,7 +12860,6 @@ namespace WpOrg\Requests {
         /**
          * @param array<string,bool> $capabilities
          * @return \WpOrg\Requests\Transport
-         * @throws \WpOrg\Requests\Exception
          */
         protected static function get_transport(array $capabilities = [])
         {
@@ -12943,10 +12903,6 @@ namespace WpOrg\Requests {
          * @param string $type
          * @param array $options
          * @return \WpOrg\Requests\Response
-         * @throws \WpOrg\Requests\Exception\InvalidArgument
-         * @throws \WpOrg\Requests\Exception\InvalidArgument
-         * @throws \WpOrg\Requests\Exception\InvalidArgument
-         * @throws \WpOrg\Requests\Exception
          */
         public static function request($url, $headers = [], $data = [], $type = self::GET, $options = [])
         {
@@ -12955,8 +12911,6 @@ namespace WpOrg\Requests {
          * @param array $requests
          * @param array $options
          * @return array
-         * @throws \WpOrg\Requests\Exception\InvalidArgument
-         * @throws \WpOrg\Requests\Exception\InvalidArgument
          */
         public static function request_multiple($requests, $options = [])
         {
@@ -12976,7 +12930,6 @@ namespace WpOrg\Requests {
         }
         /**
          * @param string|\Stringable|bool $path
-         * @throws \WpOrg\Requests\Exception\InvalidArgument
          */
         public static function set_certificate_path($path)
         {
@@ -12988,7 +12941,6 @@ namespace WpOrg\Requests {
          * @param string $type
          * @param array $options
          * @return void
-         * @throws \WpOrg\Requests\Exception
          */
         protected static function set_defaults(&$url, &$headers, &$data, &$type, &$options)
         {
@@ -13000,9 +12952,6 @@ namespace WpOrg\Requests {
          * @param array $req_data
          * @param array $options
          * @return \WpOrg\Requests\Response
-         * @throws \WpOrg\Requests\Exception
-         * @throws \WpOrg\Requests\Exception
-         * @throws \WpOrg\Requests\Exception
          */
         protected static function parse_response($headers, $url, $req_headers, $req_data, $options)
         {
@@ -13026,7 +12975,6 @@ namespace WpOrg\Requests {
         /**
          * @param iterable $dictionary
          * @return array
-         * @throws \WpOrg\Requests\Exception\InvalidArgument
          */
         public static function flatten($dictionary)
         {
@@ -13034,7 +12982,6 @@ namespace WpOrg\Requests {
         /**
          * @param string $data
          * @return string
-         * @throws \WpOrg\Requests\Exception\InvalidArgument
          */
         public static function decompress($data)
         {
@@ -13042,7 +12989,6 @@ namespace WpOrg\Requests {
         /**
          * @param string $gz_data
          * @return string|bool
-         * @throws \WpOrg\Requests\Exception\InvalidArgument
          */
         public static function compatible_gzinflate($gz_data)
         {
@@ -13101,8 +13047,6 @@ namespace WpOrg\Requests {
         }
         /**
          * @param bool $allow_redirects
-         * @throws \WpOrg\Requests\Exception
-         * @throws \WpOrg\Requests\Exception\Http
          */
         public function throw_for_status($allow_redirects = true)
         {
@@ -13112,7 +13056,6 @@ namespace WpOrg\Requests {
          * @param int $depth
          * @param int $options
          * @return array
-         * @throws \WpOrg\Requests\Exception
          */
         public function decode_body($associative = true, $depth = 512, $options = 0)
         {
@@ -13151,7 +13094,6 @@ namespace WpOrg\Requests\Utility {
         /**
          * @param string $offset
          * @param string $value
-         * @throws \WpOrg\Requests\Exception
          */
         #[\ReturnTypeWillChange]
         public function offsetSet($offset, $value)
@@ -13192,7 +13134,6 @@ namespace WpOrg\Requests\Response {
         /**
          * @param string $offset
          * @param string $value
-         * @throws \WpOrg\Requests\Exception
          */
         public function offsetSet($offset, $value)
         {
@@ -13200,7 +13141,6 @@ namespace WpOrg\Requests\Response {
         /**
          * @param string $offset
          * @return array|null
-         * @throws \WpOrg\Requests\Exception\InvalidArgument
          */
         public function getValues($offset)
         {
@@ -13208,7 +13148,6 @@ namespace WpOrg\Requests\Response {
         /**
          * @param string|array $value
          * @return string
-         * @throws \WpOrg\Requests\Exception\InvalidArgument
          */
         public function flatten($value)
         {
@@ -13245,10 +13184,6 @@ namespace WpOrg\Requests {
          * @param array $headers
          * @param array $data
          * @param array $options
-         * @throws \WpOrg\Requests\Exception\InvalidArgument
-         * @throws \WpOrg\Requests\Exception\InvalidArgument
-         * @throws \WpOrg\Requests\Exception\InvalidArgument
-         * @throws \WpOrg\Requests\Exception\InvalidArgument
          */
         public function __construct($url = null, $headers = [], $data = [], $options = [])
         {
@@ -13305,7 +13240,6 @@ namespace WpOrg\Requests {
          * @param string $type
          * @param array $options
          * @return \WpOrg\Requests\Response
-         * @throws \WpOrg\Requests\Exception
          */
         public function request($url, $headers = [], $data = [], $type = \WpOrg\Requests\Requests::GET, $options = [])
         {
@@ -13314,8 +13248,6 @@ namespace WpOrg\Requests {
          * @param array $requests
          * @param array $options
          * @return array
-         * @throws \WpOrg\Requests\Exception\InvalidArgument
-         * @throws \WpOrg\Requests\Exception\InvalidArgument
          */
         public function request_multiple($requests, $options = [])
         {
@@ -13338,8 +13270,6 @@ namespace WpOrg\Requests {
          * @param string|\Stringable $host
          * @param array $cert
          * @return bool
-         * @throws \WpOrg\Requests\Exception\InvalidArgument
-         * @throws \WpOrg\Requests\Exception\InvalidArgument
          */
         public static function verify_certificate($host, $cert)
         {
@@ -13347,7 +13277,6 @@ namespace WpOrg\Requests {
         /**
          * @param string|\Stringable $reference
          * @return bool
-         * @throws \WpOrg\Requests\Exception\InvalidArgument
          */
         public static function verify_reference_name($reference)
         {
@@ -13356,7 +13285,6 @@ namespace WpOrg\Requests {
          * @param string|\Stringable $host
          * @param string|\Stringable $reference
          * @return bool
-         * @throws \WpOrg\Requests\Exception\InvalidArgument
          */
         public static function match_domain($host, $reference)
         {
@@ -13411,6 +13339,12 @@ namespace WpOrg\Requests\Transport {
          * @var int
          */
         public $version;
+        /**
+         * @param string $message
+         * @param string $type
+         * @param mixed $data
+         * @param int $code
+         */
         public function __construct()
         {
         }
@@ -13423,11 +13357,6 @@ namespace WpOrg\Requests\Transport {
          * @param string|array $data
          * @param array $options
          * @return string
-         * @throws \WpOrg\Requests\Exception\InvalidArgument
-         * @throws \WpOrg\Requests\Exception\InvalidArgument
-         * @throws \WpOrg\Requests\Exception\InvalidArgument
-         * @throws \WpOrg\Requests\Exception\InvalidArgument
-         * @throws \WpOrg\Requests\Exception
          */
         public function request($url, $headers = [], $data = [], $options = [])
         {
@@ -13436,8 +13365,6 @@ namespace WpOrg\Requests\Transport {
          * @param array $requests
          * @param array $options
          * @return array
-         * @throws \WpOrg\Requests\Exception\InvalidArgument
-         * @throws \WpOrg\Requests\Exception\InvalidArgument
          */
         public function request_multiple($requests, $options)
         {
@@ -13456,7 +13383,6 @@ namespace WpOrg\Requests\Transport {
          * @param string $response
          * @param array $options
          * @return string|false
-         * @throws \WpOrg\Requests\Exception
          */
         public function process_response($response, $options)
         {
@@ -13507,12 +13433,6 @@ namespace WpOrg\Requests\Transport {
          * @param string|array $data
          * @param array $options
          * @return string
-         * @throws \WpOrg\Requests\Exception\InvalidArgument
-         * @throws \WpOrg\Requests\Exception\InvalidArgument
-         * @throws \WpOrg\Requests\Exception\InvalidArgument
-         * @throws \WpOrg\Requests\Exception\InvalidArgument
-         * @throws \WpOrg\Requests\Exception
-         * @throws \WpOrg\Requests\Exception
          */
         public function request($url, $headers = [], $data = [], $options = [])
         {
@@ -13521,8 +13441,6 @@ namespace WpOrg\Requests\Transport {
          * @param array $requests
          * @param array $options
          * @return array
-         * @throws \WpOrg\Requests\Exception\InvalidArgument
-         * @throws \WpOrg\Requests\Exception\InvalidArgument
          */
         public function request_multiple($requests, $options)
         {
@@ -13538,8 +13456,6 @@ namespace WpOrg\Requests\Transport {
          * @param string $host
          * @param resource $context
          * @return bool
-         * @throws \WpOrg\Requests\Exception
-         * @throws \WpOrg\Requests\Exception
          */
         public function verify_certificate_from_context($host, $context)
         {
@@ -13559,7 +13475,6 @@ namespace WpOrg\Requests\Utility {
         /**
          * @param array $data
          * @param callable $callback
-         * @throws \WpOrg\Requests\Exception\InvalidArgument
          */
         public function __construct($data, $callback)
         {
@@ -13626,7 +13541,6 @@ namespace WpOrg\Requests\Utility {
         {
         }
         /**
-         * @internal
          * @param mixed $input
          * @return bool
          */
@@ -13705,9 +13619,6 @@ namespace {
         public static function get_handler($location, $filename, $extension)
         {
         }
-        /**
-         * @deprecated
-         */
         public function create($location, $filename, $extension)
         {
         }
@@ -14474,7 +14385,7 @@ namespace {
         {
         }
         /**
-         * @param \SimplePie_File &$file
+         * @param \SimplePie_File $file
          * @return bool
          */
         public function set_file(&$file)
@@ -14668,9 +14579,6 @@ namespace {
         public function set_url_replacements($element_attribute = \null)
         {
         }
-        /**
-         * @param array
-         */
         public function set_https_domains($domains = array())
         {
         }
@@ -14843,7 +14751,6 @@ namespace {
         {
         }
         /**
-         * @internal
          * @return string|null
          */
         public function get_permalink()
@@ -14941,15 +14848,9 @@ namespace {
         public function get_items($start = 0, $end = 0)
         {
         }
-        /**
-         * @deprecated
-         */
         public function set_favicon_handler($page = \false, $qs = 'i')
         {
         }
-        /**
-         * @deprecated
-         */
         public function get_favicon()
         {
         }
@@ -14980,50 +14881,6 @@ namespace {
         {
         }
     }
-    /**
-     * SimplePie
-     *
-     * A PHP-Based RSS and Atom Feed Framework.
-     * Takes the hard work out of managing a complete RSS/Atom solution.
-     *
-     * Copyright (c) 2004-2016, Ryan Parman, Sam Sneddon, Ryan McCue, and contributors
-     * All rights reserved.
-     *
-     * Redistribution and use in source and binary forms, with or without modification, are
-     * permitted provided that the following conditions are met:
-     *
-     * 	* Redistributions of source code must retain the above copyright notice, this list of
-     * 	  conditions and the following disclaimer.
-     *
-     * 	* Redistributions in binary form must reproduce the above copyright notice, this list
-     * 	  of conditions and the following disclaimer in the documentation and/or other materials
-     * 	  provided with the distribution.
-     *
-     * 	* Neither the name of the SimplePie Team nor the names of its contributors may be used
-     * 	  to endorse or promote products derived from this software without specific prior
-     * 	  written permission.
-     *
-     * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS
-     * OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY
-     * AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDERS
-     * AND CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-     * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
-     * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
-     * THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
-     * OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
-     * POSSIBILITY OF SUCH DAMAGE.
-     *
-     * @package SimplePie
-     * @copyright 2004-2016 Ryan Parman, Sam Sneddon, Ryan McCue
-     * @author Ryan Parman
-     * @author Sam Sneddon
-     * @author Ryan McCue
-     * @link http://simplepie.org/ SimplePie
-     * @license http://www.opensource.org/licenses/bsd-license.php BSD License
-     */
-    /**
-     * @deprecated
-     */
     class SimplePie_Core extends \SimplePie
     {
     }
@@ -15069,50 +14926,6 @@ namespace {
         {
         }
     }
-    /**
-     * SimplePie
-     *
-     * A PHP-Based RSS and Atom Feed Framework.
-     * Takes the hard work out of managing a complete RSS/Atom solution.
-     *
-     * Copyright (c) 2004-2016, Ryan Parman, Sam Sneddon, Ryan McCue, and contributors
-     * All rights reserved.
-     *
-     * Redistribution and use in source and binary forms, with or without modification, are
-     * permitted provided that the following conditions are met:
-     *
-     * 	* Redistributions of source code must retain the above copyright notice, this list of
-     * 	  conditions and the following disclaimer.
-     *
-     * 	* Redistributions in binary form must reproduce the above copyright notice, this list
-     * 	  of conditions and the following disclaimer in the documentation and/or other materials
-     * 	  provided with the distribution.
-     *
-     * 	* Neither the name of the SimplePie Team nor the names of its contributors may be used
-     * 	  to endorse or promote products derived from this software without specific prior
-     * 	  written permission.
-     *
-     * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS
-     * OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY
-     * AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDERS
-     * AND CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-     * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
-     * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
-     * THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
-     * OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
-     * POSSIBILITY OF SUCH DAMAGE.
-     *
-     * @package SimplePie
-     * @copyright 2004-2016 Ryan Parman, Sam Sneddon, Ryan McCue
-     * @author Ryan Parman
-     * @author Sam Sneddon
-     * @author Ryan McCue
-     * @link http://simplepie.org/ SimplePie
-     * @license http://www.opensource.org/licenses/bsd-license.php BSD License
-     */
-    /**
-     * @deprecated
-     */
     class SimplePie_Decode_HTML_Entities
     {
         /**
@@ -15214,7 +15027,6 @@ namespace {
          */
         var $height;
         /**
-         * @deprecated
          * @var null
          */
         var $javascript;
@@ -15505,7 +15317,6 @@ namespace {
         {
         }
         /**
-         * @deprecated
          * @param array|string $options
          * @return string
          */
@@ -15653,6 +15464,7 @@ namespace {
         protected function body()
         {
         }
+        /**
          * @phpstan-return void
          */
         protected function chunked()
@@ -16174,7 +15986,6 @@ namespace {
         {
         }
         /**
-         * @deprecated
          * @param string $realname
          * @param string $string
          * @return array
@@ -16258,7 +16069,6 @@ namespace {
         {
         }
         /**
-         * @deprecated
          * @param string $data
          * @return string
          */
@@ -16356,7 +16166,6 @@ namespace {
         {
         }
         /**
-         * @deprecated
          * @param string $ip
          * @return bool
          */
@@ -17452,9 +17261,8 @@ namespace {
     {
         /**
          * @param string $diff
-         * @param string $mode
-         * @return array
          * @phpstan-param 'context'|'unified'|'autodetect' $mode
+         * @return array
          */
         function diff($diff, $mode = 'autodetect')
         {
@@ -17949,21 +17757,14 @@ namespace {
         {
         }
     }
-    /**
-     * @deprecated 6.2.0
-     */
     class Requests extends \WpOrg\Requests\Requests
     {
         /**
-         * @deprecated 6.2.0
          * @param string $class
          */
         public static function autoloader($class)
         {
         }
-        /**
-         * @deprecated 6.2.0
-         */
         public static function register_autoloader()
         {
         }
@@ -17984,6 +17785,28 @@ namespace {
          * @param int $depth
          * @param array $args
          * @param int $current_object_id
+         * @phpstan-param array{
+         *   show_option_all?: string,
+         *   show_option_none?: string,
+         *   option_none_value?: string,
+         *   orderby?: string,
+         *   pad_counts?: bool,
+         *   show_count?: bool|int,
+         *   echo?: bool|int,
+         *   hierarchical?: bool|int,
+         *   depth?: int,
+         *   tab_index?: int,
+         *   name?: string,
+         *   id?: string,
+         *   class?: string,
+         *   selected?: int|string,
+         *   value_field?: string,
+         *   taxonomy?: string|array,
+         *   hide_if_empty?: bool,
+         *   required?: bool,
+         *   walker?: Walker,
+         *   aria_describedby?: string,
+         * } $args See wp_dropdown_categories()
          */
         public function start_el(&$output, $data_object, $depth = 0, $args = array(), $current_object_id = 0)
         {
@@ -18004,6 +17827,26 @@ namespace {
          * @param int $depth
          * @param array $args
          * @phpstan-return void
+         * @phpstan-param array{
+         *   current_category?: int|int[],
+         *   depth?: int,
+         *   echo?: bool|int,
+         *   exclude?: int[]|string,
+         *   exclude_tree?: int[]|string,
+         *   feed?: string,
+         *   feed_image?: string,
+         *   feed_type?: string,
+         *   hide_title_if_empty?: bool,
+         *   separator?: string,
+         *   show_count?: bool|int,
+         *   show_option_all?: string,
+         *   show_option_none?: string,
+         *   style?: string,
+         *   taxonomy?: string,
+         *   title_li?: string,
+         *   use_desc_for_title?: bool|int,
+         *   walker?: Walker,
+         * } $args See wp_list_categories()
          */
         public function start_lvl(&$output, $depth = 0, $args = array())
         {
@@ -18013,6 +17856,26 @@ namespace {
          * @param int $depth
          * @param array $args
          * @phpstan-return void
+         * @phpstan-param array{
+         *   current_category?: int|int[],
+         *   depth?: int,
+         *   echo?: bool|int,
+         *   exclude?: int[]|string,
+         *   exclude_tree?: int[]|string,
+         *   feed?: string,
+         *   feed_image?: string,
+         *   feed_type?: string,
+         *   hide_title_if_empty?: bool,
+         *   separator?: string,
+         *   show_count?: bool|int,
+         *   show_option_all?: string,
+         *   show_option_none?: string,
+         *   style?: string,
+         *   taxonomy?: string,
+         *   title_li?: string,
+         *   use_desc_for_title?: bool|int,
+         *   walker?: Walker,
+         * } $args See wp_list_categories()
          */
         public function end_lvl(&$output, $depth = 0, $args = array())
         {
@@ -18024,6 +17887,26 @@ namespace {
          * @param array $args
          * @param int $current_object_id
          * @phpstan-return void
+         * @phpstan-param array{
+         *   current_category?: int|int[],
+         *   depth?: int,
+         *   echo?: bool|int,
+         *   exclude?: int[]|string,
+         *   exclude_tree?: int[]|string,
+         *   feed?: string,
+         *   feed_image?: string,
+         *   feed_type?: string,
+         *   hide_title_if_empty?: bool,
+         *   separator?: string,
+         *   show_count?: bool|int,
+         *   show_option_all?: string,
+         *   show_option_none?: string,
+         *   style?: string,
+         *   taxonomy?: string,
+         *   title_li?: string,
+         *   use_desc_for_title?: bool|int,
+         *   walker?: Walker,
+         * } $args See wp_list_categories()
          */
         public function start_el(&$output, $data_object, $depth = 0, $args = array(), $current_object_id = 0)
         {
@@ -18034,6 +17917,26 @@ namespace {
          * @param int $depth
          * @param array $args
          * @phpstan-return void
+         * @phpstan-param array{
+         *   current_category?: int|int[],
+         *   depth?: int,
+         *   echo?: bool|int,
+         *   exclude?: int[]|string,
+         *   exclude_tree?: int[]|string,
+         *   feed?: string,
+         *   feed_image?: string,
+         *   feed_type?: string,
+         *   hide_title_if_empty?: bool,
+         *   separator?: string,
+         *   show_count?: bool|int,
+         *   show_option_all?: string,
+         *   show_option_none?: string,
+         *   style?: string,
+         *   taxonomy?: string,
+         *   title_li?: string,
+         *   use_desc_for_title?: bool|int,
+         *   walker?: Walker,
+         * } $args See wp_list_categories()
          */
         public function end_el(&$output, $data_object, $depth = 0, $args = array())
         {
@@ -18147,6 +18050,19 @@ namespace {
          * @param int $depth
          * @param array $args
          * @param int $current_object_id
+         * @phpstan-param array{
+         *   depth?: int,
+         *   child_of?: int,
+         *   selected?: int|string,
+         *   echo?: bool|int,
+         *   name?: string,
+         *   id?: string,
+         *   class?: string,
+         *   show_option_none?: string,
+         *   show_option_no_change?: string,
+         *   option_none_value?: string,
+         *   value_field?: string,
+         * } $args See wp_dropdown_pages()
          */
         public function start_el(&$output, $data_object, $depth = 0, $args = array(), $current_object_id = 0)
         {
@@ -18203,7 +18119,6 @@ namespace {
     {
         public $user;
         /**
-         * @deprecated 3.3.0
          * @var array
          */
         public $menu = array();
@@ -18223,7 +18138,6 @@ namespace {
         {
         }
         /**
-         * @param array $args
          * @phpstan-param array{
          *   id?: string,
          *   title?: string,
@@ -18270,7 +18184,6 @@ namespace {
         {
         }
         /**
-         * @param array $args
          * @phpstan-param array{
          *   id?: string,
          *   parent?: string,
@@ -18330,7 +18243,6 @@ namespace {
         {
         }
         /**
-         * @deprecated 3.3.0
          * @param string $id
          * @param object $node
          */
@@ -18355,8 +18267,6 @@ namespace {
         {
         }
         /**
-         * @param string|array $args
-         * @return string
          * @phpstan-param array{
          *   what?: string,
          *   action?: string|false,
@@ -18366,6 +18276,7 @@ namespace {
          *   data?: string|WP_Error,
          *   supplemental?: array,
          * } $args
+         * @return string
          */
         public function add($args = '')
         {
@@ -18409,8 +18320,6 @@ namespace {
         }
         /**
          * @param int $user_id
-         * @param array $args
-         * @return array|\WP_Error
          * @phpstan-param array{
          *   name?: string,
          *   app_id?: string,
@@ -18433,7 +18342,6 @@ namespace {
         }
         /**
          * @param int $user_id
-         * @return array
          * @phpstan-return array<int|string, array{
          *   uuid: string,
          *   app_id: string,
@@ -18515,13 +18423,12 @@ namespace {
     {
         /**
          * @param string $source_name
-         * @param array $source_properties
-         * @return \WP_Block_Bindings_Source|false
          * @phpstan-param array{
          *   label?: string,
          *   get_value_callback?: callable,
          *   uses_context?: string[],
          * } $source_properties
+         * @return \WP_Block_Bindings_Source|false
          */
         public function register(string $source_name, array $source_properties)
         {
@@ -18553,6 +18460,7 @@ namespace {
         public function is_registered($source_name)
         {
         }
+        /**
          * @phpstan-return void
          */
         public function __wakeup()
@@ -18617,6 +18525,13 @@ namespace {
         {
         }
     }
+    /**
+     * Blocks API: WP_Block_List class
+     *
+     * @package WordPress
+     * @since 5.5.0
+     */
+    /**
      * @phpstan-implements ArrayAccess<int, WP_Block>
      */
     #[\AllowDynamicProperties]
@@ -18751,14 +18666,6 @@ namespace {
         {
         }
     }
-    /**
-     * Block Serialization Parser
-     *
-     * @package WordPress
-     */
-    /**
-     * @internal
-     */
     class WP_Block_Parser_Frame
     {
         /**
@@ -18818,21 +18725,18 @@ namespace {
         {
         }
         /**
-         * @internal
          * @return bool
          */
         public function proceed()
         {
         }
         /**
-         * @internal
          * @return array
          */
         public function next_token()
         {
         }
         /**
-         * @internal
          * @param string $inner_html
          * @return \WP_Block_Parser_Block
          */
@@ -18840,7 +18744,6 @@ namespace {
         {
         }
         /**
-         * @internal
          * @param null $length
          * @phpstan-return void
          */
@@ -18848,7 +18751,6 @@ namespace {
         {
         }
         /**
-         * @internal
          * @param \WP_Block_Parser_Block $block
          * @param int $token_start
          * @param int $token_length
@@ -18858,7 +18760,6 @@ namespace {
         {
         }
         /**
-         * @internal
          * @param int|null $end_offset
          */
         public function add_block_from_stack($end_offset = \null)
@@ -18870,11 +18771,10 @@ namespace {
     {
         /**
          * @param string $category_name
-         * @param array $category_properties
-         * @return bool
          * @phpstan-param array{
          *   label?: string,
          * } $category_properties
+         * @return bool
          */
         public function register($category_name, $category_properties)
         {
@@ -18919,8 +18819,6 @@ namespace {
     {
         /**
          * @param string $pattern_name
-         * @param array $pattern_properties
-         * @return bool
          * @phpstan-param array{
          *   title?: string,
          *   content?: string,
@@ -18934,6 +18832,7 @@ namespace {
          *   templateTypes?: string[],
          *   filePath?: string,
          * } $pattern_properties
+         * @return bool
          */
         public function register($pattern_name, $pattern_properties)
         {
@@ -18981,8 +18880,6 @@ namespace {
     {
         /**
          * @param string|string[] $block_name
-         * @param array $style_properties
-         * @return bool
          * @phpstan-param array{
          *   name?: string,
          *   label?: string,
@@ -18991,6 +18888,7 @@ namespace {
          *   is_default?: bool,
          *   style_data?: array,
          * } $style_properties
+         * @return bool
          */
         public function register($block_name, $style_properties)
         {
@@ -19148,6 +19046,35 @@ namespace {
          * @param string|\WP_Block_Type $name
          * @param array $args
          * @return \WP_Block_Type|false
+         * @phpstan-param array{
+         *   api_version?: string,
+         *   title?: string,
+         *   category?: string|null,
+         *   parent?: string[]|null,
+         *   ancestor?: string[]|null,
+         *   allowed_blocks?: string[]|null,
+         *   icon?: string|null,
+         *   description?: string,
+         *   keywords?: string[],
+         *   textdomain?: string|null,
+         *   styles?: array[],
+         *   variations?: array[],
+         *   selectors?: array,
+         *   supports?: array|null,
+         *   example?: array|null,
+         *   render_callback?: callable|null,
+         *   variation_callback?: callable|null,
+         *   attributes?: array|null,
+         *   uses_context?: string[],
+         *   provides_context?: string[]|null,
+         *   block_hooks?: string[],
+         *   editor_script_handles?: string[],
+         *   script_handles?: string[],
+         *   view_script_handles?: string[],
+         *   editor_style_handles?: string[],
+         *   style_handles?: string[],
+         *   view_style_handles?: string[],
+         * } $args See WP_Block_Type::__construct()
          */
         public function register($name, $args = array())
         {
@@ -19310,7 +19237,6 @@ namespace {
         const GLOBAL_ATTRIBUTES = array('lock' => array('type' => 'object'), 'metadata' => array('type' => 'object'));
         /**
          * @param string $block_type
-         * @param array|string $args
          * @phpstan-param array{
          *   api_version?: string,
          *   title?: string,
@@ -19389,6 +19315,35 @@ namespace {
         }
         /**
          * @param array|string $args
+         * @phpstan-param array{
+         *   api_version?: string,
+         *   title?: string,
+         *   category?: string|null,
+         *   parent?: string[]|null,
+         *   ancestor?: string[]|null,
+         *   allowed_blocks?: string[]|null,
+         *   icon?: string|null,
+         *   description?: string,
+         *   keywords?: string[],
+         *   textdomain?: string|null,
+         *   styles?: array[],
+         *   variations?: array[],
+         *   selectors?: array,
+         *   supports?: array|null,
+         *   example?: array|null,
+         *   render_callback?: callable|null,
+         *   variation_callback?: callable|null,
+         *   attributes?: array|null,
+         *   uses_context?: string[],
+         *   provides_context?: string[]|null,
+         *   block_hooks?: string[],
+         *   editor_script_handles?: string[],
+         *   script_handles?: string[],
+         *   view_script_handles?: string[],
+         *   editor_style_handles?: string[],
+         *   style_handles?: string[],
+         *   view_style_handles?: string[],
+         * } $args See WP_Block_Type::__construct()
          */
         public function set_props($args)
         {
@@ -19412,15 +19367,6 @@ namespace {
         {
         }
     }
-    /**
-     * Blocks API: WP_Block class
-     *
-     * @package WordPress
-     * @since 5.5.0
-     */
-    /**
-     * @property array $attributes
-     */
     #[\AllowDynamicProperties]
     class WP_Block
     {
@@ -19461,9 +19407,6 @@ namespace {
          */
         public $inner_content = array();
         /**
-         * @param array $block
-         * @param array $available_context
-         * @param \WP_Block_Type_Registry $registry
          * @phpstan-param array{
          *   blockName?: string,
          *   attrs?: array,
@@ -19471,6 +19414,8 @@ namespace {
          *   innerHTML?: string,
          *   innerContent?: array,
          * } $block
+         * @param array $available_context
+         * @param \WP_Block_Type_Registry $registry
          */
         public function __construct($block, $available_context = array(), $registry = \null)
         {
@@ -19483,11 +19428,10 @@ namespace {
         {
         }
         /**
-         * @param array $options
-         * @return string
          * @phpstan-param array{
          *   dynamic?: bool,
          * } $options
+         * @return string
          */
         public function render($options = array())
         {
@@ -19559,7 +19503,6 @@ namespace {
         {
         }
         /**
-         * @param string|array $query
          * @phpstan-param array{
          *   author_email?: string,
          *   author_url?: string,
@@ -19615,6 +19558,55 @@ namespace {
         }
         /**
          * @param string|array $query
+         * @phpstan-param array{
+         *   author_email?: string,
+         *   author_url?: string,
+         *   author__in?: int[],
+         *   author__not_in?: int[],
+         *   comment__in?: int[],
+         *   comment__not_in?: int[],
+         *   count?: bool,
+         *   date_query?: array,
+         *   fields?: string,
+         *   include_unapproved?: array,
+         *   karma?: int,
+         *   meta_key?: string|string[],
+         *   meta_value?: string|string[],
+         *   meta_compare?: string,
+         *   meta_compare_key?: string,
+         *   meta_type?: string,
+         *   meta_type_key?: string,
+         *   meta_query?: array,
+         *   number?: int,
+         *   paged?: int,
+         *   offset?: int,
+         *   no_found_rows?: bool,
+         *   orderby?: string|array,
+         *   order?: string,
+         *   parent?: int,
+         *   parent__in?: int[],
+         *   parent__not_in?: int[],
+         *   post_author__in?: int[],
+         *   post_author__not_in?: int[],
+         *   post_id?: int,
+         *   post__in?: int[],
+         *   post__not_in?: int[],
+         *   post_author?: int,
+         *   post_status?: string|string[],
+         *   post_type?: string|string[],
+         *   post_name?: string,
+         *   post_parent?: int,
+         *   search?: string,
+         *   status?: string|array,
+         *   type?: string|string[],
+         *   type__in?: string[],
+         *   type__not_in?: string[],
+         *   user_id?: int,
+         *   hierarchical?: bool|string,
+         *   cache_domain?: string,
+         *   update_comment_meta_cache?: bool,
+         *   update_comment_post_cache?: bool,
+         * } $query See WP_Comment_Query::__construct()
          */
         public function parse_query($query = '')
         {
@@ -19751,14 +19743,13 @@ namespace {
         {
         }
         /**
-         * @param array $args
-         * @return \WP_Comment[]
          * @phpstan-param array{
          *   format?: string,
          *   status?: string,
          *   hierarchical?: string,
          *   orderby?: string|array,
          * } $args
+         * @return \WP_Comment[]
          */
         public function get_children($args = array())
         {
@@ -19857,7 +19848,6 @@ namespace {
          */
         public $allow_addition = \false;
         /**
-         * @deprecated
          * @var array
          */
         public $json = array();
@@ -19872,7 +19862,6 @@ namespace {
         /**
          * @param \WP_Customize_Manager $manager
          * @param string $id
-         * @param array $args
          * @phpstan-param array{
          *   instance_number?: int,
          *   manager?: WP_Customize_Manager,
@@ -19938,6 +19927,7 @@ namespace {
         public final function get_content()
         {
         }
+        /**
          * @phpstan-return void
          */
         public final function maybe_render()
@@ -19962,6 +19952,7 @@ namespace {
         public function input_attrs()
         {
         }
+        /**
          * @phpstan-return void
          */
         protected function render_content()
@@ -19990,7 +19981,6 @@ namespace {
          */
         public $selective_refresh;
         /**
-         * @param array $args
          * @phpstan-param array{
          *   changeset_uuid?: null|string|false,
          *   theme?: string,
@@ -20011,12 +20001,12 @@ namespace {
         {
         }
         /**
-         * @deprecated 4.7.0
          * @return callable
          */
         public function wp_die_handler()
         {
         }
+        /**
          * @phpstan-return void
          */
         public function setup_theme()
@@ -20028,11 +20018,13 @@ namespace {
         public function after_setup_theme()
         {
         }
+        /**
          * @phpstan-return void
          */
         public function start_previewing_theme()
         {
         }
+        /**
          * @phpstan-return void
          */
         public function stop_previewing_theme()
@@ -20108,7 +20100,6 @@ namespace {
         {
         }
         /**
-         * @deprecated 4.7.0
          * @param int $status
          * @return int
          */
@@ -20141,18 +20132,18 @@ namespace {
         public function import_theme_starter_content($starter_content = array())
         {
         }
+        /**
          * @phpstan-return void
          */
         public function _save_starter_content_changeset()
         {
         }
         /**
-         * @param array $args
-         * @return array
          * @phpstan-param array{
          *   exclude_changeset?: bool,
          *   exclude_post_data?: bool,
          * } $args
+         * @return array
          */
         public function unsanitized_post_values($args = array())
         {
@@ -20172,6 +20163,7 @@ namespace {
         public function set_post_value($setting_id, $value)
         {
         }
+        /**
          * @phpstan-return void
          */
         public function customize_preview_init()
@@ -20191,27 +20183,19 @@ namespace {
         public function add_state_query_params($url)
         {
         }
-        /**
-         * @deprecated 4.7.0
-         */
         public function customize_preview_override_404_status()
         {
         }
-        /**
-         * @deprecated 4.7.0
-         */
         public function customize_preview_base()
         {
         }
-        /**
-         * @deprecated 4.7.0
-         */
         public function customize_preview_html5()
         {
         }
         public function customize_preview_loading_style()
         {
         }
+        /**
          * @phpstan-return void
          */
         public function remove_frameless_preview_messenger_channel()
@@ -20220,14 +20204,10 @@ namespace {
         public function customize_preview_settings()
         {
         }
-        /**
-         * @deprecated 4.7.0
-         */
         public function customize_preview_signature()
         {
         }
         /**
-         * @deprecated 4.7.0
          * @param callable|null $callback
          * @return callable|null
          */
@@ -20273,12 +20253,11 @@ namespace {
         }
         /**
          * @param array $setting_values
-         * @param array $options
-         * @return array
          * @phpstan-param array{
          *   validate_existence?: bool,
          *   validate_capability?: bool,
          * } $options
+         * @return array
          */
         public function validate_setting_values($setting_values, $options = array())
         {
@@ -20294,8 +20273,6 @@ namespace {
         {
         }
         /**
-         * @param array $args
-         * @return array|\WP_Error
          * @phpstan-param array{
          *   data?: array,
          *   status?: string,
@@ -20305,6 +20282,7 @@ namespace {
          *   starter_content?: bool,
          *   autosave?: bool,
          * } $args
+         * @return array|\WP_Error
          */
         public function save_changeset_post($args = array())
         {
@@ -20325,6 +20303,7 @@ namespace {
         public function trash_changeset_post($post)
         {
         }
+        /**
          * @phpstan-return void
          */
         public function handle_changeset_trash_request()
@@ -20370,6 +20349,7 @@ namespace {
         public function check_changeset_lock_with_heartbeat($response, $data, $screen_id)
         {
         }
+        /**
          * @phpstan-return never
          */
         public function handle_override_changeset_lock_request()
@@ -20391,11 +20371,13 @@ namespace {
         public function _publish_changeset_values($changeset_post_id)
         {
         }
+        /**
          * @phpstan-return never
          */
         public function refresh_nonces()
         {
         }
+        /**
          * @phpstan-return never
          */
         public function handle_dismiss_autosave_or_lock_request()
@@ -20405,6 +20387,17 @@ namespace {
          * @param \WP_Customize_Setting|string $id
          * @param array $args
          * @return \WP_Customize_Setting
+         * @phpstan-param array{
+         *   type?: string,
+         *   capability?: string,
+         *   theme_supports?: string|string[],
+         *   default?: string,
+         *   transport?: string,
+         *   validate_callback?: callable,
+         *   sanitize_callback?: callable,
+         *   sanitize_js_callback?: callable,
+         *   dirty?: bool,
+         * } $args See WP_Customize_Setting::__construct()
          */
         public function add_setting($id, $args = array())
         {
@@ -20433,6 +20426,15 @@ namespace {
          * @param \WP_Customize_Panel|string $id
          * @param array $args
          * @return \WP_Customize_Panel
+         * @phpstan-param array{
+         *   priority?: int,
+         *   capability?: string,
+         *   theme_supports?: mixed[],
+         *   title?: string,
+         *   description?: string,
+         *   type?: string,
+         *   active_callback?: callable,
+         * } $args See WP_Customize_Panel::__construct()
          */
         public function add_panel($id, $args = array())
         {
@@ -20463,6 +20465,17 @@ namespace {
          * @param \WP_Customize_Section|string $id
          * @param array $args
          * @return \WP_Customize_Section
+         * @phpstan-param array{
+         *   priority?: int,
+         *   panel?: string,
+         *   capability?: string,
+         *   theme_supports?: string|string[],
+         *   title?: string,
+         *   description?: string,
+         *   type?: string,
+         *   active_callback?: callable,
+         *   description_hidden?: bool,
+         * } $args See WP_Customize_Section::__construct()
          */
         public function add_section($id, $args = array())
         {
@@ -20493,6 +20506,24 @@ namespace {
          * @param \WP_Customize_Control|string $id
          * @param array $args
          * @return \WP_Customize_Control
+         * @phpstan-param array{
+         *   instance_number?: int,
+         *   manager?: WP_Customize_Manager,
+         *   id?: string,
+         *   settings?: array,
+         *   setting?: string,
+         *   capability?: string,
+         *   priority?: int,
+         *   section?: string,
+         *   label?: string,
+         *   description?: string,
+         *   choices?: array,
+         *   input_attrs?: array,
+         *   allow_addition?: bool,
+         *   json?: array,
+         *   type?: string,
+         *   active_callback?: callable,
+         * } $args See WP_Customize_Control::__construct()
          */
         public function add_control($id, $args = array())
         {
@@ -20580,7 +20611,6 @@ namespace {
         {
         }
         /**
-         * @param array $autofocus
          * @phpstan-param array{
          *   control?: string,
          *   section?: string,
@@ -20591,7 +20621,6 @@ namespace {
         {
         }
         /**
-         * @return string[]
          * @phpstan-return array{
          *   control: string,
          *   section: string,
@@ -20628,6 +20657,7 @@ namespace {
         public function register_dynamic_settings()
         {
         }
+        /**
          * @phpstan-return never
          */
         public function handle_load_themes_request()
@@ -20708,6 +20738,7 @@ namespace {
         public function filter_nonces($nonces)
         {
         }
+        /**
          * @phpstan-return never
          */
         public function ajax_load_available_items()
@@ -20769,14 +20800,13 @@ namespace {
         {
         }
         /**
-         * @param array $postarr
-         * @return \WP_Post|\WP_Error
          * @phpstan-param array{
          *   post_title?: string,
          *   post_type?: string,
          *   post_name?: string,
          *   post_content?: string,
          * } $postarr
+         * @return \WP_Post|\WP_Error
          */
         public function insert_auto_draft_post($postarr)
         {
@@ -20926,7 +20956,6 @@ namespace {
         /**
          * @param \WP_Customize_Manager $manager
          * @param string $id
-         * @param array $args
          * @phpstan-param array{
          *   priority?: int,
          *   capability?: string,
@@ -20970,6 +20999,7 @@ namespace {
         public final function get_content()
         {
         }
+        /**
          * @phpstan-return void
          */
         public final function maybe_render()
@@ -21053,7 +21083,6 @@ namespace {
         /**
          * @param \WP_Customize_Manager $manager
          * @param string $id
-         * @param array $args
          * @phpstan-param array{
          *   priority?: int,
          *   panel?: string,
@@ -21099,6 +21128,7 @@ namespace {
         public final function get_content()
         {
         }
+        /**
          * @phpstan-return void
          */
         public final function maybe_render()
@@ -21180,7 +21210,6 @@ namespace {
         /**
          * @param \WP_Customize_Manager $manager
          * @param string $id
-         * @param array $args
          * @phpstan-param array{
          *   type?: string,
          *   capability?: string,
@@ -21197,7 +21226,6 @@ namespace {
         {
         }
         /**
-         * @return array
          * @phpstan-return array{
          *   base: string,
          *   keys: array,
@@ -21209,9 +21237,6 @@ namespace {
         protected function aggregate_multidimensional()
         {
         }
-        /**
-         * @ignore
-         */
         public static function reset_aggregated_multidimensionals()
         {
         }
@@ -21300,15 +21325,9 @@ namespace {
         protected function update($value)
         {
         }
-        /**
-         * @deprecated 4.4.0
-         */
         protected function _update_theme_mod()
         {
         }
-        /**
-         * @deprecated 4.4.0
-         */
         protected function _update_option()
         {
         }
@@ -21410,6 +21429,7 @@ namespace {
         public function filter_customize_dynamic_setting_args($args, $setting_id)
         {
         }
+        /**
          * @phpstan-return void
          */
         public function override_sidebars_widgets_for_theme_switch()
@@ -21517,7 +21537,6 @@ namespace {
         }
         /**
          * @param array $args
-         * @return array
          * @phpstan-return array{
          *   control: string,
          *   content: string,
@@ -21625,6 +21644,7 @@ namespace {
         public function call_widget_update($widget_id)
         {
         }
+        /**
          * @phpstan-return never
          */
         public function wp_ajax_update_widget()
@@ -21641,18 +21661,18 @@ namespace {
         public function customize_dynamic_partial_args($partial_args, $partial_id)
         {
         }
+        /**
          * @phpstan-return void
          */
         public function selective_refresh_init()
         {
         }
         /**
-         * @param array $params
-         * @return array
          * @phpstan-param array{
          *   args?: array,
          *   widget_args?: array,
          * } $params
+         * @return array
          */
         public function filter_dynamic_sidebar_params($params)
         {
@@ -21685,12 +21705,11 @@ namespace {
         }
         /**
          * @param \WP_Customize_Partial $partial
-         * @param array $context
-         * @return string|false
          * @phpstan-param array{
          *   sidebar_id?: string,
          *   sidebar_instance_number?: int,
          * } $context
+         * @return string|false
          */
         public function render_widget_partial($partial, $context)
         {
@@ -21711,27 +21730,15 @@ namespace {
         public function capture_filter_pre_get_option($value)
         {
         }
-        /**
-         * @deprecated 4.2.0
-         */
         public function setup_widget_addition_previews()
         {
         }
-        /**
-         * @deprecated 4.2.0
-         */
         public function prepreview_added_sidebars_widgets()
         {
         }
-        /**
-         * @deprecated 4.2.0
-         */
         public function prepreview_added_widget_instance()
         {
         }
-        /**
-         * @deprecated 4.2.0
-         */
         public function remove_prepreview_filters()
         {
         }
@@ -21760,7 +21767,6 @@ namespace {
          */
         public $time_keys = array('after', 'before', 'year', 'month', 'monthnum', 'week', 'w', 'dayofyear', 'day', 'dayofweek', 'dayofweek_iso', 'hour', 'minute', 'second');
         /**
-         * @param array $date_query
          * @param string $default_column
          * @phpstan-return void
          */
@@ -21810,7 +21816,6 @@ namespace {
         {
         }
         /**
-         * @return string[]
          * @phpstan-return array{
          *   join: string,
          *   where: string,
@@ -21822,7 +21827,6 @@ namespace {
         /**
          * @param array $query
          * @param int $depth
-         * @return array
          * @phpstan-return array{
          *   join: string,
          *   where: string,
@@ -21833,7 +21837,6 @@ namespace {
         }
         /**
          * @param array $query
-         * @return array
          * @phpstan-return array{
          *   join: string[],
          *   where: string[],
@@ -21845,7 +21848,6 @@ namespace {
         /**
          * @param array $query
          * @param array $parent_query
-         * @return array
          * @phpstan-return array{
          *   join: string[],
          *   where: string[],
@@ -21883,7 +21885,6 @@ namespace {
         }
         /**
          * @param string $relation
-         * @return string
          * @phpstan-return 'AND'|'OR'
          */
         public function sanitize_relation($relation)
@@ -21918,7 +21919,6 @@ namespace {
          */
         public $groups = array();
         /**
-         * @deprecated 4.5.0
          * @var int
          */
         public $group = 0;
@@ -22056,7 +22056,7 @@ namespace {
          */
         public $translations_path;
         /**
-         * @param mixed ...$args
+         * @param mixed $args
          */
         public function __construct(...$args)
         {
@@ -22081,8 +22081,6 @@ namespace {
     class WP_Duotone
     {
         /**
-         * @deprecated 6.3.0
-         * @internal
          * @param array $preset
          * @return string
          */
@@ -22090,8 +22088,6 @@ namespace {
         {
         }
         /**
-         * @deprecated 6.3.0
-         * @internal
          * @param array $preset
          * @return string
          */
@@ -22145,8 +22141,6 @@ namespace {
         {
         }
         /**
-         * @deprecated 6.3.0
-         * @internal
          * @param array $preset
          * @return string
          */
@@ -22160,8 +22154,6 @@ namespace {
         public static $mce_locale;
         /**
          * @param string $editor_id
-         * @param array $settings
-         * @return array
          * @phpstan-param array{
          *   wpautop?: bool,
          *   media_buttons?: bool,
@@ -22178,6 +22170,7 @@ namespace {
          *   tinymce?: bool|array,
          *   quicktags?: bool|array,
          * } $settings
+         * @return array
          */
         public static function parse_settings($editor_id, $settings)
         {
@@ -22186,6 +22179,22 @@ namespace {
          * @param string $content
          * @param string $editor_id
          * @param array $settings
+         * @phpstan-param array{
+         *   wpautop?: bool,
+         *   media_buttons?: bool,
+         *   default_editor?: string,
+         *   drag_drop_upload?: bool,
+         *   textarea_name?: string,
+         *   textarea_rows?: int,
+         *   tabindex?: string|int,
+         *   tabfocus_elements?: string,
+         *   editor_css?: string,
+         *   editor_class?: string,
+         *   teeny?: bool,
+         *   dfw?: bool,
+         *   tinymce?: bool|array,
+         *   quicktags?: bool|array,
+         * } $settings See _WP_Editors::parse_settings()
          */
         public static function editor($content, $editor_id, $settings = array())
         {
@@ -22203,6 +22212,7 @@ namespace {
         public static function enqueue_scripts($default_scripts = \false)
         {
         }
+        /**
          * @phpstan-return void
          */
         public static function enqueue_default_editor()
@@ -22231,11 +22241,13 @@ namespace {
         public static function wp_mce_translation($mce_locale = '', $json_only = \false)
         {
         }
+        /**
          * @phpstan-return void
          */
         public static function force_uncompressed_tinymce()
         {
         }
+        /**
          * @phpstan-return void
          */
         public static function print_tinymce_scripts()
@@ -22244,15 +22256,10 @@ namespace {
         public static function editor_js()
         {
         }
-        /**
-         * @deprecated 4.3.0
-         */
         public static function wp_fullscreen_html()
         {
         }
         /**
-         * @param array $args
-         * @return array|false
          * @phpstan-param array{
          *   pagenum?: int,
          *   s?: string,
@@ -22267,6 +22274,7 @@ namespace {
         public static function wp_link_query($args = array())
         {
         }
+        /**
          * @phpstan-return void
          */
         public static function wp_link_dialog()
@@ -22296,6 +22304,7 @@ namespace {
         public function run_shortcode($content)
         {
         }
+        /**
          * @phpstan-return void
          */
         public function maybe_run_ajax_cache()
@@ -22318,25 +22327,23 @@ namespace {
         {
         }
         /**
-         * @param array $attr
-         * @param string $url
-         * @return string|false
          * @phpstan-param array{
          *   width?: int,
          *   height?: int,
          * } $attr
+         * @param string $url
+         * @return string|false
          */
         public function get_embed_handler_html($attr, $url)
         {
         }
         /**
-         * @param array $attr
-         * @param string $url
-         * @return string|false
          * @phpstan-param array{
          *   width?: int,
          *   height?: int,
          * } $attr
+         * @param string $url
+         * @return string|false
          */
         public function shortcode($attr, $url = '')
         {
@@ -22498,6 +22505,7 @@ namespace {
     #[\AllowDynamicProperties]
     class WP_Fatal_Error_Handler
     {
+        /**
          * @phpstan-return void
          */
         public function handle()
@@ -22775,8 +22783,6 @@ namespace {
          */
         public $host_only;
         /**
-         * @param string|array $data
-         * @param string $requested_url
          * @phpstan-param array{
          *   name?: string,
          *   value?: mixed,
@@ -22786,6 +22792,7 @@ namespace {
          *   port?: int|string,
          *   host_only?: bool,
          * } $data
+         * @param string $requested_url
          * @phpstan-return void
          */
         public function __construct($data, $requested_url = '')
@@ -22811,7 +22818,6 @@ namespace {
         {
         }
         /**
-         * @return array
          * @phpstan-return array{
          *   expires: string|int|null,
          *   path: string,
@@ -22822,16 +22828,6 @@ namespace {
         {
         }
     }
-    /**
-     * HTTP API: WP_Http_Curl class
-     *
-     * @package WordPress
-     * @subpackage HTTP
-     * @since 4.4.0
-     */
-    /**
-     * @deprecated 6.4.0
-     */
     #[\AllowDynamicProperties]
     class WP_Http_Curl
     {
@@ -23170,16 +23166,6 @@ namespace {
         {
         }
     }
-    /**
-     * HTTP API: WP_Http_Streams class
-     *
-     * @package WordPress
-     * @subpackage HTTP
-     * @since 4.4.0
-     */
-    /**
-     * @deprecated 6.4.0
-     */
     #[\AllowDynamicProperties]
     class WP_Http_Streams
     {
@@ -23207,9 +23193,6 @@ namespace {
         {
         }
     }
-    /**
-     * @deprecated 3.7.0
-     */
     class WP_HTTP_Fsockopen extends \WP_Http_Streams
     {
         // For backward compatibility for users who are using the class directly.
@@ -23281,8 +23264,6 @@ namespace {
         const NETWORK_AUTHENTICATION_REQUIRED = 511;
         /**
          * @param string $url
-         * @param string|array $args
-         * @return array|\WP_Error
          * @phpstan-param array{
          *   method?: string,
          *   timeout?: float,
@@ -23302,6 +23283,7 @@ namespace {
          *   filename?: string,
          *   limit_response_size?: int,
          * } $args
+         * @return array|\WP_Error
          * @phpstan-return array{headers: \WpOrg\Requests\Utility\CaseInsensitiveDictionary, body: string, response: array{code: int,message: string}, cookies: array<int, \WP_Http_Cookie>, filename: string|null, http_response: \WP_HTTP_Requests_Response}|\WP_Error
          */
         public function request($url, $args = array())
@@ -23326,13 +23308,11 @@ namespace {
         }
         /**
          * @param string $location
-         * @throws \WpOrg\Requests\Exception
          */
         public static function validate_redirects($location)
         {
         }
         /**
-         * @deprecated 6.4.0
          * @param array $args
          * @param string $url
          * @return string|false
@@ -23369,7 +23349,6 @@ namespace {
         }
         /**
          * @param string $response
-         * @return array
          * @phpstan-return array{
          *   headers: string,
          *   body: string,
@@ -23381,7 +23360,6 @@ namespace {
         /**
          * @param string|array $headers
          * @param string $url
-         * @return array
          * @phpstan-return array{
          *   response: array{
          *     code: int,
@@ -23415,7 +23393,6 @@ namespace {
         {
         }
         /**
-         * @deprecated 4.4.0
          * @param string $url
          * @return bool|array
          */
@@ -23485,7 +23462,6 @@ namespace {
         /**
          * @param string $destfilename
          * @param string $mime_type
-         * @return array|\WP_Error
          * @phpstan-return \WP_Error|array{
          *   path: string,
          *   file: string,
@@ -23499,22 +23475,20 @@ namespace {
         /**
          * @param int|null $max_w
          * @param int|null $max_h
-         * @param bool|array $crop
-         * @return true|\WP_Error
          * @phpstan-param bool|array{
          *   0: string,
          *   1: string,
          * } $crop
+         * @return true|\WP_Error
          */
         public abstract function resize($max_w, $max_h, $crop = \false);
         /**
-         * @param array $sizes
-         * @return array
          * @phpstan-param array<int|string, array{
          *   width: int,
          *   height: int,
          *   crop?: bool|array,
          * }> $sizes
+         * @return array
          */
         public abstract function multi_resize($sizes);
         /**
@@ -23545,7 +23519,6 @@ namespace {
          */
         public abstract function stream($mime_type = \null);
         /**
-         * @return int[]
          * @phpstan-return array{
          *   width: int,
          *   height: int,
@@ -23675,12 +23648,11 @@ namespace {
         /**
          * @param int|null $max_w
          * @param int|null $max_h
-         * @param bool|array $crop
-         * @return true|\WP_Error
          * @phpstan-param bool|array{
          *   0: string,
          *   1: string,
          * } $crop
+         * @return true|\WP_Error
          */
         public function resize($max_w, $max_h, $crop = \false)
         {
@@ -23688,36 +23660,33 @@ namespace {
         /**
          * @param int $max_w
          * @param int $max_h
-         * @param bool|array $crop
-         * @return resource|\GdImage|\WP_Error
          * @phpstan-param bool|array{
          *   0: string,
          *   1: string,
          * } $crop
+         * @return resource|\GdImage|\WP_Error
          */
         protected function _resize($max_w, $max_h, $crop = \false)
         {
         }
         /**
-         * @param array $sizes
-         * @return array
          * @phpstan-param array<int|string, array{
          *   width?: int,
          *   height?: int,
          *   crop?: bool|array,
          * }> $sizes
+         * @return array
          */
         public function multi_resize($sizes)
         {
         }
         /**
-         * @param array $size_data
-         * @return array|\WP_Error
          * @phpstan-param array{
          *   width?: int,
          *   height?: int,
          *   crop?: bool|array,
          * } $size_data
+         * @return array|\WP_Error
          */
         public function make_subsize($size_data)
         {
@@ -23753,7 +23722,6 @@ namespace {
         /**
          * @param string|null $destfilename
          * @param string|null $mime_type
-         * @return array|\WP_Error
          * @phpstan-return \WP_Error|array{
          *   path: string,
          *   file: string,
@@ -23770,7 +23738,6 @@ namespace {
          * @param resource|\GdImage $image
          * @param string|null $filename
          * @param string|null $mime_type
-         * @return array|\WP_Error
          * @phpstan-return \WP_Error|array{
          *   path: string,
          *   file: string,
@@ -23853,12 +23820,11 @@ namespace {
         /**
          * @param int|null $max_w
          * @param int|null $max_h
-         * @param bool|array $crop
-         * @return true|\WP_Error
          * @phpstan-param bool|array{
          *   0: string,
          *   1: string,
          * } $crop
+         * @return true|\WP_Error
          */
         public function resize($max_w, $max_h, $crop = \false)
         {
@@ -23874,25 +23840,23 @@ namespace {
         {
         }
         /**
-         * @param array $sizes
-         * @return array
          * @phpstan-param array<int|string, array{
          *   width?: int,
          *   height?: int,
          *   crop?: bool|array,
          * }> $sizes
+         * @return array
          */
         public function multi_resize($sizes)
         {
         }
         /**
-         * @param array $size_data
-         * @return array|\WP_Error
          * @phpstan-param array{
          *   width?: int,
          *   height?: int,
          *   crop?: bool|array,
          * } $size_data
+         * @return array|\WP_Error
          */
         public function make_subsize($size_data)
         {
@@ -23934,7 +23898,6 @@ namespace {
         /**
          * @param string $destfilename
          * @param string $mime_type
-         * @return array|\WP_Error
          * @phpstan-return \WP_Error|array{
          *   path: string,
          *   file: string,
@@ -23954,7 +23917,6 @@ namespace {
          * @param \Imagick $image
          * @param string $filename
          * @param string $mime_type
-         * @return array|\WP_Error
          * @phpstan-return \WP_Error|array{
          *   path: string,
          *   file: string,
@@ -24032,10 +23994,9 @@ namespace {
         }
         /**
          * @param string|array $orderby
-         * @param string $order
+         * @phpstan-param 'ASC'|'DESC' $order
          * @param bool $preserve_keys
          * @return array
-         * @phpstan-param 'ASC'|'DESC' $order
          */
         public function sort($orderby = array(), $order = 'ASC', $preserve_keys = \false)
         {
@@ -24192,16 +24153,12 @@ namespace {
         {
         }
         /**
-         * @param string $meridiem
-         * @return string
          * @phpstan-param 'am'|'pm'|'AM'|'PM' $meridiem
+         * @return string
          */
         public function get_meridiem($meridiem)
         {
         }
-        /**
-         * @deprecated
-         */
         public function register_globals()
         {
         }
@@ -24302,7 +24259,6 @@ namespace {
          */
         protected $has_or_relation = \false;
         /**
-         * @param array $meta_query
          * @phpstan-return void
          */
         public function __construct($meta_query = \false)
@@ -24340,7 +24296,6 @@ namespace {
          * @param string $primary_table
          * @param string $primary_id_column
          * @param object $context
-         * @return string[]|false
          * @phpstan-return false|array{
          *   join: string,
          *   where: string,
@@ -24350,7 +24305,6 @@ namespace {
         {
         }
         /**
-         * @return string[]
          * @phpstan-return array{
          *   join: string,
          *   where: string,
@@ -24362,7 +24316,6 @@ namespace {
         /**
          * @param array $query
          * @param int $depth
-         * @return string[]
          * @phpstan-return array{
          *   join: string,
          *   where: string,
@@ -24375,7 +24328,6 @@ namespace {
          * @param array $clause
          * @param array $parent_query
          * @param string $clause_key
-         * @return array
          * @phpstan-return array{
          *   join: string[],
          *   where: string[],
@@ -24420,24 +24372,21 @@ namespace {
         {
         }
         /**
-         * @param string $object_type
+         * @phpstan-param 'term'|'comment' $object_type
          * @param array $object_ids
          * @return void|\WP_Error
-         * @phpstan-param 'term'|'comment' $object_type
          */
         public function queue_objects($object_type, $object_ids)
         {
         }
         /**
-         * @param string $object_type
-         * @return void|\WP_Error
          * @phpstan-param 'comment'|'term' $object_type
+         * @return void|\WP_Error
          */
         public function reset_queue($object_type)
         {
         }
         /**
-         * @deprecated 6.3.0
          * @param mixed $check
          * @return mixed
          */
@@ -24445,7 +24394,6 @@ namespace {
         {
         }
         /**
-         * @deprecated 6.3.0
          * @param mixed $check
          * @return mixed
          */
@@ -24512,7 +24460,6 @@ namespace {
          */
         public $max_num_pages = 0;
         /**
-         * @param string|array $query
          * @phpstan-param array{
          *   network__in?: int[],
          *   network__not_in?: int[],
@@ -24538,6 +24485,25 @@ namespace {
         }
         /**
          * @param string|array $query
+         * @phpstan-param array{
+         *   network__in?: int[],
+         *   network__not_in?: int[],
+         *   count?: bool,
+         *   fields?: string,
+         *   number?: int,
+         *   offset?: int,
+         *   no_found_rows?: bool,
+         *   orderby?: string|array,
+         *   order?: string,
+         *   domain?: string,
+         *   domain__in?: string[],
+         *   domain__not_in?: string[],
+         *   path?: string,
+         *   path__in?: string[],
+         *   path__not_in?: string[],
+         *   search?: string,
+         *   update_network_cache?: bool,
+         * } $query See WP_Network_Query::__construct()
          */
         public function parse_query($query = '')
         {
@@ -24584,17 +24550,6 @@ namespace {
         {
         }
     }
-    /**
-     * Network API: WP_Network class
-     *
-     * @package WordPress
-     * @subpackage Multisite
-     * @since 4.4.0
-     */
-    /**
-     * @property int $id
-     * @property int $site_id
-     */
     #[\AllowDynamicProperties]
     class WP_Network
     {
@@ -24846,9 +24801,6 @@ namespace {
         public function switch_to_blog($blog_id)
         {
         }
-        /**
-         * @deprecated 3.5.0
-         */
         public function reset()
         {
         }
@@ -24907,11 +24859,10 @@ namespace {
         }
         /**
          * @param string $url
-         * @param string|array $args
-         * @return string|false
          * @phpstan-param array{
          *   discover?: bool,
          * } $args
+         * @return string|false
          */
         public function get_provider($url, $args = '')
         {
@@ -24934,6 +24885,11 @@ namespace {
          * @param string $url
          * @param string|array $args
          * @return object|false
+         * @phpstan-param array{
+         *   width?: int|string,
+         *   height?: int|string,
+         *   discover?: bool,
+         * } $args See wp_oembed_get()
          */
         public function get_data($url, $args = '')
         {
@@ -24942,6 +24898,11 @@ namespace {
          * @param string $url
          * @param string|array $args
          * @return string|false
+         * @phpstan-param array{
+         *   width?: int|string,
+         *   height?: int|string,
+         *   discover?: bool,
+         * } $args See wp_oembed_get()
          */
         public function get_html($url, $args = '')
         {
@@ -24958,6 +24919,11 @@ namespace {
          * @param string $url
          * @param string|array $args
          * @return object|false
+         * @phpstan-param array{
+         *   width?: int|string,
+         *   height?: int|string,
+         *   discover?: bool,
+         * } $args See wp_oembed_get()
          */
         public function fetch($provider, $url, $args = '')
         {
@@ -24988,7 +24954,6 @@ namespace {
          */
         protected $type;
         /**
-         * @param string $extension_type
          * @phpstan-param 'plugin'|'theme' $extension_type
          */
         public function __construct($extension_type)
@@ -24996,14 +24961,13 @@ namespace {
         }
         /**
          * @param string $extension
-         * @param array $error
-         * @return bool
          * @phpstan-param array{
          *   type?: int,
          *   file?: string,
          *   line?: int,
          *   message?: string,
          * } $error
+         * @return bool
          */
         public function set($extension, $error)
         {
@@ -25023,7 +24987,6 @@ namespace {
         {
         }
         /**
-         * @return array
          * @phpstan-return array<int|string, array>
          */
         public function get_all()
@@ -25246,164 +25209,207 @@ namespace {
     final class WP_Post_Type
     {
         /**
-         * @var string $name
+         * @var string
          */
         public $name;
         /**
-         * @var string $label
+         * @var string
          */
         public $label;
         /**
-         * @var \stdClass $labels
+         * @var \stdClass
          */
         public $labels;
         /**
-         * @var string $description
+         * @var string
          */
         public $description = '';
         /**
-         * @var bool $public
+         * @var bool
          */
         public $public = \false;
         /**
-         * @var bool $hierarchical
+         * @var bool
          */
         public $hierarchical = \false;
         /**
-         * @var bool $exclude_from_search
+         * @var bool
          */
         public $exclude_from_search = \null;
         /**
-         * @var bool $publicly_queryable
+         * @var bool
          */
         public $publicly_queryable = \null;
         /**
-         * @var bool $show_ui
+         * @var bool
          */
         public $show_ui = \null;
         /**
-         * @var bool|string $show_in_menu
+         * @var bool|string
          */
         public $show_in_menu = \null;
         /**
-         * @var bool $show_in_nav_menus
+         * @var bool
          */
         public $show_in_nav_menus = \null;
         /**
-         * @var bool $show_in_admin_bar
+         * @var bool
          */
         public $show_in_admin_bar = \null;
         /**
-         * @var int $menu_position
+         * @var int
          */
         public $menu_position = \null;
         /**
-         * @var string $menu_icon
+         * @var string
          */
         public $menu_icon = \null;
         /**
-         * @var string $capability_type
+         * @var string
          */
         public $capability_type = 'post';
         /**
-         * @var bool $map_meta_cap
+         * @var bool
          */
         public $map_meta_cap = \false;
         /**
-         * @var callable $register_meta_box_cb
+         * @var callable
          */
         public $register_meta_box_cb = \null;
         /**
-         * @var string[] $taxonomies
+         * @var string[]
          */
         public $taxonomies = array();
         /**
-         * @var bool|string $has_archive
+         * @var bool|string
          */
         public $has_archive = \false;
         /**
-         * @var string|bool $query_var
+         * @var string|bool
          */
         public $query_var;
         /**
-         * @var bool $can_export
+         * @var bool
          */
         public $can_export = \true;
         /**
-         * @var bool $delete_with_user
+         * @var bool
          */
         public $delete_with_user = \null;
         /**
-         * @var array[] $template
+         * @var array[]
          */
         public $template = array();
         /**
-         * @var string|false $template_lock
+         * @var string|false
          */
         public $template_lock = \false;
         /**
-         * @var bool $_builtin
+         * @var bool
          */
         public $_builtin = \false;
         /**
-         * @var string $_edit_link
+         * @var string
          */
         public $_edit_link = 'post.php?post=%d';
         /**
-         * @var \stdClass $cap
+         * @var \stdClass
          */
         public $cap;
         /**
-         * @var array|false $rewrite
+         * @var array|false
          */
         public $rewrite;
         /**
-         * @var array|bool $supports
+         * @var array|bool
          */
         public $supports;
         /**
-         * @var bool $show_in_rest
+         * @var bool
          */
         public $show_in_rest;
         /**
-         * @var string|bool $rest_base
+         * @var string|bool
          */
         public $rest_base;
         /**
-         * @var string|bool $rest_namespace
+         * @var string|bool
          */
         public $rest_namespace;
         /**
-         * @var string|bool $rest_controller_class
+         * @var string|bool
          */
         public $rest_controller_class;
         /**
-         * @var \WP_REST_Controller $rest_controller
+         * @var \WP_REST_Controller
          */
         public $rest_controller;
         /**
-         * @var string|bool $revisions_rest_controller_class
+         * @var string|bool
          */
         public $revisions_rest_controller_class;
         /**
-         * @var \WP_REST_Controller $revisions_rest_controller
+         * @var \WP_REST_Controller
          */
         public $revisions_rest_controller;
         /**
-         * @var string|bool $autosave_rest_controller_class
+         * @var string|bool
          */
         public $autosave_rest_controller_class;
         /**
-         * @var \WP_REST_Controller $autosave_rest_controller
+         * @var \WP_REST_Controller
          */
         public $autosave_rest_controller;
         /**
-         * @var bool $late_route_registration
+         * @var bool
          */
         public $late_route_registration;
         /**
          * @param string $post_type
          * @param array|string $args
+         * @phpstan-param array{
+         *   label?: string,
+         *   labels?: string[],
+         *   description?: string,
+         *   public?: bool,
+         *   hierarchical?: bool,
+         *   exclude_from_search?: bool,
+         *   publicly_queryable?: bool,
+         *   show_ui?: bool,
+         *   show_in_menu?: bool|string,
+         *   show_in_nav_menus?: bool,
+         *   show_in_admin_bar?: bool,
+         *   show_in_rest?: bool,
+         *   rest_base?: string,
+         *   rest_namespace?: string,
+         *   rest_controller_class?: string,
+         *   autosave_rest_controller_class?: string|bool,
+         *   revisions_rest_controller_class?: string|bool,
+         *   late_route_registration?: bool,
+         *   menu_position?: int,
+         *   menu_icon?: string,
+         *   capability_type?: string|array,
+         *   capabilities?: string[],
+         *   map_meta_cap?: bool,
+         *   supports?: array|false,
+         *   register_meta_box_cb?: callable,
+         *   taxonomies?: string[],
+         *   has_archive?: bool|string,
+         *   rewrite?: bool|array{
+         *     slug?: string,
+         *     with_front?: bool,
+         *     feeds?: bool,
+         *     pages?: bool,
+         *     ep_mask?: int,
+         *   },
+         *   query_var?: string|bool,
+         *   can_export?: bool,
+         *   delete_with_user?: bool,
+         *   template?: array,
+         *   template_lock?: string|false,
+         *   _builtin?: bool,
+         *   _edit_link?: string,
+         * } $args See register_post_type()
          */
         public function __construct($post_type, $args = array())
         {
@@ -25472,19 +25478,6 @@ namespace {
         {
         }
     }
-    /**
-     * Post API: WP_Post class
-     *
-     * @package WordPress
-     * @subpackage Post
-     * @since 4.4.0
-     */
-    /**
-     * @property-read int[] $ancestors
-     * @property-read int[] $post_category
-     * @property-read string[] $tags_input
-     * @property string $page_template
-     */
     #[\AllowDynamicProperties]
     final class WP_Post
     {
@@ -25850,7 +25843,6 @@ namespace {
         {
         }
         /**
-         * @param string|array $query
          * @phpstan-param array{
          *   attachment_id?: int,
          *   author?: int|string,
@@ -26137,7 +26129,6 @@ namespace {
         {
         }
         /**
-         * @deprecated 4.5.0
          * @return false
          */
         public function is_comments_popup()
@@ -26305,7 +26296,6 @@ namespace {
         {
         }
         /**
-         * @deprecated 4.5.0
          * @param mixed $check
          * @param int $term_id
          * @return mixed
@@ -26314,7 +26304,6 @@ namespace {
         {
         }
         /**
-         * @deprecated 4.5.0
          * @param mixed $check
          * @param int $comment_id
          * @return mixed
@@ -26366,12 +26355,11 @@ namespace {
         /**
          * @param int $rate_limit
          * @param array $error
-         * @param array $extension
-         * @return true|\WP_Error
          * @phpstan-param array{
          *   slug?: string,
          *   type?: string,
          * } $extension
+         * @return true|\WP_Error
          */
         public function maybe_send_recovery_mode_email($rate_limit, $error, $extension)
         {
@@ -26448,6 +26436,7 @@ namespace {
         public function __construct()
         {
         }
+        /**
          * @phpstan-return void
          */
         public function initialize()
@@ -26484,6 +26473,7 @@ namespace {
         public function exit_recovery_mode()
         {
         }
+        /**
          * @phpstan-return void
          */
         public function handle_exit_recovery_mode()
@@ -26509,7 +26499,6 @@ namespace {
         }
         /**
          * @param array $error
-         * @return array|false
          * @phpstan-return false|array{
          *   slug: string,
          *   type: string,
@@ -26532,6 +26521,7 @@ namespace {
         protected function store_error($error)
         {
         }
+        /**
          * @phpstan-return never
          */
         protected function redirect_protected()
@@ -26834,7 +26824,6 @@ namespace {
         /**
          * @param string $regex
          * @param string|array $query
-         * @param string $after
          * @phpstan-param 'top'|'bottom' $after
          */
         public function add_rule($regex, $query, $after = 'bottom')
@@ -26858,7 +26847,6 @@ namespace {
         /**
          * @param string $name
          * @param string $struct
-         * @param array $args
          * @phpstan-param array{
          *   with_front?: bool,
          *   ep_mask?: int,
@@ -26990,15 +26978,9 @@ namespace {
         public function __call($name, $arguments)
         {
         }
-        /**
-         * @deprecated 4.9.0
-         */
         protected function _init()
         {
         }
-        /**
-         * @deprecated 4.7.0
-         */
         public function reinit()
         {
         }
@@ -27055,6 +27037,7 @@ namespace {
         public function is_role($role)
         {
         }
+        /**
          * @phpstan-return void
          */
         public function init_roles()
@@ -27085,12 +27068,11 @@ namespace {
         /**
          * @param string $id
          * @param string $src
-         * @param array $deps
-         * @param string|false|null $version
          * @phpstan-param array<int|string, array{
          *   id: string,
          *   import?: string,
          * }> $deps
+         * @param string|false|null $version
          */
         public function register(string $id, string $src, array $deps = array(), $version = \false)
         {
@@ -27098,12 +27080,11 @@ namespace {
         /**
          * @param string $id
          * @param string $src
-         * @param array $deps
-         * @param string|false|null $version
          * @phpstan-param array<int|string, array{
          *   id: string,
          *   import?: string,
          * }> $deps
+         * @param string|false|null $version
          */
         public function enqueue(string $id, string $src = '', array $deps = array(), $version = \false)
         {
@@ -27156,7 +27137,6 @@ namespace {
          */
         public $concat = '';
         /**
-         * @deprecated 3.4.0
          * @var string
          */
         public $concat_version = '';
@@ -27199,7 +27179,6 @@ namespace {
         {
         }
         /**
-         * @deprecated 3.3.0
          * @param string $handle
          * @param bool $display
          * @return bool|string|void
@@ -27233,7 +27212,6 @@ namespace {
         {
         }
         /**
-         * @deprecated 6.3.0
          * @param string $handle
          * @param string $position
          * @param bool $display
@@ -27512,7 +27490,6 @@ namespace {
          */
         public $max_num_pages = 0;
         /**
-         * @param string|array $query
          * @phpstan-param array{
          *   site__in?: int[],
          *   site__not_in?: int[],
@@ -27560,6 +27537,47 @@ namespace {
         }
         /**
          * @param string|array $query
+         * @phpstan-param array{
+         *   site__in?: int[],
+         *   site__not_in?: int[],
+         *   count?: bool,
+         *   date_query?: array,
+         *   fields?: string,
+         *   ID?: int,
+         *   number?: int,
+         *   offset?: int,
+         *   no_found_rows?: bool,
+         *   orderby?: string|array,
+         *   order?: string,
+         *   network_id?: int,
+         *   network__in?: int[],
+         *   network__not_in?: int[],
+         *   domain?: string,
+         *   domain__in?: string[],
+         *   domain__not_in?: string[],
+         *   path?: string,
+         *   path__in?: string[],
+         *   path__not_in?: string[],
+         *   public?: int,
+         *   archived?: int,
+         *   mature?: int,
+         *   spam?: int,
+         *   deleted?: int,
+         *   lang_id?: int,
+         *   lang__in?: string[],
+         *   lang__not_in?: string[],
+         *   search?: string,
+         *   search_columns?: string[],
+         *   update_site_cache?: bool,
+         *   update_site_meta_cache?: bool,
+         *   meta_key?: string|string[],
+         *   meta_value?: string|string[],
+         *   meta_compare?: string,
+         *   meta_compare_key?: string,
+         *   meta_type?: string,
+         *   meta_type_key?: string,
+         *   meta_query?: array,
+         * } $query See WP_Site_Query::__construct()
          */
         public function parse_query($query = '')
         {
@@ -27606,21 +27624,6 @@ namespace {
         {
         }
     }
-    /**
-     * Site API: WP_Site class
-     *
-     * @package WordPress
-     * @subpackage Multisite
-     * @since 4.5.0
-     */
-    /**
-     * @property int $id
-     * @property int $network_id
-     * @property string $blogname
-     * @property string $siteurl
-     * @property int $post_count
-     * @property string $home
-     */
     #[\AllowDynamicProperties]
     final class WP_Site
     {
@@ -27736,7 +27739,6 @@ namespace {
          */
         public $concat = '';
         /**
-         * @deprecated 3.4.0
          * @var string
          */
         public $concat_version = '';
@@ -27845,9 +27847,6 @@ namespace {
          * @var string
          */
         public $primary_id_column;
-        /**
-         * @param array $tax_query
-         */
         public function __construct($tax_query)
         {
         }
@@ -27860,7 +27859,6 @@ namespace {
         }
         /**
          * @param string $relation
-         * @return string
          * @phpstan-return 'AND'|'OR'
          */
         public function sanitize_relation($relation)
@@ -27876,7 +27874,6 @@ namespace {
         /**
          * @param string $primary_table
          * @param string $primary_id_column
-         * @return string[]
          * @phpstan-return array{
          *   join: string,
          *   where: string,
@@ -27886,7 +27883,6 @@ namespace {
         {
         }
         /**
-         * @return string[]
          * @phpstan-return array{
          *   join: string,
          *   where: string,
@@ -27898,7 +27894,6 @@ namespace {
         /**
          * @param array $query
          * @param int $depth
-         * @return string[]
          * @phpstan-return array{
          *   join: string,
          *   where: string,
@@ -27910,7 +27905,6 @@ namespace {
         /**
          * @param array $clause
          * @param array $parent_query
-         * @return array
          * @phpstan-return array{
          *   join: string[],
          *   where: string[],
@@ -27929,7 +27923,6 @@ namespace {
         }
         /**
          * @param array $query
-         * @param string $resulting_field
          * @phpstan-param 'slug'|'name'|'term_taxonomy_id'|'term_id' $resulting_field
          * @phpstan-return void
          */
@@ -28021,23 +28014,23 @@ namespace {
          */
         public $update_count_callback;
         /**
-         * @var bool $show_in_rest
+         * @var bool
          */
         public $show_in_rest;
         /**
-         * @var string|bool $rest_base
+         * @var string|bool
          */
         public $rest_base;
         /**
-         * @var string|bool $rest_namespace
+         * @var string|bool
          */
         public $rest_namespace;
         /**
-         * @var string|bool $rest_controller_class
+         * @var string|bool
          */
         public $rest_controller_class;
         /**
-         * @var \WP_REST_Controller $rest_controller
+         * @var \WP_REST_Controller
          */
         public $rest_controller;
         /**
@@ -28060,6 +28053,47 @@ namespace {
          * @param string $taxonomy
          * @param array|string $object_type
          * @param array|string $args
+         * @phpstan-param array{
+         *   labels?: string[],
+         *   description?: string,
+         *   public?: bool,
+         *   publicly_queryable?: bool,
+         *   hierarchical?: bool,
+         *   show_ui?: bool,
+         *   show_in_menu?: bool,
+         *   show_in_nav_menus?: bool,
+         *   show_in_rest?: bool,
+         *   rest_base?: string,
+         *   rest_namespace?: string,
+         *   rest_controller_class?: string,
+         *   show_tagcloud?: bool,
+         *   show_in_quick_edit?: bool,
+         *   show_admin_column?: bool,
+         *   meta_box_cb?: bool|callable,
+         *   meta_box_sanitize_cb?: callable,
+         *   capabilities?: array{
+         *     manage_terms?: string,
+         *     edit_terms?: string,
+         *     delete_terms?: string,
+         *     assign_terms?: string,
+         *   },
+         *   rewrite?: bool|array{
+         *     slug?: string,
+         *     with_front?: bool,
+         *     hierarchical?: bool,
+         *     ep_mask?: int,
+         *   },
+         *   query_var?: string|bool,
+         *   update_count_callback?: callable,
+         *   default_term?: string|array{
+         *     name?: string,
+         *     slug?: string,
+         *     description?: string,
+         *   },
+         *   sort?: bool,
+         *   args?: array,
+         *   _builtin?: bool,
+         * } $args See register_taxonomy()
          */
         public function __construct($taxonomy, $object_type, $args = array())
         {
@@ -28131,7 +28165,6 @@ namespace {
          */
         public $terms;
         /**
-         * @param string|array $query
          * @phpstan-param array{
          *   taxonomy?: string|string[],
          *   object_ids?: int|int[],
@@ -28174,6 +28207,42 @@ namespace {
         }
         /**
          * @param string|array $query
+         * @phpstan-param array{
+         *   taxonomy?: string|string[],
+         *   object_ids?: int|int[],
+         *   orderby?: string,
+         *   order?: string,
+         *   hide_empty?: bool|int,
+         *   include?: int[]|string,
+         *   exclude?: int[]|string,
+         *   exclude_tree?: int[]|string,
+         *   number?: int|string,
+         *   offset?: int,
+         *   fields?: string,
+         *   count?: bool,
+         *   name?: string|string[],
+         *   slug?: string|string[],
+         *   term_taxonomy_id?: int|int[],
+         *   hierarchical?: bool,
+         *   search?: string,
+         *   name__like?: string,
+         *   description__like?: string,
+         *   pad_counts?: bool,
+         *   get?: string,
+         *   child_of?: int,
+         *   parent?: int,
+         *   childless?: bool,
+         *   cache_domain?: string,
+         *   cache_results?: bool,
+         *   update_term_meta_cache?: bool,
+         *   meta_key?: string|string[],
+         *   meta_value?: string|string[],
+         *   meta_compare?: string,
+         *   meta_compare_key?: string,
+         *   meta_type?: string,
+         *   meta_type_key?: string,
+         *   meta_query?: array,
+         * } $query See WP_Term_Query::__construct()
          */
         public function parse_query($query = '')
         {
@@ -28243,16 +28312,6 @@ namespace {
         {
         }
     }
-    /**
-     * Taxonomy API: WP_Term class
-     *
-     * @package WordPress
-     * @subpackage Taxonomy
-     * @since 4.4.0
-     */
-    /**
-     * @property-read object $data
-     */
     #[\AllowDynamicProperties]
     final class WP_Term
     {
@@ -28311,7 +28370,6 @@ namespace {
         {
         }
         /**
-         * @param string $filter
          * @phpstan-param 'edit'|'db'|'display'|'attribute'|'js'|'rss'|'raw' $filter
          */
         public function filter($filter)
@@ -28335,7 +28393,6 @@ namespace {
     class WP_Text_Diff_Renderer_inline extends \Text_Diff_Renderer_inline
     {
         /**
-         * @ignore
          * @param string $string
          * @param string $newlineEscape
          * @return string
@@ -28395,7 +28452,6 @@ namespace {
         {
         }
         /**
-         * @ignore
          * @param string $header
          * @return string
          */
@@ -28403,7 +28459,6 @@ namespace {
         {
         }
         /**
-         * @ignore
          * @param array $lines
          * @param string $prefix
          */
@@ -28411,7 +28466,6 @@ namespace {
         {
         }
         /**
-         * @ignore
          * @param string $line
          * @return string
          */
@@ -28419,7 +28473,6 @@ namespace {
         {
         }
         /**
-         * @ignore
          * @param string $line
          * @return string
          */
@@ -28427,7 +28480,6 @@ namespace {
         {
         }
         /**
-         * @ignore
          * @param string $line
          * @return string
          */
@@ -28435,14 +28487,12 @@ namespace {
         {
         }
         /**
-         * @ignore
          * @return string
          */
         public function emptyLine()
         {
         }
         /**
-         * @ignore
          * @param array $lines
          * @param bool $encode
          * @return string
@@ -28451,7 +28501,6 @@ namespace {
         {
         }
         /**
-         * @ignore
          * @param array $lines
          * @param bool $encode
          * @return string
@@ -28460,7 +28509,6 @@ namespace {
         {
         }
         /**
-         * @ignore
          * @param array $lines
          * @param bool $encode
          * @return string
@@ -28479,7 +28527,6 @@ namespace {
         /**
          * @param array $orig
          * @param array $final
-         * @return array
          * @phpstan-return array{
          *   orig_matches: array,
          *   final_matches: array,
@@ -28499,7 +28546,6 @@ namespace {
         {
         }
         /**
-         * @ignore
          * @param int $a
          * @param int $b
          * @return int
@@ -28553,7 +28599,6 @@ namespace {
          */
         protected $custom_paths = array();
         /**
-         * @deprecated
          * @var array
          */
         protected $cached_mo_files = array();
@@ -28603,7 +28648,6 @@ namespace {
         }
         /**
          * @param \WP_Upgrader $upgrader
-         * @param array $hook_extra
          * @phpstan-param array{
          *   action?: string,
          *   type?: string,
@@ -28696,7 +28740,6 @@ namespace {
         {
         }
         /**
-         * @deprecated 5.9.0
          * @return array
          */
         public static function get_fields_to_translate()
@@ -28717,20 +28760,18 @@ namespace {
         {
         }
         /**
-         * @param string $origin
-         * @return bool
          * @phpstan-param 'core'|'blocks'|'theme'|'user' $origin
+         * @return bool
          */
         protected static function has_same_registered_blocks($origin)
         {
         }
         /**
          * @param array $deprecated
-         * @param array $options
-         * @return \WP_Theme_JSON
          * @phpstan-param array{
          *   with_supports?: bool,
          * } $options
+         * @return \WP_Theme_JSON
          */
         public static function get_theme_data($deprecated = array(), $options = array())
         {
@@ -28757,9 +28798,8 @@ namespace {
         {
         }
         /**
-         * @param string $origin
-         * @return \WP_Theme_JSON
          * @phpstan-param 'default'|'blocks'|'theme'|'custom' $origin
+         * @return \WP_Theme_JSON
          */
         public static function get_merged_data($origin = 'custom')
         {
@@ -28771,7 +28811,6 @@ namespace {
         {
         }
         /**
-         * @deprecated 6.2.0
          * @return bool
          */
         public static function theme_has_support()
@@ -28820,9 +28859,8 @@ namespace {
         const V1_TO_V2_RENAMED_PATHS = array('border.customRadius' => 'border.radius', 'spacing.customMargin' => 'spacing.margin', 'spacing.customPadding' => 'spacing.padding', 'typography.customLineHeight' => 'typography.lineHeight');
         /**
          * @param array $theme_json
-         * @param string $origin
-         * @return array
          * @phpstan-param 'blocks'|'default'|'theme'|'custom' $origin
+         * @return array
          */
         public static function migrate($theme_json, $origin = 'theme')
         {
@@ -29122,7 +29160,6 @@ namespace {
         const LATEST_SCHEMA = 3;
         /**
          * @param array $theme_json
-         * @param string $origin
          * @phpstan-param 'blocks'|'default'|'theme'|'custom' $origin
          */
         public function __construct($theme_json = array('version' => self::LATEST_SCHEMA), $origin = 'theme')
@@ -29190,14 +29227,13 @@ namespace {
         /**
          * @param string[] $types
          * @param string[] $origins
-         * @param array $options
-         * @return string
          * @phpstan-param array{
          *   scope?: string,
          *   root_selector?: string,
          *   skip_root_layout_styles?: bool,
          *   include_block_style_variations?: bool,
          * } $options
+         * @return string
          */
         public function get_stylesheet($types = array('variables', 'styles', 'presets'), $origins = \null, $options = array())
         {
@@ -29374,11 +29410,10 @@ namespace {
         /**
          * @param array $theme_json
          * @param array $selectors
-         * @param array $options
-         * @return array
          * @phpstan-param array{
          *   include_block_style_variations?: bool,
          * } $options
+         * @return array
          */
         protected static function get_style_nodes($theme_json, $selectors = array(), $options = array())
         {
@@ -29427,7 +29462,6 @@ namespace {
         {
         }
         /**
-         * @deprecated 6.0.0
          * @param array $theme_json
          * @param array $path
          * @param bool|array $override
@@ -29462,9 +29496,8 @@ namespace {
         }
         /**
          * @param array $theme_json
-         * @param string $origin
-         * @return array
          * @phpstan-param 'blocks'|'default'|'theme'|'custom' $origin
+         * @return array
          */
         public static function remove_insecure_properties($theme_json, $origin = 'theme')
         {
@@ -29517,7 +29550,6 @@ namespace {
         {
         }
         /**
-         * @deprecated 6.6.0
          * @return null|void
          */
         public function set_spacing_sizes()
@@ -29568,6 +29600,7 @@ namespace {
         {
         }
     }
+    /**
      * @phpstan-type ThemeKey 'Name'|'Version'|'Status'|'Title'|'Author'|'Author Name'|'Author URI'|'Description'|'Template'|'Stylesheet'|'Template Files'|'Stylesheet Files'|'Template Dir'|'Stylesheet Dir'|'Screenshot'|'Tags'|'Theme Root'|'Theme Root URI'|'Parent Theme'
      */
     #[\AllowDynamicProperties]
@@ -29812,7 +29845,6 @@ namespace {
         {
         }
         /**
-         * @return string[]
          * @phpstan-return array{
          *   wp_template: string,
          *   wp_template_part: string,
@@ -29877,8 +29909,6 @@ namespace {
         {
         }
         /**
-         * @param array $state
-         * @return \WP_Token_Map
          * @phpstan-param array{
          *   storage_version?: string,
          *   key_length?: int,
@@ -29887,6 +29917,7 @@ namespace {
          *   small_words?: string,
          *   small_mappings?: array,
          * } $state
+         * @return \WP_Token_Map
          */
         public static function from_precomputed_table($state)
         {
@@ -29902,7 +29933,7 @@ namespace {
         /**
          * @param string $text
          * @param int $offset
-         * @param ?int &$matched_token_byte_length
+         * @param ?int $matched_token_byte_length
          * @param string $case_sensitivity
          * @return string|null
          */
@@ -29994,6 +30025,42 @@ namespace {
         public $query_limit;
         /**
          * @param null|string|array $query
+         * @phpstan-param array{
+         *   blog_id?: int,
+         *   role?: string|string[],
+         *   role__in?: string[],
+         *   role__not_in?: string[],
+         *   meta_key?: string|string[],
+         *   meta_value?: string|string[],
+         *   meta_compare?: string,
+         *   meta_compare_key?: string,
+         *   meta_type?: string,
+         *   meta_type_key?: string,
+         *   meta_query?: array,
+         *   capability?: string|string[],
+         *   capability__in?: string[],
+         *   capability__not_in?: string[],
+         *   include?: int[],
+         *   exclude?: int[],
+         *   search?: string,
+         *   search_columns?: string[],
+         *   orderby?: string|array,
+         *   order?: string,
+         *   offset?: int,
+         *   number?: int,
+         *   paged?: int,
+         *   count_total?: bool,
+         *   fields?: string|string[],
+         *   who?: string,
+         *   has_published_posts?: bool|string[],
+         *   nicename?: string,
+         *   nicename__in?: string[],
+         *   nicename__not_in?: string[],
+         *   login?: string,
+         *   login__in?: string[],
+         *   login__not_in?: string[],
+         *   cache_results?: bool,
+         * } $query See WP_User_Query::prepare_query()
          */
         public function __construct($query = \null)
         {
@@ -30006,7 +30073,6 @@ namespace {
         {
         }
         /**
-         * @param string|array $query
          * @phpstan-param array{
          *   blog_id?: int,
          *   role?: string|string[],
@@ -30047,6 +30113,7 @@ namespace {
         public function prepare_query($query = array())
         {
         }
+        /**
          * @phpstan-return void
          */
         public function query()
@@ -30201,38 +30268,6 @@ namespace {
         {
         }
     }
-    /**
-     * User API: WP_User class
-     *
-     * @package WordPress
-     * @subpackage Users
-     * @since 4.4.0
-     */
-    /**
-     * @property string $nickname
-     * @property string $description
-     * @property string $user_description
-     * @property string $first_name
-     * @property string $user_firstname
-     * @property string $last_name
-     * @property string $user_lastname
-     * @property string $user_login
-     * @property string $user_pass
-     * @property string $user_nicename
-     * @property string $user_email
-     * @property string $user_url
-     * @property string $user_registered
-     * @property string $user_activation_key
-     * @property string $user_status
-     * @property int $user_level
-     * @property string $display_name
-     * @property string $spam
-     * @property string $deleted
-     * @property string $locale
-     * @property string $rich_editing
-     * @property string $syntax_highlighting
-     * @property string $use_ssl
-     */
     #[\AllowDynamicProperties]
     class WP_User
     {
@@ -30281,10 +30316,9 @@ namespace {
         {
         }
         /**
-         * @param string $field
+         * @phpstan-param 'id'|'ID'|'slug'|'email'|'login' $field
          * @param string|int $value
          * @return object|false
-         * @phpstan-param 'id'|'ID'|'slug'|'email'|'login' $field
          */
         public static function get_data_by($field, $value)
         {
@@ -30352,7 +30386,6 @@ namespace {
         {
         }
         /**
-         * @deprecated 4.9.0
          * @param string $cap_key
          */
         protected function _init_caps($cap_key = '')
@@ -30415,7 +30448,7 @@ namespace {
         }
         /**
          * @param string $cap
-         * @param mixed ...$args
+         * @param mixed $args
          * @return bool
          */
         public function has_cap($cap, ...$args)
@@ -30429,7 +30462,6 @@ namespace {
         {
         }
         /**
-         * @deprecated 4.9.0
          * @param int $blog_id
          */
         public function for_blog($blog_id = '')
@@ -30458,9 +30490,6 @@ namespace {
         public function __construct()
         {
         }
-        /**
-         * @deprecated 4.3.0
-         */
         public function WP_Widget_Factory()
         {
         }
@@ -30494,6 +30523,14 @@ namespace {
         {
         }
     }
+    /**
+     * Widget API: WP_Widget base class
+     *
+     * @package WordPress
+     * @subpackage Widgets
+     * @since 4.4.0
+     */
+    /**
      * @phpstan-template T of array<string, mixed>
      */
     #[\AllowDynamicProperties]
@@ -30571,16 +30608,35 @@ namespace {
          * @param string $name
          * @param array $widget_options
          * @param array $control_options
+         * @phpstan-param array{
+         *   classname?: string,
+         *   description?: string,
+         *   show_instance_in_rest?: bool,
+         * } $widget_options See wp_register_sidebar_widget()
+         * @phpstan-param array{
+         *   height?: int,
+         *   width?: int,
+         *   id_base?: int|string,
+         * } $control_options See wp_register_widget_control()
          */
         public function __construct($id_base, $name, $widget_options = array(), $control_options = array())
         {
         }
         /**
-         * @deprecated 4.3.0
          * @param string $id_base
          * @param string $name
          * @param array $widget_options
          * @param array $control_options
+         * @phpstan-param array{
+         *   classname?: string,
+         *   description?: string,
+         *   show_instance_in_rest?: bool,
+         * } $widget_options See wp_register_sidebar_widget()
+         * @phpstan-param array{
+         *   height?: int,
+         *   width?: int,
+         *   id_base?: int|string,
+         * } $control_options See wp_register_widget_control()
          */
         public function WP_Widget($id_base, $name, $widget_options = array(), $control_options = array())
         {
@@ -30634,11 +30690,11 @@ namespace {
         }
         /**
          * @param array $args
-         * @param int|array $widget_args
          * @phpstan-param int|array{
          *   number?: int,
          * } $widget_args
          * @phpstan-return void
+         * @param array $args
          */
         public function display_callback($args, $widget_args = 1)
         {
@@ -30651,11 +30707,10 @@ namespace {
         {
         }
         /**
-         * @param int|array $widget_args
-         * @return string|null
          * @phpstan-param int|array{
          *   number?: int,
          * } $widget_args
+         * @return string|null
          */
         public function form_callback($widget_args = 1)
         {
@@ -30719,12 +30774,11 @@ namespace {
         {
         }
         /**
-         * @param array $args
-         * @return int
          * @phpstan-param array{
          *   0: int,
          *   1: int,
          * } $args
+         * @return int
          */
         public function addTwoNumbers($args)
         {
@@ -30738,7 +30792,6 @@ namespace {
         {
         }
         /**
-         * @deprecated 2.8.0
          * @param string $username
          * @param string $password
          * @return bool
@@ -30792,12 +30845,11 @@ namespace {
         {
         }
         /**
-         * @param array $args
-         * @return array|\IXR_Error
          * @phpstan-param array{
          *   0: string,
          *   1: string,
          * } $args
+         * @return array|\IXR_Error
          */
         public function wp_getUsersBlogs($args)
         {
@@ -30887,8 +30939,6 @@ namespace {
         {
         }
         /**
-         * @param array $args
-         * @return int|\IXR_Error
          * @phpstan-param array{
          *   0: int,
          *   1: string,
@@ -30917,6 +30967,7 @@ namespace {
          *     },
          *   },
          * } $args
+         * @return int|\IXR_Error
          */
         public function wp_newPost($args)
         {
@@ -30930,8 +30981,6 @@ namespace {
         {
         }
         /**
-         * @param array $args
-         * @return true|\IXR_Error
          * @phpstan-param array{
          *   0: int,
          *   1: string,
@@ -30939,26 +30988,24 @@ namespace {
          *   3: int,
          *   4: array,
          * } $args
+         * @return true|\IXR_Error
          */
         public function wp_editPost($args)
         {
         }
         /**
-         * @param array $args
-         * @return true|\IXR_Error
          * @phpstan-param array{
          *   0: int,
          *   1: string,
          *   2: string,
          *   3: int,
          * } $args
+         * @return true|\IXR_Error
          */
         public function wp_deletePost($args)
         {
         }
         /**
-         * @param array $args
-         * @return array|\IXR_Error
          * @phpstan-param array{
          *   0: int,
          *   1: string,
@@ -30966,13 +31013,12 @@ namespace {
          *   3: int,
          *   4: array,
          * } $args
+         * @return array|\IXR_Error
          */
         public function wp_getPost($args)
         {
         }
         /**
-         * @param array $args
-         * @return array|\IXR_Error
          * @phpstan-param array{
          *   0: int,
          *   1: string,
@@ -30980,26 +31026,24 @@ namespace {
          *   3: array,
          *   4: array,
          * } $args
+         * @return array|\IXR_Error
          */
         public function wp_getPosts($args)
         {
         }
         /**
-         * @param array $args
-         * @return int|\IXR_Error
          * @phpstan-param array{
          *   0: int,
          *   1: string,
          *   2: string,
          *   3: array,
          * } $args
+         * @return int|\IXR_Error
          */
         public function wp_newTerm($args)
         {
         }
         /**
-         * @param array $args
-         * @return true|\IXR_Error
          * @phpstan-param array{
          *   0: int,
          *   1: string,
@@ -31007,13 +31051,12 @@ namespace {
          *   3: int,
          *   4: array,
          * } $args
+         * @return true|\IXR_Error
          */
         public function wp_editTerm($args)
         {
         }
         /**
-         * @param array $args
-         * @return true|\IXR_Error
          * @phpstan-param array{
          *   0: int,
          *   1: string,
@@ -31021,13 +31064,12 @@ namespace {
          *   3: string,
          *   4: int,
          * } $args
+         * @return true|\IXR_Error
          */
         public function wp_deleteTerm($args)
         {
         }
         /**
-         * @param array $args
-         * @return array|\IXR_Error
          * @phpstan-param array{
          *   0: int,
          *   1: string,
@@ -31035,13 +31077,12 @@ namespace {
          *   3: string,
          *   4: int,
          * } $args
+         * @return array|\IXR_Error
          */
         public function wp_getTerm($args)
         {
         }
         /**
-         * @param array $args
-         * @return array|\IXR_Error
          * @phpstan-param array{
          *   0: int,
          *   1: string,
@@ -31049,13 +31090,12 @@ namespace {
          *   3: string,
          *   4: array,
          * } $args
+         * @return array|\IXR_Error
          */
         public function wp_getTerms($args)
         {
         }
         /**
-         * @param array $args
-         * @return array|\IXR_Error
          * @phpstan-param array{
          *   0: int,
          *   1: string,
@@ -31063,13 +31103,12 @@ namespace {
          *   3: string,
          *   4: array,
          * } $args
+         * @return array|\IXR_Error
          */
         public function wp_getTaxonomy($args)
         {
         }
         /**
-         * @param array $args
-         * @return array|\IXR_Error
          * @phpstan-param array{
          *   0: int,
          *   1: string,
@@ -31077,13 +31116,12 @@ namespace {
          *   3: array,
          *   4: array,
          * } $args
+         * @return array|\IXR_Error
          */
         public function wp_getTaxonomies($args)
         {
         }
         /**
-         * @param array $args
-         * @return array|\IXR_Error
          * @phpstan-param array{
          *   0: int,
          *   1: string,
@@ -31091,13 +31129,12 @@ namespace {
          *   3: int,
          *   4: array,
          * } $args
+         * @return array|\IXR_Error
          */
         public function wp_getUser($args)
         {
         }
         /**
-         * @param array $args
-         * @return array|\IXR_Error
          * @phpstan-param array{
          *   0: int,
          *   1: string,
@@ -31105,91 +31142,84 @@ namespace {
          *   3: array,
          *   4: array,
          * } $args
+         * @return array|\IXR_Error
          */
         public function wp_getUsers($args)
         {
         }
         /**
-         * @param array $args
-         * @return array|\IXR_Error
          * @phpstan-param array{
          *   0: int,
          *   1: string,
          *   2: string,
          *   3: array,
          * } $args
+         * @return array|\IXR_Error
          */
         public function wp_getProfile($args)
         {
         }
         /**
-         * @param array $args
-         * @return true|\IXR_Error
          * @phpstan-param array{
          *   0: int,
          *   1: string,
          *   2: string,
          *   3: array,
          * } $args
+         * @return true|\IXR_Error
          */
         public function wp_editProfile($args)
         {
         }
         /**
-         * @param array $args
-         * @return array|\IXR_Error
          * @phpstan-param array{
          *   0: int,
          *   1: int,
          *   2: string,
          *   3: string,
          * } $args
+         * @return array|\IXR_Error
          */
         public function wp_getPage($args)
         {
         }
         /**
-         * @param array $args
-         * @return array|\IXR_Error
          * @phpstan-param array{
          *   0: int,
          *   1: string,
          *   2: string,
          *   3: int,
          * } $args
+         * @return array|\IXR_Error
          */
         public function wp_getPages($args)
         {
         }
         /**
-         * @param array $args
-         * @return int|\IXR_Error
          * @phpstan-param array{
          *   0: int,
          *   1: string,
          *   2: string,
          *   3: array,
          * } $args
+         * @return int|\IXR_Error
          */
         public function wp_newPage($args)
         {
         }
         /**
-         * @param array $args
-         * @return true|\IXR_Error
          * @phpstan-param array{
          *   0: int,
          *   1: string,
          *   2: string,
          *   3: int,
          * } $args
+         * @return true|\IXR_Error
          */
         public function wp_deletePage($args)
         {
         }
         /**
-         * @param array $args
-         * @return array|\IXR_Error
          * @phpstan-param array{
          *   0: int,
          *   1: int,
@@ -31198,75 +31228,69 @@ namespace {
          *   4: string,
          *   5: int,
          * } $args
+         * @return array|\IXR_Error
          */
         public function wp_editPage($args)
         {
         }
         /**
-         * @param array $args
-         * @return array|\IXR_Error
          * @phpstan-param array{
          *   0: int,
          *   1: string,
          *   2: string,
          * } $args
+         * @return array|\IXR_Error
          */
         public function wp_getPageList($args)
         {
         }
         /**
-         * @param array $args
-         * @return array|\IXR_Error
          * @phpstan-param array{
          *   0: int,
          *   1: string,
          *   2: string,
          * } $args
+         * @return array|\IXR_Error
          */
         public function wp_getAuthors($args)
         {
         }
         /**
-         * @param array $args
-         * @return array|\IXR_Error
          * @phpstan-param array{
          *   0: int,
          *   1: string,
          *   2: string,
          * } $args
+         * @return array|\IXR_Error
          */
         public function wp_getTags($args)
         {
         }
         /**
-         * @param array $args
-         * @return int|\IXR_Error
          * @phpstan-param array{
          *   0: int,
          *   1: string,
          *   2: string,
          *   3: array,
          * } $args
+         * @return int|\IXR_Error
          */
         public function wp_newCategory($args)
         {
         }
         /**
-         * @param array $args
-         * @return bool|\IXR_Error
          * @phpstan-param array{
          *   0: int,
          *   1: string,
          *   2: string,
          *   3: int,
          * } $args
+         * @return bool|\IXR_Error
          */
         public function wp_deleteCategory($args)
         {
         }
         /**
-         * @param array $args
-         * @return array|\IXR_Error
          * @phpstan-param array{
          *   0: int,
          *   1: string,
@@ -31274,52 +31298,48 @@ namespace {
          *   3: array,
          *   4: int,
          * } $args
+         * @return array|\IXR_Error
          */
         public function wp_suggestCategories($args)
         {
         }
         /**
-         * @param array $args
-         * @return array|\IXR_Error
          * @phpstan-param array{
          *   0: int,
          *   1: string,
          *   2: string,
          *   3: int,
          * } $args
+         * @return array|\IXR_Error
          */
         public function wp_getComment($args)
         {
         }
         /**
-         * @param array $args
-         * @return array|\IXR_Error
          * @phpstan-param array{
          *   0: int,
          *   1: string,
          *   2: string,
          *   3: array,
          * } $args
+         * @return array|\IXR_Error
          */
         public function wp_getComments($args)
         {
         }
         /**
-         * @param array $args
-         * @return bool|\IXR_Error
          * @phpstan-param array{
          *   0: int,
          *   1: string,
          *   2: string,
          *   3: int,
          * } $args
+         * @return bool|\IXR_Error
          */
         public function wp_deleteComment($args)
         {
         }
         /**
-         * @param array $args
-         * @return true|\IXR_Error
          * @phpstan-param array{
          *   0: int,
          *   1: string,
@@ -31327,13 +31347,12 @@ namespace {
          *   3: int,
          *   4: array,
          * } $args
+         * @return true|\IXR_Error
          */
         public function wp_editComment($args)
         {
         }
         /**
-         * @param array $args
-         * @return int|\IXR_Error
          * @phpstan-param array{
          *   0: int,
          *   1: string,
@@ -31341,80 +31360,75 @@ namespace {
          *   3: string|int,
          *   4: array,
          * } $args
+         * @return int|\IXR_Error
          */
         public function wp_newComment($args)
         {
         }
         /**
-         * @param array $args
-         * @return array|\IXR_Error
          * @phpstan-param array{
          *   0: int,
          *   1: string,
          *   2: string,
          * } $args
+         * @return array|\IXR_Error
          */
         public function wp_getCommentStatusList($args)
         {
         }
         /**
-         * @param array $args
-         * @return array|\IXR_Error
          * @phpstan-param array{
          *   0: int,
          *   1: string,
          *   2: string,
          *   3: int,
          * } $args
+         * @return array|\IXR_Error
          */
         public function wp_getCommentCount($args)
         {
         }
         /**
-         * @param array $args
-         * @return array|\IXR_Error
          * @phpstan-param array{
          *   0: int,
          *   1: string,
          *   2: string,
          * } $args
+         * @return array|\IXR_Error
          */
         public function wp_getPostStatusList($args)
         {
         }
         /**
-         * @param array $args
-         * @return array|\IXR_Error
          * @phpstan-param array{
          *   0: int,
          *   1: string,
          *   2: string,
          * } $args
+         * @return array|\IXR_Error
          */
         public function wp_getPageStatusList($args)
         {
         }
         /**
-         * @param array $args
-         * @return array|\IXR_Error
          * @phpstan-param array{
          *   0: int,
          *   1: string,
          *   2: string,
          * } $args
+         * @return array|\IXR_Error
          */
         public function wp_getPageTemplates($args)
         {
         }
         /**
-         * @param array $args
-         * @return array|\IXR_Error
          * @phpstan-param array{
          *   0: int,
          *   1: string,
          *   2: string,
          *   3: array,
          * } $args
+         * @return array|\IXR_Error
          */
         public function wp_getOptions($args)
         {
@@ -31427,59 +31441,53 @@ namespace {
         {
         }
         /**
-         * @param array $args
-         * @return array|\IXR_Error
          * @phpstan-param array{
          *   0: int,
          *   1: string,
          *   2: string,
          *   3: array,
          * } $args
+         * @return array|\IXR_Error
          */
         public function wp_setOptions($args)
         {
         }
         /**
-         * @param array $args
-         * @return array|\IXR_Error
          * @phpstan-param array{
          *   0: int,
          *   1: string,
          *   2: string,
          *   3: int,
          * } $args
+         * @return array|\IXR_Error
          */
         public function wp_getMediaItem($args)
         {
         }
         /**
-         * @param array $args
-         * @return array|\IXR_Error
          * @phpstan-param array{
          *   0: int,
          *   1: string,
          *   2: string,
          *   3: array,
          * } $args
+         * @return array|\IXR_Error
          */
         public function wp_getMediaLibrary($args)
         {
         }
         /**
-         * @param array $args
-         * @return array|\IXR_Error
          * @phpstan-param array{
          *   0: int,
          *   1: string,
          *   2: string,
          * } $args
+         * @return array|\IXR_Error
          */
         public function wp_getPostFormats($args)
         {
         }
         /**
-         * @param array $args
-         * @return array|\IXR_Error
          * @phpstan-param array{
          *   0: int,
          *   1: string,
@@ -31487,13 +31495,12 @@ namespace {
          *   3: string,
          *   4: array,
          * } $args
+         * @return array|\IXR_Error
          */
         public function wp_getPostType($args)
         {
         }
         /**
-         * @param array $args
-         * @return array|\IXR_Error
          * @phpstan-param array{
          *   0: int,
          *   1: string,
@@ -31501,13 +31508,12 @@ namespace {
          *   3: array,
          *   4: array,
          * } $args
+         * @return array|\IXR_Error
          */
         public function wp_getPostTypes($args)
         {
         }
         /**
-         * @param array $args
-         * @return array|\IXR_Error
          * @phpstan-param array{
          *   0: int,
          *   1: string,
@@ -31515,19 +31521,19 @@ namespace {
          *   3: int,
          *   4: array,
          * } $args
+         * @return array|\IXR_Error
          */
         public function wp_getRevisions($args)
         {
         }
         /**
-         * @param array $args
-         * @return bool|\IXR_Error
          * @phpstan-param array{
          *   0: int,
          *   1: string,
          *   2: string,
          *   3: int,
          * } $args
+         * @return bool|\IXR_Error
          */
         public function wp_restoreRevision($args)
         {
@@ -31537,57 +31543,51 @@ namespace {
          * Specs on http://plant.blogger.com/api and https://groups.yahoo.com/group/bloggerDev/
          */
         /**
-         * @param array $args
-         * @return array|\IXR_Error
          * @phpstan-param array{
          *   0: int,
          *   1: string,
          *   2: string,
          * } $args
+         * @return array|\IXR_Error
          */
         public function blogger_getUsersBlogs($args)
         {
         }
         /**
-         * @param array $args
-         * @return array|\IXR_Error
          * @phpstan-param array{
          *   0: int,
          *   1: string,
          *   2: string,
          * } $args
+         * @return array|\IXR_Error
          */
         protected function _multisite_getUsersBlogs($args)
         {
         }
         /**
-         * @param array $args
-         * @return array|\IXR_Error
          * @phpstan-param array{
          *   0: int,
          *   1: string,
          *   2: string,
          * } $args
+         * @return array|\IXR_Error
          */
         public function blogger_getUserInfo($args)
         {
         }
         /**
-         * @param array $args
-         * @return array|\IXR_Error
          * @phpstan-param array{
          *   0: int,
          *   1: int,
          *   2: string,
          *   3: string,
          * } $args
+         * @return array|\IXR_Error
          */
         public function blogger_getPost($args)
         {
         }
         /**
-         * @param array $args
-         * @return array|\IXR_Error
          * @phpstan-param array{
          *   0: string,
          *   1: int,
@@ -31595,12 +31595,12 @@ namespace {
          *   3: string,
          *   4: int,
          * } $args
+         * @return array|\IXR_Error
          */
         public function blogger_getRecentPosts($args)
         {
         }
         /**
-         * @deprecated 3.5.0
          * @param array $args
          * @return \IXR_Error
          */
@@ -31608,7 +31608,6 @@ namespace {
         {
         }
         /**
-         * @deprecated 3.5.0
          * @param array $args
          * @return \IXR_Error
          */
@@ -31616,8 +31615,6 @@ namespace {
         {
         }
         /**
-         * @param array $args
-         * @return int|\IXR_Error
          * @phpstan-param array{
          *   0: string,
          *   1: int,
@@ -31626,13 +31623,12 @@ namespace {
          *   4: string,
          *   5: int,
          * } $args
+         * @return int|\IXR_Error
          */
         public function blogger_newPost($args)
         {
         }
         /**
-         * @param array $args
-         * @return true|\IXR_Error
          * @phpstan-param array{
          *   0: int,
          *   1: int,
@@ -31641,19 +31637,19 @@ namespace {
          *   4: string,
          *   5: int,
          * } $args
+         * @return true|\IXR_Error
          */
         public function blogger_editPost($args)
         {
         }
         /**
-         * @param array $args
-         * @return true|\IXR_Error
          * @phpstan-param array{
          *   0: int,
          *   1: int,
          *   2: string,
          *   3: string,
          * } $args
+         * @return true|\IXR_Error
          */
         public function blogger_deletePost($args)
         {
@@ -31663,8 +31659,6 @@ namespace {
          * Specs on wherever Dave Winer wants them to be.
          */
         /**
-         * @param array $args
-         * @return int|\IXR_Error
          * @phpstan-param array{
          *   0: int,
          *   1: string,
@@ -31672,6 +31666,7 @@ namespace {
          *   3: array,
          *   4: int,
          * } $args
+         * @return int|\IXR_Error
          */
         public function mw_newPost($args)
         {
@@ -31691,8 +31686,6 @@ namespace {
         {
         }
         /**
-         * @param array $args
-         * @return true|\IXR_Error
          * @phpstan-param array{
          *   0: int,
          *   1: string,
@@ -31700,56 +31693,53 @@ namespace {
          *   3: array,
          *   4: int,
          * } $args
+         * @return true|\IXR_Error
          */
         public function mw_editPost($args)
         {
         }
         /**
-         * @param array $args
-         * @return array|\IXR_Error
          * @phpstan-param array{
          *   0: int,
          *   1: string,
          *   2: string,
          * } $args
+         * @return array|\IXR_Error
          */
         public function mw_getPost($args)
         {
         }
         /**
-         * @param array $args
-         * @return array|\IXR_Error
          * @phpstan-param array{
          *   0: int,
          *   1: string,
          *   2: string,
          *   3: int,
          * } $args
+         * @return array|\IXR_Error
          */
         public function mw_getRecentPosts($args)
         {
         }
         /**
-         * @param array $args
-         * @return array|\IXR_Error
          * @phpstan-param array{
          *   0: int,
          *   1: string,
          *   2: string,
          * } $args
+         * @return array|\IXR_Error
          */
         public function mw_getCategories($args)
         {
         }
         /**
-         * @param array $args
-         * @return array|\IXR_Error
          * @phpstan-param array{
          *   0: int,
          *   1: string,
          *   2: string,
          *   3: array,
          * } $args
+         * @return array|\IXR_Error
          */
         public function mw_newMediaObject($args)
         {
@@ -31759,51 +31749,47 @@ namespace {
          * Specs archive on http://web.archive.org/web/20050220091302/http://www.movabletype.org:80/docs/mtmanual_programmatic.html
          */
         /**
-         * @param array $args
-         * @return array|\IXR_Error
          * @phpstan-param array{
          *   0: int,
          *   1: string,
          *   2: string,
          *   3: int,
          * } $args
+         * @return array|\IXR_Error
          */
         public function mt_getRecentPostTitles($args)
         {
         }
         /**
-         * @param array $args
-         * @return array|\IXR_Error
          * @phpstan-param array{
          *   0: int,
          *   1: string,
          *   2: string,
          * } $args
+         * @return array|\IXR_Error
          */
         public function mt_getCategoryList($args)
         {
         }
         /**
-         * @param array $args
-         * @return array|\IXR_Error
          * @phpstan-param array{
          *   0: int,
          *   1: string,
          *   2: string,
          * } $args
+         * @return array|\IXR_Error
          */
         public function mt_getPostCategories($args)
         {
         }
         /**
-         * @param array $args
-         * @return true|\IXR_Error
          * @phpstan-param array{
          *   0: int,
          *   1: string,
          *   2: string,
          *   3: array,
          * } $args
+         * @return true|\IXR_Error
          */
         public function mt_setPostCategories($args)
         {
@@ -31825,13 +31811,12 @@ namespace {
         {
         }
         /**
-         * @param array $args
-         * @return int|\IXR_Error
          * @phpstan-param array{
          *   0: int,
          *   1: string,
          *   2: string,
          * } $args
+         * @return int|\IXR_Error
          */
         public function mt_publishPost($args)
         {
@@ -31841,12 +31826,11 @@ namespace {
          * Specs on www.hixie.ch/specs/pingback/pingback
          */
         /**
-         * @param array $args
-         * @return string|\IXR_Error
          * @phpstan-param array{
          *   0: string,
          *   1: string,
          * } $args
+         * @return string|\IXR_Error
          */
         public function pingback_ping($args)
         {
@@ -31947,6 +31931,7 @@ namespace {
         public function query_posts()
         {
         }
+        /**
          * @phpstan-return void
          */
         public function handle_404()
@@ -32019,7 +32004,6 @@ namespace {
          */
         protected $col_info;
         /**
-         * @var array[]
          * @phpstan-var array<int|string, array{
          *   0: string,
          *   1: float,
@@ -32248,7 +32232,6 @@ namespace {
         /**
          * @param string $charset
          * @param string $collate
-         * @return array
          * @phpstan-return array{
          *   charset: string,
          *   collate: string,
@@ -32312,7 +32295,6 @@ namespace {
         {
         }
         /**
-         * @deprecated 3.6.0
          * @param string $data
          * @return string
          */
@@ -32334,7 +32316,6 @@ namespace {
         {
         }
         /**
-         * @deprecated 3.6.0
          * @param string|array $data
          * @return string|array
          */
@@ -32357,7 +32338,7 @@ namespace {
         /**
          * @param string $query
          * @param array|mixed $args
-         * @param mixed ...$args
+         * @param mixed $args
          * @return string|void
          * @phpstan-param literal-string $query
          */
@@ -32398,6 +32379,7 @@ namespace {
         public function suppress_errors($suppress = \true)
         {
         }
+        /**
          * @phpstan-return void
          */
         public function flush()
@@ -32412,7 +32394,6 @@ namespace {
         }
         /**
          * @param string $host
-         * @return array|false
          * @phpstan-return false|array{
          *   0: string,
          *   1: string|null,
@@ -32489,9 +32470,8 @@ namespace {
          * @param string $table
          * @param array $data
          * @param string[]|string $format
-         * @param string $type
-         * @return int|false
          * @phpstan-param 'INSERT'|'REPLACE' $type
+         * @return int|false
          */
         public function _insert_replace_helper($table, $data, $format = \null, $type = 'INSERT')
         {
@@ -32528,7 +32508,6 @@ namespace {
         /**
          * @param array $data
          * @param string[]|string $format
-         * @return array
          * @phpstan-return array{
          *   value: mixed,
          *   format: string,
@@ -32538,13 +32517,11 @@ namespace {
         {
         }
         /**
-         * @param array $data
-         * @param string $table
-         * @return array|false
          * @phpstan-param array<int|string, array{
          *   value: mixed,
          *   format: string,
          * }> $data
+         * @param string $table
          * @phpstan-return false|array<int|string, array{
          *   value: mixed,
          *   format: string,
@@ -32555,14 +32532,12 @@ namespace {
         {
         }
         /**
-         * @param array $data
-         * @param string $table
-         * @return array|false
          * @phpstan-param array<int|string, array{
          *   value: mixed,
          *   format: string,
          *   charset: string|false,
          * }> $data
+         * @param string $table
          * @phpstan-return false|array<int|string, array{
          *   value: mixed,
          *   format: string,
@@ -32633,7 +32608,6 @@ namespace {
         /**
          * @param string $table
          * @param string $column
-         * @return array|false|\WP_Error
          * @phpstan-return false|\WP_Error|array{
          *   type: string,
          *   length: int,
@@ -32686,6 +32660,7 @@ namespace {
         protected function get_table_from_query($query)
         {
         }
+        /**
          * @phpstan-return void
          */
         protected function load_col_info()
@@ -32732,7 +32707,6 @@ namespace {
         {
         }
         /**
-         * @deprecated 3.5.0
          * @return bool
          */
         public function supports_collation()
@@ -32745,9 +32719,8 @@ namespace {
         {
         }
         /**
-         * @param string $db_cap
-         * @return bool
          * @phpstan-param 'collation'|'group_concat'|'subqueries'|'set_charset'|'utf8mb4'|'utf8mb4_520'|'identifier_placeholders' $db_cap
+         * @return bool
          */
         public function has_cap($db_cap)
         {
@@ -32789,6 +32762,24 @@ namespace {
          * @param \WP_Customize_Manager $manager
          * @param string $id
          * @param array $args
+         * @phpstan-param array{
+         *   instance_number?: int,
+         *   manager?: WP_Customize_Manager,
+         *   id?: string,
+         *   settings?: array,
+         *   setting?: string,
+         *   capability?: string,
+         *   priority?: int,
+         *   section?: string,
+         *   label?: string,
+         *   description?: string,
+         *   choices?: array,
+         *   input_attrs?: array,
+         *   allow_addition?: bool,
+         *   json?: array,
+         *   type?: string,
+         *   active_callback?: callable,
+         * } $args See WP_Customize_Control::__construct()
          */
         public function __construct($manager, $id, $args = array())
         {
@@ -32845,14 +32836,10 @@ namespace {
          * @var string
          */
         public $mime_type = 'image';
-        /**
-         * @deprecated 4.1.0
-         */
         public function prepare_control()
         {
         }
         /**
-         * @deprecated 4.1.0
          * @param string $id
          * @param string $label
          * @param mixed $callback
@@ -32861,14 +32848,12 @@ namespace {
         {
         }
         /**
-         * @deprecated 4.1.0
          * @param string $id
          */
         public function remove_tab($id)
         {
         }
         /**
-         * @deprecated 4.1.0
          * @param string $url
          * @param string $thumbnail_url
          */
@@ -32966,6 +32951,24 @@ namespace {
          * @param \WP_Customize_Manager $manager
          * @param string $id
          * @param array $args
+         * @phpstan-param array{
+         *   instance_number?: int,
+         *   manager?: WP_Customize_Manager,
+         *   id?: string,
+         *   settings?: array,
+         *   setting?: string,
+         *   capability?: string,
+         *   priority?: int,
+         *   section?: string,
+         *   label?: string,
+         *   description?: string,
+         *   choices?: array,
+         *   input_attrs?: array,
+         *   allow_addition?: bool,
+         *   json?: array,
+         *   type?: string,
+         *   active_callback?: callable,
+         * } $args See WP_Customize_Control::__construct()
          */
         public function __construct($manager, $id, $args = array())
         {
@@ -33034,7 +33037,6 @@ namespace {
          * @param \WP_Customize_Manager $manager
          * @param string $id
          * @param array $args
-         * @throws \Exception
          */
         public function __construct($manager, $id, $args = array())
         {
@@ -33119,7 +33121,6 @@ namespace {
         {
         }
         /**
-         * @return array
          * @phpstan-return array{
          *   abbr: string,
          *   description: string,
@@ -33168,6 +33169,7 @@ namespace {
         public function enqueue()
         {
         }
+        /**
          * @phpstan-return void
          */
         public function prepare_control()
@@ -33245,6 +33247,24 @@ namespace {
          * @param \WP_Customize_Manager $manager
          * @param string $id
          * @param array $args
+         * @phpstan-param array{
+         *   instance_number?: int,
+         *   manager?: WP_Customize_Manager,
+         *   id?: string,
+         *   settings?: array,
+         *   setting?: string,
+         *   capability?: string,
+         *   priority?: int,
+         *   section?: string,
+         *   label?: string,
+         *   description?: string,
+         *   choices?: array,
+         *   input_attrs?: array,
+         *   allow_addition?: bool,
+         *   json?: array,
+         *   type?: string,
+         *   active_callback?: callable,
+         * } $args See WP_Customize_Control::__construct()
          */
         public function __construct($manager, $id, $args = array())
         {
@@ -33334,7 +33354,6 @@ namespace {
          * @param \WP_Customize_Manager $manager
          * @param string $id
          * @param array $args
-         * @throws \Exception
          */
         public function __construct(\WP_Customize_Manager $manager, $id, array $args = array())
         {
@@ -33366,6 +33385,7 @@ namespace {
         protected function get_type_label($item)
         {
         }
+        /**
          * @phpstan-return void
          */
         protected function populate_value()
@@ -33437,6 +33457,7 @@ namespace {
         public function to_json()
         {
         }
+        /**
          * @phpstan-return void
          */
         public function render_content()
@@ -33523,7 +33544,6 @@ namespace {
          * @param \WP_Customize_Manager $manager
          * @param string $id
          * @param array $args
-         * @throws \Exception
          */
         public function __construct(\WP_Customize_Manager $manager, $id, array $args = array())
         {
@@ -33553,7 +33573,6 @@ namespace {
          */
         protected $_current_menus_sort_orderby;
         /**
-         * @deprecated 4.7.0
          * @param object $menu1
          * @param object $menu2
          * @return int
@@ -33588,14 +33607,13 @@ namespace {
          */
         protected $_widget_nav_menu_updates = array();
         /**
-         * @param array|false $value
-         * @return null|void
          * @phpstan-param false|array{
          *   name?: string,
          *   description?: string,
          *   parent?: int,
          *   auto_add?: bool,
          * } $value
+         * @return null|void
          * @phpstan-return void
          */
         protected function update($value)
@@ -33627,9 +33645,6 @@ namespace {
         public function render_screen_options()
         {
         }
-        /**
-         * @deprecated 4.5.0
-         */
         public function wp_nav_menu_manage_columns()
         {
         }
@@ -33637,9 +33652,6 @@ namespace {
         {
         }
     }
-    /**
-     * @deprecated 4.9.0
-     */
     class WP_Customize_New_Menu_Control extends \WP_Customize_Control
     {
         /**
@@ -33647,24 +33659,35 @@ namespace {
          */
         public $type = 'new_menu';
         /**
-         * @deprecated 4.9.0
          * @param \WP_Customize_Manager $manager
          * @param string $id
          * @param array $args
+         * @phpstan-param array{
+         *   instance_number?: int,
+         *   manager?: WP_Customize_Manager,
+         *   id?: string,
+         *   settings?: array,
+         *   setting?: string,
+         *   capability?: string,
+         *   priority?: int,
+         *   section?: string,
+         *   label?: string,
+         *   description?: string,
+         *   choices?: array,
+         *   input_attrs?: array,
+         *   allow_addition?: bool,
+         *   json?: array,
+         *   type?: string,
+         *   active_callback?: callable,
+         * } $args See WP_Customize_Control::__construct()
          */
         public function __construct(\WP_Customize_Manager $manager, $id, array $args = array())
         {
         }
-        /**
-         * @deprecated 4.9.0
-         */
         public function render_content()
         {
         }
     }
-    /**
-     * @deprecated 4.9.0
-     */
     class WP_Customize_New_Menu_Section extends \WP_Customize_Section
     {
         /**
@@ -33672,7 +33695,6 @@ namespace {
          */
         public $type = 'new_menu';
         /**
-         * @deprecated 4.9.0
          * @param \WP_Customize_Manager $manager
          * @param string $id
          * @param array $args
@@ -33680,9 +33702,6 @@ namespace {
         public function __construct(\WP_Customize_Manager $manager, $id, array $args = array())
         {
         }
-        /**
-         * @deprecated 4.9.0
-         */
         protected function render()
         {
         }
@@ -33699,7 +33718,6 @@ namespace {
          */
         public $id;
         /**
-         * @var array
          * @phpstan-var array{
          *   base: string,
          *   keys: array,
@@ -33741,7 +33759,6 @@ namespace {
         /**
          * @param \WP_Customize_Selective_Refresh $component
          * @param string $id
-         * @param array $args
          * @phpstan-param array{
          *   type?: string,
          *   selector?: string,
@@ -33757,7 +33774,6 @@ namespace {
         {
         }
         /**
-         * @return array
          * @phpstan-return array{
          *   base: string,
          *   keys: array,
@@ -33823,6 +33839,16 @@ namespace {
          * @param \WP_Customize_Partial|string $id
          * @param array $args
          * @return \WP_Customize_Partial
+         * @phpstan-param array{
+         *   type?: string,
+         *   selector?: string,
+         *   settings?: string[],
+         *   primary_setting?: string,
+         *   capability?: string,
+         *   render_callback?: callable,
+         *   container_inclusive?: bool,
+         *   fallback_refresh?: bool,
+         * } $args See WP_Customize_Partial::__construct()
          */
         public function add_partial($id, $args = array())
         {
@@ -33872,6 +33898,7 @@ namespace {
         public function handle_error($errno, $errstr, $errfile = \null, $errline = \null)
         {
         }
+        /**
          * @phpstan-return void
          */
         public function handle_render_partials_request()
@@ -33911,6 +33938,24 @@ namespace {
          * @param \WP_Customize_Manager $manager
          * @param string $id
          * @param array $args
+         * @phpstan-param array{
+         *   instance_number?: int,
+         *   manager?: WP_Customize_Manager,
+         *   id?: string,
+         *   settings?: array,
+         *   setting?: string,
+         *   capability?: string,
+         *   priority?: int,
+         *   section?: string,
+         *   label?: string,
+         *   description?: string,
+         *   choices?: array,
+         *   input_attrs?: array,
+         *   allow_addition?: bool,
+         *   json?: array,
+         *   type?: string,
+         *   active_callback?: callable,
+         * } $args See WP_Customize_Control::__construct()
          */
         public function __construct($manager, $id, $args = array())
         {
@@ -34065,6 +34110,12 @@ namespace {
         /**
          * @param string $slug
          * @param array $args
+         * @phpstan-param array{
+         *   name?: string,
+         *   description?: string,
+         *   font_families?: array|string,
+         *   categories?: array,
+         * } $args See wp_register_font_collection()
          */
         public function __construct(string $slug, array $args)
         {
@@ -34093,6 +34144,24 @@ namespace {
         /**
          * @param array[][] $fonts
          * @phpstan-return void
+         * @phpstan-param array[]<int|string, array{
+         * ?: array<array-key, array{
+         *     font-family: string,
+         *     src: string|string[],
+         *     font-style?: string,
+         *     font-weight?: string,
+         *     font-display?: string,
+         *     ascent-override?: string,
+         *     descent-override?: string,
+         *     font-stretch?: string,
+         *     font-variant?: string,
+         *     font-feature-settings?: string,
+         *     font-variation-settings?: string,
+         *     line-gap-override?: string,
+         *     size-adjust?: string,
+         *     unicode-range?: string,
+         * }>,
+         * }> $fonts See wp_print_font_faces()
          */
         public function generate_and_print(array $fonts)
         {
@@ -34104,6 +34173,12 @@ namespace {
          * @param string $slug
          * @param array $args
          * @return \WP_Font_Collection|\WP_Error
+         * @phpstan-param array{
+         *   name?: string,
+         *   description?: string,
+         *   font_families?: array|string,
+         *   categories?: array,
+         * } $args See wp_register_font_collection()
          */
         public function register_font_collection(string $slug, array $args)
         {
@@ -34145,8 +34220,6 @@ namespace {
         {
         }
         /**
-         * @param array $settings
-         * @return string
          * @phpstan-param array{
          *   fontFamily?: string,
          *   fontStyle?: string,
@@ -34154,6 +34227,7 @@ namespace {
          *   fontStretch?: string,
          *   unicodeRange?: string,
          * } $settings
+         * @return string
          */
         public static function get_font_face_slug($settings)
         {
@@ -34289,7 +34363,7 @@ namespace {
          * @param string $context
          * @param string $text
          * @param int $at
-         * @param int &$match_byte_length
+         * @param int $match_byte_length
          * @return string|false
          */
         public static function read_character_reference($context, $text, $at = 0, &$match_byte_length = \null)
@@ -34372,7 +34446,6 @@ namespace {
         /**
          * @param string $tag_name
          * @return bool
-         * @throws \WP_HTML_Unsupported_Exception
          */
         public function has_element_in_table_scope($tag_name)
         {
@@ -34380,7 +34453,6 @@ namespace {
         /**
          * @param string $tag_name
          * @return bool
-         * @throws \WP_HTML_Unsupported_Exception
          */
         public function has_element_in_select_scope($tag_name)
         {
@@ -34564,14 +34636,13 @@ namespace {
         {
         }
         /**
-         * @param array|string|null $query
-         * @return bool
          * @phpstan-param null|array{
          *   tag_name?: string|null,
          *   match_offset?: int|null,
          *   class_name?: string|null,
          *   tag_closers?: string|null,
          * } $query
+         * @return bool
          */
         public function next_tag($query = \null)
         {
@@ -34588,6 +34659,7 @@ namespace {
         public function paused_at_incomplete_token()
         {
         }
+        /**
          * @phpstan-return void
          */
         public function class_list()
@@ -34952,9 +35024,6 @@ namespace {
         {
         }
         /**
-         * @param array|string|null $query
-         * @return bool
-         * @throws \Exception
          * @phpstan-param null|array{
          *   tag_name?: string|null,
          *   tag_closers?: string,
@@ -34962,6 +35031,7 @@ namespace {
          *   class_name?: string|null,
          *   breadcrumbs?: string[],
          * } $query
+         * @return bool
          */
         public function next_tag($query = \null)
         {
@@ -34995,7 +35065,6 @@ namespace {
         /**
          * @param string $node_to_process
          * @return bool
-         * @throws \Exception
          */
         public function step($node_to_process = self::PROCESS_NEXT_NODE)
         {
@@ -35114,7 +35183,6 @@ namespace {
         /**
          * @param string $bookmark_name
          * @return bool
-         * @throws \Exception
          */
         public function seek($bookmark_name)
         {
@@ -35386,6 +35454,7 @@ namespace {
         public function config(string $store_namespace, array $config = array()) : array
         {
         }
+        /**
          * @phpstan-return void
          */
         public function print_client_interactivity_data()
@@ -35479,16 +35548,15 @@ namespace {
         {
         }
         /**
-         * @param array $plurals
+         * @phpstan-param array{
+         *   0: string,
+         *   1: string,
+         * } $plurals
          * @param int $number
          * @param string $context
          * @param string $textdomain
          * @param string|null $locale
          * @return string|false
-         * @phpstan-param array{
-         *   0: string,
-         *   1: string,
-         * } $plurals
          */
         public function translate_plural(array $plurals, int $number, string $context = '', string $textdomain = 'default', ?string $locale = \null)
         {
@@ -35656,6 +35724,7 @@ namespace {
     }
     class WP_Translation_File_PHP extends \WP_Translation_File
     {
+        /**
          * @phpstan-return void
          */
         protected function parse_file()
@@ -35668,17 +35737,6 @@ namespace {
         {
         }
     }
-    /**
-     * I18N: WP_Translations class.
-     *
-     * @package WordPress
-     * @subpackage I18N
-     * @since 6.5.0
-     */
-    /**
-     * @property-read array<string,string> $headers
-     * @property-read array<string,string[]> $entries
-     */
     class WP_Translations
     {
         /**
@@ -35747,7 +35805,6 @@ namespace {
         public $references = array();
         public $flags = array();
         /**
-         * @param array $args
          * @phpstan-param array{
          *   singular?: string,
          *   plural?: string,
@@ -35763,9 +35820,6 @@ namespace {
         public function __construct($args = array())
         {
         }
-        /**
-         * @deprecated 5.4.0
-         */
         public function Translation_Entry($args = array())
         {
         }
@@ -35911,7 +35965,6 @@ namespace {
         {
         }
         /**
-         * @deprecated 6.5.0
          * @param string $expression
          * @return string
          */
@@ -36053,15 +36106,15 @@ namespace {
          */
         const NUM_CHARS = '0123456789';
         /**
-         * @var array $op_precedence
+         * @var array
          */
         protected static $op_precedence = array('%' => 6, '<' => 5, '<=' => 5, '>' => 5, '>=' => 5, '==' => 4, '!=' => 4, '&&' => 3, '||' => 2, '?:' => 1, '?' => 1, '(' => 0, ')' => 0);
         /**
-         * @var array $tokens
+         * @var array
          */
         protected $tokens = array();
         /**
-         * @var array $cache
+         * @var array
          */
         protected $cache = array();
         /**
@@ -36072,7 +36125,6 @@ namespace {
         }
         /**
          * @param string $str
-         * @throws \Exception
          */
         protected function parse($str)
         {
@@ -36087,7 +36139,6 @@ namespace {
         /**
          * @param int $n
          * @return int
-         * @throws \Exception
          */
         public function execute($n)
         {
@@ -36221,14 +36272,10 @@ namespace {
         public function __construct()
         {
         }
-        /**
-         * @deprecated 5.4.0
-         */
         public function POMO_Reader()
         {
         }
         /**
-         * @param string $endian
          * @phpstan-param 'big'|'little' $endian
          */
         public function setEndian($endian)
@@ -36302,9 +36349,6 @@ namespace {
         public function __construct($filename)
         {
         }
-        /**
-         * @deprecated 5.4.0
-         */
         public function POMO_FileReader($filename)
         {
         }
@@ -36353,9 +36397,6 @@ namespace {
         public function __construct($str = '')
         {
         }
-        /**
-         * @deprecated 5.4.0
-         */
         public function POMO_StringReader($str = '')
         {
         }
@@ -36391,9 +36432,6 @@ namespace {
         public function __construct($filename)
         {
         }
-        /**
-         * @deprecated 5.4.0
-         */
         public function POMO_CachedFileReader($filename)
         {
         }
@@ -36403,9 +36441,6 @@ namespace {
         public function __construct($filename)
         {
         }
-        /**
-         * @deprecated 5.4.0
-         */
         public function POMO_CachedIntFileReader($filename)
         {
         }
@@ -36488,6 +36523,14 @@ namespace {
         {
         }
     }
+    /**
+     * REST API: WP_REST_Request class
+     *
+     * @package WordPress
+     * @subpackage REST_API
+     * @since 4.4.0
+     */
+    /**
      * @phpstan-template T of array
      * @phpstan-implements ArrayAccess<key-of<T>, value-of<T>>
      */
@@ -36738,6 +36781,7 @@ namespace {
         protected function parse_json_params()
         {
         }
+        /**
          * @phpstan-return void
          */
         protected function parse_body_params()
@@ -36844,7 +36888,6 @@ namespace {
          */
         protected $matched_handler = \null;
         /**
-         * @internal
          * @param string $rel
          * @param string $href
          * @param array $attributes
@@ -36873,7 +36916,6 @@ namespace {
         {
         }
         /**
-         * @internal
          * @param string $rel
          * @param string $link
          * @param array $other
@@ -37024,7 +37066,6 @@ namespace {
         /**
          * @param \WP_REST_Response $response
          * @param bool|string[] $embed
-         * @return array
          * @phpstan-return array{
          *   _links: array,
          *   _embedded: array,
@@ -37050,7 +37091,6 @@ namespace {
         /**
          * @param array $data
          * @param bool|string[] $embed
-         * @return array
          * @phpstan-return array{
          *   _links: array,
          *   _embedded: array,
@@ -37133,11 +37173,10 @@ namespace {
         {
         }
         /**
-         * @param array $request
-         * @return \WP_REST_Response
          * @phpstan-param array{
          *   context?: string,
          * } $request
+         * @return \WP_REST_Response
          */
         public function get_index($request)
         {
@@ -37177,9 +37216,8 @@ namespace {
         }
         /**
          * @param array $routes
-         * @param string $context
-         * @return array[]
          * @phpstan-param 'view'|'help' $context
+         * @return array[]
          */
         public function get_data_for_routes($routes, $context = 'view')
         {
@@ -37187,9 +37225,8 @@ namespace {
         /**
          * @param string $route
          * @param array $callbacks
-         * @param string $context
-         * @return array|null
          * @phpstan-param 'view'|'help' $context
+         * @return array|null
          */
         public function get_data_for_route($route, $callbacks, $context = 'view')
         {
@@ -37440,7 +37477,6 @@ namespace {
         {
         }
         /**
-         * @internal
          * @param string $slug
          * @return string
          */
@@ -37555,7 +37591,6 @@ namespace {
         {
         }
         /**
-         * @deprecated 5.7.0
          * @param \WP_REST_Request $request
          * @return true|\WP_Error
          */
@@ -39911,7 +39946,6 @@ namespace {
         }
         /**
          * @param string $plugin
-         * @return string
          * @phpstan-return 'network-active'|'active'|'inactive'
          */
         protected function get_plugin_status($plugin)
@@ -40253,7 +40287,6 @@ namespace {
         {
         }
         /**
-         * @deprecated 6.1.0
          * @param array $schema
          * @return array
          */
@@ -40835,7 +40868,6 @@ namespace {
         {
         }
         /**
-         * @deprecated 5.7.0
          * @param string|array $statuses
          * @param \WP_REST_Request $request
          * @param string $parameter
@@ -41324,9 +41356,6 @@ namespace {
          * @return string
          */
         protected abstract function get_rest_field_type();
-        /**
-         * @deprecated 5.6.0
-         */
         public function register_field()
         {
         }
@@ -41425,7 +41454,6 @@ namespace {
         {
         }
         /**
-         * @deprecated 5.6.0
          * @param array $schema
          * @return array
          */
@@ -41599,7 +41627,6 @@ namespace {
         }
         /**
          * @param \WP_REST_Request $request
-         * @return array
          * @phpstan-return array{
          *   ids: string[],
          *   total: int,
@@ -41611,7 +41638,6 @@ namespace {
         /**
          * @param string $id
          * @param array $fields
-         * @return array
          * @phpstan-return array{
          *   id: string,
          *   title: string,
@@ -41637,7 +41663,6 @@ namespace {
         }
         /**
          * @param \WP_REST_Request $request
-         * @return array
          * @phpstan-return array{
          *   ids: int[],
          *   total: int,
@@ -41649,7 +41674,6 @@ namespace {
         /**
          * @param int $id
          * @param array $fields
-         * @return array
          * @phpstan-return array{
          *   id: int,
          *   title: string,
@@ -41674,7 +41698,6 @@ namespace {
         {
         }
         /**
-         * @deprecated 5.5.0
          * @param \WP_Post $post
          * @return string
          */
@@ -41689,7 +41712,6 @@ namespace {
         }
         /**
          * @param \WP_REST_Request $request
-         * @return array
          * @phpstan-return array{
          *   ids: int[],
          *   total: string|int|WP_Error,
@@ -41701,7 +41723,6 @@ namespace {
         /**
          * @param int $id
          * @param array $fields
-         * @return array
          * @phpstan-return array{
          *   id: int,
          *   title: string,
@@ -41877,7 +41898,6 @@ namespace {
     class WP_Sitemaps_Stylesheet
     {
         /**
-         * @param string $type
          * @phpstan-param 'sitemap'|'index' $type
          * @phpstan-return never
          */
@@ -41915,6 +41935,7 @@ namespace {
         public function __construct()
         {
         }
+        /**
          * @phpstan-return void
          */
         public function init()
@@ -41932,6 +41953,7 @@ namespace {
         public function register_rewrites()
         {
         }
+        /**
          * @phpstan-return void
          */
         public function render_sitemaps()
@@ -42283,12 +42305,11 @@ namespace {
         {
         }
         /**
-         * @param array $options
-         * @return string
          * @phpstan-param array{
          *   optimize?: bool,
          *   prettify?: bool,
          * } $options
+         * @return string
          */
         public function get_css($options = array())
         {
@@ -42337,8 +42358,6 @@ namespace {
         }
         /**
          * @param array $block_styles
-         * @param array $options
-         * @return array
          * @phpstan-param array{
          *   convert_vars_to_classnames?: bool,
          *   selector?: string,
@@ -42361,13 +42380,12 @@ namespace {
         }
         /**
          * @param \WP_Style_Engine_CSS_Rule[] $css_rules
-         * @param array $options
-         * @return string
          * @phpstan-param array{
          *   context?: string|null,
          *   optimize?: bool,
          *   prettify?: bool,
          * } $options
+         * @return string
          */
         public static function compile_stylesheet_from_css_rules($css_rules, $options = array())
         {
@@ -42629,6 +42647,16 @@ namespace {
          * @param string $name
          * @param array $widget_options
          * @param array $control_options
+         * @phpstan-param array{
+         *   classname?: string,
+         *   description?: string,
+         *   show_instance_in_rest?: bool,
+         * } $widget_options See wp_register_sidebar_widget()
+         * @phpstan-param array{
+         *   height?: int,
+         *   width?: int,
+         *   id_base?: int|string,
+         * } $control_options See wp_register_widget_control()
          */
         public function __construct($id_base, $name, $widget_options = array(), $control_options = array())
         {
@@ -42904,6 +42932,7 @@ namespace {
         public function __construct()
         {
         }
+        /**
          * @phpstan-return void
          */
         public function recent_comments_style()
@@ -42930,9 +42959,6 @@ namespace {
         public function form($instance)
         {
         }
-        /**
-         * @deprecated 4.4.0
-         */
         public function flush_widget_cache()
         {
         }
@@ -43072,13 +43098,12 @@ namespace {
         {
         }
         /**
-         * @param array $instance
-         * @return bool
          * @phpstan-param array{
          *   text?: string,
          *   filter?: bool|string,
          *   legacy?: bool,
          * } $instance
+         * @return bool
          */
         public function is_legacy_instance($instance)
         {
@@ -43148,7 +43173,6 @@ namespace {
 namespace Avifinfo {
     // Value was not yet parsed.
     /**
-     * @param \binary
      * @param int $num_bytes
      * @return int
      */
@@ -43190,36 +43214,56 @@ namespace {
     function export_date_options($post_type = 'post')
     {
     }
+    /**
+     * Administration API: Core Ajax handlers
+     *
+     * @package WordPress
+     * @subpackage Administration
+     * @since 2.1.0
+     */
+    //
+    // No-privilege Ajax handlers.
+    //
+    /**
      * @phpstan-return never
      */
     function wp_ajax_nopriv_heartbeat()
     {
     }
+    //
+    // GET-based Ajax handlers.
+    //
+    /**
      * @phpstan-return never
      */
     function wp_ajax_fetch_list()
     {
     }
+    /**
      * @phpstan-return never
      */
     function wp_ajax_ajax_tag_search()
     {
     }
+    /**
      * @phpstan-return never
      */
     function wp_ajax_wp_compression_test()
     {
     }
+    /**
      * @phpstan-return never
      */
     function wp_ajax_imgedit_preview()
     {
     }
+    /**
      * @phpstan-return never
      */
     function wp_ajax_oembed_cache()
     {
     }
+    /**
      * @phpstan-return never
      */
     function wp_ajax_autocomplete_user()
@@ -43228,11 +43272,13 @@ namespace {
     function wp_ajax_get_community_events()
     {
     }
+    /**
      * @phpstan-return never
      */
     function wp_ajax_dashboard_widgets()
     {
     }
+    /**
      * @phpstan-return never
      */
     function wp_ajax_logged_in()
@@ -43251,6 +43297,7 @@ namespace {
     function _wp_ajax_add_hierarchical_term()
     {
     }
+    /**
      * @phpstan-return never
      */
     function wp_ajax_delete_comment()
@@ -43262,6 +43309,7 @@ namespace {
     function wp_ajax_delete_link()
     {
     }
+    /**
      * @phpstan-return never
      */
     function wp_ajax_delete_meta()
@@ -43292,6 +43340,7 @@ namespace {
     function wp_ajax_delete_page($action)
     {
     }
+    /**
      * @phpstan-return never
      */
     function wp_ajax_dim_comment()
@@ -43306,6 +43355,7 @@ namespace {
     function wp_ajax_add_tag()
     {
     }
+    /**
      * @phpstan-return never
      */
     function wp_ajax_get_tagcloud()
@@ -43326,6 +43376,7 @@ namespace {
     function wp_ajax_edit_comment()
     {
     }
+    /**
      * @phpstan-return never
      */
     function wp_ajax_add_menu_item()
@@ -43340,76 +43391,91 @@ namespace {
     function wp_ajax_add_user($action)
     {
     }
+    /**
      * @phpstan-return never
      */
     function wp_ajax_closed_postboxes()
     {
     }
+    /**
      * @phpstan-return never
      */
     function wp_ajax_hidden_columns()
     {
     }
+    /**
      * @phpstan-return never
      */
     function wp_ajax_update_welcome_panel()
     {
     }
+    /**
      * @phpstan-return never
      */
     function wp_ajax_menu_get_metabox()
     {
     }
+    /**
      * @phpstan-return never
      */
     function wp_ajax_wp_link_ajax()
     {
     }
+    /**
      * @phpstan-return never
      */
     function wp_ajax_menu_locations_save()
     {
     }
+    /**
      * @phpstan-return never
      */
     function wp_ajax_meta_box_order()
     {
     }
+    /**
      * @phpstan-return never
      */
     function wp_ajax_menu_quick_search()
     {
     }
+    /**
      * @phpstan-return never
      */
     function wp_ajax_get_permalink()
     {
     }
+    /**
      * @phpstan-return never
      */
     function wp_ajax_sample_permalink()
     {
     }
+    /**
      * @phpstan-return never
      */
     function wp_ajax_inline_save()
     {
     }
+    /**
      * @phpstan-return never
      */
     function wp_ajax_inline_save_tax()
     {
     }
+    /**
      * @phpstan-return never
      */
     function wp_ajax_find_posts()
     {
     }
+    /**
      * @phpstan-return never
      */
     function wp_ajax_widgets_order()
     {
     }
+    /**
      * @phpstan-return never
      */
     function wp_ajax_save_widget()
@@ -43418,198 +43484,235 @@ namespace {
     function wp_ajax_update_widget()
     {
     }
+    /**
      * @phpstan-return never
      */
     function wp_ajax_delete_inactive_widgets()
     {
     }
+    /**
      * @phpstan-return never
      */
     function wp_ajax_media_create_image_subsizes()
     {
     }
+    /**
      * @phpstan-return never
      */
     function wp_ajax_upload_attachment()
     {
     }
+    /**
      * @phpstan-return never
      */
     function wp_ajax_image_editor()
     {
     }
+    /**
      * @phpstan-return never
      */
     function wp_ajax_set_post_thumbnail()
     {
     }
+    /**
      * @phpstan-return never
      */
     function wp_ajax_get_post_thumbnail_html()
     {
     }
+    /**
      * @phpstan-return never
      */
     function wp_ajax_set_attachment_thumbnail()
     {
     }
+    /**
      * @phpstan-return never
      */
     function wp_ajax_date_format()
     {
     }
+    /**
      * @phpstan-return never
      */
     function wp_ajax_time_format()
     {
     }
     /**
-     * @deprecated 4.3.0
      * @phpstan-return never
      */
     function wp_ajax_wp_fullscreen_save_post()
     {
     }
+    /**
      * @phpstan-return never
      */
     function wp_ajax_wp_remove_post_lock()
     {
     }
+    /**
      * @phpstan-return never
      */
     function wp_ajax_dismiss_wp_pointer()
     {
     }
+    /**
      * @phpstan-return never
      */
     function wp_ajax_get_attachment()
     {
     }
+    /**
      * @phpstan-return never
      */
     function wp_ajax_query_attachments()
     {
     }
+    /**
      * @phpstan-return never
      */
     function wp_ajax_save_attachment()
     {
     }
+    /**
      * @phpstan-return never
      */
     function wp_ajax_save_attachment_compat()
     {
     }
+    /**
      * @phpstan-return never
      */
     function wp_ajax_save_attachment_order()
     {
     }
+    /**
      * @phpstan-return never
      */
     function wp_ajax_send_attachment_to_editor()
     {
     }
+    /**
      * @phpstan-return never
      */
     function wp_ajax_send_link_to_editor()
     {
     }
+    /**
      * @phpstan-return never
      */
     function wp_ajax_heartbeat()
     {
     }
+    /**
      * @phpstan-return never
      */
     function wp_ajax_get_revision_diffs()
     {
     }
+    /**
      * @phpstan-return never
      */
     function wp_ajax_save_user_color_scheme()
     {
     }
+    /**
      * @phpstan-return never
      */
     function wp_ajax_query_themes()
     {
     }
+    /**
      * @phpstan-return never
      */
     function wp_ajax_parse_embed()
     {
     }
+    /**
      * @phpstan-return never
      */
     function wp_ajax_parse_media_shortcode()
     {
     }
+    /**
      * @phpstan-return never
      */
     function wp_ajax_destroy_sessions()
     {
     }
+    /**
      * @phpstan-return never
      */
     function wp_ajax_crop_image()
     {
     }
+    /**
      * @phpstan-return never
      */
     function wp_ajax_generate_password()
     {
     }
+    /**
      * @phpstan-return never
      */
     function wp_ajax_nopriv_generate_password()
     {
     }
+    /**
      * @phpstan-return never
      */
     function wp_ajax_save_wporg_username()
     {
     }
+    /**
      * @phpstan-return never
      */
     function wp_ajax_install_theme()
     {
     }
+    /**
      * @phpstan-return never
      */
     function wp_ajax_update_theme()
     {
     }
+    /**
      * @phpstan-return never
      */
     function wp_ajax_delete_theme()
     {
     }
+    /**
      * @phpstan-return never
      */
     function wp_ajax_install_plugin()
     {
     }
+    /**
      * @phpstan-return never
      */
     function wp_ajax_activate_plugin()
     {
     }
+    /**
      * @phpstan-return never
      */
     function wp_ajax_update_plugin()
     {
     }
+    /**
      * @phpstan-return never
      */
     function wp_ajax_delete_plugin()
     {
     }
+    /**
      * @phpstan-return never
      */
     function wp_ajax_search_plugins()
     {
     }
+    /**
      * @phpstan-return never
      */
     function wp_ajax_search_install_plugins()
@@ -43618,54 +43721,55 @@ namespace {
     function wp_ajax_edit_theme_plugin_file()
     {
     }
+    /**
      * @phpstan-return never
      */
     function wp_ajax_wp_privacy_export_personal_data()
     {
     }
+    /**
      * @phpstan-return never
      */
     function wp_ajax_wp_privacy_erase_personal_data()
     {
     }
     /**
-     * @deprecated 5.6.0
      * @phpstan-return never
      */
     function wp_ajax_health_check_dotorg_communication()
     {
     }
     /**
-     * @deprecated 5.6.0
      * @phpstan-return never
      */
     function wp_ajax_health_check_background_updates()
     {
     }
     /**
-     * @deprecated 5.6.0
      * @phpstan-return never
      */
     function wp_ajax_health_check_loopback_requests()
     {
     }
+    /**
      * @phpstan-return never
      */
     function wp_ajax_health_check_site_status_result()
     {
     }
     /**
-     * @deprecated 5.6.0
      * @phpstan-return never
      */
     function wp_ajax_health_check_get_sizes()
     {
     }
+    /**
      * @phpstan-return never
      */
     function wp_ajax_rest_nonce()
     {
     }
+    /**
      * @phpstan-return never
      */
     function wp_ajax_toggle_auto_updates()
@@ -43721,9 +43825,6 @@ namespace {
     {
     }
     /**
-     * @param array $linkdata
-     * @param bool $wp_error
-     * @return int|\WP_Error
      * @phpstan-param array{
      *   link_id?: int,
      *   link_url?: string,
@@ -43739,6 +43840,8 @@ namespace {
      *   link_rss?: string,
      *   link_category?: int,
      * } $linkdata
+     * @param bool $wp_error
+     * @return int|\WP_Error
      * @phpstan-return ($wp_error is false ? 0|positive-int : positive-int|\WP_Error)
      */
     function wp_insert_link($linkdata, $wp_error = \false)
@@ -43754,10 +43857,26 @@ namespace {
     /**
      * @param array $linkdata
      * @return int|\WP_Error
+     * @phpstan-param array{
+     *   link_id?: int,
+     *   link_url?: string,
+     *   link_name?: string,
+     *   link_image?: string,
+     *   link_target?: string,
+     *   link_description?: string,
+     *   link_visible?: string,
+     *   link_owner?: int,
+     *   link_rating?: int,
+     *   link_rel?: string,
+     *   link_notes?: string,
+     *   link_rss?: string,
+     *   link_category?: int,
+     * } $linkdata See wp_insert_link()
      */
     function wp_update_link($linkdata)
     {
     }
+    /**
      * @phpstan-return void
      */
     function wp_link_manager_disabled_message()
@@ -43870,9 +43989,8 @@ namespace {
     /**
      * @param string $comment_author
      * @param string $comment_date
-     * @param string $timezone
-     * @return string|null
      * @phpstan-param 'blog'|'gmt' $timezone
+     * @return string|null
      */
     function comment_exists($comment_author, $comment_date, $timezone = 'blog')
     {
@@ -43967,8 +44085,6 @@ namespace {
      * @param callable $callback
      * @param callable $control_callback
      * @param array $callback_args
-     * @param string $context
-     * @param string $priority
      * @phpstan-param 'normal'|'side'|'column3'|'column4' $context
      * @phpstan-param 'high'|'core'|'default'|'low' $priority
      */
@@ -44016,8 +44132,6 @@ namespace {
     {
     }
     /**
-     * @param array $args
-     * @return bool
      * @phpstan-param array{
      *   max?: int,
      *   status?: string,
@@ -44025,6 +44139,7 @@ namespace {
      *   title?: string,
      *   id?: string,
      * } $args
+     * @return bool
      */
     function wp_dashboard_recent_posts($args)
     {
@@ -44046,7 +44161,7 @@ namespace {
      * @param string $widget_id
      * @param callable $callback
      * @param array $check_urls
-     * @param mixed ...$args
+     * @param mixed $args
      * @return bool
      */
     function wp_dashboard_cached_rss_widget($widget_id, $callback, $check_urls = array(), ...$args)
@@ -44109,6 +44224,7 @@ namespace {
     function wp_check_browser_version()
     {
     }
+    /**
      * @phpstan-return void
      */
     function wp_dashboard_php_nag()
@@ -44130,31 +44246,13 @@ namespace {
     function wp_welcome_panel()
     {
     }
-    /**
-     * Deprecated admin functions from past WordPress versions. You shouldn't use these
-     * functions and look for the alternatives instead. The functions will be removed
-     * in a later version.
-     *
-     * @package WordPress
-     * @subpackage Deprecated
-     */
-    /*
-     * Deprecated functions come here to die.
-     */
-    /**
-     * @deprecated 2.1.0
-     */
     function tinymce_include()
     {
     }
-    /**
-     * @deprecated 2.5.0
-     */
     function documentation_link()
     {
     }
     /**
-     * @deprecated 3.0.0
      * @param int $width
      * @param int $height
      * @param int $wmax
@@ -44165,7 +44263,6 @@ namespace {
     {
     }
     /**
-     * @deprecated 3.5.0
      * @param int $width
      * @param int $height
      * @return array
@@ -44174,7 +44271,6 @@ namespace {
     {
     }
     /**
-     * @deprecated 2.6.0
      * @param int $default_category
      * @param int $category_parent
      * @param array $popular_ids
@@ -44183,14 +44279,12 @@ namespace {
     {
     }
     /**
-     * @deprecated 2.6.0
      * @param int $default_link_category
      */
     function dropdown_link_categories($default_link_category = 0)
     {
     }
     /**
-     * @deprecated 2.9.0
      * @param string $file
      * @return string
      */
@@ -44198,7 +44292,6 @@ namespace {
     {
     }
     /**
-     * @deprecated 3.0.0
      * @param int $current_cat
      * @param int $current_parent
      * @param int $category_parent
@@ -44210,7 +44303,6 @@ namespace {
     {
     }
     /**
-     * @deprecated 3.0.0
      * @param string $option_group
      * @param string $option_name
      * @param callable $sanitize_callback
@@ -44219,7 +44311,6 @@ namespace {
     {
     }
     /**
-     * @deprecated 3.0.0
      * @param string $option_group
      * @param string $option_name
      * @param callable $sanitize_callback
@@ -44228,33 +44319,24 @@ namespace {
     {
     }
     /**
-     * @deprecated 3.0.0
      * @param string $filename
      */
     function codepress_get_lang($filename)
     {
     }
-    /**
-     * @deprecated 3.0.0
-     */
     function codepress_footer_js()
     {
     }
-    /**
-     * @deprecated 3.0.0
-     */
     function use_codepress()
     {
     }
     /**
-     * @deprecated 3.1.0
      * @return array
      */
     function get_author_user_ids()
     {
     }
     /**
-     * @deprecated 3.1.0
      * @param int $user_id
      * @return array|false
      */
@@ -44262,7 +44344,6 @@ namespace {
     {
     }
     /**
-     * @deprecated 3.1.0
      * @param int $user_id
      * @param bool $exclude_zeros
      * @return array
@@ -44270,24 +44351,18 @@ namespace {
     function get_editable_user_ids($user_id, $exclude_zeros = \true, $post_type = 'post')
     {
     }
-    /**
-     * @deprecated 3.1.0
-     */
     function get_nonauthor_user_ids()
     {
     }
     /**
-     * @deprecated 3.1.0
      * @param int $user_id
-     * @param string $type
-     * @return array
      * @phpstan-param 'draft'|'pending'|'any' $type
+     * @return array
      */
     function get_others_unpublished_posts($user_id, $type = 'any')
     {
     }
     /**
-     * @deprecated 3.1.0
      * @param int $user_id
      * @return array
      */
@@ -44295,125 +44370,88 @@ namespace {
     {
     }
     /**
-     * @deprecated 3.1.0
      * @param int $user_id
      * @return array
      */
     function get_others_pending($user_id)
     {
     }
-    /**
-     * @deprecated 3.2.0
-     */
     function wp_dashboard_quick_press_output()
     {
     }
-    /**
-     * @deprecated 3.3.0
-     */
     function wp_tiny_mce($teeny = \false, $settings = \false)
     {
     }
-    /**
-     * @deprecated 3.3.0
-     */
     function wp_preload_dialogs()
     {
     }
-    /**
-     * @deprecated 3.3.0
-     */
     function wp_print_editor_js()
     {
     }
-    /**
-     * @deprecated 3.3.0
-     */
     function wp_quicktags()
     {
     }
-    /**
-     * @deprecated 3.3.0
-     */
     function screen_layout($screen)
     {
     }
-    /**
-     * @deprecated 3.3.0
-     */
     function screen_options($screen)
     {
     }
-    /**
-     * @deprecated 3.3.0
-     */
     function screen_meta($screen)
     {
     }
-    /**
-     * @deprecated 3.2.0
-     */
     function favorite_actions()
     {
     }
     /**
-     * @deprecated 3.3.0
      * @return null|string
      */
     function media_upload_image()
     {
     }
     /**
-     * @deprecated 3.3.0
      * @return null|string
      */
     function media_upload_audio()
     {
     }
     /**
-     * @deprecated 3.3.0
      * @return null|string
      */
     function media_upload_video()
     {
     }
     /**
-     * @deprecated 3.3.0
      * @return null|string
      */
     function media_upload_file()
     {
     }
     /**
-     * @deprecated 3.3.0
      * @return string
      */
     function type_url_form_image()
     {
     }
     /**
-     * @deprecated 3.3.0
      * @return string
      */
     function type_url_form_audio()
     {
     }
     /**
-     * @deprecated 3.3.0
      * @return string
      */
     function type_url_form_video()
     {
     }
     /**
-     * @deprecated 3.3.0
      * @return string
      */
     function type_url_form_file()
     {
     }
     /**
-     * @deprecated 3.3.0
      * @param string $screen
      * @param string $help
      */
@@ -44421,40 +44459,30 @@ namespace {
     {
     }
     /**
-     * @deprecated 3.4.0
      * @return \WP_Theme[]
      */
     function get_allowed_themes()
     {
     }
     /**
-     * @deprecated 3.4.0
      * @return array
      */
     function get_broken_themes()
     {
     }
     /**
-     * @deprecated 3.4.0
      * @return \WP_Theme
      */
     function current_theme_info()
     {
     }
-    /**
-     * @deprecated 3.5.0
-     */
     function _insert_into_post_button($type)
     {
     }
-    /**
-     * @deprecated 3.5.0
-     */
     function _media_button($title, $icon, $type, $id)
     {
     }
     /**
-     * @deprecated 3.5.0
      * @param int $id
      * @return \WP_Post
      */
@@ -44462,14 +44490,12 @@ namespace {
     {
     }
     /**
-     * @deprecated 3.5.0
      * @return \WP_Post
      */
     function get_default_page_to_edit()
     {
     }
     /**
-     * @deprecated 3.5.0
      * @param mixed $file
      * @param int $max_side
      * @param mixed $deprecated
@@ -44478,106 +44504,61 @@ namespace {
     function wp_create_thumbnail($file, $max_side, $deprecated = '')
     {
     }
-    /**
-     * @deprecated 3.6.0
-     */
     function wp_nav_menu_locations_meta_box()
     {
     }
-    /**
-     * @deprecated 3.7.0
-     */
     function wp_update_core($current, $feedback = '')
     {
     }
-    /**
-     * @deprecated 3.7.0
-     */
     function wp_update_plugin($plugin, $feedback = '')
     {
     }
-    /**
-     * @deprecated 3.7.0
-     */
     function wp_update_theme($theme, $feedback = '')
     {
     }
     /**
-     * @deprecated 3.7.0
      * @param int|bool $id
      */
     function the_attachment_links($id = \false)
     {
     }
-    /**
-     * @deprecated 3.8.0
-     */
     function screen_icon()
     {
     }
     /**
-     * @deprecated 3.8.0
      * @return string
      */
     function get_screen_icon()
     {
     }
-    /**
-     * @deprecated 3.8.0
-     */
     function wp_dashboard_incoming_links_output()
     {
     }
-    /**
-     * @deprecated 3.8.0
-     */
     function wp_dashboard_secondary_output()
     {
     }
-    /**
-     * @deprecated 3.8.0
-     */
     function wp_dashboard_incoming_links()
     {
     }
-    /**
-     * @deprecated 3.8.0
-     */
     function wp_dashboard_incoming_links_control()
     {
     }
-    /**
-     * @deprecated 3.8.0
-     */
     function wp_dashboard_plugins()
     {
     }
-    /**
-     * @deprecated 3.8.0
-     */
     function wp_dashboard_primary_control()
     {
     }
-    /**
-     * @deprecated 3.8.0
-     */
     function wp_dashboard_recent_comments_control()
     {
     }
-    /**
-     * @deprecated 3.8.0
-     */
     function wp_dashboard_secondary()
     {
     }
-    /**
-     * @deprecated 3.8.0
-     */
     function wp_dashboard_secondary_control()
     {
     }
     /**
-     * @deprecated 4.8.0
      * @param string $rss
      * @param array $args
      */
@@ -44585,7 +44566,6 @@ namespace {
     {
     }
     /**
-     * @deprecated 3.9.0
      * @param int $old_ID
      * @param int $new_ID
      */
@@ -44593,7 +44573,6 @@ namespace {
     {
     }
     /**
-     * @deprecated 4.5.0
      * @param string $page_title
      * @param string $menu_title
      * @param string $capability
@@ -44606,7 +44585,6 @@ namespace {
     {
     }
     /**
-     * @deprecated 4.5.0
      * @param string $page_title
      * @param string $menu_title
      * @param string $capability
@@ -44618,26 +44596,16 @@ namespace {
     function add_utility_page($page_title, $menu_title, $capability, $menu_slug, $callback = '', $icon_url = '')
     {
     }
-    /**
-     * @deprecated 4.6.0
-     */
     function post_form_autocomplete_off()
     {
     }
-    /**
-     * @deprecated 4.9.0
-     */
     function options_permalink_add_js()
     {
     }
-    /**
-     * @deprecated 5.3.0
-     */
     function _wp_privacy_requests_screen_options()
     {
     }
     /**
-     * @deprecated 6.0.0
      * @param array $post
      * @param array $attachment
      * @return array
@@ -44646,7 +44614,6 @@ namespace {
     {
     }
     /**
-     * @param array $args
      * @phpstan-param array{
      *   content?: string,
      *   author?: string,
@@ -44700,8 +44667,6 @@ namespace {
     {
     }
     /**
-     * @param string[] $args
-     * @return true|\WP_Error
      * @phpstan-param array{
      *   file?: string,
      *   plugin?: string,
@@ -44709,6 +44674,7 @@ namespace {
      *   newcontent?: string,
      *   nonce?: string,
      * } $args
+     * @return true|\WP_Error
      */
     function wp_edit_theme_plugin_file($args)
     {
@@ -44730,11 +44696,6 @@ namespace {
     {
     }
     /**
-     * @param array $file
-     * @param array|false $overrides
-     * @param string $time
-     * @param string $action
-     * @return array
      * @phpstan-param array{
      *   name?: string,
      *   type?: string,
@@ -44751,6 +44712,8 @@ namespace {
      *   test_type?: bool,
      *   mimes?: string[],
      * } $overrides
+     * @param string $time
+     * @param string $action
      * @phpstan-return array{
      *   file: string,
      *   url: string,
@@ -44765,6 +44728,22 @@ namespace {
      * @param array|false $overrides
      * @param string|null $time
      * @return array
+     * @phpstan-param array{
+     *   name?: string,
+     *   type?: string,
+     *   tmp_name?: string,
+     *   size?: int,
+     *   error?: int,
+     * } $file See _wp_handle_upload()
+     * @phpstan-param false|array{
+     *   upload_error_handler?: callable,
+     *   unique_filename_callback?: callable,
+     *   upload_error_strings?: string[],
+     *   test_form?: bool,
+     *   test_size?: bool,
+     *   test_type?: bool,
+     *   mimes?: string[],
+     * } $overrides See _wp_handle_upload()
      */
     function wp_handle_upload(&$file, $overrides = \false, $time = \null)
     {
@@ -44774,6 +44753,22 @@ namespace {
      * @param array|false $overrides
      * @param string|null $time
      * @return array
+     * @phpstan-param array{
+     *   name?: string,
+     *   type?: string,
+     *   tmp_name?: string,
+     *   size?: int,
+     *   error?: int,
+     * } $file See _wp_handle_upload()
+     * @phpstan-param false|array{
+     *   upload_error_handler?: callable,
+     *   unique_filename_callback?: callable,
+     *   upload_error_strings?: string[],
+     *   test_form?: bool,
+     *   test_size?: bool,
+     *   test_type?: bool,
+     *   mimes?: string[],
+     * } $overrides See _wp_handle_upload()
      */
     function wp_handle_sideload(&$file, $overrides = \false, $time = \null)
     {
@@ -44891,6 +44886,7 @@ namespace {
     function request_filesystem_credentials($form_post, $type = '', $error = \false, $context = '', $extra_fields = \null, $allow_relaxed_file_ownership = \false)
     {
     }
+    /**
      * @phpstan-return void
      */
     function wp_print_request_filesystem_credentials_modal()
@@ -44938,7 +44934,6 @@ namespace {
      * @param \WP_Image_Editor $image
      * @param string $mime_type
      * @param int $post_id
-     * @return array|\WP_Error|bool
      * @phpstan-return \WP_Error|bool|array{
      *   path: string,
      *   file: string,
@@ -44952,7 +44947,6 @@ namespace {
     {
     }
     /**
-     * @ignore
      * @param int $w
      * @param int $h
      * @return float|int
@@ -44961,8 +44955,6 @@ namespace {
     {
     }
     /**
-     * @deprecated 3.5.0
-     * @ignore
      * @param resource|\GdImage $img
      * @param float|int $angle
      * @return resource|\GdImage|false
@@ -44971,8 +44963,6 @@ namespace {
     {
     }
     /**
-     * @deprecated 3.5.0
-     * @ignore
      * @param resource|\GdImage $img
      * @param bool $horz
      * @param bool $vert
@@ -44982,7 +44972,6 @@ namespace {
     {
     }
     /**
-     * @ignore
      * @param resource|\GdImage $img
      * @param float $x
      * @param float $y
@@ -45324,7 +45313,7 @@ namespace {
     }
     /**
      * @param callable $content_func
-     * @param mixed ...$args
+     * @param mixed $args
      */
     function wp_iframe($content_func, ...$args)
     {
@@ -45573,7 +45562,6 @@ namespace {
     }
     /**
      * @param int $parent_id
-     * @param string $action
      * @phpstan-param 'attach'|'detach' $action
      * @phpstan-return void
      */
@@ -45614,7 +45602,6 @@ namespace {
     //
     /**
      * @param \WP_Post $post
-     * @param array $args
      * @phpstan-param array{
      *   id?: string,
      *   title?: string,
@@ -45633,7 +45620,6 @@ namespace {
     }
     /**
      * @param \WP_Post $post
-     * @param array $box
      * @phpstan-param array{
      *   id?: string,
      *   title?: string,
@@ -45646,7 +45632,6 @@ namespace {
     }
     /**
      * @param \WP_Post $post
-     * @param array $box
      * @phpstan-param array{
      *   id?: string,
      *   title?: string,
@@ -45661,7 +45646,6 @@ namespace {
     }
     /**
      * @param \WP_Post $post
-     * @param array $box
      * @phpstan-param array{
      *   id?: string,
      *   title?: string,
@@ -45910,6 +45894,7 @@ namespace {
     function wp_doc_link_parse($content)
     {
     }
+    /**
      * @phpstan-return void
      */
     function set_screen_options()
@@ -45953,6 +45938,7 @@ namespace {
     function wp_color_scheme_settings()
     {
     }
+    /**
      * @phpstan-return void
      */
     function wp_admin_viewport_meta()
@@ -46022,6 +46008,7 @@ namespace {
     function heartbeat_autosave($response, $data)
     {
     }
+    /**
      * @phpstan-return void
      */
     function wp_admin_canonical_url()
@@ -46050,7 +46037,6 @@ namespace {
     {
     }
     /**
-     * @return array|false
      * @phpstan-return false|array{
      *   recommended_version: string,
      *   minimum_version: string,
@@ -46062,78 +46048,37 @@ namespace {
     function wp_check_php_version()
     {
     }
-    /**
-     * Multisite: Deprecated admin functions from past versions and WordPress MU
-     *
-     * These functions should not be used and will be removed in a later version.
-     * It is suggested to use for the alternatives instead when available.
-     *
-     * @package WordPress
-     * @subpackage Deprecated
-     * @since 3.0.0
-     */
-    /**
-     * @deprecated 3.0.0
-     */
     function wpmu_menu()
     {
     }
-    /**
-     * @deprecated 3.0.0
-     */
     function wpmu_checkAvailableSpace()
     {
     }
-    /**
-     * @deprecated 3.0.0
-     */
     function mu_options($options)
     {
     }
-    /**
-     * @deprecated 3.0.0
-     */
     function activate_sitewide_plugin()
     {
     }
-    /**
-     * @deprecated 3.0.0
-     */
     function deactivate_sitewide_plugin($plugin = \false)
     {
     }
-    /**
-     * @deprecated 3.0.0
-     */
     function is_wpmu_sitewide_plugin($file)
     {
     }
-    /**
-     * @deprecated 3.4.0
-     */
     function get_site_allowed_themes()
     {
     }
-    /**
-     * @deprecated 3.4.0
-     */
     function wpmu_get_blog_allowedthemes($blog_id = 0)
     {
     }
-    /**
-     * @deprecated 3.5.0
-     */
     function ms_deprecated_blogs_file()
     {
     }
-    /**
-     * @deprecated 6.1.0
-     */
     function install_global_terms()
     {
     }
     /**
-     * @deprecated 6.1.0
      * @param \WP_Term|array $term
      * @param string $taxonomy
      * @return \WP_Term|array
@@ -46206,6 +46151,7 @@ namespace {
     function format_code_lang($code = '')
     {
     }
+    /**
      * @phpstan-return void
      */
     function _access_denied_splash()
@@ -46264,7 +46210,6 @@ namespace {
     {
     }
     /**
-     * @param array $args
      * @phpstan-param array{
      *   blog_id?: int,
      *   links?: array,
@@ -46296,16 +46241,19 @@ namespace {
     function wp_nav_menu_setup()
     {
     }
+    /**
      * @phpstan-return void
      */
     function wp_initial_nav_menu_meta_boxes()
     {
     }
+    /**
      * @phpstan-return void
      */
     function wp_nav_menu_post_type_meta_boxes()
     {
     }
+    /**
      * @phpstan-return void
      */
     function wp_nav_menu_taxonomy_meta_boxes()
@@ -46324,7 +46272,6 @@ namespace {
     }
     /**
      * @param string $data_object
-     * @param array $box
      * @phpstan-param array{
      *   id?: string,
      *   title?: string,
@@ -46338,7 +46285,6 @@ namespace {
     }
     /**
      * @param string $data_object
-     * @param array $box
      * @phpstan-param array{
      *   id?: string,
      *   title?: string,
@@ -46390,7 +46336,6 @@ namespace {
     {
     }
     /**
-     * @ignore
      * @phpstan-return void
      */
     function _wp_expand_nav_menu_post_data()
@@ -46458,9 +46403,6 @@ namespace {
      * @subpackage Administration
      */
     /**
-     * @param string $action
-     * @param array|object $args
-     * @return object|array|\WP_Error
      * @phpstan-param 'query_plugins'|'plugin_information'|'hot_tags'|'hot_categories' $action
      * @phpstan-param object|array{
      *   slug?: string,
@@ -46501,6 +46443,7 @@ namespace {
      *     contributors?: bool,
      *   },
      * } $args
+     * @return object|array|\WP_Error
      */
     function plugins_api($action, $args = array())
     {
@@ -46527,6 +46470,7 @@ namespace {
     function install_plugins_favorites_form()
     {
     }
+    /**
      * @phpstan-return void
      */
     function display_plugins_table()
@@ -46535,7 +46479,6 @@ namespace {
     /**
      * @param array|object $api
      * @param bool $loop
-     * @return array
      * @phpstan-return array{
      *   status: string,
      *   url: string,
@@ -46546,6 +46489,7 @@ namespace {
     function install_plugin_install_status($api, $loop = \false)
     {
     }
+    /**
      * @phpstan-return void
      */
     function install_plugin_information()
@@ -46553,15 +46497,14 @@ namespace {
     }
     /**
      * @param string $name
-     * @param array|object $data
-     * @param bool $compatible_php
-     * @param bool $compatible_wp
-     * @return string
      * @phpstan-param object|array{
      *   slug?: string,
      *   requires_plugins?: string[],
      *   version?: string,
      * } $data
+     * @param bool $compatible_php
+     * @param bool $compatible_wp
+     * @return string
      */
     function wp_get_plugin_action_button($name, $data, $compatible_php, $compatible_wp)
     {
@@ -46576,7 +46519,6 @@ namespace {
      * @param string $plugin_file
      * @param bool $markup
      * @param bool $translate
-     * @return array
      * @phpstan-return array{
      *   Name: string,
      *   PluginURI: string,
@@ -46643,7 +46585,6 @@ namespace {
     {
     }
     /**
-     * @return array[]
      * @phpstan-return array<int|string, array{
      *   0: string,
      *   1: string|true,
@@ -47045,11 +46986,13 @@ namespace {
     function resume_plugin($plugin, $redirect = '')
     {
     }
+    /**
      * @phpstan-return void
      */
     function paused_plugins_notice()
     {
     }
+    /**
      * @phpstan-return void
      */
     function deactivated_plugins_notice()
@@ -47153,7 +47096,6 @@ namespace {
     }
     /**
      * @param int $post_id
-     * @return array[]
      * @phpstan-return array<int|string, array{
      *   meta_key: string,
      *   meta_value: mixed,
@@ -47223,7 +47165,6 @@ namespace {
      * @param int|\WP_Post $post
      * @param string|null $title
      * @param string|null $name
-     * @return array
      * @phpstan-return array{
      *   0: string,
      *   1: string,
@@ -47258,7 +47199,6 @@ namespace {
     }
     /**
      * @param int|\WP_Post $post
-     * @return array|false
      * @phpstan-return false|array{
      *   0: int,
      *   1: int,
@@ -47267,6 +47207,7 @@ namespace {
     function wp_set_post_lock($post)
     {
     }
+    /**
      * @phpstan-return void
      */
     function _admin_notice_post_locked()
@@ -47385,10 +47326,6 @@ namespace {
     {
     }
     /**
-     * @param array $group_data
-     * @param string $group_id
-     * @param int $groups_count
-     * @return string
      * @phpstan-param array{
      *   group_label?: string,
      *   items?: array{
@@ -47398,6 +47335,9 @@ namespace {
      *     },
      *   },
      * } $group_data
+     * @param string $group_id
+     * @param int $groups_count
+     * @return string
      */
     function wp_privacy_generate_personal_data_export_group_html($group_data, $group_id = '', $groups_count = 1)
     {
@@ -47633,9 +47573,6 @@ namespace {
     {
     }
     /**
-     * @param array $catarr
-     * @param bool $wp_error
-     * @return int|\WP_Error
      * @phpstan-param array{
      *   cat_ID?: int,
      *   taxonomy?: string,
@@ -47644,6 +47581,8 @@ namespace {
      *   category_nicename?: string,
      *   category_parent?: int|string,
      * } $catarr
+     * @param bool $wp_error
+     * @return int|\WP_Error
      * @phpstan-return ($wp_error is false ? 0|positive-int : positive-int|\WP_Error)
      */
     function wp_insert_category($catarr, $wp_error = \false)
@@ -47714,8 +47653,6 @@ namespace {
     }
     /**
      * @param int $post_id
-     * @param array|string $args
-     * @return string
      * @phpstan-param array{
      *   descendants_and_self?: int,
      *   selected_cats?: int[],
@@ -47725,6 +47662,7 @@ namespace {
      *   checked_ontop?: bool,
      *   echo?: bool,
      * } $args
+     * @return string
      */
     function wp_terms_checklist($post_id = 0, $args = array())
     {
@@ -47832,9 +47770,8 @@ namespace {
      * @param callable $callback
      * @param string|array|\WP_Screen $screen
      * @param string $context
-     * @param string $priority
-     * @param array $callback_args
      * @phpstan-param 'high'|'core'|'default'|'low' $priority
+     * @param array $callback_args
      * @phpstan-return void
      */
     function add_meta_box($id, $title, $callback, $screen = \null, $context = 'advanced', $priority = 'default', $callback_args = \null)
@@ -47842,7 +47779,6 @@ namespace {
     }
     /**
      * @param mixed $data_object
-     * @param array $box
      * @phpstan-param array{
      *   id?: string,
      *   title?: string,
@@ -47892,7 +47828,6 @@ namespace {
      * @param string $title
      * @param callable $callback
      * @param string $page
-     * @param array $args
      * @phpstan-param array{
      *   before_section?: string,
      *   after_section?: string,
@@ -47908,7 +47843,6 @@ namespace {
      * @param callable $callback
      * @param string $page
      * @param string $section
-     * @param array $args
      * @phpstan-param array{
      *   label_for?: string,
      *   class?: string,
@@ -47944,7 +47878,6 @@ namespace {
     /**
      * @param string $setting
      * @param bool $sanitize
-     * @return array[]
      * @phpstan-return array<int|string, array{
      *   setting: string,
      *   code: string,
@@ -48061,32 +47994,24 @@ namespace {
     {
     }
     /**
-     * @param array $args
-     * @return string
      * @phpstan-param array{
      *   rating?: int|float,
      *   type?: string,
      *   number?: int,
      *   echo?: bool,
      * } $args
+     * @return string
      */
     function wp_star_rating($args = array())
     {
     }
-    /**
-     * @ignore
-     */
     function _wp_posts_page_notice()
     {
     }
-    /**
-     * @ignore
-     */
     function _wp_block_editor_posts_page_notice()
     {
     }
     /**
-     * @deprecated 3.1.0
      * @return array
      */
     function install_themes_feature_list()
@@ -48105,7 +48030,6 @@ namespace {
     {
     }
     /**
-     * @deprecated 3.4.0
      * @param object $theme
      */
     function display_theme($theme)
@@ -48114,6 +48038,7 @@ namespace {
     function display_themes()
     {
     }
+    /**
      * @phpstan-return never
      */
     function install_theme_information()
@@ -48170,9 +48095,6 @@ namespace {
     {
     }
     /**
-     * @param string $action
-     * @param array|object $args
-     * @return object|array|\WP_Error
      * @phpstan-param 'query_themes'|'theme_information'|'hot_tags'|'feature_list' $action
      * @phpstan-param object|array{
      *   slug?: string,
@@ -48206,6 +48128,7 @@ namespace {
      *     extended_author?: bool,
      *   },
      * } $args
+     * @return object|array|\WP_Error
      */
     function themes_api($action, $args = array())
     {
@@ -48242,6 +48165,7 @@ namespace {
     function resume_theme($theme, $redirect = '')
     {
     }
+    /**
      * @phpstan-return void
      */
     function paused_themes_notice()
@@ -48312,22 +48236,15 @@ namespace {
     {
     }
     /**
-     * @ignore
      * @param string $directory
      * @return array
      */
     function _upgrade_422_find_genericons_files_in_folder($directory)
     {
     }
-    /**
-     * @ignore
-     */
     function _upgrade_440_force_deactivate_incompatible_plugins()
     {
     }
-    /**
-     * @ignore
-     */
     function _upgrade_core_deactivate_incompatible_plugins()
     {
     }
@@ -48409,6 +48326,7 @@ namespace {
     function get_plugin_updates()
     {
     }
+    /**
      * @phpstan-return void
      */
     function wp_plugin_update_rows()
@@ -48428,6 +48346,7 @@ namespace {
     function get_theme_updates()
     {
     }
+    /**
      * @phpstan-return void
      */
     function wp_theme_update_rows()
@@ -48453,25 +48372,24 @@ namespace {
     function wp_print_update_row_templates()
     {
     }
+    /**
      * @phpstan-return void
      */
     function wp_recovery_mode_nag()
     {
     }
     /**
-     * @param string $type
-     * @return bool
      * @phpstan-param 'theme'|'plugin' $type
+     * @return bool
      */
     function wp_is_auto_update_enabled_for_type($type)
     {
     }
     /**
-     * @param string $type
+     * @phpstan-param 'theme'|'plugin' $type
      * @param bool|null $update
      * @param object $item
      * @return bool
-     * @phpstan-param 'theme'|'plugin' $type
      */
     function wp_is_auto_update_forced_for_item($type, $update, $item)
     {
@@ -48490,7 +48408,6 @@ namespace {
      * @param string $deprecated
      * @param string $user_password
      * @param string $language
-     * @return array
      * @phpstan-return array{
      *   url: string,
      *   user_id: int,
@@ -48522,264 +48439,144 @@ namespace {
     function wp_new_blog_notification($blog_title, $blog_url, $user_id, $password)
     {
     }
+    /**
      * @phpstan-return void
      */
     function wp_upgrade()
     {
     }
     /**
-     * @ignore
      * @phpstan-return void
      */
     function upgrade_all()
     {
     }
-    /**
-     * @ignore
-     */
     function upgrade_100()
     {
     }
-    /**
-     * @ignore
-     */
     function upgrade_101()
     {
     }
-    /**
-     * @ignore
-     */
     function upgrade_110()
     {
     }
-    /**
-     * @ignore
-     */
     function upgrade_130()
     {
     }
-    /**
-     * @ignore
-     */
     function upgrade_160()
     {
     }
-    /**
-     * @ignore
-     */
     function upgrade_210()
     {
     }
-    /**
-     * @ignore
-     */
     function upgrade_230()
     {
     }
-    /**
-     * @ignore
-     */
     function upgrade_230_options_table()
     {
     }
-    /**
-     * @ignore
-     */
     function upgrade_230_old_tables()
     {
     }
-    /**
-     * @ignore
-     */
     function upgrade_old_slugs()
     {
     }
-    /**
-     * @ignore
-     */
     function upgrade_250()
     {
     }
-    /**
-     * @ignore
-     */
     function upgrade_252()
     {
     }
-    /**
-     * @ignore
-     */
     function upgrade_260()
     {
     }
-    /**
-     * @ignore
-     */
     function upgrade_270()
     {
     }
-    /**
-     * @ignore
-     */
     function upgrade_280()
     {
     }
-    /**
-     * @ignore
-     */
     function upgrade_290()
     {
     }
-    /**
-     * @ignore
-     */
     function upgrade_300()
     {
     }
     /**
-     * @ignore
      * @phpstan-return void
      */
     function upgrade_330()
     {
     }
-    /**
-     * @ignore
-     */
     function upgrade_340()
     {
     }
-    /**
-     * @ignore
-     */
     function upgrade_350()
     {
     }
-    /**
-     * @ignore
-     */
     function upgrade_370()
     {
     }
-    /**
-     * @ignore
-     */
     function upgrade_372()
     {
     }
-    /**
-     * @ignore
-     */
     function upgrade_380()
     {
     }
-    /**
-     * @ignore
-     */
     function upgrade_400()
     {
     }
-    /**
-     * @ignore
-     */
     function upgrade_420()
     {
     }
-    /**
-     * @ignore
-     */
     function upgrade_430()
     {
     }
     /**
-     * @ignore
      * @phpstan-return void
      */
     function upgrade_430_fix_comments()
     {
     }
-    /**
-     * @ignore
-     */
     function upgrade_431()
     {
     }
-    /**
-     * @ignore
-     */
     function upgrade_440()
     {
     }
-    /**
-     * @ignore
-     */
     function upgrade_450()
     {
     }
-    /**
-     * @ignore
-     */
     function upgrade_460()
     {
     }
-    /**
-     * @deprecated 5.1.0
-     * @ignore
-     */
     function upgrade_500()
     {
     }
-    /**
-     * @ignore
-     */
     function upgrade_510()
     {
     }
-    /**
-     * @ignore
-     */
     function upgrade_530()
     {
     }
-    /**
-     * @ignore
-     */
     function upgrade_550()
     {
     }
-    /**
-     * @ignore
-     */
     function upgrade_560()
     {
     }
-    /**
-     * @ignore
-     */
     function upgrade_590()
     {
     }
-    /**
-     * @ignore
-     */
     function upgrade_600()
     {
     }
-    /**
-     * @ignore
-     */
     function upgrade_630()
     {
     }
-    /**
-     * @ignore
-     */
     function upgrade_640()
     {
     }
-    /**
-     * @ignore
-     */
     function upgrade_650()
     {
     }
@@ -48836,7 +48633,6 @@ namespace {
     {
     }
     /**
-     * @ignore
      * @param string $setting
      * @return mixed
      */
@@ -48985,6 +48781,7 @@ namespace {
     function default_password_nag_edit_user($user_ID, $old_data)
     {
     }
+    /**
      * @phpstan-return void
      */
     function default_password_nag()
@@ -49007,15 +48804,14 @@ namespace {
     {
     }
     /**
-     * @param array $request
-     * @param \WP_User $user
-     * @return true|\WP_Error
      * @phpstan-param array{
      *   app_name?: string,
      *   app_id?: string,
      *   success_url?: string,
      *   reject_url?: string,
      * } $request
+     * @param \WP_User $user
+     * @return true|\WP_Error
      */
     function wp_is_authorize_application_password_request_valid($request, $user)
     {
@@ -49112,6 +48908,7 @@ namespace {
     function _add_themes_utility_last()
     {
     }
+    /**
      * @phpstan-return void
      */
     function _add_plugin_file_editor_to_tools()
@@ -49128,7 +48925,6 @@ namespace {
     {
     }
     /**
-     * @ignore
      * @param string|string[] $body_classes
      */
     function setup_config_display_header($body_classes = array())
@@ -49155,16 +48951,19 @@ namespace {
     function core_auto_updates_settings()
     {
     }
+    /**
      * @phpstan-return void
      */
     function list_plugin_updates()
     {
     }
+    /**
      * @phpstan-return void
      */
     function list_theme_updates()
     {
     }
+    /**
      * @phpstan-return void
      */
     function list_translation_updates()
@@ -49177,18 +48976,19 @@ namespace {
     function do_core_upgrade($reinstall = \false)
     {
     }
+    /**
      * @phpstan-return void
      */
     function do_dismiss_core_update()
     {
     }
+    /**
      * @phpstan-return void
      */
     function do_undismiss_core_update()
     {
     }
     /**
-     * @ignore
      * @return string|int|false
      */
     function _get_cron_lock()
@@ -49207,6 +49007,7 @@ namespace {
     function _wp_admin_bar_init()
     {
     }
+    /**
      * @phpstan-return void
      */
     function wp_admin_bar_render()
@@ -49328,11 +49129,13 @@ namespace {
     function wp_admin_bar_add_secondary_groups($wp_admin_bar)
     {
     }
+    /**
      * @phpstan-return void
      */
     function wp_enqueue_admin_bar_header_styles()
     {
     }
+    /**
      * @phpstan-return void
      */
     function wp_enqueue_admin_bar_bump_styles()
@@ -49403,6 +49206,7 @@ namespace {
     /**
      * @param string $field
      * @param int|false $user_id
+     * @param string $field
      */
     function the_author_meta($field = '', $user_id = \false)
     {
@@ -49446,8 +49250,6 @@ namespace {
     {
     }
     /**
-     * @param string|array $args
-     * @return void|string
      * @phpstan-param array{
      *   orderby?: string,
      *   order?: string,
@@ -49465,6 +49267,7 @@ namespace {
      *   exclude?: int[]|string,
      *   include?: int[]|string,
      * } $args
+     * @return void|string
      */
     function wp_list_authors($args = '')
     {
@@ -49489,13 +49292,12 @@ namespace {
      */
     /**
      * @param string $source_name
-     * @param array $source_properties
-     * @return \WP_Block_Bindings_Source|false
      * @phpstan-param array{
      *   label?: string,
      *   get_value_callback?: callable,
      *   uses_context?: string[],
      * } $source_properties
+     * @return \WP_Block_Bindings_Source|false
      */
     function register_block_bindings_source(string $source_name, array $source_properties)
     {
@@ -49597,7 +49399,6 @@ namespace {
     {
     }
     /**
-     * @return array
      * @phpstan-return array{
      *   styles: string|false,
      *   scripts: string|false,
@@ -49665,16 +49466,19 @@ namespace {
     function _load_remote_block_patterns($deprecated = \null)
     {
     }
+    /**
      * @phpstan-return void
      */
     function _load_remote_featured_patterns()
     {
     }
+    /**
      * @phpstan-return void
      */
     function _register_remote_theme_patterns()
     {
     }
+    /**
      * @phpstan-return void
      */
     function _register_theme_block_patterns()
@@ -50024,7 +49828,6 @@ namespace {
      * @since 6.2.0
      */
     /**
-     * @internal
      * @param array $block
      * @return string
      */
@@ -50032,7 +49835,6 @@ namespace {
     {
     }
     /**
-     * @internal
      * @param string $block_content
      * @param array $block
      * @return string
@@ -50041,7 +49843,6 @@ namespace {
     {
     }
     /**
-     * @internal
      * @param string|null $pre_render
      * @param array $block
      * @return null
@@ -50132,20 +49933,17 @@ namespace {
     }
     /**
      * @param string|int|float $raw_value
-     * @param array $options
-     * @return array|null
      * @phpstan-param array{
      *   coerce_to?: string,
      *   root_size_value?: int,
      *   acceptable_units?: string[],
      * } $options
+     * @return array|null
      */
     function wp_get_typography_value_and_unit($raw_value, $options = array())
     {
     }
     /**
-     * @param array $args
-     * @return string|null
      * @phpstan-param array{
      *   maximum_viewport_width?: string,
      *   minimum_viewport_width?: string,
@@ -50153,19 +49951,19 @@ namespace {
      *   minimum_font_size?: string,
      *   scale_factor?: int,
      * } $args
+     * @return string|null
      */
     function wp_get_computed_fluid_typography_value($args = array())
     {
     }
     /**
-     * @param array $preset
-     * @param bool|array $settings
-     * @return string|null
      * @phpstan-param array{
      *   name?: string,
      *   slug?: string,
      *   size?: string|int|float,
      * } $preset
+     * @param bool|array $settings
+     * @return string|null
      */
     function wp_get_typography_font_size_value($preset, $settings = array())
     {
@@ -50188,7 +49986,6 @@ namespace {
     }
     /**
      * @param string $theme_stylesheet
-     * @return string[]
      * @phpstan-return array{
      *   wp_template: string,
      *   wp_template_part: string,
@@ -50198,7 +49995,6 @@ namespace {
     {
     }
     /**
-     * @return array[]
      * @phpstan-return array<int|string, array{
      *   area: string,
      *   label: string,
@@ -50211,7 +50007,6 @@ namespace {
     {
     }
     /**
-     * @return array[]
      * @phpstan-return array<int|string, array{
      *   title: string,
      *   description: string,
@@ -50235,10 +50030,8 @@ namespace {
     {
     }
     /**
-     * @param string $template_type
-     * @param string $slug
-     * @return array|null
      * @phpstan-param 'wp_template'|'wp_template_part' $template_type
+     * @param string $slug
      * @phpstan-return null|array{
      *   slug: string,
      *   path: string,
@@ -50253,9 +50046,6 @@ namespace {
     {
     }
     /**
-     * @param string $template_type
-     * @param array $query
-     * @return array
      * @phpstan-param 'wp_template'|'wp_template_part' $template_type
      * @phpstan-param array{
      *   slug__in?: string[],
@@ -50263,6 +50053,7 @@ namespace {
      *   area?: string,
      *   post_type?: string,
      * } $query
+     * @return array
      */
     function _get_block_templates_files($template_type, $query = array())
     {
@@ -50302,9 +50093,8 @@ namespace {
     }
     /**
      * @param array $template_file
-     * @param string $template_type
-     * @return \WP_Block_Template
      * @phpstan-param 'wp_template'|'wp_template_part' $template_type
+     * @return \WP_Block_Template
      */
     function _build_block_template_result_from_file($template_file, $template_type)
     {
@@ -50344,9 +50134,6 @@ namespace {
     {
     }
     /**
-     * @param array $query
-     * @param string $template_type
-     * @return \WP_Block_Template[]
      * @phpstan-param array{
      *   slug__in?: string[],
      *   wp_id?: int,
@@ -50354,24 +50141,23 @@ namespace {
      *   post_type?: string,
      * } $query
      * @phpstan-param 'wp_template'|'wp_template_part' $template_type
+     * @return \WP_Block_Template[]
      */
     function get_block_templates($query = array(), $template_type = 'wp_template')
     {
     }
     /**
      * @param string $id
-     * @param string $template_type
-     * @return \WP_Block_Template|null
      * @phpstan-param 'wp_template'|'wp_template_part' $template_type
+     * @return \WP_Block_Template|null
      */
     function get_block_template($id, $template_type = 'wp_template')
     {
     }
     /**
      * @param string $id
-     * @param string $template_type
-     * @return \WP_Block_Template|null
      * @phpstan-param 'wp_template'|'wp_template_part' $template_type
+     * @return \WP_Block_Template|null
      */
     function get_block_file_template($id, $template_type = 'wp_template')
     {
@@ -50427,6 +50213,7 @@ namespace {
      * @param string $type
      * @param string[] $templates
      * @return string
+     * @param array $template
      */
     function locate_block_template($template, $type, array $templates)
     {
@@ -50540,6 +50327,35 @@ namespace {
      * @param string $file_or_folder
      * @param array $args
      * @return \WP_Block_Type|false
+     * @phpstan-param array{
+     *   api_version?: string,
+     *   title?: string,
+     *   category?: string|null,
+     *   parent?: string[]|null,
+     *   ancestor?: string[]|null,
+     *   allowed_blocks?: string[]|null,
+     *   icon?: string|null,
+     *   description?: string,
+     *   keywords?: string[],
+     *   textdomain?: string|null,
+     *   styles?: array[],
+     *   variations?: array[],
+     *   selectors?: array,
+     *   supports?: array|null,
+     *   example?: array|null,
+     *   render_callback?: callable|null,
+     *   variation_callback?: callable|null,
+     *   attributes?: array|null,
+     *   uses_context?: string[],
+     *   provides_context?: string[]|null,
+     *   block_hooks?: string[],
+     *   editor_script_handles?: string[],
+     *   script_handles?: string[],
+     *   view_script_handles?: string[],
+     *   editor_style_handles?: string[],
+     *   style_handles?: string[],
+     *   view_style_handles?: string[],
+     * } $args See WP_Block_Type::__construct()
      */
     function register_block_type_from_metadata($file_or_folder, $args = array())
     {
@@ -50548,6 +50364,35 @@ namespace {
      * @param string|\WP_Block_Type $block_type
      * @param array $args
      * @return \WP_Block_Type|false
+     * @phpstan-param array{
+     *   api_version?: string,
+     *   title?: string,
+     *   category?: string|null,
+     *   parent?: string[]|null,
+     *   ancestor?: string[]|null,
+     *   allowed_blocks?: string[]|null,
+     *   icon?: string|null,
+     *   description?: string,
+     *   keywords?: string[],
+     *   textdomain?: string|null,
+     *   styles?: array[],
+     *   variations?: array[],
+     *   selectors?: array,
+     *   supports?: array|null,
+     *   example?: array|null,
+     *   render_callback?: callable|null,
+     *   variation_callback?: callable|null,
+     *   attributes?: array|null,
+     *   uses_context?: string[],
+     *   provides_context?: string[]|null,
+     *   block_hooks?: string[],
+     *   editor_script_handles?: string[],
+     *   script_handles?: string[],
+     *   view_script_handles?: string[],
+     *   editor_style_handles?: string[],
+     *   style_handles?: string[],
+     *   view_style_handles?: string[],
+     * } $args See WP_Block_Type::__construct()
      */
     function register_block_type($block_type, $args = array())
     {
@@ -50588,22 +50433,20 @@ namespace {
     }
     /**
      * @param array $parsed_anchor_block
-     * @param string $relative_position
+     * @phpstan-param 'before'|'after'|'first_child'|'last_child' $relative_position
      * @param array $hooked_blocks
      * @param \WP_Block_Template|\WP_Post|array $context
      * @return string
-     * @phpstan-param 'before'|'after'|'first_child'|'last_child' $relative_position
      */
     function insert_hooked_blocks(&$parsed_anchor_block, $relative_position, $hooked_blocks, $context)
     {
     }
     /**
      * @param array $parsed_anchor_block
-     * @param string $relative_position
+     * @phpstan-param 'before'|'after'|'first_child'|'last_child' $relative_position
      * @param array $hooked_blocks
      * @param \WP_Block_Template|\WP_Post|array $context
      * @return string
-     * @phpstan-param 'before'|'after'|'first_child'|'last_child' $relative_position
      */
     function set_ignored_hooked_blocks_metadata(&$parsed_anchor_block, $relative_position, $hooked_blocks, $context)
     {
@@ -50633,11 +50476,10 @@ namespace {
     }
     /**
      * @param array $parsed_anchor_block
-     * @param string $relative_position
+     * @phpstan-param 'before'|'after'|'first_child'|'last_child' $relative_position
      * @param array $hooked_blocks
      * @param \WP_Block_Template|\WP_Post|array $context
      * @return string
-     * @phpstan-param 'before'|'after'|'first_child'|'last_child' $relative_position
      */
     function insert_hooked_blocks_and_set_ignored_hooked_blocks_metadata(&$parsed_anchor_block, $relative_position, $hooked_blocks, $context)
     {
@@ -50692,8 +50534,6 @@ namespace {
     {
     }
     /**
-     * @param array $block
-     * @return string
      * @phpstan-param array{
      *   blockName?: string,
      *   attrs?: array,
@@ -50701,13 +50541,12 @@ namespace {
      *   innerHTML?: string,
      *   innerContent?: array,
      * } $block
+     * @return string
      */
     function serialize_block($block)
     {
     }
     /**
-     * @param array[] $blocks
-     * @return string
      * @phpstan-param array<int|string, array{
      *   blockName: string,
      *   attrs: array,
@@ -50715,6 +50554,7 @@ namespace {
      *   innerHTML: string,
      *   innerContent: array,
      * }> $blocks
+     * @return string
      */
     function serialize_blocks($blocks)
     {
@@ -50811,8 +50651,6 @@ namespace {
     {
     }
     /**
-     * @param array $parsed_block
-     * @return string
      * @phpstan-param array{
      *   blockName?: string,
      *   attrs?: array,
@@ -50820,13 +50658,13 @@ namespace {
      *   innerHTML?: string,
      *   innerContent?: array,
      * } $parsed_block
+     * @return string
      */
     function render_block($parsed_block)
     {
     }
     /**
      * @param string $content
-     * @return array[]
      * @phpstan-return array<int|string, array{
      *   blockName: string,
      *   attrs: array,
@@ -50863,6 +50701,14 @@ namespace {
      * @param string|string[] $block_name
      * @param array $style_properties
      * @return bool
+     * @phpstan-param array{
+     *   name?: string,
+     *   label?: string,
+     *   inline_style?: string,
+     *   style_handle?: string,
+     *   is_default?: bool,
+     *   style_data?: array,
+     * } $style_properties See WP_Block_Styles_Registry::register()
      */
     function register_block_style($block_name, $style_properties)
     {
@@ -50916,9 +50762,8 @@ namespace {
     }
     /**
      * @param \WP_Block $block
-     * @param string $pagination_type
-     * @return string|null
      * @phpstan-param 'next'|'previous' $pagination_type
+     * @return string|null
      */
     function get_comments_pagination_arrow($block, $pagination_type = 'next')
     {
@@ -51450,9 +51295,6 @@ namespace {
     function render_block_core_home_link($attributes, $content, $block)
     {
     }
-    /**
-     * @throws \WP_Error
-     */
     function register_block_core_home_link()
     {
     }
@@ -51557,6 +51399,7 @@ namespace {
     function register_block_core_legacy_widget()
     {
     }
+    /**
      * @phpstan-return void
      */
     function handle_legacy_widget_preview_iframe()
@@ -51673,9 +51516,6 @@ namespace {
     function block_core_navigation_link_build_variations()
     {
     }
-    /**
-     * @throws \WP_Error
-     */
     function register_block_core_navigation_link()
     {
     }
@@ -51706,9 +51546,6 @@ namespace {
     function render_block_core_navigation_submenu($attributes, $content, $block)
     {
     }
-    /**
-     * @throws \WP_Error
-     */
     function register_block_core_navigation_submenu()
     {
     }
@@ -51804,9 +51641,6 @@ namespace {
     function render_block_core_navigation($attributes, $content, $block)
     {
     }
-    /**
-     * @throws \WP_Error
-     */
     function register_block_core_navigation()
     {
     }
@@ -51818,7 +51652,6 @@ namespace {
     {
     }
     /**
-     * @deprecated 6.3.0
      * @param array $menu_items
      * @param array $menu_items_by_parent_id
      * @return array
@@ -51827,14 +51660,12 @@ namespace {
     {
     }
     /**
-     * @deprecated 6.3.0
      * @return object
      */
     function block_core_navigation_get_classic_menu_fallback()
     {
     }
     /**
-     * @deprecated 6.3.0
      * @param object $classic_nav_menu
      * @return array
      */
@@ -51842,14 +51673,12 @@ namespace {
     {
     }
     /**
-     * @deprecated 6.3.0
      * @return array
      */
     function block_core_navigation_maybe_use_classic_menu_fallback()
     {
     }
     /**
-     * @deprecated 6.3.0
      * @return \WP_Post|null
      */
     function block_core_navigation_get_most_recently_published_navigation()
@@ -52500,6 +52329,7 @@ namespace {
     function _delete_site_logo_on_remove_custom_logo($old_value, $value)
     {
     }
+    /**
      * @phpstan-return void
      */
     function _delete_site_logo_on_remove_theme_mods()
@@ -52692,8 +52522,6 @@ namespace {
      */
     /**
      * @param array $bookmarks
-     * @param string|array $args
-     * @return string
      * @phpstan-param array{
      *   show_updated?: int|bool,
      *   show_description?: int|bool,
@@ -52706,13 +52534,12 @@ namespace {
      *   between?: string,
      *   show_rating?: int|bool,
      * } $args
+     * @return string
      */
     function _walk_bookmarks($bookmarks, $args = '')
     {
     }
     /**
-     * @param string|array $args
-     * @return void|string
      * @phpstan-param array{
      *   orderby?: string,
      *   order?: string,
@@ -52733,6 +52560,7 @@ namespace {
      *   category_orderby?: string,
      *   category_order?: string,
      * } $args
+     * @return void|string
      */
     function wp_list_bookmarks($args = '')
     {
@@ -52764,8 +52592,6 @@ namespace {
     {
     }
     /**
-     * @param string|array $args
-     * @return object[]
      * @phpstan-param array{
      *   orderby?: string,
      *   order?: string,
@@ -52778,6 +52604,7 @@ namespace {
      *   exclude?: string,
      *   search?: string,
      * } $args
+     * @return object[]
      */
     function get_bookmarks($args = '')
     {
@@ -52794,9 +52621,8 @@ namespace {
      * @param string $field
      * @param mixed $value
      * @param int $bookmark_id
-     * @param string $context
-     * @return mixed
      * @phpstan-param 'raw'|'edit'|'db'|'display'|'attribute'|'js' $context
+     * @return mixed
      */
     function sanitize_bookmark_field($field, $value, $bookmark_id, $context)
     {
@@ -52961,9 +52787,6 @@ namespace {
     function wp_cache_switch_to_blog($blog_id)
     {
     }
-    /**
-     * @deprecated 3.5.0
-     */
     function wp_cache_reset()
     {
     }
@@ -53006,6 +52829,7 @@ namespace {
     function redirect_guess_404_permalink()
     {
     }
+    /**
      * @phpstan-return void
      */
     function wp_redirect_admin_locations()
@@ -53020,7 +52844,7 @@ namespace {
     /**
      * @param string $cap
      * @param int $user_id
-     * @param mixed ...$args
+     * @param mixed $args
      * @return string[]
      */
     function map_meta_cap($cap, $user_id, ...$args)
@@ -53028,7 +52852,7 @@ namespace {
     }
     /**
      * @param string $capability
-     * @param mixed ...$args
+     * @param mixed $args
      * @return bool
      */
     function current_user_can($capability, ...$args)
@@ -53037,7 +52861,7 @@ namespace {
     /**
      * @param int $blog_id
      * @param string $capability
-     * @param mixed ...$args
+     * @param mixed $args
      * @return bool
      */
     function current_user_can_for_blog($blog_id, $capability, ...$args)
@@ -53046,7 +52870,7 @@ namespace {
     /**
      * @param int|\WP_Post $post
      * @param string $capability
-     * @param mixed ...$args
+     * @param mixed $args
      * @return bool
      */
     function author_can($post, $capability, ...$args)
@@ -53055,7 +52879,7 @@ namespace {
     /**
      * @param int|\WP_User $user
      * @param string $capability
-     * @param mixed ...$args
+     * @param mixed $args
      * @return bool
      */
     function user_can($user, $capability, ...$args)
@@ -53133,7 +52957,6 @@ namespace {
     /**
      * @param bool[] $allcaps
      * @param string[] $caps
-     * @param array $args
      * @param \WP_User $user
      * @return bool[]
      */
@@ -53212,8 +53035,6 @@ namespace {
     {
     }
     /**
-     * @param array|string $args
-     * @return string
      * @phpstan-param array{
      *   show_option_all?: string,
      *   show_option_none?: string,
@@ -53235,14 +53056,47 @@ namespace {
      *   required?: bool,
      *   walker?: Walker,
      *   aria_describedby?: string,
+     *   taxonomy?: string|string[],
+     *   object_ids?: int|int[],
+     *   orderby?: string,
+     *   order?: string,
+     *   hide_empty?: bool|int,
+     *   include?: int[]|string,
+     *   exclude?: int[]|string,
+     *   exclude_tree?: int[]|string,
+     *   number?: int|string,
+     *   offset?: int,
+     *   fields?: string,
+     *   count?: bool,
+     *   name?: string|string[],
+     *   slug?: string|string[],
+     *   term_taxonomy_id?: int|int[],
+     *   hierarchical?: bool,
+     *   search?: string,
+     *   name__like?: string,
+     *   description__like?: string,
+     *   pad_counts?: bool,
+     *   get?: string,
+     *   child_of?: int,
+     *   parent?: int,
+     *   childless?: bool,
+     *   cache_domain?: string,
+     *   cache_results?: bool,
+     *   update_term_meta_cache?: bool,
+     *   meta_key?: string|string[],
+     *   meta_value?: string|string[],
+     *   meta_compare?: string,
+     *   meta_compare_key?: string,
+     *   meta_type?: string,
+     *   meta_type_key?: string,
+     *   meta_query?: array,
      * } $args
+     * @return string
      */
     function wp_dropdown_categories($args = '')
     {
     }
     /**
-     * @param array|string $args
-     * @return void|string|false
      * @phpstan-param array{
      *   current_category?: int|int[],
      *   depth?: int,
@@ -53262,20 +53116,34 @@ namespace {
      *   title_li?: string,
      *   use_desc_for_title?: bool|int,
      *   walker?: Walker,
+     *   taxonomy?: string,
      * } $args
+     * @return void|string|false
      */
     function wp_list_categories($args = '')
     {
     }
     /**
-     * @param array|string $args
-     * @return void|string|string[]
      * @phpstan-param array{
      *   number?: int,
      *   link?: string,
      *   post_type?: string,
      *   echo?: bool,
+     *   smallest?: int,
+     *   largest?: int,
+     *   unit?: string,
+     *   number?: int,
+     *   format?: string,
+     *   separator?: string,
+     *   orderby?: string,
+     *   order?: string,
+     *   filter?: int|bool,
+     *   topic_count_text?: array,
+     *   topic_count_text_callback?: callable,
+     *   topic_count_scale_callback?: callable,
+     *   show_count?: bool|int,
      * } $args
+     * @return void|string|string[]
      */
     function wp_tag_cloud($args = '')
     {
@@ -53289,8 +53157,6 @@ namespace {
     }
     /**
      * @param \WP_Term[] $tags
-     * @param string|array $args
-     * @return string|string[]
      * @phpstan-param array{
      *   smallest?: int,
      *   largest?: int,
@@ -53306,6 +53172,7 @@ namespace {
      *   topic_count_scale_callback?: callable,
      *   show_count?: bool|int,
      * } $args
+     * @return string|string[]
      */
     function wp_generate_tag_cloud($tags, $args = '')
     {
@@ -53330,14 +53197,14 @@ namespace {
     // Helper functions.
     //
     /**
-     * @param mixed ...$args
+     * @param mixed $args
      * @return string
      */
     function walk_category_tree(...$args)
     {
     }
     /**
-     * @param mixed ...$args
+     * @param mixed $args
      * @return string
      */
     function walk_category_dropdown_tree(...$args)
@@ -53415,14 +53282,13 @@ namespace {
     /**
      * @param int $term_id
      * @param string $taxonomy
-     * @param string|array $args
-     * @return string|\WP_Error
      * @phpstan-param array{
      *   format?: string,
      *   separator?: string,
      *   link?: bool,
      *   inclusive?: bool,
      * } $args
+     * @return string|\WP_Error
      */
     function get_term_parents_list($term_id, $taxonomy, $args = array())
     {
@@ -53470,11 +53336,10 @@ namespace {
      * @subpackage Taxonomy
      */
     /**
-     * @param string|array $args
-     * @return array
      * @phpstan-param array{
      *   taxonomy?: string,
      * } $args
+     * @return array
      */
     function get_categories($args = '')
     {
@@ -53553,11 +53418,10 @@ namespace {
     }
     /* Tags */
     /**
-     * @param string|array $args
-     * @return \WP_Term[]|int|\WP_Error
      * @phpstan-param array{
      *   taxonomy?: string,
      * } $args
+     * @return \WP_Term[]|int|\WP_Error
      */
     function get_tags($args = '')
     {
@@ -53595,6 +53459,9 @@ namespace {
      * @param string $category_name
      * @param array $category_properties
      * @return bool
+     * @phpstan-param array{
+     *   label?: string,
+     * } $category_properties See WP_Block_Pattern_Categories_Registry::register()
      */
     function register_block_pattern_category($category_name, $category_properties)
     {
@@ -53610,6 +53477,19 @@ namespace {
      * @param string $pattern_name
      * @param array $pattern_properties
      * @return bool
+     * @phpstan-param array{
+     *   title?: string,
+     *   content?: string,
+     *   description?: string,
+     *   viewportWidth?: int,
+     *   inserter?: bool,
+     *   categories?: string[],
+     *   keywords?: string[],
+     *   blockTypes?: string[],
+     *   postTypes?: string[],
+     *   templateTypes?: string[],
+     *   filePath?: string,
+     * } $pattern_properties See WP_Block_Patterns_Registry::register()
      */
     function register_block_pattern($pattern_name, $pattern_properties)
     {
@@ -53798,8 +53678,6 @@ namespace {
     }
     /**
      * @param \WP_Comment|int|null $comment
-     * @param array $args
-     * @return string
      * @phpstan-param array{
      *   type?: string,
      *   page?: int,
@@ -53807,6 +53685,7 @@ namespace {
      *   max_depth?: int,
      *   cpage?: int|string,
      * } $args
+     * @return string
      */
     function get_comment_link($comment = \null, $args = array())
     {
@@ -53955,10 +53834,6 @@ namespace {
     {
     }
     /**
-     * @param array $args
-     * @param int|\WP_Comment $comment
-     * @param int|\WP_Post $post
-     * @return string|false|null
      * @phpstan-param array{
      *   add_below?: string,
      *   respond_id?: string,
@@ -53969,6 +53844,9 @@ namespace {
      *   before?: string,
      *   after?: string,
      * } $args
+     * @param int|\WP_Comment $comment
+     * @param int|\WP_Post $post
+     * @return string|false|null
      */
     function get_comment_reply_link($args = array(), $comment = \null, $post = \null)
     {
@@ -53982,9 +53860,6 @@ namespace {
     {
     }
     /**
-     * @param array $args
-     * @param int|\WP_Post $post
-     * @return string|false|null
      * @phpstan-param array{
      *   add_below?: string,
      *   respond_id?: string,
@@ -53993,6 +53868,8 @@ namespace {
      *   before?: string,
      *   after?: string,
      * } $args
+     * @param int|\WP_Post $post
+     * @return string|false|null
      */
     function get_post_reply_link($args = array(), $post = \null)
     {
@@ -54032,7 +53909,6 @@ namespace {
     {
     }
     /**
-     * @internal
      * @param string|false $no_reply_text
      * @param string|false $reply_text
      * @param bool $link_to_parent
@@ -54050,9 +53926,6 @@ namespace {
     {
     }
     /**
-     * @param string|array $args
-     * @param \WP_Comment[] $comments
-     * @return void|string
      * @phpstan-param array{
      *   walker?: object,
      *   max_depth?: int,
@@ -54069,13 +53942,13 @@ namespace {
      *   short_ping?: bool,
      *   echo?: bool,
      * } $args
+     * @param \WP_Comment[] $comments
+     * @return void|string
      */
     function wp_list_comments($args = array(), $comments = \null)
     {
     }
     /**
-     * @param array $args
-     * @param int|\WP_Post $post
      * @phpstan-param array{
      *   fields?: array{
      *     author: string,
@@ -54107,6 +53980,7 @@ namespace {
      *   submit_field?: string,
      *   format?: string,
      * } $args
+     * @param int|\WP_Post $post
      * @phpstan-return void
      */
     function comment_form($args = array(), $post = \null)
@@ -54133,13 +54007,59 @@ namespace {
     }
     /**
      * @param int $post_id
-     * @param array $args
-     * @return \WP_Comment[]|int[]|int
      * @phpstan-param array{
      *   status?: int,
      *   post_id?: int,
      *   order?: string,
+     *   author_email?: string,
+     *   author_url?: string,
+     *   author__in?: int[],
+     *   author__not_in?: int[],
+     *   comment__in?: int[],
+     *   comment__not_in?: int[],
+     *   count?: bool,
+     *   date_query?: array,
+     *   fields?: string,
+     *   include_unapproved?: array,
+     *   karma?: int,
+     *   meta_key?: string|string[],
+     *   meta_value?: string|string[],
+     *   meta_compare?: string,
+     *   meta_compare_key?: string,
+     *   meta_type?: string,
+     *   meta_type_key?: string,
+     *   meta_query?: array,
+     *   number?: int,
+     *   paged?: int,
+     *   offset?: int,
+     *   no_found_rows?: bool,
+     *   orderby?: string|array,
+     *   order?: string,
+     *   parent?: int,
+     *   parent__in?: int[],
+     *   parent__not_in?: int[],
+     *   post_author__in?: int[],
+     *   post_author__not_in?: int[],
+     *   post_id?: int,
+     *   post__in?: int[],
+     *   post__not_in?: int[],
+     *   post_author?: int,
+     *   post_status?: string|string[],
+     *   post_type?: string|string[],
+     *   post_name?: string,
+     *   post_parent?: int,
+     *   search?: string,
+     *   status?: string|array,
+     *   type?: string|string[],
+     *   type__in?: string[],
+     *   type__not_in?: string[],
+     *   user_id?: int,
+     *   hierarchical?: bool|string,
+     *   cache_domain?: string,
+     *   update_comment_meta_cache?: bool,
+     *   update_comment_post_cache?: bool,
      * } $args
+     * @return \WP_Comment[]|int[]|int
      */
     function get_approved_comments($post_id, $args = array())
     {
@@ -54157,6 +54077,55 @@ namespace {
     /**
      * @param string|array $args
      * @return \WP_Comment[]|int[]|int
+     * @phpstan-param array{
+     *   author_email?: string,
+     *   author_url?: string,
+     *   author__in?: int[],
+     *   author__not_in?: int[],
+     *   comment__in?: int[],
+     *   comment__not_in?: int[],
+     *   count?: bool,
+     *   date_query?: array,
+     *   fields?: string,
+     *   include_unapproved?: array,
+     *   karma?: int,
+     *   meta_key?: string|string[],
+     *   meta_value?: string|string[],
+     *   meta_compare?: string,
+     *   meta_compare_key?: string,
+     *   meta_type?: string,
+     *   meta_type_key?: string,
+     *   meta_query?: array,
+     *   number?: int,
+     *   paged?: int,
+     *   offset?: int,
+     *   no_found_rows?: bool,
+     *   orderby?: string|array,
+     *   order?: string,
+     *   parent?: int,
+     *   parent__in?: int[],
+     *   parent__not_in?: int[],
+     *   post_author__in?: int[],
+     *   post_author__not_in?: int[],
+     *   post_id?: int,
+     *   post__in?: int[],
+     *   post__not_in?: int[],
+     *   post_author?: int,
+     *   post_status?: string|string[],
+     *   post_type?: string|string[],
+     *   post_name?: string,
+     *   post_parent?: int,
+     *   search?: string,
+     *   status?: string|array,
+     *   type?: string|string[],
+     *   type__in?: string[],
+     *   type__not_in?: string[],
+     *   user_id?: int,
+     *   hierarchical?: bool|string,
+     *   cache_domain?: string,
+     *   update_comment_meta_cache?: bool,
+     *   update_comment_post_cache?: bool,
+     * } $args See WP_Comment_Query::__construct()
      */
     function get_comments($args = '')
     {
@@ -54170,7 +54139,6 @@ namespace {
     /**
      * @param string $post_type
      * @param string $comment_type
-     * @return string
      * @phpstan-return 'open'|'closed'
      */
     function get_default_comment_status($post_type = 'post', $comment_type = 'comment')
@@ -54185,7 +54153,6 @@ namespace {
     }
     /**
      * @param int $post_id
-     * @return int[]
      * @phpstan-return array{
      *   approved: int,
      *   awaiting_moderation: int,
@@ -54299,13 +54266,12 @@ namespace {
     }
     /**
      * @param int $comment_id
-     * @param array $args
-     * @return int|null
      * @phpstan-param array{
      *   type?: string,
      *   per_page?: int,
      *   max_depth?: int|string,
      * } $args
+     * @return int|null
      */
     function get_page_of_comment($comment_id, $args = array())
     {
@@ -54337,7 +54303,6 @@ namespace {
     }
     /**
      * @param int $post_id
-     * @return \stdClass
      * @phpstan-return object{
      *   approved: int,
      *   moderated: int,
@@ -54410,7 +54375,6 @@ namespace {
     {
     }
     /**
-     * @return array
      * @phpstan-return array{
      *   comment_author: string,
      *   comment_author_email: string,
@@ -54427,8 +54391,6 @@ namespace {
     {
     }
     /**
-     * @param array $commentdata
-     * @return int|false
      * @phpstan-param array{
      *   comment_agent?: string,
      *   comment_approved?: int|string,
@@ -54446,6 +54408,7 @@ namespace {
      *   comment_meta?: array,
      *   user_id?: int,
      * } $commentdata
+     * @return int|false
      */
     function wp_insert_comment($commentdata)
     {
@@ -54467,9 +54430,6 @@ namespace {
     {
     }
     /**
-     * @param array $commentdata
-     * @param bool $wp_error
-     * @return int|false|\WP_Error
      * @phpstan-param array{
      *   comment_author?: string,
      *   comment_author_email?: string,
@@ -54485,6 +54445,8 @@ namespace {
      *   comment_agent?: string,
      *   comment_author_IP?: string,
      * } $commentdata
+     * @param bool $wp_error
+     * @return int|false|\WP_Error
      */
     function wp_new_comment($commentdata, $wp_error = \false)
     {
@@ -54505,10 +54467,9 @@ namespace {
     }
     /**
      * @param int|\WP_Comment $comment_id
-     * @param string $comment_status
+     * @phpstan-param 'hold'|'approve'|'spam'|'trash' $comment_status
      * @param bool $wp_error
      * @return bool|\WP_Error
-     * @phpstan-param 'hold'|'approve'|'spam'|'trash' $comment_status
      * @phpstan-return ($wp_error is false ? bool : true|\WP_Error)
      */
     function wp_set_comment_status($comment_id, $comment_status, $wp_error = \false)
@@ -54671,8 +54632,6 @@ namespace {
     {
     }
     /**
-     * @param array $comment_data
-     * @return \WP_Comment|\WP_Error
      * @phpstan-param array{
      *   comment_post_ID?: string|int,
      *   author?: string,
@@ -54682,6 +54641,7 @@ namespace {
      *   comment_parent?: string|int,
      *   _wp_unfiltered_html_comment?: string,
      * } $comment_data
+     * @return \WP_Comment|\WP_Error
      */
     function wp_handle_comment_submission($comment_data)
     {
@@ -54696,7 +54656,6 @@ namespace {
     /**
      * @param string $email_address
      * @param int $page
-     * @return array
      * @phpstan-return array{
      *   data: array[],
      *   done: bool,
@@ -54715,7 +54674,6 @@ namespace {
     /**
      * @param string $email_address
      * @param int $page
-     * @return array
      * @phpstan-return array{
      *   items_removed: bool,
      *   items_retained: bool,
@@ -54729,14 +54687,12 @@ namespace {
     function wp_cache_set_comments_last_changed()
     {
     }
+    /**
      * @phpstan-return void
      */
     function _wp_batch_update_comment_type()
     {
     }
-    /**
-     * @ignore
-     */
     function _wp_check_for_scheduled_update_comment_type()
     {
     }
@@ -54819,7 +54775,6 @@ namespace {
      * @param string $hook
      * @param array $args
      * @param int|null $timestamp
-     * @return object|false
      * @phpstan-return false|object{
      *   hook: string,
      *   timestamp: int,
@@ -54861,7 +54816,6 @@ namespace {
     {
     }
     /**
-     * @return array
      * @phpstan-return array<int|string, array{
      *   interval: int,
      *   display: string,
@@ -54939,21 +54893,16 @@ namespace {
      * Deprecated functions come here to die.
      */
     /**
-     * @deprecated 1.5.1
      * @param int $postid
      * @return array
      */
     function get_postdata($postid)
     {
     }
-    /**
-     * @deprecated 1.5.0
-     */
     function start_wp()
     {
     }
     /**
-     * @deprecated 0.71
      * @param bool $display
      * @return int
      */
@@ -54961,7 +54910,6 @@ namespace {
     {
     }
     /**
-     * @deprecated 0.71
      * @param string $before
      * @param string $after
      */
@@ -54969,7 +54917,6 @@ namespace {
     {
     }
     /**
-     * @deprecated 2.0.0
      * @param string $format
      * @param string $previous
      * @param string $title
@@ -54982,7 +54929,6 @@ namespace {
     {
     }
     /**
-     * @deprecated 2.0.0
      * @param string $format
      * @param string $next
      * @param string $title
@@ -54995,7 +54941,6 @@ namespace {
     {
     }
     /**
-     * @deprecated 2.0.0
      * @param int $user_id
      * @param int $blog_id
      * @param int $category_id
@@ -55005,7 +54950,6 @@ namespace {
     {
     }
     /**
-     * @deprecated 2.0.0
      * @param int $user_id
      * @param int $blog_id
      * @param int $category_id
@@ -55015,7 +54959,6 @@ namespace {
     {
     }
     /**
-     * @deprecated 2.0.0
      * @param int $user_id
      * @param int $post_id
      * @param int $blog_id
@@ -55025,7 +54968,6 @@ namespace {
     {
     }
     /**
-     * @deprecated 2.0.0
      * @param int $user_id
      * @param int $post_id
      * @param int $blog_id
@@ -55035,7 +54977,6 @@ namespace {
     {
     }
     /**
-     * @deprecated 2.0.0
      * @param int $user_id
      * @param int $blog_id
      * @param int $category_id
@@ -55045,7 +54986,6 @@ namespace {
     {
     }
     /**
-     * @deprecated 2.0.0
      * @param int $user_id
      * @param int $post_id
      * @param int $blog_id
@@ -55055,7 +54995,6 @@ namespace {
     {
     }
     /**
-     * @deprecated 2.0.0
      * @param int $user_id
      * @param int $post_id
      * @param int $blog_id
@@ -55065,7 +55004,6 @@ namespace {
     {
     }
     /**
-     * @deprecated 2.0.0
      * @param int $user_id
      * @param int $post_id
      * @param int $blog_id
@@ -55075,7 +55013,6 @@ namespace {
     {
     }
     /**
-     * @deprecated 2.0.0
      * @param int $user_id
      * @param int $other_user
      * @return bool
@@ -55084,7 +55021,6 @@ namespace {
     {
     }
     /**
-     * @deprecated 2.1.0
      * @param string $cat_name
      * @param string $before
      * @param string $after
@@ -55100,7 +55036,6 @@ namespace {
     {
     }
     /**
-     * @deprecated 2.1.0
      * @param string $category
      * @param string $args
      * @return string|null
@@ -55109,7 +55044,6 @@ namespace {
     {
     }
     /**
-     * @deprecated 2.1.0
      * @param string $cat_name
      * @param string $orderby
      * @param int $limit
@@ -55119,7 +55053,6 @@ namespace {
     {
     }
     /**
-     * @deprecated 2.1.0
      * @param int $category
      * @param string $orderby
      * @param int $limit
@@ -55129,7 +55062,6 @@ namespace {
     {
     }
     /**
-     * @deprecated 2.1.0
      * @param string $cat_name
      * @param string $before
      * @param string $after
@@ -55144,7 +55076,6 @@ namespace {
     {
     }
     /**
-     * @deprecated 2.1.0
      * @param int $category
      * @param string $before
      * @param string $after
@@ -55159,7 +55090,6 @@ namespace {
     {
     }
     /**
-     * @deprecated 2.1.0
      * @param int $id
      * @return int
      */
@@ -55167,7 +55097,6 @@ namespace {
     {
     }
     /**
-     * @deprecated 2.1.0
      * @param int $optionall
      * @param string $all
      * @param string $sort_column
@@ -55192,7 +55121,6 @@ namespace {
     {
     }
     /**
-     * @deprecated 2.1.0
      * @param string|array $args
      * @return null|string|false
      */
@@ -55200,7 +55128,6 @@ namespace {
     {
     }
     /**
-     * @deprecated 2.1.0
      * @param int $optionall
      * @param string $all
      * @param string $orderby
@@ -55217,7 +55144,6 @@ namespace {
     {
     }
     /**
-     * @deprecated 2.1.0
      * @param bool $optioncount
      * @param bool $exclude_admin
      * @param bool $show_fullname
@@ -55230,7 +55156,6 @@ namespace {
     {
     }
     /**
-     * @deprecated 2.1.0
      * @param int $blogid
      * @param int $post_id
      * @return array
@@ -55239,8 +55164,6 @@ namespace {
     {
     }
     /**
-     * @deprecated 2.1.0
-     * @deprecated
      * @param int $blogid
      * @param int $post_id
      * @param array $post_categories
@@ -55250,7 +55173,6 @@ namespace {
     {
     }
     /**
-     * @deprecated 2.1.0
      * @param string $type
      * @param string $limit
      * @param string $format
@@ -55263,7 +55185,6 @@ namespace {
     {
     }
     /**
-     * @deprecated 2.1.0
      * @param bool $display
      * @param int $author_id
      * @param string $author_nicename
@@ -55273,7 +55194,6 @@ namespace {
     {
     }
     /**
-     * @deprecated 2.1.0
      * @param string $before
      * @param string $after
      * @param string $next_or_number
@@ -55287,28 +55207,22 @@ namespace {
     {
     }
     /**
-     * @deprecated 2.1.0
      * @param string $option
      * @return string
      */
     function get_settings($option)
     {
     }
-    /**
-     * @deprecated 1.2.0
-     */
     function permalink_link()
     {
     }
     /**
-     * @deprecated 2.3.0
      * @param string $deprecated
      */
     function permalink_single_rss($deprecated = '')
     {
     }
     /**
-     * @deprecated 2.1.0
      * @param string $args
      * @return null|string
      */
@@ -55316,7 +55230,6 @@ namespace {
     {
     }
     /**
-     * @deprecated 2.1.0
      * @param int $category
      * @param string $before
      * @param string $after
@@ -55334,14 +55247,12 @@ namespace {
     {
     }
     /**
-     * @deprecated 2.1.0
      * @param string $order
      */
     function get_links_list($order = 'name')
     {
     }
     /**
-     * @deprecated 2.1.0
      * @param string $text
      * @param int $width
      * @param int $height
@@ -55352,7 +55263,6 @@ namespace {
     {
     }
     /**
-     * @deprecated 2.1.0
      * @param object $link
      * @return mixed
      */
@@ -55360,7 +55270,6 @@ namespace {
     {
     }
     /**
-     * @deprecated 2.1.0
      * @param int $id
      * @return string
      */
@@ -55368,14 +55277,12 @@ namespace {
     {
     }
     /**
-     * @deprecated 2.5.0
      * @param string $link_text
      */
     function comments_rss_link($link_text = 'Comments RSS')
     {
     }
     /**
-     * @deprecated 2.5.0
      * @param bool $display
      * @param int $cat_id
      * @return string
@@ -55384,7 +55291,6 @@ namespace {
     {
     }
     /**
-     * @deprecated 2.5.0
      * @param bool $display
      * @param int $author_id
      * @return string
@@ -55393,14 +55299,12 @@ namespace {
     {
     }
     /**
-     * @deprecated 2.2.0
      * @return string
      */
     function comments_rss()
     {
     }
     /**
-     * @deprecated 2.0.0
      * @param string $username
      * @param string $password
      * @param string $email
@@ -55409,14 +55313,10 @@ namespace {
     function create_user($username, $password, $email)
     {
     }
-    /**
-     * @deprecated 2.5.0
-     */
     function gzip_compression()
     {
     }
     /**
-     * @deprecated 2.7.0
      * @param int $comment_id
      * @param int $no_cache
      * @param bool $include_unapproved
@@ -55426,7 +55326,6 @@ namespace {
     {
     }
     /**
-     * @deprecated 2.8.0
      * @param int $cat_id
      * @return string
      */
@@ -55434,7 +55333,6 @@ namespace {
     {
     }
     /**
-     * @deprecated 2.8.0
      * @param int $id
      * @param string $before
      * @param string $after
@@ -55445,144 +55343,102 @@ namespace {
     {
     }
     /**
-     * @deprecated 4.0.0
      * @return int[]
      */
     function get_all_category_ids()
     {
     }
     /**
-     * @deprecated 2.8.0
      * @return string
      */
     function get_the_author_description()
     {
     }
-    /**
-     * @deprecated 2.8.0
-     */
     function the_author_description()
     {
     }
     /**
-     * @deprecated 2.8.0
      * @return string
      */
     function get_the_author_login()
     {
     }
-    /**
-     * @deprecated 2.8.0
-     */
     function the_author_login()
     {
     }
     /**
-     * @deprecated 2.8.0
      * @return string
      */
     function get_the_author_firstname()
     {
     }
-    /**
-     * @deprecated 2.8.0
-     */
     function the_author_firstname()
     {
     }
     /**
-     * @deprecated 2.8.0
      * @return string
      */
     function get_the_author_lastname()
     {
     }
-    /**
-     * @deprecated 2.8.0
-     */
     function the_author_lastname()
     {
     }
     /**
-     * @deprecated 2.8.0
      * @return string
      */
     function get_the_author_nickname()
     {
     }
-    /**
-     * @deprecated 2.8.0
-     */
     function the_author_nickname()
     {
     }
     /**
-     * @deprecated 2.8.0
      * @return string
      */
     function get_the_author_email()
     {
     }
-    /**
-     * @deprecated 2.8.0
-     */
     function the_author_email()
     {
     }
     /**
-     * @deprecated 2.8.0
      * @return string
      */
     function get_the_author_icq()
     {
     }
-    /**
-     * @deprecated 2.8.0
-     */
     function the_author_icq()
     {
     }
     /**
-     * @deprecated 2.8.0
      * @return string
      */
     function get_the_author_yim()
     {
     }
-    /**
-     * @deprecated 2.8.0
-     */
     function the_author_yim()
     {
     }
     /**
-     * @deprecated 2.8.0
      * @return string
      */
     function get_the_author_msn()
     {
     }
-    /**
-     * @deprecated 2.8.0
-     */
     function the_author_msn()
     {
     }
     /**
-     * @deprecated 2.8.0
      * @return string
      */
     function get_the_author_aim()
     {
     }
-    /**
-     * @deprecated 2.8.0
-     */
     function the_author_aim()
     {
     }
     /**
-     * @deprecated 2.8.0
      * @param int $auth_id
      * @return string
      */
@@ -55590,33 +55446,24 @@ namespace {
     {
     }
     /**
-     * @deprecated 2.8.0
      * @return string
      */
     function get_the_author_url()
     {
     }
-    /**
-     * @deprecated 2.8.0
-     */
     function the_author_url()
     {
     }
     /**
-     * @deprecated 2.8.0
      * @return string|int
      */
     function get_the_author_ID()
     {
     }
-    /**
-     * @deprecated 2.8.0
-     */
     function the_author_ID()
     {
     }
     /**
-     * @deprecated 2.9.0
      * @param string $more_link_text
      * @param int $stripteaser
      * @param string $more_file
@@ -55627,7 +55474,6 @@ namespace {
     {
     }
     /**
-     * @deprecated 2.9.0
      * @param string $content
      * @return string
      */
@@ -55635,7 +55481,6 @@ namespace {
     {
     }
     /**
-     * @deprecated 2.9.0
      * @param string $text
      * @param string $domain
      * @return string
@@ -55644,7 +55489,6 @@ namespace {
     {
     }
     /**
-     * @deprecated 3.0.0
      * @param string $text
      * @param string $domain
      * @return string
@@ -55653,7 +55497,6 @@ namespace {
     {
     }
     /**
-     * @deprecated 3.0.0
      * @param string $single
      * @param string $plural
      * @param int $number
@@ -55663,27 +55506,19 @@ namespace {
     function _nc($single, $plural, $number, $domain = 'default')
     {
     }
-    /**
-     * @deprecated 2.8.0
-     */
     function __ngettext(...$args)
     {
     }
-    /**
-     * @deprecated 2.8.0
-     */
     function __ngettext_noop(...$args)
     {
     }
     /**
-     * @deprecated 3.0.0
      * @return array
      */
     function get_alloptions()
     {
     }
     /**
-     * @deprecated 2.5.0
      * @param int $id
      * @param bool $fullsize
      * @param array $max_dims
@@ -55694,7 +55529,6 @@ namespace {
     {
     }
     /**
-     * @deprecated 2.5.0
      * @param int $id
      * @param bool $fullsize
      * @return array
@@ -55703,7 +55537,6 @@ namespace {
     {
     }
     /**
-     * @deprecated 2.5.0
      * @param int $id
      * @param bool $fullsize
      * @param array $max_dims
@@ -55713,7 +55546,6 @@ namespace {
     {
     }
     /**
-     * @deprecated 2.5.0
      * @param int $id
      * @param bool $fullsize
      * @param array $max_dims
@@ -55723,18 +55555,15 @@ namespace {
     {
     }
     /**
-     * @deprecated 2.1.0
      * @param int $bookmark_id
      * @param string $output
-     * @param string $filter
-     * @return object|array
      * @phpstan-param 'raw'|'edit'|'attribute'|'js'|'db'|'display' $filter
+     * @return object|array
      */
     function get_link($bookmark_id, $output = \OBJECT, $filter = 'raw')
     {
     }
     /**
-     * @deprecated 3.0.0
      * @param string $url
      * @param array $protocols
      * @param string $context
@@ -55744,7 +55573,6 @@ namespace {
     {
     }
     /**
-     * @deprecated 2.8.0
      * @param string $text
      * @return string
      */
@@ -55752,7 +55580,6 @@ namespace {
     {
     }
     /**
-     * @deprecated 2.8.0
      * @param string $text
      * @param string $quote_style
      * @param false|string $charset
@@ -55763,7 +55590,6 @@ namespace {
     {
     }
     /**
-     * @deprecated 2.8.0
      * @param string $text
      * @return string
      */
@@ -55771,42 +55597,37 @@ namespace {
     {
     }
     /**
-     * @deprecated 2.8.0
      * @param string|int $name
      * @param callable $output_callback
      * @param string $classname
-     * @param mixed ...$params
+     * @param mixed $params
      */
     function register_sidebar_widget($name, $output_callback, $classname = '', ...$params)
     {
     }
     /**
-     * @deprecated 2.8.0
      * @param int|string $id
      */
     function unregister_sidebar_widget($id)
     {
     }
     /**
-     * @deprecated 2.8.0
      * @param int|string $name
      * @param callable $control_callback
      * @param int $width
      * @param int $height
-     * @param mixed ...$params
+     * @param mixed $params
      */
     function register_widget_control($name, $control_callback, $width = '', $height = '', ...$params)
     {
     }
     /**
-     * @deprecated 2.8.0
      * @param int|string $id
      */
     function unregister_widget_control($id)
     {
     }
     /**
-     * @deprecated 3.0.0
      * @param int $user_id
      * @param string $meta_key
      * @param mixed $meta_value
@@ -55816,7 +55637,6 @@ namespace {
     {
     }
     /**
-     * @deprecated 3.0.0
      * @param int $user_id
      * @param string $meta_key
      * @return mixed
@@ -55825,7 +55645,6 @@ namespace {
     {
     }
     /**
-     * @deprecated 3.0.0
      * @param int $user_id
      * @param string $meta_key
      * @param mixed $meta_value
@@ -55835,7 +55654,6 @@ namespace {
     {
     }
     /**
-     * @deprecated 3.1.0
      * @param int $id
      * @return array
      */
@@ -55843,14 +55661,12 @@ namespace {
     {
     }
     /**
-     * @deprecated 3.0.0
      * @param bool $add
      */
     function automatic_feed_links($add = \true)
     {
     }
     /**
-     * @deprecated 3.0.0
      * @param string $field
      * @param false|int $user
      * @return string
@@ -55859,7 +55675,6 @@ namespace {
     {
     }
     /**
-     * @deprecated 3.0.0
      * @param int $userid
      * @return int
      */
@@ -55867,7 +55682,6 @@ namespace {
     {
     }
     /**
-     * @deprecated 3.0.0
      * @param array $matches
      * @return string
      */
@@ -55875,7 +55689,6 @@ namespace {
     {
     }
     /**
-     * @deprecated 3.0.0
      * @param string $text
      * @return string
      */
@@ -55883,7 +55696,6 @@ namespace {
     {
     }
     /**
-     * @deprecated 3.0.0
      * @param string $taxonomy
      * @return bool
      */
@@ -55891,7 +55703,6 @@ namespace {
     {
     }
     /**
-     * @deprecated 3.0.0
      * @param int|string $term
      * @param string $taxonomy
      * @param int $parent
@@ -55902,28 +55713,24 @@ namespace {
     {
     }
     /**
-     * @deprecated 3.1.0
      * @return bool
      */
     function is_plugin_page()
     {
     }
     /**
-     * @deprecated 3.1.0
      * @return bool
      */
     function update_category_cache()
     {
     }
     /**
-     * @deprecated 3.2.0
      * @return bool
      */
     function wp_timezone_supported()
     {
     }
     /**
-     * @deprecated 3.3.0
      * @param string $content
      * @param string $id
      * @param string $prev_id
@@ -55935,7 +55742,6 @@ namespace {
     {
     }
     /**
-     * @deprecated 3.3.0
      * @param array $ids
      * @return array
      */
@@ -55943,7 +55749,6 @@ namespace {
     {
     }
     /**
-     * @deprecated 3.3.0
      * @param object|array $user
      * @param string $context
      * @return object|array
@@ -55952,7 +55757,6 @@ namespace {
     {
     }
     /**
-     * @deprecated 3.3.0
      * @param string $title
      * @param bool $in_same_cat
      * @param string $excluded_categories
@@ -55963,7 +55767,6 @@ namespace {
     {
     }
     /**
-     * @deprecated 3.3.0
      * @param string $title
      * @param bool $in_same_cat
      * @param string $excluded_categories
@@ -55972,20 +55775,15 @@ namespace {
     {
     }
     /**
-     * @deprecated 3.3.0
      * @return string
      */
     function get_index_rel_link()
     {
     }
-    /**
-     * @deprecated 3.3.0
-     */
     function index_rel_link()
     {
     }
     /**
-     * @deprecated 3.3.0
      * @param string $title
      * @return string
      */
@@ -55993,21 +55791,18 @@ namespace {
     {
     }
     /**
-     * @deprecated 3.3.0
      * @param string $title
      */
     function parent_post_rel_link($title = '%title')
     {
     }
     /**
-     * @deprecated 3.3.0
      * @param \WP_Admin_Bar $wp_admin_bar
      */
     function wp_admin_bar_dashboard_view_site_menu($wp_admin_bar)
     {
     }
     /**
-     * @deprecated 3.3.0
      * @param int $blog_id
      * @return bool
      */
@@ -56015,7 +55810,6 @@ namespace {
     {
     }
     /**
-     * @deprecated 3.4.0
      * @param string $filename
      * @param string $mode
      * @return false
@@ -56024,7 +55818,6 @@ namespace {
     {
     }
     /**
-     * @deprecated 3.4.0
      * @param mixed $fp
      * @param string $message
      */
@@ -56032,21 +55825,18 @@ namespace {
     {
     }
     /**
-     * @deprecated 3.4.0
      * @param mixed $fp
      */
     function debug_fclose($fp)
     {
     }
     /**
-     * @deprecated 3.4.0
      * @return array
      */
     function get_themes()
     {
     }
     /**
-     * @deprecated 3.4.0
      * @param string $theme
      * @return array|null
      */
@@ -56054,14 +55844,12 @@ namespace {
     {
     }
     /**
-     * @deprecated 3.4.0
      * @return string
      */
     function get_current_theme()
     {
     }
     /**
-     * @deprecated 3.4.0
      * @param array|string $matches
      * @return string
      */
@@ -56069,7 +55857,6 @@ namespace {
     {
     }
     /**
-     * @deprecated 3.4.0
      * @param callable $wp_head_callback
      * @param callable $admin_head_callback
      * @param callable $admin_preview_callback
@@ -56078,14 +55865,12 @@ namespace {
     {
     }
     /**
-     * @deprecated 3.4.0
      * @return null|bool
      */
     function remove_custom_image_header()
     {
     }
     /**
-     * @deprecated 3.4.0
      * @param callable $wp_head_callback
      * @param callable $admin_head_callback
      * @param callable $admin_preview_callback
@@ -56094,14 +55879,12 @@ namespace {
     {
     }
     /**
-     * @deprecated 3.4.0
      * @return null|bool
      */
     function remove_custom_background()
     {
     }
     /**
-     * @deprecated 3.4.0
      * @param string $theme_file
      * @return array
      */
@@ -56109,21 +55892,18 @@ namespace {
     {
     }
     /**
-     * @deprecated 3.4.0
      * @param array $pages
      */
     function update_page_cache(&$pages)
     {
     }
     /**
-     * @deprecated 3.4.0
      * @param int $id
      */
     function clean_page_cache($id)
     {
     }
     /**
-     * @deprecated 3.4.1
      * @param string $action
      * @return string
      */
@@ -56131,21 +55911,18 @@ namespace {
     {
     }
     /**
-     * @deprecated 3.5.0
      * @param int $post_id
      */
     function sticky_class($post_id = \null)
     {
     }
     /**
-     * @deprecated 3.5.0
      * @param \WP_Post $post
      */
     function _get_post_ancestors(&$post)
     {
     }
     /**
-     * @deprecated 3.5.0
      * @param string $file
      * @return resource|\GdImage|string
      */
@@ -56153,7 +55930,6 @@ namespace {
     {
     }
     /**
-     * @deprecated 3.5.0
      * @param string $file
      * @param int $max_w
      * @param int $max_h
@@ -56167,7 +55943,6 @@ namespace {
     {
     }
     /**
-     * @deprecated 3.5.0
      * @param int $postid
      * @param string $mode
      * @return \WP_Post|null
@@ -56176,7 +55951,6 @@ namespace {
     {
     }
     /**
-     * @deprecated 3.5.0
      * @param string $user_login
      * @param string $user_pass
      * @return bool
@@ -56184,14 +55958,10 @@ namespace {
     function user_pass_ok($user_login, $user_pass)
     {
     }
-    /**
-     * @deprecated 3.5.0
-     */
     function _save_post_hook()
     {
     }
     /**
-     * @deprecated 3.5.0
      * @param string $mime_type
      * @return bool
      */
@@ -56199,7 +55969,6 @@ namespace {
     {
     }
     /**
-     * @deprecated 3.6.0
      * @param int $bytes
      * @return string
      */
@@ -56207,7 +55976,6 @@ namespace {
     {
     }
     /**
-     * @deprecated 3.7.0
      * @param string $t
      * @return string
      */
@@ -56215,14 +55983,12 @@ namespace {
     {
     }
     /**
-     * @deprecated 3.9.0
      * @return bool
      */
     function rich_edit_exists()
     {
     }
     /**
-     * @deprecated 3.9.0
      * @param int $count
      * @return int
      */
@@ -56230,7 +55996,6 @@ namespace {
     {
     }
     /**
-     * @deprecated 3.9.0
      * @param string $content
      * @return string
      */
@@ -56238,7 +56003,6 @@ namespace {
     {
     }
     /**
-     * @deprecated 4.0.0
      * @param string $text
      * @return string
      */
@@ -56246,35 +56010,28 @@ namespace {
     {
     }
     /**
-     * @deprecated 4.0.0
      * @param string $url
      * @return bool
      */
     function url_is_accessable_via_ssl($url)
     {
     }
-    /**
-     * @deprecated 4.3.0
-     */
     function preview_theme()
     {
     }
     /**
-     * @deprecated 4.3.0
      * @return string
      */
     function _preview_theme_template_filter()
     {
     }
     /**
-     * @deprecated 4.3.0
      * @return string
      */
     function _preview_theme_stylesheet_filter()
     {
     }
     /**
-     * @deprecated 4.3.0
      * @param string $content
      * @return string
      */
@@ -56282,7 +56039,6 @@ namespace {
     {
     }
     /**
-     * @deprecated 4.3.0
      * @param array $matches
      * @return string
      */
@@ -56290,7 +56046,6 @@ namespace {
     {
     }
     /**
-     * @deprecated 4.3.0
      * @param string $text
      * @return string
      */
@@ -56298,7 +56053,6 @@ namespace {
     {
     }
     /**
-     * @deprecated 4.3.0
      * @param string $output
      * @return string
      */
@@ -56306,7 +56060,6 @@ namespace {
     {
     }
     /**
-     * @deprecated 4.4.0
      * @param int|\WP_Post $post
      * @return string|false
      */
@@ -56314,7 +56067,6 @@ namespace {
     {
     }
     /**
-     * @deprecated 4.4.0
      * @param string $url
      * @param string|bool $file_path
      * @param int $red
@@ -56324,7 +56076,6 @@ namespace {
     {
     }
     /**
-     * @deprecated 4.4.0
      * @param string|bool $force
      * @return bool
      */
@@ -56332,27 +56083,21 @@ namespace {
     {
     }
     /**
-     * @deprecated 4.5.0
      * @return string
      */
     function get_comments_popup_template()
     {
     }
     /**
-     * @deprecated 4.5.0
      * @return false
      */
     function is_comments_popup()
     {
     }
-    /**
-     * @deprecated 4.5.0
-     */
     function comments_popup_script()
     {
     }
     /**
-     * @deprecated 4.5.0
      * @param string $text
      * @return string
      */
@@ -56360,21 +56105,18 @@ namespace {
     {
     }
     /**
-     * @deprecated 4.6.0
      * @return string
      */
     function wp_embed_handler_googlevideo($matches, $attr, $url, $rawattr)
     {
     }
     /**
-     * @deprecated 4.7.0
      * @return string
      */
     function get_paged_template()
     {
     }
     /**
-     * @deprecated 4.7.0
      * @param string $content
      * @return string
      */
@@ -56382,7 +56124,6 @@ namespace {
     {
     }
     /**
-     * @deprecated 4.7.0
      * @param object $a
      * @param object $b
      * @return int
@@ -56391,7 +56132,6 @@ namespace {
     {
     }
     /**
-     * @deprecated 4.7.0
      * @param object $a
      * @param object $b
      * @return int
@@ -56400,7 +56140,6 @@ namespace {
     {
     }
     /**
-     * @deprecated 4.7.0
      * @param object $a
      * @param object $b
      * @return int
@@ -56409,26 +56148,18 @@ namespace {
     {
     }
     /**
-     * @deprecated 4.9.0
      * @return string
      */
     function get_shortcut_link()
     {
     }
-    /**
-     * @deprecated 4.9.0
-     */
     function wp_ajax_press_this_save_post()
     {
     }
-    /**
-     * @deprecated 4.9.0
-     */
     function wp_ajax_press_this_add_category()
     {
     }
     /**
-     * @deprecated 5.4.0
      * @param int $request_id
      * @return \WP_User_Request|false
      */
@@ -56436,21 +56167,16 @@ namespace {
     {
     }
     /**
-     * @deprecated 5.5.0
      * @param string $content
      * @return string
      */
     function wp_make_content_images_responsive($content)
     {
     }
-    /**
-     * @deprecated 5.5.0
-     */
     function wp_unregister_GLOBALS()
     {
     }
     /**
-     * @deprecated 5.5.0
      * @param string $author
      * @param string $email
      * @param string $url
@@ -56463,7 +56189,6 @@ namespace {
     {
     }
     /**
-     * @deprecated 5.5.0
      * @param array $args
      * @param array $default_args
      * @return array
@@ -56472,7 +56197,6 @@ namespace {
     {
     }
     /**
-     * @deprecated 5.5.0
      * @param array $new_options
      * @param string|array $options
      * @return array
@@ -56481,7 +56205,6 @@ namespace {
     {
     }
     /**
-     * @deprecated 5.5.0
      * @param array $del_options
      * @param string|array $options
      * @return array
@@ -56490,7 +56213,6 @@ namespace {
     {
     }
     /**
-     * @deprecated 5.6.0
      * @param mixed $value
      * @return mixed
      */
@@ -56498,34 +56220,25 @@ namespace {
     {
     }
     /**
-     * @deprecated 5.6.0
      * @param mixed $value
      * @return mixed
      */
     function addslashes_strings_only($value)
     {
     }
-    /**
-     * @deprecated 5.7.0
-     */
     function noindex()
     {
     }
     /**
-     * @deprecated 5.7.0
      * @phpstan-return void
      */
     function wp_no_robots()
     {
     }
-    /**
-     * @deprecated 5.7.0
-     */
     function wp_sensitive_page_meta()
     {
     }
     /**
-     * @deprecated 5.8.0
      * @param array $columns
      * @param array $allowed_blocks
      * @return string
@@ -56534,7 +56247,6 @@ namespace {
     {
     }
     /**
-     * @deprecated 5.9.1
      * @param array $preset
      * @return string
      */
@@ -56542,7 +56254,6 @@ namespace {
     {
     }
     /**
-     * @deprecated 6.0.0
      * @param \WP_Block_Type $block_type
      * @return bool
      */
@@ -56550,7 +56261,6 @@ namespace {
     {
     }
     /**
-     * @deprecated 6.0.0
      * @param \WP_Block_type $block_type
      * @return bool
      */
@@ -56558,21 +56268,16 @@ namespace {
     {
     }
     /**
-     * @deprecated 6.0.0
      * @param \WP_Block_Type $block_type
      * @return bool
      */
     function wp_skip_spacing_serialization($block_type)
     {
     }
-    /**
-     * @deprecated 6.0.0
-     */
     function wp_add_iframed_editor_assets_html()
     {
     }
     /**
-     * @deprecated 6.1.0
      * @param int $post_id
      * @return string|false
      */
@@ -56580,7 +56285,6 @@ namespace {
     {
     }
     /**
-     * @deprecated 6.1.0
      * @param string $domain
      * @param bool $reset
      * @return string|false
@@ -56589,7 +56293,6 @@ namespace {
     {
     }
     /**
-     * @deprecated 6.1.0
      * @param string $domain
      * @return string|false
      */
@@ -56597,7 +56300,6 @@ namespace {
     {
     }
     /**
-     * @deprecated 6.1.0
      * @param array $metadata
      * @return array
      */
@@ -56605,7 +56307,6 @@ namespace {
     {
     }
     /**
-     * @deprecated 6.1.0
      * @param array $attributes
      * @param string $feature
      * @param string $css_property
@@ -56615,14 +56316,12 @@ namespace {
     {
     }
     /**
-     * @deprecated 6.1.0
      * @return bool
      */
     function global_terms_enabled()
     {
     }
     /**
-     * @deprecated 6.0.3
      * @param array $clauses
      * @return array
      */
@@ -56630,7 +56329,6 @@ namespace {
     {
     }
     /**
-     * @deprecated 6.2.0
      * @param string $page_title
      * @param string $output
      * @param string|array $post_type
@@ -56640,27 +56338,21 @@ namespace {
     {
     }
     /**
-     * @deprecated 6.2.0
      * @return array|null
      */
     function _resolve_home_block_template()
     {
     }
-    /**
-     * @deprecated 6.3.0
-     */
     function wlwmanifest_link()
     {
     }
     /**
-     * @deprecated 6.3.0
      * @param \WP_Comment[] $comments
      */
     function wp_queue_comments_for_comment_meta_lazyload($comments)
     {
     }
     /**
-     * @deprecated 6.3.0
      * @param string $context
      * @return string|bool
      */
@@ -56668,7 +56360,6 @@ namespace {
     {
     }
     /**
-     * @deprecated 6.3.0
      * @param string $image
      * @param string $context
      * @return string
@@ -56677,7 +56368,6 @@ namespace {
     {
     }
     /**
-     * @deprecated 6.3.0
      * @param mixed $n
      * @param int $max
      * @return float
@@ -56686,7 +56376,6 @@ namespace {
     {
     }
     /**
-     * @deprecated 6.3.0
      * @param mixed $n
      * @return float
      */
@@ -56694,7 +56383,6 @@ namespace {
     {
     }
     /**
-     * @deprecated 6.3.0
      * @param array $rgb_color
      * @return array
      */
@@ -56702,7 +56390,6 @@ namespace {
     {
     }
     /**
-     * @deprecated 6.3.0
      * @param float $p
      * @param float $q
      * @param float $t
@@ -56712,7 +56399,6 @@ namespace {
     {
     }
     /**
-     * @deprecated 6.3.0
      * @param array $hsl_color
      * @return array
      */
@@ -56720,7 +56406,6 @@ namespace {
     {
     }
     /**
-     * @deprecated 6.3.0
      * @param string $color_str
      * @return array
      */
@@ -56728,7 +56413,6 @@ namespace {
     {
     }
     /**
-     * @deprecated 6.3.0
      * @param array $preset
      * @return string
      */
@@ -56736,7 +56420,6 @@ namespace {
     {
     }
     /**
-     * @deprecated 6.3.0
      * @param array $preset
      * @return string
      */
@@ -56744,7 +56427,6 @@ namespace {
     {
     }
     /**
-     * @deprecated 6.3.0
      * @param array $preset
      * @return string
      */
@@ -56752,14 +56434,12 @@ namespace {
     {
     }
     /**
-     * @deprecated 6.3.0
      * @param \WP_Block_Type $block_type
      */
     function wp_register_duotone_support($block_type)
     {
     }
     /**
-     * @deprecated 6.3.0
      * @param string $block_content
      * @param array $block
      * @return string
@@ -56768,21 +56448,18 @@ namespace {
     {
     }
     /**
-     * @deprecated 6.3.0
      * @return string
      */
     function wp_get_global_styles_svg_filters()
     {
     }
     /**
-     * @deprecated 6.3.0
      * @phpstan-return void
      */
     function wp_global_styles_render_svg_filters()
     {
     }
     /**
-     * @deprecated 6.3.0
      * @param array $context
      * @param array $attributes
      * @param bool $is_sub_menu
@@ -56791,46 +56468,31 @@ namespace {
     function block_core_navigation_submenu_build_css_colors($context, $attributes, $is_sub_menu = \false)
     {
     }
-    /**
-     * @deprecated 6.4.0
-     */
     function _wp_theme_json_webfonts_handler()
     {
     }
-    /**
-     * @deprecated 6.4.0
-     */
     function print_embed_styles()
     {
     }
     /**
-     * @deprecated 6.4.0
      * @phpstan-return void
      */
     function print_emoji_styles()
     {
     }
-    /**
-     * @deprecated 6.4.0
-     */
     function wp_admin_bar_header()
     {
     }
-    /**
-     * @deprecated 6.4.0
-     */
     function _admin_bar_bump_cb()
     {
     }
     /**
-     * @deprecated 6.4.0
      * @phpstan-return void
      */
     function wp_update_https_detection_errors()
     {
     }
     /**
-     * @deprecated 6.4.0
      * @param string $image
      * @param string $context
      * @return string
@@ -56839,7 +56501,6 @@ namespace {
     {
     }
     /**
-     * @deprecated 6.4.0
      * @param string $template_content
      * @return string
      */
@@ -56847,7 +56508,6 @@ namespace {
     {
     }
     /**
-     * @deprecated 6.4.0
      * @param string $template_content
      * @return string
      */
@@ -56855,32 +56515,21 @@ namespace {
     {
     }
     /**
-     * @deprecated 6.4.0
      * @phpstan-return void
      */
     function the_block_template_skip_link()
     {
     }
-    /**
-     * @deprecated 6.5.0
-     */
     function block_core_query_ensure_interactivity_dependency()
     {
     }
-    /**
-     * @deprecated 6.5.0
-     */
     function block_core_file_ensure_interactivity_dependency()
     {
     }
-    /**
-     * @deprecated 6.5.0
-     */
     function block_core_image_ensure_interactivity_dependency()
     {
     }
     /**
-     * @deprecated 6.6.0
      * @param string $block_content
      * @param array $block
      * @return string
@@ -56889,7 +56538,6 @@ namespace {
     {
     }
     /**
-     * @deprecated 6.6.0
      * @param array $parsed_block
      * @return array
      */
@@ -56921,7 +56569,6 @@ namespace {
     }
     /**
      * @param string $url
-     * @return int[]
      * @phpstan-return array{
      *   0: int,
      *   1: int,
@@ -56932,13 +56579,12 @@ namespace {
     }
     /**
      * @param string $url
-     * @param array|string $args
-     * @return string|false
      * @phpstan-param array{
      *   width?: int|string,
      *   height?: int|string,
      *   discover?: bool,
      * } $args
+     * @return string|false
      */
     function wp_oembed_get($url, $args = '')
     {
@@ -56964,6 +56610,7 @@ namespace {
     function wp_oembed_remove_provider($format)
     {
     }
+    /**
      * @phpstan-return void
      */
     function wp_maybe_load_embeds()
@@ -57005,9 +56652,6 @@ namespace {
     function wp_oembed_add_discovery_links()
     {
     }
-    /**
-     * @deprecated 5.9.0
-     */
     function wp_oembed_add_host_js()
     {
     }
@@ -57069,8 +56713,6 @@ namespace {
     {
     }
     /**
-     * @param string $format
-     * @return string
      * @phpstan-param 'json'|'xml' $format
      * @phpstan-return 'xml'|'json'
      */
@@ -57133,6 +56775,7 @@ namespace {
     function enqueue_embed_scripts()
     {
     }
+    /**
      * @phpstan-return void
      */
     function wp_enqueue_embed_styles()
@@ -57148,16 +56791,19 @@ namespace {
     function _oembed_filter_feed_content($content)
     {
     }
+    /**
      * @phpstan-return void
      */
     function print_embed_comments_button()
     {
     }
+    /**
      * @phpstan-return void
      */
     function print_embed_sharing_button()
     {
     }
+    /**
      * @phpstan-return void
      */
     function print_embed_sharing_dialog()
@@ -57200,6 +56846,7 @@ namespace {
     function wp_get_extension_error_description($error)
     {
     }
+    /**
      * @phpstan-return void
      */
     function wp_register_fatal_error_handler()
@@ -57230,11 +56877,13 @@ namespace {
     /**
      * @param string $show
      * @return string
+     * @param string $show
      */
     function get_bloginfo_rss($show = '')
     {
     }
     /**
+     * @param string $show
      * @param string $show
      */
     function bloginfo_rss($show = '')
@@ -57338,11 +56987,13 @@ namespace {
     function html_type_rss()
     {
     }
+    /**
      * @phpstan-return void
      */
     function rss_enclosure()
     {
     }
+    /**
      * @phpstan-return void
      */
     function atom_enclosure()
@@ -57399,7 +57050,6 @@ namespace {
      * @since      6.4.0
      */
     /**
-     * @param array[][] $fonts
      * @phpstan-param array[]<int|string, array{
      * ?: array<array-key, array{
      *     font-family: string,
@@ -57425,14 +57075,13 @@ namespace {
     }
     /**
      * @param string $slug
-     * @param array $args
-     * @return \WP_Font_Collection|\WP_Error
      * @phpstan-param array{
      *   name?: string,
      *   description?: string,
      *   font_families?: array|string,
      *   categories?: array,
      * } $args
+     * @return \WP_Font_Collection|\WP_Error
      */
     function wp_register_font_collection(string $slug, array $args)
     {
@@ -57452,7 +57101,6 @@ namespace {
     }
     /**
      * @param bool $create_dir
-     * @return array
      * @phpstan-return array{
      *   path: string,
      *   url: string,
@@ -57548,8 +57196,6 @@ namespace {
     {
     }
     /**
-     * @ignore
-     * @internal
      * @param string $shortcode_regex
      * @return string
      */
@@ -57557,7 +57203,6 @@ namespace {
     {
     }
     /**
-     * @ignore
      * @param string[] $tagnames
      * @return string
      */
@@ -57729,7 +57374,6 @@ namespace {
     {
     }
     /**
-     * @internal
      * @param string $text
      * @return string
      */
@@ -57897,7 +57541,6 @@ namespace {
     {
     }
     /**
-     * @deprecated 5.3.0
      * @param array $matches
      * @return string
      */
@@ -58039,9 +57682,8 @@ namespace {
     }
     /**
      * @param string $text
-     * @param string $default_editor
-     * @return string
      * @phpstan-param 'html'|'tinymce' $default_editor
+     * @return string
      */
     function format_for_editor($text, $default_editor = \null)
     {
@@ -58190,7 +57832,7 @@ namespace {
     }
     /**
      * @param string $pattern
-     * @param mixed ...$args
+     * @param mixed $args
      * @return string
      */
     function wp_sprintf($pattern, ...$args)
@@ -58346,19 +57988,18 @@ namespace {
     function wp_spaces_regexp()
     {
     }
+    /**
      * @phpstan-return void
      */
     function wp_enqueue_emoji_styles()
     {
     }
+    /**
      * @phpstan-return void
      */
     function print_emoji_detection_script()
     {
     }
-    /**
-     * @ignore
-     */
     function _print_emoji_detection_script()
     {
     }
@@ -58384,9 +58025,8 @@ namespace {
     {
     }
     /**
-     * @param string $type
-     * @return array
      * @phpstan-param 'partials'|'entities' $type
+     * @return array
      */
     function _wp_emoji_list($type = 'entities')
     {
@@ -58509,7 +58149,6 @@ namespace {
     /**
      * @param string $mysqlstring
      * @param int|string $start_of_week
-     * @return int[]
      * @phpstan-return array{
      *   start: int,
      *   end: int,
@@ -58679,6 +58318,7 @@ namespace {
     function wp_get_nocache_headers()
     {
     }
+    /**
      * @phpstan-return void
      */
     function nocache_headers()
@@ -58724,6 +58364,7 @@ namespace {
     function do_robots()
     {
     }
+    /**
      * @phpstan-return never
      */
     function do_favicon()
@@ -58846,7 +58487,6 @@ namespace {
      * @param string|null $time
      * @param bool $create_dir
      * @param bool $refresh_cache
-     * @return array
      * @phpstan-return array{
      *   path: string,
      *   url: string,
@@ -58897,7 +58537,6 @@ namespace {
      * @param null|string $deprecated
      * @param string $bits
      * @param string|null $time
-     * @return array
      * @phpstan-return array{
      *   file: string,
      *   url: string,
@@ -58925,7 +58564,6 @@ namespace {
     /**
      * @param string $filename
      * @param string[]|null $mimes
-     * @return array
      * @phpstan-return array{
      *   ext: string|false,
      *   type: string|false,
@@ -58938,7 +58576,6 @@ namespace {
      * @param string $file
      * @param string $filename
      * @param string[]|null $mimes
-     * @return array
      * @phpstan-return array{
      *   ext: string|false,
      *   type: string|false,
@@ -58990,7 +58627,6 @@ namespace {
     /**
      * @param string|\WP_Error $message
      * @param string|int $title
-     * @param string|array|int $args
      * @phpstan-param int|array{
      *   response?: int,
      *   link_url?: string,
@@ -59065,7 +58701,6 @@ namespace {
      * @param string|\WP_Error $message
      * @param string $title
      * @param string|array $args
-     * @return array
      * @phpstan-return array{
      *   0: string,
      *   1: string,
@@ -59085,17 +58720,14 @@ namespace {
     {
     }
     /**
-     * @ignore
      * @param mixed $value
      * @param int $depth
      * @return mixed
-     * @throws \Exception
      */
     function _wp_json_sanity_check($value, $depth)
     {
     }
     /**
-     * @ignore
      * @param string $input_string
      * @return string
      */
@@ -59103,8 +58735,6 @@ namespace {
     {
     }
     /**
-     * @deprecated 5.3.0
-     * @ignore
      * @param mixed $value
      * @return bool|int|float|null|string|array
      */
@@ -59146,11 +58776,10 @@ namespace {
     }
     /**
      * @param string $filename
-     * @param array $options
-     * @return mixed
      * @phpstan-param array{
      *   associative?: bool,
      * } $options
+     * @return mixed
      */
     function wp_json_file_decode($filename, $options = array())
     {
@@ -59185,6 +58814,7 @@ namespace {
     function wp_is_serving_rest_request()
     {
     }
+    /**
      * @phpstan-return void
      */
     function smilies_init()
@@ -59234,7 +58864,6 @@ namespace {
     {
     }
     /**
-     * @internal
      * @param array $input_array
      * @param array $path
      * @param mixed $default_value
@@ -59244,7 +58873,6 @@ namespace {
     {
     }
     /**
-     * @internal
      * @param array $input_array
      * @param array $path
      * @param mixed $value
@@ -59298,19 +58926,20 @@ namespace {
     /**
      * @param array $input_list
      * @param string|array $orderby
-     * @param string $order
+     * @phpstan-param 'ASC'|'DESC' $order
      * @param bool $preserve_keys
      * @return array
-     * @phpstan-param 'ASC'|'DESC' $order
      */
     function wp_list_sort($input_list, $orderby = array(), $order = 'ASC', $preserve_keys = \false)
     {
     }
+    /**
      * @phpstan-return void
      */
     function wp_maybe_load_widgets()
     {
     }
+    /**
      * @phpstan-return void
      */
     function wp_widgets_add_menu()
@@ -59319,6 +58948,7 @@ namespace {
     function wp_ob_end_flush_all()
     {
     }
+    /**
      * @phpstan-return never
      */
     function dead_db()
@@ -59568,7 +59198,6 @@ namespace {
     {
     }
     /**
-     * @ignore
      * @param string $column
      * @return string
      */
@@ -59653,6 +59282,7 @@ namespace {
     function wp_checkdate($month, $day, $year, $source_date)
     {
     }
+    /**
      * @phpstan-return void
      */
     function wp_auth_check_load()
@@ -59720,6 +59350,7 @@ namespace {
     function wp_delete_file_from_directory($file, $directory)
     {
     }
+    /**
      * @phpstan-return void
      */
     function wp_post_preview_js()
@@ -59818,11 +59449,13 @@ namespace {
     function wp_privacy_exports_url()
     {
     }
+    /**
      * @phpstan-return void
      */
     function wp_schedule_delete_old_privacy_export_files()
     {
     }
+    /**
      * @phpstan-return void
      */
     function wp_privacy_delete_old_export_files()
@@ -59861,6 +59494,7 @@ namespace {
     function wp_get_direct_php_update_url()
     {
     }
+    /**
      * @phpstan-return void
      */
     function wp_direct_php_update_button()
@@ -59934,8 +59568,6 @@ namespace {
     }
     /**
      * @param string $message
-     * @param array $args
-     * @return string
      * @phpstan-param array{
      *   type?: string,
      *   dismissible?: bool,
@@ -59944,13 +59576,13 @@ namespace {
      *   attributes?: string[],
      *   paragraph_wrap?: bool,
      * } $args
+     * @return string
      */
     function wp_get_admin_notice($message, $args = array())
     {
     }
     /**
      * @param string $message
-     * @param array $args
      * @phpstan-param array{
      *   type?: string,
      *   dismissible?: bool,
@@ -59978,7 +59610,6 @@ namespace {
     {
     }
     /**
-     * @ignore
      * @param string $function_name
      * @param string $handle
      * @phpstan-return void
@@ -60007,12 +59638,11 @@ namespace {
      * @param string|false $src
      * @param string[] $deps
      * @param string|bool|null $ver
-     * @param array|bool $args
-     * @return bool
      * @phpstan-param bool|array{
      *   strategy?: string,
      *   in_footer?: bool,
      * } $args
+     * @return bool
      */
     function wp_register_script($handle, $src, $deps = array(), $ver = \false, $args = array())
     {
@@ -60047,7 +59677,6 @@ namespace {
      * @param string $src
      * @param string[] $deps
      * @param string|bool|null $ver
-     * @param array|bool $args
      * @phpstan-param bool|array{
      *   strategy?: string,
      *   in_footer?: bool,
@@ -60064,9 +59693,8 @@ namespace {
     }
     /**
      * @param string $handle
-     * @param string $status
-     * @return bool
      * @phpstan-param 'enqueued'|'registered'|'queue'|'to_do'|'done' $status
+     * @return bool
      */
     function wp_script_is($handle, $status = 'enqueued')
     {
@@ -60144,19 +59772,17 @@ namespace {
     }
     /**
      * @param string $handle
-     * @param string $status
-     * @return bool
      * @phpstan-param 'enqueued'|'registered'|'queue'|'to_do'|'done' $status
+     * @return bool
      */
     function wp_style_is($handle, $status = 'enqueued')
     {
     }
     /**
      * @param string $handle
-     * @param string $key
+     * @phpstan-param 'conditional'|'rtl'|'suffix'|'alt'|'title'|'path' $key
      * @param mixed $value
      * @return bool
-     * @phpstan-param 'conditional'|'rtl'|'suffix'|'alt'|'title'|'path' $key
      */
     function wp_style_add_data($handle, $key, $value)
     {
@@ -60201,12 +59827,11 @@ namespace {
     {
     }
     /**
-     * @param array $args
-     * @return void|string
      * @phpstan-param array{
      *   echo?: bool,
      *   aria_label?: string,
      * } $args
+     * @return void|string
      */
     function get_search_form($args = array())
     {
@@ -60242,8 +59867,6 @@ namespace {
     {
     }
     /**
-     * @param array $args
-     * @return void|string
      * @phpstan-param array{
      *   echo?: bool,
      *   redirect?: string,
@@ -60262,6 +59885,7 @@ namespace {
      *   required_username?: bool,
      *   required_password?: bool,
      * } $args
+     * @return void|string
      */
     function wp_login_form($args = array())
     {
@@ -60351,7 +59975,6 @@ namespace {
     {
     }
     /**
-     * @ignore
      * @phpstan-return void
      */
     function _wp_render_title_tag()
@@ -60360,9 +59983,8 @@ namespace {
     /**
      * @param string $sep
      * @param bool $display
-     * @param string $seplocation
-     * @return string|void
      * @phpstan-param 'left'|'right' $seplocation
+     * @return string|void
      * @phpstan-return ($display is true ? void : string)
      */
     function wp_title($sep = '&raquo;', $display = \true, $seplocation = '')
@@ -60467,8 +60089,6 @@ namespace {
     {
     }
     /**
-     * @param string|array $args
-     * @return void|string
      * @phpstan-param array{
      *   type?: string,
      *   limit?: string|int,
@@ -60484,6 +60104,7 @@ namespace {
      *   day?: string,
      *   w?: string,
      * } $args
+     * @return void|string
      */
     function wp_get_archives($args = '')
     {
@@ -60580,20 +60201,17 @@ namespace {
     }
     /**
      * @param int|\WP_Post $post
-     * @param string $field
-     * @param string $source
-     * @return \DateTimeImmutable|false
      * @phpstan-param 'date'|'modified' $field
      * @phpstan-param 'local'|'gmt' $source
+     * @return \DateTimeImmutable|false
      */
     function get_post_datetime($post = \null, $field = 'date', $source = 'local')
     {
     }
     /**
      * @param int|\WP_Post $post
-     * @param string $field
-     * @return int|false
      * @phpstan-param 'date'|'modified' $field
+     * @return int|false
      */
     function get_post_timestamp($post = \null, $field = 'date')
     {
@@ -60622,6 +60240,7 @@ namespace {
     function get_post_modified_time($format = 'U', $gmt = \false, $post = \null, $translate = \false)
     {
     }
+    /**
      * @phpstan-return void
      */
     function the_weekday()
@@ -60663,6 +60282,7 @@ namespace {
     function wp_strict_cross_origin_referrer()
     {
     }
+    /**
      * @phpstan-return void
      */
     function wp_site_icon()
@@ -60671,6 +60291,7 @@ namespace {
     function wp_resource_hints()
     {
     }
+    /**
      * @phpstan-return void
      */
     function wp_preload_resources()
@@ -60689,7 +60310,6 @@ namespace {
     {
     }
     /**
-     * @return string
      * @phpstan-return 'tinymce'|'html'|'test'
      */
     function wp_default_editor()
@@ -60699,6 +60319,22 @@ namespace {
      * @param string $content
      * @param string $editor_id
      * @param array $settings
+     * @phpstan-param array{
+     *   wpautop?: bool,
+     *   media_buttons?: bool,
+     *   default_editor?: string,
+     *   drag_drop_upload?: bool,
+     *   textarea_name?: string,
+     *   textarea_rows?: int,
+     *   tabindex?: string|int,
+     *   tabfocus_elements?: string,
+     *   editor_css?: string,
+     *   editor_class?: string,
+     *   teeny?: bool,
+     *   dfw?: bool,
+     *   tinymce?: bool|array,
+     *   quicktags?: bool|array,
+     * } $settings See _WP_Editors::parse_settings()
      */
     function wp_editor($content, $editor_id, $settings = array())
     {
@@ -60707,8 +60343,6 @@ namespace {
     {
     }
     /**
-     * @param array $args
-     * @return array|false
      * @phpstan-param array{
      *   type?: string,
      *   file?: string,
@@ -60719,13 +60353,12 @@ namespace {
      *   jshint?: array,
      *   htmlhint?: array,
      * } $args
+     * @return array|false
      */
     function wp_enqueue_code_editor($args)
     {
     }
     /**
-     * @param array $args
-     * @return array|false
      * @phpstan-param array{
      *   type?: string,
      *   file?: string,
@@ -60736,6 +60369,7 @@ namespace {
      *   jshint?: array,
      *   htmlhint?: array,
      * } $args
+     * @return array|false
      */
     function wp_get_code_editor_settings($args)
     {
@@ -60751,23 +60385,19 @@ namespace {
     {
     }
     /**
-     * @param string $doctype
-     * @return string
      * @phpstan-param 'xhtml'|'html' $doctype
+     * @return string
      */
     function get_language_attributes($doctype = 'html')
     {
     }
     /**
-     * @param string $doctype
      * @phpstan-param 'xhtml'|'html' $doctype
      */
     function language_attributes($doctype = 'html')
     {
     }
     /**
-     * @param string|array $args
-     * @return string|string[]|void
      * @phpstan-param array{
      *   base?: string,
      *   format?: string,
@@ -60786,6 +60416,7 @@ namespace {
      *   before_page_number?: string,
      *   after_page_number?: string,
      * } $args
+     * @return string|string[]|void
      */
     function paginate_links($args = '')
     {
@@ -60795,7 +60426,6 @@ namespace {
      * @param string $name
      * @param string $url
      * @param array $colors
-     * @param array $icons
      * @phpstan-param array{
      *   base?: string,
      *   focus?: string,
@@ -60914,25 +60544,23 @@ namespace {
      */
     /**
      * @param array $path
-     * @param array $context
-     * @return mixed
      * @phpstan-param array{
      *   block_name?: string,
      *   origin?: string,
      * } $context
+     * @return mixed
      */
     function wp_get_global_settings($path = array(), $context = array())
     {
     }
     /**
      * @param array $path
-     * @param array $context
-     * @return mixed
      * @phpstan-param array{
      *   block_name?: string,
      *   origin?: string,
      *   transforms?: array,
      * } $context
+     * @return mixed
      */
     function wp_get_global_styles($path = array(), $context = array())
     {
@@ -61016,6 +60644,25 @@ namespace {
      * @param array $args
      * @return array|\WP_Error
      * @phpstan-return array{headers: \WpOrg\Requests\Utility\CaseInsensitiveDictionary, body: string, response: array{code: int,message: string}, cookies: array<int, \WP_Http_Cookie>, filename: string|null, http_response: \WP_HTTP_Requests_Response}|\WP_Error
+     * @phpstan-param array{
+     *   method?: string,
+     *   timeout?: float,
+     *   redirection?: int,
+     *   httpversion?: string,
+     *   user-agent?: string,
+     *   reject_unsafe_urls?: bool,
+     *   blocking?: bool,
+     *   headers?: string|array,
+     *   cookies?: array,
+     *   body?: string|array,
+     *   compress?: bool,
+     *   decompress?: bool,
+     *   sslverify?: bool,
+     *   sslcertificates?: string,
+     *   stream?: bool,
+     *   filename?: string,
+     *   limit_response_size?: int,
+     * } $args See WP_Http::request()
      */
     function wp_safe_remote_request($url, $args = array())
     {
@@ -61025,6 +60672,25 @@ namespace {
      * @param array $args
      * @return array|\WP_Error
      * @phpstan-return array{headers: \WpOrg\Requests\Utility\CaseInsensitiveDictionary, body: string, response: array{code: int,message: string}, cookies: array<int, \WP_Http_Cookie>, filename: string|null, http_response: \WP_HTTP_Requests_Response}|\WP_Error
+     * @phpstan-param array{
+     *   method?: string,
+     *   timeout?: float,
+     *   redirection?: int,
+     *   httpversion?: string,
+     *   user-agent?: string,
+     *   reject_unsafe_urls?: bool,
+     *   blocking?: bool,
+     *   headers?: string|array,
+     *   cookies?: array,
+     *   body?: string|array,
+     *   compress?: bool,
+     *   decompress?: bool,
+     *   sslverify?: bool,
+     *   sslcertificates?: string,
+     *   stream?: bool,
+     *   filename?: string,
+     *   limit_response_size?: int,
+     * } $args See WP_Http::request()
      */
     function wp_safe_remote_get($url, $args = array())
     {
@@ -61034,6 +60700,25 @@ namespace {
      * @param array $args
      * @return array|\WP_Error
      * @phpstan-return array{headers: \WpOrg\Requests\Utility\CaseInsensitiveDictionary, body: string, response: array{code: int,message: string}, cookies: array<int, \WP_Http_Cookie>, filename: string|null, http_response: \WP_HTTP_Requests_Response}|\WP_Error
+     * @phpstan-param array{
+     *   method?: string,
+     *   timeout?: float,
+     *   redirection?: int,
+     *   httpversion?: string,
+     *   user-agent?: string,
+     *   reject_unsafe_urls?: bool,
+     *   blocking?: bool,
+     *   headers?: string|array,
+     *   cookies?: array,
+     *   body?: string|array,
+     *   compress?: bool,
+     *   decompress?: bool,
+     *   sslverify?: bool,
+     *   sslcertificates?: string,
+     *   stream?: bool,
+     *   filename?: string,
+     *   limit_response_size?: int,
+     * } $args See WP_Http::request()
      */
     function wp_safe_remote_post($url, $args = array())
     {
@@ -61043,6 +60728,25 @@ namespace {
      * @param array $args
      * @return array|\WP_Error
      * @phpstan-return array{headers: \WpOrg\Requests\Utility\CaseInsensitiveDictionary, body: string, response: array{code: int,message: string}, cookies: array<int, \WP_Http_Cookie>, filename: string|null, http_response: \WP_HTTP_Requests_Response}|\WP_Error
+     * @phpstan-param array{
+     *   method?: string,
+     *   timeout?: float,
+     *   redirection?: int,
+     *   httpversion?: string,
+     *   user-agent?: string,
+     *   reject_unsafe_urls?: bool,
+     *   blocking?: bool,
+     *   headers?: string|array,
+     *   cookies?: array,
+     *   body?: string|array,
+     *   compress?: bool,
+     *   decompress?: bool,
+     *   sslverify?: bool,
+     *   sslcertificates?: string,
+     *   stream?: bool,
+     *   filename?: string,
+     *   limit_response_size?: int,
+     * } $args See WP_Http::request()
      */
     function wp_safe_remote_head($url, $args = array())
     {
@@ -61050,7 +60754,6 @@ namespace {
     /**
      * @param string $url
      * @param array $args
-     * @return array|\WP_Error
      * @phpstan-return \WP_Error|array{
      *   headers: string[],
      *   body: string,
@@ -61062,6 +60765,25 @@ namespace {
      *   http_response: WP_HTTP_Requests_Response|null,
      * }
      * @phpstan-return array{headers: \WpOrg\Requests\Utility\CaseInsensitiveDictionary, body: string, response: array{code: int,message: string}, cookies: array<int, \WP_Http_Cookie>, filename: string|null, http_response: \WP_HTTP_Requests_Response}|\WP_Error
+     * @phpstan-param array{
+     *   method?: string,
+     *   timeout?: float,
+     *   redirection?: int,
+     *   httpversion?: string,
+     *   user-agent?: string,
+     *   reject_unsafe_urls?: bool,
+     *   blocking?: bool,
+     *   headers?: string|array,
+     *   cookies?: array,
+     *   body?: string|array,
+     *   compress?: bool,
+     *   decompress?: bool,
+     *   sslverify?: bool,
+     *   sslcertificates?: string,
+     *   stream?: bool,
+     *   filename?: string,
+     *   limit_response_size?: int,
+     * } $args See WP_Http::request()
      */
     function wp_remote_request($url, $args = array())
     {
@@ -61071,6 +60793,25 @@ namespace {
      * @param array $args
      * @return array|\WP_Error
      * @phpstan-return array{headers: \WpOrg\Requests\Utility\CaseInsensitiveDictionary, body: string, response: array{code: int,message: string}, cookies: array<int, \WP_Http_Cookie>, filename: string|null, http_response: \WP_HTTP_Requests_Response}|\WP_Error
+     * @phpstan-param array{
+     *   method?: string,
+     *   timeout?: float,
+     *   redirection?: int,
+     *   httpversion?: string,
+     *   user-agent?: string,
+     *   reject_unsafe_urls?: bool,
+     *   blocking?: bool,
+     *   headers?: string|array,
+     *   cookies?: array,
+     *   body?: string|array,
+     *   compress?: bool,
+     *   decompress?: bool,
+     *   sslverify?: bool,
+     *   sslcertificates?: string,
+     *   stream?: bool,
+     *   filename?: string,
+     *   limit_response_size?: int,
+     * } $args See WP_Http::request()
      */
     function wp_remote_get($url, $args = array())
     {
@@ -61080,6 +60821,25 @@ namespace {
      * @param array $args
      * @return array|\WP_Error
      * @phpstan-return array{headers: \WpOrg\Requests\Utility\CaseInsensitiveDictionary, body: string, response: array{code: int,message: string}, cookies: array<int, \WP_Http_Cookie>, filename: string|null, http_response: \WP_HTTP_Requests_Response}|\WP_Error
+     * @phpstan-param array{
+     *   method?: string,
+     *   timeout?: float,
+     *   redirection?: int,
+     *   httpversion?: string,
+     *   user-agent?: string,
+     *   reject_unsafe_urls?: bool,
+     *   blocking?: bool,
+     *   headers?: string|array,
+     *   cookies?: array,
+     *   body?: string|array,
+     *   compress?: bool,
+     *   decompress?: bool,
+     *   sslverify?: bool,
+     *   sslcertificates?: string,
+     *   stream?: bool,
+     *   filename?: string,
+     *   limit_response_size?: int,
+     * } $args See WP_Http::request()
      */
     function wp_remote_post($url, $args = array())
     {
@@ -61089,6 +60849,25 @@ namespace {
      * @param array $args
      * @return array|\WP_Error
      * @phpstan-return array{headers: \WpOrg\Requests\Utility\CaseInsensitiveDictionary, body: string, response: array{code: int,message: string}, cookies: array<int, \WP_Http_Cookie>, filename: string|null, http_response: \WP_HTTP_Requests_Response}|\WP_Error
+     * @phpstan-param array{
+     *   method?: string,
+     *   timeout?: float,
+     *   redirection?: int,
+     *   httpversion?: string,
+     *   user-agent?: string,
+     *   reject_unsafe_urls?: bool,
+     *   blocking?: bool,
+     *   headers?: string|array,
+     *   cookies?: array,
+     *   body?: string|array,
+     *   compress?: bool,
+     *   decompress?: bool,
+     *   sslverify?: bool,
+     *   sslcertificates?: string,
+     *   stream?: bool,
+     *   filename?: string,
+     *   limit_response_size?: int,
+     * } $args See WP_Http::request()
      */
     function wp_remote_head($url, $args = array())
     {
@@ -61217,7 +60996,6 @@ namespace {
     {
     }
     /**
-     * @internal
      * @param array|false $url_parts
      * @param int $component
      * @return mixed
@@ -61226,7 +61004,6 @@ namespace {
     {
     }
     /**
-     * @internal
      * @param int $constant
      * @return string|false
      */
@@ -61415,7 +61192,6 @@ namespace {
     {
     }
     /**
-     * @ignore
      * @param array $matches
      * @return string
      */
@@ -61423,7 +61199,6 @@ namespace {
     {
     }
     /**
-     * @ignore
      * @param string $content
      * @param array[]|string $allowed_html
      * @param string[] $allowed_protocols
@@ -61533,7 +61308,6 @@ namespace {
     {
     }
     /**
-     * @ignore
      * @param string $scheme
      * @param string[] $allowed_protocols
      * @return string
@@ -61543,9 +61317,8 @@ namespace {
     }
     /**
      * @param string $content
-     * @param string $context
-     * @return string
      * @phpstan-param 'html'|'xml' $context
+     * @return string
      */
     function wp_kses_normalize_entities($content, $context = 'html')
     {
@@ -61565,7 +61338,6 @@ namespace {
     {
     }
     /**
-     * @ignore
      * @param array $matches
      * @return string
      */
@@ -61573,7 +61345,6 @@ namespace {
     {
     }
     /**
-     * @ignore
      * @param array $matches
      * @return string
      */
@@ -61595,7 +61366,6 @@ namespace {
     {
     }
     /**
-     * @ignore
      * @param array $matches
      * @return string
      */
@@ -61603,7 +61373,6 @@ namespace {
     {
     }
     /**
-     * @ignore
      * @param array $matches
      * @return string
      */
@@ -61677,7 +61446,6 @@ namespace {
     {
     }
     /**
-     * @ignore
      * @param array $value
      * @return array
      */
@@ -61685,7 +61453,6 @@ namespace {
     {
     }
     /**
-     * @ignore
      * @param string $url
      * @return bool
      */
@@ -61847,7 +61614,6 @@ namespace {
      * @param string $singular
      * @param string $plural
      * @param string $domain
-     * @return array
      * @phpstan-return array{
      *   0: string,
      *   1: string,
@@ -61865,7 +61631,6 @@ namespace {
      * @param string $plural
      * @param string $context
      * @param string $domain
-     * @return array
      * @phpstan-return array{
      *   0: string,
      *   1: string,
@@ -61880,16 +61645,15 @@ namespace {
     {
     }
     /**
-     * @param array $nooped_plural
-     * @param int $count
-     * @param string $domain
-     * @return string
      * @phpstan-param array{
      *   singular?: string,
      *   plural?: string,
      *   context?: string|null,
      *   domain?: string|null,
      * } $nooped_plural
+     * @param int $count
+     * @param string $domain
+     * @return string
      */
     function translate_nooped_plural($nooped_plural, $count, $domain = 'default')
     {
@@ -62027,8 +61791,6 @@ namespace {
     {
     }
     /**
-     * @param string|array $args
-     * @return string
      * @phpstan-param array{
      *   id?: string,
      *   name?: string,
@@ -62041,6 +61803,7 @@ namespace {
      *   show_option_en_us?: bool,
      *   explicit_option_en_us?: bool,
      * } $args
+     * @return string
      */
     function wp_dropdown_languages($args = array())
     {
@@ -62125,7 +61888,6 @@ namespace {
     {
     }
     /**
-     * @param string $mode
      * @phpstan-param 'title'|'id' $mode
      */
     function permalink_anchor($mode = 'id')
@@ -62484,6 +62246,7 @@ namespace {
     function adjacent_posts_rel_link($title = '%title', $in_same_term = \false, $excluded_terms = '', $taxonomy = 'category')
     {
     }
+    /**
      * @phpstan-return void
      */
     function adjacent_posts_rel_link_wp_head()
@@ -62649,13 +62412,12 @@ namespace {
     {
     }
     /**
-     * @param string|array $args
-     * @return string
      * @phpstan-param array{
      *   sep?: string,
      *   prelabel?: string,
      *   nxtlabel?: string,
      * } $args
+     * @return string
      */
     function get_posts_nav_link($args = array())
     {
@@ -62669,8 +62431,6 @@ namespace {
     {
     }
     /**
-     * @param array $args
-     * @return string
      * @phpstan-param array{
      *   prev_text?: string,
      *   next_text?: string,
@@ -62681,19 +62441,28 @@ namespace {
      *   aria_label?: string,
      *   class?: string,
      * } $args
+     * @return string
      */
     function get_the_post_navigation($args = array())
     {
     }
     /**
      * @param array $args
+     * @phpstan-param array{
+     *   prev_text?: string,
+     *   next_text?: string,
+     *   in_same_term?: bool,
+     *   excluded_terms?: int[]|string,
+     *   taxonomy?: string,
+     *   screen_reader_text?: string,
+     *   aria_label?: string,
+     *   class?: string,
+     * } $args See get_the_post_navigation()
      */
     function the_post_navigation($args = array())
     {
     }
     /**
-     * @param array $args
-     * @return string
      * @phpstan-param array{
      *   prev_text?: string,
      *   next_text?: string,
@@ -62701,30 +62470,74 @@ namespace {
      *   aria_label?: string,
      *   class?: string,
      * } $args
+     * @return string
      */
     function get_the_posts_navigation($args = array())
     {
     }
     /**
      * @param array $args
+     * @phpstan-param array{
+     *   prev_text?: string,
+     *   next_text?: string,
+     *   screen_reader_text?: string,
+     *   aria_label?: string,
+     *   class?: string,
+     * } $args See get_the_posts_navigation()
      */
     function the_posts_navigation($args = array())
     {
     }
     /**
-     * @param array $args
-     * @return string
      * @phpstan-param array{
      *   screen_reader_text?: string,
      *   aria_label?: string,
      *   class?: string,
+     *   base?: string,
+     *   format?: string,
+     *   total?: int,
+     *   current?: int,
+     *   aria_current?: string,
+     *   show_all?: bool,
+     *   end_size?: int,
+     *   mid_size?: int,
+     *   prev_next?: bool,
+     *   prev_text?: string,
+     *   next_text?: string,
+     *   type?: string,
+     *   add_args?: array,
+     *   add_fragment?: string,
+     *   before_page_number?: string,
+     *   after_page_number?: string,
      * } $args
+     * @return string
      */
     function get_the_posts_pagination($args = array())
     {
     }
     /**
      * @param array $args
+     * @phpstan-param array{
+     *   screen_reader_text?: string,
+     *   aria_label?: string,
+     *   class?: string,
+     *   base?: string,
+     *   format?: string,
+     *   total?: int,
+     *   current?: int,
+     *   aria_current?: string,
+     *   show_all?: bool,
+     *   end_size?: int,
+     *   mid_size?: int,
+     *   prev_next?: bool,
+     *   prev_text?: string,
+     *   next_text?: string,
+     *   type?: string,
+     *   add_args?: array,
+     *   add_fragment?: string,
+     *   before_page_number?: string,
+     *   after_page_number?: string,
+     * } $args See get_the_posts_pagination()
      */
     function the_posts_pagination($args = array())
     {
@@ -62778,13 +62591,29 @@ namespace {
     /**
      * @param string|array $args
      * @return void|string|array
+     * @phpstan-param array{
+     *   base?: string,
+     *   format?: string,
+     *   total?: int,
+     *   current?: int,
+     *   aria_current?: string,
+     *   show_all?: bool,
+     *   end_size?: int,
+     *   mid_size?: int,
+     *   prev_next?: bool,
+     *   prev_text?: string,
+     *   next_text?: string,
+     *   type?: string,
+     *   add_args?: array,
+     *   add_fragment?: string,
+     *   before_page_number?: string,
+     *   after_page_number?: string,
+     * } $args See paginate_links()
      */
     function paginate_comments_links($args = array())
     {
     }
     /**
-     * @param array $args
-     * @return string
      * @phpstan-param array{
      *   prev_text?: string,
      *   next_text?: string,
@@ -62792,30 +62621,42 @@ namespace {
      *   aria_label?: string,
      *   class?: string,
      * } $args
+     * @return string
      */
     function get_the_comments_navigation($args = array())
     {
     }
     /**
      * @param array $args
+     * @phpstan-param array{
+     *   prev_text?: string,
+     *   next_text?: string,
+     *   screen_reader_text?: string,
+     *   aria_label?: string,
+     *   class?: string,
+     * } $args See get_the_comments_navigation()
      */
     function the_comments_navigation($args = array())
     {
     }
     /**
-     * @param array $args
-     * @return string
      * @phpstan-param array{
      *   screen_reader_text?: string,
      *   aria_label?: string,
      *   class?: string,
      * } $args
+     * @return string
      */
     function get_the_comments_pagination($args = array())
     {
     }
     /**
      * @param array $args
+     * @phpstan-param array{
+     *   screen_reader_text?: string,
+     *   aria_label?: string,
+     *   class?: string,
+     * } $args See get_the_comments_pagination()
      */
     function the_comments_pagination($args = array())
     {
@@ -62841,6 +62682,7 @@ namespace {
      * @param string $path
      * @param string|null $scheme
      * @return string
+     * @param string|null $scheme
      */
     function site_url($path = '', $scheme = \null)
     {
@@ -62865,9 +62707,8 @@ namespace {
     /**
      * @param int|null $blog_id
      * @param string $path
-     * @param string $scheme
-     * @return string
      * @phpstan-param 'http'|'https' $scheme
+     * @return string
      */
     function get_admin_url($blog_id = \null, $path = '', $scheme = 'admin')
     {
@@ -62967,6 +62808,7 @@ namespace {
     function wp_get_canonical_url($post = \null)
     {
     }
+    /**
      * @phpstan-return void
      */
     function rel_canonical()
@@ -62981,11 +62823,13 @@ namespace {
     function wp_get_shortlink($id = 0, $context = 'post', $allow_slugs = \true)
     {
     }
+    /**
      * @phpstan-return void
      */
     function wp_shortlink_wp_head()
     {
     }
+    /**
      * @phpstan-return void
      */
     function wp_shortlink_header()
@@ -63002,8 +62846,6 @@ namespace {
     }
     /**
      * @param mixed $id_or_email
-     * @param array $args
-     * @return string|false
      * @phpstan-param array{
      *   size?: int,
      *   default?: string,
@@ -63012,6 +62854,7 @@ namespace {
      *   scheme?: string,
      *   processed_args?: array,
      * } $args
+     * @return string|false
      */
     function get_avatar_url($id_or_email, $args = \null)
     {
@@ -63025,8 +62868,6 @@ namespace {
     }
     /**
      * @param mixed $id_or_email
-     * @param array $args
-     * @return array
      * @phpstan-param array{
      *   size?: int,
      *   height?: int,
@@ -63122,6 +62963,7 @@ namespace {
     function wp_fix_server_vars()
     {
     }
+    /**
      * @phpstan-return void
      */
     function wp_populate_basic_auth_from_authorization_header()
@@ -63143,19 +62985,16 @@ namespace {
     {
     }
     /**
-     * @param string $mode
-     * @return bool
      * @phpstan-param 'core'|'plugin'|'theme'|'all' $mode
+     * @return bool
      */
     function wp_is_development_mode($mode)
     {
     }
-    /**
-     * @deprecated 5.4.0
-     */
     function wp_favicon_request()
     {
     }
+    /**
      * @phpstan-return void
      */
     function wp_maintenance()
@@ -63187,6 +63026,7 @@ namespace {
     function timer_stop($display = 0, $precision = 3)
     {
     }
+    /**
      * @phpstan-return void
      */
     function wp_debug_mode()
@@ -63195,6 +63035,7 @@ namespace {
     function wp_set_lang_dir()
     {
     }
+    /**
      * @phpstan-return void
      */
     function require_wp_db()
@@ -63213,6 +63054,7 @@ namespace {
     function wp_start_object_cache()
     {
     }
+    /**
      * @phpstan-return void
      */
     function wp_not_installed()
@@ -63278,7 +63120,6 @@ namespace {
     {
     }
     /**
-     * @deprecated 3.2.0
      * @param object $input_object
      * @return object
      */
@@ -63333,6 +63174,7 @@ namespace {
     function get_current_network_id()
     {
     }
+    /**
      * @phpstan-return void
      */
     function wp_load_translations_early()
@@ -63399,6 +63241,7 @@ namespace {
     function wp_is_file_mod_allowed($context)
     {
     }
+    /**
      * @phpstan-return void
      */
     function wp_start_scraping_edited_file_errors()
@@ -63436,9 +63279,8 @@ namespace {
     {
     }
     /**
-     * @param string $context
-     * @return bool
      * @phpstan-param 'login'|'admin'|'front' $context
+     * @return bool
      */
     function wp_is_site_protected_by_basic_auth($context = '')
     {
@@ -63469,7 +63311,6 @@ namespace {
      * @param int $height
      * @param string|int[] $size
      * @param string $context
-     * @return int[]
      * @phpstan-return array{
      *   0: int,
      *   1: int,
@@ -63489,7 +63330,6 @@ namespace {
     /**
      * @param int $id
      * @param string|int[] $size
-     * @return array|false
      * @phpstan-return false|array{
      *   0: string,
      *   1: int,
@@ -63504,7 +63344,6 @@ namespace {
      * @param string $name
      * @param int $width
      * @param int $height
-     * @param bool|array $crop
      * @phpstan-param bool|array{
      *   0: string,
      *   1: string,
@@ -63530,7 +63369,6 @@ namespace {
     /**
      * @param int $width
      * @param int $height
-     * @param bool|array $crop
      * @phpstan-param bool|array{
      *   0: string,
      *   1: string,
@@ -63555,7 +63393,6 @@ namespace {
      * @param int $current_height
      * @param int $max_width
      * @param int $max_height
-     * @return int[]
      * @phpstan-return array{
      *   0: int,
      *   1: int,
@@ -63569,12 +63406,11 @@ namespace {
      * @param int $orig_h
      * @param int $dest_w
      * @param int $dest_h
-     * @param bool|array $crop
-     * @return array|false
      * @phpstan-param bool|array{
      *   0: string,
      *   1: string,
      * } $crop
+     * @return array|false
      */
     function image_resize_dimensions($orig_w, $orig_h, $dest_w, $dest_h, $crop = \false)
     {
@@ -63583,12 +63419,11 @@ namespace {
      * @param string $file
      * @param int $width
      * @param int $height
-     * @param bool|array $crop
-     * @return array|false
      * @phpstan-param bool|array{
      *   0: string,
      *   1: string,
      * } $crop
+     * @return array|false
      */
     function image_make_intermediate_size($file, $width, $height, $crop = \false)
     {
@@ -63606,7 +63441,6 @@ namespace {
     /**
      * @param int $post_id
      * @param string|int[] $size
-     * @return array|false
      * @phpstan-return false|array{
      *   file: string,
      *   width: int,
@@ -63634,7 +63468,6 @@ namespace {
      * @param int $attachment_id
      * @param string|int[] $size
      * @param bool $icon
-     * @return array|false
      * @phpstan-return false|array{
      *   0: string,
      *   1: int,
@@ -63649,8 +63482,6 @@ namespace {
      * @param int $attachment_id
      * @param string|int[] $size
      * @param bool $icon
-     * @param string|array $attr
-     * @return string
      * @phpstan-param array{
      *   src?: string,
      *   class?: string,
@@ -63661,6 +63492,7 @@ namespace {
      *   decoding?: string,
      *   fetchpriority?: string,
      * } $attr
+     * @return string
      */
     function wp_get_attachment_image($attachment_id, $size = 'thumbnail', $icon = \false, $attr = '')
     {
@@ -63684,7 +63516,6 @@ namespace {
     /**
      * @param string $size_name
      * @param array $image_meta
-     * @return array|false
      * @phpstan-return false|array{
      *   0: int,
      *   1: int,
@@ -63703,15 +63534,14 @@ namespace {
     {
     }
     /**
-     * @param int[] $size_array
-     * @param string $image_src
-     * @param array $image_meta
-     * @param int $attachment_id
-     * @return string|false
      * @phpstan-param array{
      *   0: int,
      *   1: int,
      * } $size_array
+     * @param string $image_src
+     * @param array $image_meta
+     * @param int $attachment_id
+     * @return string|false
      */
     function wp_calculate_image_srcset($size_array, $image_src, $image_meta, $attachment_id = 0)
     {
@@ -63813,7 +63643,6 @@ namespace {
     {
     }
     /**
-     * @ignore
      * @param string[] $attr
      * @return string[]
      */
@@ -63821,43 +63650,31 @@ namespace {
     {
     }
     /**
-     * @ignore
      * @param string[] $attr
      */
     function _wp_post_thumbnail_class_filter_add($attr)
     {
     }
     /**
-     * @ignore
      * @param string[] $attr
      */
     function _wp_post_thumbnail_class_filter_remove($attr)
     {
     }
     /**
-     * @ignore
      * @param string $context
      * @return string
      */
     function _wp_post_thumbnail_context_filter($context)
     {
     }
-    /**
-     * @ignore
-     */
     function _wp_post_thumbnail_context_filter_add()
     {
     }
-    /**
-     * @ignore
-     */
     function _wp_post_thumbnail_context_filter_remove()
     {
     }
     /**
-     * @param array $attr
-     * @param string $content
-     * @return string
      * @phpstan-param array{
      *   id?: string,
      *   caption_id?: string,
@@ -63866,13 +63683,13 @@ namespace {
      *   caption?: string,
      *   class?: string,
      * } $attr
+     * @param string $content
+     * @return string
      */
     function img_caption_shortcode($attr, $content = '')
     {
     }
     /**
-     * @param array $attr
-     * @return string
      * @phpstan-param array{
      *   order?: string,
      *   orderby?: string,
@@ -63887,6 +63704,7 @@ namespace {
      *   exclude?: string,
      *   link?: string,
      * } $attr
+     * @return string
      */
     function gallery_shortcode($attr)
     {
@@ -63895,15 +63713,12 @@ namespace {
     {
     }
     /**
-     * @param string $type
      * @phpstan-param 'audio'|'video' $type
      */
     function wp_playlist_scripts($type)
     {
     }
     /**
-     * @param array $attr
-     * @return string
      * @phpstan-param array{
      *   type?: string,
      *   order?: string,
@@ -63917,6 +63732,7 @@ namespace {
      *   images?: bool,
      *   artists?: bool,
      * } $attr
+     * @return string
      */
     function wp_playlist_shortcode($attr)
     {
@@ -63943,9 +63759,6 @@ namespace {
     {
     }
     /**
-     * @param array $attr
-     * @param string $content
-     * @return string|void
      * @phpstan-param array{
      *   src?: string,
      *   loop?: string,
@@ -63954,6 +63767,8 @@ namespace {
      *   class?: string,
      *   style?: string,
      * } $attr
+     * @param string $content
+     * @return string|void
      */
     function wp_audio_shortcode($attr, $content = '')
     {
@@ -63965,9 +63780,6 @@ namespace {
     {
     }
     /**
-     * @param array $attr
-     * @param string $content
-     * @return string|void
      * @phpstan-param array{
      *   src?: string,
      *   height?: int,
@@ -63979,6 +63791,8 @@ namespace {
      *   preload?: string,
      *   class?: string,
      * } $attr
+     * @param string $content
+     * @return string|void
      */
     function wp_video_shortcode($attr, $content = '')
     {
@@ -64040,9 +63854,8 @@ namespace {
     {
     }
     /**
-     * @param string $output
-     * @return string[]|\WP_Taxonomy[]
      * @phpstan-param 'names'|'objects' $output
+     * @return string[]|\WP_Taxonomy[]
      * @phpstan-return ($output is 'names' ? array<int, string> : array<string, \WP_Taxonomy>)
      */
     function get_taxonomies_for_attachments($output = 'names')
@@ -64068,7 +63881,6 @@ namespace {
      * @param int $example_height
      * @param int $max_width
      * @param int $max_height
-     * @return int[]
      * @phpstan-return array{
      *   0: int,
      *   1: int,
@@ -64099,13 +63911,13 @@ namespace {
     {
     }
     /**
-     * @ignore
      * @param array $args
      * @return string|false
      */
     function _wp_image_editor_choose($args = array())
     {
     }
+    /**
      * @phpstan-return void
      */
     function wp_plupload_default_settings()
@@ -64113,7 +63925,6 @@ namespace {
     }
     /**
      * @param int|\WP_Post $attachment
-     * @return array|void
      * @phpstan-return void|array{
      *   alt: string,
      *   author: string,
@@ -64155,7 +63966,6 @@ namespace {
     {
     }
     /**
-     * @param array $args
      * @phpstan-param array{
      *   post?: int|WP_Post,
      * } $args
@@ -64240,7 +64050,6 @@ namespace {
     /**
      * @param string $email_address
      * @param int $page
-     * @return array
      * @phpstan-return array{
      *   data: array[],
      *   done: bool,
@@ -64269,7 +64078,6 @@ namespace {
     }
     /**
      * @param string $filename
-     * @return array
      * @phpstan-return array{
      *   width: int|false,
      *   height: int|false,
@@ -64282,7 +64090,6 @@ namespace {
     }
     /**
      * @param string $filename
-     * @return array
      * @phpstan-return array{
      *   width: int|false,
      *   height: int|false,
@@ -64406,7 +64213,6 @@ namespace {
     /**
      * @param string $meta_type
      * @param int $meta_id
-     * @return \stdClass|false
      * @phpstan-return false|object{
      *   meta_key: string,
      *   meta_value: mixed,
@@ -64459,7 +64265,6 @@ namespace {
      * @param string $primary_table
      * @param string $primary_id_column
      * @param object $context
-     * @return string[]|false
      * @phpstan-return false|array{
      *   join: string,
      *   where: string,
@@ -64496,9 +64301,6 @@ namespace {
     /**
      * @param string $object_type
      * @param string $meta_key
-     * @param array $args
-     * @param string|array $deprecated
-     * @return bool
      * @phpstan-param array{
      *   object_subtype?: string,
      *   type?: string,
@@ -64510,6 +64312,8 @@ namespace {
      *   show_in_rest?: bool|array,
      *   revisions_enabled?: bool,
      * } $args
+     * @param string|array $deprecated
+     * @return bool
      */
     function register_meta($object_type, $meta_key, $args, $deprecated = \null)
     {
@@ -64769,7 +64573,6 @@ namespace {
     }
     /**
      * @param int $network_id
-     * @return int[]
      * @phpstan-return array{
      *   all: int,
      *   public: int,
@@ -64782,6 +64585,14 @@ namespace {
     function wp_count_sites($network_id = \null)
     {
     }
+    /**
+     * Defines constants and global variables that can be overridden, generally in wp-config.php.
+     *
+     * @package WordPress
+     * @subpackage Multisite
+     * @since 3.0.0
+     */
+    /**
      * @phpstan-return void
      */
     function ms_upload_constants()
@@ -64793,6 +64604,7 @@ namespace {
     function ms_file_constants()
     {
     }
+    /**
      * @phpstan-return void
      */
     function ms_subdomain_constants()
@@ -64811,55 +64623,45 @@ namespace {
      * Deprecated functions come here to die.
      */
     /**
-     * @deprecated 3.1.0
      * @return \WP_Site
      */
     function get_dashboard_blog()
     {
     }
     /**
-     * @deprecated 3.0.0
      * @param int $len
      */
     function generate_random_password($len = 8)
     {
     }
     /**
-     * @deprecated 3.0.0
      * @param string $user_login
      */
     function is_site_admin($user_login = '')
     {
     }
     /**
-     * @deprecated 3.0.0
      * @phpstan-return never
      */
     function graceful_fail($message)
     {
     }
     /**
-     * @deprecated 3.0.0
      * @param string $username
      */
     function get_user_details($username)
     {
     }
     /**
-     * @deprecated 3.0.0
      * @param int $post_id
      */
     function clear_global_post_cache($post_id)
     {
     }
-    /**
-     * @deprecated 3.0.0
-     */
     function is_main_blog()
     {
     }
     /**
-     * @deprecated 3.0.0
      * @param string $email
      * @param bool $check_domain
      * @return string|false
@@ -64868,7 +64670,6 @@ namespace {
     {
     }
     /**
-     * @deprecated 3.0.0
      * @param int $start
      * @param int $num
      * @param string $deprecated
@@ -64877,7 +64678,6 @@ namespace {
     {
     }
     /**
-     * @deprecated 3.0.0
      * @param int $num
      * @param bool $display
      * @return array
@@ -64886,7 +64686,6 @@ namespace {
     {
     }
     /**
-     * @deprecated 3.3.0
      * @param string $url
      * @phpstan-return never
      */
@@ -64894,7 +64693,6 @@ namespace {
     {
     }
     /**
-     * @deprecated 3.3.0
      * @param string $url
      * @return string
      */
@@ -64902,7 +64700,6 @@ namespace {
     {
     }
     /**
-     * @deprecated 3.6.0
      * @param string $email_or_login
      * @return int
      */
@@ -64910,7 +64707,6 @@ namespace {
     {
     }
     /**
-     * @deprecated 3.7.0
      * @param string $domain
      * @param string $path
      * @return string
@@ -64919,7 +64715,6 @@ namespace {
     {
     }
     /**
-     * @deprecated 4.4.0
      * @param string $domain
      * @param string $path
      * @param string $weblog_title
@@ -64930,7 +64725,6 @@ namespace {
     {
     }
     /**
-     * @deprecated 4.4.0
      * @param string $domain
      * @param string $path
      * @return array|false
@@ -64939,9 +64733,6 @@ namespace {
     {
     }
     /**
-     * @deprecated 4.6.0
-     * @param array $args
-     * @return array[]
      * @phpstan-param array{
      *   network_id?: int|int[],
      *   public?: int,
@@ -64952,12 +64743,12 @@ namespace {
      *   limit?: int,
      *   offset?: int,
      * } $args
+     * @return array[]
      */
     function wp_get_sites($args = array())
     {
     }
     /**
-     * @deprecated 4.9.0
      * @param string $key
      * @param int $user_id
      * @param int $blog_id
@@ -64967,7 +64758,6 @@ namespace {
     {
     }
     /**
-     * @deprecated 5.1.0
      * @param string $domain
      * @param string $path
      * @param int $site_id
@@ -64977,7 +64767,6 @@ namespace {
     {
     }
     /**
-     * @deprecated 5.1.0
      * @param int $blog_id
      * @param string $blog_title
      */
@@ -64985,8 +64774,6 @@ namespace {
     {
     }
     /**
-     * @deprecated
-     * @deprecated
      * @param int $blog_id
      * @param int $user_id
      */
@@ -64994,7 +64781,6 @@ namespace {
     {
     }
     /**
-     * @deprecated 5.3.0
      * @param int $id
      * @param string $pref
      * @param int $value
@@ -65005,7 +64791,6 @@ namespace {
     {
     }
     /**
-     * @deprecated 6.1.0
      * @param int $term_id
      * @param string $deprecated
      * @return int
@@ -65021,7 +64806,6 @@ namespace {
      * @since 3.0.0
      */
     /**
-     * @return int[]
      * @phpstan-return array{
      *   blogs: int,
      *   users: int,
@@ -65099,7 +64883,6 @@ namespace {
     /**
      * @param string $user_name
      * @param string $user_email
-     * @return array
      * @phpstan-return array{
      *   user_name: string,
      *   orig_username: string,
@@ -65114,7 +64897,6 @@ namespace {
      * @param string $blogname
      * @param string $blog_title
      * @param \WP_User|string $user
-     * @return array
      * @phpstan-return array{
      *   domain: string,
      *   path: string,
@@ -65295,7 +65077,6 @@ namespace {
     }
     /**
      * @param array|string $deprecated
-     * @return string[]
      * @phpstan-return array{
      *   0: string,
      * }
@@ -65323,18 +65104,18 @@ namespace {
     function maybe_redirect_404()
     {
     }
+    /**
      * @phpstan-return void
      */
     function maybe_add_existing_user_to_blog()
     {
     }
     /**
-     * @param array|false $details
-     * @return true|\WP_Error|void
      * @phpstan-param false|array{
      *   user_id?: int,
      *   role?: string,
      * } $details
+     * @return true|\WP_Error|void
      */
     function add_existing_user_to_blog($details = \false)
     {
@@ -65394,6 +65175,7 @@ namespace {
     function filter_SSL($url)
     {
     }
+    /**
      * @phpstan-return void
      */
     function wp_schedule_update_network_counts()
@@ -65521,7 +65303,6 @@ namespace {
     {
     }
     /**
-     * @internal
      * @param string $domain
      * @param string $path
      * @param int|null $segments
@@ -65557,7 +65338,6 @@ namespace {
     {
     }
     /**
-     * @deprecated 3.9.0
      * @param \WP_Network $current_site
      * @return \WP_Network
      */
@@ -65565,15 +65345,12 @@ namespace {
     {
     }
     /**
-     * @deprecated 3.9.0
      * @return \WP_Network
      */
     function wpmu_current_site()
     {
     }
     /**
-     * @deprecated 4.7.0
-     * @internal
      * @param object|int $network
      * @return \WP_Network|false
      */
@@ -65597,6 +65374,7 @@ namespace {
     /**
      * @param string|array $args
      * @return array|int
+     * @param string|array $args
      */
     function get_networks($args = array())
     {
@@ -65628,6 +65406,30 @@ namespace {
      * @since 5.1.0
      */
     /**
+     * @phpstan-param array{
+     *   domain?: string,
+     *   path?: string,
+     *   network_id?: int,
+     *   registered?: string,
+     *   last_updated?: string,
+     *   public?: int,
+     *   archived?: int,
+     *   mature?: int,
+     *   spam?: int,
+     *   deleted?: int,
+     *   lang_id?: int,
+     *   user_id?: int,
+     *   title?: string,
+     *   options?: array,
+     *   meta?: array,
+     * } $data
+     * @return int|\WP_Error
+     */
+    function wp_insert_site(array $data)
+    {
+    }
+    /**
+     * @param int $site_id
      * @param array $data
      * @return int|\WP_Error
      * @phpstan-param array{
@@ -65646,15 +65448,7 @@ namespace {
      *   title?: string,
      *   options?: array,
      *   meta?: array,
-     * } $data
-     */
-    function wp_insert_site(array $data)
-    {
-    }
-    /**
-     * @param int $site_id
-     * @param array $data
-     * @return int|\WP_Error
+     * } $data See wp_insert_site()
      */
     function wp_update_site($site_id, array $data)
     {
@@ -65705,6 +65499,47 @@ namespace {
     /**
      * @param string|array $args
      * @return array|int
+     * @phpstan-param array{
+     *   site__in?: int[],
+     *   site__not_in?: int[],
+     *   count?: bool,
+     *   date_query?: array,
+     *   fields?: string,
+     *   ID?: int,
+     *   number?: int,
+     *   offset?: int,
+     *   no_found_rows?: bool,
+     *   orderby?: string|array,
+     *   order?: string,
+     *   network_id?: int,
+     *   network__in?: int[],
+     *   network__not_in?: int[],
+     *   domain?: string,
+     *   domain__in?: string[],
+     *   domain__not_in?: string[],
+     *   path?: string,
+     *   path__in?: string[],
+     *   path__not_in?: string[],
+     *   public?: int,
+     *   archived?: int,
+     *   mature?: int,
+     *   spam?: int,
+     *   deleted?: int,
+     *   lang_id?: int,
+     *   lang__in?: string[],
+     *   lang__not_in?: string[],
+     *   search?: string,
+     *   search_columns?: string[],
+     *   update_site_cache?: bool,
+     *   update_site_meta_cache?: bool,
+     *   meta_key?: string|string[],
+     *   meta_value?: string|string[],
+     *   meta_compare?: string,
+     *   meta_compare_key?: string,
+     *   meta_type?: string,
+     *   meta_type_key?: string,
+     *   meta_query?: array,
+     * } $args See WP_Site_Query::__construct()
      */
     function get_sites($args = array())
     {
@@ -65714,6 +65549,23 @@ namespace {
      * @param array $defaults
      * @param \WP_Site|null $old_site
      * @return array|\WP_Error
+     * @phpstan-param array{
+     *   domain?: string,
+     *   path?: string,
+     *   network_id?: int,
+     *   registered?: string,
+     *   last_updated?: string,
+     *   public?: int,
+     *   archived?: int,
+     *   mature?: int,
+     *   spam?: int,
+     *   deleted?: int,
+     *   lang_id?: int,
+     *   user_id?: int,
+     *   title?: string,
+     *   options?: array,
+     *   meta?: array,
+     * } $data See wp_insert_site()
      */
     function wp_prepare_site_data($data, $defaults, $old_site = \null)
     {
@@ -65721,6 +65573,23 @@ namespace {
     /**
      * @param array $data
      * @return array
+     * @phpstan-param array{
+     *   domain?: string,
+     *   path?: string,
+     *   network_id?: int,
+     *   registered?: string,
+     *   last_updated?: string,
+     *   public?: int,
+     *   archived?: int,
+     *   mature?: int,
+     *   spam?: int,
+     *   deleted?: int,
+     *   lang_id?: int,
+     *   user_id?: int,
+     *   title?: string,
+     *   options?: array,
+     *   meta?: array,
+     * } $data See wp_insert_site()
      */
     function wp_normalize_site_data($data)
     {
@@ -65730,20 +65599,36 @@ namespace {
      * @param array $data
      * @param \WP_Site|null $old_site
      * @phpstan-return void
+     * @phpstan-param array{
+     *   domain?: string,
+     *   path?: string,
+     *   network_id?: int,
+     *   registered?: string,
+     *   last_updated?: string,
+     *   public?: int,
+     *   archived?: int,
+     *   mature?: int,
+     *   spam?: int,
+     *   deleted?: int,
+     *   lang_id?: int,
+     *   user_id?: int,
+     *   title?: string,
+     *   options?: array,
+     *   meta?: array,
+     * } $data See wp_insert_site()
      */
     function wp_validate_site_data($errors, $data, $old_site = \null)
     {
     }
     /**
      * @param int|\WP_Site $site_id
-     * @param array $args
-     * @return true|\WP_Error
      * @phpstan-param array{
      *   user_id?: int,
      *   title?: string,
      *   options?: array,
      *   meta?: array,
      * } $args
+     * @return true|\WP_Error
      */
     function wp_initialize_site($site_id, array $args = array())
     {
@@ -65838,7 +65723,6 @@ namespace {
     }
     /**
      * @param int $site_id
-     * @param string $is_public
      * @phpstan-param '1'|'0' $is_public
      * @phpstan-return void
      */
@@ -65856,8 +65740,6 @@ namespace {
     {
     }
     /**
-     * @param array $args
-     * @return void|string|false
      * @phpstan-param array{
      *   menu?: int|string|WP_Term,
      *   menu_class?: string,
@@ -65878,6 +65760,7 @@ namespace {
      *   items_wrap?: string,
      *   item_spacing?: string,
      * } $args
+     * @return void|string|false
      */
     function wp_nav_menu($args = array())
     {
@@ -66037,8 +65920,6 @@ namespace {
     }
     /**
      * @param int|string|\WP_Term $menu
-     * @param array $args
-     * @return array|false
      * @phpstan-param array{
      *   order?: string,
      *   orderby?: string,
@@ -66049,6 +65930,7 @@ namespace {
      *   nopaging?: bool,
      *   update_menu_item_cache?: bool,
      * } $args
+     * @return array|false
      */
     function wp_get_nav_menu_items($menu, $args = array())
     {
@@ -66296,6 +66178,7 @@ namespace {
     function delete_expired_transients($force_db = \false)
     {
     }
+    /**
      * @phpstan-return void
      */
     function wp_user_settings()
@@ -66337,6 +66220,7 @@ namespace {
     function wp_set_all_user_settings($user_settings)
     {
     }
+    /**
      * @phpstan-return void
      */
     function delete_all_user_settings()
@@ -66438,7 +66322,6 @@ namespace {
     /**
      * @param string $option_group
      * @param string $option_name
-     * @param array $args
      * @phpstan-param array{
      *   type?: string,
      *   label?: string,
@@ -66481,7 +66364,6 @@ namespace {
     {
     }
     /**
-     * @deprecated 3.0.0
      * @param int|null $id
      * @param string $name
      * @return \WP_User
@@ -66490,14 +66372,12 @@ namespace {
     {
     }
     /**
-     * @deprecated 4.5.0
      * @return bool|\WP_User
      */
     function get_currentuserinfo()
     {
     }
     /**
-     * @deprecated 3.3.0
      * @param string $user_login
      * @return bool|object
      */
@@ -66505,7 +66385,6 @@ namespace {
     {
     }
     /**
-     * @deprecated 3.3.0
      * @param string $email
      * @return bool|object
      */
@@ -66513,7 +66392,6 @@ namespace {
     {
     }
     /**
-     * @deprecated 2.5.0
      * @param string $username
      * @param string $password
      * @param bool $already_md5
@@ -66524,21 +66402,16 @@ namespace {
     function wp_setcookie($username, $password = '', $already_md5 = \false, $home = '', $siteurl = '', $remember = \false)
     {
     }
-    /**
-     * @deprecated 2.5.0
-     */
     function wp_clearcookie()
     {
     }
     /**
-     * @deprecated 2.5.0
      * @return bool
      */
     function wp_get_cookie_login()
     {
     }
     /**
-     * @deprecated 2.5.0
      * @param string $username
      * @param string $password
      * @param string $deprecated
@@ -66607,9 +66480,8 @@ namespace {
     }
     /**
      * @param string $cookie
-     * @param string $scheme
-     * @return int|false
      * @phpstan-param 'auth'|'secure_auth'|'logged_in' $scheme
+     * @return int|false
      */
     function wp_validate_auth_cookie($cookie = '', $scheme = '')
     {
@@ -66617,18 +66489,15 @@ namespace {
     /**
      * @param int $user_id
      * @param int $expiration
-     * @param string $scheme
+     * @phpstan-param 'auth'|'secure_auth'|'logged_in' $scheme
      * @param string $token
      * @return string
-     * @phpstan-param 'auth'|'secure_auth'|'logged_in' $scheme
      */
     function wp_generate_auth_cookie($user_id, $expiration, $scheme = 'auth', $token = '')
     {
     }
     /**
      * @param string $cookie
-     * @param string $scheme
-     * @return string[]|false
      * @phpstan-param 'auth'|'secure_auth'|'logged_in' $scheme
      * @phpstan-return false|array{
      *   username: string,
@@ -66651,6 +66520,7 @@ namespace {
     function wp_set_auth_cookie($user_id, $remember = \false, $secure = '', $token = '')
     {
     }
+    /**
      * @phpstan-return void
      */
     function wp_clear_auth_cookie()
@@ -66662,6 +66532,7 @@ namespace {
     function is_user_logged_in()
     {
     }
+    /**
      * @phpstan-return void
      */
     function auth_redirect()
@@ -66701,7 +66572,6 @@ namespace {
     {
     }
     /**
-     * @ignore
      * @param array $matches
      * @return string
      */
@@ -66749,7 +66619,6 @@ namespace {
     /**
      * @param int $user_id
      * @param null $deprecated
-     * @param string $notify
      * @phpstan-param 'admin'|'user'|'both' $notify
      * @phpstan-return void
      */
@@ -66838,8 +66707,6 @@ namespace {
      * @param int $size
      * @param string $default_value
      * @param string $alt
-     * @param array $args
-     * @return string|false
      * @phpstan-param array{
      *   height?: int,
      *   width?: int,
@@ -66853,6 +66720,7 @@ namespace {
      *   decoding?: string,
      *   extra_attr?: string,
      * } $args
+     * @return string|false
      */
     function get_avatar($id_or_email, $size = 96, $default_value = '', $alt = '', $args = \null)
     {
@@ -66860,14 +66728,13 @@ namespace {
     /**
      * @param string $left_string
      * @param string $right_string
-     * @param string|array $args
-     * @return string
      * @phpstan-param array{
      *   title?: string,
      *   title_left?: string,
      *   title_right?: string,
      *   show_split_view?: bool,
      * } $args
+     * @return string
      */
     function wp_text_diff($left_string, $right_string, $args = \null)
     {
@@ -66885,7 +66752,7 @@ namespace {
     /**
      * @param string $hook_name
      * @param mixed $value
-     * @param mixed ...$args
+     * @param mixed $args
      * @return mixed
      */
     function apply_filters($hook_name, $value, ...$args)
@@ -66957,7 +66824,7 @@ namespace {
     }
     /**
      * @param string $hook_name
-     * @param mixed ...$arg
+     * @param mixed $arg
      * @phpstan-return void
      */
     function do_action($hook_name, ...$arg)
@@ -67221,14 +67088,13 @@ namespace {
     {
     }
     /**
-     * @param string|array $args
-     * @return void|string
      * @phpstan-param array{
      *   before?: string,
      *   after?: string,
      *   echo?: bool,
      *   post?: WP_Post,
      * } $args
+     * @return void|string
      */
     function the_title_attribute($args = '')
     {
@@ -67325,8 +67191,6 @@ namespace {
     // Page Template Functions for usage in Themes.
     //
     /**
-     * @param string|array $args
-     * @return string
      * @phpstan-param array{
      *   before?: string,
      *   after?: string,
@@ -67340,6 +67204,7 @@ namespace {
      *   pagelink?: string,
      *   echo?: int|bool,
      * } $args
+     * @return string
      */
     function wp_link_pages($args = '')
     {
@@ -67361,9 +67226,6 @@ namespace {
     function post_custom($key = '')
     {
     }
-    /**
-     * @deprecated 6.0.2
-     */
     function the_meta()
     {
     }
@@ -67371,8 +67233,6 @@ namespace {
     // Pages.
     //
     /**
-     * @param array|string $args
-     * @return string
      * @phpstan-param array{
      *   depth?: int,
      *   child_of?: int,
@@ -67385,14 +67245,28 @@ namespace {
      *   show_option_no_change?: string,
      *   option_none_value?: string,
      *   value_field?: string,
+     *   child_of?: int,
+     *   sort_order?: string,
+     *   sort_column?: string,
+     *   hierarchical?: bool,
+     *   exclude?: int[],
+     *   include?: int[],
+     *   meta_key?: string,
+     *   meta_value?: string,
+     *   authors?: string,
+     *   parent?: int,
+     *   exclude_tree?: string|int[],
+     *   number?: int,
+     *   offset?: int,
+     *   post_type?: string,
+     *   post_status?: string|array,
      * } $args
+     * @return string
      */
     function wp_dropdown_pages($args = '')
     {
     }
     /**
-     * @param array|string $args
-     * @return void|string
      * @phpstan-param array{
      *   child_of?: int,
      *   authors?: string,
@@ -67410,14 +67284,28 @@ namespace {
      *   title_li?: string,
      *   item_spacing?: string,
      *   walker?: Walker,
+     *   child_of?: int,
+     *   sort_order?: string,
+     *   sort_column?: string,
+     *   hierarchical?: bool,
+     *   exclude?: int[],
+     *   include?: int[],
+     *   meta_key?: string,
+     *   meta_value?: string,
+     *   authors?: string,
+     *   parent?: int,
+     *   exclude_tree?: string|int[],
+     *   number?: int,
+     *   offset?: int,
+     *   post_type?: string,
+     *   post_status?: string|array,
      * } $args
+     * @return void|string
      */
     function wp_list_pages($args = '')
     {
     }
     /**
-     * @param array|string $args
-     * @return void|string
      * @phpstan-param array{
      *   sort_column?: string,
      *   menu_id?: string,
@@ -67431,7 +67319,39 @@ namespace {
      *   after?: string,
      *   item_spacing?: string,
      *   walker?: Walker,
+     *   child_of?: int,
+     *   authors?: string,
+     *   date_format?: string,
+     *   depth?: int,
+     *   echo?: bool,
+     *   exclude?: string,
+     *   include?: array,
+     *   link_after?: string,
+     *   link_before?: string,
+     *   post_type?: string,
+     *   post_status?: string|array,
+     *   show_date?: string,
+     *   sort_column?: string,
+     *   title_li?: string,
+     *   item_spacing?: string,
+     *   walker?: Walker,
+     *   child_of?: int,
+     *   sort_order?: string,
+     *   sort_column?: string,
+     *   hierarchical?: bool,
+     *   exclude?: int[],
+     *   include?: int[],
+     *   meta_key?: string,
+     *   meta_value?: string,
+     *   authors?: string,
+     *   parent?: int,
+     *   exclude_tree?: string|int[],
+     *   number?: int,
+     *   offset?: int,
+     *   post_type?: string,
+     *   post_status?: string|array,
      * } $args
+     * @return void|string
      */
     function wp_page_menu($args = array())
     {
@@ -67450,7 +67370,7 @@ namespace {
     {
     }
     /**
-     * @param mixed ...$args
+     * @param mixed $args
      * @return string
      */
     function walk_page_dropdown_tree(...$args)
@@ -67658,7 +67578,6 @@ namespace {
     }
     /**
      * @param string $post
-     * @return string[]
      * @phpstan-return array{
      *   main: string,
      *   extended: string,
@@ -67671,9 +67590,8 @@ namespace {
     /**
      * @param int|\WP_Post|null $post
      * @param string $output
-     * @param string $filter
-     * @return \WP_Post|array|null
      * @phpstan-param 'raw'|'edit'|'db'|'display' $filter
+     * @return \WP_Post|array|null
      * @phpstan-param 'OBJECT'|'ARRAY_A'|'ARRAY_N' $output
      * @phpstan-return ($post is \WP_Post ? array<array-key, mixed>|\WP_Post : array<array-key, mixed>|\WP_Post|null) & ($output is 'ARRAY_A' ? array<string, mixed>|null : ($output is 'ARRAY_N' ? array<int, mixed>|null : \WP_Post|null))
      */
@@ -67690,9 +67608,8 @@ namespace {
     /**
      * @param string $field
      * @param int|\WP_Post $post
-     * @param string $context
-     * @return string
      * @phpstan-param 'raw'|'edit'|'db'|'display' $context
+     * @return string
      */
     function get_post_field($field, $post = \null, $context = 'display')
     {
@@ -67731,8 +67648,6 @@ namespace {
     }
     /**
      * @param string $post_status
-     * @param array|string $args
-     * @return object
      * @phpstan-param array{
      *   label?: bool|string,
      *   label_count?: array|false,
@@ -67747,6 +67662,7 @@ namespace {
      *   show_in_admin_status_list?: bool,
      *   date_floating?: bool,
      * } $args
+     * @return object
      */
     function register_post_status($post_status, $args = array())
     {
@@ -67760,10 +67676,9 @@ namespace {
     }
     /**
      * @param array|string $args
-     * @param string $output
+     * @phpstan-param 'names'|'objects' $output
      * @param string $operator
      * @return string[]|\stdClass[]
-     * @phpstan-param 'names'|'objects' $output
      * @phpstan-return ($output is 'names' ? array<string, string> : array<string, \stdClass>)
      */
     function get_post_stati($args = array(), $output = 'names', $operator = 'and')
@@ -67799,10 +67714,9 @@ namespace {
     }
     /**
      * @param array|string $args
-     * @param string $output
+     * @phpstan-param 'names'|'objects' $output
      * @param string $operator
      * @return string[]|\WP_Post_Type[]
-     * @phpstan-param 'names'|'objects' $output
      * @phpstan-return ($output is 'names' ? array<string, string> : array<string, \WP_Post_Type>)
      */
     function get_post_types($args = array(), $output = 'names', $operator = 'and')
@@ -67810,8 +67724,6 @@ namespace {
     }
     /**
      * @param string $post_type
-     * @param array|string $args
-     * @return \WP_Post_Type|\WP_Error
      * @phpstan-param array{
      *   label?: string,
      *   labels?: string[],
@@ -67855,6 +67767,7 @@ namespace {
      *   _builtin?: bool,
      *   _edit_link?: string,
      * } $args
+     * @return \WP_Post_Type|\WP_Error
      */
     function register_post_type($post_type, $args = array())
     {
@@ -67900,7 +67813,7 @@ namespace {
     /**
      * @param string $post_type
      * @param string|array $feature
-     * @param mixed ...$args
+     * @param mixed $args
      */
     function add_post_type_support($post_type, $feature, ...$args)
     {
@@ -67937,9 +67850,8 @@ namespace {
     }
     /**
      * @param int $post_id
-     * @param string $post_type
-     * @return int|false
      * @phpstan-param 'post'|'page' $post_type
+     * @return int|false
      */
     function set_post_type($post_id = 0, $post_type = 'post')
     {
@@ -67966,15 +67878,89 @@ namespace {
     {
     }
     /**
-     * @param array $args
-     * @return \WP_Post[]|int[]
      * @phpstan-param array{
      *   numberposts?: int,
      *   category?: int|string,
      *   include?: int[],
      *   exclude?: int[],
      *   suppress_filters?: bool,
+     *   attachment_id?: int,
+     *   author?: int|string,
+     *   author_name?: string,
+     *   author__in?: int[],
+     *   author__not_in?: int[],
+     *   cache_results?: bool,
+     *   cat?: int|string,
+     *   category__and?: int[],
+     *   category__in?: int[],
+     *   category__not_in?: int[],
+     *   category_name?: string,
+     *   comment_count?: array|int,
+     *   comment_status?: string,
+     *   comments_per_page?: int,
+     *   date_query?: array,
+     *   day?: int,
+     *   exact?: bool,
+     *   fields?: string,
+     *   hour?: int,
+     *   ignore_sticky_posts?: int|bool,
+     *   m?: int,
+     *   meta_key?: string|string[],
+     *   meta_value?: string|string[],
+     *   meta_compare?: string,
+     *   meta_compare_key?: string,
+     *   meta_type?: string,
+     *   meta_type_key?: string,
+     *   meta_query?: array,
+     *   menu_order?: int,
+     *   minute?: int,
+     *   monthnum?: int,
+     *   name?: string,
+     *   nopaging?: bool,
+     *   no_found_rows?: bool,
+     *   offset?: int,
+     *   order?: string,
+     *   orderby?: string|array,
+     *   p?: int,
+     *   page?: int,
+     *   paged?: int,
+     *   page_id?: int,
+     *   pagename?: string,
+     *   perm?: string,
+     *   ping_status?: string,
+     *   post__in?: int[],
+     *   post__not_in?: int[],
+     *   post_mime_type?: string,
+     *   post_name__in?: string[],
+     *   post_parent?: int,
+     *   post_parent__in?: int[],
+     *   post_parent__not_in?: int[],
+     *   post_type?: string|string[],
+     *   post_status?: string|string[],
+     *   posts_per_page?: int,
+     *   posts_per_archive_page?: int,
+     *   s?: string,
+     *   search_columns?: string[],
+     *   second?: int,
+     *   sentence?: bool,
+     *   suppress_filters?: bool,
+     *   tag?: string,
+     *   tag__and?: int[],
+     *   tag__in?: int[],
+     *   tag__not_in?: int[],
+     *   tag_id?: int,
+     *   tag_slug__and?: string[],
+     *   tag_slug__in?: string[],
+     *   tax_query?: array,
+     *   title?: string,
+     *   update_post_meta_cache?: bool,
+     *   update_post_term_cache?: bool,
+     *   update_menu_item_cache?: bool,
+     *   lazy_load_term_meta?: bool,
+     *   w?: int,
+     *   year?: int,
      * } $args
+     * @return \WP_Post[]|int[]
      */
     function get_posts($args = \null)
     {
@@ -68032,6 +68018,17 @@ namespace {
      * @param string $meta_key
      * @param array $args
      * @return bool
+     * @phpstan-param array{
+     *   object_subtype?: string,
+     *   type?: string,
+     *   description?: string,
+     *   single?: bool,
+     *   default?: mixed,
+     *   sanitize_callback?: callable,
+     *   auth_callback?: callable,
+     *   show_in_rest?: bool|array,
+     *   revisions_enabled?: bool,
+     * } $args See register_meta()
      */
     function register_post_meta($post_type, $meta_key, array $args)
     {
@@ -68075,9 +68072,8 @@ namespace {
     }
     /**
      * @param object|\WP_Post|array $post
-     * @param string $context
-     * @return object|\WP_Post|array
      * @phpstan-param 'raw'|'edit'|'db'|'display'|'attribute'|'js' $context
+     * @return object|\WP_Post|array
      * @phpstan-template T of array|object
      * @phpstan-param T $post
      * @phpstan-return T
@@ -68089,9 +68085,8 @@ namespace {
      * @param string $field
      * @param mixed $value
      * @param int $post_id
-     * @param string $context
-     * @return mixed
      * @phpstan-param 'raw'|'edit'|'db'|'display'|'attribute'|'js' $context
+     * @return mixed
      */
     function sanitize_post_field($field, $value, $post_id, $context = 'display')
     {
@@ -68200,6 +68195,42 @@ namespace {
      * @param int $post_id
      * @param array $args
      * @return array|\WP_Error
+     * @phpstan-param array{
+     *   taxonomy?: string|string[],
+     *   object_ids?: int|int[],
+     *   orderby?: string,
+     *   order?: string,
+     *   hide_empty?: bool|int,
+     *   include?: int[]|string,
+     *   exclude?: int[]|string,
+     *   exclude_tree?: int[]|string,
+     *   number?: int|string,
+     *   offset?: int,
+     *   fields?: string,
+     *   count?: bool,
+     *   name?: string|string[],
+     *   slug?: string|string[],
+     *   term_taxonomy_id?: int|int[],
+     *   hierarchical?: bool,
+     *   search?: string,
+     *   name__like?: string,
+     *   description__like?: string,
+     *   pad_counts?: bool,
+     *   get?: string,
+     *   child_of?: int,
+     *   parent?: int,
+     *   childless?: bool,
+     *   cache_domain?: string,
+     *   cache_results?: bool,
+     *   update_term_meta_cache?: bool,
+     *   meta_key?: string|string[],
+     *   meta_value?: string|string[],
+     *   meta_compare?: string,
+     *   meta_compare_key?: string,
+     *   meta_type?: string,
+     *   meta_type_key?: string,
+     *   meta_query?: array,
+     * } $args See WP_Term_Query::__construct()
      */
     function wp_get_post_categories($post_id = 0, $args = array())
     {
@@ -68208,6 +68239,42 @@ namespace {
      * @param int $post_id
      * @param array $args
      * @return array|\WP_Error
+     * @phpstan-param array{
+     *   taxonomy?: string|string[],
+     *   object_ids?: int|int[],
+     *   orderby?: string,
+     *   order?: string,
+     *   hide_empty?: bool|int,
+     *   include?: int[]|string,
+     *   exclude?: int[]|string,
+     *   exclude_tree?: int[]|string,
+     *   number?: int|string,
+     *   offset?: int,
+     *   fields?: string,
+     *   count?: bool,
+     *   name?: string|string[],
+     *   slug?: string|string[],
+     *   term_taxonomy_id?: int|int[],
+     *   hierarchical?: bool,
+     *   search?: string,
+     *   name__like?: string,
+     *   description__like?: string,
+     *   pad_counts?: bool,
+     *   get?: string,
+     *   child_of?: int,
+     *   parent?: int,
+     *   childless?: bool,
+     *   cache_domain?: string,
+     *   cache_results?: bool,
+     *   update_term_meta_cache?: bool,
+     *   meta_key?: string|string[],
+     *   meta_value?: string|string[],
+     *   meta_compare?: string,
+     *   meta_compare_key?: string,
+     *   meta_type?: string,
+     *   meta_type_key?: string,
+     *   meta_query?: array,
+     * } $args See WP_Term_Query::__construct()
      */
     function wp_get_post_tags($post_id = 0, $args = array())
     {
@@ -68215,11 +68282,44 @@ namespace {
     /**
      * @param int $post_id
      * @param string|string[] $taxonomy
-     * @param array $args
-     * @return array|\WP_Error
      * @phpstan-param array{
      *   fields?: string,
+     *   taxonomy?: string|string[],
+     *   object_ids?: int|int[],
+     *   orderby?: string,
+     *   order?: string,
+     *   hide_empty?: bool|int,
+     *   include?: int[]|string,
+     *   exclude?: int[]|string,
+     *   exclude_tree?: int[]|string,
+     *   number?: int|string,
+     *   offset?: int,
+     *   fields?: string,
+     *   count?: bool,
+     *   name?: string|string[],
+     *   slug?: string|string[],
+     *   term_taxonomy_id?: int|int[],
+     *   hierarchical?: bool,
+     *   search?: string,
+     *   name__like?: string,
+     *   description__like?: string,
+     *   pad_counts?: bool,
+     *   get?: string,
+     *   child_of?: int,
+     *   parent?: int,
+     *   childless?: bool,
+     *   cache_domain?: string,
+     *   cache_results?: bool,
+     *   update_term_meta_cache?: bool,
+     *   meta_key?: string|string[],
+     *   meta_value?: string|string[],
+     *   meta_compare?: string,
+     *   meta_compare_key?: string,
+     *   meta_type?: string,
+     *   meta_type_key?: string,
+     *   meta_query?: array,
      * } $args
+     * @return array|\WP_Error
      */
     function wp_get_post_terms($post_id = 0, $taxonomy = 'post_tag', $args = array())
     {
@@ -68233,10 +68333,6 @@ namespace {
     {
     }
     /**
-     * @param array $postarr
-     * @param bool $wp_error
-     * @param bool $fire_after_hooks
-     * @return int|\WP_Error
      * @phpstan-param array{
      *   ID?: int,
      *   post_author?: int,
@@ -68265,6 +68361,9 @@ namespace {
      *   meta_input?: array,
      *   page_template?: string,
      * } $postarr
+     * @param bool $wp_error
+     * @param bool $fire_after_hooks
+     * @return int|\WP_Error
      * @phpstan-return ($wp_error is false ? 0|positive-int : positive-int|\WP_Error)
      */
     function wp_insert_post($postarr, $wp_error = \false, $fire_after_hooks = \true)
@@ -68276,6 +68375,34 @@ namespace {
      * @param bool $fire_after_hooks
      * @return int|\WP_Error
      * @phpstan-return ($wp_error is false ? 0|positive-int : positive-int|\WP_Error)
+     * @phpstan-param array{
+     *   ID?: int,
+     *   post_author?: int,
+     *   post_date?: string,
+     *   post_date_gmt?: string,
+     *   post_content?: string,
+     *   post_content_filtered?: string,
+     *   post_title?: string,
+     *   post_excerpt?: string,
+     *   post_status?: string,
+     *   post_type?: string,
+     *   comment_status?: string,
+     *   ping_status?: string,
+     *   post_password?: string,
+     *   post_name?: string,
+     *   to_ping?: string,
+     *   pinged?: string,
+     *   post_parent?: int,
+     *   menu_order?: int,
+     *   post_mime_type?: string,
+     *   guid?: string,
+     *   import_id?: int,
+     *   post_category?: int[],
+     *   tags_input?: array,
+     *   tax_input?: array,
+     *   meta_input?: array,
+     *   page_template?: string,
+     * } $postarr See wp_insert_post()
      */
     function wp_update_post($postarr = array(), $wp_error = \false, $fire_after_hooks = \true)
     {
@@ -68423,7 +68550,6 @@ namespace {
     {
     }
     /**
-     * @deprecated 3.5.0
      * @param int|\WP_Post $page
      * @param string $output
      * @param string $filter
@@ -68474,8 +68600,6 @@ namespace {
     {
     }
     /**
-     * @param array|string $args
-     * @return \WP_Post[]|false
      * @phpstan-param array{
      *   child_of?: int,
      *   sort_order?: string,
@@ -68493,6 +68617,7 @@ namespace {
      *   post_type?: string,
      *   post_status?: string|array,
      * } $args
+     * @return \WP_Post[]|false
      */
     function get_pages($args = array())
     {
@@ -68540,7 +68665,6 @@ namespace {
     /**
      * @param int $attachment_id
      * @param bool $unfiltered
-     * @return array|false
      * @phpstan-return false|array{
      *   width: int,
      *   height: int,
@@ -68641,10 +68765,9 @@ namespace {
     {
     }
     /**
-     * @param string $timezone
+     * @phpstan-param 'server'|'blog'|'gmt' $timezone
      * @param string $post_type
      * @return string
-     * @phpstan-param 'server'|'blog'|'gmt' $timezone
      */
     function get_lastpostdate($timezone = 'server', $post_type = 'any')
     {
@@ -68653,16 +68776,17 @@ namespace {
      * @param string $timezone
      * @param string $post_type
      * @return string
+     * @phpstan-param 'server'|'blog'|'gmt' $timezone
      */
     function get_lastpostmodified($timezone = 'server', $post_type = 'any')
     {
     }
     /**
      * @param string $timezone
-     * @param string $field
+     * @phpstan-param 'date'|'modified' $field
      * @param string $post_type
      * @return string|false
-     * @phpstan-param 'date'|'modified' $field
+     * @phpstan-param 'server'|'blog'|'gmt' $timezone
      */
     function _get_last_post_time($timezone, $field, $post_type = 'any')
     {
@@ -69126,11 +69250,13 @@ namespace {
     function in_the_loop()
     {
     }
+    /**
      * @phpstan-return void
      */
     function rewind_posts()
     {
     }
+    /**
      * @phpstan-return void
      */
     function the_post()
@@ -69145,11 +69271,13 @@ namespace {
     function have_comments()
     {
     }
+    /**
      * @phpstan-return void
      */
     function the_comment()
     {
     }
+    /**
      * @phpstan-return void
      */
     function wp_old_slug_redirect()
@@ -69196,7 +69324,6 @@ namespace {
     /**
      * @param string|array $object_type
      * @param string $attribute
-     * @param array $args
      * @phpstan-param array{
      *   get_callback?: callable|null,
      *   update_callback?: callable|null,
@@ -69218,6 +69345,7 @@ namespace {
     function create_initial_rest_routes()
     {
     }
+    /**
      * @phpstan-return void
      */
     function rest_api_loaded()
@@ -69351,16 +69479,19 @@ namespace {
     function rest_is_field_included($field, $fields)
     {
     }
+    /**
      * @phpstan-return void
      */
     function rest_output_rsd()
     {
     }
+    /**
      * @phpstan-return void
      */
     function rest_output_link_wp_head()
     {
     }
+    /**
      * @phpstan-return void
      */
     function rest_output_link_header()
@@ -69373,6 +69504,7 @@ namespace {
     function rest_cookie_check_errors($result)
     {
     }
+    /**
      * @phpstan-return void
      */
     function rest_cookie_collect_status()
@@ -69436,7 +69568,6 @@ namespace {
     /**
      * @param string $date
      * @param bool $is_utc
-     * @return array|null
      * @phpstan-return null|array{
      *   0: string,
      *   1: string,
@@ -69947,7 +70078,6 @@ namespace {
     }
     /**
      * @param int|\WP_Post $post
-     * @return array|\WP_Error
      * @phpstan-return \WP_Error|array{
      *   latest_id: int,
      *   count: int,
@@ -70033,7 +70163,6 @@ namespace {
     /**
      * @param string $regex
      * @param string|array $query
-     * @param string $after
      * @phpstan-param 'top'|'bottom' $after
      */
     function add_rewrite_rule($regex, $query, $after = 'bottom')
@@ -70058,6 +70187,15 @@ namespace {
      * @param string $name
      * @param string $struct
      * @param array $args
+     * @phpstan-param array{
+     *   with_front?: bool,
+     *   ep_mask?: int,
+     *   paged?: bool,
+     *   feed?: bool,
+     *   forcomments?: bool,
+     *   walk_dirs?: bool,
+     *   endpoints?: bool,
+     * } $args See WP_Rewrite::add_permastruct()
      */
     function add_permastruct($name, $struct, $args = array())
     {
@@ -70111,6 +70249,14 @@ namespace {
     function url_to_postid($url)
     {
     }
+    /**
+     * Robots template functions.
+     *
+     * @package WordPress
+     * @subpackage Robots
+     * @since 5.7.0
+     */
+    /**
      * @phpstan-return void
      */
     function wp_robots()
@@ -70236,11 +70382,13 @@ namespace {
     function wp_just_in_time_script_localization()
     {
     }
+    /**
      * @phpstan-return void
      */
     function wp_localize_jquery_ui_datepicker()
     {
     }
+    /**
      * @phpstan-return void
      */
     function wp_localize_community_events()
@@ -70248,9 +70396,8 @@ namespace {
     }
     /**
      * @param string $src
-     * @param string $handle
-     * @return string|false
      * @phpstan-param 'colors'|'colors-rtl' $handle
+     * @return string|false
      */
     function wp_style_loader_src($src, $handle)
     {
@@ -70267,9 +70414,6 @@ namespace {
     function print_footer_scripts()
     {
     }
-    /**
-     * @ignore
-     */
     function _print_scripts()
     {
     }
@@ -70300,15 +70444,13 @@ namespace {
     function print_late_styles()
     {
     }
-    /**
-     * @ignore
-     */
     function _print_styles()
     {
     }
     function script_concat_settings()
     {
     }
+    /**
      * @phpstan-return void
      */
     function wp_common_block_scripts_and_styles()
@@ -70321,11 +70463,13 @@ namespace {
     function wp_filter_out_block_nodes($nodes)
     {
     }
+    /**
      * @phpstan-return void
      */
     function wp_enqueue_global_styles()
     {
     }
+    /**
      * @phpstan-return void
      */
     function wp_enqueue_global_styles_custom_css()
@@ -70343,6 +70487,7 @@ namespace {
     function wp_should_load_separate_core_block_assets()
     {
     }
+    /**
      * @phpstan-return void
      */
     function wp_enqueue_registered_block_scripts_and_styles()
@@ -70417,7 +70562,6 @@ namespace {
     {
     }
     /**
-     * @param array $options
      * @phpstan-param array{
      *   optimize?: bool,
      *   prettify?: bool,
@@ -70429,7 +70573,6 @@ namespace {
     }
     /**
      * @param string $block_name
-     * @param array $args
      * @phpstan-param array{
      *   handle?: string,
      *   src?: string|false,
@@ -70476,12 +70619,11 @@ namespace {
     /**
      * @param string $id
      * @param string $src
-     * @param array $deps
-     * @param string|false|null $version
      * @phpstan-param array<int|string, array{
      *   id: string,
      *   import?: string,
      * }> $deps
+     * @param string|false|null $version
      */
     function wp_register_script_module(string $id, string $src, array $deps = array(), $version = \false)
     {
@@ -70489,12 +70631,11 @@ namespace {
     /**
      * @param string $id
      * @param string $src
-     * @param array $deps
-     * @param string|false|null $version
      * @phpstan-param array<int|string, array{
      *   id: string,
      *   import?: string,
      * }> $deps
+     * @param string|false|null $version
      */
     function wp_enqueue_script_module(string $id, string $src = '', array $deps = array(), $version = \false)
     {
@@ -70580,8 +70721,6 @@ namespace {
     {
     }
     /**
-     * @param array $m
-     * @return string
      * @phpstan-param array{
      *   0: string,
      *   1: string,
@@ -70591,6 +70730,7 @@ namespace {
      *   5: string,
      *   6: string,
      * } $m
+     * @return string
      */
     function do_shortcode_tag($m)
     {
@@ -70705,8 +70845,6 @@ namespace {
      */
     /**
      * @param array $block_styles
-     * @param array $options
-     * @return array
      * @phpstan-param array{
      *   context?: string|null,
      *   convert_vars_to_classnames?: bool,
@@ -70722,9 +70860,6 @@ namespace {
     {
     }
     /**
-     * @param array $css_rules
-     * @param array $options
-     * @return string
      * @phpstan-param array<int|string, array{
      *   rules_group: string,
      *   selector: string,
@@ -70735,18 +70870,18 @@ namespace {
      *   optimize?: bool,
      *   prettify?: bool,
      * } $options
+     * @return string
      */
     function wp_style_engine_get_stylesheet_from_css_rules($css_rules, $options = array())
     {
     }
     /**
      * @param string $context
-     * @param array $options
-     * @return string
      * @phpstan-param array{
      *   optimize?: bool,
      *   prettify?: bool,
      * } $options
+     * @return string
      */
     function wp_style_engine_get_stylesheet_from_context($context, $options = array())
     {
@@ -70756,11 +70891,9 @@ namespace {
     }
     /**
      * @param array $args
-     * @param string $output
-     * @param string $operator
-     * @return string[]|\WP_Taxonomy[]
      * @phpstan-param 'names'|'objects' $output
      * @phpstan-param 'and'|'or' $operator
+     * @return string[]|\WP_Taxonomy[]
      * @phpstan-return ($output is 'names' ? array<int, string> : array<int, \WP_Taxonomy>)
      */
     function get_taxonomies($args = array(), $output = 'names', $operator = 'and')
@@ -70768,9 +70901,8 @@ namespace {
     }
     /**
      * @param string|string[]|\WP_Post $object_type
-     * @param string $output
-     * @return string[]|\WP_Taxonomy[]
      * @phpstan-param 'names'|'objects' $output
+     * @return string[]|\WP_Taxonomy[]
      * @phpstan-return ($output is 'names' ? array<int, string> : array<string, \WP_Taxonomy>)
      */
     function get_object_taxonomies($object_type, $output = 'names')
@@ -70800,8 +70932,6 @@ namespace {
     /**
      * @param string $taxonomy
      * @param array|string $object_type
-     * @param array|string $args
-     * @return \WP_Taxonomy|\WP_Error
      * @phpstan-param array{
      *   labels?: string[],
      *   description?: string,
@@ -70843,6 +70973,7 @@ namespace {
      *   args?: array,
      *   _builtin?: bool,
      * } $args
+     * @return \WP_Taxonomy|\WP_Error
      */
     function register_taxonomy($taxonomy, $object_type, $args = array())
     {
@@ -70856,7 +70987,6 @@ namespace {
     }
     /**
      * @param \WP_Taxonomy $tax
-     * @return object
      * @phpstan-return object{
      *   name: string,
      *   singular_name: string,
@@ -70914,11 +71044,10 @@ namespace {
     /**
      * @param int|int[] $term_ids
      * @param string|string[] $taxonomies
-     * @param array|string $args
-     * @return string[]|\WP_Error
      * @phpstan-param array{
      *   order?: string,
      * } $args
+     * @return string[]|\WP_Error
      */
     function get_objects_in_term($term_ids, $taxonomies, $args = array())
     {
@@ -70983,10 +71112,45 @@ namespace {
     {
     }
     /**
-     * @internal
      * @param array|string $args
      * @param array|string $deprecated
      * @return \WP_Term[]|int[]|string[]|string|\WP_Error
+     * @phpstan-param array{
+     *   taxonomy?: string|string[],
+     *   object_ids?: int|int[],
+     *   orderby?: string,
+     *   order?: string,
+     *   hide_empty?: bool|int,
+     *   include?: int[]|string,
+     *   exclude?: int[]|string,
+     *   exclude_tree?: int[]|string,
+     *   number?: int|string,
+     *   offset?: int,
+     *   fields?: string,
+     *   count?: bool,
+     *   name?: string|string[],
+     *   slug?: string|string[],
+     *   term_taxonomy_id?: int|int[],
+     *   hierarchical?: bool,
+     *   search?: string,
+     *   name__like?: string,
+     *   description__like?: string,
+     *   pad_counts?: bool,
+     *   get?: string,
+     *   child_of?: int,
+     *   parent?: int,
+     *   childless?: bool,
+     *   cache_domain?: string,
+     *   cache_results?: bool,
+     *   update_term_meta_cache?: bool,
+     *   meta_key?: string|string[],
+     *   meta_value?: string|string[],
+     *   meta_compare?: string,
+     *   meta_compare_key?: string,
+     *   meta_type?: string,
+     *   meta_type_key?: string,
+     *   meta_query?: array,
+     * } $args See WP_Term_Query::__construct()
      */
     function get_terms($args = array(), $deprecated = '')
     {
@@ -71055,6 +71219,17 @@ namespace {
      * @param string $meta_key
      * @param array $args
      * @return bool
+     * @phpstan-param array{
+     *   object_subtype?: string,
+     *   type?: string,
+     *   description?: string,
+     *   single?: bool,
+     *   default?: mixed,
+     *   sanitize_callback?: callable,
+     *   auth_callback?: callable,
+     *   show_in_rest?: bool|array,
+     *   revisions_enabled?: bool,
+     * } $args See register_meta()
      */
     function register_term_meta($taxonomy, $meta_key, array $args)
     {
@@ -71089,9 +71264,8 @@ namespace {
     /**
      * @param array|object $term
      * @param string $taxonomy
-     * @param string $context
-     * @return array|object
      * @phpstan-param 'raw'|'edit'|'db'|'display'|'rss'|'attribute'|'js' $context
+     * @return array|object
      * @phpstan-template T of array|object
      * @phpstan-param T $term
      * @phpstan-return T
@@ -71104,18 +71278,52 @@ namespace {
      * @param string $value
      * @param int $term_id
      * @param string $taxonomy
-     * @param string $context
-     * @return mixed
      * @phpstan-param 'raw'|'edit'|'db'|'display'|'rss'|'attribute'|'js' $context
+     * @return mixed
      */
     function sanitize_term_field($field, $value, $term_id, $taxonomy, $context)
     {
     }
     /**
-     * @internal
      * @param array|string $args
      * @param array|string $deprecated
      * @return string|\WP_Error
+     * @phpstan-param array{
+     *   taxonomy?: string|string[],
+     *   object_ids?: int|int[],
+     *   orderby?: string,
+     *   order?: string,
+     *   hide_empty?: bool|int,
+     *   include?: int[]|string,
+     *   exclude?: int[]|string,
+     *   exclude_tree?: int[]|string,
+     *   number?: int|string,
+     *   offset?: int,
+     *   fields?: string,
+     *   count?: bool,
+     *   name?: string|string[],
+     *   slug?: string|string[],
+     *   term_taxonomy_id?: int|int[],
+     *   hierarchical?: bool,
+     *   search?: string,
+     *   name__like?: string,
+     *   description__like?: string,
+     *   pad_counts?: bool,
+     *   get?: string,
+     *   child_of?: int,
+     *   parent?: int,
+     *   childless?: bool,
+     *   cache_domain?: string,
+     *   cache_results?: bool,
+     *   update_term_meta_cache?: bool,
+     *   meta_key?: string|string[],
+     *   meta_value?: string|string[],
+     *   meta_compare?: string,
+     *   meta_compare_key?: string,
+     *   meta_type?: string,
+     *   meta_type_key?: string,
+     *   meta_query?: array,
+     * } $args See WP_Term_Query::__construct()
      */
     function wp_count_terms($args = array(), $deprecated = '')
     {
@@ -71130,12 +71338,11 @@ namespace {
     /**
      * @param int $term
      * @param string $taxonomy
-     * @param array|string $args
-     * @return bool|int|\WP_Error
      * @phpstan-param array{
      *   default?: int,
      *   force_default?: bool,
      * } $args
+     * @return bool|int|\WP_Error
      */
     function wp_delete_term($term, $taxonomy, $args = array())
     {
@@ -71152,6 +71359,42 @@ namespace {
      * @param string|string[] $taxonomies
      * @param array|string $args
      * @return \WP_Term[]|int[]|string[]|string|\WP_Error
+     * @phpstan-param array{
+     *   taxonomy?: string|string[],
+     *   object_ids?: int|int[],
+     *   orderby?: string,
+     *   order?: string,
+     *   hide_empty?: bool|int,
+     *   include?: int[]|string,
+     *   exclude?: int[]|string,
+     *   exclude_tree?: int[]|string,
+     *   number?: int|string,
+     *   offset?: int,
+     *   fields?: string,
+     *   count?: bool,
+     *   name?: string|string[],
+     *   slug?: string|string[],
+     *   term_taxonomy_id?: int|int[],
+     *   hierarchical?: bool,
+     *   search?: string,
+     *   name__like?: string,
+     *   description__like?: string,
+     *   pad_counts?: bool,
+     *   get?: string,
+     *   child_of?: int,
+     *   parent?: int,
+     *   childless?: bool,
+     *   cache_domain?: string,
+     *   cache_results?: bool,
+     *   update_term_meta_cache?: bool,
+     *   meta_key?: string|string[],
+     *   meta_value?: string|string[],
+     *   meta_compare?: string,
+     *   meta_compare_key?: string,
+     *   meta_type?: string,
+     *   meta_type_key?: string,
+     *   meta_query?: array,
+     * } $args See WP_Term_Query::__construct()
      */
     function wp_get_object_terms($object_ids, $taxonomies, $args = array())
     {
@@ -71159,8 +71402,6 @@ namespace {
     /**
      * @param string $term
      * @param string $taxonomy
-     * @param array|string $args
-     * @return array|\WP_Error
      * @phpstan-param array{
      *   alias_of?: string,
      *   description?: string,
@@ -71214,14 +71455,13 @@ namespace {
     /**
      * @param int $term_id
      * @param string $taxonomy
-     * @param array $args
-     * @return array|\WP_Error
      * @phpstan-param array{
      *   alias_of?: string,
      *   description?: string,
      *   parent?: int,
      *   slug?: string,
      * } $args
+     * @return array|\WP_Error
      */
     function wp_update_term($term_id, $taxonomy, $args = array())
     {
@@ -71352,7 +71592,6 @@ namespace {
     {
     }
     /**
-     * @ignore
      * @param int|object $term_id
      * @param int|object $term_taxonomy_id
      * @param bool $record
@@ -71361,19 +71600,16 @@ namespace {
     function _split_shared_term($term_id, $term_taxonomy_id, $record = \true)
     {
     }
+    /**
      * @phpstan-return void
      */
     function _wp_batch_split_terms()
     {
     }
-    /**
-     * @ignore
-     */
     function _wp_check_for_scheduled_split_terms()
     {
     }
     /**
-     * @ignore
      * @param int $term_id
      * @param int $new_term_id
      * @param int $term_taxonomy_id
@@ -71384,7 +71620,6 @@ namespace {
     {
     }
     /**
-     * @ignore
      * @param int $term_id
      * @param int $new_term_id
      * @param int $term_taxonomy_id
@@ -71394,7 +71629,6 @@ namespace {
     {
     }
     /**
-     * @ignore
      * @param int $term_id
      * @param int $new_term_id
      * @param int $term_taxonomy_id
@@ -71435,7 +71669,6 @@ namespace {
     {
     }
     /**
-     * @param array $args
      * @phpstan-param array{
      *   post?: int|WP_Post,
      *   before?: string,
@@ -71448,12 +71681,11 @@ namespace {
     }
     /**
      * @param int|\WP_Post $post
-     * @param array $args
-     * @return string[]
      * @phpstan-param array{
      *   template?: string,
      *   term_template?: string,
      * } $args
+     * @return string[]
      */
     function get_the_taxonomies($post = 0, $args = array())
     {
@@ -71485,9 +71717,8 @@ namespace {
     /**
      * @param int $object_id
      * @param string $object_type
-     * @param string $resource_type
-     * @return int[]
      * @phpstan-param 'post_type'|'taxonomy' $resource_type
+     * @return int[]
      */
     function get_ancestors($object_id = 0, $object_type = '', $resource_type = '')
     {
@@ -71688,6 +71919,7 @@ namespace {
     function wp_get_theme_preview_path($current_stylesheet = \null)
     {
     }
+    /**
      * @phpstan-return void
      */
     function wp_attach_theme_preview_middleware()
@@ -71717,6 +71949,7 @@ namespace {
     function wp_filter_wp_template_unique_post_slug($override_slug, $slug, $post_id, $post_status, $post_type)
     {
     }
+    /**
      * @phpstan-return void
      */
     function wp_enqueue_block_template_skip_link()
@@ -71732,13 +71965,12 @@ namespace {
      * @subpackage Theme
      */
     /**
-     * @param array $args
-     * @return \WP_Theme[]
      * @phpstan-param array{
      *   errors?: mixed,
      *   allowed?: mixed,
      *   blog_id?: int,
      * } $args
+     * @return \WP_Theme[]
      */
     function wp_get_themes($args = array())
     {
@@ -71854,6 +72086,7 @@ namespace {
     function get_raw_theme_root($stylesheet_or_template, $skip_cache = \false)
     {
     }
+    /**
      * @phpstan-return void
      */
     function locale_stylesheet()
@@ -72036,6 +72269,7 @@ namespace {
     function get_custom_header_markup()
     {
     }
+    /**
      * @phpstan-return void
      */
     function the_custom_header_markup()
@@ -72059,6 +72293,7 @@ namespace {
     function background_color()
     {
     }
+    /**
      * @phpstan-return void
      */
     function _custom_background_cb()
@@ -72083,12 +72318,11 @@ namespace {
     }
     /**
      * @param string $css
-     * @param array $args
-     * @return \WP_Post|\WP_Error
      * @phpstan-param array{
      *   preprocessed?: string,
      *   stylesheet?: string,
      * } $args
+     * @return \WP_Post|\WP_Error
      */
     function wp_update_custom_css_post($css, $args = array())
     {
@@ -72119,7 +72353,7 @@ namespace {
     }
     /**
      * @param string $feature
-     * @param mixed ...$args
+     * @param mixed $args
      * @return void|false
      */
     function add_theme_support($feature, ...$args)
@@ -72133,8 +72367,9 @@ namespace {
     }
     /**
      * @param string $feature
-     * @param mixed ...$args
+     * @param mixed $args
      * @return mixed
+     * @param string $feature
      */
     function get_theme_support($feature, ...$args)
     {
@@ -72142,6 +72377,7 @@ namespace {
     /**
      * @param string $feature
      * @return bool|void
+     * @param string $feature
      */
     function remove_theme_support($feature)
     {
@@ -72149,14 +72385,16 @@ namespace {
     /**
      * @param string $feature
      * @return bool
+     * @param string $feature
      */
     function _remove_theme_support($feature)
     {
     }
     /**
      * @param string $feature
-     * @param mixed ...$args
+     * @param mixed $args
      * @return bool
+     * @param string $feature
      */
     function current_theme_supports($feature, ...$args)
     {
@@ -72165,14 +72403,13 @@ namespace {
      * @param string $feature
      * @param string $file
      * @return bool
+     * @param string $feature
      */
     function require_if_theme_supports($feature, $file)
     {
     }
     /**
      * @param string $feature
-     * @param array $args
-     * @return true|\WP_Error
      * @phpstan-param array{
      *   type?: string,
      *   variadic?: bool,
@@ -72183,6 +72420,8 @@ namespace {
      *     prepare_callback: callable,
      *   },
      * } $args
+     * @return true|\WP_Error
+     * @param string $feature
      */
     function register_theme_feature($feature, $args = array())
     {
@@ -72196,6 +72435,7 @@ namespace {
     /**
      * @param string $feature
      * @return array|null
+     * @param string $feature
      */
     function get_registered_theme_feature($feature)
     {
@@ -72209,6 +72449,7 @@ namespace {
     function check_theme_switched()
     {
     }
+    /**
      * @phpstan-return void
      */
     function _wp_customize_include()
@@ -72320,16 +72561,19 @@ namespace {
     function wp_get_update_data()
     {
     }
+    /**
      * @phpstan-return void
      */
     function _maybe_update_core()
     {
     }
+    /**
      * @phpstan-return void
      */
     function _maybe_update_plugins()
     {
     }
+    /**
      * @phpstan-return void
      */
     function _maybe_update_themes()
@@ -72341,6 +72585,7 @@ namespace {
     function wp_clean_update_cache()
     {
     }
+    /**
      * @phpstan-return void
      */
     function wp_delete_all_temp_backups()
@@ -72359,14 +72604,13 @@ namespace {
      * @subpackage Users
      */
     /**
-     * @param array $credentials
-     * @param string|bool $secure_cookie
-     * @return \WP_User|\WP_Error
      * @phpstan-param array{
      *   user_login?: string,
      *   user_password?: string,
      *   remember?: bool,
      * } $credentials
+     * @param string|bool $secure_cookie
+     * @return \WP_User|\WP_Error
      */
     function wp_signon($credentials = array(), $secure_cookie = '')
     {
@@ -72486,13 +72730,47 @@ namespace {
     /**
      * @param array $args
      * @return array
+     * @phpstan-param array{
+     *   blog_id?: int,
+     *   role?: string|string[],
+     *   role__in?: string[],
+     *   role__not_in?: string[],
+     *   meta_key?: string|string[],
+     *   meta_value?: string|string[],
+     *   meta_compare?: string,
+     *   meta_compare_key?: string,
+     *   meta_type?: string,
+     *   meta_type_key?: string,
+     *   meta_query?: array,
+     *   capability?: string|string[],
+     *   capability__in?: string[],
+     *   capability__not_in?: string[],
+     *   include?: int[],
+     *   exclude?: int[],
+     *   search?: string,
+     *   search_columns?: string[],
+     *   orderby?: string|array,
+     *   order?: string,
+     *   offset?: int,
+     *   number?: int,
+     *   paged?: int,
+     *   count_total?: bool,
+     *   fields?: string|string[],
+     *   who?: string,
+     *   has_published_posts?: bool|string[],
+     *   nicename?: string,
+     *   nicename__in?: string[],
+     *   nicename__not_in?: string[],
+     *   login?: string,
+     *   login__in?: string[],
+     *   login__not_in?: string[],
+     *   cache_results?: bool,
+     * } $args See WP_User_Query::prepare_query()
      */
     function get_users($args = array())
     {
     }
     /**
-     * @param string|array $args
-     * @return string|null
      * @phpstan-param array{
      *   orderby?: string,
      *   order?: string,
@@ -72508,6 +72786,7 @@ namespace {
      *   exclude?: string,
      *   include?: string,
      * } $args
+     * @return string|null
      */
     function wp_list_users($args = array())
     {
@@ -72567,10 +72846,8 @@ namespace {
     {
     }
     /**
-     * @param string $strategy
-     * @param int|null $site_id
-     * @return array
      * @phpstan-param 'time'|'memory' $strategy
+     * @param int|null $site_id
      * @phpstan-return array{
      *   total_users: int,
      *   avail_roles: int[],
@@ -72600,6 +72877,7 @@ namespace {
     function wp_update_user_counts($network_id = \null)
     {
     }
+    /**
      * @phpstan-return void
      */
     function wp_schedule_update_user_counts()
@@ -72623,8 +72901,6 @@ namespace {
     {
     }
     /**
-     * @param array|string $args
-     * @return string
      * @phpstan-param array{
      *   show_option_all?: string,
      *   show_option_none?: string,
@@ -72650,7 +72926,42 @@ namespace {
      *   capability?: string|string[],
      *   capability__in?: string[],
      *   capability__not_in?: string[],
+     *   blog_id?: int,
+     *   role?: string|string[],
+     *   role__in?: string[],
+     *   role__not_in?: string[],
+     *   meta_key?: string|string[],
+     *   meta_value?: string|string[],
+     *   meta_compare?: string,
+     *   meta_compare_key?: string,
+     *   meta_type?: string,
+     *   meta_type_key?: string,
+     *   meta_query?: array,
+     *   capability?: string|string[],
+     *   capability__in?: string[],
+     *   capability__not_in?: string[],
+     *   include?: int[],
+     *   exclude?: int[],
+     *   search?: string,
+     *   search_columns?: string[],
+     *   orderby?: string|array,
+     *   order?: string,
+     *   offset?: int,
+     *   number?: int,
+     *   paged?: int,
+     *   count_total?: bool,
+     *   fields?: string|string[],
+     *   who?: string,
+     *   has_published_posts?: bool|string[],
+     *   nicename?: string,
+     *   nicename__in?: string[],
+     *   nicename__not_in?: string[],
+     *   login?: string,
+     *   login__in?: string[],
+     *   login__not_in?: string[],
+     *   cache_results?: bool,
      * } $args
+     * @return string
      */
     function wp_dropdown_users($args = '')
     {
@@ -72701,8 +73012,6 @@ namespace {
     {
     }
     /**
-     * @param array|object|\WP_User $userdata
-     * @return int|\WP_Error
      * @phpstan-param \WP_User|object|array{
      *   ID?: int,
      *   user_pass?: string,
@@ -72728,6 +73037,7 @@ namespace {
      *   locale?: string,
      *   meta_input?: array,
      * } $userdata
+     * @return int|\WP_Error
      */
     function wp_insert_user($userdata)
     {
@@ -72814,7 +73124,6 @@ namespace {
     }
     /**
      * @param int $user_id
-     * @param string $notify
      * @phpstan-param 'admin'|'user'|'both' $notify
      */
     function wp_send_new_user_notifications($user_id, $notify = 'both')
@@ -72875,7 +73184,6 @@ namespace {
     }
     /**
      * @param string $email_address
-     * @return array
      * @phpstan-return array{
      *   data: array[],
      *   done: bool,
@@ -73013,7 +73321,6 @@ namespace {
     }
     /**
      * @param int $number
-     * @param array|string $args
      * @phpstan-param array{
      *   id?: string,
      *   name?: string,
@@ -73023,8 +73330,6 @@ namespace {
     {
     }
     /**
-     * @param array|string $args
-     * @return string
      * @phpstan-param array{
      *   name?: string,
      *   id?: string,
@@ -73038,6 +73343,7 @@ namespace {
      *   after_sidebar?: string,
      *   show_in_rest?: bool,
      * } $args
+     * @return string
      */
     function register_sidebar($args = array())
     {
@@ -73059,13 +73365,12 @@ namespace {
      * @param int|string $id
      * @param string $name
      * @param callable $output_callback
-     * @param array $options
-     * @param mixed ...$params
      * @phpstan-param array{
      *   classname?: string,
      *   description?: string,
      *   show_instance_in_rest?: bool,
      * } $options
+     * @param mixed $params
      * @phpstan-return void
      */
     function wp_register_sidebar_widget($id, $name, $output_callback, $options = array(), ...$params)
@@ -73095,13 +73400,12 @@ namespace {
      * @param int|string $id
      * @param string $name
      * @param callable $control_callback
-     * @param array $options
-     * @param mixed ...$params
      * @phpstan-param array{
      *   height?: int,
      *   width?: int,
      *   id_base?: int|string,
      * } $options
+     * @param mixed $params
      * @phpstan-return void
      */
     function wp_register_widget_control($id, $name, $control_callback, $options = array(), ...$params)
@@ -73111,8 +73415,13 @@ namespace {
      * @param string $id_base
      * @param callable $update_callback
      * @param array $options
-     * @param mixed ...$params
+     * @param mixed $params
      * @phpstan-return void
+     * @phpstan-param array{
+     *   height?: int,
+     *   width?: int,
+     *   id_base?: int|string,
+     * } $options See wp_register_widget_control()
      */
     function _register_widget_update_callback($id_base, $update_callback, $options = array(), ...$params)
     {
@@ -73122,8 +73431,13 @@ namespace {
      * @param string $name
      * @param callable $form_callback
      * @param array $options
-     * @param mixed ...$params
+     * @param mixed $params
      * @phpstan-return void
+     * @phpstan-param array{
+     *   height?: int,
+     *   width?: int,
+     *   id_base?: int|string,
+     * } $options See wp_register_widget_control()
      */
     function _register_widget_form_callback($id, $name, $form_callback, $options = array(), ...$params)
     {
@@ -73205,7 +73519,6 @@ namespace {
     /**
      * @param string $widget
      * @param array $instance
-     * @param array $args
      * @phpstan-param array{
      *   before_widget?: string,
      *   after_widget?: string,
@@ -73275,6 +73588,7 @@ namespace {
     function wp_widget_rss_process($widget_rss, $check_feed = \true)
     {
     }
+    /**
      * @phpstan-return void
      */
     function wp_widgets_init()
@@ -73328,6 +73642,7 @@ namespace {
     function wp_check_widget_editor_deps()
     {
     }
+    /**
      * @phpstan-return void
      */
     function _wp_block_theme_register_classic_sidebars()
@@ -73476,7 +73791,6 @@ namespace {
     {
     }
     /**
-     * @deprecated 3.4.0
      * @param string $io
      * @param string $msg
      */
