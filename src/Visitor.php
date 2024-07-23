@@ -6,7 +6,7 @@ namespace PhpStubs\WordPress\Core;
 
 use phpDocumentor\Reflection\DocBlock;
 use phpDocumentor\Reflection\DocBlock\Description;
-use phpDocumentor\Reflection\DocBlock\Tags\Deprecated;
+use phpDocumentor\Reflection\DocBlock\Tags\BaseTag;
 use phpDocumentor\Reflection\DocBlock\Tags\Param;
 use phpDocumentor\Reflection\DocBlock\Tags\Return_;
 use phpDocumentor\Reflection\DocBlock\Tags\Var_;
@@ -210,7 +210,7 @@ class Visitor extends NodeVisitor
         $additions = [];
 
         foreach ($deprecatedTags as $deprecatedTag) {
-            $addition = self::getAdditionFromDeprecated($deprecatedTag);
+            $addition = self::getAdditionFromEmptyTag($deprecatedTag);
 
             if (! ($addition instanceof WordPressTag)) {
                 continue;
@@ -465,10 +465,12 @@ class Visitor extends NodeVisitor
         return $additions;
     }
 
-    private function getAdditionFromDeprecated(Deprecated $tag): ?WordPressTag
+    private function getAdditionFromEmptyTag(BaseTag $tag): ?WordPressTag
     {
+        $tagName = $tag->getName();
+
         $tag = new WordPressTag();
-        $tag->tag = '@deprecated';
+        $tag->tag = '@' . $tagName;
         $tag->type = '';
 
         return $tag;
