@@ -79,7 +79,7 @@ namespace {
         }
         /**
          * @param string $feedback
-         * @param mixed $args
+         * @param mixed ...$args
          * @phpstan-return void
          */
         public function feedback($feedback, ...$args)
@@ -132,7 +132,7 @@ namespace {
         }
         /**
          * @param string|array|WP_Error $feedback
-         * @param mixed $args
+         * @param mixed ...$args
          * @phpstan-return void
          */
         public function feedback($feedback, ...$args)
@@ -166,7 +166,7 @@ namespace {
         }
         /**
          * @param string $feedback
-         * @param mixed $args
+         * @param mixed ...$args
          * @phpstan-return void
          */
         public function feedback($feedback, ...$args)
@@ -2281,7 +2281,7 @@ namespace {
         /**
          * @param array $elements
          * @param int $max_depth
-         * @param mixed $args
+         * @param mixed ...$args
          * @return string
          */
         public function walk($elements, $max_depth, ...$args)
@@ -2292,7 +2292,7 @@ namespace {
          * @param int $max_depth
          * @param int $page_num
          * @param int $per_page
-         * @param mixed $args
+         * @param mixed ...$args
          * @return string
          */
         public function paged_walk($elements, $max_depth, $page_num, $per_page, ...$args)
@@ -2543,14 +2543,14 @@ namespace {
         }
         /**
          * @param string|WP_Error $errors
-         * @param mixed $args
+         * @param mixed ...$args
          */
         public function error($errors, ...$args)
         {
         }
         /**
          * @param string|array|WP_Error $feedback
-         * @param mixed $args
+         * @param mixed ...$args
          */
         public function feedback($feedback, ...$args)
         {
@@ -14385,7 +14385,7 @@ namespace {
         {
         }
         /**
-         * @param SimplePie_File $file
+         * @param SimplePie_File &$file
          * @return bool
          */
         public function set_file(&$file)
@@ -22056,7 +22056,7 @@ namespace {
          */
         public $translations_path;
         /**
-         * @param mixed $args
+         * @param mixed ...$args
          */
         public function __construct(...$args)
         {
@@ -29933,7 +29933,7 @@ namespace {
         /**
          * @param string $text
          * @param int $offset
-         * @param ?int $matched_token_byte_length
+         * @param ?int &$matched_token_byte_length
          * @param string $case_sensitivity
          * @return string|null
          */
@@ -30448,7 +30448,7 @@ namespace {
         }
         /**
          * @param string $cap
-         * @param mixed $args
+         * @param mixed ...$args
          * @return bool
          */
         public function has_cap($cap, ...$args)
@@ -32338,7 +32338,7 @@ namespace {
         /**
          * @param string $query
          * @param array|mixed $args
-         * @param mixed $args
+         * @param mixed ...$args
          * @return string|void
          * @phpstan-param literal-string $query
          */
@@ -34363,7 +34363,7 @@ namespace {
          * @param string $context
          * @param string $text
          * @param int $at
-         * @param int $match_byte_length
+         * @param int &$match_byte_length
          * @return string|false
          */
         public static function read_character_reference($context, $text, $at = 0, &$match_byte_length = \null)
@@ -44161,7 +44161,7 @@ namespace {
      * @param string $widget_id
      * @param callable $callback
      * @param array $check_urls
-     * @param mixed $args
+     * @param mixed ...$args
      * @return bool
      */
     function wp_dashboard_cached_rss_widget($widget_id, $callback, $check_urls = array(), ...$args)
@@ -45313,7 +45313,7 @@ namespace {
     }
     /**
      * @param callable $content_func
-     * @param mixed $args
+     * @param mixed ...$args
      */
     function wp_iframe($content_func, ...$args)
     {
@@ -52844,7 +52844,7 @@ namespace {
     /**
      * @param string $cap
      * @param int $user_id
-     * @param mixed $args
+     * @param mixed ...$args
      * @return string[]
      */
     function map_meta_cap($cap, $user_id, ...$args)
@@ -52852,7 +52852,7 @@ namespace {
     }
     /**
      * @param string $capability
-     * @param mixed $args
+     * @param mixed ...$args
      * @return bool
      */
     function current_user_can($capability, ...$args)
@@ -52861,7 +52861,7 @@ namespace {
     /**
      * @param int $blog_id
      * @param string $capability
-     * @param mixed $args
+     * @param mixed ...$args
      * @return bool
      */
     function current_user_can_for_blog($blog_id, $capability, ...$args)
@@ -52870,7 +52870,7 @@ namespace {
     /**
      * @param int|WP_Post $post
      * @param string $capability
-     * @param mixed $args
+     * @param mixed ...$args
      * @return bool
      */
     function author_can($post, $capability, ...$args)
@@ -52879,7 +52879,7 @@ namespace {
     /**
      * @param int|WP_User $user
      * @param string $capability
-     * @param mixed $args
+     * @param mixed ...$args
      * @return bool
      */
     function user_can($user, $capability, ...$args)
@@ -53197,14 +53197,14 @@ namespace {
     // Helper functions.
     //
     /**
-     * @param mixed $args
+     * @param mixed ...$args
      * @return string
      */
     function walk_category_tree(...$args)
     {
     }
     /**
-     * @param mixed $args
+     * @param mixed ...$args
      * @return string
      */
     function walk_category_dropdown_tree(...$args)
@@ -55600,7 +55600,7 @@ namespace {
      * @param string|int $name
      * @param callable $output_callback
      * @param string $classname
-     * @param mixed $params
+     * @param mixed ...$params
      */
     function register_sidebar_widget($name, $output_callback, $classname = '', ...$params)
     {
@@ -55616,7 +55616,7 @@ namespace {
      * @param callable $control_callback
      * @param int $width
      * @param int $height
-     * @param mixed $params
+     * @param mixed ...$params
      */
     function register_widget_control($name, $control_callback, $width = '', $height = '', ...$params)
     {
@@ -57832,7 +57832,7 @@ namespace {
     }
     /**
      * @param string $pattern
-     * @param mixed $args
+     * @param mixed ...$args
      * @return string
      */
     function wp_sprintf($pattern, ...$args)
@@ -66752,7 +66752,7 @@ namespace {
     /**
      * @param string $hook_name
      * @param mixed $value
-     * @param mixed $args
+     * @param mixed ...$args
      * @return mixed
      */
     function apply_filters($hook_name, $value, ...$args)
@@ -66824,7 +66824,7 @@ namespace {
     }
     /**
      * @param string $hook_name
-     * @param mixed $arg
+     * @param mixed ...$arg
      * @phpstan-return void
      */
     function do_action($hook_name, ...$arg)
@@ -67370,7 +67370,7 @@ namespace {
     {
     }
     /**
-     * @param mixed $args
+     * @param mixed ...$args
      * @return string
      */
     function walk_page_dropdown_tree(...$args)
@@ -67813,7 +67813,7 @@ namespace {
     /**
      * @param string $post_type
      * @param string|array $feature
-     * @param mixed $args
+     * @param mixed ...$args
      */
     function add_post_type_support($post_type, $feature, ...$args)
     {
@@ -72353,7 +72353,7 @@ namespace {
     }
     /**
      * @param string $feature
-     * @param mixed $args
+     * @param mixed ...$args
      * @return void|false
      */
     function add_theme_support($feature, ...$args)
@@ -72367,7 +72367,7 @@ namespace {
     }
     /**
      * @param string $feature
-     * @param mixed $args
+     * @param mixed ...$args
      * @return mixed
      * @param string $feature
      */
@@ -72392,7 +72392,7 @@ namespace {
     }
     /**
      * @param string $feature
-     * @param mixed $args
+     * @param mixed ...$args
      * @return bool
      * @param string $feature
      */
@@ -73370,7 +73370,7 @@ namespace {
      *   description?: string,
      *   show_instance_in_rest?: bool,
      * } $options
-     * @param mixed $params
+     * @param mixed ...$params
      * @phpstan-return void
      */
     function wp_register_sidebar_widget($id, $name, $output_callback, $options = array(), ...$params)
@@ -73405,7 +73405,7 @@ namespace {
      *   width?: int,
      *   id_base?: int|string,
      * } $options
-     * @param mixed $params
+     * @param mixed ...$params
      * @phpstan-return void
      */
     function wp_register_widget_control($id, $name, $control_callback, $options = array(), ...$params)
@@ -73415,7 +73415,7 @@ namespace {
      * @param string $id_base
      * @param callable $update_callback
      * @param array $options
-     * @param mixed $params
+     * @param mixed ...$params
      * @phpstan-return void
      * @phpstan-param array{
      *   height?: int,
@@ -73431,7 +73431,7 @@ namespace {
      * @param string $name
      * @param callable $form_callback
      * @param array $options
-     * @param mixed $params
+     * @param mixed ...$params
      * @phpstan-return void
      * @phpstan-param array{
      *   height?: int,

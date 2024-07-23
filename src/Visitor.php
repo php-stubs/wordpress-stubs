@@ -462,10 +462,15 @@ class Visitor extends NodeVisitor
             return null;
         }
 
+        $variadic = $tag->isVariadic();
+        $reference = $tag->isReference();
+
         $default = new WordPressTag();
         $default->tag = '@param';
         $default->type = (string) $tagVariableType;
         $default->name = $tagVariableName;
+        $default->variadic = $variadic;
+        $default->reference = $reference;
 
         $tagDescriptionType = self::getTypeNameFromDescription($tagDescription, $tagVariableType);
 
@@ -474,6 +479,8 @@ class Visitor extends NodeVisitor
             $tag->tag = '@phpstan-param';
             $tag->type = $tagDescriptionType;
             $tag->name = $tagVariableName;
+            $tag->variadic = $variadic;
+            $tag->reference = $reference;
 
             return $tag;
         }
@@ -498,6 +505,8 @@ class Visitor extends NodeVisitor
         $tag->tag = '@phpstan-param';
         $tag->type = $tagVariableType;
         $tag->name = $tagVariableName;
+        $tag->variadic = $variadic;
+        $tag->reference = $reference;
         $tag->children = $elements;
 
         return $tag;

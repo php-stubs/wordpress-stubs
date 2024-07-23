@@ -16,6 +16,10 @@ final class WordPressTag extends WithChildren
 
     public ?string $description = null;
 
+    public bool $variadic = false;
+
+    public bool $reference = false;
+
     /**
      * @return list<string>
      */
@@ -26,13 +30,27 @@ final class WordPressTag extends WithChildren
         // Remove allbackslashes from the type
         $type = str_replace('\\', '', $type);
 
+        $name = $this->name !== null ? "\${$this->name}" : '';
+
+        if ($this->variadic) {
+            $name = "...{$name}";
+        }
+
+        if ($this->reference) {
+            $name = "&$name";
+        }
+
+        if ($name) {
+            $name = " {$name}";
+        }
+
         if (! $this->hasChildren()) {
             return [
                 sprintf(
                     '%s %s%s',
                     $this->tag,
                     $type,
-                    $this->name !== null ? " \${$this->name}" : ''
+                    $name
                 ),
             ];
         }
@@ -56,8 +74,6 @@ final class WordPressTag extends WithChildren
         if (count($childStrings) === 0) {
             return [];
         }
-
-        $name = $this->name !== null ? " \${$this->name}" : '';
 
         if ($this->isArrayShape()) {
             $strings[] = sprintf(
