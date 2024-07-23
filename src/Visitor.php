@@ -43,9 +43,6 @@ class Visitor extends NodeVisitor
     /** @var array<string, list<\PhpStubs\WordPress\Core\WordPressTag>> */
     private array $additionalTags = [];
 
-    /** @var array<string, list<string>> */
-    private array $additionalTagStrings = [];
-
     private \PhpParser\NodeFinder $nodeFinder;
 
     public function __construct()
@@ -99,18 +96,13 @@ class Visitor extends NodeVisitor
         }
 
         if ($voidOrNever !== '') {
-            $addition = sprintf(
-                '@phpstan-return %s',
-                $voidOrNever === 'never'
-                    ? (new Never_())->__toString()
-                    : (new Void_())->__toString()
-            );
-            if (
-                ! isset($this->additionalTagStrings[$symbolName])
-                || ! in_array($addition, $this->additionalTagStrings[$symbolName], true)
-            ) {
-                $this->additionalTagStrings[$symbolName][] = $addition;
-            }
+            $tag = new WordPressTag();
+            $tag->tag = '@phpstan-return';
+            $tag->type = $voidOrNever === 'never'
+                ? (new Never_())->__toString()
+                : (new Void_())->__toString();
+
+            $this->additionalTags[$symbolName][] = $tag;
         }
 
         return null;
@@ -181,19 +173,6 @@ class Visitor extends NodeVisitor
         if ($newDocComment instanceof Doc) {
             $node->setDocComment($newDocComment);
         }
-
-        if (! isset($this->additionalTagStrings[$fullSymbolName])) {
-            return;
-        }
-
-        $docComment = $node->getDocComment();
-        $newDocComment = $this->addStringTags($fullSymbolName, $docComment);
-
-        if (! ($newDocComment instanceof Doc)) {
-            return;
-        }
-
-        $node->setDocComment($newDocComment);
     }
 
     /**
@@ -518,24 +497,6 @@ class Visitor extends NodeVisitor
         }
 
         return $additions;
-    }
-
-    private function addStringTags(string $name, ?Doc $docComment): ?Doc
-    {
-        if (! isset($this->additionalTagStrings[$name])) {
-            return null;
-        }
-
-        $additions = $this->additionalTagStrings[$name];
-
-        $docCommentText = $docComment ? $docComment->getText() : '';
-        $newDocComment = sprintf(
-            "%s\n * %s\n */",
-            substr($docCommentText, 0, -4),
-            implode("\n * ", $additions)
-        );
-
-        return new Doc($newDocComment);
     }
 
     private function getAdditionFromParam(Param $tag): ?WordPressTag
