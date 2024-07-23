@@ -171,7 +171,6 @@ class Visitor extends NodeVisitor
             return;
         }
 
-        $docComment = $node->getDocComment();
         $newDocComment = $this->addTags($fullSymbolName, $docComment);
 
         if ($newDocComment instanceof Doc) {
@@ -239,10 +238,10 @@ class Visitor extends NodeVisitor
         return $additions;
     }
 
-    private function addTags(string $name, ?Doc $docComment): ?Doc
+    private function addTags(string $name, Doc $docComment): ?Doc
     {
         $additions = $this->additionalTags[$name] ?? [];
-        $docCommentText = $docComment ? $docComment->getText() : '';
+        $docCommentText = $docComment->getText();
 
         try {
             $docblock = $this->docBlockFactory->create($docCommentText);
