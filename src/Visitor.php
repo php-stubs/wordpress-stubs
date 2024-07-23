@@ -95,7 +95,7 @@ class Visitor extends NodeVisitor
 
         $additions = $this->getAdditionalTagsFromMap($symbolName);
         if (count($additions) > 0) {
-            $this->additionalTagStrings[$symbolName] = $additions;
+            $this->additionalTags[$symbolName] = $additions;
         }
 
         if ($voidOrNever !== '') {
@@ -477,7 +477,7 @@ class Visitor extends NodeVisitor
     }
 
     /**
-     * @return list<string>
+     * @return list<\PhpStubs\WordPress\Core\WordPressTag>
      */
     private function getAdditionalTagsFromMap(string $symbolName): array
     {
@@ -493,27 +493,28 @@ class Visitor extends NodeVisitor
 
         foreach ($parameters as $paramName => $paramType) {
             if (strpos($paramName, '@') === 0) {
-                $format = ( $paramType === '' ) ? '%s' : '%s %s';
-                $additions[] = sprintf(
-                    $format,
-                    $paramName,
-                    $paramType
-                );
+                $tag = new WordPressTag();
+                $tag->tag = $paramName;
+                $tag->type = $paramType;
+
+                $additions[] = $tag;
                 continue;
             }
 
-            $additions[] = sprintf(
-                '@phpstan-param %s $%s',
-                $paramType,
-                $paramName
-            );
+            $tag = new WordPressTag();
+            $tag->tag = '@phpstan-param';
+            $tag->type = $paramType;
+            $tag->name = $paramName;
+
+            $additions[] = $tag;
         }
 
         if ($returnType !== null) {
-            $additions[] = sprintf(
-                '@phpstan-return %s',
-                $returnType
-            );
+            $tag = new WordPressTag();
+            $tag->tag = '@phpstan-return';
+            $tag->type = $returnType;
+
+            $additions[] = $tag;
         }
 
         return $additions;
