@@ -86,13 +86,13 @@ class Visitor extends NodeVisitor
         if ($docComment instanceof Doc) {
             $additions = $this->generateAdditionalTagsFromDoc($docComment);
             if (count($additions) > 0) {
-                $this->additionalTags[$symbolName] = $additions;
+                $this->addAdditionalTags($symbolName, $additions);
             }
         }
 
         $additions = $this->getAdditionalTagsFromMap($symbolName);
         if (count($additions) > 0) {
-            $this->additionalTags[$symbolName] = $additions;
+            $this->addAdditionalTags($symbolName, $additions);
         }
 
         if ($voidOrNever !== '') {
@@ -102,10 +102,22 @@ class Visitor extends NodeVisitor
                 ? (new Never_())->__toString()
                 : (new Void_())->__toString();
 
-            $this->additionalTags[$symbolName][] = $tag;
+            $this->addAdditionalTags($symbolName, [$tag]);
         }
 
         return null;
+    }
+
+    /**
+     * @param list<\PhpStubs\WordPress\Core\WordPressTag>> $tags
+     */
+    private function addAdditionalTags(string $name, array $tags): void
+    {
+        if (! isset($this->additionalTags[$name])) {
+            $this->additionalTags[$name] = [];
+        }
+
+        $this->additionalTags[$name] = array_merge($this->additionalTags[$name], $tags);
     }
 
     private static function getNodeName(Node $node): string
