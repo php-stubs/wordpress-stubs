@@ -9,14 +9,15 @@
     ],
     "homepage": "https://github.com/php-stubs/wordpress-stubs",
     "require-dev": {
-        "php": "^7.4 || ~8.0.0",
+        "php": "^7.4 || ^8.0",
         "dealerdirect/phpcodesniffer-composer-installer": "^1.0",
         "nikic/php-parser": "^4.13",
         "php-stubs/generator": "^0.8.3",
         "phpdocumentor/reflection-docblock": "^5.4.1",
         "phpstan/phpstan": "^1.10.49",
         "phpunit/phpunit": "^9.5",
-        "szepeviktor/phpcs-psr-12-neutron-hybrid-ruleset": "^0.11"
+        "szepeviktor/phpcs-psr-12-neutron-hybrid-ruleset": "^1.0",
+        "wp-coding-standards/wpcs": "3.1.0 as 2.3.0"
     },
     "suggest": {
         "paragonie/sodium_compat": "Pure PHP implementation of libsodium",

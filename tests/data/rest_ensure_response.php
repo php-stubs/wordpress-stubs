@@ -6,7 +6,6 @@ namespace PhpStubs\WordPress\Core\Tests;
 
 use WP_Error;
 use WP_REST_Response;
-use function get_term;
 use function PHPStan\Testing\assertType;
 
 assertType('WP_Error', rest_ensure_response(new WP_Error()));

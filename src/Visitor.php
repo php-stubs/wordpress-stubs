@@ -76,15 +76,16 @@ class Visitor extends NodeVisitor
 
         $symbolName = self::getNodeName($node);
 
-        if ($node instanceof ClassMethod) {
+        if ($node instanceof ClassMethod || $node instanceof Property) {
             $parent = $this->stack[count($this->stack) - 2];
             \assert($parent instanceof \PhpParser\Node\Stmt\ClassLike);
 
             if ($parent->name !== null) {
                 $symbolName = sprintf(
-                    '%1$s::%2$s',
+                    '%1$s::%2$s%3$s',
                     $parent->name->name,
-                    $node->name->name
+                    $node instanceof Property ? '$' : '',
+                    $symbolName
                 );
             }
         }
@@ -125,10 +126,7 @@ class Visitor extends NodeVisitor
         }
 
         if ($node instanceof Property) {
-            return sprintf(
-                'property_%s',
-                uniqid()
-            );
+            return $node->props[0]->name->name;
         }
 
         return '';
