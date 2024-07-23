@@ -6,6 +6,7 @@ namespace PhpStubs\WordPress\Core;
 
 use phpDocumentor\Reflection\DocBlock;
 use phpDocumentor\Reflection\DocBlock\Description;
+use phpDocumentor\Reflection\DocBlock\Tags\Deprecated;
 use phpDocumentor\Reflection\DocBlock\Tags\Param;
 use phpDocumentor\Reflection\DocBlock\Tags\Return_;
 use phpDocumentor\Reflection\DocBlock\Tags\Var_;
@@ -193,6 +194,9 @@ class Visitor extends NodeVisitor
             return [];
         }
 
+        /** @var list<\phpDocumentor\Reflection\DocBlock\Tags\Deprecated> $deprecatedTags*/
+        $deprecatedTags = $docblock->getTagsByName('deprecated');
+
         /** @var list<\phpDocumentor\Reflection\DocBlock\Tags\Param> $paramTags*/
         $paramTags = $docblock->getTagsByName('param');
 
@@ -204,6 +208,16 @@ class Visitor extends NodeVisitor
 
         /** @var list<\PhpStubs\WordPress\Core\WordPressTag> $additions */
         $additions = [];
+
+        foreach ($deprecatedTags as $deprecatedTag) {
+            $addition = self::getAdditionFromDeprecated($deprecatedTag);
+
+            if (! ($addition instanceof WordPressTag)) {
+                continue;
+            }
+
+            $additions[] = $addition;
+        }
 
         foreach ($paramTags as $paramTag) {
             $addition = self::getAdditionFromParam($paramTag);
@@ -449,6 +463,15 @@ class Visitor extends NodeVisitor
         }
 
         return $additions;
+    }
+
+    private function getAdditionFromDeprecated(Deprecated $tag): ?WordPressTag
+    {
+        $tag = new WordPressTag();
+        $tag->tag = '@deprecated';
+        $tag->type = '';
+
+        return $tag;
     }
 
     private function getAdditionFromParam(Param $tag): ?WordPressTag

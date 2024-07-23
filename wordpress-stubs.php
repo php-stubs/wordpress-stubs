@@ -509,6 +509,7 @@ namespace {
         {
         }
         /**
+         * @deprecated 
          * @param array $form_fields
          * @return array
          */
@@ -516,6 +517,7 @@ namespace {
         {
         }
         /**
+         * @deprecated 
          * @param array $tabs
          * @return array
          */
@@ -523,6 +525,7 @@ namespace {
         {
         }
         /**
+         * @deprecated 
          * @phpstan-return never
          */
         public function wp_set_background_image()
@@ -655,6 +658,7 @@ namespace {
         {
         }
         /**
+         * @deprecated 
          * @param string $cropped
          * @param int $parent_attachment_id
          * @return array
@@ -3277,6 +3281,7 @@ namespace {
         {
         }
         /**
+         * @deprecated 
          * @param array $response_body
          * @return array
          */
@@ -3291,6 +3296,7 @@ namespace {
         {
         }
         /**
+         * @deprecated 
          * @param string $message
          * @param array $details
          * @phpstan-return void
@@ -3391,6 +3397,7 @@ namespace {
         {
         }
         /**
+         * @deprecated 
          * @param string $base
          * @param bool $verbose
          * @return string
@@ -3399,6 +3406,7 @@ namespace {
         {
         }
         /**
+         * @deprecated 
          * @param string $base
          * @param bool $verbose
          * @return string
@@ -4982,6 +4990,7 @@ namespace {
         {
         }
         /**
+         * @deprecated 
          * @param WP_Post $post
          */
         public function column_desc($post)
@@ -6142,10 +6151,12 @@ namespace {
          */
         public $id;
         /**
+         * @deprecated 
          * @var bool
          */
         public $is_network;
         /**
+         * @deprecated 
          * @var bool
          */
         public $is_user;
@@ -6744,6 +6755,7 @@ namespace {
         {
         }
         /**
+         * @deprecated 
          * @param string $cropped
          * @param int $parent_attachment_id
          * @return array
@@ -7144,6 +7156,9 @@ namespace {
         {
         }
     }
+    /**
+     * @deprecated 
+     */
     class WP_User_Search
     {
         /**
@@ -7262,12 +7277,18 @@ namespace {
         {
         }
     }
+    /**
+     * @deprecated 
+     */
     class WP_Privacy_Data_Export_Requests_Table extends \WP_Privacy_Data_Export_Requests_List_Table
     {
         function __construct($args)
         {
         }
     }
+    /**
+     * @deprecated 
+     */
     class WP_Privacy_Data_Removal_Requests_Table extends \WP_Privacy_Data_Removal_Requests_List_Table
     {
         function __construct($args)
@@ -7571,6 +7592,7 @@ namespace {
         {
         }
         /**
+         * @deprecated 
          * @param string $filename_source
          * @param string $filename_dest
          * @param int $offset
@@ -10308,6 +10330,7 @@ namespace PHPMailer\PHPMailer {
          */
         public $SMTPKeepAlive = false;
         /**
+         * @deprecated 
          * @var bool
          */
         public $SingleTo = false;
@@ -12750,6 +12773,9 @@ namespace WpOrg\Requests\Proxy {
     }
 }
 namespace WpOrg\Requests {
+    /**
+     * @deprecated 
+     */
     class Requests
     {
         /**
@@ -13619,6 +13645,9 @@ namespace {
         public static function get_handler($location, $filename, $extension)
         {
         }
+        /**
+         * @deprecated 
+         */
         public function create($location, $filename, $extension)
         {
         }
@@ -14848,9 +14877,15 @@ namespace {
         public function get_items($start = 0, $end = 0)
         {
         }
+        /**
+         * @deprecated 
+         */
         public function set_favicon_handler($page = \false, $qs = 'i')
         {
         }
+        /**
+         * @deprecated 
+         */
         public function get_favicon()
         {
         }
@@ -14881,6 +14916,50 @@ namespace {
         {
         }
     }
+    /**
+     * SimplePie
+     *
+     * A PHP-Based RSS and Atom Feed Framework.
+     * Takes the hard work out of managing a complete RSS/Atom solution.
+     *
+     * Copyright (c) 2004-2016, Ryan Parman, Sam Sneddon, Ryan McCue, and contributors
+     * All rights reserved.
+     *
+     * Redistribution and use in source and binary forms, with or without modification, are
+     * permitted provided that the following conditions are met:
+     *
+     * 	* Redistributions of source code must retain the above copyright notice, this list of
+     * 	  conditions and the following disclaimer.
+     *
+     * 	* Redistributions in binary form must reproduce the above copyright notice, this list
+     * 	  of conditions and the following disclaimer in the documentation and/or other materials
+     * 	  provided with the distribution.
+     *
+     * 	* Neither the name of the SimplePie Team nor the names of its contributors may be used
+     * 	  to endorse or promote products derived from this software without specific prior
+     * 	  written permission.
+     *
+     * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS
+     * OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY
+     * AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDERS
+     * AND CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+     * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+     * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+     * THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
+     * OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+     * POSSIBILITY OF SUCH DAMAGE.
+     *
+     * @package SimplePie
+     * @copyright 2004-2016 Ryan Parman, Sam Sneddon, Ryan McCue
+     * @author Ryan Parman
+     * @author Sam Sneddon
+     * @author Ryan McCue
+     * @link http://simplepie.org/ SimplePie
+     * @license http://www.opensource.org/licenses/bsd-license.php BSD License
+     */
+    /**
+     * @deprecated 
+     */
     class SimplePie_Core extends \SimplePie
     {
     }
@@ -14926,6 +15005,50 @@ namespace {
         {
         }
     }
+    /**
+     * SimplePie
+     *
+     * A PHP-Based RSS and Atom Feed Framework.
+     * Takes the hard work out of managing a complete RSS/Atom solution.
+     *
+     * Copyright (c) 2004-2016, Ryan Parman, Sam Sneddon, Ryan McCue, and contributors
+     * All rights reserved.
+     *
+     * Redistribution and use in source and binary forms, with or without modification, are
+     * permitted provided that the following conditions are met:
+     *
+     * 	* Redistributions of source code must retain the above copyright notice, this list of
+     * 	  conditions and the following disclaimer.
+     *
+     * 	* Redistributions in binary form must reproduce the above copyright notice, this list
+     * 	  of conditions and the following disclaimer in the documentation and/or other materials
+     * 	  provided with the distribution.
+     *
+     * 	* Neither the name of the SimplePie Team nor the names of its contributors may be used
+     * 	  to endorse or promote products derived from this software without specific prior
+     * 	  written permission.
+     *
+     * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS
+     * OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY
+     * AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDERS
+     * AND CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+     * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+     * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+     * THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
+     * OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+     * POSSIBILITY OF SUCH DAMAGE.
+     *
+     * @package SimplePie
+     * @copyright 2004-2016 Ryan Parman, Sam Sneddon, Ryan McCue
+     * @author Ryan Parman
+     * @author Sam Sneddon
+     * @author Ryan McCue
+     * @link http://simplepie.org/ SimplePie
+     * @license http://www.opensource.org/licenses/bsd-license.php BSD License
+     */
+    /**
+     * @deprecated 
+     */
     class SimplePie_Decode_HTML_Entities
     {
         /**
@@ -15027,6 +15150,7 @@ namespace {
          */
         var $height;
         /**
+         * @deprecated 
          * @var null
          */
         var $javascript;
@@ -15317,6 +15441,7 @@ namespace {
         {
         }
         /**
+         * @deprecated 
          * @param array|string $options
          * @return string
          */
@@ -15986,6 +16111,7 @@ namespace {
         {
         }
         /**
+         * @deprecated 
          * @param string $realname
          * @param string $string
          * @return array
@@ -16069,6 +16195,7 @@ namespace {
         {
         }
         /**
+         * @deprecated 
          * @param string $data
          * @return string
          */
@@ -16166,6 +16293,7 @@ namespace {
         {
         }
         /**
+         * @deprecated 
          * @param string $ip
          * @return bool
          */
@@ -17757,14 +17885,21 @@ namespace {
         {
         }
     }
+    /**
+     * @deprecated 
+     */
     class Requests extends \WpOrg\Requests\Requests
     {
         /**
+         * @deprecated 
          * @param string $class
          */
         public static function autoloader($class)
         {
         }
+        /**
+         * @deprecated 
+         */
         public static function register_autoloader()
         {
         }
@@ -18119,6 +18254,7 @@ namespace {
     {
         public $user;
         /**
+         * @deprecated 
          * @var array
          */
         public $menu = array();
@@ -18243,6 +18379,7 @@ namespace {
         {
         }
         /**
+         * @deprecated 
          * @param string $id
          * @param object $node
          */
@@ -19848,6 +19985,7 @@ namespace {
          */
         public $allow_addition = \false;
         /**
+         * @deprecated 
          * @var array
          */
         public $json = array();
@@ -20001,6 +20139,7 @@ namespace {
         {
         }
         /**
+         * @deprecated 
          * @return callable
          */
         public function wp_die_handler()
@@ -20100,6 +20239,7 @@ namespace {
         {
         }
         /**
+         * @deprecated 
          * @param int $status
          * @return int
          */
@@ -20183,12 +20323,21 @@ namespace {
         public function add_state_query_params($url)
         {
         }
+        /**
+         * @deprecated 
+         */
         public function customize_preview_override_404_status()
         {
         }
+        /**
+         * @deprecated 
+         */
         public function customize_preview_base()
         {
         }
+        /**
+         * @deprecated 
+         */
         public function customize_preview_html5()
         {
         }
@@ -20204,10 +20353,14 @@ namespace {
         public function customize_preview_settings()
         {
         }
+        /**
+         * @deprecated 
+         */
         public function customize_preview_signature()
         {
         }
         /**
+         * @deprecated 
          * @param callable|null $callback
          * @return callable|null
          */
@@ -21325,9 +21478,15 @@ namespace {
         protected function update($value)
         {
         }
+        /**
+         * @deprecated 
+         */
         protected function _update_theme_mod()
         {
         }
+        /**
+         * @deprecated 
+         */
         protected function _update_option()
         {
         }
@@ -21730,15 +21889,27 @@ namespace {
         public function capture_filter_pre_get_option($value)
         {
         }
+        /**
+         * @deprecated 
+         */
         public function setup_widget_addition_previews()
         {
         }
+        /**
+         * @deprecated 
+         */
         public function prepreview_added_sidebars_widgets()
         {
         }
+        /**
+         * @deprecated 
+         */
         public function prepreview_added_widget_instance()
         {
         }
+        /**
+         * @deprecated 
+         */
         public function remove_prepreview_filters()
         {
         }
@@ -21919,6 +22090,7 @@ namespace {
          */
         public $groups = array();
         /**
+         * @deprecated 
          * @var int
          */
         public $group = 0;
@@ -22081,6 +22253,7 @@ namespace {
     class WP_Duotone
     {
         /**
+         * @deprecated 
          * @param array $preset
          * @return string
          */
@@ -22088,6 +22261,7 @@ namespace {
         {
         }
         /**
+         * @deprecated 
          * @param array $preset
          * @return string
          */
@@ -22141,6 +22315,7 @@ namespace {
         {
         }
         /**
+         * @deprecated 
          * @param array $preset
          * @return string
          */
@@ -22256,6 +22431,9 @@ namespace {
         public static function editor_js()
         {
         }
+        /**
+         * @deprecated 
+         */
         public static function wp_fullscreen_html()
         {
         }
@@ -22828,6 +23006,16 @@ namespace {
         {
         }
     }
+    /**
+     * HTTP API: WP_Http_Curl class
+     *
+     * @package WordPress
+     * @subpackage HTTP
+     * @since 4.4.0
+     */
+    /**
+     * @deprecated 
+     */
     #[\AllowDynamicProperties]
     class WP_Http_Curl
     {
@@ -23166,6 +23354,16 @@ namespace {
         {
         }
     }
+    /**
+     * HTTP API: WP_Http_Streams class
+     *
+     * @package WordPress
+     * @subpackage HTTP
+     * @since 4.4.0
+     */
+    /**
+     * @deprecated 
+     */
     #[\AllowDynamicProperties]
     class WP_Http_Streams
     {
@@ -23193,6 +23391,9 @@ namespace {
         {
         }
     }
+    /**
+     * @deprecated 
+     */
     class WP_HTTP_Fsockopen extends \WP_Http_Streams
     {
         // For backward compatibility for users who are using the class directly.
@@ -23313,6 +23514,7 @@ namespace {
         {
         }
         /**
+         * @deprecated 
          * @param array $args
          * @param string $url
          * @return string|false
@@ -23393,6 +23595,7 @@ namespace {
         {
         }
         /**
+         * @deprecated 
          * @param string $url
          * @return bool|array
          */
@@ -24159,6 +24362,9 @@ namespace {
         public function get_meridiem($meridiem)
         {
         }
+        /**
+         * @deprecated 
+         */
         public function register_globals()
         {
         }
@@ -24387,6 +24593,7 @@ namespace {
         {
         }
         /**
+         * @deprecated 
          * @param mixed $check
          * @return mixed
          */
@@ -24394,6 +24601,7 @@ namespace {
         {
         }
         /**
+         * @deprecated 
          * @param mixed $check
          * @return mixed
          */
@@ -24801,6 +25009,9 @@ namespace {
         public function switch_to_blog($blog_id)
         {
         }
+        /**
+         * @deprecated 
+         */
         public function reset()
         {
         }
@@ -26129,6 +26340,7 @@ namespace {
         {
         }
         /**
+         * @deprecated 
          * @return false
          */
         public function is_comments_popup()
@@ -26296,6 +26508,7 @@ namespace {
         {
         }
         /**
+         * @deprecated 
          * @param mixed $check
          * @param int $term_id
          * @return mixed
@@ -26304,6 +26517,7 @@ namespace {
         {
         }
         /**
+         * @deprecated 
          * @param mixed $check
          * @param int $comment_id
          * @return mixed
@@ -26978,9 +27192,15 @@ namespace {
         public function __call($name, $arguments)
         {
         }
+        /**
+         * @deprecated 
+         */
         protected function _init()
         {
         }
+        /**
+         * @deprecated 
+         */
         public function reinit()
         {
         }
@@ -27137,6 +27357,7 @@ namespace {
          */
         public $concat = '';
         /**
+         * @deprecated 
          * @var string
          */
         public $concat_version = '';
@@ -27179,6 +27400,7 @@ namespace {
         {
         }
         /**
+         * @deprecated 
          * @param string $handle
          * @param bool $display
          * @return bool|string|void
@@ -27212,6 +27434,7 @@ namespace {
         {
         }
         /**
+         * @deprecated 
          * @param string $handle
          * @param string $position
          * @param bool $display
@@ -27739,6 +27962,7 @@ namespace {
          */
         public $concat = '';
         /**
+         * @deprecated 
          * @var string
          */
         public $concat_version = '';
@@ -28599,6 +28823,7 @@ namespace {
          */
         protected $custom_paths = array();
         /**
+         * @deprecated 
          * @var array
          */
         protected $cached_mo_files = array();
@@ -28740,6 +28965,7 @@ namespace {
         {
         }
         /**
+         * @deprecated 
          * @return array
          */
         public static function get_fields_to_translate()
@@ -28811,6 +29037,7 @@ namespace {
         {
         }
         /**
+         * @deprecated 
          * @return bool
          */
         public static function theme_has_support()
@@ -29462,6 +29689,7 @@ namespace {
         {
         }
         /**
+         * @deprecated 
          * @param array $theme_json
          * @param array $path
          * @param bool|array $override
@@ -29550,6 +29778,7 @@ namespace {
         {
         }
         /**
+         * @deprecated 
          * @return null|void
          */
         public function set_spacing_sizes()
@@ -30386,6 +30615,7 @@ namespace {
         {
         }
         /**
+         * @deprecated 
          * @param string $cap_key
          */
         protected function _init_caps($cap_key = '')
@@ -30462,6 +30692,7 @@ namespace {
         {
         }
         /**
+         * @deprecated 
          * @param int $blog_id
          */
         public function for_blog($blog_id = '')
@@ -30490,6 +30721,9 @@ namespace {
         public function __construct()
         {
         }
+        /**
+         * @deprecated 
+         */
         public function WP_Widget_Factory()
         {
         }
@@ -30623,6 +30857,7 @@ namespace {
         {
         }
         /**
+         * @deprecated 
          * @param string $id_base
          * @param string $name
          * @param array $widget_options
@@ -30792,6 +31027,7 @@ namespace {
         {
         }
         /**
+         * @deprecated 
          * @param string $username
          * @param string $password
          * @return bool
@@ -31601,6 +31837,7 @@ namespace {
         {
         }
         /**
+         * @deprecated 
          * @param array $args
          * @return IXR_Error
          */
@@ -31608,6 +31845,7 @@ namespace {
         {
         }
         /**
+         * @deprecated 
          * @param array $args
          * @return IXR_Error
          */
@@ -32295,6 +32533,7 @@ namespace {
         {
         }
         /**
+         * @deprecated 
          * @param string $data
          * @return string
          */
@@ -32316,6 +32555,7 @@ namespace {
         {
         }
         /**
+         * @deprecated 
          * @param string|array $data
          * @return string|array
          */
@@ -32707,6 +32947,7 @@ namespace {
         {
         }
         /**
+         * @deprecated 
          * @return bool
          */
         public function supports_collation()
@@ -32836,10 +33077,14 @@ namespace {
          * @var string
          */
         public $mime_type = 'image';
+        /**
+         * @deprecated 
+         */
         public function prepare_control()
         {
         }
         /**
+         * @deprecated 
          * @param string $id
          * @param string $label
          * @param mixed $callback
@@ -32848,12 +33093,14 @@ namespace {
         {
         }
         /**
+         * @deprecated 
          * @param string $id
          */
         public function remove_tab($id)
         {
         }
         /**
+         * @deprecated 
          * @param string $url
          * @param string $thumbnail_url
          */
@@ -33573,6 +33820,7 @@ namespace {
          */
         protected $_current_menus_sort_orderby;
         /**
+         * @deprecated 
          * @param object $menu1
          * @param object $menu2
          * @return int
@@ -33645,6 +33893,9 @@ namespace {
         public function render_screen_options()
         {
         }
+        /**
+         * @deprecated 
+         */
         public function wp_nav_menu_manage_columns()
         {
         }
@@ -33652,6 +33903,9 @@ namespace {
         {
         }
     }
+    /**
+     * @deprecated 
+     */
     class WP_Customize_New_Menu_Control extends \WP_Customize_Control
     {
         /**
@@ -33659,6 +33913,7 @@ namespace {
          */
         public $type = 'new_menu';
         /**
+         * @deprecated 
          * @param WP_Customize_Manager $manager
          * @param string $id
          * @param array $args
@@ -33684,10 +33939,16 @@ namespace {
         public function __construct(\WP_Customize_Manager $manager, $id, array $args = array())
         {
         }
+        /**
+         * @deprecated 
+         */
         public function render_content()
         {
         }
     }
+    /**
+     * @deprecated 
+     */
     class WP_Customize_New_Menu_Section extends \WP_Customize_Section
     {
         /**
@@ -33695,6 +33956,7 @@ namespace {
          */
         public $type = 'new_menu';
         /**
+         * @deprecated 
          * @param WP_Customize_Manager $manager
          * @param string $id
          * @param array $args
@@ -33702,6 +33964,9 @@ namespace {
         public function __construct(\WP_Customize_Manager $manager, $id, array $args = array())
         {
         }
+        /**
+         * @deprecated 
+         */
         protected function render()
         {
         }
@@ -35820,6 +36085,9 @@ namespace {
         public function __construct($args = array())
         {
         }
+        /**
+         * @deprecated 
+         */
         public function Translation_Entry($args = array())
         {
         }
@@ -35965,6 +36233,7 @@ namespace {
         {
         }
         /**
+         * @deprecated 
          * @param string $expression
          * @return string
          */
@@ -36272,6 +36541,9 @@ namespace {
         public function __construct()
         {
         }
+        /**
+         * @deprecated 
+         */
         public function POMO_Reader()
         {
         }
@@ -36349,6 +36621,9 @@ namespace {
         public function __construct($filename)
         {
         }
+        /**
+         * @deprecated 
+         */
         public function POMO_FileReader($filename)
         {
         }
@@ -36397,6 +36672,9 @@ namespace {
         public function __construct($str = '')
         {
         }
+        /**
+         * @deprecated 
+         */
         public function POMO_StringReader($str = '')
         {
         }
@@ -36432,6 +36710,9 @@ namespace {
         public function __construct($filename)
         {
         }
+        /**
+         * @deprecated 
+         */
         public function POMO_CachedFileReader($filename)
         {
         }
@@ -36441,6 +36722,9 @@ namespace {
         public function __construct($filename)
         {
         }
+        /**
+         * @deprecated 
+         */
         public function POMO_CachedIntFileReader($filename)
         {
         }
@@ -37591,6 +37875,7 @@ namespace {
         {
         }
         /**
+         * @deprecated 
          * @param WP_REST_Request $request
          * @return true|WP_Error
          */
@@ -40287,6 +40572,7 @@ namespace {
         {
         }
         /**
+         * @deprecated 
          * @param array $schema
          * @return array
          */
@@ -40868,6 +41154,7 @@ namespace {
         {
         }
         /**
+         * @deprecated 
          * @param string|array $statuses
          * @param WP_REST_Request $request
          * @param string $parameter
@@ -41356,6 +41643,9 @@ namespace {
          * @return string
          */
         protected abstract function get_rest_field_type();
+        /**
+         * @deprecated 
+         */
         public function register_field()
         {
         }
@@ -41454,6 +41744,7 @@ namespace {
         {
         }
         /**
+         * @deprecated 
          * @param array $schema
          * @return array
          */
@@ -41698,6 +41989,7 @@ namespace {
         {
         }
         /**
+         * @deprecated 
          * @param WP_Post $post
          * @return string
          */
@@ -42959,6 +43251,9 @@ namespace {
         public function form($instance)
         {
         }
+        /**
+         * @deprecated 
+         */
         public function flush_widget_cache()
         {
         }
@@ -43539,6 +43834,7 @@ namespace {
     {
     }
     /**
+     * @deprecated 
      * @phpstan-return never
      */
     function wp_ajax_wp_fullscreen_save_post()
@@ -43734,18 +44030,21 @@ namespace {
     {
     }
     /**
+     * @deprecated 
      * @phpstan-return never
      */
     function wp_ajax_health_check_dotorg_communication()
     {
     }
     /**
+     * @deprecated 
      * @phpstan-return never
      */
     function wp_ajax_health_check_background_updates()
     {
     }
     /**
+     * @deprecated 
      * @phpstan-return never
      */
     function wp_ajax_health_check_loopback_requests()
@@ -43758,6 +44057,7 @@ namespace {
     {
     }
     /**
+     * @deprecated 
      * @phpstan-return never
      */
     function wp_ajax_health_check_get_sizes()
@@ -44246,13 +44546,31 @@ namespace {
     function wp_welcome_panel()
     {
     }
+    /**
+     * Deprecated admin functions from past WordPress versions. You shouldn't use these
+     * functions and look for the alternatives instead. The functions will be removed
+     * in a later version.
+     *
+     * @package WordPress
+     * @subpackage Deprecated
+     */
+    /*
+     * Deprecated functions come here to die.
+     */
+    /**
+     * @deprecated 
+     */
     function tinymce_include()
     {
     }
+    /**
+     * @deprecated 
+     */
     function documentation_link()
     {
     }
     /**
+     * @deprecated 
      * @param int $width
      * @param int $height
      * @param int $wmax
@@ -44263,6 +44581,7 @@ namespace {
     {
     }
     /**
+     * @deprecated 
      * @param int $width
      * @param int $height
      * @return array
@@ -44271,6 +44590,7 @@ namespace {
     {
     }
     /**
+     * @deprecated 
      * @param int $default_category
      * @param int $category_parent
      * @param array $popular_ids
@@ -44279,12 +44599,14 @@ namespace {
     {
     }
     /**
+     * @deprecated 
      * @param int $default_link_category
      */
     function dropdown_link_categories($default_link_category = 0)
     {
     }
     /**
+     * @deprecated 
      * @param string $file
      * @return string
      */
@@ -44292,6 +44614,7 @@ namespace {
     {
     }
     /**
+     * @deprecated 
      * @param int $current_cat
      * @param int $current_parent
      * @param int $category_parent
@@ -44303,6 +44626,7 @@ namespace {
     {
     }
     /**
+     * @deprecated 
      * @param string $option_group
      * @param string $option_name
      * @param callable $sanitize_callback
@@ -44311,6 +44635,7 @@ namespace {
     {
     }
     /**
+     * @deprecated 
      * @param string $option_group
      * @param string $option_name
      * @param callable $sanitize_callback
@@ -44319,24 +44644,33 @@ namespace {
     {
     }
     /**
+     * @deprecated 
      * @param string $filename
      */
     function codepress_get_lang($filename)
     {
     }
+    /**
+     * @deprecated 
+     */
     function codepress_footer_js()
     {
     }
+    /**
+     * @deprecated 
+     */
     function use_codepress()
     {
     }
     /**
+     * @deprecated 
      * @return array
      */
     function get_author_user_ids()
     {
     }
     /**
+     * @deprecated 
      * @param int $user_id
      * @return array|false
      */
@@ -44344,6 +44678,7 @@ namespace {
     {
     }
     /**
+     * @deprecated 
      * @param int $user_id
      * @param bool $exclude_zeros
      * @return array
@@ -44351,10 +44686,14 @@ namespace {
     function get_editable_user_ids($user_id, $exclude_zeros = \true, $post_type = 'post')
     {
     }
+    /**
+     * @deprecated 
+     */
     function get_nonauthor_user_ids()
     {
     }
     /**
+     * @deprecated 
      * @param int $user_id
      * @phpstan-param 'draft'|'pending'|'any' $type
      * @return array
@@ -44363,6 +44702,7 @@ namespace {
     {
     }
     /**
+     * @deprecated 
      * @param int $user_id
      * @return array
      */
@@ -44370,88 +44710,125 @@ namespace {
     {
     }
     /**
+     * @deprecated 
      * @param int $user_id
      * @return array
      */
     function get_others_pending($user_id)
     {
     }
+    /**
+     * @deprecated 
+     */
     function wp_dashboard_quick_press_output()
     {
     }
+    /**
+     * @deprecated 
+     */
     function wp_tiny_mce($teeny = \false, $settings = \false)
     {
     }
+    /**
+     * @deprecated 
+     */
     function wp_preload_dialogs()
     {
     }
+    /**
+     * @deprecated 
+     */
     function wp_print_editor_js()
     {
     }
+    /**
+     * @deprecated 
+     */
     function wp_quicktags()
     {
     }
+    /**
+     * @deprecated 
+     */
     function screen_layout($screen)
     {
     }
+    /**
+     * @deprecated 
+     */
     function screen_options($screen)
     {
     }
+    /**
+     * @deprecated 
+     */
     function screen_meta($screen)
     {
     }
+    /**
+     * @deprecated 
+     */
     function favorite_actions()
     {
     }
     /**
+     * @deprecated 
      * @return null|string
      */
     function media_upload_image()
     {
     }
     /**
+     * @deprecated 
      * @return null|string
      */
     function media_upload_audio()
     {
     }
     /**
+     * @deprecated 
      * @return null|string
      */
     function media_upload_video()
     {
     }
     /**
+     * @deprecated 
      * @return null|string
      */
     function media_upload_file()
     {
     }
     /**
+     * @deprecated 
      * @return string
      */
     function type_url_form_image()
     {
     }
     /**
+     * @deprecated 
      * @return string
      */
     function type_url_form_audio()
     {
     }
     /**
+     * @deprecated 
      * @return string
      */
     function type_url_form_video()
     {
     }
     /**
+     * @deprecated 
      * @return string
      */
     function type_url_form_file()
     {
     }
     /**
+     * @deprecated 
      * @param string $screen
      * @param string $help
      */
@@ -44459,30 +44836,40 @@ namespace {
     {
     }
     /**
+     * @deprecated 
      * @return WP_Theme[]
      */
     function get_allowed_themes()
     {
     }
     /**
+     * @deprecated 
      * @return array
      */
     function get_broken_themes()
     {
     }
     /**
+     * @deprecated 
      * @return WP_Theme
      */
     function current_theme_info()
     {
     }
+    /**
+     * @deprecated 
+     */
     function _insert_into_post_button($type)
     {
     }
+    /**
+     * @deprecated 
+     */
     function _media_button($title, $icon, $type, $id)
     {
     }
     /**
+     * @deprecated 
      * @param int $id
      * @return WP_Post
      */
@@ -44490,12 +44877,14 @@ namespace {
     {
     }
     /**
+     * @deprecated 
      * @return WP_Post
      */
     function get_default_page_to_edit()
     {
     }
     /**
+     * @deprecated 
      * @param mixed $file
      * @param int $max_side
      * @param mixed $deprecated
@@ -44504,61 +44893,106 @@ namespace {
     function wp_create_thumbnail($file, $max_side, $deprecated = '')
     {
     }
+    /**
+     * @deprecated 
+     */
     function wp_nav_menu_locations_meta_box()
     {
     }
+    /**
+     * @deprecated 
+     */
     function wp_update_core($current, $feedback = '')
     {
     }
+    /**
+     * @deprecated 
+     */
     function wp_update_plugin($plugin, $feedback = '')
     {
     }
+    /**
+     * @deprecated 
+     */
     function wp_update_theme($theme, $feedback = '')
     {
     }
     /**
+     * @deprecated 
      * @param int|bool $id
      */
     function the_attachment_links($id = \false)
     {
     }
+    /**
+     * @deprecated 
+     */
     function screen_icon()
     {
     }
     /**
+     * @deprecated 
      * @return string
      */
     function get_screen_icon()
     {
     }
+    /**
+     * @deprecated 
+     */
     function wp_dashboard_incoming_links_output()
     {
     }
+    /**
+     * @deprecated 
+     */
     function wp_dashboard_secondary_output()
     {
     }
+    /**
+     * @deprecated 
+     */
     function wp_dashboard_incoming_links()
     {
     }
+    /**
+     * @deprecated 
+     */
     function wp_dashboard_incoming_links_control()
     {
     }
+    /**
+     * @deprecated 
+     */
     function wp_dashboard_plugins()
     {
     }
+    /**
+     * @deprecated 
+     */
     function wp_dashboard_primary_control()
     {
     }
+    /**
+     * @deprecated 
+     */
     function wp_dashboard_recent_comments_control()
     {
     }
+    /**
+     * @deprecated 
+     */
     function wp_dashboard_secondary()
     {
     }
+    /**
+     * @deprecated 
+     */
     function wp_dashboard_secondary_control()
     {
     }
     /**
+     * @deprecated 
      * @param string $rss
      * @param array $args
      */
@@ -44566,6 +45000,7 @@ namespace {
     {
     }
     /**
+     * @deprecated 
      * @param int $old_ID
      * @param int $new_ID
      */
@@ -44573,6 +45008,7 @@ namespace {
     {
     }
     /**
+     * @deprecated 
      * @param string $page_title
      * @param string $menu_title
      * @param string $capability
@@ -44585,6 +45021,7 @@ namespace {
     {
     }
     /**
+     * @deprecated 
      * @param string $page_title
      * @param string $menu_title
      * @param string $capability
@@ -44596,16 +45033,26 @@ namespace {
     function add_utility_page($page_title, $menu_title, $capability, $menu_slug, $callback = '', $icon_url = '')
     {
     }
+    /**
+     * @deprecated 
+     */
     function post_form_autocomplete_off()
     {
     }
+    /**
+     * @deprecated 
+     */
     function options_permalink_add_js()
     {
     }
+    /**
+     * @deprecated 
+     */
     function _wp_privacy_requests_screen_options()
     {
     }
     /**
+     * @deprecated 
      * @param array $post
      * @param array $attachment
      * @return array
@@ -44955,6 +45402,7 @@ namespace {
     {
     }
     /**
+     * @deprecated 
      * @param resource|GdImage $img
      * @param float|int $angle
      * @return resource|GdImage|false
@@ -44963,6 +45411,7 @@ namespace {
     {
     }
     /**
+     * @deprecated 
      * @param resource|GdImage $img
      * @param bool $horz
      * @param bool $vert
@@ -46048,37 +46497,78 @@ namespace {
     function wp_check_php_version()
     {
     }
+    /**
+     * Multisite: Deprecated admin functions from past versions and WordPress MU
+     *
+     * These functions should not be used and will be removed in a later version.
+     * It is suggested to use for the alternatives instead when available.
+     *
+     * @package WordPress
+     * @subpackage Deprecated
+     * @since 3.0.0
+     */
+    /**
+     * @deprecated 
+     */
     function wpmu_menu()
     {
     }
+    /**
+     * @deprecated 
+     */
     function wpmu_checkAvailableSpace()
     {
     }
+    /**
+     * @deprecated 
+     */
     function mu_options($options)
     {
     }
+    /**
+     * @deprecated 
+     */
     function activate_sitewide_plugin()
     {
     }
+    /**
+     * @deprecated 
+     */
     function deactivate_sitewide_plugin($plugin = \false)
     {
     }
+    /**
+     * @deprecated 
+     */
     function is_wpmu_sitewide_plugin($file)
     {
     }
+    /**
+     * @deprecated 
+     */
     function get_site_allowed_themes()
     {
     }
+    /**
+     * @deprecated 
+     */
     function wpmu_get_blog_allowedthemes($blog_id = 0)
     {
     }
+    /**
+     * @deprecated 
+     */
     function ms_deprecated_blogs_file()
     {
     }
+    /**
+     * @deprecated 
+     */
     function install_global_terms()
     {
     }
     /**
+     * @deprecated 
      * @param WP_Term|array $term
      * @param string $taxonomy
      * @return WP_Term|array
@@ -48012,6 +48502,7 @@ namespace {
     {
     }
     /**
+     * @deprecated 
      * @return array
      */
     function install_themes_feature_list()
@@ -48030,6 +48521,7 @@ namespace {
     {
     }
     /**
+     * @deprecated 
      * @param object $theme
      */
     function display_theme($theme)
@@ -48550,6 +49042,9 @@ namespace {
     function upgrade_460()
     {
     }
+    /**
+     * @deprecated 
+     */
     function upgrade_500()
     {
     }
@@ -51652,6 +52147,7 @@ namespace {
     {
     }
     /**
+     * @deprecated 
      * @param array $menu_items
      * @param array $menu_items_by_parent_id
      * @return array
@@ -51660,12 +52156,14 @@ namespace {
     {
     }
     /**
+     * @deprecated 
      * @return object
      */
     function block_core_navigation_get_classic_menu_fallback()
     {
     }
     /**
+     * @deprecated 
      * @param object $classic_nav_menu
      * @return array
      */
@@ -51673,12 +52171,14 @@ namespace {
     {
     }
     /**
+     * @deprecated 
      * @return array
      */
     function block_core_navigation_maybe_use_classic_menu_fallback()
     {
     }
     /**
+     * @deprecated 
      * @return WP_Post|null
      */
     function block_core_navigation_get_most_recently_published_navigation()
@@ -52787,6 +53287,9 @@ namespace {
     function wp_cache_switch_to_blog($blog_id)
     {
     }
+    /**
+     * @deprecated 
+     */
     function wp_cache_reset()
     {
     }
@@ -54893,16 +55396,21 @@ namespace {
      * Deprecated functions come here to die.
      */
     /**
+     * @deprecated 
      * @param int $postid
      * @return array
      */
     function get_postdata($postid)
     {
     }
+    /**
+     * @deprecated 
+     */
     function start_wp()
     {
     }
     /**
+     * @deprecated 
      * @param bool $display
      * @return int
      */
@@ -54910,6 +55418,7 @@ namespace {
     {
     }
     /**
+     * @deprecated 
      * @param string $before
      * @param string $after
      */
@@ -54917,6 +55426,7 @@ namespace {
     {
     }
     /**
+     * @deprecated 
      * @param string $format
      * @param string $previous
      * @param string $title
@@ -54929,6 +55439,7 @@ namespace {
     {
     }
     /**
+     * @deprecated 
      * @param string $format
      * @param string $next
      * @param string $title
@@ -54941,6 +55452,7 @@ namespace {
     {
     }
     /**
+     * @deprecated 
      * @param int $user_id
      * @param int $blog_id
      * @param int $category_id
@@ -54950,6 +55462,7 @@ namespace {
     {
     }
     /**
+     * @deprecated 
      * @param int $user_id
      * @param int $blog_id
      * @param int $category_id
@@ -54959,6 +55472,7 @@ namespace {
     {
     }
     /**
+     * @deprecated 
      * @param int $user_id
      * @param int $post_id
      * @param int $blog_id
@@ -54968,6 +55482,7 @@ namespace {
     {
     }
     /**
+     * @deprecated 
      * @param int $user_id
      * @param int $post_id
      * @param int $blog_id
@@ -54977,6 +55492,7 @@ namespace {
     {
     }
     /**
+     * @deprecated 
      * @param int $user_id
      * @param int $blog_id
      * @param int $category_id
@@ -54986,6 +55502,7 @@ namespace {
     {
     }
     /**
+     * @deprecated 
      * @param int $user_id
      * @param int $post_id
      * @param int $blog_id
@@ -54995,6 +55512,7 @@ namespace {
     {
     }
     /**
+     * @deprecated 
      * @param int $user_id
      * @param int $post_id
      * @param int $blog_id
@@ -55004,6 +55522,7 @@ namespace {
     {
     }
     /**
+     * @deprecated 
      * @param int $user_id
      * @param int $post_id
      * @param int $blog_id
@@ -55013,6 +55532,7 @@ namespace {
     {
     }
     /**
+     * @deprecated 
      * @param int $user_id
      * @param int $other_user
      * @return bool
@@ -55021,6 +55541,7 @@ namespace {
     {
     }
     /**
+     * @deprecated 
      * @param string $cat_name
      * @param string $before
      * @param string $after
@@ -55036,6 +55557,7 @@ namespace {
     {
     }
     /**
+     * @deprecated 
      * @param string $category
      * @param string $args
      * @return string|null
@@ -55044,6 +55566,7 @@ namespace {
     {
     }
     /**
+     * @deprecated 
      * @param string $cat_name
      * @param string $orderby
      * @param int $limit
@@ -55053,6 +55576,7 @@ namespace {
     {
     }
     /**
+     * @deprecated 
      * @param int $category
      * @param string $orderby
      * @param int $limit
@@ -55062,6 +55586,7 @@ namespace {
     {
     }
     /**
+     * @deprecated 
      * @param string $cat_name
      * @param string $before
      * @param string $after
@@ -55076,6 +55601,7 @@ namespace {
     {
     }
     /**
+     * @deprecated 
      * @param int $category
      * @param string $before
      * @param string $after
@@ -55090,6 +55616,7 @@ namespace {
     {
     }
     /**
+     * @deprecated 
      * @param int $id
      * @return int
      */
@@ -55097,6 +55624,7 @@ namespace {
     {
     }
     /**
+     * @deprecated 
      * @param int $optionall
      * @param string $all
      * @param string $sort_column
@@ -55121,6 +55649,7 @@ namespace {
     {
     }
     /**
+     * @deprecated 
      * @param string|array $args
      * @return null|string|false
      */
@@ -55128,6 +55657,7 @@ namespace {
     {
     }
     /**
+     * @deprecated 
      * @param int $optionall
      * @param string $all
      * @param string $orderby
@@ -55144,6 +55674,7 @@ namespace {
     {
     }
     /**
+     * @deprecated 
      * @param bool $optioncount
      * @param bool $exclude_admin
      * @param bool $show_fullname
@@ -55156,6 +55687,7 @@ namespace {
     {
     }
     /**
+     * @deprecated 
      * @param int $blogid
      * @param int $post_id
      * @return array
@@ -55164,6 +55696,8 @@ namespace {
     {
     }
     /**
+     * @deprecated 
+     * @deprecated 
      * @param int $blogid
      * @param int $post_id
      * @param array $post_categories
@@ -55173,6 +55707,7 @@ namespace {
     {
     }
     /**
+     * @deprecated 
      * @param string $type
      * @param string $limit
      * @param string $format
@@ -55185,6 +55720,7 @@ namespace {
     {
     }
     /**
+     * @deprecated 
      * @param bool $display
      * @param int $author_id
      * @param string $author_nicename
@@ -55194,6 +55730,7 @@ namespace {
     {
     }
     /**
+     * @deprecated 
      * @param string $before
      * @param string $after
      * @param string $next_or_number
@@ -55207,22 +55744,28 @@ namespace {
     {
     }
     /**
+     * @deprecated 
      * @param string $option
      * @return string
      */
     function get_settings($option)
     {
     }
+    /**
+     * @deprecated 
+     */
     function permalink_link()
     {
     }
     /**
+     * @deprecated 
      * @param string $deprecated
      */
     function permalink_single_rss($deprecated = '')
     {
     }
     /**
+     * @deprecated 
      * @param string $args
      * @return null|string
      */
@@ -55230,6 +55773,7 @@ namespace {
     {
     }
     /**
+     * @deprecated 
      * @param int $category
      * @param string $before
      * @param string $after
@@ -55247,12 +55791,14 @@ namespace {
     {
     }
     /**
+     * @deprecated 
      * @param string $order
      */
     function get_links_list($order = 'name')
     {
     }
     /**
+     * @deprecated 
      * @param string $text
      * @param int $width
      * @param int $height
@@ -55263,6 +55809,7 @@ namespace {
     {
     }
     /**
+     * @deprecated 
      * @param object $link
      * @return mixed
      */
@@ -55270,6 +55817,7 @@ namespace {
     {
     }
     /**
+     * @deprecated 
      * @param int $id
      * @return string
      */
@@ -55277,12 +55825,14 @@ namespace {
     {
     }
     /**
+     * @deprecated 
      * @param string $link_text
      */
     function comments_rss_link($link_text = 'Comments RSS')
     {
     }
     /**
+     * @deprecated 
      * @param bool $display
      * @param int $cat_id
      * @return string
@@ -55291,6 +55841,7 @@ namespace {
     {
     }
     /**
+     * @deprecated 
      * @param bool $display
      * @param int $author_id
      * @return string
@@ -55299,12 +55850,14 @@ namespace {
     {
     }
     /**
+     * @deprecated 
      * @return string
      */
     function comments_rss()
     {
     }
     /**
+     * @deprecated 
      * @param string $username
      * @param string $password
      * @param string $email
@@ -55313,10 +55866,14 @@ namespace {
     function create_user($username, $password, $email)
     {
     }
+    /**
+     * @deprecated 
+     */
     function gzip_compression()
     {
     }
     /**
+     * @deprecated 
      * @param int $comment_id
      * @param int $no_cache
      * @param bool $include_unapproved
@@ -55326,6 +55883,7 @@ namespace {
     {
     }
     /**
+     * @deprecated 
      * @param int $cat_id
      * @return string
      */
@@ -55333,6 +55891,7 @@ namespace {
     {
     }
     /**
+     * @deprecated 
      * @param int $id
      * @param string $before
      * @param string $after
@@ -55343,102 +55902,144 @@ namespace {
     {
     }
     /**
+     * @deprecated 
      * @return int[]
      */
     function get_all_category_ids()
     {
     }
     /**
+     * @deprecated 
      * @return string
      */
     function get_the_author_description()
     {
     }
+    /**
+     * @deprecated 
+     */
     function the_author_description()
     {
     }
     /**
+     * @deprecated 
      * @return string
      */
     function get_the_author_login()
     {
     }
+    /**
+     * @deprecated 
+     */
     function the_author_login()
     {
     }
     /**
+     * @deprecated 
      * @return string
      */
     function get_the_author_firstname()
     {
     }
+    /**
+     * @deprecated 
+     */
     function the_author_firstname()
     {
     }
     /**
+     * @deprecated 
      * @return string
      */
     function get_the_author_lastname()
     {
     }
+    /**
+     * @deprecated 
+     */
     function the_author_lastname()
     {
     }
     /**
+     * @deprecated 
      * @return string
      */
     function get_the_author_nickname()
     {
     }
+    /**
+     * @deprecated 
+     */
     function the_author_nickname()
     {
     }
     /**
+     * @deprecated 
      * @return string
      */
     function get_the_author_email()
     {
     }
+    /**
+     * @deprecated 
+     */
     function the_author_email()
     {
     }
     /**
+     * @deprecated 
      * @return string
      */
     function get_the_author_icq()
     {
     }
+    /**
+     * @deprecated 
+     */
     function the_author_icq()
     {
     }
     /**
+     * @deprecated 
      * @return string
      */
     function get_the_author_yim()
     {
     }
+    /**
+     * @deprecated 
+     */
     function the_author_yim()
     {
     }
     /**
+     * @deprecated 
      * @return string
      */
     function get_the_author_msn()
     {
     }
+    /**
+     * @deprecated 
+     */
     function the_author_msn()
     {
     }
     /**
+     * @deprecated 
      * @return string
      */
     function get_the_author_aim()
     {
     }
+    /**
+     * @deprecated 
+     */
     function the_author_aim()
     {
     }
     /**
+     * @deprecated 
      * @param int $auth_id
      * @return string
      */
@@ -55446,24 +56047,33 @@ namespace {
     {
     }
     /**
+     * @deprecated 
      * @return string
      */
     function get_the_author_url()
     {
     }
+    /**
+     * @deprecated 
+     */
     function the_author_url()
     {
     }
     /**
+     * @deprecated 
      * @return string|int
      */
     function get_the_author_ID()
     {
     }
+    /**
+     * @deprecated 
+     */
     function the_author_ID()
     {
     }
     /**
+     * @deprecated 
      * @param string $more_link_text
      * @param int $stripteaser
      * @param string $more_file
@@ -55474,6 +56084,7 @@ namespace {
     {
     }
     /**
+     * @deprecated 
      * @param string $content
      * @return string
      */
@@ -55481,6 +56092,7 @@ namespace {
     {
     }
     /**
+     * @deprecated 
      * @param string $text
      * @param string $domain
      * @return string
@@ -55489,6 +56101,7 @@ namespace {
     {
     }
     /**
+     * @deprecated 
      * @param string $text
      * @param string $domain
      * @return string
@@ -55497,6 +56110,7 @@ namespace {
     {
     }
     /**
+     * @deprecated 
      * @param string $single
      * @param string $plural
      * @param int $number
@@ -55506,19 +56120,27 @@ namespace {
     function _nc($single, $plural, $number, $domain = 'default')
     {
     }
+    /**
+     * @deprecated 
+     */
     function __ngettext(...$args)
     {
     }
+    /**
+     * @deprecated 
+     */
     function __ngettext_noop(...$args)
     {
     }
     /**
+     * @deprecated 
      * @return array
      */
     function get_alloptions()
     {
     }
     /**
+     * @deprecated 
      * @param int $id
      * @param bool $fullsize
      * @param array $max_dims
@@ -55529,6 +56151,7 @@ namespace {
     {
     }
     /**
+     * @deprecated 
      * @param int $id
      * @param bool $fullsize
      * @return array
@@ -55537,6 +56160,7 @@ namespace {
     {
     }
     /**
+     * @deprecated 
      * @param int $id
      * @param bool $fullsize
      * @param array $max_dims
@@ -55546,6 +56170,7 @@ namespace {
     {
     }
     /**
+     * @deprecated 
      * @param int $id
      * @param bool $fullsize
      * @param array $max_dims
@@ -55555,6 +56180,7 @@ namespace {
     {
     }
     /**
+     * @deprecated 
      * @param int $bookmark_id
      * @param string $output
      * @phpstan-param 'raw'|'edit'|'attribute'|'js'|'db'|'display' $filter
@@ -55564,6 +56190,7 @@ namespace {
     {
     }
     /**
+     * @deprecated 
      * @param string $url
      * @param array $protocols
      * @param string $context
@@ -55573,6 +56200,7 @@ namespace {
     {
     }
     /**
+     * @deprecated 
      * @param string $text
      * @return string
      */
@@ -55580,6 +56208,7 @@ namespace {
     {
     }
     /**
+     * @deprecated 
      * @param string $text
      * @param string $quote_style
      * @param false|string $charset
@@ -55590,6 +56219,7 @@ namespace {
     {
     }
     /**
+     * @deprecated 
      * @param string $text
      * @return string
      */
@@ -55597,6 +56227,7 @@ namespace {
     {
     }
     /**
+     * @deprecated 
      * @param string|int $name
      * @param callable $output_callback
      * @param string $classname
@@ -55606,12 +56237,14 @@ namespace {
     {
     }
     /**
+     * @deprecated 
      * @param int|string $id
      */
     function unregister_sidebar_widget($id)
     {
     }
     /**
+     * @deprecated 
      * @param int|string $name
      * @param callable $control_callback
      * @param int $width
@@ -55622,12 +56255,14 @@ namespace {
     {
     }
     /**
+     * @deprecated 
      * @param int|string $id
      */
     function unregister_widget_control($id)
     {
     }
     /**
+     * @deprecated 
      * @param int $user_id
      * @param string $meta_key
      * @param mixed $meta_value
@@ -55637,6 +56272,7 @@ namespace {
     {
     }
     /**
+     * @deprecated 
      * @param int $user_id
      * @param string $meta_key
      * @return mixed
@@ -55645,6 +56281,7 @@ namespace {
     {
     }
     /**
+     * @deprecated 
      * @param int $user_id
      * @param string $meta_key
      * @param mixed $meta_value
@@ -55654,6 +56291,7 @@ namespace {
     {
     }
     /**
+     * @deprecated 
      * @param int $id
      * @return array
      */
@@ -55661,12 +56299,14 @@ namespace {
     {
     }
     /**
+     * @deprecated 
      * @param bool $add
      */
     function automatic_feed_links($add = \true)
     {
     }
     /**
+     * @deprecated 
      * @param string $field
      * @param false|int $user
      * @return string
@@ -55675,6 +56315,7 @@ namespace {
     {
     }
     /**
+     * @deprecated 
      * @param int $userid
      * @return int
      */
@@ -55682,6 +56323,7 @@ namespace {
     {
     }
     /**
+     * @deprecated 
      * @param array $matches
      * @return string
      */
@@ -55689,6 +56331,7 @@ namespace {
     {
     }
     /**
+     * @deprecated 
      * @param string $text
      * @return string
      */
@@ -55696,6 +56339,7 @@ namespace {
     {
     }
     /**
+     * @deprecated 
      * @param string $taxonomy
      * @return bool
      */
@@ -55703,6 +56347,7 @@ namespace {
     {
     }
     /**
+     * @deprecated 
      * @param int|string $term
      * @param string $taxonomy
      * @param int $parent
@@ -55713,24 +56358,28 @@ namespace {
     {
     }
     /**
+     * @deprecated 
      * @return bool
      */
     function is_plugin_page()
     {
     }
     /**
+     * @deprecated 
      * @return bool
      */
     function update_category_cache()
     {
     }
     /**
+     * @deprecated 
      * @return bool
      */
     function wp_timezone_supported()
     {
     }
     /**
+     * @deprecated 
      * @param string $content
      * @param string $id
      * @param string $prev_id
@@ -55742,6 +56391,7 @@ namespace {
     {
     }
     /**
+     * @deprecated 
      * @param array $ids
      * @return array
      */
@@ -55749,6 +56399,7 @@ namespace {
     {
     }
     /**
+     * @deprecated 
      * @param object|array $user
      * @param string $context
      * @return object|array
@@ -55757,6 +56408,7 @@ namespace {
     {
     }
     /**
+     * @deprecated 
      * @param string $title
      * @param bool $in_same_cat
      * @param string $excluded_categories
@@ -55767,6 +56419,7 @@ namespace {
     {
     }
     /**
+     * @deprecated 
      * @param string $title
      * @param bool $in_same_cat
      * @param string $excluded_categories
@@ -55775,15 +56428,20 @@ namespace {
     {
     }
     /**
+     * @deprecated 
      * @return string
      */
     function get_index_rel_link()
     {
     }
+    /**
+     * @deprecated 
+     */
     function index_rel_link()
     {
     }
     /**
+     * @deprecated 
      * @param string $title
      * @return string
      */
@@ -55791,18 +56449,21 @@ namespace {
     {
     }
     /**
+     * @deprecated 
      * @param string $title
      */
     function parent_post_rel_link($title = '%title')
     {
     }
     /**
+     * @deprecated 
      * @param WP_Admin_Bar $wp_admin_bar
      */
     function wp_admin_bar_dashboard_view_site_menu($wp_admin_bar)
     {
     }
     /**
+     * @deprecated 
      * @param int $blog_id
      * @return bool
      */
@@ -55810,6 +56471,7 @@ namespace {
     {
     }
     /**
+     * @deprecated 
      * @param string $filename
      * @param string $mode
      * @return false
@@ -55818,6 +56480,7 @@ namespace {
     {
     }
     /**
+     * @deprecated 
      * @param mixed $fp
      * @param string $message
      */
@@ -55825,18 +56488,21 @@ namespace {
     {
     }
     /**
+     * @deprecated 
      * @param mixed $fp
      */
     function debug_fclose($fp)
     {
     }
     /**
+     * @deprecated 
      * @return array
      */
     function get_themes()
     {
     }
     /**
+     * @deprecated 
      * @param string $theme
      * @return array|null
      */
@@ -55844,12 +56510,14 @@ namespace {
     {
     }
     /**
+     * @deprecated 
      * @return string
      */
     function get_current_theme()
     {
     }
     /**
+     * @deprecated 
      * @param array|string $matches
      * @return string
      */
@@ -55857,6 +56525,7 @@ namespace {
     {
     }
     /**
+     * @deprecated 
      * @param callable $wp_head_callback
      * @param callable $admin_head_callback
      * @param callable $admin_preview_callback
@@ -55865,12 +56534,14 @@ namespace {
     {
     }
     /**
+     * @deprecated 
      * @return null|bool
      */
     function remove_custom_image_header()
     {
     }
     /**
+     * @deprecated 
      * @param callable $wp_head_callback
      * @param callable $admin_head_callback
      * @param callable $admin_preview_callback
@@ -55879,12 +56550,14 @@ namespace {
     {
     }
     /**
+     * @deprecated 
      * @return null|bool
      */
     function remove_custom_background()
     {
     }
     /**
+     * @deprecated 
      * @param string $theme_file
      * @return array
      */
@@ -55892,18 +56565,21 @@ namespace {
     {
     }
     /**
+     * @deprecated 
      * @param array $pages
      */
     function update_page_cache(&$pages)
     {
     }
     /**
+     * @deprecated 
      * @param int $id
      */
     function clean_page_cache($id)
     {
     }
     /**
+     * @deprecated 
      * @param string $action
      * @return string
      */
@@ -55911,18 +56587,21 @@ namespace {
     {
     }
     /**
+     * @deprecated 
      * @param int $post_id
      */
     function sticky_class($post_id = \null)
     {
     }
     /**
+     * @deprecated 
      * @param WP_Post $post
      */
     function _get_post_ancestors(&$post)
     {
     }
     /**
+     * @deprecated 
      * @param string $file
      * @return resource|GdImage|string
      */
@@ -55930,6 +56609,7 @@ namespace {
     {
     }
     /**
+     * @deprecated 
      * @param string $file
      * @param int $max_w
      * @param int $max_h
@@ -55943,6 +56623,7 @@ namespace {
     {
     }
     /**
+     * @deprecated 
      * @param int $postid
      * @param string $mode
      * @return WP_Post|null
@@ -55951,6 +56632,7 @@ namespace {
     {
     }
     /**
+     * @deprecated 
      * @param string $user_login
      * @param string $user_pass
      * @return bool
@@ -55958,10 +56640,14 @@ namespace {
     function user_pass_ok($user_login, $user_pass)
     {
     }
+    /**
+     * @deprecated 
+     */
     function _save_post_hook()
     {
     }
     /**
+     * @deprecated 
      * @param string $mime_type
      * @return bool
      */
@@ -55969,6 +56655,7 @@ namespace {
     {
     }
     /**
+     * @deprecated 
      * @param int $bytes
      * @return string
      */
@@ -55976,6 +56663,7 @@ namespace {
     {
     }
     /**
+     * @deprecated 
      * @param string $t
      * @return string
      */
@@ -55983,12 +56671,14 @@ namespace {
     {
     }
     /**
+     * @deprecated 
      * @return bool
      */
     function rich_edit_exists()
     {
     }
     /**
+     * @deprecated 
      * @param int $count
      * @return int
      */
@@ -55996,6 +56686,7 @@ namespace {
     {
     }
     /**
+     * @deprecated 
      * @param string $content
      * @return string
      */
@@ -56003,6 +56694,7 @@ namespace {
     {
     }
     /**
+     * @deprecated 
      * @param string $text
      * @return string
      */
@@ -56010,28 +56702,35 @@ namespace {
     {
     }
     /**
+     * @deprecated 
      * @param string $url
      * @return bool
      */
     function url_is_accessable_via_ssl($url)
     {
     }
+    /**
+     * @deprecated 
+     */
     function preview_theme()
     {
     }
     /**
+     * @deprecated 
      * @return string
      */
     function _preview_theme_template_filter()
     {
     }
     /**
+     * @deprecated 
      * @return string
      */
     function _preview_theme_stylesheet_filter()
     {
     }
     /**
+     * @deprecated 
      * @param string $content
      * @return string
      */
@@ -56039,6 +56738,7 @@ namespace {
     {
     }
     /**
+     * @deprecated 
      * @param array $matches
      * @return string
      */
@@ -56046,6 +56746,7 @@ namespace {
     {
     }
     /**
+     * @deprecated 
      * @param string $text
      * @return string
      */
@@ -56053,6 +56754,7 @@ namespace {
     {
     }
     /**
+     * @deprecated 
      * @param string $output
      * @return string
      */
@@ -56060,6 +56762,7 @@ namespace {
     {
     }
     /**
+     * @deprecated 
      * @param int|WP_Post $post
      * @return string|false
      */
@@ -56067,6 +56770,7 @@ namespace {
     {
     }
     /**
+     * @deprecated 
      * @param string $url
      * @param string|bool $file_path
      * @param int $red
@@ -56076,6 +56780,7 @@ namespace {
     {
     }
     /**
+     * @deprecated 
      * @param string|bool $force
      * @return bool
      */
@@ -56083,21 +56788,27 @@ namespace {
     {
     }
     /**
+     * @deprecated 
      * @return string
      */
     function get_comments_popup_template()
     {
     }
     /**
+     * @deprecated 
      * @return false
      */
     function is_comments_popup()
     {
     }
+    /**
+     * @deprecated 
+     */
     function comments_popup_script()
     {
     }
     /**
+     * @deprecated 
      * @param string $text
      * @return string
      */
@@ -56105,18 +56816,21 @@ namespace {
     {
     }
     /**
+     * @deprecated 
      * @return string
      */
     function wp_embed_handler_googlevideo($matches, $attr, $url, $rawattr)
     {
     }
     /**
+     * @deprecated 
      * @return string
      */
     function get_paged_template()
     {
     }
     /**
+     * @deprecated 
      * @param string $content
      * @return string
      */
@@ -56124,6 +56838,7 @@ namespace {
     {
     }
     /**
+     * @deprecated 
      * @param object $a
      * @param object $b
      * @return int
@@ -56132,6 +56847,7 @@ namespace {
     {
     }
     /**
+     * @deprecated 
      * @param object $a
      * @param object $b
      * @return int
@@ -56140,6 +56856,7 @@ namespace {
     {
     }
     /**
+     * @deprecated 
      * @param object $a
      * @param object $b
      * @return int
@@ -56148,18 +56865,26 @@ namespace {
     {
     }
     /**
+     * @deprecated 
      * @return string
      */
     function get_shortcut_link()
     {
     }
+    /**
+     * @deprecated 
+     */
     function wp_ajax_press_this_save_post()
     {
     }
+    /**
+     * @deprecated 
+     */
     function wp_ajax_press_this_add_category()
     {
     }
     /**
+     * @deprecated 
      * @param int $request_id
      * @return WP_User_Request|false
      */
@@ -56167,16 +56892,21 @@ namespace {
     {
     }
     /**
+     * @deprecated 
      * @param string $content
      * @return string
      */
     function wp_make_content_images_responsive($content)
     {
     }
+    /**
+     * @deprecated 
+     */
     function wp_unregister_GLOBALS()
     {
     }
     /**
+     * @deprecated 
      * @param string $author
      * @param string $email
      * @param string $url
@@ -56189,6 +56919,7 @@ namespace {
     {
     }
     /**
+     * @deprecated 
      * @param array $args
      * @param array $default_args
      * @return array
@@ -56197,6 +56928,7 @@ namespace {
     {
     }
     /**
+     * @deprecated 
      * @param array $new_options
      * @param string|array $options
      * @return array
@@ -56205,6 +56937,7 @@ namespace {
     {
     }
     /**
+     * @deprecated 
      * @param array $del_options
      * @param string|array $options
      * @return array
@@ -56213,6 +56946,7 @@ namespace {
     {
     }
     /**
+     * @deprecated 
      * @param mixed $value
      * @return mixed
      */
@@ -56220,25 +56954,34 @@ namespace {
     {
     }
     /**
+     * @deprecated 
      * @param mixed $value
      * @return mixed
      */
     function addslashes_strings_only($value)
     {
     }
+    /**
+     * @deprecated 
+     */
     function noindex()
     {
     }
     /**
+     * @deprecated 
      * @phpstan-return void
      */
     function wp_no_robots()
     {
     }
+    /**
+     * @deprecated 
+     */
     function wp_sensitive_page_meta()
     {
     }
     /**
+     * @deprecated 
      * @param array $columns
      * @param array $allowed_blocks
      * @return string
@@ -56247,6 +56990,7 @@ namespace {
     {
     }
     /**
+     * @deprecated 
      * @param array $preset
      * @return string
      */
@@ -56254,6 +56998,7 @@ namespace {
     {
     }
     /**
+     * @deprecated 
      * @param WP_Block_Type $block_type
      * @return bool
      */
@@ -56261,6 +57006,7 @@ namespace {
     {
     }
     /**
+     * @deprecated 
      * @param WP_Block_type $block_type
      * @return bool
      */
@@ -56268,16 +57014,21 @@ namespace {
     {
     }
     /**
+     * @deprecated 
      * @param WP_Block_Type $block_type
      * @return bool
      */
     function wp_skip_spacing_serialization($block_type)
     {
     }
+    /**
+     * @deprecated 
+     */
     function wp_add_iframed_editor_assets_html()
     {
     }
     /**
+     * @deprecated 
      * @param int $post_id
      * @return string|false
      */
@@ -56285,6 +57036,7 @@ namespace {
     {
     }
     /**
+     * @deprecated 
      * @param string $domain
      * @param bool $reset
      * @return string|false
@@ -56293,6 +57045,7 @@ namespace {
     {
     }
     /**
+     * @deprecated 
      * @param string $domain
      * @return string|false
      */
@@ -56300,6 +57053,7 @@ namespace {
     {
     }
     /**
+     * @deprecated 
      * @param array $metadata
      * @return array
      */
@@ -56307,6 +57061,7 @@ namespace {
     {
     }
     /**
+     * @deprecated 
      * @param array $attributes
      * @param string $feature
      * @param string $css_property
@@ -56316,12 +57071,14 @@ namespace {
     {
     }
     /**
+     * @deprecated 
      * @return bool
      */
     function global_terms_enabled()
     {
     }
     /**
+     * @deprecated 
      * @param array $clauses
      * @return array
      */
@@ -56329,6 +57086,7 @@ namespace {
     {
     }
     /**
+     * @deprecated 
      * @param string $page_title
      * @param string $output
      * @param string|array $post_type
@@ -56338,21 +57096,27 @@ namespace {
     {
     }
     /**
+     * @deprecated 
      * @return array|null
      */
     function _resolve_home_block_template()
     {
     }
+    /**
+     * @deprecated 
+     */
     function wlwmanifest_link()
     {
     }
     /**
+     * @deprecated 
      * @param WP_Comment[] $comments
      */
     function wp_queue_comments_for_comment_meta_lazyload($comments)
     {
     }
     /**
+     * @deprecated 
      * @param string $context
      * @return string|bool
      */
@@ -56360,6 +57124,7 @@ namespace {
     {
     }
     /**
+     * @deprecated 
      * @param string $image
      * @param string $context
      * @return string
@@ -56368,6 +57133,7 @@ namespace {
     {
     }
     /**
+     * @deprecated 
      * @param mixed $n
      * @param int $max
      * @return float
@@ -56376,6 +57142,7 @@ namespace {
     {
     }
     /**
+     * @deprecated 
      * @param mixed $n
      * @return float
      */
@@ -56383,6 +57150,7 @@ namespace {
     {
     }
     /**
+     * @deprecated 
      * @param array $rgb_color
      * @return array
      */
@@ -56390,6 +57158,7 @@ namespace {
     {
     }
     /**
+     * @deprecated 
      * @param float $p
      * @param float $q
      * @param float $t
@@ -56399,6 +57168,7 @@ namespace {
     {
     }
     /**
+     * @deprecated 
      * @param array $hsl_color
      * @return array
      */
@@ -56406,6 +57176,7 @@ namespace {
     {
     }
     /**
+     * @deprecated 
      * @param string $color_str
      * @return array
      */
@@ -56413,6 +57184,7 @@ namespace {
     {
     }
     /**
+     * @deprecated 
      * @param array $preset
      * @return string
      */
@@ -56420,6 +57192,7 @@ namespace {
     {
     }
     /**
+     * @deprecated 
      * @param array $preset
      * @return string
      */
@@ -56427,6 +57200,7 @@ namespace {
     {
     }
     /**
+     * @deprecated 
      * @param array $preset
      * @return string
      */
@@ -56434,12 +57208,14 @@ namespace {
     {
     }
     /**
+     * @deprecated 
      * @param WP_Block_Type $block_type
      */
     function wp_register_duotone_support($block_type)
     {
     }
     /**
+     * @deprecated 
      * @param string $block_content
      * @param array $block
      * @return string
@@ -56448,18 +57224,21 @@ namespace {
     {
     }
     /**
+     * @deprecated 
      * @return string
      */
     function wp_get_global_styles_svg_filters()
     {
     }
     /**
+     * @deprecated 
      * @phpstan-return void
      */
     function wp_global_styles_render_svg_filters()
     {
     }
     /**
+     * @deprecated 
      * @param array $context
      * @param array $attributes
      * @param bool $is_sub_menu
@@ -56468,31 +57247,46 @@ namespace {
     function block_core_navigation_submenu_build_css_colors($context, $attributes, $is_sub_menu = \false)
     {
     }
+    /**
+     * @deprecated 
+     */
     function _wp_theme_json_webfonts_handler()
     {
     }
+    /**
+     * @deprecated 
+     */
     function print_embed_styles()
     {
     }
     /**
+     * @deprecated 
      * @phpstan-return void
      */
     function print_emoji_styles()
     {
     }
+    /**
+     * @deprecated 
+     */
     function wp_admin_bar_header()
     {
     }
+    /**
+     * @deprecated 
+     */
     function _admin_bar_bump_cb()
     {
     }
     /**
+     * @deprecated 
      * @phpstan-return void
      */
     function wp_update_https_detection_errors()
     {
     }
     /**
+     * @deprecated 
      * @param string $image
      * @param string $context
      * @return string
@@ -56501,6 +57295,7 @@ namespace {
     {
     }
     /**
+     * @deprecated 
      * @param string $template_content
      * @return string
      */
@@ -56508,6 +57303,7 @@ namespace {
     {
     }
     /**
+     * @deprecated 
      * @param string $template_content
      * @return string
      */
@@ -56515,21 +57311,32 @@ namespace {
     {
     }
     /**
+     * @deprecated 
      * @phpstan-return void
      */
     function the_block_template_skip_link()
     {
     }
+    /**
+     * @deprecated 
+     */
     function block_core_query_ensure_interactivity_dependency()
     {
     }
+    /**
+     * @deprecated 
+     */
     function block_core_file_ensure_interactivity_dependency()
     {
     }
+    /**
+     * @deprecated 
+     */
     function block_core_image_ensure_interactivity_dependency()
     {
     }
     /**
+     * @deprecated 
      * @param string $block_content
      * @param array $block
      * @return string
@@ -56538,6 +57345,7 @@ namespace {
     {
     }
     /**
+     * @deprecated 
      * @param array $parsed_block
      * @return array
      */
@@ -56652,6 +57460,9 @@ namespace {
     function wp_oembed_add_discovery_links()
     {
     }
+    /**
+     * @deprecated 
+     */
     function wp_oembed_add_host_js()
     {
     }
@@ -57541,6 +58352,7 @@ namespace {
     {
     }
     /**
+     * @deprecated 
      * @param array $matches
      * @return string
      */
@@ -58735,6 +59547,7 @@ namespace {
     {
     }
     /**
+     * @deprecated 
      * @param mixed $value
      * @return bool|int|float|null|string|array
      */
@@ -62991,6 +63804,9 @@ namespace {
     function wp_is_development_mode($mode)
     {
     }
+    /**
+     * @deprecated 
+     */
     function wp_favicon_request()
     {
     }
@@ -63120,6 +63936,7 @@ namespace {
     {
     }
     /**
+     * @deprecated 
      * @param object $input_object
      * @return object
      */
@@ -64623,45 +65440,55 @@ namespace {
      * Deprecated functions come here to die.
      */
     /**
+     * @deprecated 
      * @return WP_Site
      */
     function get_dashboard_blog()
     {
     }
     /**
+     * @deprecated 
      * @param int $len
      */
     function generate_random_password($len = 8)
     {
     }
     /**
+     * @deprecated 
      * @param string $user_login
      */
     function is_site_admin($user_login = '')
     {
     }
     /**
+     * @deprecated 
      * @phpstan-return never
      */
     function graceful_fail($message)
     {
     }
     /**
+     * @deprecated 
      * @param string $username
      */
     function get_user_details($username)
     {
     }
     /**
+     * @deprecated 
      * @param int $post_id
      */
     function clear_global_post_cache($post_id)
     {
     }
+    /**
+     * @deprecated 
+     */
     function is_main_blog()
     {
     }
     /**
+     * @deprecated 
      * @param string $email
      * @param bool $check_domain
      * @return string|false
@@ -64670,6 +65497,7 @@ namespace {
     {
     }
     /**
+     * @deprecated 
      * @param int $start
      * @param int $num
      * @param string $deprecated
@@ -64678,6 +65506,7 @@ namespace {
     {
     }
     /**
+     * @deprecated 
      * @param int $num
      * @param bool $display
      * @return array
@@ -64686,6 +65515,7 @@ namespace {
     {
     }
     /**
+     * @deprecated 
      * @param string $url
      * @phpstan-return never
      */
@@ -64693,6 +65523,7 @@ namespace {
     {
     }
     /**
+     * @deprecated 
      * @param string $url
      * @return string
      */
@@ -64700,6 +65531,7 @@ namespace {
     {
     }
     /**
+     * @deprecated 
      * @param string $email_or_login
      * @return int
      */
@@ -64707,6 +65539,7 @@ namespace {
     {
     }
     /**
+     * @deprecated 
      * @param string $domain
      * @param string $path
      * @return string
@@ -64715,6 +65548,7 @@ namespace {
     {
     }
     /**
+     * @deprecated 
      * @param string $domain
      * @param string $path
      * @param string $weblog_title
@@ -64725,6 +65559,7 @@ namespace {
     {
     }
     /**
+     * @deprecated 
      * @param string $domain
      * @param string $path
      * @return array|false
@@ -64733,6 +65568,7 @@ namespace {
     {
     }
     /**
+     * @deprecated 
      * @phpstan-param array{
      *   network_id?: int|int[],
      *   public?: int,
@@ -64749,6 +65585,7 @@ namespace {
     {
     }
     /**
+     * @deprecated 
      * @param string $key
      * @param int $user_id
      * @param int $blog_id
@@ -64758,6 +65595,7 @@ namespace {
     {
     }
     /**
+     * @deprecated 
      * @param string $domain
      * @param string $path
      * @param int $site_id
@@ -64767,6 +65605,7 @@ namespace {
     {
     }
     /**
+     * @deprecated 
      * @param int $blog_id
      * @param string $blog_title
      */
@@ -64774,6 +65613,8 @@ namespace {
     {
     }
     /**
+     * @deprecated 
+     * @deprecated 
      * @param int $blog_id
      * @param int $user_id
      */
@@ -64781,6 +65622,7 @@ namespace {
     {
     }
     /**
+     * @deprecated 
      * @param int $id
      * @param string $pref
      * @param int $value
@@ -64791,6 +65633,7 @@ namespace {
     {
     }
     /**
+     * @deprecated 
      * @param int $term_id
      * @param string $deprecated
      * @return int
@@ -65338,6 +66181,7 @@ namespace {
     {
     }
     /**
+     * @deprecated 
      * @param WP_Network $current_site
      * @return WP_Network
      */
@@ -65345,12 +66189,14 @@ namespace {
     {
     }
     /**
+     * @deprecated 
      * @return WP_Network
      */
     function wpmu_current_site()
     {
     }
     /**
+     * @deprecated 
      * @param object|int $network
      * @return WP_Network|false
      */
@@ -66364,6 +67210,7 @@ namespace {
     {
     }
     /**
+     * @deprecated 
      * @param int|null $id
      * @param string $name
      * @return WP_User
@@ -66372,12 +67219,14 @@ namespace {
     {
     }
     /**
+     * @deprecated 
      * @return bool|WP_User
      */
     function get_currentuserinfo()
     {
     }
     /**
+     * @deprecated 
      * @param string $user_login
      * @return bool|object
      */
@@ -66385,6 +67234,7 @@ namespace {
     {
     }
     /**
+     * @deprecated 
      * @param string $email
      * @return bool|object
      */
@@ -66392,6 +67242,7 @@ namespace {
     {
     }
     /**
+     * @deprecated 
      * @param string $username
      * @param string $password
      * @param bool $already_md5
@@ -66402,16 +67253,21 @@ namespace {
     function wp_setcookie($username, $password = '', $already_md5 = \false, $home = '', $siteurl = '', $remember = \false)
     {
     }
+    /**
+     * @deprecated 
+     */
     function wp_clearcookie()
     {
     }
     /**
+     * @deprecated 
      * @return bool
      */
     function wp_get_cookie_login()
     {
     }
     /**
+     * @deprecated 
      * @param string $username
      * @param string $password
      * @param string $deprecated
@@ -67226,6 +68082,9 @@ namespace {
     function post_custom($key = '')
     {
     }
+    /**
+     * @deprecated 
+     */
     function the_meta()
     {
     }
@@ -68550,6 +69409,7 @@ namespace {
     {
     }
     /**
+     * @deprecated 
      * @param int|WP_Post $page
      * @param string $output
      * @param string $filter
@@ -73791,6 +74651,7 @@ namespace {
     {
     }
     /**
+     * @deprecated 
      * @param string $io
      * @param string $msg
      */
