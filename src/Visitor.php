@@ -171,19 +171,13 @@ class Visitor extends NodeVisitor
             return;
         }
 
-        $newDocComment = $this->removeUnwantedDocs($docComment);
-
-        if ($newDocComment instanceof Doc) {
-            $node->setDocComment($newDocComment);
-        } else {
-            $node->setAttribute('comments', []);
-        }
-
         $docComment = $node->getDocComment();
         $newDocComment = $this->addTags($fullSymbolName, $docComment);
 
         if ($newDocComment instanceof Doc) {
             $node->setDocComment($newDocComment);
+        } else {
+            $node->setAttribute('comments', []);
         }
     }
 
@@ -245,58 +239,6 @@ class Visitor extends NodeVisitor
         return $additions;
     }
 
-    private function removeUnwantedDocs(Doc $docComment): ?Doc
-    {
-        $retain = [
-            'deprecated',
-            'ignore',
-            'internal',
-            'param',
-            'property-read',
-            'property-write',
-            'property',
-            'return',
-            'throws',
-            'var',
-        ];
-        $docCommentText = $docComment->getText();
-
-        try {
-            $docblock = $this->docBlockFactory->create($docCommentText);
-        } catch (\RuntimeException | \InvalidArgumentException $e) {
-            return null;
-        }
-
-        $tags = [];
-
-        foreach ($retain as $tag) {
-            $new = $docblock->getTagsByName($tag);
-            foreach ( $new as $add ) {
-                $tags[] = $add;
-            }
-        }
-
-        if ( empty( $tags ) ) {
-            return null;
-        }
-
-        // re-construct the docblock with only the tags we want to keep
-        $newDocComment = "/**\n";
-        foreach ($tags as $tag) {
-            // use reflection to set the description property of the tag to null
-            $ref = new \ReflectionObject($tag);
-            $prop = $ref->getProperty('description');
-            $prop->setAccessible(true);
-            $prop->setValue($tag, null);
-
-            $line = trim('@' . $tag->getName() . ' ' . $tag);
-            $newDocComment .= sprintf(" * %s\n", $line);
-        }
-        $newDocComment .= " */";
-
-        return new Doc($newDocComment);
-    }
-
     private function addTags(string $name, ?Doc $docComment): ?Doc
     {
         $additions = $this->additionalTags[$name] ?? [];
@@ -331,8 +273,7 @@ class Visitor extends NodeVisitor
         }
 
         $newDocComment = sprintf(
-            "%s\n%s\n */",
-            substr($docCommentText, 0, -4),
+            "/**\n%s\n */",
             implode("\n", $additionStrings)
         );
 
@@ -522,6 +463,11 @@ class Visitor extends NodeVisitor
             return null;
         }
 
+        $default = new WordPressTag();
+        $default->tag = '@param';
+        $default->type = (string) $tagVariableType;
+        $default->name = $tagVariableName;
+
         $tagDescriptionType = self::getTypeNameFromDescription($tagDescription, $tagVariableType);
 
         if ($tagDescriptionType !== null) {
@@ -536,13 +482,13 @@ class Visitor extends NodeVisitor
         $elements = self::getElementsFromDescription($tagDescription, true);
 
         if (count($elements) === 0) {
-            return null;
+            return $default;
         }
 
         $tagVariableType = self::getTypeNameFromType($tagVariableType);
 
         if ($tagVariableType === null) {
-            return null;
+            return $default;
         }
 
         // It's common for an args parameter to accept a query var string or array with `string|array`.
@@ -568,6 +514,10 @@ class Visitor extends NodeVisitor
             return null;
         }
 
+        $default = new WordPressTag();
+        $default->tag = '@return';
+        $default->type = (string) $tagVariableType;
+
         $tagDescriptionType = self::getTypeNameFromDescription($tagDescription, $tagVariableType);
 
         if ($tagDescriptionType !== null) {
@@ -581,13 +531,13 @@ class Visitor extends NodeVisitor
         $elements = self::getElementsFromDescription($tagDescription, false);
 
         if (count($elements) === 0) {
-            return null;
+            return $default;
         }
 
         $tagVariableType = self::getTypeNameFromType($tagVariableType);
 
         if ($tagVariableType === null) {
-            return null;
+            return $default;
         }
 
         $tag = new WordPressTag();
@@ -608,16 +558,20 @@ class Visitor extends NodeVisitor
             return null;
         }
 
+        $default = new WordPressTag();
+        $default->tag = '@var';
+        $default->type = (string) $tagVariableType;
+
         $elements = self::getElementsFromDescription($tagDescription, false);
 
         if (count($elements) === 0) {
-            return null;
+            return $default;
         }
 
         $tagVariableType = self::getTypeNameFromType($tagVariableType);
 
         if ($tagVariableType === null) {
-            return null;
+            return $default;
         }
 
         $tag = new WordPressTag();
