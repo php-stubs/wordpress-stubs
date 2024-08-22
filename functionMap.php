@@ -151,4 +151,5 @@ return [
     'WP_Widget::widget' => [null, 'instance' => 'T', 'args' => 'array{name:string,id:string,description:string,class:string,before_widget:string,after_widget:string,before_title:string,after_title:string,before_sidebar:string,after_sidebar:string,show_in_rest:boolean,widget_id:string,widget_name:string}'],
     'get_approved_comments' => ["(\$args is array{'count': true} ? int : (\$args is array{'fields': 'ids'} ?  array<int, int> : array<int, \WP_Comment>))"],
     'get_posts' => ["(\$args is array{'fields': 'id=>parent'|'ids'} ? array<int, int> : array<int, \WP_Post>)"],
+    'get_sites' => ["(\$args is array{'count': true} ? int : (\$args is array{'fields': 'ids'} ?  array<int, int> : array<int, \WP_Site>))"],
 ];
