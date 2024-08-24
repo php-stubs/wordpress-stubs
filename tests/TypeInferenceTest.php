@@ -14,6 +14,7 @@ class TypeInferenceTest extends \PHPStan\Testing\TypeInferenceTestCase
         yield from $this->gatherAssertTypes(__DIR__ . '/data/get_approved_comments.php');
         yield from $this->gatherAssertTypes(__DIR__ . '/data/get_attachment_taxonomies.php');
         yield from $this->gatherAssertTypes(__DIR__ . '/data/get_bookmark.php');
+        yield from $this->gatherAssertTypes(__DIR__ . '/data/get_categories.php');
         yield from $this->gatherAssertTypes(__DIR__ . '/data/get_category.php');
         yield from $this->gatherAssertTypes(__DIR__ . '/data/get_category_by_path.php');
         yield from $this->gatherAssertTypes(__DIR__ . '/data/get_comment.php');
@@ -36,11 +37,15 @@ class TypeInferenceTest extends \PHPStan\Testing\TypeInferenceTestCase
         yield from $this->gatherAssertTypes(__DIR__ . '/data/mysql2date.php');
         yield from $this->gatherAssertTypes(__DIR__ . '/data/term_exists.php');
         yield from $this->gatherAssertTypes(__DIR__ . '/data/wp_debug_backtrace_summary.php');
+        yield from $this->gatherAssertTypes(__DIR__ . '/data/wp_dropdown_languages.php');
         yield from $this->gatherAssertTypes(__DIR__ . '/data/wp_error_parameter.php');
+        yield from $this->gatherAssertTypes(__DIR__ . '/data/wp_get_archives.php');
         yield from $this->gatherAssertTypes(__DIR__ . '/data/wp_get_post_categories.php');
         yield from $this->gatherAssertTypes(__DIR__ . '/data/wp_get_post_tags.php');
         yield from $this->gatherAssertTypes(__DIR__ . '/data/wp_get_post_terms.php');
         yield from $this->gatherAssertTypes(__DIR__ . '/data/wp_get_object_terms.php');
+        yield from $this->gatherAssertTypes(__DIR__ . '/data/wp_list_bookmarks.php');
+        yield from $this->gatherAssertTypes(__DIR__ . '/data/wp_list_categories.php');
         yield from $this->gatherAssertTypes(__DIR__ . '/data/wp_rest_request.php');
         yield from $this->gatherAssertTypes(__DIR__ . '/data/wp_theme.php');
         yield from $this->gatherAssertTypes(__DIR__ . '/data/wpdb.php');
