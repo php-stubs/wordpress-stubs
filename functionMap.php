@@ -49,6 +49,7 @@ return [
     'WP_Http::head' => [$httpReturnType],
     'WP_Http::post' => [$httpReturnType],
     'WP_Http::request' => [$httpReturnType],
+    'wp_list_pages' => ['($args is array{echo: false} ? string : void)'],
     'WP_List_Table::set_pagination_args' => ['void', 'args' => 'array{total_items?: int, total_pages?: int, per_page?: int}'],
     'wp_next_scheduled' => [null, 'args' => $cronArgsType],
     'WP_Query::have_posts' => [null, '@phpstan-impure' => ''],
