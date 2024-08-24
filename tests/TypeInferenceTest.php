@@ -36,6 +36,7 @@ class TypeInferenceTest extends \PHPStan\Testing\TypeInferenceTestCase
         yield from $this->gatherAssertTypes(__DIR__ . '/data/wp_error_parameter.php');
         yield from $this->gatherAssertTypes(__DIR__ . '/data/wp_get_archives.php');
         yield from $this->gatherAssertTypes(__DIR__ . '/data/wp_list_bookmarks.php');
+        yield from $this->gatherAssertTypes(__DIR__ . '/data/wp_list_categories.php');
         yield from $this->gatherAssertTypes(__DIR__ . '/data/wp_list_pages.php');
         yield from $this->gatherAssertTypes(__DIR__ . '/data/wp_rest_request.php');
         yield from $this->gatherAssertTypes(__DIR__ . '/data/wp_theme.php');
