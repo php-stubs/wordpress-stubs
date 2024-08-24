@@ -52,6 +52,7 @@ return [
     'WP_Http::post' => [$httpReturnType],
     'WP_Http::request' => [$httpReturnType],
     'wp_list_bookmarks' => ['($args is array{echo: false|0} ? string : void)'],
+    'wp_list_categories' => ['($args is array{echo: false|0} ? string|false : false|void)'],
     'WP_List_Table::set_pagination_args' => ['void', 'args' => 'array{total_items?: int, total_pages?: int, per_page?: int}'],
     'wp_next_scheduled' => [null, 'args' => $cronArgsType],
     'WP_Query::have_posts' => [null, '@phpstan-impure' => ''],
