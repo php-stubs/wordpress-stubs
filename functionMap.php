@@ -52,6 +52,7 @@ return [
     'WP_Http::head' => [$httpReturnType],
     'WP_Http::post' => [$httpReturnType],
     'WP_Http::request' => [$httpReturnType],
+    'wp_is_numeric_array' => ['(T is array ? (key-of<T> is int ? true : false) : false)', '@template' => 'T of mixed', 'data' => 'T', '@phpstan-assert-if-true' => '(T is list ? T : array<int, value-of<T>>) $data'],
     'wp_list_bookmarks' => ['($args is array{echo: false|0} ? string : void)'],
     'wp_list_categories' => ['($args is array{echo: false|0} ? string|false : false|void)'],
     'wp_list_pages' => ['($args is array{echo: false} ? string : void)'],
