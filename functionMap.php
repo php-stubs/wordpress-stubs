@@ -157,4 +157,5 @@ return [
     'WP_Widget::form' => [null, 'instance' => 'T'],
     'WP_Widget::update' => [null, 'new_instance' => 'T', 'old_instance' => 'T'],
     'WP_Widget::widget' => [null, 'instance' => 'T', 'args' => 'array{name:string,id:string,description:string,class:string,before_widget:string,after_widget:string,before_title:string,after_title:string,before_sidebar:string,after_sidebar:string,show_in_rest:boolean,widget_id:string,widget_name:string}'],
+    'wp_parse_str' => [null, '@param-out' => 'array<int|string, array|string>'],
 ];
