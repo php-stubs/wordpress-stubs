@@ -13,7 +13,7 @@ assertType('array<int, WP_Term>', get_categories([]));
 
 // Requesting a count
 assertType('list<numeric-string>', get_categories(['fields' => 'count']));
-assertType('list<numeric-string>', get_categories(['foo' => 'bar','fields' => 'count']));
+assertType('list<numeric-string>', get_categories(['fields' => 'count', 'foo' => 'bar']));
 
 // Requesting names or slugs
 assertType('list<string>', get_categories(['fields' => 'names']));
@@ -31,7 +31,7 @@ assertType('array<int, int>', get_categories(['fields' => 'id=>parent']));
 // Requesting objects
 assertType('array<int, WP_Term>', get_categories(['fields' => 'all']));
 assertType('array<int, WP_Term>', get_categories(['fields' => 'all_with_object_id']));
-assertType('array<int, WP_Term>', get_categories(['fields' => 'foo']));
 
 // Unknown fields value
+assertType('array<int, WP_Term>', get_categories(['fields' => 'foo']));
 assertType('array<int, int|string|WP_Term>', get_categories(['fields' => (string)$_GET['fields']]));

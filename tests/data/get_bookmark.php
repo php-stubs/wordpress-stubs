@@ -8,7 +8,7 @@ use function get_bookmark;
 use function PHPStan\Testing\assertType;
 
 /** @var \stdClass|int $bookmark */
-$bookmark;
+$bookmark = $_GET['bookmark'];
 
 assertType('stdClass|null', get_bookmark($bookmark));
 assertType('stdClass|null', get_bookmark($bookmark, 'OBJECT'));
