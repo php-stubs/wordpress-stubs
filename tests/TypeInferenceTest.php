@@ -35,8 +35,10 @@ class TypeInferenceTest extends \PHPStan\Testing\TypeInferenceTestCase
         yield from $this->gatherAssertTypes(__DIR__ . '/data/has_filter.php');
         yield from $this->gatherAssertTypes(__DIR__ . '/data/is_wp_error.php');
         yield from $this->gatherAssertTypes(__DIR__ . '/data/mysql2date.php');
+        yield from $this->gatherAssertTypes(__DIR__ . '/data/rest_ensure_response.php');
         yield from $this->gatherAssertTypes(__DIR__ . '/data/term_exists.php');
         yield from $this->gatherAssertTypes(__DIR__ . '/data/wp_debug_backtrace_summary.php');
+        yield from $this->gatherAssertTypes(__DIR__ . '/data/wp_die.php');
         yield from $this->gatherAssertTypes(__DIR__ . '/data/wp_dropdown_languages.php');
         yield from $this->gatherAssertTypes(__DIR__ . '/data/wp_error_parameter.php');
         yield from $this->gatherAssertTypes(__DIR__ . '/data/wp_get_archives.php');
@@ -44,12 +46,13 @@ class TypeInferenceTest extends \PHPStan\Testing\TypeInferenceTestCase
         yield from $this->gatherAssertTypes(__DIR__ . '/data/wp_get_post_tags.php');
         yield from $this->gatherAssertTypes(__DIR__ . '/data/wp_get_post_terms.php');
         yield from $this->gatherAssertTypes(__DIR__ . '/data/wp_get_object_terms.php');
+        yield from $this->gatherAssertTypes(__DIR__ . '/data/wp_is_numeric_array.php');
         yield from $this->gatherAssertTypes(__DIR__ . '/data/wp_list_bookmarks.php');
         yield from $this->gatherAssertTypes(__DIR__ . '/data/wp_list_categories.php');
+        yield from $this->gatherAssertTypes(__DIR__ . '/data/wp_list_pages.php');
         yield from $this->gatherAssertTypes(__DIR__ . '/data/wp_rest_request.php');
         yield from $this->gatherAssertTypes(__DIR__ . '/data/wp_theme.php');
         yield from $this->gatherAssertTypes(__DIR__ . '/data/wpdb.php');
-        yield from $this->gatherAssertTypes(__DIR__ . '/data/rest_ensure_response.php');
     }
 
     /**
