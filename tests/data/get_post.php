@@ -8,7 +8,7 @@ use function get_post;
 use function PHPStan\Testing\assertType;
 
 /** @var \WP_Post|int|null $post */
-$post;
+$post = $_GET['post'];
 
 // Default output
 assertType('WP_Post|null', get_post());
@@ -22,7 +22,7 @@ assertType('array<string, mixed>|null', get_post($post, 'ARRAY_A'));
 assertType('array<int, mixed>|null', get_post($post, 'ARRAY_N'));
 
 /** @var \WP_Post $post */
-$post;
+$post = $_GET['post'];
 
 assertType('WP_Post', get_post($post));
 assertType('WP_Post', get_post($post, 'OBJECT'));

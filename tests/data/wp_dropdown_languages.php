@@ -16,10 +16,10 @@ use function wp_dropdown_languages;
 use function PHPStan\Testing\assertType;
 
 /** @var ''|null $emptyStringOrNull */
-$emptyStringOrNull = $_GET['nullOrEmptyString'];
+$emptyStringOrNull = $_GET['emptyStringOrNull'];
 
 /** @var string|null $stringOrNull */
-$stringOrNull = $_GET['unknown'];
+$stringOrNull = $_GET['stringOrNull'];
 
 // Default value
 assertType('string', wp_dropdown_languages());

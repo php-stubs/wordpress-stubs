@@ -10,7 +10,7 @@ use function get_the_permalink;
 use function PHPStan\Testing\assertType;
 
 /** @var \WP_Post $post */
-$post = $post;
+$post = $_GET['post'];
 
 // get_permalink()
 assertType('string|false', get_permalink());

@@ -167,4 +167,5 @@ return [
     'wp_get_post_terms' => ["(\$args is array{fields: 'names'|'slugs'} ? list<string> : (\$args is array{fields: 'id=>name'|'id=>slug'} ? array<int, string> : (\$args is array{fields: 'id=>parent'} ? array<int, int> : (\$args is array{fields: 'ids'|'tt_ids'} ? list<int> : array<int, \WP_Term>))))|\WP_Error"],
     'wp_get_object_terms' => ["(\$args is array{fields: 'names'|'slugs'} ? list<string> : (\$args is array{fields: 'id=>name'|'id=>slug'} ? array<int, string> : (\$args is array{fields: 'id=>parent'} ? array<int, int> : (\$args is array{fields: 'ids'|'tt_ids'} ? list<int> : array<int, \WP_Term>))))|\WP_Error"],
     'wp_parse_str' => [null, '@param-out' => 'array<int|string, array|string> $result'],
+    'wp_parse_str' => [null, '@phpstan-param-out' => 'array<int|string, array|string> $result'],
 ];
