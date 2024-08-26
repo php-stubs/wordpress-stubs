@@ -4,6 +4,7 @@
     <file>functionMap.php</file>
     <file>src/</file>
     <file>visitor.php</file>
+    <file>tests/</file>
 
     <rule ref="PSR12NeutronRuleset">
         <exclude name="Generic.Files.LineLength"/>
@@ -11,4 +12,39 @@
         <exclude name="PEAR.Commenting.FileComment"/>
     </rule>
 
+    <!-- Rules not applied to tests -->
+    <rule ref="PSR12NeutronRuleset.NamingConventions.MeaningfulVariableName">
+        <exclude-pattern>tests/</exclude-pattern>
+    </rule>
+    <rule ref="PSR12NeutronRuleset.Strings.ConcatenationUsage">
+        <exclude-pattern>tests/</exclude-pattern>
+    </rule>
+    <rule ref="SlevomatCodingStandard.Namespaces.FullyQualifiedExceptions">
+        <properties>
+            <property name="ignoredNames" type="array">
+                <element value="WP_Error"/>
+            </property>
+        </properties>
+    </rule>
+    <rule ref="SlevomatCodingStandard.PHP.RequireExplicitAssertion">
+        <exclude-pattern>tests/</exclude-pattern>
+    </rule>
+    <rule ref="Squiz.PHP.CommentedOutCode">
+        <exclude-pattern>tests/</exclude-pattern>
+    </rule>
+    <rule ref="WordPress.DateTime.CurrentTimeTimestamp">
+        <exclude-pattern>tests/</exclude-pattern>
+    </rule>
+    <rule ref="WordPress.DB.PreparedSQL">
+        <exclude-pattern>tests/</exclude-pattern>
+    </rule>
+    <rule ref="WordPress.Security.NonceVerification">
+        <exclude-pattern>tests/</exclude-pattern>
+    </rule>
+    <rule ref="WordPress.WP.GlobalVariablesOverride">
+        <exclude-pattern>tests/</exclude-pattern>
+    </rule>
+    <rule ref="NeutronStandard.Functions.TypeHint.UnusedReturnType">
+        <exclude-pattern>tests/TypeInferenceTest.php</exclude-pattern>
+    </rule>
 </ruleset>

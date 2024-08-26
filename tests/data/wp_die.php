@@ -21,5 +21,4 @@ assertType('null', wp_die('', '', ['exit' => (bool)$_GET['exit']]));
 assertType('null', wp_die('', '', (array)$_GET['args']));
 
 // non-array $args parameter ($args not string type per @phpstan-param)
-/** @var int $args */
-assertType('never', wp_die('', '', $args));
+assertType('never', wp_die('', '', (int)$_GET['args']));

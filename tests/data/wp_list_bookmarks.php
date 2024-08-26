@@ -27,5 +27,5 @@ assertType('string', wp_list_bookmarks(['echo' => false, 'key' => 'value']));
 assertType('string', wp_list_bookmarks(['echo' => 0, 'key' => 'value']));
 
 // Unknown value
-assertType('string|null', wp_list_bookmarks(['echo' => (bool)$GET['echo'], 'key' => 'value']));
-assertType('string|null', wp_list_bookmarks(['echo' => (int)$GET['echo'], 'key' => 'value']));
+assertType('string|null', wp_list_bookmarks(['echo' => (bool)$_GET['echo'], 'key' => 'value']));
+assertType('string|null', wp_list_bookmarks(['echo' => (int)$_GET['echo'], 'key' => 'value']));

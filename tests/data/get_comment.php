@@ -8,7 +8,7 @@ use function get_comment;
 use function PHPStan\Testing\assertType;
 
 /** @var \WP_Comment|int|string|null $comment */
-$comment;
+$comment = $_GET['comment'];
 
 // Default output
 assertType('WP_Comment|null', get_comment());
@@ -22,7 +22,7 @@ assertType('array<string, mixed>|null', get_comment($comment, 'ARRAY_A'));
 assertType('array<int, mixed>|null', get_comment($comment, 'ARRAY_N'));
 
 /** @var \WP_Comment $comment */
-$comment;
+$comment = $_GET['comment'];
 
 assertType('WP_Comment', get_comment($comment));
 assertType('WP_Comment', get_comment($comment, 'OBJECT'));
