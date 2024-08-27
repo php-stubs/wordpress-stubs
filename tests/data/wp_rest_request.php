@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace PhpStubs\WordPress\Core\Tests;
 
+use WP_REST_Request;
+
 use function PHPStan\Testing\assertType;
 
 /**
