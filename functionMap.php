@@ -32,7 +32,7 @@ $filesystemDirlistReturnType = "false|array<string, array{name: string, perms: s
  * @link https://github.com/phpstan/phpstan-src/blob/1.10.x/resources/functionMap.php
  */
 return [
-    '_get_list_table' => ["(\$class_name is 'WP_Posts_List_Table'|'WP_Media_List_Table'|'WP_Terms_List_Table'|'WP_Users_List_Table'|'WP_Comments_List_Table'|'WP_Post_Comments_List_Table'|'WP_Links_List_Table'|'WP_Plugin_Install_List_Table'|'WP_Themes_List_Table'|'WP_Theme_Install_List_Table'|'WP_Plugins_List_Table'|'WP_Application_Passwords_List_Table'|'WP_MS_Sites_List_Table'|'WP_MS_Users_List_Table'|'WP_MS_Themes_List_Table'|'WP_Privacy_Data_Export_Requests_List_Table'|'WP_Privacy_Data_Removal_Requests_List_Table' ? \WP_List_Table : false)", 'args' => 'array{screen?: string}'],
+    '_get_list_table' => ["(\$class_name is 'WP_Posts_List_Table'|'WP_Media_List_Table'|'WP_Terms_List_Table'|'WP_Users_List_Table'|'WP_Comments_List_Table'|'WP_Post_Comments_List_Table'|'WP_Links_List_Table'|'WP_Plugin_Install_List_Table'|'WP_Themes_List_Table'|'WP_Theme_Install_List_Table'|'WP_Plugins_List_Table'|'WP_Application_Passwords_List_Table'|'WP_MS_Sites_List_Table'|'WP_MS_Users_List_Table'|'WP_MS_Themes_List_Table'|'WP_Privacy_Data_Export_Requests_List_Table'|'WP_Privacy_Data_Removal_Requests_List_Table' ? T : false)", '@phpstan-template' => 'T', 'class_name' => 'class-string<T>', 'args' => 'array{screen?: string}'],
     'addslashes_gpc' => ['T', '@phpstan-template' => 'T', 'gpc' => 'T'],
     'add_submenu_page' => [null, 'callback' => "''|callable"],
     'have_posts' => [null, '@phpstan-impure' => ''],
