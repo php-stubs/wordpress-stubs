@@ -46,6 +46,7 @@ return [
     'wp_die' => ['($args is array{exit: false} ? void : never))'],
     'wp_dropdown_languages' => ["(\$args is array{id: null|''} ? void : (\$args is array{name: null|''} ? void : string))"],
     'wp_clear_scheduled_hook' => ['(0|positive-int|($wp_error is false ? false : \WP_Error))', 'args' => $cronArgsType],
+    'wp_generate_tag_cloud' => ["(\$args is array{format: 'array'} ? array<int, string> : string)"],
     'wp_get_schedule' => [null, 'args' => $cronArgsType],
     'wp_get_scheduled_event' => [null, 'args' => $cronArgsType],
     'wp_get_archives' => ['($args is array{echo: false|0} ? string : void)'],
