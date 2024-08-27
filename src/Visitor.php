@@ -35,6 +35,11 @@ use StubsGenerator\NodeVisitor;
 
 class Visitor extends NodeVisitor
 {
+    /**
+     * The number of spaces used for indentation in WordPress Doc Comments.
+     */
+    private const WP_INDENT_SIZE = 4;
+
     private \phpDocumentor\Reflection\DocBlockFactoryInterface $docBlockFactory;
 
     /** @var array<string,array<int|string,string>> */
@@ -288,7 +293,7 @@ class Visitor extends NodeVisitor
 
         $newDocComment = sprintf(
             "%s\n%s\n */",
-            substr($docCommentText, 0, -4),
+            substr($docCommentText, 0, -self::WP_INDENT_SIZE),
             implode("\n", $additionStrings)
         );
 
@@ -477,7 +482,7 @@ class Visitor extends NodeVisitor
         $docCommentText = $docComment->getText();
         $newDocComment = sprintf(
             "%s\n * %s\n */",
-            substr($docCommentText, 0, -4),
+            substr($docCommentText, 0, -self::WP_INDENT_SIZE),
             implode("\n * ", $additions)
         );
 
@@ -712,7 +717,7 @@ class Visitor extends NodeVisitor
     private static function getTypesAtLevel(string $text, bool $optional, int $level): array
     {
         // Populate `$types` with the value of each top level `@type`.
-        $spaces = str_repeat(' ', ($level * 4));
+        $spaces = str_repeat(' ', ($level * self::WP_INDENT_SIZE));
         $types = preg_split("/\R+{$spaces}@type /", $text);
 
         if ($types === false) {
