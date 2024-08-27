@@ -32,6 +32,7 @@ $filesystemDirlistReturnType = "false|array<string, array{name: string, perms: s
  * @link https://github.com/phpstan/phpstan-src/blob/1.10.x/resources/functionMap.php
  */
 return [
+    '_get_list_table' => ["(\$class_name is 'WP_Posts_List_Table'|'WP_Media_List_Table'|'WP_Terms_List_Table'|'WP_Users_List_Table'|'WP_Comments_List_Table'|'WP_Post_Comments_List_Table'|'WP_Links_List_Table'|'WP_Plugin_Install_List_Table'|'WP_Themes_List_Table'|'WP_Theme_Install_List_Table'|'WP_Plugins_List_Table'|'WP_Application_Passwords_List_Table'|'WP_MS_Sites_List_Table'|'WP_MS_Users_List_Table'|'WP_MS_Themes_List_Table'|'WP_Privacy_Data_Export_Requests_List_Table'|'WP_Privacy_Data_Removal_Requests_List_Table' ? \WP_List_Table : false)", 'args' => 'array{screen?: string}'],
     'addslashes_gpc' => ['T', '@phpstan-template' => 'T', 'gpc' => 'T'],
     'add_submenu_page' => [null, 'callback' => "''|callable"],
     'have_posts' => [null, '@phpstan-impure' => ''],
@@ -166,5 +167,7 @@ return [
     'wp_get_post_tags' => ["(\$args is array{fields: 'names'|'slugs'} ? list<string> : (\$args is array{fields: 'id=>name'|'id=>slug'} ? array<int, string> : (\$args is array{fields: 'id=>parent'} ? array<int, int> : (\$args is array{fields: 'ids'|'tt_ids'} ? list<int> : array<int, \WP_Term>))))|\WP_Error"],
     'wp_get_post_terms' => ["(\$args is array{fields: 'names'|'slugs'} ? list<string> : (\$args is array{fields: 'id=>name'|'id=>slug'} ? array<int, string> : (\$args is array{fields: 'id=>parent'} ? array<int, int> : (\$args is array{fields: 'ids'|'tt_ids'} ? list<int> : array<int, \WP_Term>))))|\WP_Error"],
     'wp_get_object_terms' => ["(\$args is array{fields: 'names'|'slugs'} ? list<string> : (\$args is array{fields: 'id=>name'|'id=>slug'} ? array<int, string> : (\$args is array{fields: 'id=>parent'} ? array<int, int> : (\$args is array{fields: 'ids'|'tt_ids'} ? list<int> : array<int, \WP_Term>))))|\WP_Error"],
+    'wp_parse_list' => ['($input_list is array ? array<scalar> : list<string>)'],
     'wp_parse_str' => [null, '@phpstan-param-out' => 'array<int|string, array|string> $result'],
+    'size_format' => ["(\$bytes is not numeric ? false : (\$bytes is negative-int|'0' ? false : string))"],
 ];

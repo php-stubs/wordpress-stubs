@@ -9,6 +9,7 @@ class TypeInferenceTest extends \PHPStan\Testing\TypeInferenceTestCase
     /** @return iterable<mixed> */
     public function dataFileAsserts(): iterable
     {
+        yield from $this->gatherAssertTypes(__DIR__ . '/data/_get_list_table.php');
         yield from $this->gatherAssertTypes(__DIR__ . '/data/current_time.php');
         yield from $this->gatherAssertTypes(__DIR__ . '/data/echo_parameter.php');
         yield from $this->gatherAssertTypes(__DIR__ . '/data/get_approved_comments.php');
@@ -36,6 +37,7 @@ class TypeInferenceTest extends \PHPStan\Testing\TypeInferenceTestCase
         yield from $this->gatherAssertTypes(__DIR__ . '/data/is_wp_error.php');
         yield from $this->gatherAssertTypes(__DIR__ . '/data/mysql2date.php');
         yield from $this->gatherAssertTypes(__DIR__ . '/data/rest_ensure_response.php');
+        yield from $this->gatherAssertTypes(__DIR__ . '/data/size_format.php');
         yield from $this->gatherAssertTypes(__DIR__ . '/data/term_exists.php');
         yield from $this->gatherAssertTypes(__DIR__ . '/data/wp_debug_backtrace_summary.php');
         yield from $this->gatherAssertTypes(__DIR__ . '/data/wp_die.php');
@@ -50,6 +52,7 @@ class TypeInferenceTest extends \PHPStan\Testing\TypeInferenceTestCase
         yield from $this->gatherAssertTypes(__DIR__ . '/data/wp_list_bookmarks.php');
         yield from $this->gatherAssertTypes(__DIR__ . '/data/wp_list_categories.php');
         yield from $this->gatherAssertTypes(__DIR__ . '/data/wp_list_pages.php');
+        yield from $this->gatherAssertTypes(__DIR__ . '/data/wp_parse_list.php');
         yield from $this->gatherAssertTypes(__DIR__ . '/data/wp_rest_request.php');
         yield from $this->gatherAssertTypes(__DIR__ . '/data/wp_theme.php');
         yield from $this->gatherAssertTypes(__DIR__ . '/data/wpdb.php');
