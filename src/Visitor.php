@@ -205,10 +205,8 @@ class Visitor extends NodeVisitor
      */
     private function generateAdditionalTagsFromDoc(Doc $docComment): array
     {
-        $docCommentText = $docComment->getText();
-
         try {
-            $docblock = $this->docBlockFactory->create($docCommentText);
+            $docblock = $this->docBlockFactory->create($docComment->getText());
         } catch (\RuntimeException | \InvalidArgumentException $e) {
             return [];
         }
