@@ -1,5 +1,0 @@
-parameters:
-    bootstrapFiles:
-        - ../wordpress-stubs.php
-    featureToggles:
-        listType: true
