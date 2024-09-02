@@ -29,6 +29,9 @@
     <rule ref="SlevomatCodingStandard.PHP.RequireExplicitAssertion">
         <exclude-pattern>tests/</exclude-pattern>
     </rule>
+    <rule ref="Squiz.NamingConventions.ValidVariableName.MemberNotCamelCaps">
+        <exclude-pattern>tests/</exclude-pattern>
+    </rule>
     <rule ref="Squiz.PHP.CommentedOutCode">
         <exclude-pattern>tests/</exclude-pattern>
     </rule>
