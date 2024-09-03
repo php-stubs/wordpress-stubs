@@ -13,6 +13,9 @@
     </rule>
 
     <!-- Rules not applied to tests -->
+    <rule ref="NeutronStandard.Functions.LongFunction.LongFunction">
+        <exclude-pattern>tests/TypeInferenceTest.php</exclude-pattern>
+    </rule>
     <rule ref="PSR12NeutronRuleset.NamingConventions.MeaningfulVariableName">
         <exclude-pattern>tests/</exclude-pattern>
     </rule>
