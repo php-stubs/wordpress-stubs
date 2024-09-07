@@ -13,6 +13,9 @@
     </rule>
 
     <!-- Rules not applied to tests -->
+    <rule ref="NeutronStandard.Functions.LongFunction.LongFunction">
+        <exclude-pattern>tests/TypeInferenceTest.php</exclude-pattern>
+    </rule>
     <rule ref="PSR12NeutronRuleset.NamingConventions.MeaningfulVariableName">
         <exclude-pattern>tests/</exclude-pattern>
     </rule>
@@ -27,6 +30,9 @@
         </properties>
     </rule>
     <rule ref="SlevomatCodingStandard.PHP.RequireExplicitAssertion">
+        <exclude-pattern>tests/</exclude-pattern>
+    </rule>
+    <rule ref="Squiz.NamingConventions.ValidVariableName.MemberNotCamelCaps">
         <exclude-pattern>tests/</exclude-pattern>
     </rule>
     <rule ref="Squiz.PHP.CommentedOutCode">

@@ -7,7 +7,24 @@ namespace PhpStubs\WordPress\Core\Tests;
 use function PHPStan\Testing\assertType;
 
 /** @var \WP_Theme */
-$theme = $theme;
+$theme = $_GET['theme'];
+
+// WP_Theme::__get()
+assertType('string', $theme->name);
+assertType('string', $theme->title);
+assertType('string', $theme->version);
+assertType('string', $theme->parent_theme);
+assertType('string', $theme->template_dir);
+assertType('string', $theme->stylesheet_dir);
+assertType('string', $theme->template);
+assertType('string', $theme->stylesheet);
+assertType('string', $theme->screenshot);
+assertType('string', $theme->description);
+assertType('string', $theme->author);
+assertType('list<string>', $theme->tags);
+assertType('string', $theme->theme_root);
+assertType('string', $theme->theme_root_uri);
+assertType('*ERROR*', $theme->unknown_property);
 
 // WP_Theme::get()
 assertType('string', $theme->get('Name'));

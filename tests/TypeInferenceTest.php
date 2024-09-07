@@ -43,6 +43,7 @@ class TypeInferenceTest extends \PHPStan\Testing\TypeInferenceTestCase
         yield from $this->gatherAssertTypes(__DIR__ . '/data/wp_die.php');
         yield from $this->gatherAssertTypes(__DIR__ . '/data/wp_dropdown_languages.php');
         yield from $this->gatherAssertTypes(__DIR__ . '/data/wp_error_parameter.php');
+        yield from $this->gatherAssertTypes(__DIR__ . '/data/wp_generate_tag_cloud.php');
         yield from $this->gatherAssertTypes(__DIR__ . '/data/wp_get_archives.php');
         yield from $this->gatherAssertTypes(__DIR__ . '/data/wp_get_post_categories.php');
         yield from $this->gatherAssertTypes(__DIR__ . '/data/wp_get_post_tags.php');
@@ -54,7 +55,9 @@ class TypeInferenceTest extends \PHPStan\Testing\TypeInferenceTestCase
         yield from $this->gatherAssertTypes(__DIR__ . '/data/wp_list_pages.php');
         yield from $this->gatherAssertTypes(__DIR__ . '/data/wp_parse_list.php');
         yield from $this->gatherAssertTypes(__DIR__ . '/data/wp_rest_request.php');
+        yield from $this->gatherAssertTypes(__DIR__ . '/data/wp_tag_cloud.php');
         yield from $this->gatherAssertTypes(__DIR__ . '/data/wp_theme.php');
+        yield from $this->gatherAssertTypes(__DIR__ . '/data/wp_translations.php');
         yield from $this->gatherAssertTypes(__DIR__ . '/data/wpdb.php');
     }
 
