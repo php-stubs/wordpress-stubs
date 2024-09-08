@@ -14,6 +14,12 @@ $taxonomies = 'category';
 assertType('array<int, WP_Term>|WP_Error', wp_get_object_terms($objectIDs, $taxonomies));
 assertType('array<int, WP_Term>|WP_Error', wp_get_object_terms($objectIDs, $taxonomies, []));
 
+// Empty $object_ids or $taxonomies
+assertType('array{}', wp_get_object_terms(0, $taxonomies, ['fields' => 'count']));
+assertType('array{}', wp_get_object_terms([], $taxonomies));
+assertType('array{}', wp_get_object_terms($objectIDs, ''));
+assertType('array{}', wp_get_object_terms($objectIDs, []));
+
 // Requesting names or slugs
 assertType('list<string>|WP_Error', wp_get_object_terms($objectIDs, $taxonomies, ['fields' => 'names']));
 assertType('list<string>|WP_Error', wp_get_object_terms($objectIDs, $taxonomies, ['fields' => 'slugs']));
@@ -32,5 +38,8 @@ assertType('array<int, WP_Term>|WP_Error', wp_get_object_terms($objectIDs, $taxo
 assertType('array<int, WP_Term>|WP_Error', wp_get_object_terms($objectIDs, $taxonomies, ['fields' => 'all_with_object_id']));
 assertType('array<int, WP_Term>|WP_Error', wp_get_object_terms($objectIDs, $taxonomies, ['fields' => 'foo']));
 
+// Requesting a count
+assertType('numeric-string|WP_Error', wp_get_object_terms($objectIDs, $taxonomies, ['fields' => 'count']));
+
 // Unknown fields value
-assertType('array<int, int|string|WP_Term>|WP_Error', wp_get_object_terms($objectIDs, $taxonomies, ['fields' => (string)$_GET['fields']]));
+assertType('array<int, int|string|WP_Term>|numeric-string|WP_Error', wp_get_object_terms($objectIDs, $taxonomies, ['fields' => (string)$_GET['fields']]));

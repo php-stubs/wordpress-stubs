@@ -13,6 +13,9 @@ $postID = 123;
 assertType('list<int>|WP_Error', wp_get_post_categories($postID));
 assertType('list<int>|WP_Error', wp_get_post_categories($postID, []));
 
+// Empty $post_id
+assertType('array{}', wp_get_post_categories(0));
+
 // Requesting names or slugs
 assertType('list<string>|WP_Error', wp_get_post_categories($postID, ['fields' => 'names']));
 assertType('list<string>|WP_Error', wp_get_post_categories($postID, ['fields' => 'slugs']));
@@ -31,5 +34,8 @@ assertType('array<int, WP_Term>|WP_Error', wp_get_post_categories($postID, ['fie
 assertType('array<int, WP_Term>|WP_Error', wp_get_post_categories($postID, ['fields' => 'all_with_object_id']));
 assertType('list<int>|WP_Error', wp_get_post_categories($postID, ['fields' => 'foo']));
 
+// Requesting a count
+assertType('numeric-string|WP_Error', wp_get_post_categories($postID, ['fields' => 'count']));
+
 // Unknown fields value
-assertType('array<int, int|string|WP_Term>|WP_Error', wp_get_post_categories($postID, ['fields' => (string)$_GET['fields']]));
+assertType('array<int, int|string|WP_Term>|numeric-string|WP_Error', wp_get_post_categories($postID, ['fields' => (string)$_GET['fields']]));
