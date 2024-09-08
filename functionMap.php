@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-$httpReturnType = 'array{headers: \WpOrg\Requests\Utility\CaseInsensitiveDictionary, body: string, response: array{code: int,message: string}, cookies: array<int, \WP_Http_Cookie>, filename: string|null, http_response: \WP_HTTP_Requests_Response}|\WP_Error';
+$httpReturnType = 'array{headers: \WpOrg\Requests\Utility\CaseInsensitiveDictionary, body: string, response: array{code: int, message: string}, cookies: array<int, \WP_Http_Cookie>, filename: string|null, http_response: \WP_HTTP_Requests_Response}|\WP_Error';
 
 if (file_exists(sprintf('%s/source/wordpress/wp-includes/Requests/Cookie/Jar.php', __DIR__))) {
     $httpReturnType = 'array{headers: \Requests_Utility_CaseInsensitiveDictionary, body: string, response: array{code: int,message: string}, cookies: array<int, \WP_Http_Cookie>, filename: string|null, http_response: \WP_HTTP_Requests_Response}|\WP_Error';
@@ -177,6 +177,15 @@ return [
     'WP_Widget::form' => [null, 'instance' => 'T'],
     'WP_Widget::update' => [null, 'new_instance' => 'T', 'old_instance' => 'T'],
     'WP_Widget::widget' => [null, 'instance' => 'T', 'args' => 'array{name:string,id:string,description:string,class:string,before_widget:string,after_widget:string,before_title:string,after_title:string,before_sidebar:string,after_sidebar:string,show_in_rest:boolean,widget_id:string,widget_name:string}'],
+    'get_approved_comments' => ["(\$args is array{count: true} ? int : (\$args is array{fields: 'ids'} ?  array<int, int> : array<int, \WP_Comment>))"],
+    'get_posts' => ["(\$args is array{fields: 'id=>parent'|'ids'} ? array<int, int> : array<int, \WP_Post>)"],
+    'get_sites' => ["(\$args is array{count: true} ? int : (\$args is array{fields: 'ids'} ?  array<int, int> : array<int, \WP_Site>))"],
+    'get_tags' =>  ["(\$args is array{fields: 'count'} ? numeric-string : (\$args is array{fields: 'names'|'slugs'} ? list<string> : (\$args is array{fields: 'id=>name'|'id=>slug'} ? array<int, string> : (\$args is array{fields: 'id=>parent'} ? array<int, int> : (\$args is array{fields: 'ids'|'tt_ids'} ? list<int> : array<int, \WP_Term>)))))|\WP_Error"],
+    'get_terms' => ["(\$args is array{fields: 'count'} ? numeric-string : (\$args is array{fields: 'names'|'slugs'} ? list<string> : (\$args is array{fields: 'id=>name'|'id=>slug'} ? array<int, string> : (\$args is array{fields: 'id=>parent'} ? array<int, int> : (\$args is array{fields: 'ids'|'tt_ids'} ? list<int> : array<int, \WP_Term>)))))|\WP_Error"],
+    'wp_get_post_categories' => ["(\$post_id is 0 ? array{} : ((\$args is array{fields: 'names'|'slugs'} ? list<string> : (\$args is array{fields: 'id=>name'|'id=>slug'} ? array<int, string> : (\$args is array{fields: 'id=>parent'} ? array<int, int> : (\$args is array{fields: 'all'|'all_with_object_id'} ? array<int, \WP_Term> : (\$args is array{fields: 'count'} ? numeric-string : list<int>)))))|\WP_Error))"],
+    'wp_get_post_tags' => ["(\$post_id is 0 ? array{} : ((\$args is array{fields: 'names'|'slugs'} ? list<string> : (\$args is array{fields: 'id=>name'|'id=>slug'} ? array<int, string> : (\$args is array{fields: 'id=>parent'} ? array<int, int> : (\$args is array{fields: 'ids'|'tt_ids'} ? list<int> : (\$args is array{fields: 'count'} ? numeric-string : array<int, \WP_Term>)))))|\WP_Error))"],
+    'wp_get_post_terms' => ["(\$post_id is 0 ? array{} : (\$taxonomy is empty ? array{} : ((\$args is array{fields: 'names'|'slugs'} ? list<string> : (\$args is array{fields: 'id=>name'|'id=>slug'} ? array<int, string> : (\$args is array{fields: 'id=>parent'} ? array<int, int> : (\$args is array{fields: 'ids'|'tt_ids'} ? list<int> : (\$args is array{fields: 'count'} ? numeric-string : array<int, \WP_Term>)))))|\WP_Error)))"],
+    'wp_get_object_terms' => ["(\$object_ids is empty ? array{} : (\$taxonomies is empty ? array{} : ((\$args is array{fields: 'names'|'slugs'} ? list<string> : (\$args is array{fields: 'id=>name'|'id=>slug'} ? array<int, string> : (\$args is array{fields: 'id=>parent'} ? array<int, int> : (\$args is array{fields: 'ids'|'tt_ids'} ? list<int> : (\$args is array{fields: 'count'} ? numeric-string : array<int, \WP_Term>)))))|\WP_Error)))"],
     'wp_parse_list' => ['($input_list is array ? array<scalar> : list<string>)'],
     'wp_parse_str' => [null, '@phpstan-param-out' => 'array<int|string, array|string> $result'],
     'size_format' => ["(\$bytes is not numeric ? false : (\$bytes is negative-int|'0' ? false : string))"],
