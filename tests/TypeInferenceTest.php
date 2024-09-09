@@ -10,6 +10,7 @@ class TypeInferenceTest extends \PHPStan\Testing\TypeInferenceTestCase
     public function dataFileAsserts(): iterable
     {
         yield from $this->gatherAssertTypes(__DIR__ . '/data/_get_list_table.php');
+        yield from $this->gatherAssertTypes(__DIR__ . '/data/_wp_json_sanity_check.php');
         yield from $this->gatherAssertTypes(__DIR__ . '/data/current_time.php');
         yield from $this->gatherAssertTypes(__DIR__ . '/data/echo_parameter.php');
         yield from $this->gatherAssertTypes(__DIR__ . '/data/get_approved_comments.php');
