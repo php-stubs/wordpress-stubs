@@ -10,5 +10,5 @@ use WP_Query;
 $wpQuery = new WP_Query();
 
 assertType('bool', $wpQuery->query_vars_changed);
-assertType('string|bool', $wpQuery->$query_vars_hash);
-assertType('void', $wpQuery->init_query_flags());
+assertType('bool|string', $wpQuery->query_vars_hash);
+assertType('null', $wpQuery->init_query_flags());
