@@ -192,4 +192,5 @@ return [
     'size_format' => ["(\$bytes is not numeric ? false : (\$bytes is negative-int|'0' ? false : string))"],
     'WP_Translations::translate' => ['($singular is null ? null : string)'],
     'WP_Translations::translate_plural' => ['($singular is null ? null : ($plural is null ? T : string))', '@phpstan-template T' => 'of string|null', 'singular' => 'T', 'count' => 'int'],
+    'WP_Query' => [null, '@phpstan-property-read bool $query_vars_changed' => '', '@phpstan-property-read bool|string $query_vars_hash' => '', '@phpstan-method void init_query_flags()' => ''],
 ];
