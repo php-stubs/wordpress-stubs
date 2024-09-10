@@ -12,8 +12,9 @@ declare(strict_types=1);
 
 namespace PhpStubs\WordPress\Core\Tests;
 
-use function PHPStan\Testing\assertType;
 use WP_Query;
+
+use function PHPStan\Testing\assertType;
 
 $wpQuery = new WP_Query();
 
