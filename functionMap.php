@@ -193,4 +193,7 @@ return [
     'WP_Translations::translate' => ['($singular is null ? null : string)'],
     'WP_Translations::translate_plural' => ['($singular is null ? null : ($plural is null ? T : string))', '@phpstan-template T' => 'of string|null', 'singular' => 'T', 'count' => 'int'],
     'WP_Query' => [null, '@phpstan-property-read bool $query_vars_changed' => '', '@phpstan-property-read bool|string $query_vars_hash' => '', '@phpstan-method void init_query_flags()' => ''],
+    'WP_Widget_Factory::$widgets' => [null, '@phpstan-var' => 'array<string, \WP_Widget>'],
+    'WP_Widget_Factory::register' => [null, 'widget' => 'class-string<\WP_Widget>|\WP_Widget'],
+    'WP_Widget_Factory::unregister' => [null, 'widget' => 'class-string<\WP_Widget>|\WP_Widget'],
 ];
