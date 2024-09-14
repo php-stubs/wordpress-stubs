@@ -73,6 +73,8 @@ class Visitor extends NodeVisitor
             return null;
         }
 
+        $node = $this->getCleanCommentsNode($node);
+
         $docComment = $node->getDocComment();
 
         if (! ($docComment instanceof Doc)) {
@@ -869,5 +871,40 @@ class Visitor extends NodeVisitor
             }
         }
         return '';
+    }
+
+    private function getCleanCommentsNode(Node $node): Node
+    {
+        if (count($node->getComments()) === 0) {
+            return $node;
+        }
+
+        // Remove "//" comments.
+        $comments = [];
+        foreach ($node->getComments() as $comment) {
+            if (strpos(trim($comment->getText()), '//') === 0) {
+                continue;
+            }
+            $comments[] = $comment;
+        }
+
+        $node->setAttribute('comments', $comments);
+
+        if ($node->getDocComment() === null) {
+            return $node;
+        }
+
+        // Remove file comments that are bound to the first node in a file.
+        $comments = $node->getComments();
+        if (
+            $comments[0]->getText() !== (string)$node->getDocComment()
+            && strpos($comments[0]->getText(), '/**#@') !== 0
+        ) {
+            array_shift($comments);
+        }
+
+        $node->setAttribute('comments', $comments);
+
+        return $node;
     }
 }
