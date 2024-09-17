@@ -38,6 +38,7 @@ class TypeInferenceTest extends \PHPStan\Testing\TypeInferenceTestCase
         yield from $this->gatherAssertTypes(__DIR__ . '/data/has_filter.php');
         yield from $this->gatherAssertTypes(__DIR__ . '/data/is_wp_error.php');
         yield from $this->gatherAssertTypes(__DIR__ . '/data/mysql2date.php');
+        yield from $this->gatherAssertTypes(__DIR__ . '/data/paginate_links.php');
         yield from $this->gatherAssertTypes(__DIR__ . '/data/rest_ensure_response.php');
         yield from $this->gatherAssertTypes(__DIR__ . '/data/size_format.php');
         yield from $this->gatherAssertTypes(__DIR__ . '/data/term_exists.php');
