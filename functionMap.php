@@ -38,6 +38,7 @@ return [
     'addslashes_gpc' => ['T', '@phpstan-template' => 'T', 'gpc' => 'T'],
     'add_submenu_page' => [null, 'callback' => "''|callable"],
     'have_posts' => [null, '@phpstan-impure' => ''],
+    'paginate_links' => ["(\$args is array{total: int<min, 1>} ? void : (\$args is array{type: 'array'} ? list<string> : string))"],
     'rawurlencode_deep' => ['T', '@phpstan-template' => 'T', 'value' => 'T'],
     'sanitize_category' => ['T', '@phpstan-template' => 'T of array|object', 'category' => 'T'],
     'sanitize_post' => ['T', '@phpstan-template' => 'T of array|object', 'post' => 'T'],
