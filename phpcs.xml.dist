@@ -16,6 +16,9 @@
     <rule ref="NeutronStandard.Functions.LongFunction.LongFunction">
         <exclude-pattern>tests/TypeInferenceTest.php</exclude-pattern>
     </rule>
+    <rule ref="NeutronStandard.Functions.TypeHint.UnusedReturnType">
+        <exclude-pattern>tests/TypeInferenceTest.php</exclude-pattern>
+    </rule>
     <rule ref="PSR12NeutronRuleset.NamingConventions.MeaningfulVariableName">
         <exclude-pattern>tests/</exclude-pattern>
     </rule>
@@ -49,11 +52,5 @@
     </rule>
     <rule ref="WordPress.WP.GlobalVariablesOverride">
         <exclude-pattern>tests/</exclude-pattern>
-    </rule>
-    <rule ref="NeutronStandard.Functions.LongFunction.LongFunction">
-        <exclude-pattern>tests/TypeInferenceTest.php</exclude-pattern>
-    </rule>
-    <rule ref="NeutronStandard.Functions.TypeHint.UnusedReturnType">
-        <exclude-pattern>tests/TypeInferenceTest.php</exclude-pattern>
     </rule>
 </ruleset>
