@@ -196,4 +196,5 @@ return [
     'WP_Widget_Factory::$widgets' => [null, '@phpstan-var' => 'array<string, \WP_Widget>'],
     'WP_Widget_Factory::register' => [null, 'widget' => 'class-string<\WP_Widget>|\WP_Widget'],
     'WP_Widget_Factory::unregister' => [null, 'widget' => 'class-string<\WP_Widget>|\WP_Widget'],
+    'Custom_Image_Header::show_header_selector' => [null, 'type' => "'default'|'uploaded'"],
 ];
