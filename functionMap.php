@@ -34,6 +34,7 @@ $filesystemDirlistReturnType = "false|array<string, array{name: string, perms: s
 return [
     '_wp_json_sanity_check' => ['T', '@phpstan-template' => 'T', 'value' => 'T', 'depth' => 'positive-int'],
     '_get_list_table' => ["(\$class_name is 'WP_Posts_List_Table'|'WP_Media_List_Table'|'WP_Terms_List_Table'|'WP_Users_List_Table'|'WP_Comments_List_Table'|'WP_Post_Comments_List_Table'|'WP_Links_List_Table'|'WP_Plugin_Install_List_Table'|'WP_Themes_List_Table'|'WP_Theme_Install_List_Table'|'WP_Plugins_List_Table'|'WP_Application_Passwords_List_Table'|'WP_MS_Sites_List_Table'|'WP_MS_Users_List_Table'|'WP_MS_Themes_List_Table'|'WP_Privacy_Data_Export_Requests_List_Table'|'WP_Privacy_Data_Removal_Requests_List_Table' ? T : false)", '@phpstan-template' => 'T', 'class_name' => 'class-string<T>', 'args' => 'array{screen?: string}'],
+    'absint' => ['($maybeint is T&non-negative-int ? T : ($maybeint is negative-int ? positive-int : ($maybeint is empty ? 0 : ($maybeint is numeric-string ? non-negative-int : ($maybeint is string ? 0 : ($maybeint is true|non-empty-array ? 1 : ($maybeint is bool ? 0|1 : non-negative-int)))))))', '@template T' => 'of int', 'maybeint' => 'T|scalar|array|resource|null'],
     'addslashes_gpc' => ['T', '@phpstan-template' => 'T', 'gpc' => 'T'],
     'add_submenu_page' => [null, 'callback' => "''|callable"],
     'have_posts' => [null, '@phpstan-impure' => ''],
