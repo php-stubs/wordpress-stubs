@@ -46,6 +46,7 @@ return [
     'stripslashes_deep' => ['T', '@phpstan-template' => 'T', 'value' => 'T'],
     'urldecode_deep' => ['T', '@phpstan-template' => 'T', 'value' => 'T'],
     'urlencode_deep' => ['T', '@phpstan-template' => 'T', 'value' => 'T'],
+    'validate_file' => ["(\$file is '' ? 0 : (\$allowed_files is empty ? 0|1|2 : 0|1|2|3))"],
     'wp_die' => ['($args is array{exit: false} ? void : never))'],
     'wp_dropdown_languages' => ["(\$args is array{id: null|''} ? void : (\$args is array{name: null|''} ? void : string))"],
     'wp_clear_scheduled_hook' => ['(0|positive-int|($wp_error is false ? false : \WP_Error))', 'args' => $cronArgsType],
