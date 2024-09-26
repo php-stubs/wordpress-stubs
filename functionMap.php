@@ -49,6 +49,7 @@ return [
     'sanitize_post' => ['T', '@phpstan-template' => 'T of array|object', 'post' => 'T'],
     'sanitize_term' => ['T', '@phpstan-template' => 'T of array|object', 'term' => 'T'],
     'stripslashes_deep' => ['T', '@phpstan-template' => 'T', 'value' => 'T'],
+    'stripslashes_from_strings_only' => ['T', '@phpstan-template' => 'T', 'value' => 'T'],
     'urldecode_deep' => ['T', '@phpstan-template' => 'T', 'value' => 'T'],
     'urlencode_deep' => ['T', '@phpstan-template' => 'T', 'value' => 'T'],
     'validate_file' => ["(\$file is '' ? 0 : (\$allowed_files is empty ? 0|1|2 : 0|1|2|3))"],
