@@ -77,6 +77,7 @@ return [
     'wp_schedule_single_event' => ['($wp_error is false ? bool : true|\WP_Error)', 'args' => $cronArgsType],
     'wp_slash' => ['T', '@phpstan-template' => 'T', 'value' => 'T'],
     'wp_tag_cloud' => ["(\$args is array{format: 'array'} ? array<int, string>|void : (\$args is array{echo: false|0} ? string|void : void))"],
+    'wp_unique_id' => ['($prefix is empty ? numeric-string : ($prefix is numeric ? numeric-string : string))'],
     'wp_unschedule_event' => ['($wp_error is false ? bool : true|\WP_Error)', 'args' => $cronArgsType],
     'wp_unslash' => ['T', '@phpstan-template' => 'T', 'value' => 'T'],
     'wp_widget_rss_form' => ['void', 'args' => $wpWidgetRssFormArgsType, 'inputs' => $wpWidgetRssFormInputsType],

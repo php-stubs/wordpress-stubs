@@ -62,6 +62,7 @@ class TypeInferenceTest extends \PHPStan\Testing\TypeInferenceTestCase
         yield from $this->gatherAssertTypes(__DIR__ . '/data/wp_tag_cloud.php');
         yield from $this->gatherAssertTypes(__DIR__ . '/data/wp_theme.php');
         yield from $this->gatherAssertTypes(__DIR__ . '/data/wp_translations.php');
+        yield from $this->gatherAssertTypes(__DIR__ . '/data/wp_unique_id.php');
         yield from $this->gatherAssertTypes(__DIR__ . '/data/wp_widget_factory.php');
         yield from $this->gatherAssertTypes(__DIR__ . '/data/wpdb.php');
     }
