@@ -9,9 +9,11 @@ class TypeInferenceTest extends \PHPStan\Testing\TypeInferenceTestCase
     /** @return iterable<mixed> */
     public function dataFileAsserts(): iterable
     {
+        yield from $this->gatherAssertTypes(__DIR__ . '/data/__return.php');
         yield from $this->gatherAssertTypes(__DIR__ . '/data/_get_list_table.php');
         yield from $this->gatherAssertTypes(__DIR__ . '/data/_wp_json_sanity_check.php');
         yield from $this->gatherAssertTypes(__DIR__ . '/data/absint.php');
+        yield from $this->gatherAssertTypes(__DIR__ . '/data/bool_from_yn.php');
         yield from $this->gatherAssertTypes(__DIR__ . '/data/current_time.php');
         yield from $this->gatherAssertTypes(__DIR__ . '/data/echo_parameter.php');
         yield from $this->gatherAssertTypes(__DIR__ . '/data/get_approved_comments.php');
@@ -36,12 +38,14 @@ class TypeInferenceTest extends \PHPStan\Testing\TypeInferenceTestCase
         yield from $this->gatherAssertTypes(__DIR__ . '/data/get_term.php');
         yield from $this->gatherAssertTypes(__DIR__ . '/data/get_taxonomies_for_attachments.php');
         yield from $this->gatherAssertTypes(__DIR__ . '/data/has_filter.php');
+        yield from $this->gatherAssertTypes(__DIR__ . '/data/is_new_day.php');
         yield from $this->gatherAssertTypes(__DIR__ . '/data/is_wp_error.php');
         yield from $this->gatherAssertTypes(__DIR__ . '/data/mysql2date.php');
         yield from $this->gatherAssertTypes(__DIR__ . '/data/paginate_links.php');
         yield from $this->gatherAssertTypes(__DIR__ . '/data/rest_ensure_response.php');
         yield from $this->gatherAssertTypes(__DIR__ . '/data/size_format.php');
         yield from $this->gatherAssertTypes(__DIR__ . '/data/term_exists.php');
+        yield from $this->gatherAssertTypes(__DIR__ . '/data/validate_file.php');
         yield from $this->gatherAssertTypes(__DIR__ . '/data/wp_debug_backtrace_summary.php');
         yield from $this->gatherAssertTypes(__DIR__ . '/data/wp_die.php');
         yield from $this->gatherAssertTypes(__DIR__ . '/data/wp_dropdown_languages.php');
