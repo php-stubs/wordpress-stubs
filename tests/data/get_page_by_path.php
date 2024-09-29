@@ -18,7 +18,7 @@ assertType('array<string, mixed>|null', get_page_by_path('page/path', ARRAY_A));
 assertType('array<int, mixed>|null', get_page_by_path('page/path', ARRAY_N));
 
 // Unknown output
-assertType('array<int|string, mixed>|WP_Post|null', get_page_by_path('page/path', (string)$_GET['unknown_string']));
+assertType('array<int|string, mixed>|WP_Post|null', get_page_by_path('page/path', Faker::string()));
 
 // Unexpected output
 assertType('WP_Post|null', get_page_by_path('page/path', 'Hello'));

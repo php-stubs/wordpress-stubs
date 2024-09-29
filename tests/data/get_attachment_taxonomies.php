@@ -8,19 +8,19 @@ use function get_attachment_taxonomies;
 use function PHPStan\Testing\assertType;
 
 // Default
-assertType('array<int, string>', get_attachment_taxonomies((int)$_GET['id']));
-assertType('array<int, string>', get_attachment_taxonomies((int)$_GET['id'], 'names'));
+assertType('array<int, string>', get_attachment_taxonomies(Faker::int()));
+assertType('array<int, string>', get_attachment_taxonomies(Faker::int(), 'names'));
 
 // Objects
-assertType('array<string, WP_Taxonomy>', get_attachment_taxonomies((int)$_GET['id'], 'objects'));
+assertType('array<string, WP_Taxonomy>', get_attachment_taxonomies(Faker::int(), 'objects'));
 
 // Unexpected
-assertType('array<string, WP_Taxonomy>', get_attachment_taxonomies((int)$_GET['id'], 'Hello'));
+assertType('array<string, WP_Taxonomy>', get_attachment_taxonomies(Faker::int(), 'Hello'));
 
 // Unknown
-assertType('array<int|string, string|WP_Taxonomy>', get_attachment_taxonomies((int)$_GET['id'], (string)$_GET['string']));
+assertType('array<int|string, string|WP_Taxonomy>', get_attachment_taxonomies(Faker::int(), Faker::string()));
 
 // Unions
-assertType('array<int|string, string|WP_Taxonomy>', get_attachment_taxonomies((int)$_GET['id'], $_GET['foo'] ? 'names' : 'objects'));
-assertType('array<int|string, string|WP_Taxonomy>', get_attachment_taxonomies((int)$_GET['id'], $_GET['foo'] ? (string)$_GET['string'] : 'names'));
-assertType('array<int|string, string|WP_Taxonomy>', get_attachment_taxonomies((int)$_GET['id'], $_GET['foo'] ? (string)$_GET['string'] : 'objects'));
+assertType('array<int|string, string|WP_Taxonomy>', get_attachment_taxonomies(Faker::int(), Faker::bool() ? 'names' : 'objects'));
+assertType('array<int|string, string|WP_Taxonomy>', get_attachment_taxonomies(Faker::int(), Faker::bool() ? Faker::string() : 'names'));
+assertType('array<int|string, string|WP_Taxonomy>', get_attachment_taxonomies(Faker::int(), Faker::bool() ? Faker::string() : 'objects'));

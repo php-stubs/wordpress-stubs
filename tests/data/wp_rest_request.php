@@ -9,27 +9,21 @@ use function PHPStan\Testing\assertType;
 /**
  * @var \WP_REST_Request<array> $request
  */
-$request = new WP_REST_Request();
+$request = Faker::wpRestRequest();
 
 assertType('mixed', $request->get_param('maybeParam'));
-
 assertType('mixed', $request['maybeParam']);
-
 assertType('array', $request->get_params());
-
 assertType('bool', $request->has_param('maybeParam'));
 
 /**
  * @var \WP_REST_Request<array<string, string>> $request
  */
-$request = new WP_REST_Request();
+$request = Faker::wpRestRequest();
 
 assertType('string|null', $request->get_param('maybeParam'));
-
 assertType('string|null', $request['maybeParam']);
-
 assertType('array<string, string>', $request->get_params());
-
 assertType('bool', $request->has_param('maybeParam'));
 
 /**
@@ -39,7 +33,7 @@ assertType('bool', $request->has_param('maybeParam'));
  *      boolParam: bool
  * }> $request
  */
-$request = new WP_REST_Request();
+$request = Faker::wpRestRequest();
 
 assertType('string|null', $request->get_param('stringParam'));
 assertType('int|null', $request->get_param('intParam'));

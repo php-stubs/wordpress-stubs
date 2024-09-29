@@ -14,6 +14,4 @@ assertType('int', current_time('U'));
 // String types
 assertType('string', current_time('mysql'));
 assertType('string', current_time('Hello'));
-
-// Unknown string
-assertType('int|string', current_time((string)$_GET['unknown_string']));
+assertType('int|string', current_time(Faker::string()));

@@ -83,8 +83,8 @@ assertType('string', wp_loginout('', $value));
 assertType('string', wp_register('', '', $value));
 assertType('string', wp_title('', $value));
 
-// Unknown value
-$value = isset($_GET['foo']);
+// Unknown boolean value
+$value = Faker::bool();
 assertType('string|null', comment_class('', null, null, $value));
 assertType('string|null', edit_term_link('', '', '', null, $value));
 assertType('string|null', get_calendar(true, $value));

@@ -5,71 +5,92 @@ declare(strict_types=1);
 namespace PhpStubs\WordPress\Core\Tests;
 
 /**
- * @phpstan-type Types array{
- *   bool: bool,
- *   int: int,
- *   float: float,
- *   string: string,
- *   array: array<mixed>,
- *   resource: resource,
- *   object: object,
- *   numeric-string: numeric-string,
- *   null: null,
- *   mixed: mixed,
- *   true: true,
- *   false: false,
- *   callable: callable,
- *   iterable: iterable<mixed>,
- *   array-key: array-key,
- *   positive-int: positive-int,
- *   negative-int: negative-int,
- *   non-positive-int: non-positive-int,
- *   non-negative-int: non-negative-int,
- *   non-zero-int: non-zero-int,
- * }
+ * Class that provides fake types via docBlocks for type testing.
+ *
+ * @method static bool bool()
+ * @method static true true()
+ * @method static false false()
+ * @method static int int()
+ * @method static positive-int positiveInt()
+ * @method static negative-int negativeInt()
+ * @method static non-positive-int nonPositiveInt()
+ * @method static non-negative-int nonNegativeInt()
+ * @method static non-zero-int nonZeroInt()
+ * @method static float float()
+ * @method static string string()
+ * @method static non-empty-string nonEmptyString()
+ * @method static numeric-string numericString()
+ * @method static resource resource()
+ * @method static object object()
+ * @method static mixed mixed()
+ * @method static callable callable()
+ * @method static \stdClass stdClass()
+ * @method static \WP_Post wpPost()
+ * @method static \WP_Term wpTerm()
+ * @method static \WP_Comment wpComment()
+ * @method static \WP_REST_Request wpRestRequest()
+ * @method static \WP_Theme wpTheme()
+ * @method static \WP_Translations wpTranslations()
+ * @method static \WP_Query wpQuery()
+ * @method static \WP_Widget_Factory wpWidgetFactory()
  */
 class Faker
 {
     /**
-     * @var Types $types
-     * @phpstan-ignore-next-line
-     */
-    private static $types;
-
-    /**
-     * @template T of string
+     * Fakes `array<Type>`. If `$type` is `null`, fakes `array<mixed>`.
+     *
+     * @template T
      * @param T $type
-     * @return Types[T]
+     * @return ($type is null ? array<array-key, mixed> : array<array-key, T>)
      */
-    public static function fake(string $type): mixed
+    public static function array($type = null): array
     {
-        return self::$types[$type];
+        return [$type];
     }
 
     /**
-     * @template T of string
-     * @template K of string
-     * @param T $valueType
-     * @param K $keyType
-     * @return array<Types[K], Types[T]>
+     * Fakes `array<int, Type>`. If `$type` is `null`, fakes `array<int, mixed>`.
+     *
+     * @template T
+     * @param T|null $type
+     * @return ($type is null ? array<int, mixed> : array<int, T>)
      */
-    public static function fakeArray(string $valueType, string $keyType = 'array-key'): mixed
+    public static function intArray($type = null): array
     {
-        return [$_GET[$keyType], $_GET[$valueType]];
+        return [$type];
     }
 
     /**
-     * @template T of non-empty-array<key-of<Types>>
-     * @param T $types
-     * @return Types[value-of<T>]
+     * Fakes `array<string, Type>`. If `$type` is `null`, fakes `array<string, mixed>`.
+     *
+     * @template T
+     * @param T|null $type
+     * @return ($type is null ? array<string, mixed>: array<string, T>)
      */
-    public static function or(array $types): mixed
+    public static function strArray($type = null): array
     {
-        foreach ($types as $type) {
-            if ($_GET['thing'] === $type) {
-                return self::fake($type);
-            }
-        }
-        return self::fake($types[0]);
+        return [self::string() => $type];
+    }
+
+    /**
+     * Fakes `list<Type>`. If `$type` is `null`, fakes `list<mixed>`.
+     *
+     * @template T
+     * @param T|null $type
+     * @return ($type is null ? list<mixed> : list<T>)
+     */
+    public static function list($type = null): array
+    {
+        return [$type];
+    }
+
+    /**
+     * @template T
+     * @param T ...$types
+     * @return T
+     */
+    public static function union(...$types): mixed
+    {
+        return $types[0];
     }
 }

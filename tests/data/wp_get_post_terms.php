@@ -41,4 +41,4 @@ assertType('array<int, WP_Term>|WP_Error', wp_get_post_terms($postID, $taxonomy,
 assertType('numeric-string|WP_Error', wp_get_post_terms($postID, $taxonomy, ['fields' => 'count']));
 
 // Unknown fields value
-assertType('array<int, int|string|WP_Term>|numeric-string|WP_Error', wp_get_post_terms($postID, $taxonomy, ['fields' => (string)$_GET['fields']]));
+assertType('array<int, int|string|WP_Term>|numeric-string|WP_Error', wp_get_post_terms($postID, $taxonomy, ['fields' => Faker::string()]));

@@ -11,10 +11,8 @@ use function PHPStan\Testing\assertType;
 assertType('array<int, WP_Site>', get_sites());
 assertType('array<int, WP_Site>', get_sites([]));
 
-// Non constant array parameter
-/** @var array<int|string,mixed> $value */
-$value = $_GET['foo'];
-assertType('array<int, int|WP_Site>|int', get_sites($value));
+// Non constant array parameter.
+assertType('array<int, int|WP_Site>|int', get_sites(Faker::array()));
 
 // Array parameter with explicit fields value and default count value.
 assertType('array<int, int>', get_sites(['fields' => 'ids']));

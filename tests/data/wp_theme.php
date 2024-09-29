@@ -6,8 +6,7 @@ namespace PhpStubs\WordPress\Core\Tests;
 
 use function PHPStan\Testing\assertType;
 
-/** @var \WP_Theme */
-$theme = $_GET['theme'];
+$theme = Faker::wpTheme();
 
 // WP_Theme::__get()
 assertType('string', $theme->name);
@@ -42,7 +41,7 @@ assertType('string', $theme->get('RequiresWP'));
 assertType('string', $theme->get('RequiresPHP'));
 assertType('string', $theme->get('UpdateURI'));
 assertType('false', $theme->get('NoThemeHeader'));
-assertType('array<string>|string|false', $theme->get((string)$_GET['unknown_string']));
+assertType('array<string>|string|false', $theme->get(Faker::string()));
 
 // WP_Theme::offsetExists()
 assertType('false', $theme->offsetExists('NoThemeKey'));
@@ -65,7 +64,7 @@ assertType('true', $theme->offsetExists('Tags'));
 assertType('true', $theme->offsetExists('Theme Root'));
 assertType('true', $theme->offsetExists('Theme Root URI'));
 assertType('true', $theme->offsetExists('Parent Theme'));
-assertType('bool', $theme->offsetExists((string)$_GET['unknown_string']));
+assertType('bool', $theme->offsetExists(Faker::string()));
 
 // WP_Theme::offsetGet()
 assertType('null', $theme->offsetGet('NoThemeKey'));
@@ -88,4 +87,4 @@ assertType('mixed', $theme->offsetGet('Tags'));
 assertType('mixed', $theme->offsetGet('Theme Root'));
 assertType('mixed', $theme->offsetGet('Theme Root URI'));
 assertType('mixed', $theme->offsetGet('Parent Theme'));
-assertType('mixed', $theme->offsetGet((string)$_GET['unknown_string']));
+assertType('mixed', $theme->offsetGet(Faker::string()));

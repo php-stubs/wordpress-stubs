@@ -34,4 +34,4 @@ assertType('array<int, WP_Term>|WP_Error', get_tags(['fields' => 'all_with_objec
 assertType('array<int, WP_Term>|WP_Error', get_tags(['fields' => 'foo']));
 
 // Unknown fields value
-assertType('array<int, int|string|WP_Term>|numeric-string|WP_Error', get_tags(['fields' => (string)$_GET['fields']]));
+assertType('array<int, int|string|WP_Term>|numeric-string|WP_Error', get_tags(['fields' => Faker::string()]));

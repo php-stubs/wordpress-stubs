@@ -26,7 +26,7 @@ assertType('null', wp_tag_cloud(['format' => 'unexpected', 'echo' => true]));
 
 // Echo true, but format (maybe) array
 assertType('array<int, string>|null', wp_tag_cloud(['format' => 'array', 'echo' => true]));
-assertType('array<int, string>|null', wp_tag_cloud(['format' => (string)$_GET['format'], 'echo' => true]));
+assertType('array<int, string>|null', wp_tag_cloud(['format' => Faker::string(), 'echo' => true]));
 
 // Echo false
 assertType('string|null', wp_tag_cloud(['echo' => false]));
@@ -34,15 +34,12 @@ assertType('string|null', wp_tag_cloud(['format' => 'flat', 'echo' => false]));
 assertType('string|null', wp_tag_cloud(['format' => 'list', 'echo' => false]));
 assertType('array<int, string>|null', wp_tag_cloud(['format' => 'array', 'echo' => false]));
 assertType('string|null', wp_tag_cloud(['format' => 'unexpected', 'echo' => false]));
-assertType('array<int, string>|string|null', wp_tag_cloud(['format' => (string)$_GET['format'], 'echo' => false]));
+assertType('array<int, string>|string|null', wp_tag_cloud(['format' => Faker::string(), 'echo' => false]));
 
 // Echo unknown
-/** @var bool|0|1 $echo */
-$boolZeroOne = $_GET['echo'];
-
-assertType('string|null', wp_tag_cloud(['echo' => $boolZeroOne]));
-assertType('string|null', wp_tag_cloud(['format' => 'flat', 'echo' => $boolZeroOne]));
-assertType('string|null', wp_tag_cloud(['format' => 'list', 'echo' => $boolZeroOne]));
-assertType('array<int, string>|null', wp_tag_cloud(['format' => 'array', 'echo' => $boolZeroOne]));
-assertType('string|null', wp_tag_cloud(['format' => 'unexpected', 'echo' => $boolZeroOne]));
-assertType('array<int, string>|string|null', wp_tag_cloud(['format' => (string)$_GET['format'], 'echo' => $boolZeroOne]));
+assertType('string|null', wp_tag_cloud(['echo' => Faker::bool()]));
+assertType('string|null', wp_tag_cloud(['format' => 'flat', 'echo' => Faker::bool()]));
+assertType('string|null', wp_tag_cloud(['format' => 'list', 'echo' => Faker::bool()]));
+assertType('array<int, string>|null', wp_tag_cloud(['format' => 'array', 'echo' => Faker::bool()]));
+assertType('string|null', wp_tag_cloud(['format' => 'unexpected', 'echo' => Faker::bool()]));
+assertType('array<int, string>|string|null', wp_tag_cloud(['format' => Faker::string(), 'echo' => Faker::bool()]));

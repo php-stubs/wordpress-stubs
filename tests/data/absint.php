@@ -4,26 +4,15 @@ declare(strict_types=1);
 
 namespace PhpStubs\WordPress\Core\Tests;
 
-use stdClass;
-
 use function absint;
 use function PHPStan\Testing\assertType;
-
-/** @var int<1, max> $posInt */
-$posInt = $_GET['posInt'];
-
-/** @var int<0, max> $nonNegInt */
-$nonNegInt = $_GET['nonNegInt'];
-
-/** @var resource $resource */
-$resource = $_GET['resource'];
 
 // Returns input for non-negative integers
 assertType('0', absint(0));
 assertType('1', absint(1));
 assertType('10', absint(10));
-assertType('int<1, max>', absint($posInt));
-assertType('int<0, max>', absint($nonNegInt));
+assertType('int<1, max>', absint(Faker::positiveInt()));
+assertType('int<0, max>', absint(Faker::nonNegativeInt()));
 
 // Returns 0 for "empty" input
 assertType('0', absint(null));
@@ -40,7 +29,7 @@ assertType('1', absint(true));
 assertType('1', absint(['key' => 'value']));
 
 // Returns 0 or 1 for booleans
-assertType('0|1', absint((bool)$_GET['bool']));
+assertType('0|1', absint(Faker::bool()));
 
 // Returns positive integer for strictly negative integer input
 assertType('int<1, max>', absint(-1));
@@ -48,7 +37,9 @@ assertType('int<1, max>', absint(-10));
 
 // Returns non-negative integer for floats, numeric strings, ressources
 assertType('int<0, max>', absint(1.0));
+assertType('int<0, max>', absint(Faker::float()));
 assertType('int<0, max>', absint('-10'));
-assertType('int<0, max>', absint($resource));
+assertType('int<0, max>', absint(Faker::numericString()));
+assertType('int<0, max>', absint(Faker::resource()));
 // and any other type that is not a subtype of `$maybeint`
-assertType('int<0, max>', absint(new stdClass()));
+assertType('int<0, max>', absint(Faker::stdClass()));

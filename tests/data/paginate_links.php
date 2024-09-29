@@ -15,11 +15,8 @@ namespace PhpStubs\WordPress\Core\Tests;
 use function paginate_links;
 use function PHPStan\Testing\assertType;
 
-/** @var negative-int $negInt */
-$negInt = $_GET['negInt'];
-
 // Returns void
-assertType('null', paginate_links(['total' => $negInt, 'key' => 'value']));
+assertType('null', paginate_links(['total' => Faker::negativeInt(), 'key' => 'value']));
 assertType('null', paginate_links(['total' => 0, 'key' => 'value']));
 assertType('null', paginate_links(['total' => 1, 'key' => 'value']));
 

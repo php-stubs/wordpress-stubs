@@ -18,9 +18,9 @@ assertType('array<string, WP_Taxonomy>', get_taxonomies_for_attachments('objects
 assertType('array<string, WP_Taxonomy>', get_taxonomies_for_attachments('Hello'));
 
 // Unknown
-assertType('array<int|string, string|WP_Taxonomy>', get_taxonomies_for_attachments((string)$_GET['string']));
+assertType('array<int|string, string|WP_Taxonomy>', get_taxonomies_for_attachments(Faker::string()));
 
 // Unions
-assertType('array<int|string, string|WP_Taxonomy>', get_taxonomies_for_attachments($_GET['foo'] ? 'names' : 'objects'));
-assertType('array<int|string, string|WP_Taxonomy>', get_taxonomies_for_attachments($_GET['foo'] ? (string)$_GET['string'] : 'names'));
-assertType('array<int|string, string|WP_Taxonomy>', get_taxonomies_for_attachments($_GET['foo'] ? (string)$_GET['string'] : 'objects'));
+assertType('array<int|string, string|WP_Taxonomy>', get_taxonomies_for_attachments(Faker::bool() ? 'names' : 'objects'));
+assertType('array<int|string, string|WP_Taxonomy>', get_taxonomies_for_attachments(Faker::bool() ? Faker::string() : 'names'));
+assertType('array<int|string, string|WP_Taxonomy>', get_taxonomies_for_attachments(Faker::bool() ? Faker::string() : 'objects'));
