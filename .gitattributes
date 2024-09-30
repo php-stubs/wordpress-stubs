@@ -1,7 +1,6 @@
 /.gitattributes export-ignore
 /.editorconfig export-ignore
 /.gitignore export-ignore
-/.travis.yml export-ignore
 /README.md export-ignore
 /finder.php export-ignore
 /functionMap.php export-ignore
