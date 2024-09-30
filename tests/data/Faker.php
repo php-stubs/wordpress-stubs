@@ -6,7 +6,7 @@ namespace PhpStubs\WordPress\Core\Tests;
 
 use function PHPStan\Testing\assertType;
 
-// Boleans
+// Booleans
 assertType('bool', Faker::bool());
 assertType('true', Faker::true());
 assertType('false', Faker::false());
