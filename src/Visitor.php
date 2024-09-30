@@ -31,7 +31,7 @@ use PhpParser\Node\Stmt\Property;
 use PhpParser\Node\Stmt\Return_ as Stmt_Return;
 use StubsGenerator\NodeVisitor;
 
-// phpcs:disable NeutronStandard.Functions.LongFunction.LongFunction,NeutronStandard.Functions.TypeHint.NoReturnType
+// phpcs:disable SlevomatCodingStandard.Functions.FunctionLength.FunctionLength,NeutronStandard.Functions.TypeHint.NoReturnType
 
 class Visitor extends NodeVisitor
 {

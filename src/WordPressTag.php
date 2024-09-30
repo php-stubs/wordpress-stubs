@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace PhpStubs\WordPress\Core;
 
-// phpcs:disable NeutronStandard.Functions.LongFunction.LongFunction
+// phpcs:disable SlevomatCodingStandard.Functions.FunctionLength.FunctionLength
 
 final class WordPressTag extends WithChildren
 {
