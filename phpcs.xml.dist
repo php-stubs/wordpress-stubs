@@ -12,8 +12,15 @@
         <exclude name="PEAR.Commenting.FileComment"/>
     </rule>
 
+    <rule ref="Squiz.WhiteSpace.FunctionSpacing">
+        <properties>
+            <property name="spacingBeforeFirst" value="0"/>
+            <property name="spacingAfterLast" value="0"/>
+        </properties>
+    </rule>
+
     <!-- Rules not applied to tests -->
-    <rule ref="NeutronStandard.Functions.LongFunction.LongFunction">
+    <rule ref="SlevomatCodingStandard.Functions.FunctionLength.FunctionLength">
         <exclude-pattern>tests/TypeInferenceTest.php</exclude-pattern>
     </rule>
     <rule ref="NeutronStandard.Functions.TypeHint.UnusedReturnType">
@@ -52,12 +59,5 @@
     </rule>
     <rule ref="WordPress.WP.GlobalVariablesOverride">
         <exclude-pattern>tests/</exclude-pattern>
-    </rule>
-
-    <rule ref="Squiz.WhiteSpace.FunctionSpacing">
-        <properties>
-            <property name="spacingBeforeFirst" value="0"/>
-            <property name="spacingAfterLast" value="0"/>
-        </properties>
     </rule>
 </ruleset>
