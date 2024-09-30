@@ -53,4 +53,11 @@
     <rule ref="WordPress.WP.GlobalVariablesOverride">
         <exclude-pattern>tests/</exclude-pattern>
     </rule>
+
+    <rule ref="Squiz.WhiteSpace.FunctionSpacing">
+        <properties>
+            <property name="spacingBeforeFirst" value="0"/>
+            <property name="spacingAfterLast" value="0"/>
+        </properties>
+    </rule>
 </ruleset>
