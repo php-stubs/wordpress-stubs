@@ -38,4 +38,4 @@ assertType('array<int, WP_Term>|WP_Error', wp_get_post_tags($postID, ['fields' =
 assertType('numeric-string|WP_Error', wp_get_post_tags($postID, ['fields' => 'count']));
 
 // Unknown fields value
-assertType('array<int, int|string|WP_Term>|numeric-string|WP_Error', wp_get_post_tags($postID, ['fields' => (string)$_GET['fields']]));
+assertType('array<int, int|string|WP_Term>|numeric-string|WP_Error', wp_get_post_tags($postID, ['fields' => Faker::string()]));

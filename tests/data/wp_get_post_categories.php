@@ -38,4 +38,4 @@ assertType('list<int>|WP_Error', wp_get_post_categories($postID, ['fields' => 'f
 assertType('numeric-string|WP_Error', wp_get_post_categories($postID, ['fields' => 'count']));
 
 // Unknown fields value
-assertType('array<int, int|string|WP_Term>|numeric-string|WP_Error', wp_get_post_categories($postID, ['fields' => (string)$_GET['fields']]));
+assertType('array<int, int|string|WP_Term>|numeric-string|WP_Error', wp_get_post_categories($postID, ['fields' => Faker::string()]));

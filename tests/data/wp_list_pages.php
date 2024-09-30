@@ -25,4 +25,4 @@ assertType('null', wp_list_pages(['echo' => true, 'key' => 'value']));
 assertType('string', wp_list_pages(['echo' => false, 'key' => 'value']));
 
 // Unknown value
-assertType('string|null', wp_list_pages(['echo' => (bool)$_GET['echo'], 'key' => 'value']));
+assertType('string|null', wp_list_pages(['echo' => Faker::bool(), 'key' => 'value']));

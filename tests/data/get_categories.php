@@ -34,4 +34,4 @@ assertType('array<int, WP_Term>', get_categories(['fields' => 'all_with_object_i
 
 // Unknown fields value
 assertType('array<int, WP_Term>', get_categories(['fields' => 'foo']));
-assertType('array<int, int|string|WP_Term>', get_categories(['fields' => (string)$_GET['fields']]));
+assertType('array<int, int|string|WP_Term>', get_categories(['fields' => Faker::string()]));

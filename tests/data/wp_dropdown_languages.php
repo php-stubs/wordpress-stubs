@@ -18,8 +18,7 @@ use function PHPStan\Testing\assertType;
 /** @var ''|null $emptyStringOrNull */
 $emptyStringOrNull = $_GET['emptyStringOrNull'];
 
-/** @var string|null $stringOrNull */
-$stringOrNull = $_GET['stringOrNull'];
+$stringOrNull = Faker::union(Faker::string(), null);
 
 // Default value
 assertType('string', wp_dropdown_languages());

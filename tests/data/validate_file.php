@@ -7,12 +7,11 @@ namespace PhpStubs\WordPress\Core\Tests;
 use function validate_file;
 use function PHPStan\Testing\assertType;
 
-/** @var array<string> $allowedFiles */
-$allowedFiles = $_GET['allowedFiles'];
+$allowedFiles = Faker::array(Faker::string());
 
-assertType('0|1|2', validate_file((string)$_GET['file']));
-assertType('0|1|2', validate_file((string)$_GET['file'], []));
-assertType('0|1|2|3', validate_file((string)$_GET['file'], $allowedFiles));
+assertType('0|1|2', validate_file(Faker::string()));
+assertType('0|1|2', validate_file(Faker::string(), []));
+assertType('0|1|2|3', validate_file(Faker::string(), $allowedFiles));
 
 assertType('0', validate_file(''));
 assertType('0', validate_file('', []));

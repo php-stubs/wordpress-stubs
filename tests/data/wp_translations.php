@@ -6,11 +6,10 @@ namespace PhpStubs\WordPress\Core\Tests;
 
 use function PHPStan\Testing\assertType;
 
-/** @var \WP_Translations */
-$translations = $_GET['translations'];
+$translations = Faker::wpTranslations();
 
-$string = (string)$_GET['string'];
-$singular = $_GET['singular'] ? $string : null;
+$string = Faker::string();
+$singular = Faker::union(Faker::string(), null);
 
 // WP_Translation::translate()
 assertType('null', $translations->translate(null));

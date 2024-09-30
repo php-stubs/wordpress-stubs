@@ -7,8 +7,7 @@ namespace PhpStubs\WordPress\Core\Tests;
 use function wp_generate_tag_cloud;
 use function PHPStan\Testing\assertType;
 
-/** @var array<\WP_Term> $args */
-$tags = $_GET['tags'];
+$tags = Faker::array(Faker::wpTerm());
 
 // Default $args['format] value.
 assertType('string', wp_generate_tag_cloud($tags));
@@ -25,4 +24,4 @@ assertType('string', wp_generate_tag_cloud($tags, ['format' => 'flat', 'key' => 
 assertType('string', wp_generate_tag_cloud($tags, ['format' => 'unexpected', 'key' => 'value']));
 
 // Unknown $args['format] value
-assertType('array<int, string>|string', wp_generate_tag_cloud($tags, ['format' => (string)$_GET['format'], 'key' => 'value']));
+assertType('array<int, string>|string', wp_generate_tag_cloud($tags, ['format' => Faker::string(), 'key' => 'value']));

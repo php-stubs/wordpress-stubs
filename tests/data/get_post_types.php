@@ -15,7 +15,7 @@ assertType('array<string, string>', get_post_types([], 'names'));
 assertType('array<string, WP_Post_Type>', get_post_types([], 'objects'));
 
 // Unknown string
-assertType('array<string, string|WP_Post_Type>', get_post_types([], (string)$_GET['unknown_string']));
+assertType('array<string, string|WP_Post_Type>', get_post_types([], Faker::string()));
 
 // Unexpected output
 assertType('array<string, WP_Post_Type>', get_post_types([], 'Hello'));

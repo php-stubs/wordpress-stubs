@@ -27,5 +27,5 @@ assertType('string|false', wp_list_categories(['echo' => false, 'key' => 'value'
 assertType('string|false', wp_list_categories(['echo' => 0, 'key' => 'value']));
 
 // Unknown value
-assertType('string|false|null', wp_list_categories(['echo' => (bool)$_GET['echo'], 'key' => 'value']));
-assertType('string|false|null', wp_list_categories(['echo' => (int)$_GET['echo'], 'key' => 'value']));
+assertType('string|false|null', wp_list_categories(['echo' => Faker::bool(), 'key' => 'value']));
+assertType('string|false|null', wp_list_categories(['echo' => Faker::int(), 'key' => 'value']));

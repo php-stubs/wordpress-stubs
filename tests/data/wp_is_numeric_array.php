@@ -7,63 +7,40 @@ namespace PhpStubs\WordPress\Core\Tests;
 use function wp_is_numeric_array;
 use function PHPStan\Testing\assertType;
 
-assertType('false', wp_is_numeric_array((string)$_GET['thing']));
-assertType('false', wp_is_numeric_array((int)$_GET['thing']));
-assertType('false', wp_is_numeric_array((bool)$_GET['value']));
+// No array
+assertType('false', wp_is_numeric_array(Faker::string()));
+assertType('false', wp_is_numeric_array(Faker::int()));
+assertType('false', wp_is_numeric_array(Faker::bool()));
 assertType('false', wp_is_numeric_array(null));
 
+// Arrays
 assertType('true', wp_is_numeric_array([]));
+assertType('true', wp_is_numeric_array(Faker::list()));
+assertType('true', wp_is_numeric_array(Faker::intArray()));
+assertType('false', wp_is_numeric_array(Faker::strArray()));
+assertType('bool', wp_is_numeric_array(Faker::array()));
+assertType('bool', wp_is_numeric_array(Faker::union(Faker::strArray(), Faker::intArray())));
 
-/** @var list<mixed> $value */
-$value = $_GET['value'];
-assertType('true', wp_is_numeric_array($value));
+// Constant arrays
+assertType('false', wp_is_numeric_array(['key1' => 'value1', 'key2' => 'value2']));
+assertType('true', wp_is_numeric_array(['value0', 'value1']));
+assertType('bool', wp_is_numeric_array(['value0', 'key1' => 'value1']));
 
-/** @var array<int, mixed> $value */
-$value = $_GET['value'];
-assertType('true', wp_is_numeric_array($value));
+// Maybe array
+assertType('bool', wp_is_numeric_array(Faker::mixed()));
 
-/** @var array<string, mixed> $value */
-$value = $_GET['value'];
-assertType('false', wp_is_numeric_array($value));
-
-/** @var array $value */
-$value = $_GET['value'];
-assertType('bool', wp_is_numeric_array($value));
-
-/** @var array<int|string, mixed> $value */
-$value = $_GET['value'];
-assertType('bool', wp_is_numeric_array($value));
-
-/** @var array<int|string, mixed> $value */
-$value = $_GET['value'];
-assertType('bool', wp_is_numeric_array($value));
-
-/** @var array{'key1': 'value1', 'key2': 'value2'} $value */
-$value = $_GET['value'];
-assertType('false', wp_is_numeric_array($value));
-
-/** @var array{0: 'value0', 1: 'value1'} $value */
-$value = $_GET['value'];
-assertType('true', wp_is_numeric_array($value));
-
-/** @var array{0: 'value0', key1: 'value1'} $value */
-$value = $_GET['value'];
-assertType('bool', wp_is_numeric_array($value));
-
-assertType('bool', wp_is_numeric_array($_GET['value']));
-
-/** @var list<string>|string */
-$value = $_GET['value'];
+// Test type specifying of wp_is_numeric_array
+$value = Faker::union(Faker::string(), Faker::list(Faker::string()));
 if (wp_is_numeric_array($value)) {
     assertType('list<string>', $value);
 }
 
-/** @var array<int, string>|string */
-$value = $_GET['value'];
+$value = Faker::union(Faker::intArray(Faker::string()), Faker::string());
 if (wp_is_numeric_array($value)) {
     assertType('array<int, string>', $value);
 }
 
-if (wp_is_numeric_array($_GET['value'])) {
-    assertType('array<int, mixed>', $_GET['value']);
+$value = Faker::mixed();
+if (wp_is_numeric_array($value)) {
+    assertType('array<int, mixed>', $value);
 }

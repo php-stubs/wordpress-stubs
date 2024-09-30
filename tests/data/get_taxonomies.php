@@ -18,4 +18,4 @@ assertType('array<int, WP_Taxonomy>', get_taxonomies([], 'objects'));
 assertType('array<int, WP_Taxonomy>', get_taxonomies([], 'Hello'));
 
 // Unknown string
-assertType('array<int, string|WP_Taxonomy>', get_taxonomies([], (string)$_GET['unknown_string']));
+assertType('array<int, string|WP_Taxonomy>', get_taxonomies([], Faker::string()));

@@ -21,7 +21,6 @@ assertType('int|false', has_filter('', 'intval'));
 assertType('int|false', has_action('', 'intval'));
 
 // Maybe false callback
-/** @var callable|string|array|false $callback */
-$callback = $_GET['callback'];
+$callback = Faker::union(Faker::callable(), Faker::string(), Faker::array(), Faker::false());
 assertType('bool|int', has_filter('', $callback));
 assertType('bool|int', has_action('', $callback));

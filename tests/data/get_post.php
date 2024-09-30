@@ -7,24 +7,20 @@ namespace PhpStubs\WordPress\Core\Tests;
 use function get_post;
 use function PHPStan\Testing\assertType;
 
-/** @var \WP_Post|int|null $post */
-$post = $_GET['post'];
+$postIntNull = Faker::union(Faker::wpPost(), Faker::int(), null);
 
 // Default output
 assertType('WP_Post|null', get_post());
-assertType('WP_Post|null', get_post($post));
-assertType('WP_Post|null', get_post($post, 'OBJECT'));
+assertType('WP_Post|null', get_post($postIntNull));
+assertType('WP_Post|null', get_post($postIntNull, 'OBJECT'));
 
 // Associative array output
-assertType('array<string, mixed>|null', get_post($post, 'ARRAY_A'));
+assertType('array<string, mixed>|null', get_post($postIntNull, 'ARRAY_A'));
 
 // Numeric array output
-assertType('array<int, mixed>|null', get_post($post, 'ARRAY_N'));
+assertType('array<int, mixed>|null', get_post($postIntNull, 'ARRAY_N'));
 
-/** @var \WP_Post $post */
-$post = $_GET['post'];
-
-assertType('WP_Post', get_post($post));
-assertType('WP_Post', get_post($post, 'OBJECT'));
-assertType('array<string, mixed>', get_post($post, 'ARRAY_A'));
-assertType('array<int, mixed>', get_post($post, 'ARRAY_N'));
+assertType('WP_Post', get_post(Faker::wpPost()));
+assertType('WP_Post', get_post(Faker::wpPost(), 'OBJECT'));
+assertType('array<string, mixed>', get_post(Faker::wpPost(), 'ARRAY_A'));
+assertType('array<int, mixed>', get_post(Faker::wpPost(), 'ARRAY_N'));
