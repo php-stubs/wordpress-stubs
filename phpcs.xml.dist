@@ -12,13 +12,6 @@
         <exclude name="PEAR.Commenting.FileComment"/>
     </rule>
 
-    <rule ref="Squiz.WhiteSpace.FunctionSpacing">
-        <properties>
-            <property name="spacingBeforeFirst" value="0"/>
-            <property name="spacingAfterLast" value="0"/>
-        </properties>
-    </rule>
-
     <!-- Rules not applied to tests -->
     <rule ref="SlevomatCodingStandard.Functions.FunctionLength.FunctionLength">
         <exclude-pattern>tests/TypeInferenceTest.php</exclude-pattern>
