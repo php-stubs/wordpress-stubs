@@ -883,7 +883,7 @@ class Visitor extends NodeVisitor
         foreach ($node->getComments() as $comment) {
             $commentText = trim($comment->getText());
 
-            // Strip out comments that are not doc comments.
+            // Strip out comments that are not PHPDoc comments.
             if (
                 strpos($commentText, '/**') === false
             ) {
