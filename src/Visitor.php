@@ -81,22 +81,8 @@ class Visitor extends NodeVisitor
             return null;
         }
 
-        $symbolName = self::getNodeName($node);
-
-        if ($node instanceof ClassMethod || $node instanceof Property) {
-            $parent = $this->stack[count($this->stack) - 2];
-            \assert($parent instanceof \PhpParser\Node\Stmt\ClassLike);
-
-            if ($parent->name !== null) {
-                $symbolName = sprintf(
-                    '%1$s::%2$s%3$s',
-                    $parent->name->name,
-                    $node instanceof Property ? '$' : '',
-                    $symbolName
-                );
-            }
-        }
-        $node->setAttribute('fullSymbolName', $symbolName);
+        $symbolName = $this->getSymbolName($node);
+        $node->setAttribute('WPStubs_symbolName', $symbolName);
 
         $additions = $this->generateAdditionalTagsFromDoc($docComment);
         if (count($additions) > 0) {
@@ -126,17 +112,32 @@ class Visitor extends NodeVisitor
         return null;
     }
 
-    private static function getNodeName(Node $node): string
+    private function getSymbolName(Node $node): string
     {
         if ((($node instanceof Function_) || ($node instanceof ClassMethod) || ($node instanceof Class_)) && $node->name instanceof Identifier) {
-            return $node->name->name;
+            $name = $node->name->name;
         }
 
         if ($node instanceof Property) {
-            return $node->props[0]->name->name;
+            $name = $node->props[0]->name->name;
         }
 
-        return '';
+        \assert(isset($name), 'Node does not have a name');
+
+        if ($node instanceof Function_ || $node instanceof Class_) {
+            return $name;
+        }
+
+        $parent = $this->stack[count($this->stack) - 2];
+        \assert($parent instanceof \PhpParser\Node\Stmt\ClassLike);
+        \assert($parent->name instanceof \PhpParser\Node\Identifier);
+
+        return sprintf(
+            '%1$s::%2$s%3$s',
+            $parent->name->name,
+            $node instanceof Property ? '$' : '',
+            $name
+        );
     }
 
     /**
@@ -164,10 +165,10 @@ class Visitor extends NodeVisitor
             return;
         }
 
-        /** @var ?string $fullSymbolName */
-        $fullSymbolName = $node->getAttribute('fullSymbolName');
+        /** @var ?string $symbolName */
+        $symbolName = $node->getAttribute('WPStubs_symbolName');
 
-        if ($fullSymbolName === null) {
+        if ($symbolName === null) {
             return;
         }
 
@@ -177,13 +178,13 @@ class Visitor extends NodeVisitor
             return;
         }
 
-        $newDocComment = $this->addTags($fullSymbolName, $docComment);
+        $newDocComment = $this->addTags($symbolName, $docComment);
 
         if ($newDocComment instanceof Doc) {
             $node->setDocComment($newDocComment);
         }
 
-        if (! isset($this->additionalTagStrings[$fullSymbolName])) {
+        if (! isset($this->additionalTagStrings[$symbolName])) {
             return;
         }
 
@@ -193,7 +194,7 @@ class Visitor extends NodeVisitor
             return;
         }
 
-        $newDocComment = $this->addStringTags($fullSymbolName, $docComment);
+        $newDocComment = $this->addStringTags($symbolName, $docComment);
 
         if (! ($newDocComment instanceof Doc)) {
             return;
