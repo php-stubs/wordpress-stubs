@@ -94,12 +94,10 @@ class Visitor extends NodeVisitor
             $this->additionalTagStrings[$symbolName] = $additions;
         }
 
-        if ($voidOrNever !== '') {
+        if ($voidOrNever instanceof Type) {
             $addition = sprintf(
                 '@phpstan-return %s',
-                $voidOrNever === 'never'
-                    ? (new Never_())->__toString()
-                    : (new Void_())->__toString()
+                $voidOrNever->__toString()
             );
             if (
                 ! isset($this->additionalTagStrings[$symbolName])
@@ -786,15 +784,18 @@ class Visitor extends NodeVisitor
             || (stripos($description, 'Defaults to ') !== false);
     }
 
-    private function voidOrNever(Node $node): string
+    private function voidOrNever(Node $node): ?Type
     {
+        $never = new Never_();
+        $void = new Void_();
+
         if (! ($node instanceof Function_) && ! ($node instanceof ClassMethod)) {
-            return '';
+            return null;
         }
 
         if (! isset($node->stmts) || count($node->stmts) === 0) {
             // Interfaces and abstract methods.
-            return '';
+            return null;
         }
 
         $returnStmts = $this->nodeFinder->findInstanceOf($node, Stmt_Return::class);
@@ -811,11 +812,11 @@ class Visitor extends NodeVisitor
                     }
                 ) instanceof Node
             ) {
-                return '';
+                return null;
             }
             // If there is no return statement that is not void,
             // it's return type void.
-            return 'void';
+            return $void;
         }
 
         // Check for never return type.
@@ -826,12 +827,12 @@ class Visitor extends NodeVisitor
             // If a first level statement is exit/die, it's return type never.
             if ($stmt->expr instanceof Exit_) {
                 if (! $stmt->expr->expr instanceof String_) {
-                    return 'never';
+                    return $never;
                 }
                 if (strpos($stmt->expr->expr->value, 'must be overridden') !== false) {
-                    return '';
+                    return null;
                 }
-                return 'never';
+                return $never;
             }
             if (! ($stmt->expr instanceof FuncCall) || ! ($stmt->expr->name instanceof Name)) {
                 continue;
@@ -840,7 +841,7 @@ class Visitor extends NodeVisitor
             // If a first level statement is a call to wp_send_json(_success/error),
             // it's return type never.
             if (strpos($name->toString(), 'wp_send_json') === 0) {
-                return 'never';
+                return $never;
             }
             // Skip all functions but wp_die().
             if (strpos($name->toString(), 'wp_die') !== 0) {
@@ -849,7 +850,7 @@ class Visitor extends NodeVisitor
             $args = $stmt->expr->getArgs();
             // If wp_die is called without 3rd parameter, it's return type never.
             if (count($args) < 3) {
-                return 'never';
+                return $never;
             }
             // If wp_die is called with 3rd parameter, we need additional checks.
             try {
@@ -860,7 +861,7 @@ class Visitor extends NodeVisitor
             }
 
             if (is_int($arg)) {
-                return 'never';
+                return $never;
             }
 
             if (! is_array($arg)) {
@@ -868,10 +869,10 @@ class Visitor extends NodeVisitor
             }
 
             if (! array_key_exists('exit', $arg) || (bool)$arg['exit']) {
-                return 'never';
+                return $never;
             }
         }
-        return '';
+        return null;
     }
 
     private function getCleanCommentsNode(Node $node): Node
