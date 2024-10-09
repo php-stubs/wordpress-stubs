@@ -23,8 +23,8 @@ assertType('null', wp_get_archives(['echo' => true, 'key' => 'value']));
 assertType('null', wp_get_archives(['echo' => 1, 'key' => 'value']));
 
 // Explicit value of false|0
-assertType('string', wp_get_archives(['echo' => false, 'key' => 'value']));
-assertType('string', wp_get_archives(['echo' => 0, 'key' => 'value']));
+assertType('string|null', wp_get_archives(['echo' => false, 'key' => 'value']));
+assertType('string|null', wp_get_archives(['echo' => 0, 'key' => 'value']));
 
 // Unknown value
 assertType('string|null', wp_get_archives(['echo' => Faker::bool(), 'key' => 'value']));

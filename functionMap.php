@@ -59,7 +59,7 @@ return [
     'wp_generate_tag_cloud' => ["(\$args is array{format: 'array'} ? array<int, string> : string)"],
     'wp_get_schedule' => [null, 'args' => $cronArgsType],
     'wp_get_scheduled_event' => [null, 'args' => $cronArgsType],
-    'wp_get_archives' => ['($args is array{echo: false|0} ? string : void)'],
+    'wp_get_archives' => ['($args is array{echo: false|0} ? string|void : void)'],
     'WP_Http::get' => [$httpReturnType],
     'WP_Http::head' => [$httpReturnType],
     'WP_Http::post' => [$httpReturnType],
