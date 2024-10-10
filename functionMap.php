@@ -43,7 +43,7 @@ return [
     'bool_from_yn' => ["(\$yn is 'y' ? true : false)"],
     'have_posts' => [null, '@phpstan-impure' => ''],
     'is_new_day' => ['0|1'],
-    'paginate_links' => ["(\$args is array{total: int<min, 1>}&array ? void : (\$args is array{type: 'array',  ...} ? list<string> : string))"],
+    'paginate_links' => ["(\$args is array{total: int<min, 1>}&array ? void : (\$args is array{type: 'array'}&array ? list<string> : string))"],
     'rawurlencode_deep' => ['T', '@phpstan-template' => 'T', 'value' => 'T'],
     'sanitize_category' => ['T', '@phpstan-template' => 'T of array|object', 'category' => 'T'],
     'sanitize_post' => ['T', '@phpstan-template' => 'T of array|object', 'post' => 'T'],
