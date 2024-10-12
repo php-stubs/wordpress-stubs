@@ -16,7 +16,7 @@ assertType('never', wp_die('', ''));
 assertType('never', wp_die('', '', ['exit' => true]));
 assertType('null', wp_die('', '', ['exit' => false]));
 
-// unknonwn
+// unknown
 assertType('null', wp_die('', '', ['exit' => Faker::bool()]));
 assertType('null', wp_die('', '', Faker::array()));
 
