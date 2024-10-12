@@ -35,7 +35,7 @@ assertType('0|1', absint(Faker::bool()));
 assertType('int<1, max>', absint(-1));
 assertType('int<1, max>', absint(-10));
 
-// Returns non-negative integer for floats, numeric strings, ressources
+// Returns non-negative integer for floats, numeric strings, resources
 assertType('int<0, max>', absint(1.0));
 assertType('int<0, max>', absint(Faker::float()));
 assertType('int<0, max>', absint('-10'));
