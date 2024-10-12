@@ -20,6 +20,7 @@ namespace PhpStubs\WordPress\Core\Tests;
  * @method static string string()
  * @method static non-empty-string nonEmptyString()
  * @method static numeric-string numericString()
+ * @method static class-string classString()
  * @method static resource resource()
  * @method static object object()
  * @method static mixed mixed()
