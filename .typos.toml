@@ -7,4 +7,8 @@ extend-exclude = [
 ignore-hidden = false
 
 [default.extend-identifiers]
+Automattic = "Automattic"
 get_post_stati = "get_post_stati"
+Github = "GitHub"
+Woocommerce = "WooCommerce"
+Wordpress = "WordPress"
