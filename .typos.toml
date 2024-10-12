@@ -1,0 +1,10 @@
+[files]
+extend-exclude = [
+    ".git/",
+    "source/",
+    "wordpress-stubs.php",
+]
+ignore-hidden = false
+
+[default.extend-identifiers]
+get_post_stati = "get_post_stati"
