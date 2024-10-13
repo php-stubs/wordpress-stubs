@@ -24,6 +24,7 @@ assertType('float', Faker::float());
 assertType('string', Faker::string());
 assertType('numeric-string', Faker::numericString());
 assertType('non-empty-string', Faker::nonEmptyString());
+assertType('class-string', Faker::classString());
 
 // Arrays with default values
 assertType('array', Faker::array());
