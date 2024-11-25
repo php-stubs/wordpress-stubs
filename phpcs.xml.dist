@@ -10,6 +10,8 @@
         <exclude name="Generic.Files.LineLength"/>
         <exclude name="PEAR.Commenting.ClassComment"/>
         <exclude name="PEAR.Commenting.FileComment"/>
+        <!-- We use PHPStan -->
+        <exclude name="VariableAnalysis.CodeAnalysis.VariableAnalysis.UndefinedVariable"/>
     </rule>
 
     <!-- Rules not applied to tests -->
