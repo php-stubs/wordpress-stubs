@@ -2,11 +2,25 @@
 
 declare(strict_types=1);
 
+$versionFile = sprintf('%s/source/wordpress/wp-includes/version.php', __DIR__);
+if (! file_exists($versionFile)) {
+    throw new \RuntimeException(sprintf('File %s not found.', $versionFile));
+}
+
+require_once $versionFile;
+// phpcs:ignore Squiz.NamingConventions.ValidVariableName.NotCamelCaps
+$wpVersion = $wp_version ?? null;
+
+if ($wpVersion === null) {
+    throw new \RuntimeException(sprintf('WordPress version not found in %s.', $versionFile));
+}
+
 $httpReturnType = 'array{headers: \WpOrg\Requests\Utility\CaseInsensitiveDictionary, body: string, response: array{code: int, message: string}, cookies: array<int, \WP_Http_Cookie>, filename: string|null, http_response: \WP_HTTP_Requests_Response}|\WP_Error';
 
-if (file_exists(sprintf('%s/source/wordpress/wp-includes/Requests/Cookie/Jar.php', __DIR__))) {
-    $httpReturnType = 'array{headers: \Requests_Utility_CaseInsensitiveDictionary, body: string, response: array{code: int,message: string}, cookies: array<int, \WP_Http_Cookie>, filename: string|null, http_response: \WP_HTTP_Requests_Response}|\WP_Error';
+if (version_compare($wpVersion, '6.2', '<')) {
+    $httpReturnType = 'array{headers: \Requests_Utility_CaseInsensitiveDictionary, body: string, response: array{code: int, message: string}, cookies: array<int, \WP_Http_Cookie>, filename: string|null, http_response: \WP_HTTP_Requests_Response}|\WP_Error';
 }
+
 $cronArgsType = 'list<mixed>';
 $wpWidgetRssFormArgsType = 'array{number: int, error: bool, title?: string, url?: string, items?: int, show_summary?: int, show_author?: int, show_date?: int}';
 $wpWidgetRssFormInputsType = 'array{title?: bool, url?: bool, items?: bool, show_summary?: bool, show_author?: bool, show_date?: bool}';
@@ -63,7 +77,7 @@ return [
     'WP_Http::get' => [$httpReturnType],
     'WP_Http::head' => [$httpReturnType],
     'WP_Http::post' => [$httpReturnType],
-    'WP_Http::request' => [$httpReturnType],
+    'WP_Http::request' => [version_compare($wpVersion, '6.7', '>=') ? null : $httpReturnType],
     'wp_is_numeric_array' => ['(T is array ? (key-of<T> is int ? true : false) : false)', '@template' => 'T of mixed', 'data' => 'T', '@phpstan-assert-if-true' => '(T is list ? T : array<int, value-of<T>>) $data'],
     'wp_list_bookmarks' => ['($args is array{echo: false|0}&array ? string : void)'],
     'wp_list_categories' => ['($args is array{echo: false|0}&array ? string|false : false|void)'],
