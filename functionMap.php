@@ -211,4 +211,5 @@ return [
     'Custom_Image_Header::show_header_selector' => [null, 'type' => "'default'|'uploaded'"],
     'Custom_Image_Header::set_header_image' => [null, 'choice' => 'string|array{attachment_id: int<1, max>, url: string, width: int<0, max>, height: int<0, max>}'],
     'get_user' => ['($user_id is int<min, 0> ? false : \WP_User|false)'],
+    'get_user_by' => ["(\$field is 'id'|'ID' ? (\$value is int<min, 0> ? false : \WP_User|false) : \WP_User|false)"],
 ];
