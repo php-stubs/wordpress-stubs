@@ -212,4 +212,10 @@ return [
     'Custom_Image_Header::set_header_image' => [null, 'choice' => 'string|array{attachment_id: int<1, max>, url: string, width: int<0, max>, height: int<0, max>}'],
     'get_user' => ['($user_id is int<min, 0> ? false : \WP_User|false)'],
     'get_user_by' => ["(\$field is 'id'|'ID' ? (\$value is int<min, 0> ? false : \WP_User|false) : \WP_User|false)"],
+    'check_admin_referer' => ['1|2|false', 'action' => '-1|string'],
+    'check_ajax_referer' => ['1|2|false', 'action' => '-1|string'],
+    'wp_verify_nonce' => ['1|2|false', 'action' => '-1|string'],
+    'wp_create_nonce' => [null, 'action' => '-1|string'],
+    'wp_nonce_url' => [null, 'action' => '-1|string'],
+    'wp_nonce_field' => [null, 'action' => '-1|string'],
 ];
