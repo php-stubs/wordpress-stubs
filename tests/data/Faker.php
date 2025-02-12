@@ -26,7 +26,7 @@ assertType('numeric-string', Faker::numericString());
 assertType('non-empty-string', Faker::nonEmptyString());
 
 // Arrays with default values
-assertType('array', Faker::array());
+assertType('array<mixed>', Faker::array());
 assertType('array<int, mixed>', Faker::intArray());
 assertType('array<string, mixed>', Faker::strArray());
 assertType('list<mixed>', Faker::list());
@@ -44,8 +44,8 @@ assertType('bool|int|string', Faker::union(Faker::bool(), Faker::int(), Faker::s
 assertType('array<int, int>|bool|int|string', Faker::union(Faker::bool(), Faker::int(), Faker::string(), Faker::intArray(Faker::int())));
 assertType('array<int|string, int|string>', Faker::union(Faker::intArray(Faker::int()), Faker::strArray(Faker::string())));
 assertType('array<int|string>', Faker::union(Faker::array(Faker::int()), Faker::strArray(Faker::string())));
-assertType('array', Faker::union(Faker::array(), Faker::strArray()));
-assertType('array', Faker::union(Faker::array(), Faker::intArray()));
+assertType('array<mixed>', Faker::union(Faker::array(), Faker::strArray()));
+assertType('array<mixed>', Faker::union(Faker::array(), Faker::intArray()));
 assertType('string|null', Faker::union(Faker::string(), null));
 
 // Other
