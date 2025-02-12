@@ -8,5 +8,3 @@ parameters:
     excludePaths:
         - tests/data/
     level: 9
-    featureToggles:
-        alwaysTrueAlwaysReported: true
