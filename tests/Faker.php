@@ -89,7 +89,7 @@ class Faker
      * @param T ...$types
      * @return T
      */
-    public static function union(...$types): mixed
+    public static function union(...$types)
     {
         return $types[0];
     }
