@@ -88,6 +88,8 @@ class Faker
      * @template T
      * @param T ...$types
      * @return T
+     *
+     * @phpcs:disable NeutronStandard.Functions.TypeHint
      */
     public static function union(...$types)
     {
