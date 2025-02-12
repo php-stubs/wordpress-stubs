@@ -7,7 +7,7 @@ parameters:
         - tests/
     excludePaths:
         - tests/data/
-	phpVersion:
+    phpVersion:
         min: 80000
         max: 80300
     level: 9
