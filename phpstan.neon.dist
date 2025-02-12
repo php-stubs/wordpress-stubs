@@ -10,4 +10,3 @@ parameters:
     level: 9
     featureToggles:
         alwaysTrueAlwaysReported: true
-        listType: true
