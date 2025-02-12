@@ -8,3 +8,8 @@ parameters:
     excludePaths:
         - tests/data/
     level: 9
+    ignoreErrors:
+        -
+            path: tests/Faker.php
+            identifier: class.notFound
+            count: 8
