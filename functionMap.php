@@ -219,4 +219,5 @@ return [
     'wp_nonce_url' => [null, 'action' => '-1|string'],
     'wp_nonce_field' => [null, 'action' => '-1|string'],
     'did_action' => ['int<0, max>'],
+    'get_current_blog_id' => ['int<0, max>'],
 ];
