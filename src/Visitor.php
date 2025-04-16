@@ -77,7 +77,7 @@ class Visitor extends NodeVisitor
             return null;
         }
 
-        $node = $this->getCleanCommentsNode($node);
+        $this->cleanComments($node);
 
         $docComment = $node->getDocComment();
 
@@ -879,10 +879,10 @@ class Visitor extends NodeVisitor
         return null;
     }
 
-    private function getCleanCommentsNode(Node $node): Node
+    private function cleanComments(Node $node): void
     {
         if (count($node->getComments()) === 0) {
-            return $node;
+            return;
         }
 
         $comments = [];
@@ -908,7 +908,5 @@ class Visitor extends NodeVisitor
         }
 
         $node->setAttribute('comments', $comments);
-
-        return $node;
     }
 }
