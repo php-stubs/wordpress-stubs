@@ -69,7 +69,7 @@ class Visitor extends NodeVisitor
 
         parent::enterNode($node);
 
-        if ($node instanceof Node\Param && property_exists($node, 'attrGroups')) {
+        if ($node instanceof Node\Param) {
             $node->attrGroups = [];
         }
 
