@@ -157,7 +157,7 @@ return [
     'wp_set_comment_status' => ['($wp_error is false ? bool : true|\WP_Error)'],
     'comment_class' => ['($display is true ? void : string)'],
     'edit_term_link' => ['($display is true ? void : string|void)'],
-    'get_calendar' => ['($display is true ? void : string)'],
+    'get_calendar' => ['($args is array{display: false}&array ? string : void)'],
     'next_posts' => ['($display is true ? void : string)'],
     'post_type_archive_title' => ['($display is true ? void : string|void)'],
     'previous_posts' => ['($display is true ? void : string)'],
