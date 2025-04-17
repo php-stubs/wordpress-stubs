@@ -2,6 +2,8 @@
 
 declare(strict_types=1);
 
+use PhpStubs\WordPress\Core\Visitor;
+
 require sprintf('%s/vendor/autoload.php', __DIR__);
 
-return new PhpStubs\WordPress\Core\Visitor();
+return new Visitor();

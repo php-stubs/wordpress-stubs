@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace PhpStubs\WordPress\Core\Tests;
 
-class TypeInferenceTest extends \PHPStan\Testing\TypeInferenceTestCase
+use PHPStan\Testing\TypeInferenceTestCase;
+
+class TypeInferenceTest extends TypeInferenceTestCase
 {
     /** @return iterable<mixed> */
     public function dataFileAsserts(): iterable
