@@ -2,9 +2,11 @@
 
 declare(strict_types=1);
 
+use StubsGenerator\Finder;
+
 // phpcs:disable Squiz.PHP.CommentedOutCode
 
-return \StubsGenerator\Finder::create()
+return Finder::create()
     ->in('source/wordpress')
     // Shim for load-styles.php and load-scripts.php.
     ->notPath('wp-admin/includes/noop.php')

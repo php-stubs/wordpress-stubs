@@ -30,6 +30,9 @@ use PhpParser\Node\Stmt\Namespace_;
 use PhpParser\Node\Stmt\Property;
 use PhpParser\Node\Stmt\Return_ as Stmt_Return;
 use StubsGenerator\NodeVisitor;
+use phpDocumentor\Reflection\DocBlockFactoryInterface;
+use phpDocumentor\Reflection\DocBlockFactory;
+use function assert;
 
 // phpcs:disable SlevomatCodingStandard.Functions.FunctionLength.FunctionLength,NeutronStandard.Functions.TypeHint.NoReturnType
 
@@ -40,7 +43,7 @@ class Visitor extends NodeVisitor
      */
     private const WP_INDENT_SIZE = 4;
 
-    private \phpDocumentor\Reflection\DocBlockFactoryInterface $docBlockFactory;
+    private DocBlockFactoryInterface $docBlockFactory;
 
     /** @var array<string,array<int|string,string>> */
     private array $functionMap;
@@ -51,11 +54,11 @@ class Visitor extends NodeVisitor
     /** @var array<string, list<string>> */
     private array $additionalTagStrings = [];
 
-    private \PhpParser\NodeFinder $nodeFinder;
+    private NodeFinder $nodeFinder;
 
     public function __construct()
     {
-        $this->docBlockFactory = \phpDocumentor\Reflection\DocBlockFactory::createInstance();
+        $this->docBlockFactory = DocBlockFactory::createInstance();
         $this->nodeFinder = new NodeFinder();
         $this->functionMap = require sprintf('%s/functionMap.php', dirname(__DIR__));
     }
@@ -124,15 +127,15 @@ class Visitor extends NodeVisitor
             $name = $node->props[0]->name->name;
         }
 
-        \assert(isset($name), 'Node does not have a name');
+        assert(isset($name), 'Node does not have a name');
 
         if ($node instanceof Function_ || $node instanceof Class_) {
             return $name;
         }
 
         $parent = $this->stack[count($this->stack) - 2];
-        \assert($parent instanceof \PhpParser\Node\Stmt\ClassLike);
-        \assert($parent->name instanceof \PhpParser\Node\Identifier);
+        assert($parent instanceof ClassLike);
+        assert($parent->name instanceof Identifier);
 
         return sprintf(
             '%1$s::%2$s%3$s',
