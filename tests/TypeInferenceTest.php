@@ -43,6 +43,7 @@ class TypeInferenceTest extends TypeInferenceTestCase
         yield from $this->gatherAssertTypes(__DIR__ . '/data/get_user.php');
         yield from $this->gatherAssertTypes(__DIR__ . '/data/get_user_by.php');
         yield from $this->gatherAssertTypes(__DIR__ . '/data/has_filter.php');
+        yield from $this->gatherAssertTypes(__DIR__ . '/data/have_posts.php');
         yield from $this->gatherAssertTypes(__DIR__ . '/data/is_new_day.php');
         yield from $this->gatherAssertTypes(__DIR__ . '/data/is_wp_error.php');
         yield from $this->gatherAssertTypes(__DIR__ . '/data/mysql2date.php');
