@@ -18,50 +18,50 @@ assertType('array<int, WP_Post>', get_posts(['fields' => 'Hello']));
 assertType('array<int, int|WP_Post>', get_posts(Faker::array()));
 
 // Unions
-$union = Faker::bool() ? ['key' => 'value'] : ['some' => 'thing'];
+$union = Faker::union(['key' => 'value'], ['some' => 'thing']);
 assertType('array<int, WP_Post>', get_posts($union));
 
-$union = Faker::bool() ? ['key' => 'value'] : ['fields' => 'ids'];
+$union = Faker::union(['key' => 'value'], ['fields' => 'ids']);
 assertType('array<int, int|WP_Post>', get_posts($union));
 
-$union = Faker::bool() ? ['key' => 'value'] : ['fields' => ''];
+$union = Faker::union(['key' => 'value'], ['fields' => '']);
 assertType('array<int, WP_Post>', get_posts($union));
 
-$union = Faker::bool() ? ['key' => 'value'] : ['fields' => 'id=>parent'];
+$union = Faker::union(['key' => 'value'], ['fields' => 'id=>parent']);
 assertType('array<int, int|WP_Post>', get_posts($union));
 
-$union = Faker::bool() ? ['fields' => ''] : ['fields' => 'ids'];
+$union = Faker::union(['fields' => ''], ['fields' => 'ids']);
 assertType('array<int, int|WP_Post>', get_posts($union));
 
-$union = Faker::bool() ? ['fields' => ''] : ['fields' => 'id=>parent'];
+$union = Faker::union(['fields' => ''], ['fields' => 'id=>parent']);
 assertType('array<int, int|WP_Post>', get_posts($union));
 
-$union = Faker::bool() ? ['fields' => 'ids'] : ['fields' => 'id=>parent'];
+$union = Faker::union(['fields' => 'ids'], ['fields' => 'id=>parent']);
 assertType('array<int, int>', get_posts($union));
 
-$union = Faker::bool() ? Faker::array() : ['fields' => ''];
+$union = Faker::union(Faker::array(), ['fields' => '']);
 assertType('array<int, int|WP_Post>', get_posts($union));
 
-$union = Faker::bool() ? Faker::array() : ['fields' => 'ids'];
+$union = Faker::union(Faker::array(), ['fields' => 'ids']);
 assertType('array<int, int|WP_Post>', get_posts($union));
 
-$union = Faker::bool() ? Faker::array() : ['fields' => 'id=>parent'];
+$union = Faker::union(Faker::array(), ['fields' => 'id=>parent']);
 assertType('array<int, int|WP_Post>', get_posts($union));
 
-$union = Faker::bool() ? Faker::string() : '';
+$union = Faker::union(Faker::string(), '');
 assertType('array<int, int|WP_Post>', get_posts(['fields' => $union]));
 
-$union = Faker::bool() ? Faker::string() : 'ids';
+$union = Faker::union(Faker::string(), 'ids');
 assertType('array<int, int|WP_Post>', get_posts(['fields' => $union]));
 
-$union = Faker::bool() ? Faker::string() : 'id=>parent';
+$union = Faker::union(Faker::string(), 'id=>parent');
 assertType('array<int, int|WP_Post>', get_posts(['fields' => $union]));
 
-$union = Faker::bool() ? Faker::string() : 'fields';
+$union = Faker::union(Faker::string(), 'fields');
 assertType('array<int, WP_Post>', get_posts([$union => '']));
 
-$union = Faker::bool() ? Faker::string() : 'fields';
+$union = Faker::union(Faker::string(), 'fields');
 assertType('array<int, int|WP_Post>', get_posts([$union => 'ids']));
 
-$union = Faker::bool() ? Faker::string() : 'fields';
+$union = Faker::union(Faker::string(), 'fields');
 assertType('array<int, int|WP_Post>', get_posts([$union => 'id=>parent']));

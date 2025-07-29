@@ -15,9 +15,7 @@ namespace PhpStubs\WordPress\Core\Tests;
 use function wp_dropdown_languages;
 use function PHPStan\Testing\assertType;
 
-/** @var ''|null $emptyStringOrNull */
-$emptyStringOrNull = $_GET['emptyStringOrNull'];
-
+$emptyStringOrNull = Faker::union('', null);
 $stringOrNull = Faker::union(Faker::string(), null);
 
 // Default value

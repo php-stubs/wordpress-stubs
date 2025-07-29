@@ -47,8 +47,13 @@ assertType('array<int|string>', Faker::union(Faker::array(Faker::int()), Faker::
 assertType('array<mixed>', Faker::union(Faker::array(), Faker::strArray()));
 assertType('array<mixed>', Faker::union(Faker::array(), Faker::intArray()));
 assertType('string|null', Faker::union(Faker::string(), null));
+assertType("'bar'|'foo'", Faker::union('foo', 'bar'));
+assertType('string', Faker::union('foo', Faker::string()));
+assertType("'foo'|int", Faker::union('foo', Faker::int()));
+assertType("array{'baz'}|array{foo: 'bar'}", Faker::union(['foo' => 'bar'], ['baz']));
 
 // Other
+assertType('callable(): mixed', Faker::callable());
 assertType('resource', Faker::resource());
 assertType('object', Faker::object());
 assertType('stdClass', Faker::stdClass());
@@ -60,4 +65,5 @@ assertType('WP_Theme', Faker::wpTheme());
 assertType('WP_Translations', Faker::wpTranslations());
 assertType('WP_Query', Faker::wpQuery());
 assertType('WP_Widget_Factory', Faker::wpWidgetFactory());
+assertType('wpdb', Faker::wpdb());
 assertType('mixed', Faker::mixed());

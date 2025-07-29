@@ -21,6 +21,6 @@ assertType('array<string, WP_Taxonomy>', get_attachment_taxonomies(Faker::int(),
 assertType('array<int|string, string|WP_Taxonomy>', get_attachment_taxonomies(Faker::int(), Faker::string()));
 
 // Unions
-assertType('array<int|string, string|WP_Taxonomy>', get_attachment_taxonomies(Faker::int(), Faker::bool() ? 'names' : 'objects'));
-assertType('array<int|string, string|WP_Taxonomy>', get_attachment_taxonomies(Faker::int(), Faker::bool() ? Faker::string() : 'names'));
-assertType('array<int|string, string|WP_Taxonomy>', get_attachment_taxonomies(Faker::int(), Faker::bool() ? Faker::string() : 'objects'));
+assertType('array<int|string, string|WP_Taxonomy>', get_attachment_taxonomies(Faker::int(), Faker::union('names', 'objects')));
+assertType('array<int|string, string|WP_Taxonomy>', get_attachment_taxonomies(Faker::int(), Faker::union(Faker::string(), 'names')));
+assertType('array<int|string, string|WP_Taxonomy>', get_attachment_taxonomies(Faker::int(), Faker::union(Faker::string(), 'objects')));
