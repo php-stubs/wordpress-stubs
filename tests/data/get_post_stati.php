@@ -22,6 +22,6 @@ assertType('array<string, stdClass>', get_post_stati([], 'Hello'));
 assertType('array<string, stdClass|string>', get_post_stati([], Faker::string()));
 
 // Unions
-assertType('array<string, stdClass|string>', get_post_stati([], Faker::bool() ? 'names' : 'objects'));
-assertType('array<string, stdClass|string>', get_post_stati([], Faker::bool() ? Faker::string() : 'names'));
-assertType('array<string, stdClass|string>', get_post_stati([], Faker::bool() ? Faker::string() : 'objects'));
+assertType('array<string, stdClass|string>', get_post_stati([], Faker::union('names', 'objects')));
+assertType('array<string, stdClass|string>', get_post_stati([], Faker::union(Faker::string(), 'names')));
+assertType('array<string, stdClass|string>', get_post_stati([], Faker::union(Faker::string(), 'objects')));

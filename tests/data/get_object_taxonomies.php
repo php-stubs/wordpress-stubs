@@ -21,6 +21,6 @@ assertType('array<string, WP_Taxonomy>', get_object_taxonomies('post', 'Hello'))
 assertType('array<int|string, string|WP_Taxonomy>', get_object_taxonomies('post', Faker::string()));
 
 // Unions
-assertType('array<int|string, string|WP_Taxonomy>', get_object_taxonomies('post', Faker::bool() ? 'names' : 'objects'));
-assertType('array<int|string, string|WP_Taxonomy>', get_object_taxonomies('post', Faker::bool() ? Faker::string() : 'names'));
-assertType('array<int|string, string|WP_Taxonomy>', get_object_taxonomies('post', Faker::bool() ? Faker::string() : 'objects'));
+assertType('array<int|string, string|WP_Taxonomy>', get_object_taxonomies('post', Faker::union('names', 'objects')));
+assertType('array<int|string, string|WP_Taxonomy>', get_object_taxonomies('post', Faker::union(Faker::string(), 'names')));
+assertType('array<int|string, string|WP_Taxonomy>', get_object_taxonomies('post', Faker::union(Faker::string(), 'objects')));
