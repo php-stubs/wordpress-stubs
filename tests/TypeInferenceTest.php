@@ -64,6 +64,7 @@ class TypeInferenceTest extends TypeInferenceTestCase
         yield from $this->gatherAssertTypes(__DIR__ . '/data/wp_get_post_tags.php');
         yield from $this->gatherAssertTypes(__DIR__ . '/data/wp_get_post_terms.php');
         yield from $this->gatherAssertTypes(__DIR__ . '/data/wp_get_object_terms.php');
+        yield from $this->gatherAssertTypes(__DIR__ . '/data/wp_get_server_protocol.php');
         yield from $this->gatherAssertTypes(__DIR__ . '/data/wp_is_numeric_array.php');
         yield from $this->gatherAssertTypes(__DIR__ . '/data/wp_list_bookmarks.php');
         yield from $this->gatherAssertTypes(__DIR__ . '/data/wp_list_categories.php');

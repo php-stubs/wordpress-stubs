@@ -133,6 +133,7 @@ return [
     'wp_get_post_terms' => ["(\$post_id is 0 ? array{} : (\$taxonomy is empty ? array{} : ((\$args is array{fields: 'names'|'slugs'}&array ? list<string> : (\$args is array{fields: 'id=>name'|'id=>slug'}&array ? array<int, string> : (\$args is array{fields: 'id=>parent'}&array ? array<int, int> : (\$args is array{fields: 'ids'|'tt_ids'}&array ? list<int> : (\$args is array{fields: 'count'}&array ? numeric-string : array<int, \WP_Term>)))))|\WP_Error)))"],
     'wp_get_schedule' => [null, 'args' => $cronArgsType],
     'wp_get_scheduled_event' => [null, 'args' => $cronArgsType],
+    'wp_get_server_protocol' => ["'HTTP/1.0'|'HTTP/1.1'|'HTTP/2'|'HTTP/2.0'|'HTTP/3'"],
     'wp_insert_attachment' => ['($wp_error is false ? int<0, max> : int<1, max>|\WP_Error)'],
     'wp_insert_category' => ['($wp_error is false ? int<0, max> : int<1, max>|\WP_Error)'],
     'wp_insert_link' => ['($wp_error is false ? int<0, max> : int<1, max>|\WP_Error)'],
