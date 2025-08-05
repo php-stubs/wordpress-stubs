@@ -15,6 +15,7 @@ class TypeInferenceTest extends TypeInferenceTestCase
         yield from $this->gatherAssertTypes(__DIR__ . '/data/_get_list_table.php');
         yield from $this->gatherAssertTypes(__DIR__ . '/data/_wp_json_sanity_check.php');
         yield from $this->gatherAssertTypes(__DIR__ . '/data/absint.php');
+        yield from $this->gatherAssertTypes(__DIR__ . '/data/block_version.php');
         yield from $this->gatherAssertTypes(__DIR__ . '/data/bool_from_yn.php');
         yield from $this->gatherAssertTypes(__DIR__ . '/data/current_time.php');
         yield from $this->gatherAssertTypes(__DIR__ . '/data/echo_parameter.php');
@@ -36,11 +37,11 @@ class TypeInferenceTest extends TypeInferenceTestCase
         yield from $this->gatherAssertTypes(__DIR__ . '/data/get_regex.php');
         yield from $this->gatherAssertTypes(__DIR__ . '/data/get_sites.php');
         yield from $this->gatherAssertTypes(__DIR__ . '/data/get_tags.php');
+        yield from $this->gatherAssertTypes(__DIR__ . '/data/get_taxonomies.php');
+        yield from $this->gatherAssertTypes(__DIR__ . '/data/get_taxonomies_for_attachments.php');
         yield from $this->gatherAssertTypes(__DIR__ . '/data/get_term_by.php');
         yield from $this->gatherAssertTypes(__DIR__ . '/data/get_terms.php');
-        yield from $this->gatherAssertTypes(__DIR__ . '/data/get_taxonomies.php');
         yield from $this->gatherAssertTypes(__DIR__ . '/data/get_term.php');
-        yield from $this->gatherAssertTypes(__DIR__ . '/data/get_taxonomies_for_attachments.php');
         yield from $this->gatherAssertTypes(__DIR__ . '/data/get_user.php');
         yield from $this->gatherAssertTypes(__DIR__ . '/data/get_user_by.php');
         yield from $this->gatherAssertTypes(__DIR__ . '/data/has_filter.php');
