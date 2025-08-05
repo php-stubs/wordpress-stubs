@@ -15,3 +15,5 @@ assertType('non-falsy-string', get_shortcode_regex(Faker::array()));
 assertType('non-falsy-string', get_shortcode_atts_regex());
 
 assertType('non-falsy-string', get_tag_regex(Faker::string()));
+
+assertType('non-falsy-string', get_html_split_regex());
