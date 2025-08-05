@@ -53,6 +53,7 @@ return [
     'add_theme_page' => [null, 'callback' => "''|callable"],
     'add_users_page' => [null, 'callback' => "''|callable"],
     'addslashes_gpc' => ['T', '@phpstan-template' => 'T', 'gpc' => 'T'],
+    'block_version' => ["(\$content is '' ? 0 : 0|1)"],
     'bool_from_yn' => ["(\$yn is 'y' ? true : false)"],
     'check_admin_referer' => ['1|2|false', 'action' => '-1|string'],
     'check_ajax_referer' => ['1|2|false', 'action' => '-1|string'],
