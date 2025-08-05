@@ -182,6 +182,7 @@ return [
     'wp_update_post' => ['($wp_error is false ? int<0, max> : int<1, max>|\WP_Error)'],
     'wp_verify_nonce' => ['1|2|false', 'action' => '-1|string'],
     'wp_widget_rss_form' => ['void', 'args' => $wpWidgetRssFormArgsType, 'inputs' => $wpWidgetRssFormInputsType],
+    'zeroise' => ['($threshold is 0 ? lowercase-string&non-empty-string&numeric-string : ($number is int<0, max> ? lowercase-string&non-empty-string&numeric-string : lowercase-string&non-empty-string))', 'threshold' => 'int<0, max>'],
     // Classes, methods, and properties
     'Custom_Image_Header::set_header_image' => [null, 'choice' => 'string|array{attachment_id: int<1, max>, url: string, width: int<0, max>, height: int<0, max>}'],
     'Custom_Image_Header::show_header_selector' => [null, 'type' => "'default'|'uploaded'"],
