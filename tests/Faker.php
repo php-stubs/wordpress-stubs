@@ -86,7 +86,8 @@ class Faker
     }
 
     /**
-     * Fakes `bool|Type`. If `$type` is `null`, fakes `bool`.
+     * Fakes `non-empty-array<Type>`, `non-empty-array<KeyType, ValueType>`,
+     * and `non-empty-array<mixed>` if no type is specified.
      *
      * @template TKeyOrValue
      * @template TValue
