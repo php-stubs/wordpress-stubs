@@ -37,6 +37,12 @@ assertType('array<int, string>', Faker::intArray(Faker::string()));
 assertType('array<string, bool>', Faker::strArray(Faker::bool()));
 assertType('list<mixed>', Faker::list());
 
+// Non-empty arrays
+assertType('non-empty-array<mixed>', Faker::nonEmptyArray());
+assertType('non-empty-array<mixed>', Faker::nonEmptyArray(Faker::mixed()));
+assertType('non-empty-array<int>', Faker::nonEmptyArray(Faker::int()));
+assertType('non-empty-array<string, string>', Faker::nonEmptyArray(Faker::string(), Faker::string()));
+
 // Unions
 assertType('bool', Faker::union(Faker::bool()));
 assertType('bool|int', Faker::union(Faker::bool(), Faker::int()));
