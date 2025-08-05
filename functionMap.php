@@ -125,6 +125,7 @@ return [
     'validate_file' => ["(\$file is '' ? 0 : (\$allowed_files is empty ? 0|1|2 : 0|1|2|3))"],
     'wp_clear_scheduled_hook' => ['(int<0, max>|($wp_error is false ? false : \WP_Error))', 'args' => $cronArgsType],
     'wp_create_nonce' => [null, 'action' => '-1|string'],
+    'wp_cron' => ['false|int<0, max>|void'],
     'wp_debug_backtrace_summary' => ['($pretty is true ? string : list<string>)'],
     'wp_die' => ['($args is array{exit: false}&array ? void : never)'],
     'wp_dropdown_languages' => ["(\$args is array{id: null|''}&array ? void : (\$args is array{name: null|''}&array ? void : string))"],
