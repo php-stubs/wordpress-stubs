@@ -57,6 +57,7 @@ assertType('callable(): mixed', Faker::callable());
 assertType('resource', Faker::resource());
 assertType('object', Faker::object());
 assertType('stdClass', Faker::stdClass());
+assertType('WP_Block', Faker::wpBlock());
 assertType('WP_Post', Faker::wpPost());
 assertType('WP_Term', Faker::wpTerm());
 assertType('WP_Comment', Faker::wpComment());

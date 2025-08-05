@@ -25,6 +25,7 @@ namespace PhpStubs\WordPress\Core\Tests;
  * @method static mixed mixed()
  * @method static callable callable()
  * @method static \stdClass stdClass()
+ * @method static \WP_Block wpBlock()
  * @method static \WP_Post wpPost()
  * @method static \WP_Term wpTerm()
  * @method static \WP_Comment wpComment()
