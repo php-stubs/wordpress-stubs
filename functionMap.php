@@ -105,6 +105,7 @@ return [
     'prep_atom_text_construct' => ["array{'html'|'text'|'xhtml', string}"],
     'previous_posts' => ['($display is true ? void : string)'],
     'rawurlencode_deep' => ['T', '@phpstan-template' => 'T', 'value' => 'T'],
+    'rest_authorization_required_code' => ['401|403'],
     'rest_ensure_response' => ['($response is WP_Error ? WP_Error : WP_REST_Response)'],
     'sanitize_category' => ['T', '@phpstan-template' => 'T of array|object', 'category' => 'T'],
     'sanitize_post' => ['T', '@phpstan-template' => 'T of array|object', 'post' => 'T'],

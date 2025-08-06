@@ -51,6 +51,7 @@ class TypeInferenceTest extends TypeInferenceTestCase
         yield from $this->gatherAssertTypes(__DIR__ . '/data/mysql2date.php');
         yield from $this->gatherAssertTypes(__DIR__ . '/data/paginate_links.php');
         yield from $this->gatherAssertTypes(__DIR__ . '/data/prep_atom_text_construct.php');
+        yield from $this->gatherAssertTypes(__DIR__ . '/data/rest_authorization_required_code.php');
         yield from $this->gatherAssertTypes(__DIR__ . '/data/rest_ensure_response.php');
         yield from $this->gatherAssertTypes(__DIR__ . '/data/size_format.php');
         yield from $this->gatherAssertTypes(__DIR__ . '/data/stripslashes.php');
