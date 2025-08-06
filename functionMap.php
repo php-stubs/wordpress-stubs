@@ -161,6 +161,7 @@ return [
     'wp_list_categories' => ['($args is array{echo: false|0}&array ? string|false : false|void)'],
     'wp_list_pages' => ['($args is array{echo: false}&array ? string : void)'],
     'wp_loginout' => ['($display is true ? void : string)'],
+    'wp_media_insert_url_form' => ['non-falsy-string'],
     'wp_next_scheduled' => [null, 'args' => $cronArgsType],
     'wp_nonce_field' => [null, 'action' => '-1|string'],
     'wp_nonce_url' => [null, 'action' => '-1|string'],
