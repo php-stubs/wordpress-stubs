@@ -72,6 +72,7 @@ return [
     'get_comment' => ["(\$comment is \WP_Comment ? array<array-key, mixed>|\WP_Comment : array<array-key, mixed>|\WP_Comment|null) & (\$output is 'ARRAY_A' ? array<string, mixed>|null : (\$output is 'ARRAY_N' ? array<int, mixed>|null : \WP_Comment|null))", 'output' => "'OBJECT'|'ARRAY_A'|'ARRAY_N'"],
     'get_comments_pagination_arrow' => ['non-falsy-string|null'],
     'get_current_blog_id' => ['int<0, max>'],
+    'get_current_user_id' => ['int<0, max>'],
     'get_html_split_regex' => ['non-falsy-string'],
     'get_object_taxonomies' => ["(\$output is 'names' ? array<int, string> : array<string, \WP_Taxonomy>)"],
     'get_page_by_path' => ["(\$output is 'ARRAY_A' ? array<string, mixed>|null : (\$output is 'ARRAY_N' ? array<int, mixed>|null : \WP_Post|null))"],
