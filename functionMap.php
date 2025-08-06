@@ -83,6 +83,7 @@ return [
     'get_post_stati' => ["(\$output is 'names' ? array<string, string> : array<string, \stdClass>)"],
     'get_post_types' => ["(\$output is 'names' ? array<string, string> : array<string, \WP_Post_Type>)"],
     'get_posts' => ["(\$args is array{fields: 'id=>parent'|'ids'}&array ? array<int, int> : array<int, \WP_Post>)"],
+    'get_plugin_page_hookname' => ['non-falsy-string'],
     'get_query_pagination_arrow' => ['non-falsy-string|null'],
     'get_shortcode_regex' => ['non-falsy-string'],
     'get_shortcode_atts_regex' => ['non-falsy-string'],
