@@ -135,6 +135,7 @@ return [
     'urldecode_deep' => ['T', '@phpstan-template' => 'T', 'value' => 'T'],
     'urlencode_deep' => ['T', '@phpstan-template' => 'T', 'value' => 'T'],
     'validate_file' => ["(\$file is '' ? 0 : (\$allowed_files is empty ? 0|1|2 : 0|1|2|3))"],
+    'validate_plugin' => ['($plugin is empty ? \WP_Error : 0|\WP_Error)'],
     'wp_caption_input_textarea' => ['non-falsy-string'],
     'wp_clear_scheduled_hook' => ['(int<0, max>|($wp_error is false ? false : \WP_Error))', 'args' => $cronArgsType],
     'wp_create_nonce' => [null, 'action' => '-1|string'],
