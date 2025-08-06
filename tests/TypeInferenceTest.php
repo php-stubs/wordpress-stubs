@@ -22,6 +22,7 @@ class TypeInferenceTest extends TypeInferenceTestCase
         yield from $this->gatherAssertTypes(__DIR__ . '/data/Faker.php');
         yield from $this->gatherAssertTypes(__DIR__ . '/data/get_approved_comments.php');
         yield from $this->gatherAssertTypes(__DIR__ . '/data/get_attachment_taxonomies.php');
+        yield from $this->gatherAssertTypes(__DIR__ . '/data/get_available_post_statuses.php');
         yield from $this->gatherAssertTypes(__DIR__ . '/data/get_block_wrapper_attributes.php');
         yield from $this->gatherAssertTypes(__DIR__ . '/data/get_bookmark.php');
         yield from $this->gatherAssertTypes(__DIR__ . '/data/get_categories.php');
