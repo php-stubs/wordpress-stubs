@@ -177,7 +177,7 @@ return [
     'wp_tag_cloud' => ["(\$args is array{format: 'array'}&array ? array<int, string>|void : (\$args is array{echo: false|0}&array ? string|void : void))"],
     'wp_title' => ['($display is true ? void : string)'],
     'wp_trigger_error' => [null, 'error_level' => '\E_USER_ERROR|\E_USER_WARNING|\E_USER_NOTICE|\E_USER_DEPRECATED'],
-    'wp_unique_id' => ['($prefix is empty ? numeric-string : ($prefix is numeric ? numeric-string : string))'],
+    'wp_unique_id' => ['($prefix is empty ? numeric-string : ($prefix is numeric ? numeric-string : string))&non-falsy-string'],
     'wp_unschedule_event' => ['($wp_error is false ? bool : true|\WP_Error)', 'args' => $cronArgsType],
     'wp_unschedule_hook' => ['($wp_error is false ? int<0, max>|false : int<0, max>|\WP_Error)'],
     'wp_unslash' => ['T', '@phpstan-template' => 'T', 'value' => 'T'],
