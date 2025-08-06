@@ -169,6 +169,7 @@ return [
     'wp_list_pages' => ['($args is array{echo: false}&array ? string : void)'],
     'wp_loginout' => ['($display is true ? void : string)'],
     'wp_media_insert_url_form' => ['non-falsy-string'],
+    'wp_nav_menu_manage_columns' => ["array{_title: string, cb: '<input type=\"checkbox\" />', link-target: string, title-attribute: string, css-classes: string, xfn: string, description: string}"],
     'wp_next_scheduled' => [null, 'args' => $cronArgsType],
     'wp_nonce_field' => [null, 'action' => '-1|string'],
     'wp_nonce_url' => [null, 'action' => '-1|string'],
