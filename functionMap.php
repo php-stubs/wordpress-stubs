@@ -95,6 +95,7 @@ return [
     'has_action' => ['($callback is false ? bool : false|int)'],
     'has_filter' => ['($callback is false ? bool : false|int)'],
     'have_posts' => [null, '@phpstan-impure' => ''],
+    'image_size_input_fields' => ["array{label: string, input: 'html', html: string}"],
     'is_new_day' => ['0|1'],
     'is_term' => ["(\$term is 0 ? 0 : (\$term is '' ? null : (\$taxonomy is '' ? string|null : array{term_id: string, term_taxonomy_id: string}|null)))"],
     'is_wp_error' => ['($thing is \WP_Error ? true : false)', '@phpstan-assert-if-true' => '\WP_Error $thing'],
