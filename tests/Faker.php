@@ -86,6 +86,21 @@ class Faker
     }
 
     /**
+     * Fakes `non-empty-array<Type>`, `non-empty-array<KeyType, ValueType>`,
+     * and `non-empty-array<mixed>` if no type is specified.
+     *
+     * @template TKeyOrValue
+     * @template TValue
+     * @param TKeyOrValue $keyOrValueType
+     * @param TValue $valueType
+     * @return (TKeyOrValue is null ? non-empty-array<mixed> : (TValue is null ? non-empty-array<TKeyOrValue> : non-empty-array<TKeyOrValue, TValue>))
+     */
+    public static function nonEmptyArray($keyOrValueType = null, $valueType = null): array
+    {
+        return [$keyOrValueType => $valueType];
+    }
+
+    /**
      * @template T
      * @param T ...$types
      * @return T
