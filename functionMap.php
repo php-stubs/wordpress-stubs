@@ -191,6 +191,7 @@ return [
     'wp_update_post' => ['($wp_error is false ? int<0, max> : int<1, max>|\WP_Error)'],
     'wp_verify_nonce' => ['1|2|false', 'action' => '-1|string'],
     'wp_widget_rss_form' => ['void', 'args' => $wpWidgetRssFormArgsType, 'inputs' => $wpWidgetRssFormInputsType],
+    'wp_widget_rss_process' => ['array{title: string, url: string, link: string, items: int<1, 20>, error: string|false, show_summary: int, show_author: int, show_date: int}'],
     'wp_widgets_access_body_class' => ['non-falsy-string'],
     'zeroise' => ['($threshold is 0 ? lowercase-string&non-empty-string&numeric-string : ($number is int<0, max> ? lowercase-string&non-empty-string&numeric-string : lowercase-string&non-empty-string))', 'threshold' => 'int<0, max>'],
     // Classes, methods, and properties
