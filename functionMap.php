@@ -168,6 +168,7 @@ return [
     'wp_insert_post' => ['($wp_error is false ? int<0, max> : int<1, max>|\WP_Error)'],
     'wp_is_numeric_array' => ['(T is array ? (key-of<T> is int ? true : false) : false)', '@phpstan-template' => 'T of mixed', 'data' => 'T', '@phpstan-assert-if-true' => '(T is list ? T : array<int, value-of<T>>) $data'],
     'wp_is_post_revision' => ['($post is \WP_Post ? false|int<0, max> : ($post is int<min, 0> ? false : false|int<0, max>))'],
+    'wp_is_uuid' => ['($version is 4|null ? bool : false)', 'uuid' => 'TUuid', 'version' => '4', '@phpstan-template TUuid' => 'of string', '@phpstan-assert-if-true' => '=TUuid&lowercase-string&non-falsy-string $uuid'],
     'wp_json_encode' => ['non-empty-string|false', 'depth' => 'int<1, max>'],
     'wp_list_bookmarks' => ['($args is array{echo: false|0}&array ? string : void)'],
     'wp_list_categories' => ['($args is array{echo: false|0}&array ? string|false : false|void)'],
