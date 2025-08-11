@@ -19,7 +19,9 @@ namespace PhpStubs\WordPress\Core\Tests;
  * @method static float float()
  * @method static string string()
  * @method static non-empty-string nonEmptyString()
+ * @method static lowercase-string lowercaseString()
  * @method static numeric-string numericString()
+ * @method static non-falsy-string nonFalsyString()
  * @method static resource resource()
  * @method static object object()
  * @method static mixed mixed()
@@ -111,5 +113,19 @@ class Faker
     public static function union(...$types)
     {
         return $types[0];
+    }
+
+    /**
+     * @template TType1
+     * @template TType2
+     * @param TType1 $type1
+     * @param TType2 $type2
+     * @return (TType1&TType2)
+     *
+     * @phpcs:disable NeutronStandard.Functions.TypeHint
+     * @phpstan-ignore return.missing
+     */
+    public static function intersection($type1, $type2)
+    {
     }
 }

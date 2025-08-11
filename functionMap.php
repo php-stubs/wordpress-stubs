@@ -164,6 +164,7 @@ return [
     'wp_get_server_protocol' => ["'HTTP/1.0'|'HTTP/1.1'|'HTTP/2'|'HTTP/2.0'|'HTTP/3'"],
     'wp_get_speculation_rules_configuration' => ["array{mode: 'prefetch'|'prerender', eagerness: 'conservative'|'eager'|'moderate'}|null"],
     'wp_hash' => ['lowercase-string&non-falsy-string', 'scheme' => "'auth'|'logged_in'|'nonce'|'secure_auth'"],
+    'wp_http_validate_url' => ["(TUrl is numeric|'' ? false : TUrl|false)", '@phpstan-template TUrl' => 'of string', 'url' => 'TUrl'],
     'wp_insert_attachment' => ['($wp_error is false ? int<0, max> : int<1, max>|\WP_Error)'],
     'wp_insert_category' => ['($wp_error is false ? int<0, max> : int<1, max>|\WP_Error)'],
     'wp_insert_link' => ['($wp_error is false ? int<0, max> : int<1, max>|\WP_Error)'],

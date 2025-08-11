@@ -24,6 +24,7 @@ assertType('float', Faker::float());
 assertType('string', Faker::string());
 assertType('numeric-string', Faker::numericString());
 assertType('non-empty-string', Faker::nonEmptyString());
+assertType('lowercase-string', Faker::lowercaseString());
 
 // Arrays with default values
 assertType('array<mixed>', Faker::array());
@@ -57,6 +58,11 @@ assertType("'bar'|'foo'", Faker::union('foo', 'bar'));
 assertType('string', Faker::union('foo', Faker::string()));
 assertType("'foo'|int", Faker::union('foo', Faker::int()));
 assertType("array{'baz'}|array{foo: 'bar'}", Faker::union(['foo' => 'bar'], ['baz']));
+
+// Intersections
+assertType('lowercase-string', Faker::intersection(Faker::string(), Faker::lowercaseString()));
+assertType("'foo'", Faker::intersection(Faker::string(), 'foo'));
+assertType('lowercase-string&non-falsy-string', Faker::intersection(Faker::lowercaseString(), Faker::nonFalsyString()));
 
 // Other
 assertType('callable(): mixed', Faker::callable());
