@@ -78,5 +78,6 @@ assertType('WP_Theme', Faker::wpTheme());
 assertType('WP_Translations', Faker::wpTranslations());
 assertType('WP_Query', Faker::wpQuery());
 assertType('WP_Widget_Factory', Faker::wpWidgetFactory());
+assertType('WP_User', Faker::wpUser());
 assertType('wpdb', Faker::wpdb());
 assertType('mixed', Faker::mixed());
