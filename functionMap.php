@@ -120,6 +120,7 @@ return [
     'sanitize_category' => ['T', '@phpstan-template' => 'T of array|object', 'category' => 'T'],
     'sanitize_post' => ['T', '@phpstan-template' => 'T of array|object', 'post' => 'T'],
     'sanitize_term' => ['T', '@phpstan-template' => 'T of array|object', 'term' => 'T'],
+    'sanitize_title_with_dashes' => ['lowercase-string', 'context' => "'display'|'save'"],
     'single_cat_title' => ['($display is true ? void : string|void)'],
     'single_month_title' => ['($display is true ? false|void : false|string)'],
     'single_post_title' => ['($display is true ? void : string|void)'],
