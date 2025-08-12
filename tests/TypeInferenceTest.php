@@ -40,6 +40,7 @@ class TypeInferenceTest extends TypeInferenceTestCase
         yield from $this->gatherAssertTypes(__DIR__ . '/data/get_permalink.php');
         yield from $this->gatherAssertTypes(__DIR__ . '/data/get_plugin_page_hookname.php');
         yield from $this->gatherAssertTypes(__DIR__ . '/data/get_regex.php');
+        yield from $this->gatherAssertTypes(__DIR__ . '/data/get_password_reset_key.php');
         yield from $this->gatherAssertTypes(__DIR__ . '/data/get_site_screen_help.php');
         yield from $this->gatherAssertTypes(__DIR__ . '/data/get_sites.php');
         yield from $this->gatherAssertTypes(__DIR__ . '/data/get_tags.php');
@@ -62,6 +63,7 @@ class TypeInferenceTest extends TypeInferenceTestCase
         yield from $this->gatherAssertTypes(__DIR__ . '/data/rest_authorization_required_code.php');
         yield from $this->gatherAssertTypes(__DIR__ . '/data/rest_ensure_response.php');
         yield from $this->gatherAssertTypes(__DIR__ . '/data/sanitize_sql_orderby.php');
+        yield from $this->gatherAssertTypes(__DIR__ . '/data/sanitize_title_with_dashes.php');
         yield from $this->gatherAssertTypes(__DIR__ . '/data/size_format.php');
         yield from $this->gatherAssertTypes(__DIR__ . '/data/stripslashes.php');
         yield from $this->gatherAssertTypes(__DIR__ . '/data/term_exists.php');
@@ -76,6 +78,7 @@ class TypeInferenceTest extends TypeInferenceTestCase
         yield from $this->gatherAssertTypes(__DIR__ . '/data/wp_dropdown_languages.php');
         yield from $this->gatherAssertTypes(__DIR__ . '/data/wp_error_parameter.php');
         yield from $this->gatherAssertTypes(__DIR__ . '/data/wp_extract_urls.php');
+        yield from $this->gatherAssertTypes(__DIR__ . '/data/wp_generate_password.php');
         yield from $this->gatherAssertTypes(__DIR__ . '/data/wp_generate_tag_cloud.php');
         yield from $this->gatherAssertTypes(__DIR__ . '/data/wp_generate_uuid4.php');
         yield from $this->gatherAssertTypes(__DIR__ . '/data/wp_get_archives.php');
