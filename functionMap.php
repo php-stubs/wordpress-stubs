@@ -184,6 +184,7 @@ return [
     'wp_nonce_url' => [null, 'action' => '-1|string'],
     'wp_parse_list' => ['($input_list is array ? array<scalar> : list<string>)'],
     'wp_parse_str' => [null, '@phpstan-param-out' => 'array<int|string, array|string> $result'],
+    'wp_rand' => [null, '@phpstan-impure' => ''],
     'wp_register' => ['($display is true ? void : string)'],
     'wp_remote_get' => [$httpReturnType],
     'wp_remote_head' => [$httpReturnType],
