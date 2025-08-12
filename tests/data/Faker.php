@@ -66,17 +66,21 @@ assertType('lowercase-string&non-falsy-string', Faker::intersection(Faker::lower
 
 // Other
 assertType('callable(): mixed', Faker::callable());
-assertType('resource', Faker::resource());
+assertType('mixed', Faker::mixed());
 assertType('object', Faker::object());
+assertType('resource', Faker::resource());
 assertType('stdClass', Faker::stdClass());
+
+// WordPress
 assertType('WP_Block', Faker::wpBlock());
-assertType('WP_Post', Faker::wpPost());
-assertType('WP_Term', Faker::wpTerm());
 assertType('WP_Comment', Faker::wpComment());
+assertType('WP_Error', Faker::wpError());
+assertType('WP_Query', Faker::wpQuery());
+assertType('WP_Post', Faker::wpPost());
 assertType('WP_REST_Request', Faker::wpRestRequest());
+assertType('WP_REST_Response', Faker::wpRestResponse());
+assertType('WP_Term', Faker::wpTerm());
 assertType('WP_Theme', Faker::wpTheme());
 assertType('WP_Translations', Faker::wpTranslations());
-assertType('WP_Query', Faker::wpQuery());
 assertType('WP_Widget_Factory', Faker::wpWidgetFactory());
 assertType('wpdb', Faker::wpdb());
-assertType('mixed', Faker::mixed());

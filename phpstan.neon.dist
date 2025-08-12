@@ -15,4 +15,4 @@ parameters:
         -
             path: tests/Faker.php
             identifier: class.notFound
-            count: 10
+            count: 12
