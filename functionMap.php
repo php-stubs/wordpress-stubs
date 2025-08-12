@@ -150,7 +150,7 @@ return [
     'wp_fast_hash' => ['non-falsy-string'],
     'wp_generate_password' => [null, '@phpstan-impure' => ''],
     'wp_generate_tag_cloud' => ["(\$args is array{format: 'array'}&array ? array<int, string> : string)"],
-    'wp_generate_uuid4' => ['lowercase-string&non-falsy-string'],
+    'wp_generate_uuid4' => ['lowercase-string&non-falsy-string', '@phpstan-impure' => ''],
     'wp_get_archives' => ['($args is array{echo: false|0}&array ? string|void : void)'],
     'wp_get_comment_status' => ["'approved'|'spam'|'trash'|'unapproved'|false"],
     'wp_get_inline_script_tag' => ['non-falsy-string', 'attributes' => 'array<string, string|true>'],
