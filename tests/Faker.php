@@ -28,14 +28,15 @@ namespace PhpStubs\WordPress\Core\Tests;
  * @method static callable callable()
  * @method static \stdClass stdClass()
  * @method static \WP_Block wpBlock()
- * @method static \WP_Post wpPost()
- * @method static \WP_Term wpTerm()
  * @method static \WP_Comment wpComment()
+ * @method static \WP_Post wpPost()
+ * @method static \WP_Query wpQuery()
  * @method static \WP_REST_Request wpRestRequest()
+ * @method static \WP_Term wpTerm()
  * @method static \WP_Theme wpTheme()
  * @method static \WP_Translations wpTranslations()
- * @method static \WP_Query wpQuery()
  * @method static \WP_Widget_Factory wpWidgetFactory()
+ * @method static \WP_User wpUser()
  * @method static \wpdb wpdb()
  */
 class Faker
