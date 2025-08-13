@@ -185,6 +185,7 @@ return [
     'wp_nav_menu_manage_columns' => ["array{_title: string, cb: '<input type=\"checkbox\" />', link-target: string, title-attribute: string, css-classes: string, xfn: string, description: string}"],
     'wp_next_scheduled' => [null, 'args' => $cronArgsType],
     'wp_nonce_field' => [null, 'action' => '-1|string'],
+    'wp_nonce_tick' => [null, 'action' => '-1|string', '@phpstan-impure' => ''],
     'wp_nonce_url' => [null, 'action' => '-1|string'],
     'wp_parse_list' => ['($input_list is array ? array<scalar> : list<string>)'],
     'wp_parse_str' => [null, '@phpstan-param-out' => 'array<int|string, array|string> $result'],
