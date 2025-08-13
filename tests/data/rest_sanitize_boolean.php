@@ -15,12 +15,14 @@ assertType('false', rest_sanitize_boolean(''));
 assertType('false', rest_sanitize_boolean('0'));
 assertType('false', rest_sanitize_boolean('false'));
 assertType('false', rest_sanitize_boolean('FALSE'));
-assertType('bool', rest_sanitize_boolean('False'));
-assertType('bool', rest_sanitize_boolean('foo'));
 assertType('true', rest_sanitize_boolean('value'));
 assertType('bool', rest_sanitize_boolean(Faker::string()));
 assertType('bool', rest_sanitize_boolean(Faker::nonEmptyString()));
 assertType('bool', rest_sanitize_boolean(Faker::nonFalsyString()));
+
+// See https://github.com/php-stubs/wordpress-stubs/pull/346#issuecomment-3181779716
+assertType('true', rest_sanitize_boolean('False'));
+assertType('true', rest_sanitize_boolean('foo'));
 
 assertType('false', rest_sanitize_boolean(0));
 assertType('true', rest_sanitize_boolean(123));
