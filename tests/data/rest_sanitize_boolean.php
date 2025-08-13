@@ -15,7 +15,7 @@ assertType('false', rest_sanitize_boolean(''));
 assertType('false', rest_sanitize_boolean('0'));
 assertType('false', rest_sanitize_boolean('false'));
 assertType('false', rest_sanitize_boolean('FALSE'));
-assertType('bool', rest_sanitize_boolean('fALSE'));
+assertType('bool', rest_sanitize_boolean('False'));
 assertType('bool', rest_sanitize_boolean('foo'));
 assertType('true', rest_sanitize_boolean('value'));
 assertType('bool', rest_sanitize_boolean(Faker::string()));
