@@ -117,6 +117,7 @@ return [
     'previous_posts' => ['($display is true ? void : string)'],
     'rawurlencode_deep' => ['T', '@phpstan-template' => 'T', 'value' => 'T'],
     'rest_authorization_required_code' => ['401|403'],
+    'rest_sanitize_boolean' => ["(T is bool ? T : (T is int ? (T is 0 ? false : true) : (T is string ? (T is ''|'false'|'FALSE'|'0' ? false : (T[0] is 'f'|'F' ? bool : true)) : true)))", '@phpstan-template T' => 'of bool|string|int', 'value' => 'T'],
     'rest_ensure_response' => ['($response is \WP_Error ? \WP_Error : \WP_REST_Response)'],
     'sanitize_category' => ['T', '@phpstan-template' => 'T of array|object', 'category' => 'T'],
     'sanitize_post' => ['T', '@phpstan-template' => 'T of array|object', 'post' => 'T'],
