@@ -74,9 +74,11 @@ assertType('stdClass', Faker::stdClass());
 // WordPress
 assertType('WP_Block', Faker::wpBlock());
 assertType('WP_Comment', Faker::wpComment());
+assertType('WP_Error', Faker::wpError());
 assertType('WP_Post', Faker::wpPost());
 assertType('WP_Query', Faker::wpQuery());
 assertType('WP_REST_Request', Faker::wpRestRequest());
+assertType('WP_REST_Response', Faker::wpRestResponse());
 assertType('WP_Term', Faker::wpTerm());
 assertType('WP_Theme', Faker::wpTheme());
 assertType('WP_Translations', Faker::wpTranslations());
