@@ -120,6 +120,7 @@ return [
     'rest_ensure_response' => ['($response is \WP_Error ? \WP_Error : \WP_REST_Response)'],
     'sanitize_category' => ['T', '@phpstan-template' => 'T of array|object', 'category' => 'T'],
     'sanitize_post' => ['T', '@phpstan-template' => 'T of array|object', 'post' => 'T'],
+    'sanitize_sql_orderby' => ['(T is non-falsy-string ? T|false : false)', '@phpstan-template T' => 'of string', 'orderby' => 'T'],
     'sanitize_term' => ['T', '@phpstan-template' => 'T of array|object', 'term' => 'T'],
     'sanitize_title_with_dashes' => ['lowercase-string', 'context' => "'display'|'save'"],
     'single_cat_title' => ['($display is true ? void : string|void)'],
