@@ -15,6 +15,8 @@ class TypeInferenceTest extends TypeInferenceTestCase
         yield from $this->gatherAssertTypes(__DIR__ . '/data/_get_list_table.php');
         yield from $this->gatherAssertTypes(__DIR__ . '/data/absint.php');
         yield from $this->gatherAssertTypes(__DIR__ . '/data/block_version.php');
+        yield from $this->gatherAssertTypes(__DIR__ . '/data/bookmark-admin.php');
+        yield from $this->gatherAssertTypes(__DIR__ . '/data/bookmark.php');
         yield from $this->gatherAssertTypes(__DIR__ . '/data/bool_from_yn.php');
         yield from $this->gatherAssertTypes(__DIR__ . '/data/current_time.php');
         yield from $this->gatherAssertTypes(__DIR__ . '/data/echo_parameter.php');
@@ -23,7 +25,6 @@ class TypeInferenceTest extends TypeInferenceTestCase
         yield from $this->gatherAssertTypes(__DIR__ . '/data/get_attachment_taxonomies.php');
         yield from $this->gatherAssertTypes(__DIR__ . '/data/get_available_post_statuses.php');
         yield from $this->gatherAssertTypes(__DIR__ . '/data/get_block_wrapper_attributes.php');
-        yield from $this->gatherAssertTypes(__DIR__ . '/data/get_bookmark.php');
         yield from $this->gatherAssertTypes(__DIR__ . '/data/get_categories.php');
         yield from $this->gatherAssertTypes(__DIR__ . '/data/get_category.php');
         yield from $this->gatherAssertTypes(__DIR__ . '/data/get_category_by_path.php');
@@ -112,7 +113,6 @@ class TypeInferenceTest extends TypeInferenceTestCase
         yield from $this->gatherAssertTypes(__DIR__ . '/data/wp_theme.php');
         yield from $this->gatherAssertTypes(__DIR__ . '/data/wp_translations.php');
         yield from $this->gatherAssertTypes(__DIR__ . '/data/wp_unique_id.php');
-        yield from $this->gatherAssertTypes(__DIR__ . '/data/wp_update_link.php');
         yield from $this->gatherAssertTypes(__DIR__ . '/data/wp_widget_factory.php');
         yield from $this->gatherAssertTypes(__DIR__ . '/data/wp_widget_rss.php');
         yield from $this->gatherAssertTypes(__DIR__ . '/data/wp_widgets_access_body_class.php');

@@ -7,7 +7,6 @@ namespace PhpStubs\WordPress\Core\Tests;
 use function wp_clear_scheduled_hook;
 use function wp_insert_attachment;
 use function wp_insert_category;
-use function wp_insert_link;
 use function wp_insert_post;
 use function wp_reschedule_event;
 use function wp_schedule_event;
@@ -18,14 +17,6 @@ use function wp_unschedule_hook;
 use function wp_update_comment;
 use function wp_update_post;
 use function PHPStan\Testing\assertType;
-
-/*
- * wp_insert_link()
- */
-assertType('int<0, max>', wp_insert_link([]));
-assertType('int<0, max>', wp_insert_link([], false));
-assertType('int<0, max>|WP_Error', wp_insert_link([], true));
-assertType('int<0, max>|WP_Error', wp_insert_link([], Faker::bool()));
 
 /*
  * wp_insert_category()

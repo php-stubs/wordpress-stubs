@@ -50,6 +50,25 @@ final class CallToParameterTest extends IntegrationTest
         );
     }
 
+    public function testBookmarks(): void
+    {
+        $field = "'link_category'|'link_description'|'link_id'|'link_image'|'link_name'|'link_notes'|'link_owner'|'link_rating'|'link_rel'|'link_rss'|'link_target'|'link_updated'|'link_url'|'link_visible'";
+
+        $this->analyse(
+            __DIR__ . '/data/bookmark-params.php',
+            [
+                ["Parameter #1 \$field of function get_bookmark_field expects $field, 'foo' given.", 16],
+                ["Parameter #1 \$field of function get_bookmark_field expects $field, 'foo' given.", 17],
+                ["Parameter #1 \$field of function get_bookmark_field expects $field, int given.", 18],
+                ["Parameter #1 \$field of function sanitize_bookmark_field expects $field, 'foo' given.", 21],
+                ["Parameter #1 \$field of function sanitize_bookmark_field expects $field, int given.", 22],
+                // Maybes
+                ["Parameter #1 \$field of function get_bookmark_field expects $field, string given.", 30],
+                ["Parameter #1 \$field of function sanitize_bookmark_field expects $field, string given.", 32],
+            ]
+        );
+    }
+
     public function testWpdbGetRow(): void
     {
         $this->analyse(
