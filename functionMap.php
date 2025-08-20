@@ -215,6 +215,7 @@ return [
     'wp_unschedule_event' => ['($wp_error is false ? bool : true|\WP_Error)', 'args' => $cronArgsType],
     'wp_unschedule_hook' => ['($wp_error is false ? int<0, max>|false : int<0, max>|\WP_Error)'],
     'wp_unslash' => ['T', '@phpstan-template' => 'T', 'value' => 'T'],
+    'wp_update_category' => ['int<0, max>|false'],
     'wp_update_comment' => ['($wp_error is false ? 0|1|false : 0|1|\WP_Error)'],
     'wp_update_post' => ['($wp_error is false ? int<0, max> : int<1, max>|\WP_Error)'],
     'wp_verify_nonce' => ['1|2|false', 'action' => '-1|string'],
