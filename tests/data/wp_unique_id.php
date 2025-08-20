@@ -20,6 +20,15 @@ assertType('non-falsy-string&numeric-string', wp_unique_id(Faker::numericString(
 assertType('non-falsy-string', wp_unique_id('string'));
 assertType('non-falsy-string', wp_unique_id(Faker::string()));
 
+assertType('lowercase-string&non-falsy-string', wp_unique_id_from_values([]));
+assertType('lowercase-string&non-falsy-string', wp_unique_id_from_values(['key' => 'value']));
+assertType('lowercase-string&non-falsy-string', wp_unique_id_from_values(Faker::array()));
+assertType('lowercase-string&non-falsy-string', wp_unique_id_from_values(Faker::array(), ''));
+assertType('lowercase-string&non-falsy-string', wp_unique_id_from_values(Faker::array(), 'prefix'));
+assertType('non-falsy-string', wp_unique_id_from_values(Faker::array(), 'Prefix'));
+assertType('lowercase-string&non-falsy-string', wp_unique_id_from_values(Faker::array(), Faker::lowercaseString()));
+assertType('non-falsy-string', wp_unique_id_from_values(Faker::array(), Faker::string()));
+
 assertType('non-falsy-string&numeric-string', wp_unique_prefixed_id());
 assertType('non-falsy-string&numeric-string', wp_unique_prefixed_id(''));
 assertType('non-falsy-string&numeric-string', wp_unique_prefixed_id('1'));
