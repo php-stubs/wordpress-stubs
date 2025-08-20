@@ -69,11 +69,11 @@ final class CallToParameterTest extends IntegrationTest
         $this->analyse(
             __DIR__ . '/data/wp_trigger_error_params.php',
             [
-                ['Parameter #3 $error_level of function wp_trigger_error expects 256|512|1024|16384, int given.', 13],
-                ['Parameter #3 $error_level of function wp_trigger_error expects 256|512|1024|16384, string given.', 14],
-                ['Parameter #3 $error_level of function wp_trigger_error expects 256|512|1024|16384, 2 given.', 21],
-                ['Parameter #3 $error_level of function wp_trigger_error expects 256|512|1024|16384, 2 given.', 28],
-                ['Parameter #3 $error_level of function wp_trigger_error expects 256|512|1024|16384, 0 given.', 29],
+                ['Parameter #3 $error_level of function wp_trigger_error expects 256|512|1024|16384, int given.', 19],
+                ['Parameter #3 $error_level of function wp_trigger_error expects 256|512|1024|16384, string given.', 20],
+                ['Parameter #3 $error_level of function wp_trigger_error expects 256|512|1024|16384, 2 given.', 27],
+                ['Parameter #3 $error_level of function wp_trigger_error expects 256|512|1024|16384, 2 given.', 34],
+                ['Parameter #3 $error_level of function wp_trigger_error expects 256|512|1024|16384, 0 given.', 35],
             ]
         );
     }
