@@ -65,6 +65,7 @@ assertType("'foo'", Faker::intersection(Faker::string(), 'foo'));
 assertType('lowercase-string&non-falsy-string', Faker::intersection(Faker::lowercaseString(), Faker::nonFalsyString()));
 
 // Other
+assertType('bool|float|int|string', Faker::scalar());
 assertType('callable(): mixed', Faker::callable());
 assertType('mixed', Faker::mixed());
 assertType('object', Faker::object());
