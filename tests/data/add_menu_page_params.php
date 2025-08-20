@@ -22,9 +22,9 @@ add_menu_page('page title', 'menu title', 'manage_options', 'menu_slug', 'notACa
 add_menu_page('page title', 'menu title', 'manage_options', 'menu_slug', ''); // correct
 add_menu_page('page title', 'menu title', 'manage_options', 'menu_slug', Faker::callable()); // correct
 
-add_submenu_page('parent_slug','page title', 'menu title', 'manage_options', 'menu_slug', 'notACallable'); // incorrect
-add_submenu_page('parent_slug','page title', 'menu title', 'manage_options', 'menu_slug', ''); // correct
-add_submenu_page('parent_slug','page title', 'menu title', 'manage_options', 'menu_slug', Faker::callable()); // correct
+add_submenu_page('parent_slug', 'page title', 'menu title', 'manage_options', 'menu_slug', 'notACallable'); // incorrect
+add_submenu_page('parent_slug', 'page title', 'menu title', 'manage_options', 'menu_slug', ''); // correct
+add_submenu_page('parent_slug', 'page title', 'menu title', 'manage_options', 'menu_slug', Faker::callable()); // correct
 
 add_links_page('page title', 'menu title', 'manage_options', 'menu_slug', 'notACallable'); // incorrect
 add_links_page('page title', 'menu title', 'manage_options', 'menu_slug', ''); // correct
