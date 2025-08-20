@@ -172,7 +172,7 @@ return [
     'wp_http_validate_url' => ["(TUrl is numeric|'' ? false : TUrl|false)", '@phpstan-template TUrl' => 'of string', 'url' => 'TUrl'],
     'wp_insert_attachment' => ['($wp_error is false ? int<0, max> : int<1, max>|\WP_Error)'],
     'wp_insert_category' => ['($wp_error is false ? int<0, max> : int<1, max>|\WP_Error)'],
-    'wp_insert_link' => ['($wp_error is false ? int<0, max> : int<1, max>|\WP_Error)'],
+    'wp_insert_link' => ['($wp_error is false ? int<0, max> : int<0, max>|\WP_Error)'],
     'wp_insert_post' => ['($wp_error is false ? int<0, max> : int<1, max>|\WP_Error)'],
     'wp_internal_hosts' => ['array<lowercase-string>'],
     'wp_is_numeric_array' => ['(T is array<int, mixed> ? true : false)', '@phpstan-template' => 'T of mixed', 'data' => 'T', '@phpstan-assert-if-true' => '(T is list ? T : array<int, mixed>) $data'],
