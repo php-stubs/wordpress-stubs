@@ -24,7 +24,7 @@ use function PHPStan\Testing\assertType;
  */
 assertType('int<0, max>', wp_insert_link([]));
 assertType('int<0, max>', wp_insert_link([], false));
-assertType('int<1, max>|WP_Error', wp_insert_link([], true));
+assertType('int<0, max>|WP_Error', wp_insert_link([], true));
 assertType('int<0, max>|WP_Error', wp_insert_link([], Faker::bool()));
 
 /*
