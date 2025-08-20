@@ -22,6 +22,7 @@ namespace PhpStubs\WordPress\Core\Tests;
  * @method static lowercase-string lowercaseString()
  * @method static numeric-string numericString()
  * @method static non-falsy-string nonFalsyString()
+ * @method static scalar scalar()
  * @method static resource resource()
  * @method static object object()
  * @method static mixed mixed()

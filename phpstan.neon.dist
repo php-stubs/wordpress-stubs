@@ -16,3 +16,15 @@ parameters:
             path: tests/Faker.php
             identifier: class.notFound
             count: 13
+        -
+            # PHPStan\Analyser\Analyser::analyse()
+            # PHPStan\Analyser\AnalyserResult::getErrors()
+            identifier: phpstanApi.method
+            path: tests/IntegrationTest.php
+            count: 2
+        -
+            # PHPStan\Analyser\Analyser::class
+            identifier: phpstanApi.classConstant
+            path: tests/IntegrationTest.php
+            count: 1
+

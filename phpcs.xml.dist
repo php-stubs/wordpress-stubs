@@ -19,6 +19,9 @@
     <rule ref="NeutronStandard.Functions.TypeHint.UnusedReturnType">
         <exclude-pattern>tests/TypeInferenceTest.php</exclude-pattern>
     </rule>
+    <rule ref="SlevomatCodingStandard.Variables.UnusedVariable.UnusedVariable">
+        <exclude-pattern>tests/data/wpdb-params.php</exclude-pattern>
+    </rule>
     <rule ref="PSR12NeutronRuleset.NamingConventions.MeaningfulVariableName">
         <exclude-pattern>tests/</exclude-pattern>
     </rule>
