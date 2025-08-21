@@ -107,6 +107,7 @@ return [
     'get_user_by' => ["(\$field is 'id'|'ID' ? (\$value is int<min, 0> ? false : \WP_User|false) : \WP_User|false)"],
     'has_action' => ['($callback is false ? bool : false|int)'],
     'has_filter' => ['($callback is false ? bool : false|int)'],
+    'has_shortcode' => ['($tag is empty ? false : ($content is empty ? false : bool))', '@phpstan-assert-if-true =non-falsy-string $content' => '', '@phpstan-assert-if-true =non-empty-string $tag' => ''],
     'have_posts' => [null, '@phpstan-impure' => ''],
     'image_link_input_fields' => ['non-falsy-string'],
     'image_size_input_fields' => ["array{label: string, input: 'html', html: string}"],
