@@ -14,6 +14,7 @@ class TypeInferenceTest extends TypeInferenceTestCase
         yield from $this->gatherAssertTypes(__DIR__ . '/data/__return.php');
         yield from $this->gatherAssertTypes(__DIR__ . '/data/_get_list_table.php');
         yield from $this->gatherAssertTypes(__DIR__ . '/data/absint.php');
+        yield from $this->gatherAssertTypes(__DIR__ . '/data/block_core.php');
         yield from $this->gatherAssertTypes(__DIR__ . '/data/block_version.php');
         yield from $this->gatherAssertTypes(__DIR__ . '/data/bookmark-admin.php');
         yield from $this->gatherAssertTypes(__DIR__ . '/data/bookmark.php');
@@ -53,6 +54,7 @@ class TypeInferenceTest extends TypeInferenceTestCase
         yield from $this->gatherAssertTypes(__DIR__ . '/data/get_user.php');
         yield from $this->gatherAssertTypes(__DIR__ . '/data/get_user_by.php');
         yield from $this->gatherAssertTypes(__DIR__ . '/data/has_filter.php');
+        yield from $this->gatherAssertTypes(__DIR__ . '/data/has_shortcode.php');
         yield from $this->gatherAssertTypes(__DIR__ . '/data/have_posts.php');
         yield from $this->gatherAssertTypes(__DIR__ . '/data/image_link_input_fields.php');
         yield from $this->gatherAssertTypes(__DIR__ . '/data/image_size_input_fields.php');
