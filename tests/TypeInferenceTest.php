@@ -80,6 +80,7 @@ class TypeInferenceTest extends TypeInferenceTestCase
         yield from $this->gatherAssertTypes(__DIR__ . '/data/wp_create_nonce.php');
         yield from $this->gatherAssertTypes(__DIR__ . '/data/wp_cron.php');
         yield from $this->gatherAssertTypes(__DIR__ . '/data/wp_debug_backtrace_summary.php');
+        yield from $this->gatherAssertTypes(__DIR__ . '/data/wp_dependencies.php');
         yield from $this->gatherAssertTypes(__DIR__ . '/data/wp_die.php');
         yield from $this->gatherAssertTypes(__DIR__ . '/data/wp_dropdown_languages.php');
         yield from $this->gatherAssertTypes(__DIR__ . '/data/wp_error_parameter.php');
