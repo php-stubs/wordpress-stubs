@@ -41,7 +41,6 @@ class TypeInferenceTest extends TypeInferenceTestCase
         yield from $this->gatherAssertTypes(__DIR__ . '/data/get_pagination_arrow.php');
         yield from $this->gatherAssertTypes(__DIR__ . '/data/get_permalink.php');
         yield from $this->gatherAssertTypes(__DIR__ . '/data/get_plugin_page_hookname.php');
-        yield from $this->gatherAssertTypes(__DIR__ . '/data/get_regex.php');
         yield from $this->gatherAssertTypes(__DIR__ . '/data/get_password_reset_key.php');
         yield from $this->gatherAssertTypes(__DIR__ . '/data/get_site_screen_help.php');
         yield from $this->gatherAssertTypes(__DIR__ . '/data/get_sites.php');
@@ -63,6 +62,7 @@ class TypeInferenceTest extends TypeInferenceTestCase
         yield from $this->gatherAssertTypes(__DIR__ . '/data/mysql2date.php');
         yield from $this->gatherAssertTypes(__DIR__ . '/data/paginate_links.php');
         yield from $this->gatherAssertTypes(__DIR__ . '/data/prep_atom_text_construct.php');
+        yield from $this->gatherAssertTypes(__DIR__ . '/data/regex.php');
         yield from $this->gatherAssertTypes(__DIR__ . '/data/rest_authorization_required_code.php');
         yield from $this->gatherAssertTypes(__DIR__ . '/data/rest_ensure_response.php');
         yield from $this->gatherAssertTypes(__DIR__ . '/data/rest_sanitize_boolean.php');
