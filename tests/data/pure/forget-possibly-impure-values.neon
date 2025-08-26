@@ -1,0 +1,6 @@
+# By default, PHPStan considers all functions that return a value to be pure.
+# This can be disabled setting `rememberPossiblyImpureFunctionValues` to false.
+# If set, PHPStan will not assume repeated calls to possible impure functions
+# return the same value.
+parameters:
+    rememberPossiblyImpureFunctionValues: false
