@@ -11,7 +11,7 @@ abstract class TypeInferenceTest extends TypeInferenceTestCase
     abstract public function getDataDirectory(): string;
 
     /** @return iterable<mixed> */
-    protected function dataAsserts(): iterable {
+    public function dataAsserts(): iterable {
         yield from $this->gatherAssertTypesFromDirectory($this->getDataDirectory());
     }
 
