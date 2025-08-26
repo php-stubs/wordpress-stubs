@@ -7,10 +7,6 @@ namespace PhpStubs\WordPress\Core\Tests;
 use function get_password_reset_key;
 use function PHPStan\Testing\assertType;
 
-/*
- * Check impurity
- */
-
 $user = Faker::wpUser();
 
 if (is_wp_error(get_password_reset_key($user))) {
