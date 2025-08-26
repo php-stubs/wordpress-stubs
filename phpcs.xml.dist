@@ -19,6 +19,9 @@
     <rule ref="SlevomatCodingStandard.Variables.UnusedVariable.UnusedVariable">
         <exclude-pattern>tests/data/param/wpdb.php</exclude-pattern>
     </rule>
+    <rule ref="PSR1.Files.SideEffects.FoundWithSymbols">
+        <exclude-pattern>tests/data/**/__demo.php</exclude-pattern>
+    </rule>
     <rule ref="PSR12NeutronRuleset.NamingConventions.MeaningfulVariableName">
         <exclude-pattern>tests/</exclude-pattern>
     </rule>
