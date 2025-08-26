@@ -13,11 +13,8 @@
     </rule>
 
     <!-- Rules not applied to tests -->
-    <rule ref="SlevomatCodingStandard.Functions.FunctionLength.FunctionLength">
-        <exclude-pattern>tests/ReturnTypeTest.php</exclude-pattern>
-    </rule>
     <rule ref="NeutronStandard.Functions.TypeHint.UnusedReturnType">
-        <exclude-pattern>tests/*Test.php</exclude-pattern>
+        <exclude-pattern>tests/TypeInferenceTest.php</exclude-pattern>
     </rule>
     <rule ref="SlevomatCodingStandard.Variables.UnusedVariable.UnusedVariable">
         <exclude-pattern>tests/data/param/wpdb.php</exclude-pattern>

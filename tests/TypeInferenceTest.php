@@ -8,8 +8,12 @@ use PHPStan\Testing\TypeInferenceTestCase;
 
 abstract class TypeInferenceTest extends TypeInferenceTestCase
 {
+    abstract public function getDataDirectory(): string;
+
     /** @return iterable<mixed> */
-    abstract public function dataAsserts(): iterable;
+    protected function dataAsserts(): iterable {
+        yield from $this->gatherAssertTypesFromDirectory($this->getDataDirectory());
+    }
 
     /**
      * @dataProvider dataAsserts
