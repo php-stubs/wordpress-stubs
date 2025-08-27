@@ -69,6 +69,28 @@ class ParameterTypeTest extends IntegrationTest
         );
     }
 
+    public function testCheckAdminReferer(): void
+    {
+        $this->analyse(
+            __DIR__ . '/data/param/check_admin_referer.php',
+            [
+                ['Parameter #1 $action of function check_admin_referer expects string, int given.', 10],
+                ['Parameter #1 $action of function check_admin_referer expects string, int given.', 11],
+            ]
+        );
+    }
+
+    public function testCheckAjaxReferer(): void
+    {
+        $this->analyse(
+            __DIR__ . '/data/param/check_ajax_referer.php',
+            [
+                ['Parameter #1 $action of function check_ajax_referer expects string, int given.', 10],
+                ['Parameter #1 $action of function check_ajax_referer expects string, int given.', 11],
+            ]
+        );
+    }
+
     public function testWpdbGetRow(): void
     {
         $this->analyse(
