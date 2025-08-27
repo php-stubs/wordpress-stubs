@@ -91,6 +91,19 @@ class ParameterTypeTest extends IntegrationTest
         );
     }
 
+    public function testRegisterNavMenus(): void
+    {
+        $this->analyse(
+            __DIR__ . '/data/param/register_nav_menus.php',
+            [
+                ['Parameter #1 $locations of function register_nav_menus expects array<string, string>, string given.', 10],
+                ['Parameter #1 $locations of function register_nav_menus expects array<string, string>, array<int, string> given.', 11],
+                ['Parameter #1 $locations of function register_nav_menus expects array<string, string>, array<int, string> given.', 12],
+                ['Parameter #1 $locations of function register_nav_menus expects array<string, string>, array<int|string, string> given.', 13],
+            ]
+        );
+    }
+
     public function testWpdbGetRow(): void
     {
         $this->analyse(
