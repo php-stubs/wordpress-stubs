@@ -7,10 +7,10 @@ namespace PhpStubs\WordPress\Core\Tests;
 use stdClass;
 use function absint;
 
-absint(Faker::scalar()); // correct
-absint(Faker::array()); // correct
-absint(null); // correct
-absint('constantString'); // correct
+$result = absint(Faker::scalar()); // correct
+$result = absint(Faker::array()); // correct
+$result = absint(null); // correct
+$result = absint('constantString'); // correct
 
-absint(Faker::object()); // incorrect
-absint(new stdClass()); // incorrect
+$result = absint(Faker::object()); // incorrect
+$result = absint(new stdClass()); // incorrect
