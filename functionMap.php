@@ -140,7 +140,7 @@ return [
     'single_term_title' => ['($display is true ? void : string|void)'],
     'size_format' => ["(\$bytes is not numeric ? false : (\$bytes is int<min, -1>|'0' ? false : string))"],
     'stripslashes_deep' => ['T', '@phpstan-template' => 'T', 'value' => 'T'],
-    'stripslashes_from_strings_only' => ["(\$value is string ? (\$value is '' ? '' : string) : T)", '@phpstan-template' => 'T', 'value' => 'T|string'],
+    'stripslashes_from_strings_only' => ["(\$value is string ? (\$value is '' ? '' : string) : T)", '@phpstan-template' => 'T', 'value' => 'T|string', '@phpstan-pure' => ''],
     'tag_exists' => ["(\$tag_name is 0 ? 0 : (\$tag_name is '' ? null : array{term_id: string, term_taxonomy_id: string}|null))"],
     'taxonomy_exists' => ['($taxonomy is non-falsy-string ? bool : false)', '@phpstan-impure' => '', '@phpstan-assert-if-true' => '=non-falsy-string $taxonomy'],
     'term_exists' => ["(\$term is 0 ? 0 : (\$term is '' ? null : (\$taxonomy is '' ? string|null : array{term_id: string, term_taxonomy_id: string}|null)))"],
