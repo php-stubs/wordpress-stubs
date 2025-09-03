@@ -216,7 +216,7 @@ return [
     'wp_schedule_event' => ['($wp_error is false ? bool : true|\WP_Error)', 'args' => $cronArgsType],
     'wp_schedule_single_event' => ['($wp_error is false ? bool : true|\WP_Error)', 'args' => $cronArgsType],
     'wp_set_comment_status' => ['($wp_error is false ? bool : true|\WP_Error)'],
-    'wp_slash' => ['T', '@phpstan-template' => 'T', 'value' => 'T'],
+    'wp_slash' => ['($value is string ? string : array)', '@phpstan-pure' => ''],
     'wp_tag_cloud' => ["(\$args is array{format: 'array'}&array ? array<int, string>|void : (\$args is array{echo: false|0}&array ? string|void : void))"],
     'wp_title' => ['($display is true ? void : string)'],
     'wp_trigger_error' => [null, 'error_level' => '\E_USER_ERROR|\E_USER_WARNING|\E_USER_NOTICE|\E_USER_DEPRECATED'],
