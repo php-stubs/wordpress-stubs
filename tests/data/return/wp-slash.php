@@ -13,6 +13,6 @@ assertType('string', wp_slash(Faker::nonEmptyString()));
 assertType('string', wp_slash(Faker::string()));
 
 assertType('array', wp_slash([]));
-assertType("array", wp_slash(['key' => 'value']));
+assertType('array', wp_slash(['key' => 'value']));
 assertType('array', wp_slash(Faker::nonEmptyArray()));
 assertType('array', wp_slash(Faker::array()));
