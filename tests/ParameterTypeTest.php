@@ -9,7 +9,7 @@ class ParameterTypeTest extends IntegrationTest
     public function testGetListTable(): void
     {
         $this->analyse(
-            __DIR__ . '/data/param/_get_list_table.php',
+            __DIR__ . '/data/param/_get-list-table.php',
             [
                 ['Parameter #2 $args of function _get_list_table expects array{screen?: string}, array{screen: 123} given.', 10],
                 ['Parameter #2 $args of function _get_list_table expects array{screen?: string}, array{screen: int} given.', 11],
@@ -31,7 +31,7 @@ class ParameterTypeTest extends IntegrationTest
     public function testAddMenuPage(): void
     {
         $this->analyse(
-            __DIR__ . '/data/param/add_menu_page.php',
+            __DIR__ . '/data/param/add-menu-page.php',
             [
                 ["Parameter #5 \$callback of function add_menu_page expects ''|(callable(): mixed), 'notACallable' given.", 21],
                 ["Parameter #6 \$callback of function add_submenu_page expects ''|(callable(): mixed), 'notACallable' given.", 25],
@@ -72,7 +72,7 @@ class ParameterTypeTest extends IntegrationTest
     public function testCheckAdminReferer(): void
     {
         $this->analyse(
-            __DIR__ . '/data/param/check_admin_referer.php',
+            __DIR__ . '/data/param/check-admin-referer.php',
             [
                 ['Parameter #1 $action of function check_admin_referer expects string, int given.', 10],
                 ['Parameter #1 $action of function check_admin_referer expects string, int given.', 11],
@@ -83,7 +83,7 @@ class ParameterTypeTest extends IntegrationTest
     public function testCheckAjaxReferer(): void
     {
         $this->analyse(
-            __DIR__ . '/data/param/check_ajax_referer.php',
+            __DIR__ . '/data/param/check-ajax-referer.php',
             [
                 ['Parameter #1 $action of function check_ajax_referer expects string, int given.', 10],
                 ['Parameter #1 $action of function check_ajax_referer expects string, int given.', 11],
@@ -94,7 +94,7 @@ class ParameterTypeTest extends IntegrationTest
     public function testRegisterNavMenus(): void
     {
         $this->analyse(
-            __DIR__ . '/data/param/register_nav_menus.php',
+            __DIR__ . '/data/param/register-nav-menus.php',
             [
                 ['Parameter #1 $locations of function register_nav_menus expects array<string, string>, string given.', 10],
                 ['Parameter #1 $locations of function register_nav_menus expects array<string, string>, array<int, string> given.', 11],
@@ -121,7 +121,7 @@ class ParameterTypeTest extends IntegrationTest
     public function testWpTriggerError(): void
     {
         $this->analyse(
-            __DIR__ . '/data/param/wp_trigger_error.php',
+            __DIR__ . '/data/param/wp-trigger-error.php',
             [
                 ['Parameter #3 $error_level of function wp_trigger_error expects 256|512|1024|16384, int given.', 19],
                 ['Parameter #3 $error_level of function wp_trigger_error expects 256|512|1024|16384, string given.', 20],
