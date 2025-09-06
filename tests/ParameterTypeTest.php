@@ -50,6 +50,19 @@ class ParameterTypeTest extends IntegrationTest
         );
     }
 
+    public function testAddShortcode(): void
+    {
+        $this->analyse(
+            __DIR__ . '/data/param/add-shortcode.php',
+            [
+                ['Parameter #1 $tag of function add_shortcode expects non-empty-string, 1 given.', 10],
+                ["Parameter #1 \$tag of function add_shortcode expects non-empty-string, '' given.", 11],
+                // Maybes
+                ['Parameter #1 \$tag of function add_shortcode expects non-empty-string, string given.', 14],
+            ]
+        );
+    }
+
     public function testBookmarks(): void
     {
         $field = "'link_category'|'link_description'|'link_id'|'link_image'|'link_name'|'link_notes'|'link_owner'|'link_rating'|'link_rel'|'link_rss'|'link_target'|'link_updated'|'link_url'|'link_visible'";
