@@ -79,7 +79,7 @@ return [
     'get_current_blog_id' => ['int<0, max>'],
     'get_current_user_id' => ['int<0, max>'],
     'get_default_link_to_edit' => ["object{link_url: string, link_name: string, link_visible: 'Y'}&\stdClass", '@phpstan-impure' => ''],
-    'get_html_split_regex' => ['non-falsy-string'],
+    'get_html_split_regex' => ['non-falsy-string', '@phpstan-pure' => ''],
     'get_object_taxonomies' => ["(\$output is 'names' ? array<int, string> : array<string, \WP_Taxonomy>)"],
     'get_page_by_path' => ["(\$output is 'ARRAY_A' ? array<string, mixed>|null : (\$output is 'ARRAY_N' ? array<int, mixed>|null : \WP_Post|null))"],
     'get_password_reset_key' => [null, '@phpstan-impure' => ''],
