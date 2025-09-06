@@ -6,8 +6,12 @@ extend-exclude = [
 ]
 ignore-hidden = false
 
+[default]
+extend-ignore-re = [
+    "get-post-stati",
+]
+
 [default.extend-identifiers]
-"get-post-stati" = "get-post-stati"
 Automattic = "Automattic"
 get_post_stati = "get_post_stati"
 Github = "GitHub"
