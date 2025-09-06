@@ -58,7 +58,7 @@ class ParameterTypeTest extends IntegrationTest
                 ['Parameter #1 $tag of function add_shortcode expects non-empty-string, 1 given.', 10],
                 ["Parameter #1 \$tag of function add_shortcode expects non-empty-string, '' given.", 11],
                 // Maybes
-                ['Parameter #1 \$tag of function add_shortcode expects non-empty-string, string given.', 14],
+                ['Parameter #1 $tag of function add_shortcode expects non-empty-string, string given.', 14],
             ]
         );
     }
