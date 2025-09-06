@@ -92,7 +92,7 @@ return [
     'get_plugin_page_hookname' => ['non-falsy-string'],
     'get_query_pagination_arrow' => ['non-falsy-string|null'],
     'get_shortcode_regex' => ['non-falsy-string'],
-    'get_shortcode_atts_regex' => ['non-falsy-string'],
+    'get_shortcode_atts_regex' => ['non-falsy-string', '@phpstan-pure' => ''],
     'get_site_screen_help_tab_args' => ["array{id: 'overview', title: string, content: non-falsy-string}"],
     'get_site_screen_help_sidebar_content' => ['non-falsy-string'],
     'get_sites' => ["(\$args is array{count: true}&array ? int : (\$args is array{fields: 'ids'}&array ? array<int, int> : array<int, \WP_Site>))"],
