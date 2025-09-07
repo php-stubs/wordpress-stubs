@@ -133,7 +133,7 @@ return [
     'rest_ensure_response' => ['($response is \WP_Error ? \WP_Error : \WP_REST_Response)'],
     'sanitize_bookmark_field' => ['array<int, int>|int|string', 'field' => "'link_id'|'link_url'|'link_name'|'link_image'|'link_target'|'link_description'|'link_visible'|'link_owner'|'link_rating'|'link_updated'|'link_rel'|'link_notes'|'link_rss'|'link_category'"],
     'sanitize_category' => ['T', '@phpstan-template' => 'T of array|object', 'category' => 'T'],
-    'sanitize_post' => ['T', '@phpstan-template' => 'T of array|object', 'post' => 'T'],
+    'sanitize_post' => ['(T is \WP_Post ? \WP_Post : (T is object ? object : (T is array ? array : T)))', '@phpstan-template T' => 'of mixed', 'post' => 'T'],
     'sanitize_sql_orderby' => ['(T is non-falsy-string ? T|false : false)', '@phpstan-template T' => 'of string', 'orderby' => 'T'],
     'sanitize_term' => ['T', '@phpstan-template' => 'T of array|object', 'term' => 'T'],
     'sanitize_title_with_dashes' => ['lowercase-string', 'context' => "'display'|'save'"],
