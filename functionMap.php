@@ -126,6 +126,7 @@ return [
     'previous_posts' => ['($display is true ? void : string)'],
     'rawurlencode_deep' => ['T', '@phpstan-template' => 'T', 'value' => 'T'],
     'register_nav_menus' => [null, 'locations' => 'array<string, string>'],
+    'register_post_type' => [null, 'post_type' => 'lowercase-string&non-empty-string'],
     'render_block_core_categories' => ['non-falsy-string'],
     'rest_authorization_required_code' => ['401|403'],
     'rest_sanitize_boolean' => ["(T is bool ? T : (T is ''|'false'|'FALSE'|'0'|0 ? false : true))", '@phpstan-template T' => 'of bool|string|int', 'value' => 'T'],

@@ -117,6 +117,22 @@ class ParameterTypeTest extends IntegrationTest
         );
     }
 
+    public function testRegisterPostType(): void
+    {
+        $this->analyse(
+            __DIR__ . '/data/param/register-post-type.php',
+            [
+                ["Parameter #1 \$post_type of function register_post_type expects lowercase-string&non-empty-string, '' given.", 13],
+                ["Parameter #1 \$post_type of function register_post_type expects lowercase-string&non-empty-string, 'PostType' given.", 14],
+                // Maybes
+                ['Parameter #1 $post_type of function register_post_type expects lowercase-string&non-empty-string, non-empty-string given.', 17],
+                ['Parameter #1 $post_type of function register_post_type expects lowercase-string&non-empty-string, non-falsy-string given.', 18],
+                ['Parameter #1 $post_type of function register_post_type expects lowercase-string&non-empty-string, lowercase-string given.', 19],
+                ['Parameter #1 $post_type of function register_post_type expects lowercase-string&non-empty-string, string given.', 20],
+            ]
+        );
+    }
+
     public function testWpdbGetRow(): void
     {
         $this->analyse(
