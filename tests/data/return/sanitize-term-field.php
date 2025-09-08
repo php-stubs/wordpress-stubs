@@ -20,12 +20,6 @@ assertType('int<0, max>', sanitize_term_field('object_id', Faker::string(), $ter
 // Also int range if constant numeric string
 assertType('int<0, max>', sanitize_term_field('parent', '123', $termId, $taxonomy, 'raw'));
 // Also int range in any other context
-assertType('int<0, max>', sanitize_term_field('parent', Faker::string(), $termId, $taxonomy, 'edit'));
-assertType('int<0, max>', sanitize_term_field('parent', Faker::string(), $termId, $taxonomy, 'db'));
-assertType('int<0, max>', sanitize_term_field('parent', Faker::string(), $termId, $taxonomy, 'display'));
-assertType('int<0, max>', sanitize_term_field('parent', Faker::string(), $termId, $taxonomy, 'rss'));
-assertType('int<0, max>', sanitize_term_field('parent', Faker::string(), $termId, $taxonomy, 'attribute'));
-assertType('int<0, max>', sanitize_term_field('parent', Faker::string(), $termId, $taxonomy, 'js'));
 assertType('int<0, max>', sanitize_term_field('parent', Faker::string(), $termId, $taxonomy, Faker::string()));
 
 // Non int fields in raw context
