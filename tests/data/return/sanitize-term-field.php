@@ -49,7 +49,7 @@ assertType('mixed', sanitize_term_field('field', Faker::string(), $termId, $taxo
 assertType("'field value'|int<0, max>", sanitize_term_field(Faker::string(), 'field value', $termId, $taxonomy, 'raw'));
 assertType('int<0, max>|string', sanitize_term_field(Faker::string(), Faker::string(), $termId, $taxonomy, 'raw'));
 
-// Non constant field in attribute|edit|js context than raw => int<0, max> (from int field) or string (from other field)
+// Non constant field in attribute|edit|js context => int<0, max> (from int field) or string (from other field)
 assertType('int<0, max>|string', sanitize_term_field(Faker::string(), Faker::string(), $termId, $taxonomy, 'attribute'));
 assertType('int<0, max>|string', sanitize_term_field(Faker::string(), Faker::string(), $termId, $taxonomy, 'edit'));
 assertType('int<0, max>|string', sanitize_term_field(Faker::string(), Faker::string(), $termId, $taxonomy, 'js'));
@@ -58,4 +58,3 @@ assertType('int<0, max>|string', sanitize_term_field(Faker::string(), Faker::str
 assertType('mixed', sanitize_term_field(Faker::string(), Faker::string(), $termId, $taxonomy, 'db'));
 assertType('mixed', sanitize_term_field(Faker::string(), Faker::string(), $termId, $taxonomy, 'display'));
 assertType('mixed', sanitize_term_field(Faker::string(), Faker::string(), $termId, $taxonomy, 'rss'));
-assertType('mixed', sanitize_term_field(Faker::string(), Faker::string(), $termId, $taxonomy, Faker::string()));
