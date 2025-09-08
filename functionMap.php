@@ -136,6 +136,7 @@ return [
     'sanitize_post' => ['(T is \WP_Post ? \WP_Post : (T is object ? object : (T is array ? array : T)))', '@phpstan-template T' => 'of mixed', 'post' => 'T'],
     'sanitize_sql_orderby' => ['(T is non-falsy-string ? T|false : false)', '@phpstan-template T' => 'of string', 'orderby' => 'T'],
     'sanitize_term' => ['T', '@phpstan-template' => 'T of array|object', 'term' => 'T'],
+    'sanitize_term_field' => ["(\$field is 'parent'|'term_id'|'count'|'term_group'|'term_taxonomy_id'|'object_id' ? int<0, max> : (\$context is 'raw' ? T : (\$context is 'attribute'|'edit'|'js' ? string : mixed)))", '@phpstan-template T' => 'of string', 'value' => 'T'],
     'sanitize_title_with_dashes' => ['lowercase-string', 'context' => "'display'|'save'"],
     'single_cat_title' => ['($display is true ? void : string|void)'],
     'single_month_title' => ['($display is true ? false|void : false|string)'],
