@@ -134,6 +134,7 @@ return [
     'sanitize_bookmark_field' => ['array<int, int>|int|string', 'field' => "'link_id'|'link_url'|'link_name'|'link_image'|'link_target'|'link_description'|'link_visible'|'link_owner'|'link_rating'|'link_updated'|'link_rel'|'link_notes'|'link_rss'|'link_category'"],
     'sanitize_category' => ['T', '@phpstan-template' => 'T of array|object', 'category' => 'T'],
     'sanitize_post' => ['(T is \WP_Post ? \WP_Post : (T is object ? object : (T is array ? array : T)))', '@phpstan-template T' => 'of mixed', 'post' => 'T'],
+    'sanitize_post_field' => ["(\$field is 'ID'|'post_parent'|'menu_order' ? (T is int ? T : int) : (\$field is 'ancestors' ? (T is array<int<0, max>>|list<int<0, max>> ? T : (T is list ? list<int<0, max>> : array<int<0, max>>)) : (\$context is 'raw' ? T : (\$context is 'attribute'|'js' ? string : (\$context is 'edit' ? (\$field is not 'post_content' ? string : mixed) : mixed)))))", '@phpstan-template T' => 'of mixed', 'value' => 'T'],
     'sanitize_sql_orderby' => ['(T is non-falsy-string ? T|false : false)', '@phpstan-template T' => 'of string', 'orderby' => 'T'],
     'sanitize_term' => ['T', '@phpstan-template' => 'T of array|object', 'term' => 'T'],
     'sanitize_term_field' => ["(\$field is 'parent'|'term_id'|'count'|'term_group'|'term_taxonomy_id'|'object_id' ? int<0, max> : (\$context is 'raw' ? T : (\$context is 'attribute'|'edit'|'js' ? string : mixed)))", '@phpstan-template T' => 'of string', 'value' => 'T'],
