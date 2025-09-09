@@ -63,6 +63,20 @@ class ParameterTypeTest extends IntegrationTest
         );
     }
 
+    public function testAntispambot(): void
+    {
+        $this->analyse(
+            __DIR__ . '/data/param/antispambot.php',
+            [
+                ['Parameter #2 $hex_encoding of function antispambot expects 0|1, 42 given.', 12],
+                ['Parameter #2 $hex_encoding of function antispambot expects 0|1, -42 given.', 13],
+                ['Parameter #2 $hex_encoding of function antispambot expects 0|1, string given.', 14],
+                // Maybes
+                ['Parameter #2 $hex_encoding of function antispambot expects 0|1, int given.', 17],
+            ]
+        );
+    }
+
     public function testBookmarks(): void
     {
         $field = "'link_category'|'link_description'|'link_id'|'link_image'|'link_name'|'link_notes'|'link_owner'|'link_rating'|'link_rel'|'link_rss'|'link_target'|'link_updated'|'link_url'|'link_visible'";
