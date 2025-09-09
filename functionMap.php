@@ -139,6 +139,7 @@ return [
     'sanitize_term' => ['T', '@phpstan-template' => 'T of array|object', 'term' => 'T'],
     'sanitize_term_field' => ["(\$field is 'parent'|'term_id'|'count'|'term_group'|'term_taxonomy_id'|'object_id' ? int<0, max> : (\$context is 'raw' ? T : (\$context is 'attribute'|'edit'|'js' ? string : mixed)))", '@phpstan-template T' => 'of string', 'value' => 'T'],
     'sanitize_title_with_dashes' => ['lowercase-string', 'context' => "'display'|'save'"],
+    'shortcode_exists' => [null, '@phpstan-assert-if-true' => '=non-empty-string $tag'],
     'single_cat_title' => ['($display is true ? void : string|void)'],
     'single_month_title' => ['($display is true ? false|void : false|string)'],
     'single_post_title' => ['($display is true ? void : string|void)'],
