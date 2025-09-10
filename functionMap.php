@@ -155,7 +155,7 @@ return [
     'the_date' => ['($display is true ? void : string)'],
     'the_modified_date' => ['($display is true ? void : string)'],
     'the_title' => ['($display is true ? void : string|void)'],
-    'trailingslashit' => ['non-falsy-string'],
+    'trailingslashit' => ['non-falsy-string', '@phpstan-pure' => ''],
     'urldecode_deep' => ['T', '@phpstan-template' => 'T', 'value' => 'T'],
     'urlencode_deep' => ['T', '@phpstan-template' => 'T', 'value' => 'T'],
     'validate_file' => ["(\$file is '' ? 0 : (\$allowed_files is empty ? 0|1|2 : 0|1|2|3))"],
