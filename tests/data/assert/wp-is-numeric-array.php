@@ -40,7 +40,7 @@ if (wp_is_numeric_array($data)) {
     assertType('array<int, mixed>', $data);
 }
 if (! wp_is_numeric_array($data)) {
-    assertType('array', $data); // can still be a mixed key array
+    assertType('non-empty-array', $data); // can still be a mixed key array
 }
 
 // Check with union
