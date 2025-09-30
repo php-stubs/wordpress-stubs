@@ -12,6 +12,7 @@ Thank you!
 [![Packagist stats](https://img.shields.io/packagist/dt/php-stubs/wordpress-stubs.svg)](https://packagist.org/packages/php-stubs/wordpress-stubs/stats)
 [![Packagist](https://img.shields.io/packagist/v/php-stubs/wordpress-stubs.svg?color=4CC61E&style=popout)](https://packagist.org/packages/php-stubs/wordpress-stubs)
 [![Build Status](https://github.com/php-stubs/wordpress-stubs/workflows/Tests/badge.svg)](https://github.com/php-stubs/wordpress-stubs/actions)
+[![Build Status](https://github.com/php-stubs/wordpress-stubs/actions/workflows/integrate.yml/badge.svg)](https://github.com/php-stubs/wordpress-stubs/actions)
 
 It provides stub declarations for [WordPress](https://wordpress.org/)
 core functions, classes and interfaces, **globals are not included**.
