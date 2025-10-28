@@ -40,6 +40,7 @@ return [
     'absint' => ['($maybeint is T&int<0, max> ? T : ($maybeint is int<min, -1> ? int<1, max> : ($maybeint is empty ? 0 : ($maybeint is numeric-string ? int<0, max> : ($maybeint is string ? 0 : ($maybeint is true|non-empty-array ? 1 : ($maybeint is bool ? 0|1 : int<0, max>)))))))', '@phpstan-template T' => 'of int', 'maybeint' => 'T|scalar|array|resource|null', '@phpstan-pure' => ''],
     'add_comments_page' => [null, 'callback' => "''|callable"],
     'add_dashboard_page' => [null, 'callback' => "''|callable"],
+    'add_feed' => ['non-falsy-string'],
     'add_link' => ['int<0, max>'],
     'add_links_page' => [null, 'callback' => "''|callable"],
     'add_management_page' => [null, 'callback' => "''|callable"],
