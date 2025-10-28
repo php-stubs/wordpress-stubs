@@ -104,10 +104,12 @@ class Faker
      * @param TKeyOrValue $keyOrValueType
      * @param TValue $valueType
      * @return (TKeyOrValue is null ? non-empty-array<mixed> : (TValue is null ? non-empty-array<TKeyOrValue> : non-empty-array<TKeyOrValue, TValue>))
+     *
+     * @phpcs:disable Generic.CodeAnalysis.UnusedFunctionParameter.FoundAfterLastUsed
      */
     public static function nonEmptyArray($keyOrValueType = null, $valueType = null): array
     {
-        return [$keyOrValueType => $valueType];
+        return ['non-empty'];
     }
 
     /**
