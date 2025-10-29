@@ -62,6 +62,8 @@ return [
     'check_admin_referer' => ['1|2|false', 'action' => 'string'],
     'check_ajax_referer' => ['1|2|false', 'action' => 'string'],
     'comment_class' => ['($display is true ? void : string)'],
+    'current_action' => ['non-empty-string|false'],
+    'current_filter' => ['non-empty-string|false'],
     'current_time' => ["(\$type is 'timestamp'|'U' ? int : string)"],
     'did_action' => ['int<0, max>'],
     'edit_link' => ['int<0, max>'],
