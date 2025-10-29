@@ -28,6 +28,22 @@ class ParameterTypeTest extends IntegrationTest
         );
     }
 
+    public function testAddFeed(): void
+    {
+        $this->analyse(
+            __DIR__ . '/data/param/add-feed.php',
+            [
+                ["Parameter #2 \$callback of function add_feed expects callable(bool, string): void, '' given.", 19],
+                ['Parameter #2 $callback of function add_feed expects callable(bool, string): void, Closure(int): void given.', 20],
+                ['Parameter #2 $callback of function add_feed expects callable(bool, string): void, Closure(bool, int): void given.', 21],
+                ['Parameter #2 $callback of function add_feed expects callable(bool, string): void, Closure(bool, string): int given.', 22],
+                ["Parameter #2 \$callback of function add_feed expects callable(bool, string): void, 'addFeedNotOkFirst' given.", 23],
+                ["Parameter #2 \$callback of function add_feed expects callable(bool, string): void, 'addFeedNotOkSecond' given.", 24],
+                ["Parameter #2 \$callback of function add_feed expects callable(bool, string): void, 'addFeedNotOkReturn' given.", 25],
+            ]
+        );
+    }
+
     public function testAddMenuPage(): void
     {
         $this->analyse(
