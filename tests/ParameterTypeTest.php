@@ -28,6 +28,22 @@ class ParameterTypeTest extends IntegrationTest
         );
     }
 
+    public function testAddFeed(): void
+    {
+        $this->analyse(
+            __DIR__ . '/data/param/add-feed.php',
+            [
+                ["Parameter #2 \$callback of function add_feed expects callable(bool, string): void, '' given.", 19],
+                ['Parameter #2 $callback of function add_feed expects callable(bool, string): void, Closure(int): void given.', 20],
+                ['Parameter #2 $callback of function add_feed expects callable(bool, string): void, Closure(bool, int): void given.', 21],
+                ['Parameter #2 $callback of function add_feed expects callable(bool, string): void, Closure(bool, string): int given.', 22],
+                ["Parameter #2 \$callback of function add_feed expects callable(bool, string): void, 'addFeedNotOkFirst' given.", 23],
+                ["Parameter #2 \$callback of function add_feed expects callable(bool, string): void, 'addFeedNotOkSecond' given.", 24],
+                ["Parameter #2 \$callback of function add_feed expects callable(bool, string): void, 'addFeedNotOkReturn' given.", 25],
+            ]
+        );
+    }
+
     public function testAddMenuPage(): void
     {
         $this->analyse(
@@ -79,6 +95,21 @@ class ParameterTypeTest extends IntegrationTest
                 ['Parameter #2 $hex_encoding of function antispambot expects 0|1, string given.', 14],
                 // Maybes
                 ['Parameter #2 $hex_encoding of function antispambot expects 0|1, int given.', 17],
+            ]
+        );
+    }
+
+    public function testApplyFilters(): void
+    {
+        $this->analyse(
+            __DIR__ . '/data/param/apply-filters.php',
+            [
+                ["Parameter #1 \$hook_name of function apply_filters expects non-empty-string, '' given.", 8],
+                ["Parameter #1 \$hook_name of function apply_filters_ref_array expects non-empty-string, '' given.", 9],
+                ["Parameter #1 \$hook_name of function apply_filters_deprecated expects non-empty-string, '' given.", 10],
+                ['Parameter #1 $hook_name of function apply_filters expects non-empty-string, string given.', 13],
+                ['Parameter #1 $hook_name of function apply_filters_ref_array expects non-empty-string, string given.', 14],
+                ['Parameter #1 $hook_name of function apply_filters_deprecated expects non-empty-string, string given.', 15],
             ]
         );
     }
@@ -142,6 +173,20 @@ class ParameterTypeTest extends IntegrationTest
             [
                 ['Parameter #2 $callback of function register_deactivation_hook expects callable(bool): void, Closure(string): void given.', 10],
                 ['Parameter #2 $callback of function register_deactivation_hook expects callable(bool): void, Closure(bool): int given.', 11],
+            ]
+        );
+    }
+    public function testDoAction(): void
+    {
+        $this->analyse(
+            __DIR__ . '/data/param/do-action.php',
+            [
+                ["Parameter #1 \$hook_name of function do_action expects non-empty-string, '' given.", 8],
+                ["Parameter #1 \$hook_name of function do_action_ref_array expects non-empty-string, '' given.", 9],
+                ["Parameter #1 \$hook_name of function do_action_deprecated expects non-empty-string, '' given.", 10],
+                ['Parameter #1 $hook_name of function do_action expects non-empty-string, string given.', 13],
+                ['Parameter #1 $hook_name of function do_action_ref_array expects non-empty-string, string given.', 14],
+                ['Parameter #1 $hook_name of function do_action_deprecated expects non-empty-string, string given.', 15],
             ]
         );
     }
