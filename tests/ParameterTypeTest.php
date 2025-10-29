@@ -83,6 +83,21 @@ class ParameterTypeTest extends IntegrationTest
         );
     }
 
+    public function testApplyFilters(): void
+    {
+        $this->analyse(
+            __DIR__ . '/data/param/apply-filters.php',
+            [
+                ["Parameter #1 \$hook_name of function apply_filters expects non-empty-string, '' given.", 8],
+                ["Parameter #1 \$hook_name of function apply_filters_ref_array expects non-empty-string, '' given.", 9],
+                ["Parameter #1 \$hook_name of function apply_filters_deprecated expects non-empty-string, '' given.", 10],
+                ['Parameter #1 \$hook_name of function apply_filters expects non-empty-string, string given.', 13],
+                ['Parameter #1 \$hook_name of function apply_filters_ref_array expects non-empty-string, string given.', 14],
+                ['Parameter #1 \$hook_name of function apply_filters_deprecated expects non-empty-string, string given.', 15],
+            ]
+        );
+    }
+
     public function testBookmarks(): void
     {
         $field = "'link_category'|'link_description'|'link_id'|'link_image'|'link_name'|'link_notes'|'link_owner'|'link_rating'|'link_rel'|'link_rss'|'link_target'|'link_updated'|'link_url'|'link_visible'";
@@ -120,6 +135,21 @@ class ParameterTypeTest extends IntegrationTest
             [
                 ['Parameter #1 $action of function check_ajax_referer expects string, int given.', 10],
                 ['Parameter #1 $action of function check_ajax_referer expects string, int given.', 11],
+            ]
+        );
+    }
+
+    public function testDoAction(): void
+    {
+        $this->analyse(
+            __DIR__ . '/data/param/do-action.php',
+            [
+                ["Parameter #1 \$hook_name of function do_action expects non-empty-string, '' given.", 8],
+                ["Parameter #1 \$hook_name of function do_action_ref_array expects non-empty-string, '' given.", 9],
+                ["Parameter #1 \$hook_name of function do_action_deprecated expects non-empty-string, '' given.", 10],
+                ['Parameter #1 \$hook_name of function do_action expects non-empty-string, string given.', 13],
+                ['Parameter #1 \$hook_name of function do_action_ref_array expects non-empty-string, string given.', 14],
+                ['Parameter #1 \$hook_name of function do_action_deprecated expects non-empty-string, string given.', 15],
             ]
         );
     }
