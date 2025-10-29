@@ -176,6 +176,7 @@ class ParameterTypeTest extends IntegrationTest
             ]
         );
     }
+
     public function testDoAction(): void
     {
         $this->analyse(
