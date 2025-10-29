@@ -66,6 +66,7 @@ return [
     'current_filter' => ['non-empty-string|false'],
     'current_time' => ["(\$type is 'timestamp'|'U' ? int : string)"],
     'did_action' => ['int<0, max>'],
+    'did_filter' => ['int<0, max>'],
     'edit_link' => ['int<0, max>'],
     'edit_term_link' => ['($display is true ? void : string|void)'],
     'get_approved_comments' => ["(\$args is array{count: true}&array ? int : (\$args is array{fields: 'ids'}&array ? array<int, int> : array<int, \WP_Comment>))"],
