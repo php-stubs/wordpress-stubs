@@ -49,7 +49,7 @@ return [
     'add_pages_page' => [null, 'callback' => "''|callable"],
     'add_plugins_page' => [null, 'callback' => "''|callable"],
     'add_posts_page' => [null, 'callback' => "''|callable"],
-    'add_shortcode' => [null, 'tag' => 'non-empty-string'],
+    'add_shortcode' => ['void', 'tag' => 'non-empty-string', 'callback' => 'callable(array<string>, string|null, string): string'],
     'add_submenu_page' => [null, 'callback' => "''|callable"],
     'add_theme_page' => [null, 'callback' => "''|callable"],
     'add_users_page' => [null, 'callback' => "''|callable"],
