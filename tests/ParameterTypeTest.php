@@ -124,6 +124,28 @@ class ParameterTypeTest extends IntegrationTest
         );
     }
 
+    public function testRegisterActivationHook(): void
+    {
+        $this->analyse(
+            __DIR__ . '/data/param/register-activation-hook.php',
+            [
+                ['Parameter #2 $callback of function register_activation_hook expects callable(bool): void, Closure(string): void given.', 10],
+                ['Parameter #2 $callback of function register_activation_hook expects callable(bool): void, Closure(bool): int given.', 11],
+            ]
+        );
+    }
+
+    public function testRegisterDeactivationHook(): void
+    {
+        $this->analyse(
+            __DIR__ . '/data/param/register-deactivation-hook.php',
+            [
+                ['Parameter #2 $callback of function register_deactivation_hook expects callable(bool): void, Closure(string): void given.', 10],
+                ['Parameter #2 $callback of function register_deactivation_hook expects callable(bool): void, Closure(bool): int given.', 11],
+            ]
+        );
+    }
+
     public function testRegisterNavMenus(): void
     {
         $this->analyse(
@@ -149,6 +171,17 @@ class ParameterTypeTest extends IntegrationTest
                 ['Parameter #1 $post_type of function register_post_type expects lowercase-string&non-empty-string, non-falsy-string given.', 18],
                 ['Parameter #1 $post_type of function register_post_type expects lowercase-string&non-empty-string, lowercase-string given.', 19],
                 ['Parameter #1 $post_type of function register_post_type expects lowercase-string&non-empty-string, string given.', 20],
+            ]
+        );
+    }
+
+    public function testRegisterUninstallHook(): void
+    {
+        $this->analyse(
+            __DIR__ . '/data/param/register-uninstall-hook.php',
+            [
+                ['Parameter #2 $callback of function register_uninstall_hook expects callable(): void, Closure(bool): void given.', 10],
+                ['Parameter #2 $callback of function register_uninstall_hook expects callable(): void, Closure(): int given.', 11],
             ]
         );
     }
