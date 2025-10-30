@@ -18,6 +18,7 @@
     </rule>
     <rule ref="SlevomatCodingStandard.Variables.UnusedVariable.UnusedVariable">
         <exclude-pattern>tests/data/param/wpdb.php</exclude-pattern>
+        <exclude-pattern>tests/data/param/wp-robots.php</exclude-pattern>
         <exclude-pattern>tests/data/param/absint.php</exclude-pattern>
     </rule>
     <rule ref="PSR1.Files.SideEffects.FoundWithSymbols">

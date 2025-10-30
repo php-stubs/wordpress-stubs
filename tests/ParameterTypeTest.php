@@ -155,6 +155,21 @@ class ParameterTypeTest extends IntegrationTest
         );
     }
 
+    public function testDoAction(): void
+    {
+        $this->analyse(
+            __DIR__ . '/data/param/do-action.php',
+            [
+                ["Parameter #1 \$hook_name of function do_action expects non-empty-string, '' given.", 8],
+                ["Parameter #1 \$hook_name of function do_action_ref_array expects non-empty-string, '' given.", 9],
+                ["Parameter #1 \$hook_name of function do_action_deprecated expects non-empty-string, '' given.", 10],
+                ['Parameter #1 $hook_name of function do_action expects non-empty-string, string given.', 13],
+                ['Parameter #1 $hook_name of function do_action_ref_array expects non-empty-string, string given.', 14],
+                ['Parameter #1 $hook_name of function do_action_deprecated expects non-empty-string, string given.', 15],
+            ]
+        );
+    }
+
     public function testRegisterActivationHook(): void
     {
         $this->analyse(
@@ -173,21 +188,6 @@ class ParameterTypeTest extends IntegrationTest
             [
                 ['Parameter #2 $callback of function register_deactivation_hook expects callable(bool): void, Closure(string): void given.', 10],
                 ['Parameter #2 $callback of function register_deactivation_hook expects callable(bool): void, Closure(bool): int given.', 11],
-            ]
-        );
-    }
-
-    public function testDoAction(): void
-    {
-        $this->analyse(
-            __DIR__ . '/data/param/do-action.php',
-            [
-                ["Parameter #1 \$hook_name of function do_action expects non-empty-string, '' given.", 8],
-                ["Parameter #1 \$hook_name of function do_action_ref_array expects non-empty-string, '' given.", 9],
-                ["Parameter #1 \$hook_name of function do_action_deprecated expects non-empty-string, '' given.", 10],
-                ['Parameter #1 $hook_name of function do_action expects non-empty-string, string given.', 13],
-                ['Parameter #1 $hook_name of function do_action_ref_array expects non-empty-string, string given.', 14],
-                ['Parameter #1 $hook_name of function do_action_deprecated expects non-empty-string, string given.', 15],
             ]
         );
     }
@@ -242,6 +242,21 @@ class ParameterTypeTest extends IntegrationTest
                 ["Parameter #2 \$output of method wpdb::get_row() expects 'ARRAY_A'|'ARRAY_N'|'OBJECT', int given.", 27],
                 ['Parameter #3 $y of method wpdb::get_row() expects int<0, max>, -1 given.', 28],
                 ['Parameter #3 $y of method wpdb::get_row() expects int<0, max>, int given.', 29],
+            ]
+        );
+    }
+
+    public function testWpRobots(): void
+    {
+        $this->analyse(
+            __DIR__ . '/data/param/wp-robots.php',
+            [
+                ['Parameter #1 $robots of function wp_robots_max_image_preview_large expects array<string, bool|string>, array<string, int> given.', 16],
+                ['Parameter #1 $robots of function wp_robots_no_robots expects array<string, bool|string>, array<string, int> given.', 17],
+                ['Parameter #1 $robots of function wp_robots_noindex expects array<string, bool|string>, array<string, int> given.', 18],
+                ['Parameter #1 $robots of function wp_robots_noindex_embeds expects array<string, bool|string>, array<string, int> given.', 19],
+                ['Parameter #1 $robots of function wp_robots_noindex_search expects array<string, bool|string>, array<string, int> given.', 20],
+                ['Parameter #1 $robots of function wp_robots_sensitive_page expects array<string, bool|string>, array<string, int> given.', 21],
             ]
         );
     }
