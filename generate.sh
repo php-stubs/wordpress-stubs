@@ -33,6 +33,10 @@ else
     printf '\n/**\n * WordPress database abstraction object.\n * @var wpdb\n */\n$wpdb = \\null;\n' >>"$FILE"
 fi
 
+# Convert non-negative-int to int<0,max> in SimplePie
+sed -i -e 's# non-negative-int # int<0,max> #' source/wordpress/wp-includes/SimplePie/src/File.php
+sed -i -e 's# non-negative-int # int<0,max> #' source/wordpress/wp-includes/SimplePie/src/HTTP/Parser.php
+
 if [ -r source/wordpress/wp-includes/Requests/Cookie/Jar.php ]; then
     # Add ReturnTypeWillChange attribute to PHP 8-incompatible methods.
     declare -r -a REQUESTS_V1_METHODS=(
