@@ -288,7 +288,7 @@ return [
     'WP_List_Table::set_pagination_args' => ['void', 'args' => 'array{total_items?: int, total_pages?: int, per_page?: int}'],
     'WP_Query' => [null, '@phpstan-property-read bool $query_vars_changed' => '', '@phpstan-property-read bool|string $query_vars_hash' => '', '@phpstan-method void init_query_flags()' => ''],
     'WP_Query::have_posts' => [null, '@phpstan-impure' => ''],
-    'WP_REST_Request' => [null, '@phpstan-template' => 'T of array', '@phpstan-implements' => 'ArrayAccess<key-of<T>, value-of<T>>'],
+    'WP_REST_Request' => [null, '@phpstan-template' => 'T of array = array<string, mixed>', '@phpstan-implements' => 'ArrayAccess<key-of<T>, value-of<T>>'],
     'WP_REST_Request::get_param' => ['T[TOffset]|null', '@phpstan-template' => 'TOffset of key-of<T>', 'key' => 'TOffset'],
     'WP_REST_Request::get_params' => ['T'],
     'WP_REST_Request::has_param' => [null, 'key' => 'key-of<T>'],
