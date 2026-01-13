@@ -245,6 +245,7 @@ return [
     'wp_safe_remote_request' => [$httpReturnType],
     'wp_schedule_event' => ['($wp_error is false ? bool : true|\WP_Error)', 'args' => $cronArgsType],
     'wp_schedule_single_event' => ['($wp_error is false ? bool : true|\WP_Error)', 'args' => $cronArgsType],
+    'wp_scripts_get_suffix' => ["''|'.min'"],
     'wp_set_comment_status' => ['($wp_error is false ? bool : true|\WP_Error)'],
     'wp_slash' => ['($value is string ? string : array)', '@phpstan-pure' => ''],
     'wp_tag_cloud' => ["(\$args is array{format: 'array'}&array ? array<int, string>|void : (\$args is array{echo: false|0}&array ? string|void : void))"],
