@@ -32,6 +32,7 @@ namespace PhpStubs\WordPress\Core\Tests;
  * @method static \WP_Comment wpComment()
  * @method static \WP_Dependencies wpDependencies()
  * @method static \WP_Error wpError()
+ * @method static \WP_Locale wpLocale()
  * @method static \WP_Post wpPost()
  * @method static \WP_Query wpQuery()
  * @method static \WP_REST_Request wpRestRequest()
