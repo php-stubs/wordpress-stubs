@@ -267,6 +267,9 @@ return [
     'wp_widgets_access_body_class' => ['non-falsy-string'],
     'zeroise' => ['($threshold is 0 ? lowercase-string&non-empty-string&numeric-string : ($number is int<0, max> ? lowercase-string&non-empty-string&numeric-string : lowercase-string&non-empty-string))', 'threshold' => 'int<0, max>'],
     // Classes, methods, and properties
+    'Custom_Background::$admin_header_callback' => [null, '@phpstan-var' => "''|callable(): void"],
+    'Custom_Background::$admin_image_div_callback' => [null, '@phpstan-var' => "''|callable(): void"],
+    'Custom_Background::__construct' => [null, 'admin_header_callback' => "''|callable(): void", 'admin_image_div_callback' => "''|callable(): void"],
     'Custom_Image_Header::set_header_image' => [null, 'choice' => 'string|array{attachment_id: int<1, max>, url: string, width: int<0, max>, height: int<0, max>}'],
     'Custom_Image_Header::show_header_selector' => [null, 'type' => "'default'|'uploaded'"],
     'WP_Block_List' => [null, '@phpstan-implements' => 'ArrayAccess<int, \WP_Block>'],
