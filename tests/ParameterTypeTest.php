@@ -155,6 +155,26 @@ class ParameterTypeTest extends IntegrationTest
         );
     }
 
+    public function testCustomBackground(): void
+    {
+        $this->analyse(
+            __DIR__ . '/data/param/custom-background.php',
+            [
+                ["Parameter #2 \$admin_image_div_callback of class Custom_Background constructor expects ''|(callable(): void), Closure(int): int given.", 20],
+            ]
+        );
+    }
+
+    public function testCustomImageHeader(): void
+    {
+        $this->analyse(
+            __DIR__ . '/data/param/custom-image-header.php',
+            [
+                ["Parameter #2 \$admin_image_div_callback of class Custom_Image_Header constructor expects ''|(callable(): void), Closure(int): int given.", 20],
+            ]
+        );
+    }
+
     public function testDoAction(): void
     {
         $this->analyse(
