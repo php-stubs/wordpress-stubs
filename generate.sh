@@ -17,6 +17,9 @@ fi
 # Convert psalm-incompatible callable types in Abilities API
 sed -i -e 's#callable( mixed $input= )#callable(mixed=)#g' source/wordpress/wp-includes/abilities-api/class-wp-ability.php
 
+# Fix incorrect param type in AVIF Info class
+sed -i -e 's#@param binary string \$input#@param string $input#' source/wordpress/wp-includes/class-avif-info.php
+
 # Exclude globals.
 "$(dirname "$0")/vendor/bin/generate-stubs" \
     --force \
