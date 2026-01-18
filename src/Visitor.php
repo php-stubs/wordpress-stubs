@@ -32,7 +32,9 @@ use PhpParser\Node\Stmt\Return_ as Stmt_Return;
 use StubsGenerator\NodeVisitor;
 use phpDocumentor\Reflection\DocBlockFactoryInterface;
 use phpDocumentor\Reflection\DocBlockFactory;
+
 use function assert;
+use function sprintf;
 
 // phpcs:disable SlevomatCodingStandard.Functions.FunctionLength.FunctionLength,NeutronStandard.Functions.TypeHint.NoReturnType
 
@@ -215,7 +217,7 @@ class Visitor extends NodeVisitor
             return [];
         }
 
-        /** @var list<\phpDocumentor\Reflection\DocBlock\Tags\Param> $paramTags*/
+        /** @var list<\phpDocumentor\Reflection\DocBlock\Tags\Param|\phpDocumentor\Reflection\DocBlock\Tags\InvalidTag> $paramTags*/
         $paramTags = $docblock->getTagsByName('param');
 
         /** @var list<\phpDocumentor\Reflection\DocBlock\Tags\Return_> $returnTags */
@@ -228,6 +230,10 @@ class Visitor extends NodeVisitor
         $additions = [];
 
         foreach ($paramTags as $paramTag) {
+            if (! ($paramTag instanceof Param)) {
+                continue;
+            }
+
             $addition = self::getAdditionFromParam($paramTag);
 
             if (! ($addition instanceof WordPressTag)) {
@@ -308,7 +314,7 @@ class Visitor extends NodeVisitor
      */
     private function discoverInheritedArgs(DocBlock $docblock, array $additions): array
     {
-        /** @var list<\phpDocumentor\Reflection\DocBlock\Tags\Param> $params */
+        /** @var list<\phpDocumentor\Reflection\DocBlock\Tags\Param|\phpDocumentor\Reflection\DocBlock\Tags\InvalidTag> $params */
         $params = $docblock->getTagsByName('param');
 
         $phpStanParams = array_filter(
@@ -319,6 +325,10 @@ class Visitor extends NodeVisitor
         );
 
         foreach ($params as $param) {
+            if (! $param instanceof Param) {
+                continue;
+            }
+
             $inherited = $this->getInheritedTagsForParam($param);
 
             if (count($inherited) === 0) {
@@ -889,9 +899,7 @@ class Visitor extends NodeVisitor
             $commentText = trim($comment->getText());
 
             // Strip out comments that are not PHPDoc comments.
-            if (
-                strpos($commentText, '/**') === false
-            ) {
+            if (strpos($commentText, '/**') === false) {
                 continue;
             }
 

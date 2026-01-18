@@ -14,10 +14,6 @@ if [ ! -d vendor ]; then
     composer update
 fi
 
-# Convert non-negative-int to int<0,max> in SimplePie
-sed -i -e 's# non-negative-int # int<0,max> #' source/wordpress/wp-includes/SimplePie/src/File.php
-sed -i -e 's# non-negative-int # int<0,max> #' source/wordpress/wp-includes/SimplePie/src/HTTP/Parser.php
-
 # Convert psalm-incompatible callable types in Abilities API
 sed -i -e 's#callable( mixed $input= )#callable(mixed=)#g' source/wordpress/wp-includes/abilities-api/class-wp-ability.php
 
