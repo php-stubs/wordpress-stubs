@@ -143,6 +143,7 @@ return [
     'register_nav_menus' => [null, 'locations' => 'array<string, string>'],
     'register_post_type' => [null, 'post_type' => 'lowercase-string&non-empty-string'],
     'register_uninstall_hook' => ['void', 'callback' => 'callable(): void'],
+    'register_widget' => ['void', 'widget' => 'class-string<\WP_Widget>|\WP_Widget'],
     'render_block_core_categories' => ['non-falsy-string'],
     'rest_authorization_required_code' => ['401|403'],
     'rest_sanitize_boolean' => ["(T is bool ? T : (T is ''|'false'|'FALSE'|'0'|0 ? false : true))", '@phpstan-template T' => 'of bool|string|int', 'value' => 'T', '@phpstan-pure' => ''],

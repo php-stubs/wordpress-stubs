@@ -252,6 +252,19 @@ class ParameterTypeTest extends IntegrationTest
         );
     }
 
+    public function testRegisterWidget(): void
+    {
+        $this->analyse(
+            __DIR__ . '/data/param/register-widget.php',
+            [
+                ['Parameter #1 $widget of function register_widget expects class-string<WP_Widget>|WP_Widget, PhpStubs\WordPress\Core\Tests\NoWidget given.', 21],
+                ['Parameter #1 $widget of function register_widget expects class-string<WP_Widget>|WP_Widget, PhpStubs\WordPress\Core\Tests\NoWidget given.', 22],
+                ['Parameter #1 $widget of function register_widget expects class-string<WP_Widget>|WP_Widget, string given.', 23],
+                ['Parameter #1 $widget of function register_widget expects class-string<WP_Widget>|WP_Widget, string given.', 24],
+            ]
+        );
+    }
+
     public function testWpdbGetRow(): void
     {
         $this->analyse(
