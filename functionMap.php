@@ -13,23 +13,32 @@ $wpWidgetRssFormInputsType = 'array{title?: bool, url?: bool, items?: bool, show
 $filesystemDirlistReturnType = "false|array<string, array{name: string, perms: string, permsn: string, owner: string|false, size: int|string|false, lastmodunix: int|string|false, lastmod: string|false, time: string|false, type: 'f'|'d'|'l', group: string|false, number: int|string|false, files?: array|false}>";
 
 /**
- * This array is in the same format as the function map array in PHPStan:
+ * This array follows a format similar to PHPStan’s function map:
  *
  * '<function_name>' => ['<return_type>', '<arg_name>' => '<arg_type>']
  *
  * For classes, or if you don't wish to define the `@phpstan-return` tag:
- *
  * '<class_name>' => [null, '<arg_name>' => '<arg_type>']
  *
  * For class methods:
- *
  * '<class_name::method_name>' => ['<return_type>', '<arg_name>' => '<arg_type>']
  *
  * For class properties:
- *
  * '<class_name::$property_name>' => [null, '@phpstan-var' => '<property_type>']
  *
- * @link https://github.com/phpstan/phpstan-src/blob/1.10.x/resources/functionMap.php
+ * To add PHPStan tags, include them in the function/class/method/property entry
+ * as additional key–value pairs, for example:
+ * - '@phpstan-template <TemplateName>' => 'of <type_constraint>'
+ * - '@phpstan-implements <InterfaceName<TemplateTypes>>' => ''
+ * - '@phpstan-extends <ClassName<TemplateTypes>>' => ''
+ * - '@phpstan-type <TypeName> = <type_definition>' => ''
+ * - '@phpstan-property-read <property_type> $<property_name>' => ''
+ * - '@phpstan-assert-if-true =<type> $<var_name>' => ''
+ * - '@phpstan-[im]pure' => ''  // for [im]pure functions
+ * Always prefix these keys with `@phpstan-`, and ensure the keys are unique to
+ * avoid overwriting entries.
+ *
+ * @link https://github.com/phpstan/phpstan-src/blob/2.1.x/resources/functionMap.php
  */
 return [
     // Functions
@@ -137,7 +146,7 @@ return [
     'post_type_archive_title' => ['($display is true ? void : string|void)'],
     'prep_atom_text_construct' => ["array{'html'|'text'|'xhtml', string}"],
     'previous_posts' => ['($display is true ? void : string)'],
-    'rawurlencode_deep' => ['T', '@phpstan-template' => 'T', 'value' => 'T'],
+    'rawurlencode_deep' => ['T', '@phpstan-template T' => '', 'value' => 'T'],
     'register_activation_hook' => ['void', 'callback' => 'callable(bool): void'],
     'register_deactivation_hook' => ['void', 'callback' => 'callable(bool): void'],
     'register_nav_menus' => [null, 'locations' => 'array<string, string>'],
@@ -148,22 +157,22 @@ return [
     'rest_sanitize_boolean' => ["(T is bool ? T : (T is ''|'false'|'FALSE'|'0'|0 ? false : true))", '@phpstan-template T' => 'of bool|string|int', 'value' => 'T', '@phpstan-pure' => ''],
     'rest_ensure_response' => ['($response is \WP_Error ? \WP_Error : \WP_REST_Response)'],
     'sanitize_bookmark_field' => ['array<int, int>|int|string', 'field' => "'link_id'|'link_url'|'link_name'|'link_image'|'link_target'|'link_description'|'link_visible'|'link_owner'|'link_rating'|'link_updated'|'link_rel'|'link_notes'|'link_rss'|'link_category'"],
-    'sanitize_category' => ['T', '@phpstan-template' => 'T of array|object', 'category' => 'T'],
+    'sanitize_category' => ['T', '@phpstan-template T' => 'of array|object', 'category' => 'T'],
     'sanitize_post' => ['(T is \WP_Post ? \WP_Post : (T is object ? object : (T is array ? array : T)))', '@phpstan-template T' => 'of mixed', 'post' => 'T'],
     'sanitize_post_field' => ["(\$field is 'ID'|'post_parent'|'menu_order' ? (T is int ? T : int) : (\$field is 'ancestors' ? (T is array<int<0, max>>|list<int<0, max>> ? T : (T is list ? list<int<0, max>> : array<int<0, max>>)) : (\$context is 'raw' ? T : (\$context is 'attribute'|'js' ? string : (\$context is 'edit' ? (\$field is not 'post_content' ? string : mixed) : mixed)))))", '@phpstan-template T' => 'of mixed', 'value' => 'T'],
     'sanitize_sql_orderby' => ['(T is non-falsy-string ? T|false : false)', '@phpstan-template T' => 'of string', 'orderby' => 'T'],
-    'sanitize_term' => ['T', '@phpstan-template' => 'T of array|object', 'term' => 'T'],
+    'sanitize_term' => ['T', '@phpstan-template T' => 'of array|object', 'term' => 'T'],
     'sanitize_term_field' => ["(\$field is 'parent'|'term_id'|'count'|'term_group'|'term_taxonomy_id'|'object_id' ? int<0, max> : (\$context is 'raw' ? T : (\$context is 'attribute'|'edit'|'js' ? string : mixed)))", '@phpstan-template T' => 'of string', 'value' => 'T'],
     'sanitize_title_with_dashes' => ['lowercase-string', 'context' => "'display'|'save'"],
-    'shortcode_exists' => [null, '@phpstan-assert-if-true' => '=non-empty-string $tag'],
+    'shortcode_exists' => [null, '@phpstan-assert-if-true =non-empty-string $tag' => ''],
     'single_cat_title' => ['($display is true ? void : string|void)'],
     'single_month_title' => ['($display is true ? false|void : false|string)'],
     'single_post_title' => ['($display is true ? void : string|void)'],
     'single_tag_title' => ['($display is true ? void : string|void)'],
     'single_term_title' => ['($display is true ? void : string|void)'],
     'size_format' => ["(\$bytes is not numeric ? false : (\$bytes is int<min, -1>|'0' ? false : string))"],
-    'stripslashes_deep' => ['T', '@phpstan-template' => 'T', 'value' => 'T'],
-    'stripslashes_from_strings_only' => ["(\$value is string ? (\$value is '' ? '' : string) : T)", '@phpstan-template' => 'T', 'value' => 'T|string', '@phpstan-pure' => ''],
+    'stripslashes_deep' => ['T', '@phpstan-template T' => '', 'value' => 'T'],
+    'stripslashes_from_strings_only' => ["(\$value is string ? (\$value is '' ? '' : string) : T)", '@phpstan-template T' => '', 'value' => 'T|string', '@phpstan-pure' => ''],
     'tag_exists' => ["(\$tag_name is 0 ? 0 : (\$tag_name is '' ? null : array{term_id: string, term_taxonomy_id: string}|null))"],
     'taxonomy_exists' => ['($taxonomy is non-falsy-string ? bool : false)', '@phpstan-assert-if-true' => '=non-falsy-string $taxonomy'],
     'term_exists' => ["(\$term is 0 ? 0 : (\$term is '' ? null : (\$taxonomy is '' ? string|null : array{term_id: string, term_taxonomy_id: string}|null)))"],
@@ -172,8 +181,8 @@ return [
     'the_title' => ['($display is true ? void : string|void)'],
     'trailingslashit' => ['non-falsy-string', '@phpstan-pure' => ''],
     'untrailingslashit' => [null, '@phpstan-pure' => ''],
-    'urldecode_deep' => ['T', '@phpstan-template' => 'T', 'value' => 'T'],
-    'urlencode_deep' => ['T', '@phpstan-template' => 'T', 'value' => 'T'],
+    'urldecode_deep' => ['T', '@phpstan-template T' => '', 'value' => 'T'],
+    'urlencode_deep' => ['T', '@phpstan-template T' => '', 'value' => 'T'],
     'validate_file' => ["(\$file is '' ? 0 : (\$allowed_files is empty ? 0|1|2 : 0|1|2|3))"],
     'validate_plugin' => ['($plugin is empty ? \WP_Error : 0|\WP_Error)'],
     'wp_caption_input_textarea' => ['non-falsy-string'],
@@ -211,7 +220,7 @@ return [
     'wp_insert_link' => ['($wp_error is false ? int<0, max> : int<0, max>|\WP_Error)'],
     'wp_insert_post' => ['($wp_error is false ? int<0, max> : int<1, max>|\WP_Error)'],
     'wp_internal_hosts' => ['array<lowercase-string>'],
-    'wp_is_numeric_array' => ['(T is array<int, mixed> ? true : false)', '@phpstan-template' => 'T of mixed', 'data' => 'T', '@phpstan-assert-if-true' => '(T is list ? T : array<int, mixed>) $data', '@phpstan-pure' => ''],
+    'wp_is_numeric_array' => ['(T is array<int, mixed> ? true : false)', '@phpstan-template T' => 'of mixed', 'data' => 'T', '@phpstan-assert-if-true' => '(T is list ? T : array<int, mixed>) $data', '@phpstan-pure' => ''],
     'wp_is_post_revision' => ['($post is \WP_Post ? false|int<0, max> : ($post is int<min, 0> ? false : false|int<0, max>))'],
     'wp_is_uuid' => ['($version is 4|null ? bool : false)', 'uuid' => 'TUuid', 'version' => '4', '@phpstan-template TUuid' => 'of string', '@phpstan-assert-if-true' => '=TUuid&lowercase-string&non-falsy-string $uuid', '@phpstan-pure' => ''],
     'wp_json_encode' => ['non-empty-string|false', 'depth' => 'int<1, max>'],
@@ -257,7 +266,7 @@ return [
     'wp_unique_prefixed_id' => ['($prefix is empty ? numeric-string : ($prefix is numeric ? numeric-string : string))&non-falsy-string', '@phpstan-impure' => ''],
     'wp_unschedule_event' => ['($wp_error is false ? bool : true|\WP_Error)', 'args' => $cronArgsType],
     'wp_unschedule_hook' => ['($wp_error is false ? int<0, max>|false : int<0, max>|\WP_Error)'],
-    'wp_unslash' => ['T', '@phpstan-template' => 'T', 'value' => 'T'],
+    'wp_unslash' => ['T', '@phpstan-template T' => '', 'value' => 'T'],
     'wp_update_category' => ['int<0, max>|false'],
     'wp_update_comment' => ['($wp_error is false ? 0|1|false : 0|1|\WP_Error)'],
     'wp_update_link' => ['int<0, max>'],
@@ -276,7 +285,7 @@ return [
     'Custom_Image_Header::__construct' => [null, 'admin_image_div_callback' => "''|callable(): void"],
     'Custom_Image_Header::set_header_image' => [null, 'choice' => 'string|array{attachment_id: int<1, max>, url: string, width: int<0, max>, height: int<0, max>}'],
     'Custom_Image_Header::show_header_selector' => [null, 'type' => "'default'|'uploaded'"],
-    'WP_Block_List' => [null, '@phpstan-implements' => 'ArrayAccess<int, \WP_Block>'],
+    'WP_Block_List' => [null, '@phpstan-implements ArrayAccess<int, \WP_Block>' => ''],
     'WP_Block_List::offsetExists' => [null, 'offset' => 'int'],
     'WP_Block_List::offsetGet' => ['\WP_Block|null', 'offset' => 'int'],
     'WP_Block_List::offsetSet' => ['void', 'offset' => 'int|null'],
@@ -298,18 +307,18 @@ return [
     'WP_Locale::get_word_count_type' => ["'characters_excluding_spaces'|'characters_including_spaces'|'words'"],
     'WP_Query' => [null, '@phpstan-property-read bool $query_vars_changed' => '', '@phpstan-property-read bool|string $query_vars_hash' => '', '@phpstan-method void init_query_flags()' => ''],
     'WP_Query::have_posts' => [null, '@phpstan-impure' => ''],
-    'WP_REST_Request' => [null, '@phpstan-template' => 'T of array = array<string, mixed>', '@phpstan-implements' => 'ArrayAccess<key-of<T>, value-of<T>>'],
-    'WP_REST_Request::get_param' => ['T[TOffset]|null', '@phpstan-template' => 'TOffset of key-of<T>', 'key' => 'TOffset'],
+    'WP_REST_Request' => [null, '@phpstan-template T' => 'of array = array<string, mixed>', '@phpstan-implements ArrayAccess<key-of<T>, value-of<T>>' => ''],
+    'WP_REST_Request::get_param' => ['T[TOffset]|null', '@phpstan-template TOffset' => 'of key-of<T>', 'key' => 'TOffset'],
     'WP_REST_Request::get_params' => ['T'],
     'WP_REST_Request::has_param' => [null, 'key' => 'key-of<T>'],
     'WP_REST_Request::offsetExists' => [null, 'offset' => 'key-of<T>'],
-    'WP_REST_Request::offsetGet' => ['T[TOffset]|null', '@phpstan-template' => 'TOffset of key-of<T>', 'offset' => 'TOffset'],
-    'WP_REST_Request::offsetSet' => ['void', '@phpstan-template' => 'TOffset of key-of<T>', 'offset' => 'TOffset', 'value' => 'T[TOffset]'],
-    'WP_REST_Request::offsetUnset' => ['void', '@phpstan-template' => 'TOffset of key-of<T>', 'offset' => 'TOffset'],
-    'WP_REST_Request::set_param' => ['void', '@phpstan-template' => 'TOffset of key-of<T>', 'key' => 'TOffset', 'value' => 'T[TOffset]'],
+    'WP_REST_Request::offsetGet' => ['T[TOffset]|null', '@phpstan-template TOffset' => 'of key-of<T>', 'offset' => 'TOffset'],
+    'WP_REST_Request::offsetSet' => ['void', '@phpstan-template TOffset' => 'of key-of<T>', 'offset' => 'TOffset', 'value' => 'T[TOffset]'],
+    'WP_REST_Request::offsetUnset' => ['void', '@phpstan-template TOffset' => 'of key-of<T>', 'offset' => 'TOffset'],
+    'WP_REST_Request::set_param' => ['void', '@phpstan-template TOffset' => 'of key-of<T>', 'key' => 'TOffset', 'value' => 'T[TOffset]'],
     'WP_Theme' => [
         null,
-        '@phpstan-type' => "ThemeKey 'Name'|'Version'|'Status'|'Title'|'Author'|'Author Name'|'Author URI'|'Description'|'Template'|'Stylesheet'|'Template Files'|'Stylesheet Files'|'Template Dir'|'Stylesheet Dir'|'Screenshot'|'Tags'|'Theme Root'|'Theme Root URI'|'Parent Theme'",
+        '@phpstan-type ThemeKey' => "'Name'|'Version'|'Status'|'Title'|'Author'|'Author Name'|'Author URI'|'Description'|'Template'|'Stylesheet'|'Template Files'|'Stylesheet Files'|'Template Dir'|'Stylesheet Dir'|'Screenshot'|'Tags'|'Theme Root'|'Theme Root URI'|'Parent Theme'",
         '@phpstan-property-read string $name' => '',
         '@phpstan-property-read string $title' => '',
         '@phpstan-property-read string $version' => '',
@@ -330,7 +339,7 @@ return [
     'WP_Theme::offsetGet' => ['($offset is ThemeKey ? mixed : null)'],
     'WP_Translations::translate' => ['($singular is null ? null : string)'],
     'WP_Translations::translate_plural' => ['($singular is null ? null : ($plural is null ? T : string))', '@phpstan-template T' => 'of string|null', 'singular' => 'T', 'count' => 'int'],
-    'WP_Widget' => [null, '@phpstan-template' => 'T of array<string, mixed>'],
+    'WP_Widget' => [null, '@phpstan-template T' => 'of array<string, mixed>'],
     'WP_Widget::form' => [null, 'instance' => 'T'],
     'WP_Widget::update' => [null, 'new_instance' => 'T', 'old_instance' => 'T'],
     'WP_Widget::widget' => [null, 'instance' => 'T', 'args' => 'array{name:string,id:string,description:string,class:string,before_widget:string,after_widget:string,before_title:string,after_title:string,before_sidebar:string,after_sidebar:string,show_in_rest:boolean,widget_id:string,widget_name:string}'],
