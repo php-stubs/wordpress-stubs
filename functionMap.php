@@ -121,6 +121,7 @@ return [
     'get_site_screen_help_tab_args' => ["array{id: 'overview', title: string, content: non-falsy-string}"],
     'get_site_screen_help_sidebar_content' => ['non-falsy-string'],
     'get_sites' => ["(\$args is array{count: true}&array ? int : (\$args is array{fields: 'ids'}&array ? array<int, int> : array<int, \WP_Site>))"],
+    'get_submit_button' => ['non-falsy-string'],
     'get_tag_regex' => ['non-falsy-string'],
     'get_tags' => ["(\$args is array{fields: 'count'}&array ? numeric-string : (\$args is array{fields: 'names'|'slugs'}&array ? list<string> : (\$args is array{fields: 'id=>name'|'id=>slug'}&array ? array<int, string> : (\$args is array{fields: 'id=>parent'}&array ? array<int, int> : (\$args is array{fields: 'ids'|'tt_ids'}&array ? list<int> : array<int, \WP_Term>)))))|\WP_Error"],
     'get_taxonomies' => ["(\$output is 'names' ? array<int, string> : array<int, \WP_Taxonomy>)"],
