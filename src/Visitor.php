@@ -377,7 +377,7 @@ class Visitor extends NodeVisitor
 
         $description = explode("\n\n", $paramDescription->__toString())[0];
 
-        if (strpos($description, '()') === false) {
+        if (str_contains($description, '()') === false) {
             return [];
         }
 
@@ -456,7 +456,7 @@ class Visitor extends NodeVisitor
         $additions = [];
 
         foreach ($parameters as $paramName => $paramType) {
-            if (strpos($paramName, '@') === 0) {
+            if (str_starts_with($paramName, '@')) {
                 $format = ( $paramType === '' ) ? '%s' : '%s %s';
                 $additions[] = sprintf(
                     $format,
@@ -697,7 +697,7 @@ class Visitor extends NodeVisitor
         ];
 
         foreach ($supportedTypes as $supportedType) {
-            if (strpos($tagVariableType, "{$supportedType}|") === false) {
+            if (! str_contains($tagVariableType, "{$supportedType}|")) {
                 continue;
             }
             // Move the type that uses the hash notation to the end of union types so the shape works.
@@ -716,7 +716,7 @@ class Visitor extends NodeVisitor
 
         // Skip if the description doesn't contain at least one correctly
         // formatted `@type`, which indicates an array hash.
-        if (strpos($text, '    @type ') === false) {
+        if (! str_contains($text, '    @type ')) {
             return [];
         }
 
@@ -758,9 +758,9 @@ class Visitor extends NodeVisitor
                 $optionalArg = self::isOptional($parts[2]);
             }
 
-            if (strpos($name, '...$') !== false) {
+            if (str_starts_with($name, '...$')) {
                 $name = null;
-            } elseif (strpos($name, '$') !== 0) {
+            } elseif (! str_starts_with($name, '$')) {
                 return [];
             } else {
                 $name = $nameTrimmed;
@@ -842,7 +842,7 @@ class Visitor extends NodeVisitor
                 if (! $stmt->expr->expr instanceof String_) {
                     return $never;
                 }
-                if (strpos($stmt->expr->expr->value, 'must be overridden') !== false) {
+                if (str_contains($stmt->expr->expr->value, 'must be overridden')) {
                     return null;
                 }
                 return $never;
@@ -853,11 +853,11 @@ class Visitor extends NodeVisitor
             $name = $stmt->expr->name;
             // If a first level statement is a call to wp_send_json(_success/error),
             // it's return type never.
-            if (strpos($name->toString(), 'wp_send_json') === 0) {
+            if (str_starts_with($name->toString(), 'wp_send_json')) {
                 return $never;
             }
             // Skip all functions but wp_die().
-            if (strpos($name->toString(), 'wp_die') !== 0) {
+            if (! str_starts_with($name->toString(), 'wp_die')) {
                 continue;
             }
             $args = $stmt->expr->getArgs();
@@ -899,13 +899,13 @@ class Visitor extends NodeVisitor
             $commentText = trim($comment->getText());
 
             // Strip out comments that are not PHPDoc comments.
-            if (strpos($commentText, '/**') === false) {
+            if (! str_contains($commentText, '/**')) {
                 continue;
             }
 
             // Strip out comments that are not templates and not the actual docComment.
             if (
-                strpos($commentText, '/**#@') === false
+                ! str_contains($commentText, '/**#@')
                 && $commentText !== trim((string)$node->getDocComment())
             ) {
                 continue;
