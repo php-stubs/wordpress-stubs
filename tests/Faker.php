@@ -43,6 +43,7 @@ namespace PhpStubs\WordPress\Core\Tests;
  * @method static \WP_Theme wpTheme()
  * @method static \WP_Translations wpTranslations()
  * @method static \WP_User wpUser()
+ * @method static \WP_Widget wpWidget()
  * @method static \WP_Widget_Factory wpWidgetFactory()
  * @method static \wpdb wpdb()
  */
