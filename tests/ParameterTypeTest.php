@@ -190,6 +190,11 @@ class ParameterTypeTest extends IntegrationTest
         );
     }
 
+    public function testMaybeSerialize(): void
+    {
+        $this->analyse(__DIR__ . '/data/param/maybe-serialize.php', []);
+    }
+
     public function testRegisterActivationHook(): void
     {
         $this->analyse(

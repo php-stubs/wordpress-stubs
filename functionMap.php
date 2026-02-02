@@ -142,6 +142,7 @@ return [
     'is_new_day' => ['0|1'],
     'is_term' => ["(\$term is 0 ? 0 : (\$term is '' ? null : (\$taxonomy is '' ? string|null : array{term_id: string, term_taxonomy_id: string}|null)))"],
     'is_wp_error' => ['($thing is \WP_Error ? true : false)', '@phpstan-assert-if-true' => '\WP_Error $thing'],
+    'maybe_serialize' => ['(T is array|object|string ? string : T)', '@phpstan-template T' => 'of mixed', 'data' => 'T'],
     'mysql2date' => ["(\$format is 'G'|'U' ? int|false : string|false)"],
     'next_posts' => ['($display is true ? void : string)'],
     'paginate_links' => ["(\$args is array{total: int<min, 1>}&array ? void : (\$args is array{type: 'array'}&array ? list<string> : string))"],
