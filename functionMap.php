@@ -154,6 +154,7 @@ return [
     'register_deactivation_hook' => ['void', 'callback' => 'callable(bool): void'],
     'register_nav_menus' => [null, 'locations' => 'array<string, string>'],
     'register_post_type' => [null, 'post_type' => 'lowercase-string&non-empty-string'],
+    'register_rest_route' => [null, 'route_namespace' => 'non-falsy-string', 'route' => 'non-falsy-string'],
     'register_uninstall_hook' => ['void', 'callback' => 'callable(): void'],
     'register_widget' => ['void', 'widget' => 'class-string<\WP_Widget>|\WP_Widget'],
     'render_block_core_categories' => ['non-falsy-string'],

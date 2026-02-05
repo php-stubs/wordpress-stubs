@@ -246,6 +246,22 @@ class ParameterTypeTest extends IntegrationTest
         );
     }
 
+    public function testRegisterRestRoute(): void
+    {
+        $this->analyse(
+            __DIR__ . '/data/param/register-rest-route.php',
+            [
+                ["Parameter #1 \$route_namespace of function register_rest_route expects non-falsy-string, '' given.", 10],
+                ["Parameter #1 \$route_namespace of function register_rest_route expects non-falsy-string, '0' given.", 11],
+                ["Parameter #2 \$route of function register_rest_route expects non-falsy-string, '' given.", 14],
+                ["Parameter #2 \$route of function register_rest_route expects non-falsy-string, '0' given.", 15],
+                // Maybes
+                ['Parameter #1 $route_namespace of function register_rest_route expects non-falsy-string, string given.', 18],
+                ['Parameter #2 $route of function register_rest_route expects non-falsy-string, string given.', 19],
+            ]
+        );
+    }
+
     public function testRegisterUninstallHook(): void
     {
         $this->analyse(
