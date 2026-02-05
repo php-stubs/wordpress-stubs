@@ -12,7 +12,7 @@
         "php": "^7.4 || ^8.0",
         "dealerdirect/phpcodesniffer-composer-installer": "^1.0",
         "nikic/php-parser": "^5.5",
-        "php-stubs/generator": "^0.8.3",
+        "php-stubs/generator": "^0.8.6",
         "phpdocumentor/reflection-docblock": "^6.0",
         "phpstan/phpstan": "^2.1",
         "phpunit/phpunit": "^9.5",
