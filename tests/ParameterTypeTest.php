@@ -284,6 +284,22 @@ class ParameterTypeTest extends IntegrationTest
         );
     }
 
+    public function testWpRegisterAbility(): void
+    {
+        $this->analyse(
+            __DIR__ . '/data/param/wp-register-ability.php',
+            [
+                ["Parameter #1 \$name of function wp_register_ability expects lowercase-string&non-falsy-string, '' given.", 10],
+                ["Parameter #1 \$name of function wp_register_ability expects lowercase-string&non-falsy-string, '0' given.", 11],
+                ["Parameter #1 \$name of function wp_register_ability expects lowercase-string&non-falsy-string, 'Name' given.", 12],
+                ['Parameter #1 $name of function wp_register_ability expects lowercase-string&non-falsy-string, non-empty-string given.', 13],
+                ['Parameter #1 $name of function wp_register_ability expects lowercase-string&non-falsy-string, lowercase-string&non-empty-string given.', 14],
+                // Maybes
+                ['Parameter #1 $name of function wp_register_ability expects lowercase-string&non-falsy-string, string given.', 17],
+            ]
+        );
+    }
+
     public function testWpRobots(): void
     {
         $this->analyse(

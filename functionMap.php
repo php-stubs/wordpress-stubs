@@ -242,6 +242,7 @@ return [
     'wp_parse_str' => [null, '@phpstan-param-out' => 'array<int|string, array|string> $result'],
     'wp_rand' => [null, '@phpstan-impure' => ''],
     'wp_register' => ['($display is true ? void : string)'],
+    'wp_register_ability' => [null, 'name' => 'lowercase-string&non-falsy-string'],
     'wp_remote_get' => [$httpReturnType],
     'wp_remote_head' => [$httpReturnType],
     'wp_remote_post' => [$httpReturnType],
