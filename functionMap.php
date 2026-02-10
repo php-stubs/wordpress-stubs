@@ -215,6 +215,7 @@ return [
     'wp_get_script_tag' => ['non-falsy-string', 'attributes' => 'array<string, string|true>'],
     'wp_get_server_protocol' => ["'HTTP/1.0'|'HTTP/1.1'|'HTTP/2'|'HTTP/2.0'|'HTTP/3'"],
     'wp_get_speculation_rules_configuration' => ["array{mode: 'prefetch'|'prerender', eagerness: 'conservative'|'eager'|'moderate'}|null"],
+    'wp_get_typography_font_size_value' => [null, 'settings' => 'array'],
     'wp_get_word_count_type' => ["'characters_excluding_spaces'|'characters_including_spaces'|'words'"],
     'wp_get_wp_version' => ['non-falsy-string'],
     'wp_hash' => ['lowercase-string&non-falsy-string', 'scheme' => "'auth'|'logged_in'|'nonce'|'secure_auth'"],
