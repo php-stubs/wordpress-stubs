@@ -300,6 +300,18 @@ class ParameterTypeTest extends IntegrationTest
         );
     }
 
+    public function testWpGetTypographyFontSizeValue(): void
+    {
+        $this->analyse(
+            __DIR__ . '/data/param/wp-get-typography-font-size-value.php',
+            [
+                ['Parameter #2 $settings of function wp_get_typography_font_size_value expects array, true given.', 16],
+                ['Parameter #2 $settings of function wp_get_typography_font_size_value expects array, false given.', 17],
+                ['Parameter #2 $settings of function wp_get_typography_font_size_value expects array, bool given.', 18],
+            ]
+        );
+    }
+
     public function testWpListPostRevisions(): void
     {
         $this->analyse(
