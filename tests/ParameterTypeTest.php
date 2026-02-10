@@ -300,6 +300,18 @@ class ParameterTypeTest extends IntegrationTest
         );
     }
 
+    public function testWpListPostRevisions(): void
+    {
+        $this->analyse(
+            __DIR__ . '/data/param/wp-list-post-revisions.php',
+            [
+                ["Parameter #2 \$type of function wp_list_post_revisions expects 'all'|'autosave'|'revision', 'foo' given.", 10],
+                // Maybes
+                ["Parameter #2 \$type of function wp_list_post_revisions expects 'all'|'autosave'|'revision', string given.", 13],
+            ]
+        );
+    }
+
     public function testWpRegisterAbility(): void
     {
         $this->analyse(

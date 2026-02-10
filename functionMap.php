@@ -232,6 +232,7 @@ return [
     'wp_list_bookmarks' => ['($args is array{echo: false|0}&array ? string : void)'],
     'wp_list_categories' => ['($args is array{echo: false|0}&array ? string|false : false|void)'],
     'wp_list_pages' => ['($args is array{echo: false}&array ? string : void)'],
+    'wp_list_post_revisions' => ['void', 'type' => "'all'|'revision'|'autosave'"],
     'wp_loginout' => ['($display is true ? void : string)'],
     'wp_media_insert_url_form' => ['non-falsy-string'],
     'wp_nav_menu_manage_columns' => ["array{_title: string, cb: '<input type=\"checkbox\" />', link-target: string, title-attribute: string, css-classes: string, xfn: string, description: string}"],
