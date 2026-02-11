@@ -368,4 +368,15 @@ class ParameterTypeTest extends IntegrationTest
             ]
         );
     }
+
+    public function testWpUploadBits(): void
+    {
+        $this->analyse(
+            __DIR__ . '/data/param/wp-upload-bits.php',
+            [
+                ["Parameter #1 \$name of function wp_upload_bits expects non-empty-string, '' given.", 10],
+                ['Parameter #1 \$name of function wp_upload_bits expects non-empty-string, string given.', 13],
+            ]
+        );
+    }
 }
