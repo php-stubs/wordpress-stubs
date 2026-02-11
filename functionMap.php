@@ -280,6 +280,7 @@ return [
     'wp_update_comment' => ['($wp_error is false ? 0|1|false : 0|1|\WP_Error)'],
     'wp_update_link' => ['int<0, max>'],
     'wp_update_post' => ['($wp_error is false ? int<0, max> : int<1, max>|\WP_Error)'],
+    'wp_upload_bits' => [null, 'name' => 'non-empty-string'],
     'wp_verify_nonce' => ['1|2|false', 'action' => '-1|string'],
     'wp_widget_rss_form' => ['void', 'args' => $wpWidgetRssFormArgsType, 'inputs' => $wpWidgetRssFormInputsType],
     'wp_widget_rss_process' => ['array{title: string, url: string, link: string, items: int<1, 20>, error: string|false, show_summary: int, show_author: int, show_date: int}'],
