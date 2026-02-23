@@ -179,6 +179,7 @@ return [
     'register_rest_route' => [null, 'route_namespace' => 'non-falsy-string', 'route' => 'non-falsy-string'],
     'register_uninstall_hook' => ['void', 'callback' => 'callable(): void'],
     'register_widget' => ['void', 'widget' => 'class-string<\WP_Widget>|\WP_Widget'],
+    'render_block_core_archives' => ['non-falsy-string'],
     'render_block_core_categories' => ['non-falsy-string'],
     'rest_authorization_required_code' => ['401|403'],
     'rest_sanitize_boolean' => ["(T is bool ? T : (T is ''|'false'|'FALSE'|'0'|0 ? false : true))", '@phpstan-template T' => 'of bool|string|int', 'value' => 'T', '@phpstan-pure' => ''],
