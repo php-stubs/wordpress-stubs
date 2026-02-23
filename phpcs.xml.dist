@@ -30,6 +30,9 @@
     <rule ref="PSR12NeutronRuleset.Strings.ConcatenationUsage">
         <exclude-pattern>tests/</exclude-pattern>
     </rule>
+    <rule ref="SlevomatCodingStandard.Functions.FunctionLength">
+        <exclude-pattern>tests/ParameterTypeTest.php</exclude-pattern>
+    </rule>
     <rule ref="SlevomatCodingStandard.Namespaces.FullyQualifiedExceptions">
         <properties>
             <property name="ignoredNames" type="array">
@@ -46,16 +49,16 @@
     <rule ref="Squiz.PHP.CommentedOutCode">
         <exclude-pattern>tests/</exclude-pattern>
     </rule>
-    <rule ref="WordPress.DateTime.CurrentTimeTimestamp">
+    <rule ref="WordPress.DateTime">
         <exclude-pattern>tests/</exclude-pattern>
     </rule>
-    <rule ref="WordPress.DB.PreparedSQL">
+    <rule ref="WordPress.DB">
         <exclude-pattern>tests/</exclude-pattern>
     </rule>
-    <rule ref="WordPress.Security.NonceVerification">
+    <rule ref="WordPress.Security">
         <exclude-pattern>tests/</exclude-pattern>
     </rule>
-    <rule ref="WordPress.WP.GlobalVariablesOverride">
+    <rule ref="WordPress.WP">
         <exclude-pattern>tests/</exclude-pattern>
     </rule>
 </ruleset>

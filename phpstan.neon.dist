@@ -15,7 +15,7 @@ parameters:
         -
             path: tests/Faker.php
             identifier: class.notFound
-            count: 18
+            count: 20
         -
             # PHPStan\Analyser\Analyser::analyse()
             # PHPStan\Analyser\AnalyserResult::getErrors()

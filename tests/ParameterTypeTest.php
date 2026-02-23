@@ -190,6 +190,60 @@ class ParameterTypeTest extends IntegrationTest
         );
     }
 
+    public function testDeprecatedArguments(): void
+    {
+        $this->analyse(
+            __DIR__ . '/data/param/deprecated-arguments.php',
+            [
+                ['Parameter #1 $deprecated of function _load_remote_block_patterns expects null, WP_Screen given.', 8],
+                ['Parameter #2 $deprecated of function _wp_post_revision_fields expects false, true given.', 9],
+                ["Parameter #3 \$deprecated of function add_option expects '', 'deprecated' given.", 10],
+                ["Parameter #1 \$deprecated of function comments_link expects '', 'deprecated' given.", 11],
+                ["Parameter #2 \$deprecated_2 of function comments_link expects '', 'deprecated' given.", 12],
+                ["Parameter #2 \$deprecated of function convert_chars expects '', 'deprecated' given.", 13],
+                ["Parameter #2 \$deprecated of function delete_plugins expects '', 'deprecated' given.", 14],
+                ["Parameter #2 \$deprecated of function discover_pingback_server_uri expects '', 'deprecated' given.", 15],
+                ["Parameter #5 \$deprecated of function get_category_parents expects array{}, array{'deprecated'} given.", 16],
+                ["Parameter #2 \$deprecated of function get_delete_post_link expects '', 'deprecated' given.", 17],
+                ["Parameter #1 \$deprecated of function get_last_updated expects '', 'deprecated' given.", 18],
+                ['Parameter #3 $deprecated of function get_site_option expects true, false given.', 19],
+                ["Parameter #2 \$deprecated of function get_terms expects '', 'deprecated' given.", 20],
+                ["Parameter #1 \$deprecated of function get_the_author expects '', 'deprecated' given.", 21],
+                ["Parameter #3 \$deprecated of function get_user_option expects '', 'deprecated' given.", 22],
+                ["Parameter #1 \$deprecated of function get_wp_title_rss expects '&#8211;', 'deprecated' given.", 23],
+                ['Parameter #2 $deprecated of function iframe_header expects false, true given.', 24],
+                ['Parameter #2 $deprecated of function inject_ignored_hooked_blocks_metadata_attributes expects null, WP_REST_Request given.', 25],
+                ['Parameter #1 $deprecated of function install_search_form expects true, false given.', 26],
+                ['Parameter #2 $deprecated of function is_email expects false, true given.', 27],
+                ['Parameter #2 $deprecated of function load_plugin_textdomain expects false, true given.', 28],
+                ["Parameter #2 \$deprecated of function newblog_notify_siteadmin expects '', 'deprecated' given.", 29],
+                ["Parameter #1 \$deprecated of function redirect_this_site expects '', 'deprecated' given.", 30],
+                ['Parameter #4 $deprecated of function register_meta expects null, string given.', 31],
+                ["Parameter #2 \$deprecated of function safecss_filter_attr expects '', 'deprecated' given.", 32],
+                ['Parameter #2 $deprecated of function switch_to_blog expects null, bool given.', 33],
+                ['Parameter #3 $deprecated of function the_attachment_link expects false, true given.', 34],
+                ["Parameter #1 \$deprecated of function the_author expects '', 'deprecated' given.", 35],
+                ['Parameter #2 $deprecated_echo of function the_author expects true, false given.', 36],
+                ["Parameter #1 \$deprecated of function the_author_posts_link expects '', 'deprecated' given.", 37],
+                ["Parameter #1 \$deprecated of function trackback_rdf expects '', 'deprecated' given.", 38],
+                ['Parameter #1 $deprecated_echo of function trackback_url expects true, false given.', 39],
+                ["Parameter #3 \$deprecated of function unregister_setting expects '', callable(): mixed given.", 40],
+                ['Parameter #4 $deprecated of function update_blog_option expects null, string given.', 41],
+                ["Parameter #1 \$deprecated of function update_posts_count expects '', 'deprecated' given.", 42],
+                ["Parameter #2 \$deprecated of function wp_count_terms expects '', 'deprecated' given.", 43],
+                ['Parameter #2 $deprecated of function wp_get_http_headers expects false, true given.', 44],
+                ['Parameter #1 $deprecated of function wp_get_sidebars_widgets expects true, false given.', 45],
+                ["Parameter #5 \$deprecated of function wp_install expects '', 'deprecated' given.", 46],
+                ["Parameter #1 \$deprecated of function wp_title_rss expects '&#8211;', 'deprecated' given.", 47],
+                ['Parameter #2 $deprecated of function wp_upload_bits expects null, string given.', 48],
+                ["Parameter #3 \$deprecated of function xfn_check expects '', 'deprecated' given.", 49],
+                ['Parameter #3 $deprecated of method WP_Object_Cache::delete() expects false, true given.', 50],
+                ["Parameter #1 \$deprecated of static method WP_Theme_JSON_Resolver::get_theme_data() expects array{}, array{deprecated: 'non-empty-array'} given.", 51],
+                ['Parameter #1 $deprecated of method WP_Widget<array<string, mixed>>::update_callback() expects 1, int given.', 52],
+            ]
+        );
+    }
+
     public function testMaybeSerialize(): void
     {
         $this->analyse(__DIR__ . '/data/param/maybe-serialize.php', []);

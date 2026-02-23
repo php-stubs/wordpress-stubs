@@ -1,0 +1,136 @@
+<?php
+
+declare(strict_types=1);
+
+use PhpStubs\WordPress\Core\Tests\Faker;
+
+// Incorrect: argument !== default argument
+_load_remote_block_patterns(Faker::wpScreen());
+_wp_post_revision_fields(Faker::wpPost(), true); // #2
+add_option(Faker::string(), Faker::mixed(), 'deprecated');
+comments_link('deprecated', '');
+comments_link('', 'deprecated');
+convert_chars(Faker::string(), 'deprecated');
+delete_plugins(Faker::array(Faker::string()), 'deprecated');
+discover_pingback_server_uri(Faker::string(), 'deprecated');
+get_category_parents(Faker::int(), false, '/', false, ['deprecated']);
+get_delete_post_link(0, 'deprecated');
+get_last_updated('deprecated');
+get_site_option(Faker::string(), false, false); // #3
+get_terms(Faker::strArray(), 'deprecated');
+get_the_author('deprecated');
+get_user_option(Faker::string(), 0, 'deprecated');
+get_wp_title_rss('deprecated');
+iframe_header(Faker::string(), true); // #2
+inject_ignored_hooked_blocks_metadata_attributes(new stdClass(), Faker::wpRestRequest());
+install_search_form(false); // #1
+is_email(Faker::string(), true);
+load_plugin_textdomain(Faker::string(), true);
+newblog_notify_siteadmin(Faker::int(), 'deprecated');
+redirect_this_site('deprecated');
+register_meta(Faker::string(), Faker::string(), Faker::strArray(), 'deprecated');
+safecss_filter_attr(Faker::string(), 'deprecated');
+switch_to_blog(Faker::int(), Faker::bool()); // #2
+the_attachment_link(0, false, true);
+the_author('deprecated');
+the_author('', false);
+the_author_posts_link('deprecated');
+trackback_rdf('deprecated');
+trackback_url(false);
+unregister_setting(Faker::string(), Faker::string(), Faker::callable());
+update_blog_option(Faker::int(), Faker::string(), Faker::mixed(), 'deprecated');
+update_posts_count('deprecated');
+wp_count_terms(Faker::strArray(), 'deprecated');
+wp_get_http_headers(Faker::string(), true);
+wp_get_sidebars_widgets(false);
+wp_install(Faker::string(), Faker::string(), Faker::string(), Faker::bool(), 'deprecated');
+wp_title_rss('deprecated');
+wp_upload_bits(Faker::nonEmptyString(), 'deprecated', Faker::string());
+xfn_check(Faker::string(), Faker::string(), 'deprecated');
+Faker::wpObjectCache()->delete(Faker::string(), Faker::string(), true);
+WP_Theme_JSON_Resolver::get_theme_data(['deprecated' => 'non-empty-array']);
+Faker::wpWidget()->update_callback(Faker::int());
+
+// Correct: argument === default argument
+_load_remote_block_patterns(null);
+_wp_post_revision_fields(Faker::wpPost());
+_wp_post_revision_fields(Faker::wpPost(), false);
+add_option(Faker::string(), Faker::mixed(), '');
+comments_link();
+comments_link('');
+comments_link('', '');
+convert_chars(Faker::string());
+convert_chars(Faker::string(), '');
+delete_plugins(Faker::array(Faker::string()));
+delete_plugins(Faker::array(Faker::string()), '');
+discover_pingback_server_uri(Faker::string(), '');
+get_category_parents(Faker::int(), false, '/', false, []);
+get_delete_post_link(0, '');
+get_last_updated();
+get_last_updated('');
+get_site_option(Faker::string(), false);
+get_site_option(Faker::string(), false, true);
+get_terms(Faker::strArray());
+get_terms(Faker::strArray(), '');
+get_the_author();
+get_the_author('');
+get_user_option(Faker::string());
+get_user_option(Faker::string(), 0, '');
+get_wp_title_rss();
+get_wp_title_rss('&#8211;');
+iframe_header(Faker::string());
+iframe_header(Faker::string(), false);
+inject_ignored_hooked_blocks_metadata_attributes(new stdClass());
+inject_ignored_hooked_blocks_metadata_attributes(new stdClass(), null);
+install_search_form();
+install_search_form(true);
+is_email(Faker::string());
+is_email(Faker::string(), false);
+load_plugin_textdomain(Faker::string());
+load_plugin_textdomain(Faker::string(), false);
+newblog_notify_siteadmin(Faker::int());
+newblog_notify_siteadmin(Faker::int(), '');
+safecss_filter_attr(Faker::string());
+safecss_filter_attr(Faker::string(), '');
+switch_to_blog(Faker::int());
+switch_to_blog(Faker::int(), null);
+redirect_this_site();
+redirect_this_site('');
+register_meta(Faker::string(), Faker::string(), Faker::strArray());
+register_meta(Faker::string(), Faker::string(), Faker::strArray(), null);
+the_attachment_link(0, false);
+the_attachment_link(0, false, false);
+the_author();
+the_author('');
+the_author('', true);
+the_author_posts_link();
+the_author_posts_link('');
+trackback_rdf();
+trackback_rdf('');
+trackback_url();
+trackback_url(true);
+unregister_setting(Faker::string(), Faker::string());
+unregister_setting(Faker::string(), Faker::string(), '');
+update_blog_option(Faker::int(), Faker::string(), Faker::mixed());
+update_blog_option(Faker::int(), Faker::string(), Faker::mixed(), null);
+update_posts_count();
+update_posts_count('');
+wp_count_terms(Faker::strArray());
+wp_count_terms(Faker::strArray(), '');
+wp_get_http_headers(Faker::string());
+wp_get_http_headers(Faker::string(), false);
+wp_get_sidebars_widgets();
+wp_get_sidebars_widgets(true);
+wp_install(Faker::string(), Faker::string(), Faker::string(), Faker::bool());
+wp_install(Faker::string(), Faker::string(), Faker::string(), Faker::bool(), '');
+wp_title_rss();
+wp_title_rss('&#8211;');
+wp_upload_bits(Faker::nonEmptyString(), null, Faker::string());
+xfn_check(Faker::string(), Faker::string());
+xfn_check(Faker::string(), Faker::string(), '');
+Faker::wpObjectCache()->delete(Faker::string(), Faker::string());
+Faker::wpObjectCache()->delete(Faker::string(), Faker::string(), false);
+WP_Theme_JSON_Resolver::get_theme_data();
+WP_Theme_JSON_Resolver::get_theme_data([]);
+Faker::wpWidget()->update_callback();
+Faker::wpWidget()->update_callback(1);
