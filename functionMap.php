@@ -83,7 +83,7 @@ return [
     'current_action' => ['non-empty-string|false'],
     'current_filter' => ['non-empty-string|false'],
     'current_time' => ["(\$type is 'timestamp'|'U' ? int : string)"],
-    'delete_plugins' => [null, 'deprecated' => "''"],
+    'delete_plugins' => ['($plugins is empty ? false : true|null|WP_Error)', 'deprecated' => "''"],
     'did_action' => ['int<0, max>'],
     'did_filter' => ['int<0, max>'],
     'discover_pingback_server_uri' => [null, 'deprecated' => "''"],
