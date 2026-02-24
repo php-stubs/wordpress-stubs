@@ -189,6 +189,7 @@ return [
     'render_block_core_latest_posts' => ['non-falsy-string'],
     'render_block_core_loginout' => ['non-falsy-string'],
     'render_block_core_query_total' => ['non-falsy-string'],
+    'render_block_core_rss' => ['non-falsy-string'],
     'rest_authorization_required_code' => ['401|403'],
     'rest_sanitize_boolean' => ["(T is bool ? T : (T is ''|'false'|'FALSE'|'0'|0 ? false : true))", '@phpstan-template T' => 'of bool|string|int', 'value' => 'T', '@phpstan-pure' => ''],
     'rest_ensure_response' => ['($response is \WP_Error ? \WP_Error : \WP_REST_Response)'],
