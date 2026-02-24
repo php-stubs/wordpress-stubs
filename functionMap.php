@@ -74,6 +74,8 @@ return [
     'backslashit' => [null, '@phpstan-pure' => ''],
     'block_core_home_link_build_css_colors' => ['array{css_classes: list<string>, inline_styles: string}'],
     'block_core_home_link_build_css_font_sizes' => ['array{css_classes: list<string>, inline_styles: string}'],
+    'block_core_navigation_build_css_colors' => ['array{css_classes: list<string>, inline_styles: string, overlay_css_classes: list<string>, overlay_inline_styles: string}'],
+    'block_core_navigation_build_css_font_sizes' => ['array{css_classes: list<string>, inline_styles: string}'],
     'block_core_navigation_link_build_css_colors' => ['array{css_classes: list<string>, inline_styles: string}'],
     'block_core_navigation_link_build_css_font_sizes' => ['array{css_classes: list<string>, inline_styles: string}'],
     'block_core_navigation_link_render_submenu_icon' => ['non-falsy-string'],
