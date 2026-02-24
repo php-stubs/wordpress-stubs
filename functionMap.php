@@ -72,6 +72,7 @@ return [
     'apply_filters_ref_array' => [null, 'hook_name' => 'non-empty-string'],
     'apply_filters_deprecated' => [null, 'hook_name' => 'non-empty-string'],
     'backslashit' => [null, '@phpstan-pure' => ''],
+    'block_core_post_time_to_read_word_count' => ['int<0, max>'],
     'block_version' => ["(\$content is '' ? 0 : 0|1)", '@phpstan-pure' => ''],
     'bool_from_yn' => ["(\$yn is 'y' ? true : false)", '@phpstan-pure' => ''],
     'build_dropdown_script_block_core_categories' => ['non-falsy-string'],
