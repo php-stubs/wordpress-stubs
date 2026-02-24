@@ -33,5 +33,6 @@ assertType('array{css_classes: list<string>, inline_styles: string, overlay_css_
 assertType('array{css_classes: list<string>, inline_styles: string}', block_core_navigation_build_css_font_sizes(Faker::array()));
 assertType('array{css_classes: list<string>, inline_styles: string}', block_core_navigation_link_build_css_colors(Faker::array(), Faker::array()));
 assertType('array{css_classes: list<string>, inline_styles: string}', block_core_navigation_link_build_css_font_sizes(Faker::array()));
+assertType('array{css_classes: list<string>, inline_styles: string}', block_core_navigation_submenu_build_css_font_sizes(Faker::array()));
 assertType('array{css_classes: list<string>, inline_styles: string, overlay_css_classes: list<string>, overlay_inline_styles: string}', block_core_page_list_build_css_colors(Faker::array(), Faker::array()));
 assertType('array{css_classes: list<string>, inline_styles: string}', block_core_page_list_build_css_font_sizes(Faker::array()));

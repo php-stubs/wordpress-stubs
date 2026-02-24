@@ -80,6 +80,7 @@ return [
     'block_core_navigation_link_build_css_font_sizes' => ['array{css_classes: list<string>, inline_styles: string}'],
     'block_core_navigation_link_render_submenu_icon' => ['non-falsy-string'],
     'block_core_navigation_render_submenu_icon' => ['non-falsy-string'],
+    'block_core_navigation_submenu_build_css_font_sizes' => ['array{css_classes: list<string>, inline_styles: string}'],
     'block_core_navigation_submenu_render_submenu_icon' => ['non-falsy-string'],
     'block_core_page_list_build_css_colors' => ['array{css_classes: list<string>, inline_styles: string, overlay_css_classes: list<string>, overlay_inline_styles: string}'],
     'block_core_page_list_build_css_font_sizes' => ['array{css_classes: list<string>, inline_styles: string}'],
