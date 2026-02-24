@@ -18,6 +18,7 @@ use function render_block_core_query_total;
 use function render_block_core_rss;
 use function render_block_core_search;
 use function render_block_core_site_logo;
+use function render_block_core_widget_group;
 use function PHPStan\Testing\assertType;
 
 assertType('non-falsy-string', block_core_navigation_link_render_submenu_icon());
@@ -37,3 +38,4 @@ assertType('non-falsy-string', render_block_core_query_total(Faker::array(), Fak
 assertType('non-falsy-string', render_block_core_rss(Faker::array()));
 assertType('non-falsy-string', render_block_core_search(Faker::array()));
 assertType('non-falsy-string', render_block_core_site_logo(Faker::array()));
+assertType('non-falsy-string', render_block_core_widget_group(Faker::array(), Faker::string(), Faker::wpBlock()));
