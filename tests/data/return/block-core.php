@@ -13,7 +13,9 @@ use function render_block_core_archives;
 use function render_block_core_categories;
 use function render_block_core_latest_comments;
 use function render_block_core_latest_posts;
+use function render_block_core_loginout;
 use function render_block_core_query_total;
+use function render_block_core_rss;
 use function render_block_core_search;
 use function PHPStan\Testing\assertType;
 
@@ -29,5 +31,7 @@ assertType('non-falsy-string', render_block_core_archives(Faker::array()));
 assertType('non-falsy-string', render_block_core_categories(Faker::array(), Faker::string(), Faker::wpBlock()));
 assertType('non-falsy-string', render_block_core_latest_comments(Faker::array()));
 assertType('non-falsy-string', render_block_core_latest_posts(Faker::array()));
+assertType('non-falsy-string', render_block_core_loginout(Faker::array()));
 assertType('non-falsy-string', render_block_core_query_total(Faker::array(), Faker::string(), Faker::wpBlock()));
+assertType('non-falsy-string', render_block_core_rss(Faker::array()));
 assertType('non-falsy-string', render_block_core_search(Faker::array()));
