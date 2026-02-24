@@ -186,6 +186,7 @@ return [
     'render_block_core_archives' => ['non-falsy-string'],
     'render_block_core_categories' => ['non-falsy-string'],
     'render_block_core_latest_comments' => ['non-falsy-string'],
+    'render_block_core_loginout' => ['non-falsy-string'],
     'render_block_core_query_total' => ['non-falsy-string'],
     'rest_authorization_required_code' => ['401|403'],
     'rest_sanitize_boolean' => ["(T is bool ? T : (T is ''|'false'|'FALSE'|'0'|0 ? false : true))", '@phpstan-template T' => 'of bool|string|int', 'value' => 'T', '@phpstan-pure' => ''],
