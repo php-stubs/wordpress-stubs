@@ -269,6 +269,7 @@ return [
     'wp_is_post_revision' => ['($post is \WP_Post ? false|int<0, max> : ($post is int<min, 0> ? false : false|int<0, max>))'],
     'wp_is_uuid' => ['($version is 4|null ? bool : false)', 'uuid' => 'TUuid', 'version' => '4', '@phpstan-template TUuid' => 'of string', '@phpstan-assert-if-true' => '=TUuid&lowercase-string&non-falsy-string $uuid', '@phpstan-pure' => ''],
     'wp_json_encode' => ['non-empty-string|false', 'depth' => 'int<1, max>'],
+    'wp_latest_comments_draft_or_post_title' => ['non-falsy-string'],
     'wp_list_bookmarks' => ['($args is array{echo: false|0}&array ? string : void)'],
     'wp_list_categories' => ['($args is array{echo: false|0}&array ? string|false : false|void)'],
     'wp_list_pages' => ['($args is array{echo: false}&array ? string : void)'],
