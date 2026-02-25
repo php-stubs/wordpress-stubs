@@ -244,6 +244,7 @@ return [
     'wp_dropdown_languages' => ["(\$args is array{id: null|''}&array ? void : (\$args is array{name: null|''}&array ? void : string))"],
     'wp_extract_urls' => ['($content is empty ? array{} : list<string>)'],
     'wp_fast_hash' => ['non-falsy-string'],
+    'wp_generate_block_templates_export_file' => ['non-falsy-string|\WP_Error'],
     'wp_generate_password' => [null, '@phpstan-impure' => ''],
     'wp_generate_tag_cloud' => ["(\$args is array{format: 'array'}&array ? array<int, string> : string)"],
     'wp_generate_uuid4' => ['lowercase-string&non-falsy-string', '@phpstan-impure' => ''],
