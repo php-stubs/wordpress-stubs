@@ -346,6 +346,7 @@ return [
     'Custom_Image_Header::__construct' => [null, 'admin_image_div_callback' => "''|callable(): void"],
     'Custom_Image_Header::set_header_image' => [null, 'choice' => 'string|array{attachment_id: int<1, max>, url: string, width: int<0, max>, height: int<0, max>}'],
     'Custom_Image_Header::show_header_selector' => [null, 'type' => "'default'|'uploaded'"],
+    'WP_Ajax_Response::add' => ['non-falsy-string'],
     'WP_Block_List' => [null, '@phpstan-implements ArrayAccess<int, \WP_Block>' => ''],
     'WP_Block_List::offsetExists' => [null, 'offset' => 'int'],
     'WP_Block_List::offsetGet' => ['\WP_Block|null', 'offset' => 'int'],
