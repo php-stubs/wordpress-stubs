@@ -99,18 +99,17 @@ class Visitor extends NodeVisitor
             $this->additionalTagStrings[$symbolName] = $additions;
         }
 
-        if ($voidOrNever instanceof Type) {
-            $addition = sprintf(
-                '@phpstan-return %s',
-                $voidOrNever->__toString()
-            );
-            if (
-                ! isset($this->additionalTagStrings[$symbolName])
-                || ! in_array($addition, $this->additionalTagStrings[$symbolName], true)
-            ) {
-                $this->additionalTagStrings[$symbolName][] = $addition;
-            }
+        if (! ($voidOrNever instanceof Type)) {
+            return null;
         }
+
+        $addition = sprintf('@phpstan-return %s', $voidOrNever->__toString());
+
+        if (in_array($addition, $additions, true)) {
+            return null;
+        }
+
+        $this->additionalTagStrings[$symbolName] = [...$additions, $addition];
 
         return null;
     }
@@ -808,6 +807,10 @@ class Visitor extends NodeVisitor
 
         if (! isset($node->stmts) || count($node->stmts) === 0) {
             // Interfaces and abstract methods.
+            return null;
+        }
+
+        if ($node->getReturnType() !== null) {
             return null;
         }
 
