@@ -814,6 +814,25 @@ class Visitor extends NodeVisitor
             return null;
         }
 
+        if (
+            $node instanceof ClassMethod
+            && in_array(
+                strtolower($node->name->name),
+                [
+                    '__clone',
+                    '__construct',
+                    '__destruct',
+                    '__set',
+                    '__unserialize',
+                    '__unset',
+                    '__wakeup',
+                ],
+                true
+            )
+        ) {
+            return null;
+        }
+
         $returnStmts = $this->nodeFinder->findInstanceOf($node, Stmt_Return::class);
 
         // If there is a return statement, it's not return type never.
