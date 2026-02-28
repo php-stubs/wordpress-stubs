@@ -15,6 +15,8 @@ use phpDocumentor\Reflection\Types\Void_;
 use PhpParser\Comment\Doc;
 use PhpParser\ConstExprEvaluator;
 use PhpParser\Node;
+use PhpParser\Node\Expr\Yield_;
+use PhpParser\Node\Expr\YieldFrom;
 use PhpParser\NodeFinder;
 use PhpParser\Node\Identifier;
 use PhpParser\Node\Name;
@@ -813,6 +815,18 @@ class Visitor extends NodeVisitor
             return null;
         }
 
+        $yields = $this->nodeFinder->findFirst(
+            $node,
+            static function (Node $node): bool {
+                return $node instanceof Yield_ || $node instanceof YieldFrom;
+            }
+        ) instanceof Node;
+
+        if ($yields) {
+            // Generator functions do not return void or never.
+            return null;
+        }
+
         $returnStmts = $this->nodeFinder->findInstanceOf($node, Stmt_Return::class);
 
         // If there is a return statement, it's not return type never.
@@ -852,14 +866,14 @@ class Visitor extends NodeVisitor
             if (! ($stmt->expr instanceof FuncCall) || ! ($stmt->expr->name instanceof Name)) {
                 continue;
             }
-            $name = $stmt->expr->name;
+            $name = strtolower((string)$stmt->expr->name);
             // If a first level statement is a call to wp_send_json(_success/error),
             // it's return type never.
-            if (str_starts_with($name->toString(), 'wp_send_json')) {
+            if (str_starts_with($name, 'wp_send_json')) {
                 return $never;
             }
             // Skip all functions but wp_die().
-            if (! str_starts_with($name->toString(), 'wp_die')) {
+            if (! str_starts_with($name, 'wp_die')) {
                 continue;
             }
             $args = $stmt->expr->getArgs();
