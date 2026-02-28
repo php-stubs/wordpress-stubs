@@ -21,7 +21,6 @@ use PhpParser\Node\Name;
 use PhpParser\Node\Expr\Exit_;
 use PhpParser\Node\Expr\FuncCall;
 use PhpParser\Node\Scalar\String_;
-use PhpParser\Node\Stmt\Class_;
 use PhpParser\Node\Stmt\ClassLike;
 use PhpParser\Node\Stmt\ClassMethod;
 use PhpParser\Node\Stmt\Expression;
@@ -74,7 +73,7 @@ class Visitor extends NodeVisitor
 
         parent::enterNode($node);
 
-        if (! ($node instanceof Function_) && ! ($node instanceof ClassMethod) && ! ($node instanceof Property) && ! ($node instanceof Class_)) {
+        if (! ($node instanceof Function_) && ! ($node instanceof ClassMethod) && ! ($node instanceof Property) && ! ($node instanceof ClassLike)) {
             return null;
         }
 
@@ -116,7 +115,7 @@ class Visitor extends NodeVisitor
 
     private function getSymbolName(Node $node): string
     {
-        if ((($node instanceof Function_) || ($node instanceof ClassMethod) || ($node instanceof Class_)) && $node->name instanceof Identifier) {
+        if ((($node instanceof Function_) || ($node instanceof ClassMethod) || ($node instanceof ClassLike)) && $node->name instanceof Identifier) {
             $name = $node->name->name;
         }
 
@@ -126,7 +125,7 @@ class Visitor extends NodeVisitor
 
         assert(isset($name), 'Node does not have a name');
 
-        if ($node instanceof Function_ || $node instanceof Class_) {
+        if ($node instanceof Function_ || $node instanceof ClassLike) {
             return $name;
         }
 
@@ -163,7 +162,7 @@ class Visitor extends NodeVisitor
             }
         }
 
-        if (! ($node instanceof Function_) && ! ($node instanceof ClassMethod) && ! ($node instanceof Property) && ! ($node instanceof Class_)) {
+        if (! ($node instanceof Function_) && ! ($node instanceof ClassMethod) && ! ($node instanceof Property) && ! ($node instanceof ClassLike)) {
             return;
         }
 
