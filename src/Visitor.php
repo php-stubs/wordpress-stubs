@@ -98,11 +98,18 @@ class Visitor extends NodeVisitor
             return null;
         }
 
-        $addition = sprintf('@phpstan-return %s', $voidOrNever->__toString());
+        $hasPhpstanReturnTag = array_filter(
+            $additions,
+            static function (string $addition): bool {
+                return str_contains($addition, '@phpstan-return');
+            }
+        );
 
-        if (in_array($addition, $additions, true)) {
+        if ($hasPhpstanReturnTag) {
             return null;
         }
+
+        $addition = sprintf('@phpstan-return %s', $voidOrNever->__toString());
 
         $this->additionalTagStrings[$symbolName] = [...$additions, $addition];
 

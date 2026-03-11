@@ -54,6 +54,13 @@ final class VoidOrNeverAnalyzer
 
         // Infer never return type.
         $this->analyzeWithoutReturns($node);
+
+        if ($node->hasAttribute(self::ATTRIBUTE_NAME)) {
+            return;
+        }
+
+        // No return statements and no inferred never, default to void.
+        $node->setAttribute(self::ATTRIBUTE_NAME, new Void_());
     }
 
     /**
