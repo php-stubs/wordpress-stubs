@@ -100,8 +100,12 @@ final class VoidOrNeverAnalyzer
             return false;
         }
 
+        if ($node->getDocComment() === null) {
+            return false;
+        }
+
         try {
-            $docBlock = $this->docBlockFactory->create($node->getDocComment()?->getText() ?? '');
+            $docBlock = $this->docBlockFactory->create($node->getDocComment()->getText());
         } catch (\RuntimeException | \InvalidArgumentException $e) {
             // Skip if the docblock is invalid.
             return false;
