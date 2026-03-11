@@ -100,8 +100,11 @@ final class VoidOrNeverAnalyzer
             return false;
         }
 
-        // Skip deprecated functions.
-        if ($docBlock->getTagsByName('deprecated') !== []) {
+        // Skip deprecated and pseudo-abstract functions.
+        if (
+            $docBlock->getTagsByName('deprecated') !== []
+            || $docBlock->getTagsByName('abstract') !== []
+        ) {
             return false;
         }
 
