@@ -10,6 +10,7 @@ use PhpParser\ConstExprEvaluator;
 use PhpParser\Node;
 use PhpParser\Node\Expr\Exit_;
 use PhpParser\Node\Expr\FuncCall;
+use PhpParser\Node\Expr\Throw_;
 use PhpParser\Node\Expr\Yield_;
 use PhpParser\Node\Expr\YieldFrom;
 use PhpParser\Node\Name;
@@ -119,7 +120,7 @@ final class VoidOrNeverAnalyzer
             }
 
             if (
-                ! $this->isTopLevelExit($stmt)
+                ! $this->isTopLevelExitOrThrow($stmt)
                 && ! $this->isTopLevelNeverFunctionCall($stmt)
             ) {
                 continue;
@@ -130,9 +131,9 @@ final class VoidOrNeverAnalyzer
         }
     }
 
-    private function isTopLevelExit(Expression $stmt): bool
+    private function isTopLevelExitOrThrow(Expression $stmt): bool
     {
-        if (! ($stmt->expr instanceof Exit_)) {
+        if (! ($stmt->expr instanceof Exit_ || $stmt->expr instanceof Throw_)) {
             return false;
         }
 
@@ -140,8 +141,15 @@ final class VoidOrNeverAnalyzer
             return true;
         }
 
-        // Skip exit expressions for functions that are meant to be overridden.
-        return ! str_contains(strtolower($stmt->expr->expr->value), 'must be overridden');
+        // Skip throw/exit for functions that are meant to be overridden.
+        return ! $this->isMeantToBeOverridden($stmt->expr->expr);
+    }
+
+    private function isMeantToBeOverridden(String_ $message): bool
+    {
+        $message = strtolower($message->value);
+        return str_contains($message, 'override')
+            || str_contains($message, 'overridden');
     }
 
     private function isTopLevelNeverFunctionCall(Expression $stmt): bool
@@ -152,8 +160,7 @@ final class VoidOrNeverAnalyzer
 
         $name = $stmt->expr->name->toLowerString();
 
-        // If a top-level expression is a call to wp_send_json(_success/error),
-        // it's return type never.
+        // A top-level call to wp_send_json(_success/error) implies return type never.
         if (str_starts_with($name, 'wp_send_json')) {
             return true;
         }
