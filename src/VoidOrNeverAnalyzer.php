@@ -100,6 +100,11 @@ final class VoidOrNeverAnalyzer
             return false;
         }
 
+        // Skip deprecated functions.
+        if ($docBlock->getTagsByName('deprecated') !== []) {
+            return false;
+        }
+
         // Skip if there is already a @return or @phpstan-return tag.
         return $docBlock->getTagsByName('return') === []
             && $docBlock->getTagsByName('phpstan-return') === [];
