@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace PhpStubs\WordPress\Core;
 
+use phpDocumentor\Reflection\DocBlockFactoryInterface;
 use phpDocumentor\Reflection\Types\Never_;
 use phpDocumentor\Reflection\Types\Void_;
 use PhpParser\ConstExprEvaluator;
@@ -31,9 +32,11 @@ final class VoidOrNeverAnalyzer
     public const ATTRIBUTE_NAME = 'WPStubs_voidOrNever';
 
     private NodeFinder $nodeFinder;
+    private DocBlockFactoryInterface $docBlockFactory;
 
-    public function __construct(NodeFinder $nodeFinder) {
+    public function __construct(NodeFinder $nodeFinder, DocBlockFactoryInterface $docBlockFactory) {
         $this->nodeFinder = $nodeFinder;
+        $this->docBlockFactory = $docBlockFactory;
     }
 
     public function setAttribute(Node $node): void
@@ -49,7 +52,7 @@ final class VoidOrNeverAnalyzer
             return;
         }
 
-        // Check for never return type.
+        // Infer never return type.
         $this->analyzeWithoutReturns($node);
     }
 
@@ -86,7 +89,20 @@ final class VoidOrNeverAnalyzer
         ) instanceof Node;
 
         // Generator functions do not return void or never.
-        return ! $yields;
+        if ($yields) {
+            return false;
+        }
+
+        try {
+            $docBlock = $this->docBlockFactory->create($node->getDocComment()?->getText() ?? '');
+        } catch (\RuntimeException | \InvalidArgumentException $e) {
+            // Skip if the docblock is invalid.
+            return false;
+        }
+
+        // Skip if there is already a @return or @phpstan-return tag.
+        return $docBlock->getTagsByName('return') === []
+            && $docBlock->getTagsByName('phpstan-return') === [];
     }
 
     /**

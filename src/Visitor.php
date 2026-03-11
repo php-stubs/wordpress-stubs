@@ -55,7 +55,7 @@ class Visitor extends NodeVisitor
         $this->docBlockFactory = DocBlockFactory::createInstance();
         $this->nodeFinder = new NodeFinder();
         $this->functionMap = require sprintf('%s/functionMap.php', dirname(__DIR__));
-        $this->voidOrNeverAnalyzer = new VoidOrNeverAnalyzer($this->nodeFinder);
+        $this->voidOrNeverAnalyzer = new VoidOrNeverAnalyzer($this->nodeFinder, $this->docBlockFactory);
     }
 
     /**
