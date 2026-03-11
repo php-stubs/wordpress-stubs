@@ -61,6 +61,13 @@ final class VoidOrNeverAnalyzer
             return false;
         }
 
+        if (
+            $node instanceof ClassMethod
+            && strtolower($node->name->name) === '__construct'
+        ) {
+            return false;
+        }
+
         if ($node->getReturnType() !== null) {
             return false;
         }
