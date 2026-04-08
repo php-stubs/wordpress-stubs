@@ -156,7 +156,7 @@ return [
     'get_terms' => ["(\$args is array{fields: 'count'}&array ? numeric-string : (\$args is array{fields: 'names'|'slugs'}&array ? list<string> : (\$args is array{fields: 'id=>name'|'id=>slug'}&array ? array<int, string> : (\$args is array{fields: 'id=>parent'}&array ? array<int, int> : (\$args is array{fields: 'ids'|'tt_ids'}&array ? list<int> : array<int, \WP_Term>)))))|\WP_Error", 'deprecated' => "''"],
     'get_the_author' => [null, 'deprecated' => "''"],
     'get_the_permalink' => ['($post is \WP_Post ? string : string|false)'],
-    'get_transient' => [null, '@phpstan-impure' => ''],    
+    'get_transient' => [null, '@phpstan-impure' => ''],
     'get_user' => ['($user_id is int<min, 0> ? false : \WP_User|false)'],
     'get_user_by' => ["(\$field is 'id'|'ID' ? (\$value is int<min, 0> ? false : \WP_User|false) : \WP_User|false)"],
     'get_user_option' => [null, 'deprecated' => "''"],
