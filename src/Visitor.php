@@ -9,30 +9,20 @@ use phpDocumentor\Reflection\DocBlock\Description;
 use phpDocumentor\Reflection\DocBlock\Tags\Param;
 use phpDocumentor\Reflection\DocBlock\Tags\Return_;
 use phpDocumentor\Reflection\DocBlock\Tags\Var_;
+use phpDocumentor\Reflection\DocBlockFactoryInterface;
+use phpDocumentor\Reflection\DocBlockFactory;
 use phpDocumentor\Reflection\Type;
-use phpDocumentor\Reflection\Types\Never_;
-use phpDocumentor\Reflection\Types\Void_;
+use phpDocumentor\Reflection\Types\String_;
 use PhpParser\Comment\Doc;
-use PhpParser\ConstExprEvaluator;
 use PhpParser\Node;
-use PhpParser\Node\Expr\Yield_;
-use PhpParser\Node\Expr\YieldFrom;
 use PhpParser\NodeFinder;
 use PhpParser\Node\Identifier;
-use PhpParser\Node\Name;
-use PhpParser\Node\Expr\Exit_;
-use PhpParser\Node\Expr\FuncCall;
-use PhpParser\Node\Scalar\String_;
 use PhpParser\Node\Stmt\ClassLike;
 use PhpParser\Node\Stmt\ClassMethod;
-use PhpParser\Node\Stmt\Expression;
 use PhpParser\Node\Stmt\Function_;
 use PhpParser\Node\Stmt\Namespace_;
 use PhpParser\Node\Stmt\Property;
-use PhpParser\Node\Stmt\Return_ as Stmt_Return;
 use StubsGenerator\NodeVisitor;
-use phpDocumentor\Reflection\DocBlockFactoryInterface;
-use phpDocumentor\Reflection\DocBlockFactory;
 
 use function assert;
 use function sprintf;
@@ -58,12 +48,14 @@ class Visitor extends NodeVisitor
     private array $additionalTagStrings = [];
 
     private NodeFinder $nodeFinder;
+    private VoidOrNeverAnalyzer $voidOrNeverAnalyzer;
 
     public function __construct()
     {
         $this->docBlockFactory = DocBlockFactory::createInstance();
         $this->nodeFinder = new NodeFinder();
         $this->functionMap = require sprintf('%s/functionMap.php', dirname(__DIR__));
+        $this->voidOrNeverAnalyzer = new VoidOrNeverAnalyzer($this->nodeFinder, $this->docBlockFactory);
     }
 
     /**
@@ -71,7 +63,7 @@ class Visitor extends NodeVisitor
      */
     public function enterNode(Node $node)
     {
-        $voidOrNever = $this->voidOrNever($node);
+        $this->voidOrNeverAnalyzer->setAttribute($node);
 
         parent::enterNode($node);
 
@@ -100,15 +92,24 @@ class Visitor extends NodeVisitor
             $this->additionalTagStrings[$symbolName] = $additions;
         }
 
+        $voidOrNever = $node->getAttribute(VoidOrNeverAnalyzer::ATTRIBUTE_NAME);
+
         if (! ($voidOrNever instanceof Type)) {
             return null;
         }
 
-        $addition = sprintf('@phpstan-return %s', $voidOrNever->__toString());
+        $hasPhpstanReturnTag = array_filter(
+            $additions,
+            static function (string $addition): bool {
+                return str_contains($addition, '@phpstan-return');
+            }
+        );
 
-        if (in_array($addition, $additions, true)) {
+        if ($hasPhpstanReturnTag) {
             return null;
         }
+
+        $addition = sprintf('@phpstan-return %s', $voidOrNever->__toString());
 
         $this->additionalTagStrings[$symbolName] = [...$additions, $addition];
 
@@ -620,7 +621,7 @@ class Visitor extends NodeVisitor
 
     private static function getTypeNameFromDescription(Description $tagVariableDescription, Type $tagVariableType): ?string
     {
-        if (! ($tagVariableType instanceof \phpDocumentor\Reflection\Types\String_)) {
+        if (! ($tagVariableType instanceof String_)) {
             return null;
         }
 
@@ -795,113 +796,6 @@ class Visitor extends NodeVisitor
             || (stripos($description, 'Default ') !== false)
             || (stripos($description, 'Default: ') !== false)
             || (stripos($description, 'Defaults to ') !== false);
-    }
-
-    private function voidOrNever(Node $node): ?Type
-    {
-        $never = new Never_();
-        $void = new Void_();
-
-        if (! ($node instanceof Function_) && ! ($node instanceof ClassMethod)) {
-            return null;
-        }
-
-        if (! isset($node->stmts) || count($node->stmts) === 0) {
-            // Interfaces and abstract methods.
-            return null;
-        }
-
-        if ($node->getReturnType() !== null) {
-            return null;
-        }
-
-        $yields = $this->nodeFinder->findFirst(
-            $node,
-            static function (Node $node): bool {
-                return $node instanceof Yield_ || $node instanceof YieldFrom;
-            }
-        ) instanceof Node;
-
-        if ($yields) {
-            // Generator functions do not return void or never.
-            return null;
-        }
-
-        $returnStmts = $this->nodeFinder->findInstanceOf($node, Stmt_Return::class);
-
-        // If there is a return statement, it's not return type never.
-        if (count($returnStmts) !== 0) {
-            // If there is at least one return statement that is not void,
-            // it's not return type void.
-            if (
-                $this->nodeFinder->findFirst(
-                    $returnStmts,
-                    static function (Node $node): bool {
-                        return property_exists($node, 'expr') && $node->expr !== null;
-                    }
-                ) instanceof Node
-            ) {
-                return null;
-            }
-            // If there is no return statement that is not void,
-            // it's return type void.
-            return $void;
-        }
-
-        // Check for never return type.
-        foreach ($node->stmts as $stmt) {
-            if (! ($stmt instanceof Expression)) {
-                continue;
-            }
-            // If a first level statement is exit/die, it's return type never.
-            if ($stmt->expr instanceof Exit_) {
-                if (! $stmt->expr->expr instanceof String_) {
-                    return $never;
-                }
-                if (str_contains($stmt->expr->expr->value, 'must be overridden')) {
-                    return null;
-                }
-                return $never;
-            }
-            if (! ($stmt->expr instanceof FuncCall) || ! ($stmt->expr->name instanceof Name)) {
-                continue;
-            }
-            $name = strtolower((string)$stmt->expr->name);
-            // If a first level statement is a call to wp_send_json(_success/error),
-            // it's return type never.
-            if (str_starts_with($name, 'wp_send_json')) {
-                return $never;
-            }
-            // Skip all functions but wp_die().
-            if (! str_starts_with($name, 'wp_die')) {
-                continue;
-            }
-            $args = $stmt->expr->getArgs();
-            // If wp_die is called without 3rd parameter, it's return type never.
-            if (count($args) < 3) {
-                return $never;
-            }
-            // If wp_die is called with 3rd parameter, we need additional checks.
-            try {
-                $arg = (new ConstExprEvaluator())->evaluateSilently($args[2]->value);
-            } catch (\PhpParser\ConstExprEvaluationException $e) {
-                // If we don't know the value of the 3rd parameter, we can't be sure.
-                continue;
-            }
-
-            if (is_int($arg)) {
-                return $never;
-            }
-
-            if (! is_array($arg)) {
-                continue;
-            }
-
-            if (! array_key_exists('exit', $arg) || (bool)$arg['exit']) {
-                return $never;
-            }
-        }
-        return null;
     }
 
     private function cleanComments(Node $node): void
