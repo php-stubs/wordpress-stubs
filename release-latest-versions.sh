@@ -39,7 +39,7 @@ CORE_JSON="$(wget -q -O- "https://packagist.org/packages/johnpbloch/wordpress-co
 #        6.0 6.1 6.2 6.3 6.4 6.5 6.6 6.7 6.8 6.9 \
 for MINOR in \
         6.9 \
-        7.0; do
+        7.0 7.1; do
     # Find latest version
     printf -v JQ_FILTER '.package.versions[].version | select(test("^%s\\\\.%s\\\\.\\\\d+$"))' "${MINOR%.*}" "${MINOR#*.}"
     LATEST_FIVE="$(jq -r "$JQ_FILTER" <<<"$CORE_JSON" | sort -t "." -k 3 -g | tail -n 5)"
