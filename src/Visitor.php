@@ -676,7 +676,7 @@ class Visitor extends NodeVisitor
     {
         // PHPStan doesn't support typed array shapes (`int[]{...}`) so replace
         // typed arrays such as `int[]` with `array`.
-        $tagVariableType = preg_replace('#[a-zA-Z0-9_]+\[\]#', 'array', $tagVariable);
+        $tagVariableType = preg_replace('#[a-zA-Z0-9_]+(?:\[\])+#', 'array', $tagVariable);
 
         if ($tagVariableType === null) {
             return null;
