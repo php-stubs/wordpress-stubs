@@ -93,11 +93,11 @@ class Visitor extends NodeVisitor
         $additions = $this->generateAdditionalTagsFromDoc($docComment);
         if (count($additions) > 0) {
             $this->additionalTags[$symbolName] = $additions;
-        }
-
-        $additions = $this->getAdditionalTagsFromMap($symbolName);
-        if (count($additions) > 0) {
-            $this->additionalTagStrings[$symbolName] = $additions;
+        } else {
+            $additions = $this->getAdditionalTagsFromMap($symbolName);
+            if (count($additions) > 0) {
+                $this->additionalTagStrings[$symbolName] = $additions;
+            }
         }
 
         if (! ($voidOrNever instanceof Type)) {
