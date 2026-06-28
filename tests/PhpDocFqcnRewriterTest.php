@@ -13,7 +13,7 @@ final class PhpDocFqcnRewriterTest extends TestCase
      * @dataProvider provideDocBlocks
      * @param array<string, string> $aliases
      */
-    public function testFlatten(array $aliases, string $input, string $expected): void
+    public function testRewrite(array $aliases, string $input, string $expected): void
     {
         $rewriter = new PhpDocFqcnRewriter();
         self::assertSame($expected, $rewriter->rewrite($input, $aliases));
