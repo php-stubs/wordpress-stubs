@@ -11,6 +11,7 @@
     "require-dev": {
         "php": "^7.4 || ^8.0",
         "dealerdirect/phpcodesniffer-composer-installer": "^1.0",
+        "mikey179/vfsstream": "^1.6",
         "nikic/php-parser": "^5.5",
         "php-stubs/generator": "^0.8.6",
         "phpdocumentor/reflection-docblock": "^6.0",
