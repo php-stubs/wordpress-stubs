@@ -47,8 +47,12 @@ final class PhpDocFqcnRewriter
             $aliases[strtolower($alias)] = $fqcn;
         }
 
-        $tokens = new TokenIterator($this->lexer->tokenize($docComment));
-        $original = $this->docParser->parse($tokens);
+        try {
+            $tokens = new TokenIterator($this->lexer->tokenize($docComment));
+            $original = $this->docParser->parse($tokens);
+        } catch (\Throwable) {
+            return $docComment;
+        }
 
         $rewritten = $this->cloningTraverser()->traverse([$original])[0];
         (new NodeTraverser([new PhpDocTypeNameResolver($aliases)]))->traverse([$rewritten]);
