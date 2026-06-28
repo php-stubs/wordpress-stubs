@@ -204,7 +204,7 @@ final class PhpDocFqcnRewriterTest extends TestCase
             '/** @param Foo $x */',
             '/** @param Foo $x */',
         ];
-        yield 'unparseable input returned unchanged' => [
+        yield 'unparsable input returned unchanged' => [
             $std,
             'this is not a doc comment',
             'this is not a doc comment',
