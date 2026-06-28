@@ -6,6 +6,7 @@ namespace PhpStubs\WordPress\Core;
 
 use PHPStan\PhpDocParser\Ast\NodeTraverser;
 use PHPStan\PhpDocParser\Ast\NodeVisitor\CloningVisitor;
+use PHPStan\PhpDocParser\Ast\PhpDoc\PhpDocNode;
 use PHPStan\PhpDocParser\Lexer\Lexer;
 use PHPStan\PhpDocParser\Parser\ConstExprParser;
 use PHPStan\PhpDocParser\Parser\PhpDocParser;
@@ -18,9 +19,9 @@ use function strtolower;
 
 final class PhpDocFqcnRewriter
 {
-    private readonly Lexer $lexer;
-    private readonly Printer $printer;
-    private readonly PhpDocParser $docParser;
+    private Lexer $lexer;
+    private Printer $printer;
+    private PhpDocParser $docParser;
 
     public function __construct()
     {
@@ -51,6 +52,10 @@ final class PhpDocFqcnRewriter
 
         $rewritten = $this->cloningTraverser()->traverse([$original])[0];
         (new NodeTraverser([new PhpDocTypeNameResolver($aliases)]))->traverse([$rewritten]);
+
+        if (! $rewritten instanceof PhpDocNode) {
+            return $docComment;
+        }
 
         return $this->printer->printFormatPreserving($rewritten, $original, $tokens);
     }
