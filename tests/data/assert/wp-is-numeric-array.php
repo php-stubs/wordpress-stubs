@@ -64,7 +64,7 @@ if (! wp_is_numeric_array($data)) {
 // Check with mixed keys constant array
 $data = [1 => 'intKey', 'key' => 'stringKey'];
 if (wp_is_numeric_array($data)) {
-    assertType("non-empty-array<1, 'intKey'|'stringKey'>", $data);
+    assertType("array{1: 'intKey'}", $data);
 }
 if (! wp_is_numeric_array($data)) {
     assertType("array{1: 'intKey', key: 'stringKey'}", $data);
