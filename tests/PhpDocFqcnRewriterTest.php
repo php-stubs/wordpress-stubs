@@ -7,6 +7,8 @@ namespace PhpStubs\WordPress\Core\Tests;
 use PhpStubs\WordPress\Core\PhpDocFqcnRewriter;
 use PHPUnit\Framework\TestCase;
 
+// phpcs:disable SlevomatCodingStandard.Functions.FunctionLength.FunctionLength
+
 final class PhpDocFqcnRewriterTest extends TestCase
 {
     /**
