@@ -50,7 +50,7 @@ final class PhpDocFqcnRewriter
         try {
             $tokens = new TokenIterator($this->lexer->tokenize($docComment));
             $original = $this->docParser->parse($tokens);
-        } catch (\Throwable) {
+        } catch (\Throwable $e) {
             return $docComment;
         }
 
