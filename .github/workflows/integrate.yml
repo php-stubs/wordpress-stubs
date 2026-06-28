@@ -16,7 +16,6 @@ jobs:
     runs-on: "ubuntu-latest"
 
     strategy:
-      fail-fast: false
       matrix:
         php-version:
         - "7.4"
@@ -44,7 +43,4 @@ jobs:
     - run: "php -l wordpress-stubs.php"
     - run: "git diff --exit-code"
     - run: "php -f wordpress-stubs.php"
-    - parallel:
-        - run: "composer run test:phpunit"
-        - run: "composer run test:phpstan"
-        - run: "composer run test:cs"
+    - run: "composer run test"
