@@ -10,9 +10,8 @@ assertType('int<0, max>', block_core_post_time_to_read_word_count(Faker::string(
 assertType('non-falsy-string', build_dropdown_script_block_core_categories(Faker::string()));
 
 // Submenu icon
-assertType('non-falsy-string', block_core_navigation_link_render_submenu_icon());
 assertType('non-falsy-string', block_core_navigation_render_submenu_icon());
-assertType('non-falsy-string', block_core_navigation_submenu_render_submenu_icon());
+assertType('non-falsy-string', block_core_shared_navigation_render_submenu_icon());
 
 // Render block
 assertType('non-falsy-string', render_block_core_archives(Faker::array()));

@@ -457,7 +457,7 @@ class Visitor extends NodeVisitor
 
         foreach ($parameters as $paramName => $paramType) {
             if (str_starts_with($paramName, '@')) {
-                $format = ( $paramType === '' ) ? '%s' : '%s %s';
+                $format = ($paramType === '') ? '%s' : '%s %s';
                 $additions[] = sprintf(
                     $format,
                     $paramName,
@@ -684,8 +684,8 @@ class Visitor extends NodeVisitor
 
         $tagVariableType = str_replace(
             [
-            'stdClass',
-            '\\object',
+                'stdClass',
+                '\\object',
             ],
             'object',
             $tagVariableType
