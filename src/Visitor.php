@@ -30,6 +30,9 @@ use PhpParser\Node\Stmt\Function_;
 use PhpParser\Node\Stmt\Namespace_;
 use PhpParser\Node\Stmt\Property;
 use PhpParser\Node\Stmt\Return_ as Stmt_Return;
+use PhpParser\Node\Stmt\GroupUse;
+use PhpParser\Node\Stmt\Use_;
+use PhpParser\Node\UseItem;
 use StubsGenerator\NodeVisitor;
 use phpDocumentor\Reflection\DocBlockFactoryInterface;
 use phpDocumentor\Reflection\DocBlockFactory;
@@ -57,13 +60,29 @@ class Visitor extends NodeVisitor
     /** @var array<string, list<string>> */
     private array $additionalTagStrings = [];
 
+    /** @var array<string, string> */
+    private array $useAliases = [];
+
     private NodeFinder $nodeFinder;
+
+    private PhpDocFqcnRewriter $fqcnRewriter;
 
     public function __construct()
     {
         $this->docBlockFactory = DocBlockFactory::createInstance();
         $this->nodeFinder = new NodeFinder();
         $this->functionMap = require sprintf('%s/functionMap.php', dirname(__DIR__));
+        $this->fqcnRewriter = new PhpDocFqcnRewriter();
+    }
+
+    /**
+     * @param array<\PhpParser\Node> $nodes
+     * @return array<\PhpParser\Node>|null
+     */
+    public function beforeTraverse(array $nodes)
+    {
+        $this->useAliases = [];
+        return parent::beforeTraverse($nodes);
     }
 
     /**
@@ -74,6 +93,8 @@ class Visitor extends NodeVisitor
         $voidOrNever = $this->voidOrNever($node);
 
         parent::enterNode($node);
+
+        $this->trackUseStatements($node);
 
         if (! ($node instanceof Function_) && ! ($node instanceof ClassMethod) && ! ($node instanceof Property) && ! ($node instanceof ClassLike)) {
             return null;
@@ -89,6 +110,7 @@ class Visitor extends NodeVisitor
 
         $symbolName = $this->getSymbolName($node);
         $node->setAttribute('WPStubs_symbolName', $symbolName);
+        $node->setAttribute('WPStubs_useAliases', $this->useAliases);
 
         $additions = $this->generateAdditionalTagsFromDoc($docComment);
         if (count($additions) > 0) {
@@ -113,6 +135,45 @@ class Visitor extends NodeVisitor
         $this->additionalTagStrings[$symbolName] = [...$additions, $addition];
 
         return null;
+    }
+
+    private function trackUseStatements(Node $node): void
+    {
+        if ($node instanceof Namespace_) {
+            $this->useAliases = [];
+            return;
+        }
+
+        if ($node instanceof Use_) {
+            foreach ($node->uses as $use) {
+                $this->addAlias($use, $node->type, '');
+            }
+
+            return;
+        }
+
+        if (! ($node instanceof GroupUse)) {
+            return;
+        }
+
+        foreach ($node->uses as $use) {
+            $this->addAlias($use, $node->type, sprintf('%s\\', $node->prefix->toString()));
+        }
+    }
+
+    private function addAlias(UseItem $useItem, int $type, string $prefix): void
+    {
+        if ($useItem->type !== Use_::TYPE_UNKNOWN) {
+            $type = $useItem->type;
+        }
+
+        if ($type !== Use_::TYPE_NORMAL) {
+            return;
+        }
+
+        $alias = strtolower($useItem->getAlias()->toString());
+        $fullyQualifiedName = ltrim(sprintf('%s%s', $prefix, $useItem->name->toString()), '\\');
+        $this->useAliases[$alias] = sprintf('\\%s', $fullyQualifiedName);
     }
 
     private function getSymbolName(Node $node): string
@@ -187,23 +248,41 @@ class Visitor extends NodeVisitor
             $node->setDocComment($newDocComment);
         }
 
-        if (! isset($this->additionalTagStrings[$symbolName])) {
-            return;
+        $docComment = $node->getDocComment();
+
+        if ($docComment instanceof Doc) {
+            $newDocComment = $this->addStringTags($symbolName, $docComment);
+
+            if ($newDocComment instanceof Doc) {
+                $node->setDocComment($newDocComment);
+            }
         }
 
+        $this->rewriteImportedNames($node);
+    }
+
+    private function rewriteImportedNames(Node $node): void
+    {
         $docComment = $node->getDocComment();
 
         if (! ($docComment instanceof Doc)) {
             return;
         }
 
-        $newDocComment = $this->addStringTags($symbolName, $docComment);
-
-        if (! ($newDocComment instanceof Doc)) {
+        $aliases = $node->getAttribute('WPStubs_useAliases');
+        if (! is_array($aliases) || count($aliases) === 0) {
             return;
         }
 
-        $node->setDocComment($newDocComment);
+        /** @var array<string, string> $aliases */
+        $originalText = $docComment->getText();
+        $newText = $this->fqcnRewriter->rewrite($originalText, $aliases);
+
+        if ($newText === $originalText) {
+            return;
+        }
+
+        $node->setDocComment(new Doc($newText, $docComment->getStartLine(), $docComment->getStartFilePos()));
     }
 
     /**
@@ -457,7 +536,7 @@ class Visitor extends NodeVisitor
 
         foreach ($parameters as $paramName => $paramType) {
             if (str_starts_with($paramName, '@')) {
-                $format = ( $paramType === '' ) ? '%s' : '%s %s';
+                $format = ($paramType === '') ? '%s' : '%s %s';
                 $additions[] = sprintf(
                     $format,
                     $paramName,
@@ -684,8 +763,8 @@ class Visitor extends NodeVisitor
 
         $tagVariableType = str_replace(
             [
-            'stdClass',
-            '\\object',
+                'stdClass',
+                '\\object',
             ],
             'object',
             $tagVariableType
