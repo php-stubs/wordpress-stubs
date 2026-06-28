@@ -22,6 +22,8 @@ use function strpos;
 use function strtolower;
 use function substr;
 
+// phpcs:disable SlevomatCodingStandard.Functions.FunctionLength.FunctionLength
+
 final class PhpDocTypeNameResolver extends AbstractNodeVisitor
 {
     private const RESERVED = [
@@ -68,7 +70,7 @@ final class PhpDocTypeNameResolver extends AbstractNodeVisitor
     /**
      * @return null
      */
-    public function enterNode(Node $node)
+    public function enterNode(Node $node): ?Node
     {
         if ($node instanceof TemplateTagValueNode) {
             $this->templateNames[strtolower($node->name)] = true;
