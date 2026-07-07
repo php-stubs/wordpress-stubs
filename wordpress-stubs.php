@@ -121526,23 +121526,6 @@ namespace {
      *         is_active: callable(): bool,
      *     }
      * }
-     * @phpstan-return null|array{
-     *   name: string,
-     *   description: string,
-     *   logo_url: string,
-     *   type: string,
-     *   authentication: array{
-     *     method: string,
-     *     credentials_url: string,
-     *     setting_name: string,
-     *     constant_name: string,
-     *     env_var_name: string,
-     *   },
-     *   plugin: array{
-     *     file: string,
-     *     is_active: callable,
-     *   },
-     * }
      */
     function wp_get_connector(string $id): ?array
     {
@@ -121601,23 +121584,6 @@ namespace {
      *         file?: non-empty-string,
      *         is_active: callable(): bool,
      *     }
-     * }>
-     * @phpstan-return array<int|string, array{
-     *   name: string,
-     *   description: string,
-     *   logo_url: string,
-     *   type: string,
-     *   authentication: array{
-     *     method: string,
-     *     credentials_url: string,
-     *     setting_name: string,
-     *     constant_name: string,
-     *     env_var_name: string,
-     *   },
-     *   plugin: array{
-     *     file: string,
-     *     is_active: callable,
-     *   },
      * }>
      */
     function wp_get_connectors(): array
