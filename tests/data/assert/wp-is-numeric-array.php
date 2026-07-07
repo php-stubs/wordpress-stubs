@@ -31,7 +31,7 @@ if (wp_is_numeric_array($data)) {
     assertType('array<int, mixed>', $data);
 }
 if (! wp_is_numeric_array($data)) {
-    assertType('mixed~(mixed is list ? list : array<int, mixed>)', $data);
+    assertType('mixed~array<int, mixed>', $data);
 }
 
 // Check with indetermined array
