@@ -114682,6 +114682,17 @@ namespace {
     {
     }
     /**
+     * Renders the submenu icon SVG for the Navigation Submenu block.
+     *
+     * @since 5.9.0
+     * @deprecated 7.0.0 Use block_core_shared_navigation_render_submenu_icon() instead.
+     *
+     * @return string SVG markup for the submenu icon.
+     */
+    function block_core_navigation_submenu_render_submenu_icon()
+    {
+    }
+    /**
      * Returns the submenu visibility value with backward compatibility
      * for the deprecated openSubmenusOnClick attribute.
      *
@@ -114884,17 +114895,6 @@ namespace {
      * @phpstan-return array{css_classes: list<string>, inline_styles: string}
      */
     function block_core_navigation_build_css_font_sizes($attributes)
-    {
-    }
-    /**
-     * Returns the top-level submenu SVG chevron icon.
-     *
-     * @since 5.9.0
-     *
-     * @return string
-     * @phpstan-return non-falsy-string
-     */
-    function block_core_navigation_render_submenu_icon()
     {
     }
     /**
@@ -129052,9 +129052,8 @@ namespace {
      * Prints the inline Emoji detection script if it is not already printed.
      *
      * @since 4.2.0
-     * @phpstan-return void
      */
-    function print_emoji_detection_script()
+    function print_emoji_detection_script(): void
     {
     }
     /**
@@ -136846,9 +136845,9 @@ namespace {
      * @since 6.6.0 Added support for `grid-column`, `grid-row`, and `container-type`.
      * @since 6.9.0 Added support for `white-space`.
      *
-     * @param string $css        A string of CSS rules.
+     * @param string $css        A string of CSS rules, decoded from an HTML `style` attribute.
      * @param string $deprecated Not used.
-     * @return string Filtered string of CSS rules.
+     * @return string Filtered string of CSS rules, needing HTML escaping before sending back to a `style` attribute.
      * @phpstan-param '' $deprecated
      */
     function safecss_filter_attr($css, $deprecated = '')
@@ -141069,12 +141068,7 @@ namespace {
      *     @type int    $2 Image height in pixels.
      *     @type bool   $3 Whether the image is a resized image.
      * }
-     * @phpstan-return false|array{
-     *   0: string,
-     *   1: int,
-     *   2: int,
-     *   3: bool,
-     * }
+     * @phpstan-return array{ 0: string, 1: int, 2: int, 3: bool }|false
      */
     function wp_get_attachment_image_src($attachment_id, $size = 'thumbnail', $icon = \false)
     {
@@ -142331,6 +142325,7 @@ namespace {
      * @param string $filename   The file path.
      * @param array  $image_info Optional. Extended image information (passed by reference).
      * @return array|false Array of image information or false on failure.
+     * @phpstan-return array{ 0: int, 1: int, 2: int, 3: string, mime: string, bits?: int, channels?: int }|false
      */
     function wp_getimagesize($filename, ?array &$image_info = \null)
     {
