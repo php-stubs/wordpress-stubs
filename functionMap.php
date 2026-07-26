@@ -149,7 +149,7 @@ return [
     'get_submit_button' => ['non-falsy-string'],
     'get_tag_regex' => ['non-falsy-string'],
     'get_tags' => ["(\$args is array{fields: 'count'}&array ? numeric-string : (\$args is array{fields: 'names'|'slugs'}&array ? list<string> : (\$args is array{fields: 'id=>name'|'id=>slug'}&array ? array<int, string> : (\$args is array{fields: 'id=>parent'}&array ? array<int, int> : (\$args is array{fields: 'ids'|'tt_ids'}&array ? list<int> : array<int, \WP_Term>)))))|\WP_Error"],
-    'get_taxonomies' => ["(\$output is 'names' ? array<int, string> : array<int, \WP_Taxonomy>)"],
+    'get_taxonomies' => ["(\$output is 'names' ? array<string, string> : array<string, \WP_Taxonomy>)"],
     'get_taxonomies_for_attachments' => ["(\$output is 'names' ? array<int, string> : array<string, \WP_Taxonomy>)"],
     'get_term' => ["(\$output is 'ARRAY_A' ? array<string, string|int>|\WP_Error|null : (\$output is 'ARRAY_N' ? list<string|int>|\WP_Error|null : \WP_Term|\WP_Error|null))", 'output' => "'OBJECT'|'ARRAY_A'|'ARRAY_N'"],
     'get_term_by' => ["false|(\$output is 'ARRAY_A' ? array<string, string|int> : (\$output is 'ARRAY_N' ? list<string|int> : \WP_Term))"],
