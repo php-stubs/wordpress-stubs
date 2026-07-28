@@ -173,7 +173,7 @@ return [
     'is_email' => [null, 'deprecated' => 'false'],
     'is_new_day' => ['0|1'],
     'is_term' => ["(\$term is 0 ? 0 : (\$term is '' ? null : (\$taxonomy is '' ? string|null : array{term_id: string, term_taxonomy_id: string}|null)))"],
-    'is_wp_error' => ['($thing is \WP_Error ? true : false)', '@phpstan-assert-if-true' => '\WP_Error $thing'],
+    'is_wp_error' => ['($thing is \WP_Error ? true : false)'],
     'load_plugin_textdomain' => [null, 'deprecated' => 'false'],
     'maybe_serialize' => ['(T is array|object|string ? string : T)', '@phpstan-template T' => 'of mixed', 'data' => 'T'],
     'mysql2date' => ["(\$format is 'G'|'U' ? int|false : string|false)"],
