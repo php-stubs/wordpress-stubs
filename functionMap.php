@@ -410,7 +410,6 @@ return [
         '@phpstan-property-read string $theme_root' => '',
         '@phpstan-property-read string $theme_root_uri' => '',
     ],
-    'WP_Theme::get' => ["(\$header is 'Name'|'ThemeURI'|'Description'|'Author'|'AuthorURI'|'Version'|'Template'|'Status'|'Tags'|'TextDomain'|'DomainPath'|'RequiresWP'|'RequiresPHP'|'UpdateURI' ? (\$header is 'Tags' ? string[] : string) : false)"],
     'WP_Theme::offsetExists' => ['($offset is ThemeKey ? true : false)'],
     'WP_Theme::offsetGet' => ['($offset is ThemeKey ? mixed : null)'],
     'WP_Theme_JSON_Resolver::get_theme_data' => [null, 'deprecated' => 'array{}'],

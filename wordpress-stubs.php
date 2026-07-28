@@ -57946,7 +57946,6 @@ namespace {
          *             ? string|false
          *             : false )
          * )
-         * @phpstan-return ($header is 'Name'|'ThemeURI'|'Description'|'Author'|'AuthorURI'|'Version'|'Template'|'Status'|'Tags'|'TextDomain'|'DomainPath'|'RequiresWP'|'RequiresPHP'|'UpdateURI' ? ($header is 'Tags' ? string[] : string) : false)
          */
         public function get($header)
         {

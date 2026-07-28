@@ -25,24 +25,6 @@ assertType('string', $theme->theme_root);
 assertType('string', $theme->theme_root_uri);
 assertType('*ERROR*', $theme->unknown_property);
 
-// WP_Theme::get()
-assertType('string', $theme->get('Name'));
-assertType('string', $theme->get('ThemeURI'));
-assertType('string', $theme->get('Description'));
-assertType('string', $theme->get('Author'));
-assertType('string', $theme->get('AuthorURI'));
-assertType('string', $theme->get('Version'));
-assertType('string', $theme->get('Template'));
-assertType('string', $theme->get('Status'));
-assertType('array<string>', $theme->get('Tags'));
-assertType('string', $theme->get('TextDomain'));
-assertType('string', $theme->get('DomainPath'));
-assertType('string', $theme->get('RequiresWP'));
-assertType('string', $theme->get('RequiresPHP'));
-assertType('string', $theme->get('UpdateURI'));
-assertType('false', $theme->get('NoThemeHeader'));
-assertType('array<string>|string|false', $theme->get(Faker::string()));
-
 // WP_Theme::offsetExists()
 assertType('false', $theme->offsetExists('NoThemeKey'));
 assertType('true', $theme->offsetExists('Name'));
