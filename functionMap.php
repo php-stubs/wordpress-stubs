@@ -364,6 +364,7 @@ return [
     'WP_Block_List::offsetGet' => ['\WP_Block|null', 'offset' => 'int'],
     'WP_Block_List::offsetSet' => ['void', 'offset' => 'int|null'],
     'WP_Block_List::offsetUnset' => ['void', 'offset' => 'int'],
+    'WP_Comments_List_Table::floated_admin_avatar' => ['non-falsy-string'],
     'WP_Object_Cache::delete' => [null, 'deprecated' => 'false'],
     'WP_Dependencies::$groups' => [null, '@phpstan-var' => 'array<string, int|false>'],
     'WP_Dependencies::get_etag' => ['non-falsy-string'],
