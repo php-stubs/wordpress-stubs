@@ -140554,7 +140554,6 @@ namespace {
      * @return bool Whether the variable is an instance of WP_Error.
      *
      * @phpstan-assert-if-true WP_Error $thing
-     * @phpstan-assert-if-true \WP_Error $thing
      * @phpstan-return ($thing is \WP_Error ? true : false)
      */
     function is_wp_error($thing)
