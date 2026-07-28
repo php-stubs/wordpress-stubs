@@ -157091,7 +157091,7 @@ namespace {
      * @return string[]|WP_Taxonomy[] An array of taxonomy names or objects.
      * @phpstan-param 'names'|'objects' $output
      * @phpstan-param 'and'|'or' $operator
-     * @phpstan-return ($output is 'names' ? array<int, string> : array<int, \WP_Taxonomy>)
+     * @phpstan-return ($output is 'names' ? array<string, string> : array<string, \WP_Taxonomy>)
      */
     function get_taxonomies($args = array(), $output = 'names', $operator = 'and')
     {
