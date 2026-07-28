@@ -4481,6 +4481,7 @@ namespace {
          * @param string $name       Comment author name.
          * @param int    $comment_id Comment ID.
          * @return string Avatar with the user name.
+         * @phpstan-return non-falsy-string
          */
         public function floated_admin_avatar($name, $comment_id)
         {
