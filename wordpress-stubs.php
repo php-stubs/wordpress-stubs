@@ -150519,7 +150519,7 @@ namespace {
      *                   as the function otherwise exits rather than returning false.
      * @phpstan-return ( $action is -1 ? int|false : int )
      * @phpstan-param string $action
-     * @phpstan-return 1|2|false
+     * @phpstan-return ($action is -1 ? 1|2|false : 1|2)
      */
     function check_admin_referer($action = -1, $query_arg = '_wpnonce')
     {
