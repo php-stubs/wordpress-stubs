@@ -6100,13 +6100,6 @@ namespace {
          *     port?: non-negative-int,
          *     connection_type?: 'ftps',
          * }|null $opt
-         * @phpstan-param array{
-         *   hostname?: string,
-         *   username?: string,
-         *   password?: string,
-         *   port?: int,
-         *   connection_type?: string,
-         * } $opt
          * @phpstan-return void
          */
         public function __construct($opt = \null)
@@ -6537,12 +6530,6 @@ namespace {
          *     password: string,
          *     port?: non-negative-int,
          * }|null $opt
-         * @phpstan-param array{
-         *   hostname?: string,
-         *   username?: string,
-         *   password?: string,
-         *   port?: int,
-         * } $opt
          * @phpstan-return void
          */
         public function __construct($opt = \null)
@@ -6991,14 +6978,6 @@ namespace {
          *     public_key?: non-empty-string,
          *     private_key?: non-empty-string,
          * }|null $opt
-         * @phpstan-param array{
-         *   hostname?: string,
-         *   username?: string,
-         *   port?: int,
-         *   password?: string,
-         *   public_key?: string,
-         *   private_key?: string,
-         * } $opt
          * @phpstan-return void
          */
         public function __construct($opt = \null)
@@ -37551,65 +37530,6 @@ namespace {
          *         )
          *     )
          * )
-         * @phpstan-param array{
-         *   format?: string,
-         *   status?: string,
-         *   hierarchical?: string,
-         *   orderby?: string|array,
-         *   fields?: string,
-         *   count?: bool,
-         *   type?: string,
-         *   number?: int,
-         *   post_id?: int,
-         *   order?: string,
-         *   author_email?: string,
-         *   author_url?: string,
-         *   author__in?: int[],
-         *   author__not_in?: int[],
-         *   comment__in?: int[],
-         *   comment__not_in?: int[],
-         *   count?: bool,
-         *   date_query?: array,
-         *   fields?: string,
-         *   include_unapproved?: array,
-         *   karma?: int,
-         *   meta_key?: string|string[],
-         *   meta_value?: string|string[],
-         *   meta_compare?: string,
-         *   meta_compare_key?: string,
-         *   meta_type?: string,
-         *   meta_type_key?: string,
-         *   meta_query?: array,
-         *   number?: int,
-         *   paged?: int,
-         *   offset?: int,
-         *   no_found_rows?: bool,
-         *   orderby?: string|array,
-         *   order?: string,
-         *   parent?: int,
-         *   parent__in?: int[],
-         *   parent__not_in?: int[],
-         *   post_author__in?: int[],
-         *   post_author__not_in?: int[],
-         *   post_id?: int,
-         *   post__in?: int[],
-         *   post__not_in?: int[],
-         *   post_author?: int,
-         *   post_status?: string|string[],
-         *   post_type?: string|string[],
-         *   post_name?: string,
-         *   post_parent?: int,
-         *   search?: string,
-         *   status?: string|array,
-         *   type?: string|string[],
-         *   type__in?: string[],
-         *   type__not_in?: string[],
-         *   user_id?: int,
-         *   hierarchical?: bool|string,
-         *   cache_domain?: string,
-         *   update_comment_meta_cache?: bool,
-         *   update_comment_post_cache?: bool,
-         * } $args
          */
         public function get_children($args = array())
         {
@@ -37800,23 +37720,6 @@ namespace {
          *     }
          * } $args
          * @phpstan-return Connector|null
-         * @phpstan-param array{
-         *   name?: string,
-         *   description?: string,
-         *   logo_url?: string,
-         *   type?: string,
-         *   authentication?: array{
-         *     method: string,
-         *     credentials_url?: string,
-         *     setting_name?: string,
-         *     constant_name?: string,
-         *     env_var_name?: string,
-         *   },
-         *   plugin?: array{
-         *     file?: string,
-         *     is_active?: callable,
-         *   },
-         * } $args
          */
         public function register(string $id, array $args): ?array
         {
@@ -113451,11 +113354,6 @@ namespace {
      *     acceptable_units?: non-empty-array<non-empty-string>,
      * } $options
      * @phpstan-return array{ value: float, unit: non-empty-string }|null
-     * @phpstan-param array{
-     *   coerce_to?: string,
-     *   root_size_value?: int,
-     *   acceptable_units?: string[],
-     * } $options
      */
     function wp_get_typography_value_and_unit($raw_value, $options = array()): ?array
     {
@@ -135680,12 +135578,6 @@ namespace {
      *     fetchpriority?: 'low'|'auto'|'high',
      *     module_dependencies?: array<non-empty-string|array{ id: non-empty-string, ... }>,
      * }|bool $args
-     * @phpstan-param bool|array{
-     *   strategy?: string,
-     *   in_footer?: bool,
-     *   fetchpriority?: string,
-     *   module_dependencies?: array,
-     * } $args
      */
     function wp_register_script($handle, $src, $deps = array(), $ver = \false, $args = array())
     {
@@ -135802,12 +135694,6 @@ namespace {
      *     fetchpriority?: 'low'|'auto'|'high',
      *     module_dependencies?: array<non-empty-string|array{ id: non-empty-string, ... }>,
      * }|bool $args
-     * @phpstan-param bool|array{
-     *   strategy?: string,
-     *   in_footer?: bool,
-     *   fetchpriority?: string,
-     *   module_dependencies?: array,
-     * } $args
      */
     function wp_enqueue_script($handle, $src = '', $deps = array(), $ver = \false, $args = array())
     {
@@ -143935,10 +143821,6 @@ namespace {
      * @phpstan-param non-negative-int $width
      * @phpstan-param non-negative-int $height
      * @phpstan-param array{ 'left'|'center'|'right', 'top'|'center'|'bottom' }|bool $crop
-     * @phpstan-param bool|array{
-     *   0: string,
-     *   1: string,
-     * } $crop
      */
     function add_image_size($name, $width = 0, $height = 0, $crop = \false)
     {
@@ -144218,10 +144100,6 @@ namespace {
      * @phpstan-param array{ width?: non-negative-int, height?: non-negative-int } $size
      * @phpstan-param int<0, 100>|null $default_quality
      * @phpstan-return int<1, 100>
-     * @phpstan-param array{
-     *   width?: int,
-     *   height?: int,
-     * } $size
      */
     function wp_get_image_encode_quality(string $mime_type, array $size = array(), ?int $default_quality = \null): int
     {
@@ -153119,7 +152997,6 @@ namespace {
      *         )
      *     )
      * )
-     * @phpstan-param 'raw'|'edit'|'db'|'display' $filter
      * @phpstan-param 'OBJECT'|'ARRAY_A'|'ARRAY_N' $output
      * @phpstan-return ($post is \WP_Post ? array<array-key, mixed>|\WP_Post : array<array-key, mixed>|\WP_Post|null) & ($output is 'ARRAY_A' ? array<string, mixed>|null : ($output is 'ARRAY_N' ? array<int, mixed>|null : \WP_Post|null))
      */
@@ -153165,7 +153042,6 @@ namespace {
      *         $field is 'ancestors' ? non-negative-int[]|'' : string
      *     )
      * )
-     * @phpstan-param 'raw'|'edit'|'db'|'display' $context
      */
     function get_post_field($field, $post = \null, $context = 'display')
     {
@@ -154391,7 +154267,6 @@ namespace {
      *         $post is stdClass ? stdClass : array<string, mixed>
      *     )
      * )
-     * @phpstan-param 'raw'|'edit'|'db'|'display'|'attribute'|'js' $context
      * @phpstan-template T of mixed
      * @phpstan-param T $post
      * @phpstan-return (T is \WP_Post ? \WP_Post : (T is object ? object : (T is array ? array : T)))
@@ -154423,7 +154298,6 @@ namespace {
      *         $field is 'ancestors' ? non-negative-int[] : string
      *     )
      * )
-     * @phpstan-param 'raw'|'edit'|'db'|'display'|'attribute'|'js' $context
      * @phpstan-template T of mixed
      * @phpstan-param T $value
      * @phpstan-return ($field is 'ID'|'post_parent'|'menu_order' ? (T is int ? T : int) : ($field is 'ancestors' ? (T is array<int<0, max>>|list<int<0, max>> ? T : (T is list ? list<int<0, max>> : array<int<0, max>>)) : ($context is 'raw' ? T : ($context is 'attribute'|'js' ? string : ($context is 'edit' ? ($field is not 'post_content' ? string : mixed) : mixed)))))
@@ -161626,10 +161500,6 @@ namespace {
      *     force_default?: bool,
      * } $args
      * @phpstan-return bool|WP_Error|0
-     * @phpstan-param array{
-     *   default?: int,
-     *   force_default?: bool,
-     * } $args
      */
     function wp_delete_term($term, $taxonomy, $args = array())
     {
@@ -161762,12 +161632,6 @@ namespace {
      *     term_id: int,
      *     term_taxonomy_id: int|numeric-string,
      * }|WP_Error
-     * @phpstan-param array{
-     *   alias_of?: string,
-     *   description?: string,
-     *   parent?: int,
-     *   slug?: string,
-     * } $args
      */
     function wp_insert_term($term, $taxonomy, $args = array())
     {
@@ -161897,12 +161761,6 @@ namespace {
      *     term_id: int,
      *     term_taxonomy_id: int,
      * }|WP_Error
-     * @phpstan-param array{
-     *   alias_of?: string,
-     *   description?: string,
-     *   parent?: int,
-     *   slug?: string,
-     * } $args
      */
     function wp_update_term($term_id, $taxonomy, $args = array())
     {
