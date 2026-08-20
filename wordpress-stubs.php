@@ -122261,8 +122261,6 @@ namespace {
      *         $output is 'ARRAY_N' ? non-empty-list<mixed>|null : WP_Comment|null
      *     )
      * )
-     * @phpstan-param 'OBJECT'|'ARRAY_A'|'ARRAY_N' $output
-     * @phpstan-return ($comment is \WP_Comment ? array<array-key, mixed>|\WP_Comment : array<array-key, mixed>|\WP_Comment|null) & ($output is 'ARRAY_A' ? array<string, mixed>|null : ($output is 'ARRAY_N' ? array<int, mixed>|null : \WP_Comment|null))
      */
     function get_comment($comment = \null, $output = \OBJECT)
     {
