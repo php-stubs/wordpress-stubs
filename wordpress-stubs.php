@@ -150541,7 +150541,7 @@ namespace {
      *                   as the function otherwise exits rather than returning false.
      * @phpstan-return ( $stop is true ? int : int|false )
      * @phpstan-param string $action
-     * @phpstan-return 1|2|false
+     * @phpstan-return ($stop is true ? 1|2 : 1|2|false)
      */
     function check_ajax_referer($action = -1, $query_arg = \false, $stop = \true)
     {
