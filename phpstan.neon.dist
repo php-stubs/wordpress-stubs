@@ -7,6 +7,7 @@ parameters:
         - tests/
     excludePaths:
         - tests/data/
+        - tests/monitoring-data/
     phpVersion:
         min: 80000
         max: 80300
