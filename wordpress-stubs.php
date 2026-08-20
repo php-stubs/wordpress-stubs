@@ -154267,9 +154267,6 @@ namespace {
      *         $post is stdClass ? stdClass : array<string, mixed>
      *     )
      * )
-     * @phpstan-template T of mixed
-     * @phpstan-param T $post
-     * @phpstan-return (T is \WP_Post ? \WP_Post : (T is object ? object : (T is array ? array : T)))
      */
     function sanitize_post($post, $context = 'display')
     {
