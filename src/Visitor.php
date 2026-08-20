@@ -851,6 +851,23 @@ class Visitor extends NodeVisitor
             return null;
         }
 
+        $doc = $node->getDocComment();
+        if (! ($doc instanceof Doc)) {
+            return null;
+        }
+
+        $docblock = $this->docBlockFactory->create($doc->getText());
+
+        $returnTags = $docblock->getTagsByName('return');
+        if (count($returnTags) > 0) {
+            return null;
+        }
+
+        $phpStanReturnTags = $docblock->getTagsByName('phpstan-return');
+        if (count($phpStanReturnTags) > 0) {
+            return null;
+        }
+
         $yields = $this->nodeFinder->findFirst(
             $node,
             static function (Node $node): bool {
