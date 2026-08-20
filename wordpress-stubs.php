@@ -133529,7 +133529,6 @@ namespace {
      *         $input_list is array<string> ? array<string> : array<scalar>
      *     )
      * )
-     * @phpstan-return ($input_list is array ? array<scalar> : list<string>)
      */
     function wp_parse_list($input_list): array
     {
