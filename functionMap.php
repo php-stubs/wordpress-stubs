@@ -83,7 +83,7 @@ return [
     'block_version' => ["(\$content is '' ? 0 : 0|1)", '@phpstan-pure' => ''],
     'bool_from_yn' => ["(\$yn is 'y' ? true : false)", '@phpstan-pure' => ''],
     'build_dropdown_script_block_core_categories' => ['non-falsy-string'],
-    'check_admin_referer' => ['1|2|false', 'action' => 'string'],
+    'check_admin_referer' => ['($action is -1 ? 1|2|false : 1|2)', 'action' => 'string'],
     'check_ajax_referer' => ['1|2|false', 'action' => 'string'],
     'comment_class' => ['($display is true ? void : string)'],
     'comments_link' => [null, 'deprecated' => "''", 'deprecated_2' => "''"],
