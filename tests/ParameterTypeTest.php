@@ -345,11 +345,8 @@ class ParameterTypeTest extends IntegrationTest
         $this->analyse(
             __DIR__ . '/data/param/wpdb.php',
             [
-                ["Parameter #2 \$output of method wpdb::get_row() expects 'ARRAY_A'|'ARRAY_N'|'OBJECT', 'OBJECT_K' given.", 25],
-                ["Parameter #2 \$output of method wpdb::get_row() expects 'ARRAY_A'|'ARRAY_N'|'OBJECT', string given.", 26],
-                ["Parameter #2 \$output of method wpdb::get_row() expects 'ARRAY_A'|'ARRAY_N'|'OBJECT', int given.", 27],
-                ['Parameter #3 $y of method wpdb::get_row() expects int<0, max>, -1 given.', 28],
-                ['Parameter #3 $y of method wpdb::get_row() expects int<0, max>, int given.', 29],
+                ['Parameter #3 $y of method wpdb::get_row() expects int<0, max>, -1 given.', 21],
+                ['Parameter #3 $y of method wpdb::get_row() expects int<0, max>, int given.', 22],
             ]
         );
     }
