@@ -223,17 +223,23 @@ class Visitor extends NodeVisitor
         /** @var list<\phpDocumentor\Reflection\DocBlock\Tags\Return_> $returnTags */
         $returnTags = $docblock->getTagsByName('return');
 
-        /** @var list<\phpDocumentor\Reflection\DocBlock\Tag> $phpStanReturnTags */
-        $phpStanReturnTags = $docblock->getTagsByName('phpstan-return');
-
         /** @var list<\phpDocumentor\Reflection\DocBlock\Tags\Var_> $varTags */
         $varTags = $docblock->getTagsByName('var');
+
+        /** @var list<\phpDocumentor\Reflection\DocBlock\Tags\Generic> $phpStanReturnTags */
+        $phpStanReturnTags = $docblock->getTagsByName('phpstan-return');
+
+        $phpStanParamNames = $this->getVariableNamesFromTags($docblock->getTagsByName('phpstan-param'));
 
         /** @var list<\PhpStubs\WordPress\Core\WordPressTag> $additions */
         $additions = [];
 
         foreach ($paramTags as $paramTag) {
             if (! ($paramTag instanceof Param)) {
+                continue;
+            }
+
+            if (in_array($paramTag->getVariableName(), $phpStanParamNames, true)) {
                 continue;
             }
 
@@ -269,6 +275,25 @@ class Visitor extends NodeVisitor
         }
 
         return $additions;
+    }
+
+    /**
+     * @param list<\phpDocumentor\Reflection\DocBlock\Tags\Generic> $tags
+     * @return list<string>
+     */
+    private function getVariableNamesFromTags(array $tags): array
+    {
+        $names = [];
+
+        foreach ($tags as $tag) {
+            if (preg_match('#\$([a-zA-Z_\x80-\xff][a-zA-Z0-9_\x80-\xff]*)#', (string)$tag, $matches) !== 1) {
+                continue;
+            }
+
+            $names[] = $matches[1];
+        }
+
+        return $names;
     }
 
     private function addTags(string $name, Doc $docComment): ?Doc
@@ -329,8 +354,14 @@ class Visitor extends NodeVisitor
             }
         );
 
+        $phpStanParamNames = $this->getVariableNamesFromTags($docblock->getTagsByName('phpstan-param'));
+
         foreach ($params as $param) {
             if (! $param instanceof Param) {
+                continue;
+            }
+
+            if (in_array($param->getVariableName(), $phpStanParamNames, true)) {
                 continue;
             }
 
