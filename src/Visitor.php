@@ -6,6 +6,7 @@ namespace PhpStubs\WordPress\Core;
 
 use phpDocumentor\Reflection\DocBlock;
 use phpDocumentor\Reflection\DocBlock\Description;
+use phpDocumentor\Reflection\DocBlock\Tags\Generic;
 use phpDocumentor\Reflection\DocBlock\Tags\Param;
 use phpDocumentor\Reflection\DocBlock\Tags\Return_;
 use phpDocumentor\Reflection\DocBlock\Tags\Var_;
@@ -226,7 +227,6 @@ class Visitor extends NodeVisitor
         /** @var list<\phpDocumentor\Reflection\DocBlock\Tags\Var_> $varTags */
         $varTags = $docblock->getTagsByName('var');
 
-        /** @var list<\phpDocumentor\Reflection\DocBlock\Tags\Generic> $phpStanReturnTags */
         $phpStanReturnTags = $docblock->getTagsByName('phpstan-return');
 
         $phpStanParamNames = $this->getVariableNamesFromTags($docblock->getTagsByName('phpstan-param'));
@@ -278,7 +278,7 @@ class Visitor extends NodeVisitor
     }
 
     /**
-     * @param list<\phpDocumentor\Reflection\DocBlock\Tags\Generic> $tags
+     * @param array<\phpDocumentor\Reflection\DocBlock\Tag> $tags
      * @return list<string>
      */
     private function getVariableNamesFromTags(array $tags): array
@@ -286,6 +286,10 @@ class Visitor extends NodeVisitor
         $names = [];
 
         foreach ($tags as $tag) {
+            if (! ($tag instanceof Generic)) {
+                continue;
+            }
+
             if (preg_match('#\$([a-zA-Z_\x80-\xff][a-zA-Z0-9_\x80-\xff]*)#', (string)$tag, $matches) !== 1) {
                 continue;
             }
