@@ -124592,7 +124592,6 @@ namespace {
      * @access private
      *
      * @return array<int, array<string, array<string, array{ schedule: string|false, args: array<mixed>, interval?: non-negative-int }>>>|array{} Array of cron events.
-     * @phpstan-return array<int, array<string, array<string, array{schedule: string|false, args: array<mixed>, interval?: int<0, max>}>>>
      */
     function _get_cron_array()
     {
