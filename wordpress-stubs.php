@@ -5666,7 +5666,6 @@ namespace {
          *     }
          * }
          * @phpstan-return array<string, FileListing>|false
-         * @phpstan-return false|array<string, array{name: string, perms: string, permsn: string, owner: string|false, size: int|string|false, lastmodunix: int|string|false, lastmod: string|false, time: string|false, type: 'f'|'d'|'l', group: string|false, number: int|string|false, files?: array|false}>
          */
         public function dirlist($path, $include_hidden = \true, $recursive = \false)
         {
@@ -6047,7 +6046,6 @@ namespace {
          *     }
          * }
          * @phpstan-return array<string, FileListing>|false
-         * @phpstan-return false|array<string, array{name: string, perms: string, permsn: string, owner: string|false, size: int|string|false, lastmodunix: int|string|false, lastmod: string|false, time: string|false, type: 'f'|'d'|'l', group: string|false, number: int|string|false, files?: array|false}>
          */
         public function dirlist($path, $include_hidden = \true, $recursive = \false)
         {
@@ -6480,7 +6478,6 @@ namespace {
          *     }
          * }
          * @phpstan-return array<string, FileListing>|false
-         * @phpstan-return false|array<string, array{name: string, perms: string, permsn: string, owner: string|false, size: int|string|false, lastmodunix: int|string|false, lastmod: string|false, time: string|false, type: 'f'|'d'|'l', group: string|false, number: int|string|false, files?: array|false}>
          */
         public function dirlist($path = '.', $include_hidden = \true, $recursive = \false)
         {
@@ -6890,7 +6887,6 @@ namespace {
          *     }
          * }
          * @phpstan-return array<string, FileListing>|false
-         * @phpstan-return false|array<string, array{name: string, perms: string, permsn: string, owner: string|false, size: int|string|false, lastmodunix: int|string|false, lastmod: string|false, time: string|false, type: 'f'|'d'|'l', group: string|false, number: int|string|false, files?: array|false}>
          */
         public function dirlist($path = '.', $include_hidden = \true, $recursive = \false)
         {
@@ -7403,7 +7399,6 @@ namespace {
          *     }
          * }
          * @phpstan-return array<string, FileListing>|false
-         * @phpstan-return false|array<string, array{name: string, perms: string, permsn: string, owner: string|false, size: int|string|false, lastmodunix: int|string|false, lastmod: string|false, time: string|false, type: 'f'|'d'|'l', group: string|false, number: int|string|false, files?: array|false}>
          */
         public function dirlist($path, $include_hidden = \true, $recursive = \false)
         {
