@@ -131529,7 +131529,6 @@ namespace {
      *     )
      * )
      * @phpstan-pure
-     * @phpstan-return ($value is string ? string : array)
      */
     function wp_slash($value)
     {
