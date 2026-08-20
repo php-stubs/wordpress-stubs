@@ -12,6 +12,14 @@
         <exclude name="PEAR.Commenting.FileComment"/>
     </rule>
 
+    <rule ref="PSR12NeutronRuleset.Security.SuperglobalKeys">
+        <properties>
+            <property name="allowedSuperglobalKeys" type="array">
+                <element value="_GET[taxonomy]"/>
+            </property>
+        </properties>
+    </rule>
+
     <!-- Rules not applied to tests -->
     <rule ref="NeutronStandard.Functions.TypeHint.UnusedReturnType">
         <exclude-pattern>tests/TypeInferenceTest.php</exclude-pattern>
