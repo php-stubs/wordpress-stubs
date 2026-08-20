@@ -65503,9 +65503,7 @@ namespace {
          *         )
          *         : null
          * )
-         * @phpstan-param 'OBJECT'|'ARRAY_A'|'ARRAY_N' $output
          * @phpstan-param int<0, max> $y
-         * @phpstan-return null|void|($output is 'ARRAY_A' ? array<array-key, mixed> : ($output is 'ARRAY_N' ? list<mixed> : \stdClass))
          */
         public function get_row($query = \null, $output = \OBJECT, $y = 0)
         {
@@ -65573,8 +65571,6 @@ namespace {
          *         )
          *         : null
          * )
-         * @phpstan-param 'OBJECT'|'OBJECT_K'|'ARRAY_A'|'ARRAY_N' $output
-         * @phpstan-return null|($output is 'ARRAY_A' ? list<array<array-key, mixed>> : ($output is 'ARRAY_N' ? list<array<int, mixed>> : ($output is 'OBJECT_K' ? array<array-key, \stdClass> : list<\stdClass>)))
          */
         public function get_results($query = \null, $output = \OBJECT)
         {

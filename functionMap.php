@@ -420,7 +420,6 @@ return [
     'WP_Widget_Factory::$widgets' => [null, '@phpstan-var' => 'array<string, \WP_Widget>'],
     'WP_Widget_Factory::register' => [null, 'widget' => 'class-string<\WP_Widget>|\WP_Widget'],
     'WP_Widget_Factory::unregister' => [null, 'widget' => 'class-string<\WP_Widget>|\WP_Widget'],
-    'wpdb::get_results' => ["null|(\$output is 'ARRAY_A' ? list<array<array-key, mixed>> : (\$output is 'ARRAY_N' ? list<array<int, mixed>> : (\$output is 'OBJECT_K' ? array<array-key, \stdClass> : list<\stdClass>)))", 'output' => "'OBJECT'|'OBJECT_K'|'ARRAY_A'|'ARRAY_N'"],
-    'wpdb::get_row' => ["null|void|(\$output is 'ARRAY_A' ? array<array-key, mixed> : (\$output is 'ARRAY_N' ? list<mixed> : \stdClass))", 'output' => "'OBJECT'|'ARRAY_A'|'ARRAY_N'", 'y' => 'int<0, max>'],
+    'wpdb::get_row' => [null, 'y' => 'int<0, max>'],
     'wpdb::prepare' => [null, 'query' => 'literal-string'],
 ];
