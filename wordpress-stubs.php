@@ -1104,7 +1104,6 @@ namespace {
          * @since 4.1.0
          *
          * @return never
-         * @phpstan-return never
          */
         public function ajax_background_add()
         {
@@ -1134,7 +1133,6 @@ namespace {
          * @deprecated 3.5.0
          *
          * @return never
-         * @phpstan-return never
          */
         public function wp_set_background_image()
         {
@@ -1438,7 +1436,6 @@ namespace {
          * @since 3.9.0
          *
          * @return never
-         * @phpstan-return never
          */
         public function ajax_header_crop()
         {
@@ -1453,7 +1450,6 @@ namespace {
          * @since 3.9.0
          *
          * @return never
-         * @phpstan-return never
          */
         public function ajax_header_add()
         {
@@ -1468,7 +1464,6 @@ namespace {
          * @since 3.9.0
          *
          * @return never
-         * @phpstan-return never
          */
         public function ajax_header_remove()
         {
@@ -4170,7 +4165,6 @@ namespace {
          * @since 3.1.0
          *
          * @return never
-         * @phpstan-return never
          */
         public function ajax_response()
         {
@@ -26117,7 +26111,6 @@ namespace SimplePie\HTTP {
         /**
          * Parsed a "Transfer-Encoding: chunked" body
          * @return void
-         * @phpstan-return void
          */
         protected function chunked()
         {
@@ -26334,7 +26327,6 @@ namespace SimplePie {
         }
         /**
          * @return void
-         * @phpstan-return void
          */
         protected function scheme_normalization()
         {
@@ -28713,7 +28705,6 @@ namespace SimplePie {
         /**
          * @param int-mask-of<SimplePie::CONSTRUCT_*> $type
          * @return void
-         * @phpstan-return void
          */
         protected function strip_tag(string $tag, \DOMDocument $document, \DOMXPath $xpath, int $type)
         {
@@ -39022,7 +39013,6 @@ namespace {
          * @since 4.9.0
          *
          * @return never
-         * @phpstan-return never
          */
         public function handle_override_changeset_lock_request()
         {
@@ -39072,7 +39062,6 @@ namespace {
          * @since 4.2.0
          *
          * @return never
-         * @phpstan-return never
          */
         public function refresh_nonces()
         {
@@ -39083,7 +39072,6 @@ namespace {
          * @since 4.9.0
          *
          * @return never
-         * @phpstan-return never
          */
         public function handle_dismiss_autosave_or_lock_request()
         {
@@ -39609,7 +39597,6 @@ namespace {
          * @since 4.9.0
          *
          * @return never
-         * @phpstan-return never
          */
         public function handle_load_themes_request()
         {
@@ -39757,7 +39744,6 @@ namespace {
          * @since 4.3.0
          *
          * @return never
-         * @phpstan-return never
          */
         public function ajax_load_available_items()
         {
@@ -41657,7 +41643,6 @@ namespace {
          * @see wp_ajax_save_widget()
          *
          * @return never
-         * @phpstan-return never
          */
         public function wp_ajax_update_widget()
         {
@@ -51958,7 +51943,6 @@ namespace {
          * @since 5.2.0
          *
          * @return never
-         * @phpstan-return never
          */
         protected function redirect_protected()
         {
@@ -58527,7 +58511,6 @@ namespace {
          *                   of manually after instantiation.
          *
          * @return void
-         * @phpstan-return void
          */
         public function set_spacing_sizes()
         {
@@ -96267,7 +96250,6 @@ namespace {
          * @param string $type Stylesheet type. Either 'sitemap' or 'index'.
          * @return never
          * @phpstan-param 'sitemap'|'index' $type
-         * @phpstan-return never
          */
         public function render_stylesheet($type)
         {
@@ -98967,7 +98949,6 @@ namespace {
      *              or empty term results in a `0` response instead of an empty array.
      *
      * @return never
-     * @phpstan-return never
      */
     function wp_ajax_autocomplete_user()
     {
@@ -100145,7 +100126,6 @@ namespace {
      *
      * @param string $msg Error Message. Assumed to contain HTML and be sanitized.
      * @return never
-     * @phpstan-return never
      */
     function comment_footer_die($msg)
     {
@@ -102667,7 +102647,6 @@ namespace {
      *
      * @param string $html
      * @return never
-     * @phpstan-return never
      */
     function media_send_to_editor($html)
     {
@@ -106479,7 +106458,6 @@ namespace {
      *
      * @param int $post_id Optional. Post ID.
      * @return never
-     * @phpstan-return never
      */
     function redirect_post($post_id = 0)
     {
@@ -108093,7 +108071,6 @@ namespace {
      * @global WP_Theme_Install_List_Table $wp_list_table
      *
      * @return never
-     * @phpstan-return never
      */
     function install_theme_information()
     {
@@ -132477,7 +132454,6 @@ namespace {
      * @since 5.4.0
      *
      * @return never
-     * @phpstan-return never
      */
     function do_favicon()
     {
@@ -133368,7 +133344,6 @@ namespace {
      * @param int   $status_code Optional. The HTTP status code to output. Default null.
      * @param int   $flags       Optional. Options to be passed to json_encode(). Default 0.
      * @return never
-     * @phpstan-return never
      */
     function wp_send_json_success($value = \null, $status_code = \null, $flags = 0)
     {
@@ -133390,7 +133365,6 @@ namespace {
      * @param int   $status_code Optional. The HTTP status code to output. Default null.
      * @param int   $flags       Optional. Options to be passed to json_encode(). Default 0.
      * @return never
-     * @phpstan-return never
      */
     function wp_send_json_error($value = \null, $status_code = \null, $flags = 0)
     {
@@ -133909,7 +133883,6 @@ namespace {
      * @global wpdb $wpdb WordPress database abstraction object.
      *
      * @return never
-     * @phpstan-return never
      */
     function dead_db()
     {
@@ -146611,7 +146584,6 @@ namespace {
      * @see wp_die()
      *
      * @return never
-     * @phpstan-return never
      */
     function graceful_fail($message)
     {
@@ -146710,7 +146682,6 @@ namespace {
      *
      * @param string $url Optional. Redirect URL. Default empty.
      * @return never
-     * @phpstan-return never
      */
     function wpmu_admin_do_redirect($url = '')
     {
@@ -148057,7 +148028,6 @@ namespace {
      * @param string $domain The requested domain for the error to reference.
      * @param string $path   The requested path for the error to reference.
      * @return never
-     * @phpstan-return never
      */
     function ms_not_installed($domain, $path)
     {
