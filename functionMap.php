@@ -10,7 +10,6 @@ if (file_exists(sprintf('%s/source/wordpress/wp-includes/Requests/Cookie/Jar.php
 $cronArgsType = 'list<mixed>';
 $wpWidgetRssFormArgsType = 'array{number: int, error: bool, title?: string, url?: string, items?: int, show_summary?: int, show_author?: int, show_date?: int}';
 $wpWidgetRssFormInputsType = 'array{title?: bool, url?: bool, items?: bool, show_summary?: bool, show_author?: bool, show_date?: bool}';
-$filesystemDirlistReturnType = "false|array<string, array{name: string, perms: string, permsn: string, owner: string|false, size: int|string|false, lastmodunix: int|string|false, lastmod: string|false, time: string|false, type: 'f'|'d'|'l', group: string|false, number: int|string|false, files?: array|false}>";
 
 /**
  * This array follows a format similar to PHPStan’s function map:
@@ -369,11 +368,6 @@ return [
     'WP_Dependencies::$groups' => [null, '@phpstan-var' => 'array<string, int|false>'],
     'WP_Dependencies::get_etag' => ['non-falsy-string'],
     'WP_Dependencies::query' => ["(\$handle is not non-empty-string ? false : (\$status is not TStatus ? false : (\$status is 'registered'|'scripts' ? _WP_Dependency|false : bool)))", '@phpstan-template TStatus' => "'registered'|'scripts'|'enqueued'|'queued'|'to_do'|'to_print'|'done'|'printed'"],
-    'WP_Filesystem_Base::dirlist' => [$filesystemDirlistReturnType],
-    'WP_Filesystem_Direct::dirlist' => [$filesystemDirlistReturnType],
-    'WP_Filesystem_FTPext::dirlist' => [$filesystemDirlistReturnType],
-    'WP_Filesystem_ftpsockets::dirlist' => [$filesystemDirlistReturnType],
-    'WP_Filesystem_SSH2::dirlist' => [$filesystemDirlistReturnType],
     'WP_Http::get' => [$httpReturnType],
     'WP_Http::head' => [$httpReturnType],
     'WP_Http::post' => [$httpReturnType],
