@@ -328,7 +328,6 @@ return [
     'wp_unique_prefixed_id' => ['($prefix is empty ? numeric-string : ($prefix is numeric ? numeric-string : string))&non-falsy-string', '@phpstan-impure' => ''],
     'wp_unschedule_event' => ['($wp_error is false ? bool : true|\WP_Error)', 'args' => $cronArgsType],
     'wp_unschedule_hook' => ['($wp_error is false ? int<0, max>|false : int<0, max>|\WP_Error)'],
-    'wp_unslash' => ['T', '@phpstan-template T' => '', 'value' => 'T'],
     'wp_update_category' => ['int<0, max>|false'],
     'wp_update_comment' => ['($wp_error is false ? 0|1|false : 0|1|\WP_Error)'],
     'wp_update_link' => ['int<0, max>'],

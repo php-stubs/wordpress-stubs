@@ -131551,9 +131551,6 @@ namespace {
      *         T is array ? array<key-of<T>, ( value-of<T> is string ? string : value-of<T> )> : T
      *     )
      * )
-     * @phpstan-template T
-     * @phpstan-param T $value
-     * @phpstan-return T
      */
     function wp_unslash($value)
     {
