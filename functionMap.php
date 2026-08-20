@@ -102,7 +102,6 @@ return [
     'do_meta_boxes' => ['int<0, max>'],
     'edit_link' => ['int<0, max>'],
     'edit_term_link' => ['($display is true ? void : string|void)'],
-    'get_approved_comments' => ["(\$args is array{count: true}&array ? int : (\$args is array{fields: 'ids'}&array ? array<int, int> : array<int, \WP_Comment>))"],
     'get_attachment_taxonomies' => ["(\$output is 'names' ? array<int, string> : array<string, \WP_Taxonomy>)"],
     'get_available_post_statuses' => ['list<string>'],
     'get_block_wrapper_attributes' => ['($extra_attributes is empty ? string : non-falsy-string)', 'extra_attributes' => 'array<string, string>'],

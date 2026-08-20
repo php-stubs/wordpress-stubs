@@ -122233,7 +122233,6 @@ namespace {
      *   update_comment_meta_cache?: bool,
      *   update_comment_post_cache?: bool,
      * } $args
-     * @phpstan-return ($args is array{count: true}&array ? int : ($args is array{fields: 'ids'}&array ? array<int, int> : array<int, \WP_Comment>))
      */
     function get_approved_comments($post_id, $args = array())
     {
