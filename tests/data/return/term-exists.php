@@ -29,9 +29,8 @@ assertType('0|array{term_id: string, term_taxonomy_id: string}|null', term_exist
 assertType('0|array{term_id: string, term_taxonomy_id: string}|null', term_exists($termIntStr, 'category'));
 
 // Unknown taxonomy type
-$taxonomy = (string)$_GET['taxonomy'] ?? '';
 assertType('array{term_id: string, term_taxonomy_id: string}|string|null', term_exists(123, Faker::string()));
-assertType('array{term_id: string, term_taxonomy_id: string}|string|null', term_exists($termStr, $taxonomy));
+assertType('array{term_id: string, term_taxonomy_id: string}|string|null', term_exists($termStr, Faker::string()));
 assertType('0|array{term_id: string, term_taxonomy_id: string}|string|null', term_exists($termInt, Faker::string()));
 assertType('0|array{term_id: string, term_taxonomy_id: string}|string|null', term_exists($termIntStr, Faker::string()));
 
