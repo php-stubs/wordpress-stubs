@@ -50257,6 +50257,7 @@ namespace {
          *
          * @param string|array $query URL query string or array of query arguments.
          * @return WP_Post[]|int[] Array of post objects or post IDs.
+         * @phpstan-return ($query is array ? ($query is array{fields: 'id=>parent'|'ids'}&array ? array<int, int> : array<int, \WP_Post>) : array<int, int>|array<int, \WP_Post>)
          */
         public function query($query)
         {
@@ -55156,6 +55157,7 @@ namespace {
          * @param string|array $query Array or URL query string of parameters.
          * @return WP_Term[]|int[]|string[]|string Array of terms, or number of terms as numeric string
          *                                         when 'count' is passed to `$args['fields']`.
+         * @phpstan-return ($query is array ? ($query is array{fields: 'count'}&array ? 0|numeric-string : ($query is array{fields: 'names'|'slugs'}&array ? list<string> : ($query is array{fields: 'id=>name'|'id=>slug'}&array ? array<int, string> : ($query is array{fields: 'id=>parent'}&array ? array<int, int> : ($query is array{fields: 'ids'|'tt_ids'}&array ? list<int> : array<int, \WP_Term>))))) : 0|numeric-string|array<int, int|string|\WP_Term>)
          */
         public function query($query)
         {
@@ -55196,6 +55198,7 @@ namespace {
          *
          * @return WP_Term[]|int[]|string[]|string Array of terms, or number of terms as numeric string
          *                                         when 'count' is passed to `$args['fields']`.
+         * @phpstan-return 0|numeric-string|array<int, int|string|\WP_Term>
          */
         public function get_terms()
         {
@@ -157759,7 +157762,7 @@ namespace {
      *   meta_query?: array,
      * } $args See WP_Term_Query::__construct()
      * @phpstan-param '' $deprecated
-     * @phpstan-return ($args is array{fields: 'count'}&array ? numeric-string : ($args is array{fields: 'names'|'slugs'}&array ? list<string> : ($args is array{fields: 'id=>name'|'id=>slug'}&array ? array<int, string> : ($args is array{fields: 'id=>parent'}&array ? array<int, int> : ($args is array{fields: 'ids'|'tt_ids'}&array ? list<int> : array<int, \WP_Term>)))))|\WP_Error
+     * @phpstan-return ($args is array{fields: 'count'}&array ? 0|numeric-string : ($args is array{fields: 'names'|'slugs'}&array ? list<string> : ($args is array{fields: 'id=>name'|'id=>slug'}&array ? array<int, string> : ($args is array{fields: 'id=>parent'}&array ? array<int, int> : ($args is array{fields: 'ids'|'tt_ids'}&array ? list<int> : array<int, \WP_Term>)))))|\WP_Error
      */
     function get_terms($args = array(), $deprecated = '')
     {
@@ -158085,7 +158088,7 @@ namespace {
      *   meta_query?: array,
      * } $args See WP_Term_Query::__construct()
      * @phpstan-param '' $deprecated
-     * @phpstan-return numeric-string|\WP_Error
+     * @phpstan-return 0|numeric-string|\WP_Error
      */
     function wp_count_terms($args = array(), $deprecated = '')
     {
