@@ -152951,7 +152951,6 @@ namespace {
      *         )
      *     )
      * )
-     * @phpstan-param 'OBJECT'|'ARRAY_A'|'ARRAY_N' $output
      * @phpstan-return ($post is \WP_Post ? array<array-key, mixed>|\WP_Post : array<array-key, mixed>|\WP_Post|null) & ($output is 'ARRAY_A' ? array<string, mixed>|null : ($output is 'ARRAY_N' ? array<int, mixed>|null : \WP_Post|null))
      */
     function get_post($post = \null, $output = \OBJECT, $filter = 'raw')
