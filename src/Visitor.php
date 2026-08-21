@@ -6,6 +6,7 @@ namespace PhpStubs\WordPress\Core;
 
 use phpDocumentor\Reflection\DocBlock;
 use phpDocumentor\Reflection\DocBlock\Description;
+use phpDocumentor\Reflection\DocBlock\Tags\Generic;
 use phpDocumentor\Reflection\DocBlock\Tags\Param;
 use phpDocumentor\Reflection\DocBlock\Tags\Return_;
 use phpDocumentor\Reflection\DocBlock\Tags\Var_;
@@ -223,17 +224,22 @@ class Visitor extends NodeVisitor
         /** @var list<\phpDocumentor\Reflection\DocBlock\Tags\Return_> $returnTags */
         $returnTags = $docblock->getTagsByName('return');
 
-        /** @var list<\phpDocumentor\Reflection\DocBlock\Tag> $phpStanReturnTags */
-        $phpStanReturnTags = $docblock->getTagsByName('phpstan-return');
-
         /** @var list<\phpDocumentor\Reflection\DocBlock\Tags\Var_> $varTags */
         $varTags = $docblock->getTagsByName('var');
+
+        $phpStanReturnTags = $docblock->getTagsByName('phpstan-return');
+
+        $phpStanParamNames = $this->getVariableNamesFromTags($docblock->getTagsByName('phpstan-param'));
 
         /** @var list<\PhpStubs\WordPress\Core\WordPressTag> $additions */
         $additions = [];
 
         foreach ($paramTags as $paramTag) {
             if (! ($paramTag instanceof Param)) {
+                continue;
+            }
+
+            if (in_array($paramTag->getVariableName(), $phpStanParamNames, true)) {
                 continue;
             }
 
@@ -269,6 +275,29 @@ class Visitor extends NodeVisitor
         }
 
         return $additions;
+    }
+
+    /**
+     * @param array<\phpDocumentor\Reflection\DocBlock\Tag> $tags
+     * @return list<string>
+     */
+    private function getVariableNamesFromTags(array $tags): array
+    {
+        $names = [];
+
+        foreach ($tags as $tag) {
+            if (! ($tag instanceof Generic)) {
+                continue;
+            }
+
+            if (preg_match('#\$([a-zA-Z_\x80-\xff][a-zA-Z0-9_\x80-\xff]*)#', (string)$tag, $matches) !== 1) {
+                continue;
+            }
+
+            $names[] = $matches[1];
+        }
+
+        return $names;
     }
 
     private function addTags(string $name, Doc $docComment): ?Doc
@@ -329,8 +358,14 @@ class Visitor extends NodeVisitor
             }
         );
 
+        $phpStanParamNames = $this->getVariableNamesFromTags($docblock->getTagsByName('phpstan-param'));
+
         foreach ($params as $param) {
             if (! $param instanceof Param) {
+                continue;
+            }
+
+            if (in_array($param->getVariableName(), $phpStanParamNames, true)) {
                 continue;
             }
 
@@ -817,6 +852,23 @@ class Visitor extends NodeVisitor
         }
 
         if ($node->getReturnType() !== null) {
+            return null;
+        }
+
+        $doc = $node->getDocComment();
+        if (! ($doc instanceof Doc)) {
+            return null;
+        }
+
+        $docblock = $this->docBlockFactory->create($doc->getText());
+
+        $returnTags = $docblock->getTagsByName('return');
+        if (count($returnTags) > 0) {
+            return null;
+        }
+
+        $phpStanReturnTags = $docblock->getTagsByName('phpstan-return');
+        if (count($phpStanReturnTags) > 0) {
             return null;
         }
 

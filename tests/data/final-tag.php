@@ -26,6 +26,7 @@ class A extends WP_Widget
     }
 
     // No final tag
-    public function form($instance): void {
+    public function form($instance): string {
+        return '';
     }
 }
