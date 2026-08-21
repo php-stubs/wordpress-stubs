@@ -141171,7 +141171,7 @@ namespace {
      * @param int|WP_Term|null $term    Optional. Term ID or object. If null, the queried object will be inspected. Default null.
      * @param bool             $display Optional. Whether or not to echo the return. Default true.
      * @return string|null HTML content.
-     * @phpstan-return ($display is true ? void : string|void)
+     * @phpstan-return ($display is true ? void : string)|null
      */
     function edit_term_link($link = '', $before = '', $after = '', $term = \null, $display = \true)
     {
