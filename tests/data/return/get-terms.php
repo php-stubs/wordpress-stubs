@@ -11,9 +11,10 @@ use function PHPStan\Testing\assertType;
 assertType('array<int, WP_Term>|WP_Error', get_terms());
 assertType('array<int, WP_Term>|WP_Error', get_terms([]));
 
-// Requesting a count
-assertType('numeric-string|WP_Error', get_terms(['fields' => 'count']));
-assertType('numeric-string|WP_Error', get_terms(['foo' => 'bar','fields' => 'count']));
+// Requesting a count. WP_Term_Query::get_terms() returns int 0 rather than a
+// numeric string when the queried parent term has no descendants.
+assertType('0|numeric-string|WP_Error', get_terms(['fields' => 'count']));
+assertType('0|numeric-string|WP_Error', get_terms(['foo' => 'bar','fields' => 'count']));
 
 // Requesting names or slugs
 assertType('list<string>|WP_Error', get_terms(['fields' => 'names']));
@@ -34,4 +35,4 @@ assertType('array<int, WP_Term>|WP_Error', get_terms(['fields' => 'all_with_obje
 assertType('array<int, WP_Term>|WP_Error', get_terms(['fields' => 'foo']));
 
 // Unknown fields value
-assertType('array<int, int|string|WP_Term>|numeric-string|WP_Error', get_terms(['fields' => Faker::string()]));
+assertType('0|array<int, int|string|WP_Term>|numeric-string|WP_Error', get_terms(['fields' => Faker::string()]));
