@@ -99,7 +99,7 @@ return [
     'do_action_deprecated' => ['void', 'hook_name' => 'non-empty-string'],
     'do_meta_boxes' => ['int<0, max>'],
     'edit_link' => ['int<0, max>'],
-    'edit_term_link' => ['($display is true ? void : string|void)'],
+    'edit_term_link' => ['($display is true ? void : string)|null'],
     'get_attachment_taxonomies' => ["(\$output is 'names' ? array<int, string> : array<string, \WP_Taxonomy>)"],
     'get_available_post_statuses' => ['list<string>'],
     'get_block_wrapper_attributes' => ['($extra_attributes is empty ? string : non-falsy-string)', 'extra_attributes' => 'array<string, string>'],
