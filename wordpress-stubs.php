@@ -133706,11 +133706,8 @@ namespace {
      * @return bool Whether the variable is a list.
      *
      * @phpstan-assert-if-true array<int, mixed> $data
-     * @phpstan-template T of mixed
-     * @phpstan-param T $data
-     * @phpstan-assert-if-true (T is list ? T : array<int, mixed>) $data
      * @phpstan-pure
-     * @phpstan-return (T is array<int, mixed> ? true : false)
+     * @phpstan-return ($data is array<int, mixed> ? true : false)
      */
     function wp_is_numeric_array($data): bool
     {
