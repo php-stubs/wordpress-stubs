@@ -160136,7 +160136,6 @@ namespace {
      *     mode: 'prefetch'|'prerender',
      *     eagerness: 'conservative'|'moderate'|'eager',
      * }|null
-     * @phpstan-return array{mode: 'prefetch'|'prerender', eagerness: 'conservative'|'eager'|'moderate'}|null
      */
     function wp_get_speculation_rules_configuration(): ?array
     {
