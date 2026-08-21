@@ -383,6 +383,7 @@ return [
     'WP_Locale::get_word_count_type' => ["'characters_excluding_spaces'|'characters_including_spaces'|'words'"],
     'WP_Query' => [null, '@phpstan-property-read bool $query_vars_changed' => '', '@phpstan-property-read bool|string $query_vars_hash' => '', '@phpstan-method void init_query_flags()' => ''],
     'WP_Query::have_posts' => [null, '@phpstan-impure' => ''],
+    'WP_Query::query' => ["(\$query is array{fields: 'id=>parent'|'ids'}&array ? array<int, int> : array<int, \WP_Post>)"],
     'WP_REST_Request' => [null, '@phpstan-template T' => 'of array = array<string, mixed>', '@phpstan-implements ArrayAccess<key-of<T>, value-of<T>>' => ''],
     'WP_REST_Request::get_param' => ['T[TOffset]|null', '@phpstan-template TOffset' => 'of key-of<T>', 'key' => 'TOffset'],
     'WP_REST_Request::get_params' => ['T'],
@@ -392,6 +393,7 @@ return [
     'WP_REST_Request::offsetSet' => ['void', '@phpstan-template TOffset' => 'of key-of<T>', 'offset' => 'TOffset', 'value' => 'T[TOffset]'],
     'WP_REST_Request::offsetUnset' => ['void', '@phpstan-template TOffset' => 'of key-of<T>', 'offset' => 'TOffset'],
     'WP_REST_Request::set_param' => ['void', '@phpstan-template TOffset' => 'of key-of<T>', 'key' => 'TOffset', 'value' => 'T[TOffset]'],
+    'WP_Term_Query::query' => ["(\$query is array{fields: 'count'}&array ? numeric-string : (\$query is array{fields: 'names'|'slugs'}&array ? list<string> : (\$query is array{fields: 'id=>name'|'id=>slug'}&array ? array<int, string> : (\$query is array{fields: 'id=>parent'}&array ? array<int, int> : (\$query is array{fields: 'ids'|'tt_ids'}&array ? list<int> : array<int, \WP_Term>)))))"],
     'WP_Theme' => [
         null,
         '@phpstan-type ThemeKey' => "'Name'|'Version'|'Status'|'Title'|'Author'|'Author Name'|'Author URI'|'Description'|'Template'|'Stylesheet'|'Template Files'|'Stylesheet Files'|'Template Dir'|'Stylesheet Dir'|'Screenshot'|'Tags'|'Theme Root'|'Theme Root URI'|'Parent Theme'",
