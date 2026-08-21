@@ -152965,7 +152965,6 @@ namespace {
      * @param int|WP_Post $post Post ID or post object.
      * @return int[] Array of ancestor IDs or empty array if there are none.
      * @phpstan-return list<non-negative-int>
-     * @phpstan-return list<int>
      */
     function get_post_ancestors($post)
     {
