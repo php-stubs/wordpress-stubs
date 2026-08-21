@@ -11,6 +11,20 @@ $cronArgsType = 'list<mixed>';
 $wpWidgetRssFormArgsType = 'array{number: int, error: bool, title?: string, url?: string, items?: int, show_summary?: int, show_author?: int, show_date?: int}';
 $wpWidgetRssFormInputsType = 'array{title?: bool, url?: bool, items?: bool, show_summary?: bool, show_author?: bool, show_date?: bool}';
 $filesystemDirlistReturnType = "false|array<string, array{name: string, perms: string, permsn: string, owner: string|false, size: int|string|false, lastmodunix: int|string|false, lastmod: string|false, time: string|false, type: 'f'|'d'|'l', group: string|false, number: int|string|false, files?: array|false}>";
+// WordPress declares the objects below as plain `stdClass` and the capability maps as
+// `bool[]`, so their contents are `mixed` and their keys `array-key`. The shapes are taken
+// from get_post_type_labels(), get_post_type_capabilities(), get_taxonomy_labels() and
+// WP_Taxonomy::set_props(), which fill in every default.
+//
+// These entries are temporary. https://github.com/WordPress/wordpress-develop/pull/13220
+// documents the same shapes in core, on the functions that build them and via `@see` from
+// the properties, and the visitor picks those up on its own. Drop these once the stubs are
+// generated from a release carrying that change.
+$postTypeLabelsType = 'object{name: string, singular_name: string, add_new: string, add_new_item: string, edit_item: string, new_item: string, view_item: string, view_items: string, search_items: string, not_found: string, not_found_in_trash: string, parent_item_colon: string|null, all_items: string, archives: string, attributes: string, insert_into_item: string, uploaded_to_this_item: string, featured_image: string, set_featured_image: string, remove_featured_image: string, use_featured_image: string, menu_name: string, name_admin_bar: string, filter_items_list: string, filter_by_date: string, items_list_navigation: string, items_list: string, item_published: string, item_published_privately: string, item_reverted_to_draft: string, item_trashed: string, item_scheduled: string, item_updated: string, item_link: string, item_link_description: string, template_name: string}';
+$postTypeCapType = 'object{edit_post: string, read_post: string, delete_post: string, edit_posts: string, edit_others_posts: string, delete_posts: string, publish_posts: string, read_private_posts: string, create_posts: string, read: string, delete_private_posts: string, delete_published_posts: string, delete_others_posts: string, edit_private_posts: string, edit_published_posts: string}';
+$taxonomyLabelsType = 'object{name: string, singular_name: string, menu_name: string, name_admin_bar: string, search_items: string, popular_items: string|null, all_items: string, parent_item: string|null, parent_item_colon: string|null, name_field_description: string, slug_field_description: string, parent_field_description: string|null, desc_field_description: string, edit_item: string, view_item: string, update_item: string, add_new_item: string, new_item_name: string, template_name: string, separate_items_with_commas: string|null, add_or_remove_items: string|null, choose_from_most_used: string|null, not_found: string, no_terms: string, filter_by_item: string|null, items_list_navigation: string, items_list: string, most_used: string, back_to_items: string, item_link: string, item_link_description: string}';
+$taxonomyCapType = 'object{manage_terms: string, edit_terms: string, delete_terms: string, assign_terms: string}';
+$capabilityMapType = 'array<string, bool>';
 
 /**
  * This array follows a format similar to PHPStan’s function map:
@@ -381,6 +395,8 @@ return [
     'WP_List_Table::set_pagination_args' => ['void', 'args' => 'array{total_items?: int, total_pages?: int, per_page?: int}'],
     'WP_Locale::$word_count_type' => [null, '@phpstan-var' => "'characters_excluding_spaces'|'characters_including_spaces'|'words'"],
     'WP_Locale::get_word_count_type' => ["'characters_excluding_spaces'|'characters_including_spaces'|'words'"],
+    'WP_Post_Type::$cap' => [null, '@phpstan-var' => $postTypeCapType],
+    'WP_Post_Type::$labels' => [null, '@phpstan-var' => $postTypeLabelsType],
     'WP_Query' => [null, '@phpstan-property-read bool $query_vars_changed' => '', '@phpstan-property-read bool|string $query_vars_hash' => '', '@phpstan-method void init_query_flags()' => ''],
     'WP_Query::have_posts' => [null, '@phpstan-impure' => ''],
     'WP_Query::query' => ["(\$query is array ? (\$query is array{fields: 'id=>parent'|'ids'}&array ? array<int, int> : array<int, \WP_Post>) : array<int, int>|array<int, \WP_Post>)"],
@@ -393,6 +409,9 @@ return [
     'WP_REST_Request::offsetSet' => ['void', '@phpstan-template TOffset' => 'of key-of<T>', 'offset' => 'TOffset', 'value' => 'T[TOffset]'],
     'WP_REST_Request::offsetUnset' => ['void', '@phpstan-template TOffset' => 'of key-of<T>', 'offset' => 'TOffset'],
     'WP_REST_Request::set_param' => ['void', '@phpstan-template TOffset' => 'of key-of<T>', 'key' => 'TOffset', 'value' => 'T[TOffset]'],
+    'WP_Role::$capabilities' => [null, '@phpstan-var' => $capabilityMapType],
+    'WP_Taxonomy::$cap' => [null, '@phpstan-var' => $taxonomyCapType],
+    'WP_Taxonomy::$labels' => [null, '@phpstan-var' => $taxonomyLabelsType],
     'WP_Term_Query::get_terms' => ['0|numeric-string|array<int, int|string|\WP_Term>'],
     'WP_Term_Query::query' => ["(\$query is array ? (\$query is array{fields: 'count'}&array ? 0|numeric-string : (\$query is array{fields: 'names'|'slugs'}&array ? list<string> : (\$query is array{fields: 'id=>name'|'id=>slug'}&array ? array<int, string> : (\$query is array{fields: 'id=>parent'}&array ? array<int, int> : (\$query is array{fields: 'ids'|'tt_ids'}&array ? list<int> : array<int, \WP_Term>))))) : 0|numeric-string|array<int, int|string|\WP_Term>)"],
     'WP_Theme' => [
@@ -418,6 +437,8 @@ return [
     'WP_Theme_JSON_Resolver::get_theme_data' => [null, 'deprecated' => 'array{}'],
     'WP_Translations::translate' => ['($singular is null ? null : string)'],
     'WP_Translations::translate_plural' => ['($singular is null ? null : ($plural is null ? T : string))', '@phpstan-template T' => 'of string|null', 'singular' => 'T', 'count' => 'int'],
+    'WP_User::$allcaps' => [null, '@phpstan-var' => $capabilityMapType],
+    'WP_User::$caps' => [null, '@phpstan-var' => $capabilityMapType],
     'WP_Widget' => [null, '@phpstan-template T' => 'of array = array<string, mixed>'],
     'WP_Widget::display_callback' => [null, '@final' => ''],
     'WP_Widget::form' => [null, 'instance' => 'T'],

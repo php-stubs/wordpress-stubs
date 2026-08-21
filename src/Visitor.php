@@ -283,6 +283,7 @@ class Visitor extends NodeVisitor
         }
 
         $additions = $this->discoverInheritedArgs($docblock, $additions);
+        $additions = $this->discoverInheritedVar($name, $docblock, $docCommentText, $additions);
 
         /** @var list<string> $additionStrings */
         $additionStrings = array_map(
@@ -355,6 +356,95 @@ class Visitor extends NodeVisitor
         }
 
         return $additions;
+    }
+
+    /**
+     * Gives a property the shape of the value returned by the function it points at.
+     *
+     * WordPress documents the contents of an object such as `WP_Post_Type::$labels` on the
+     * function that builds it, and refers to that function from the property with `@see`,
+     * so the shape is only written out once.
+     *
+     * A shape of the property's own always wins, whether it comes from hash notation in the
+     * source or from the function map.
+     *
+     * @param list<\PhpStubs\WordPress\Core\WordPressTag> $additions
+     * @return list<\PhpStubs\WordPress\Core\WordPressTag>
+     */
+    private function discoverInheritedVar(string $symbolName, DocBlock $docblock, string $docCommentText, array $additions): array
+    {
+        if (! str_contains($symbolName, '::$')) {
+            return $additions;
+        }
+
+        foreach ($additions as $addition) {
+            if ($addition->tag === '@phpstan-var') {
+                return $additions;
+            }
+        }
+
+        foreach ($this->additionalTagStrings[$symbolName] ?? [] as $mappedTag) {
+            if (str_starts_with($mappedTag, '@phpstan-var ')) {
+                return $additions;
+            }
+        }
+
+        $propertyType = self::getVarTypeName($docblock);
+
+        if ($propertyType === null) {
+            return $additions;
+        }
+
+        $inherited = $this->getInheritedTagForVar($docCommentText, $propertyType);
+
+        if (! ($inherited instanceof WordPressTag)) {
+            return $additions;
+        }
+
+        return array_merge($additions, [$inherited]);
+    }
+
+    private static function getVarTypeName(DocBlock $docblock): ?string
+    {
+        /** @var list<\phpDocumentor\Reflection\DocBlock\Tags\Var_> $varTags */
+        $varTags = $docblock->getTagsByName('var');
+
+        foreach ($varTags as $varTag) {
+            $type = $varTag->getType();
+
+            if (! $type instanceof Type) {
+                continue;
+            }
+
+            return self::getTypeNameFromType($type);
+        }
+
+        return null;
+    }
+
+    private function getInheritedTagForVar(string $docCommentText, string $propertyType): ?WordPressTag
+    {
+        foreach ($this->additionalTags as $symbolName => $tags) {
+            if (! str_contains($docCommentText, sprintf('@see %s()', $symbolName))) {
+                continue;
+            }
+
+            foreach ($tags as $tag) {
+                // Only a documented shape of a matching type can describe the property.
+                if ($tag->tag !== '@phpstan-return' || $tag->type !== $propertyType || ! $tag->hasChildren()) {
+                    continue;
+                }
+
+                $inherited = clone $tag;
+                $inherited->tag = '@phpstan-var';
+                $inherited->name = null;
+                $inherited->description = sprintf('See %s()', $symbolName);
+
+                return $inherited;
+            }
+        }
+
+        return null;
     }
 
     /**
