@@ -36,6 +36,11 @@ assertType('array<int, WP_Post>', Faker::wpQuery()->query(['fields' => 'foo']));
 // WP_Query::query(): unknown fields value.
 assertType('array<int, int|WP_Post>', Faker::wpQuery()->query(['fields' => Faker::string()]));
 
+// WP_Query::query(): a URL query string is parsed at runtime, so the fields
+// value is not visible to PHPStan and every result shape stays possible.
+assertType('array<int, int|WP_Post>', Faker::wpQuery()->query('fields=ids'));
+assertType('array<int, int|WP_Post>', Faker::wpQuery()->query(Faker::string()));
+
 // WP_Query::get_posts() reads the query vars off the instance instead of taking
 // them as an argument, so there is nothing to narrow the return type on.
 assertType('array<int|WP_Post>', Faker::wpQuery()->get_posts());

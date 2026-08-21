@@ -39,6 +39,12 @@ assertType('array<int, WP_Term>', $termQuery->query(['fields' => 'foo']));
 // Unknown fields value
 assertType('0|array<int, int|string|WP_Term>|numeric-string', $termQuery->query(['fields' => Faker::string()]));
 
+// A URL query string is parsed at runtime, so the fields value is not visible
+// to PHPStan and every result shape stays possible.
+assertType('0|array<int, int|string|WP_Term>|numeric-string', $termQuery->query('fields=count'));
+assertType('0|array<int, int|string|WP_Term>|numeric-string', $termQuery->query(Faker::string()));
+
 // WP_Term_Query::get_terms() reads the query vars off the instance instead of
 // taking them as an argument, so there is nothing to narrow the return type on.
-assertType('array<int|string|WP_Term>|string', $termQuery->get_terms());
+// It still carries the int 0 that the count branch can return.
+assertType('0|array<int, int|string|WP_Term>|numeric-string', $termQuery->get_terms());
