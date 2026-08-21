@@ -134859,7 +134859,7 @@ namespace {
      * @param string $prefix Prefix for the returned ID.
      * @return string Unique ID.
      * @phpstan-impure
-     * @phpstan-return ($prefix is empty ? numeric-string : ($prefix is numeric ? numeric-string : string))&non-falsy-string
+     * @phpstan-return ($prefix is ''|numeric-string ? numeric-string : string)&non-falsy-string&($prefix is lowercase-string ? lowercase-string : string)
      */
     function wp_unique_id($prefix = '')
     {
@@ -134878,7 +134878,7 @@ namespace {
      * @param string $prefix Optional. Prefix for the returned ID. Default empty string.
      * @return string Incremental ID per prefix.
      * @phpstan-impure
-     * @phpstan-return ($prefix is empty ? numeric-string : ($prefix is numeric ? numeric-string : string))&non-falsy-string
+     * @phpstan-return ($prefix is ''|numeric-string ? numeric-string : string)&non-falsy-string&($prefix is lowercase-string ? lowercase-string : string)
      */
     function wp_unique_prefixed_id($prefix = '')
     {
