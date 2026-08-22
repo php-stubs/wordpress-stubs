@@ -120,7 +120,6 @@ return [
     'get_last_updated' => [null, 'deprecated' => "''"],
     'get_media_item' => ['non-falsy-string'],
     'get_object_taxonomies' => ["(\$output is 'names' ? array<int, string> : array<string, \WP_Taxonomy>)"],
-    'get_page_by_path' => ["(\$output is 'ARRAY_A' ? array<string, mixed>|null : (\$output is 'ARRAY_N' ? array<int, mixed>|null : \WP_Post|null))"],
     'get_password_reset_key' => [null, '@phpstan-impure' => ''],
     'get_permalink' => ['($post is \WP_Post ? string : string|false)'],
     'get_post' => ["(\$post is \WP_Post ? array<array-key, mixed>|\WP_Post : array<array-key, mixed>|\WP_Post|null) & (\$output is 'ARRAY_A' ? array<string, mixed>|null : (\$output is 'ARRAY_N' ? array<int, mixed>|null : \WP_Post|null))"],

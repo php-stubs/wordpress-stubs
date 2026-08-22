@@ -155144,7 +155144,6 @@ namespace {
      *         )
      *     )
      * )
-     * @phpstan-return ($output is 'ARRAY_A' ? array<string, mixed>|null : ($output is 'ARRAY_N' ? array<int, mixed>|null : \WP_Post|null))
      */
     function get_page_by_path($page_path, $output = \OBJECT, $post_type = 'page')
     {
