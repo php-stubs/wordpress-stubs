@@ -60905,7 +60905,7 @@ namespace {
          *
          * @since 2.8.0
          * @var array
-         * @phpstan-var array<string, \WP_Widget>
+         * @phpstan-var array<int, \WP_Widget>
          */
         public $widgets = array();
         /**
