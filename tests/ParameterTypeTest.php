@@ -332,10 +332,10 @@ class ParameterTypeTest extends IntegrationTest
         $this->analyse(
             __DIR__ . '/data/param/register-widget.php',
             [
-                ['Parameter #1 $widget of function register_widget expects class-string<WP_Widget>|WP_Widget, PhpStubs\WordPress\Core\Tests\NoWidget given.', 21],
-                ['Parameter #1 $widget of function register_widget expects class-string<WP_Widget>|WP_Widget, PhpStubs\WordPress\Core\Tests\NoWidget given.', 22],
-                ['Parameter #1 $widget of function register_widget expects class-string<WP_Widget>|WP_Widget, string given.', 23],
-                ['Parameter #1 $widget of function register_widget expects class-string<WP_Widget>|WP_Widget, string given.', 24],
+                ['Parameter #1 $widget of function register_widget expects class-string<WP_Widget>|WP_Widget, WP_Post given.', 11],
+                ['Parameter #1 $widget of function register_widget expects class-string<WP_Widget>|WP_Widget, WP_Post given.', 12],
+                ['Parameter #1 $widget of function register_widget expects class-string<WP_Widget>|WP_Widget, class-string<WP_Post> given.', 13],
+                ['Parameter #1 $widget of function register_widget expects class-string<WP_Widget>|WP_Widget, string given.', 14],
             ]
         );
     }
@@ -416,6 +416,21 @@ class ParameterTypeTest extends IntegrationTest
                 ['Parameter #3 $error_level of function wp_trigger_error expects 256|512|1024|16384, 2 given.', 27],
                 ['Parameter #3 $error_level of function wp_trigger_error expects 256|512|1024|16384, 2 given.', 34],
                 ['Parameter #3 $error_level of function wp_trigger_error expects 256|512|1024|16384, 0 given.', 35],
+            ]
+        );
+    }
+
+    public function testwpWidgetFactory(): void
+    {
+        $this->analyse(
+            __DIR__ . '/data/param/wp-widget-factory.php',
+            [
+                ['Parameter #1 $widget of method WP_Widget_Factory::register() expects class-string<WP_Widget>|WP_Widget, WP_Post given.', 8],
+                ['Parameter #1 $widget of method WP_Widget_Factory::register() expects class-string<WP_Widget>|WP_Widget, class-string<WP_Post> given.', 9],
+                ['Parameter #1 $widget of method WP_Widget_Factory::register() expects class-string<WP_Widget>|WP_Widget, string given.', 10],
+                ['Parameter #1 $widget of method WP_Widget_Factory::unregister() expects class-string<WP_Widget>|WP_Widget, WP_Post given.', 11],
+                ['Parameter #1 $widget of method WP_Widget_Factory::unregister() expects class-string<WP_Widget>|WP_Widget, class-string<WP_Post> given.', 12],
+                ['Parameter #1 $widget of method WP_Widget_Factory::unregister() expects class-string<WP_Widget>|WP_Widget, string given.', 13],
             ]
         );
     }

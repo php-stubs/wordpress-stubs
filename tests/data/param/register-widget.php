@@ -4,28 +4,18 @@ declare(strict_types=1);
 
 namespace PhpStubs\WordPress\Core\Tests;
 
-use WP_Widget;
 use function register_widget;
 
-class MyWidget extends WP_Widget {
-    public function __construct(string $id_base, string $name)
-    {
-        parent::__construct($id_base, $name);
-    }
-}
-
-class NoWidget {}
-
 // Incorrect
-$noWidget = new NoWidget();
+$noWidget = Faker::wpPost();
 register_widget($noWidget);
-register_widget(new NoWidget());
-register_widget(NoWidget::class);
-register_widget('\PhpStubs\WordPress\Core\Tests\NoWidget');
+register_widget(Faker::wpPost());
+register_widget(Faker::classString(Faker::wpPost()));
+register_widget('\NoWidget');
 
 // Correct
-$widget = new MyWidget('my_widget', 'My Widget');
+$widget = Faker::wpWidget();
 register_widget($widget);
-register_widget(new MyWidget('my_widget', 'My Widget'));
-register_widget(MyWidget::class);
-register_widget('\PhpStubs\WordPress\Core\Tests\MyWidget');
+register_widget(Faker::wpWidget());
+register_widget(Faker::classString(Faker::wpWidget()));
+register_widget('\WP_Widget');
