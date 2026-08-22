@@ -122,7 +122,6 @@ return [
     'get_object_taxonomies' => ["(\$output is 'names' ? array<int, string> : array<string, \WP_Taxonomy>)"],
     'get_password_reset_key' => [null, '@phpstan-impure' => ''],
     'get_permalink' => ['($post is \WP_Post ? string : string|false)'],
-    'get_post' => ["(\$post is \WP_Post ? array<array-key, mixed>|\WP_Post : array<array-key, mixed>|\WP_Post|null) & (\$output is 'ARRAY_A' ? array<string, mixed>|null : (\$output is 'ARRAY_N' ? array<int, mixed>|null : \WP_Post|null))"],
     'get_post_permalink' => ['($post is \WP_Post ? string : string|false)'],
     'get_post_stati' => ["(\$output is 'names' ? array<string, string> : array<string, \stdClass>)"],
     'get_post_types' => ["(\$output is 'names' ? array<string, string> : array<string, \WP_Post_Type>)"],
