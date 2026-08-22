@@ -405,7 +405,7 @@ return [
     'WP_Widget::update' => [null, 'new_instance' => 'T', 'old_instance' => 'T'],
     'WP_Widget::update_callback' => [null, '@final' => '', 'deprecated' => '1'],
     'WP_Widget::widget' => [null, 'instance' => 'T', 'args' => 'array{name:string,id:string,description:string,class:string,before_widget:string,after_widget:string,before_title:string,after_title:string,before_sidebar:string,after_sidebar:string,show_in_rest:boolean,widget_id:string,widget_name:string}'],
-    'WP_Widget_Factory::$widgets' => [null, '@phpstan-var' => 'array<string, \WP_Widget>'],
+    'WP_Widget_Factory::$widgets' => [null, '@phpstan-var' => 'array<int, \WP_Widget>'],
     'WP_Widget_Factory::register' => [null, 'widget' => 'class-string<\WP_Widget>|\WP_Widget'],
     'WP_Widget_Factory::unregister' => [null, 'widget' => 'class-string<\WP_Widget>|\WP_Widget'],
     'wpdb::get_row' => [null, 'y' => 'int<0, max>'],
