@@ -7,4 +7,4 @@ namespace PhpStubs\WordPress\Core\Tests;
 use function wp_get_elements_class_name;
 use function PHPStan\Testing\assertType;
 
-assertType('non-falsy-string', wp_get_elements_class_name(Faker::array()));
+assertType('lowercase-string&non-falsy-string', wp_get_elements_class_name());

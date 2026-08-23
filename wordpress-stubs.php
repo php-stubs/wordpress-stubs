@@ -112632,7 +112632,7 @@ namespace {
      * @access private
      *
      * @return string The unique class name.
-     * @phpstan-return non-falsy-string
+     * @phpstan-return lowercase-string&non-falsy-string
      */
     function wp_get_elements_class_name(): string
     {
