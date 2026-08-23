@@ -58,7 +58,7 @@ $union = Faker::union(Faker::string(), 'id=>parent');
 assertType('array<int, int|WP_Post>', get_posts(['fields' => $union]));
 
 $union = Faker::union(Faker::string(), 'fields');
-assertType('array<int, WP_Post>', get_posts([$union => '']));
+assertType('array<int, int|WP_Post>', get_posts([$union => '']));
 
 $union = Faker::union(Faker::string(), 'fields');
 assertType('array<int, int|WP_Post>', get_posts([$union => 'ids']));

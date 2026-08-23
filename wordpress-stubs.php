@@ -118918,7 +118918,7 @@ namespace {
      *   category_orderby?: string,
      *   category_order?: string,
      * } $args
-     * @phpstan-return ($args is array{echo: false|0}&array ? string : void)
+     * @phpstan-return ($args is array{echo: false|0, ...} ? string : void)
      */
     function wp_list_bookmarks($args = '')
     {
@@ -120415,7 +120415,7 @@ namespace {
      *   walker?: Walker,
      *   taxonomy?: string,
      * } $args
-     * @phpstan-return ($args is array{echo: false|0}&array ? string|false : false|void)
+     * @phpstan-return ($args is array{echo: false|0, ...} ? string|false : false|void)
      */
     function wp_list_categories($args = '')
     {
@@ -120464,7 +120464,7 @@ namespace {
      *   topic_count_scale_callback?: callable,
      *   show_count?: bool|int,
      * } $args
-     * @phpstan-return ($args is array{format: 'array'}&array ? array<int, string>|void : ($args is array{echo: false|0}&array ? string|void : void))
+     * @phpstan-return ($args is array{format: 'array', ...} ? array<int, string>|void : ($args is array{echo: false|0, ...} ? string|void : void))
      */
     function wp_tag_cloud($args = '')
     {
@@ -120540,7 +120540,7 @@ namespace {
      *   topic_count_scale_callback?: callable,
      *   show_count?: bool|int,
      * } $args
-     * @phpstan-return ($args is array{format: 'array'}&array ? array<int, string> : string)
+     * @phpstan-return ($args is array{format: 'array', ...} ? array<int, string> : string)
      */
     function wp_generate_tag_cloud($tags, $args = '')
     {
@@ -120842,7 +120842,7 @@ namespace {
      * @phpstan-param array{
      *   taxonomy?: string,
      * } $args
-     * @phpstan-return ($args is array{fields: 'count'}&array ? list<numeric-string> : ($args is array{fields: 'names'|'slugs'}&array ? list<string> : ($args is array{fields: 'id=>name'|'id=>slug'}&array ? array<int, string> : ($args is array{fields: 'id=>parent'}&array ? array<int, int> : ($args is array{fields: 'ids'|'tt_ids'}&array ? list<int> : array<int, \WP_Term>)))))
+     * @phpstan-return ($args is array{fields: 'count', ...} ? list<numeric-string> : ($args is array{fields: 'names'|'slugs', ...} ? list<string> : ($args is array{fields: 'id=>name'|'id=>slug', ...} ? array<int, string> : ($args is array{fields: 'id=>parent', ...} ? array<int, int> : ($args is array{fields: 'ids'|'tt_ids', ...} ? list<int> : array<int, \WP_Term>)))))
      */
     function get_categories($args = '')
     {
@@ -120993,7 +120993,7 @@ namespace {
      * @phpstan-param array{
      *   taxonomy?: string,
      * } $args
-     * @phpstan-return ($args is array{fields: 'count'}&array ? numeric-string : ($args is array{fields: 'names'|'slugs'}&array ? list<string> : ($args is array{fields: 'id=>name'|'id=>slug'}&array ? array<int, string> : ($args is array{fields: 'id=>parent'}&array ? array<int, int> : ($args is array{fields: 'ids'|'tt_ids'}&array ? list<int> : array<int, \WP_Term>)))))|\WP_Error
+     * @phpstan-return ($args is array{fields: 'count', ...} ? numeric-string : ($args is array{fields: 'names'|'slugs', ...} ? list<string> : ($args is array{fields: 'id=>name'|'id=>slug', ...} ? array<int, string> : ($args is array{fields: 'id=>parent', ...} ? array<int, int> : ($args is array{fields: 'ids'|'tt_ids', ...} ? list<int> : array<int, \WP_Term>)))))|\WP_Error
      */
     function get_tags($args = '')
     {
@@ -133087,7 +133087,7 @@ namespace {
      *   code?: string,
      *   exit?: bool,
      * } $args
-     * @phpstan-return ($args is array{exit: false}&array ? void : never)
+     * @phpstan-return ($args is array{exit: false, ...} ? void : never)
      */
     function wp_die($message = '', $title = '', $args = array())
     {
@@ -136717,7 +136717,7 @@ namespace {
      *   day?: string,
      *   w?: string,
      * } $args
-     * @phpstan-return ($args is array{echo: false|0}&array ? string|void : void)
+     * @phpstan-return ($args is array{echo: false|0, ...} ? string|void : void)
      */
     function wp_get_archives($args = '')
     {
@@ -136763,7 +136763,7 @@ namespace {
      *   display?: bool,
      *   post_type?: string,
      * } $args
-     * @phpstan-return ($args is array{display: false}&array ? string : void)
+     * @phpstan-return ($args is array{display: false, ...} ? string : void)
      */
     function get_calendar($args = array())
     {
@@ -137470,7 +137470,7 @@ namespace {
      *   before_page_number?: string,
      *   after_page_number?: string,
      * } $args
-     * @phpstan-return ($args is array{total: int<min, 1>}&array ? void : ($args is array{type: 'array'}&array ? list<string> : string))
+     * @phpstan-return ($args is array{total: int<min, 1>, ...} ? void : ($args is array{type: 'array', ...} ? list<string> : string))
      */
     function paginate_links($args = '')
     {
@@ -140660,7 +140660,7 @@ namespace {
      *   show_option_en_us?: bool,
      *   explicit_option_en_us?: bool,
      * } $args
-     * @phpstan-return ($args is array{id: null|''}&array ? void : ($args is array{name: null|''}&array ? void : string))
+     * @phpstan-return ($args is array{id: null|'', ...} ? void : ($args is array{name: null|'', ...} ? void : string))
      */
     function wp_dropdown_languages($args = array())
     {
@@ -148351,7 +148351,7 @@ namespace {
      *   meta_type_key?: string,
      *   meta_query?: array,
      * } $args See WP_Site_Query::__construct()
-     * @phpstan-return ($args is array{count: true}&array ? int : ($args is array{fields: 'ids'}&array ? array<int, int> : array<int, \WP_Site>))
+     * @phpstan-return ($args is array{count: true, ...} ? int : ($args is array{fields: 'ids', ...} ? array<int, int> : array<int, \WP_Site>))
      */
     function get_sites($args = array())
     {
@@ -152361,7 +152361,7 @@ namespace {
      *   post_type?: string,
      *   post_status?: string|array,
      * } $args
-     * @phpstan-return ($args is array{echo: false}&array ? string : void)
+     * @phpstan-return ($args is array{echo: false, ...} ? string : void)
      */
     function wp_list_pages($args = '')
     {
@@ -153972,7 +153972,7 @@ namespace {
      *   w?: int,
      *   year?: int,
      * } $args
-     * @phpstan-return ($args is array{fields: 'id=>parent'|'ids'}&array ? array<int, int> : array<int, \WP_Post>)
+     * @phpstan-return ($args is array{fields: 'id=>parent'|'ids', ...} ? array<int, int> : array<int, \WP_Post>)
      */
     function get_posts($args = \null)
     {
@@ -154531,7 +154531,7 @@ namespace {
      *   meta_type_key?: string,
      *   meta_query?: array,
      * } $args See WP_Term_Query::__construct()
-     * @phpstan-return ($post_id is 0 ? array{} : (($args is array{fields: 'names'|'slugs'}&array ? list<string> : ($args is array{fields: 'id=>name'|'id=>slug'}&array ? array<int, string> : ($args is array{fields: 'id=>parent'}&array ? array<int, int> : ($args is array{fields: 'all'|'all_with_object_id'}&array ? array<int, \WP_Term> : ($args is array{fields: 'count'}&array ? numeric-string : list<int>)))))|\WP_Error))
+     * @phpstan-return ($post_id is 0 ? array{} : (($args is array{fields: 'names'|'slugs', ...} ? list<string> : ($args is array{fields: 'id=>name'|'id=>slug', ...} ? array<int, string> : ($args is array{fields: 'id=>parent', ...} ? array<int, int> : ($args is array{fields: 'all'|'all_with_object_id', ...} ? array<int, \WP_Term> : ($args is array{fields: 'count', ...} ? numeric-string : list<int>)))))|\WP_Error))
      */
     function wp_get_post_categories($post_id = 0, $args = array())
     {
@@ -154586,7 +154586,7 @@ namespace {
      *   meta_type_key?: string,
      *   meta_query?: array,
      * } $args See WP_Term_Query::__construct()
-     * @phpstan-return ($post_id is 0 ? array{} : (($args is array{fields: 'names'|'slugs'}&array ? list<string> : ($args is array{fields: 'id=>name'|'id=>slug'}&array ? array<int, string> : ($args is array{fields: 'id=>parent'}&array ? array<int, int> : ($args is array{fields: 'ids'|'tt_ids'}&array ? list<int> : ($args is array{fields: 'count'}&array ? numeric-string : array<int, \WP_Term>)))))|\WP_Error))
+     * @phpstan-return ($post_id is 0 ? array{} : (($args is array{fields: 'names'|'slugs', ...} ? list<string> : ($args is array{fields: 'id=>name'|'id=>slug', ...} ? array<int, string> : ($args is array{fields: 'id=>parent', ...} ? array<int, int> : ($args is array{fields: 'ids'|'tt_ids', ...} ? list<int> : ($args is array{fields: 'count', ...} ? numeric-string : array<int, \WP_Term>)))))|\WP_Error))
      */
     function wp_get_post_tags($post_id = 0, $args = array())
     {
@@ -154643,7 +154643,7 @@ namespace {
      *   meta_type_key?: string,
      *   meta_query?: array,
      * } $args
-     * @phpstan-return ($post_id is 0 ? array{} : ($taxonomy is empty ? array{} : (($args is array{fields: 'names'|'slugs'}&array ? list<string> : ($args is array{fields: 'id=>name'|'id=>slug'}&array ? array<int, string> : ($args is array{fields: 'id=>parent'}&array ? array<int, int> : ($args is array{fields: 'ids'|'tt_ids'}&array ? list<int> : ($args is array{fields: 'count'}&array ? numeric-string : array<int, \WP_Term>)))))|\WP_Error)))
+     * @phpstan-return ($post_id is 0 ? array{} : ($taxonomy is empty ? array{} : (($args is array{fields: 'names'|'slugs', ...} ? list<string> : ($args is array{fields: 'id=>name'|'id=>slug', ...} ? array<int, string> : ($args is array{fields: 'id=>parent', ...} ? array<int, int> : ($args is array{fields: 'ids'|'tt_ids', ...} ? list<int> : ($args is array{fields: 'count', ...} ? numeric-string : array<int, \WP_Term>)))))|\WP_Error)))
      */
     function wp_get_post_terms($post_id = 0, $taxonomy = 'post_tag', $args = array())
     {
@@ -161052,7 +161052,7 @@ namespace {
      *   meta_query?: array,
      * } $args See WP_Term_Query::__construct()
      * @phpstan-param '' $deprecated
-     * @phpstan-return ($args is array{fields: 'count'}&array ? numeric-string : ($args is array{fields: 'names'|'slugs'}&array ? list<string> : ($args is array{fields: 'id=>name'|'id=>slug'}&array ? array<int, string> : ($args is array{fields: 'id=>parent'}&array ? array<int, int> : ($args is array{fields: 'ids'|'tt_ids'}&array ? list<int> : array<int, \WP_Term>)))))|\WP_Error
+     * @phpstan-return ($args is array{fields: 'count', ...} ? numeric-string : ($args is array{fields: 'names'|'slugs', ...} ? list<string> : ($args is array{fields: 'id=>name'|'id=>slug', ...} ? array<int, string> : ($args is array{fields: 'id=>parent', ...} ? array<int, int> : ($args is array{fields: 'ids'|'tt_ids', ...} ? list<int> : array<int, \WP_Term>)))))|\WP_Error
      */
     function get_terms($args = array(), $deprecated = '')
     {
@@ -161513,7 +161513,7 @@ namespace {
      *   meta_type_key?: string,
      *   meta_query?: array,
      * } $args See WP_Term_Query::__construct()
-     * @phpstan-return ($object_ids is empty ? array{} : ($taxonomies is empty ? array{} : (($args is array{fields: 'names'|'slugs'}&array ? list<string> : ($args is array{fields: 'id=>name'|'id=>slug'}&array ? array<int, string> : ($args is array{fields: 'id=>parent'}&array ? array<int, int> : ($args is array{fields: 'ids'|'tt_ids'}&array ? list<int> : ($args is array{fields: 'count'}&array ? numeric-string : array<int, \WP_Term>)))))|\WP_Error)))
+     * @phpstan-return ($object_ids is empty ? array{} : ($taxonomies is empty ? array{} : (($args is array{fields: 'names'|'slugs', ...} ? list<string> : ($args is array{fields: 'id=>name'|'id=>slug', ...} ? array<int, string> : ($args is array{fields: 'id=>parent', ...} ? array<int, int> : ($args is array{fields: 'ids'|'tt_ids', ...} ? list<int> : ($args is array{fields: 'count', ...} ? numeric-string : array<int, \WP_Term>)))))|\WP_Error)))
      */
     function wp_get_object_terms($object_ids, $taxonomies, $args = array())
     {
