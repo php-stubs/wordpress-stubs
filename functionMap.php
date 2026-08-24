@@ -51,6 +51,7 @@ return [
     'absint' => ['($maybeint is T&int<0, max> ? T : ($maybeint is int<min, -1> ? int<1, max> : ($maybeint is empty ? 0 : ($maybeint is numeric-string ? int<0, max> : ($maybeint is string ? 0 : ($maybeint is true|non-empty-array ? 1 : ($maybeint is bool ? 0|1 : int<0, max>)))))))', '@phpstan-template T' => 'of int', 'maybeint' => 'T|scalar|array|resource|null', '@phpstan-pure' => ''],
     '_wp_post_revision_fields' => [null, 'deprecated' => 'false'],
     'add_comments_page' => [null, 'callback' => "''|callable"],
+    'add_cssclass' => ['($classes is empty ? T : non-empty-string)', '@phpstan-template T' => 'of string', 'class_to_add' => 'T', '@phpstan-pure' => ''],
     'add_dashboard_page' => [null, 'callback' => "''|callable"],
     'add_feed' => ['non-falsy-string', 'callback' => 'callable(bool, string): void'],
     'add_link' => ['int<0, max>'],
