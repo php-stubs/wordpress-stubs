@@ -227,8 +227,6 @@ class Visitor extends NodeVisitor
         /** @var list<\phpDocumentor\Reflection\DocBlock\Tags\Var_> $varTags */
         $varTags = $docblock->getTagsByName('var');
 
-        $phpStanReturnTags = $docblock->getTagsByName('phpstan-return');
-
         $phpStanParamNames = $this->getVariableNamesFromTags($docblock->getTagsByName('phpstan-param'));
 
         /** @var list<\PhpStubs\WordPress\Core\WordPressTag> $additions */
@@ -252,7 +250,7 @@ class Visitor extends NodeVisitor
             $additions[] = $addition;
         }
 
-        if (! count($phpStanReturnTags)) {
+        if (! count($docblock->getTagsByName('phpstan-return'))) {
             foreach ($returnTags as $returnTag) {
                 $addition = self::getAdditionFromReturn($returnTag);
 
@@ -290,11 +288,11 @@ class Visitor extends NodeVisitor
                 continue;
             }
 
-            if (preg_match('#\$([a-zA-Z_\x80-\xff][a-zA-Z0-9_\x80-\xff]*)#', (string)$tag, $matches) !== 1) {
+            if (preg_match('#^(.+)\s+\$([a-zA-Z_\x80-\xff][a-zA-Z0-9_\x80-\xff]*)#s', (string)$tag, $matches) !== 1) {
                 continue;
             }
 
-            $names[] = $matches[1];
+            $names[] = $matches[2];
         }
 
         return $names;
