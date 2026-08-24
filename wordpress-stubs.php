@@ -132714,6 +132714,7 @@ namespace {
      *                     baseurl: non-empty-string,
      *                 }
      *                |array{ error: non-empty-string }
+     * @phpstan-return array{path: non-falsy-string, url: non-falsy-string, subdir: string, basedir: non-falsy-string, baseurl: non-falsy-string, error: false|string}
      */
     function wp_get_upload_dir()
     {
@@ -132762,6 +132763,7 @@ namespace {
      *                     baseurl: non-empty-string,
      *                 }
      *                |array{ error: non-empty-string }
+     * @phpstan-return array{path: non-falsy-string, url: non-falsy-string, subdir: string, basedir: non-falsy-string, baseurl: non-falsy-string, error: false|string}
      */
     function wp_upload_dir($time = \null, $create_dir = \true, $refresh_cache = \false)
     {
@@ -132774,6 +132776,7 @@ namespace {
      *
      * @param string|null $time Optional. Time formatted in 'yyyy/mm'. Default null.
      * @return array See wp_upload_dir()
+     * @phpstan-return array{path: non-falsy-string, url: non-falsy-string, subdir: string, basedir: non-falsy-string, baseurl: non-falsy-string, error: false}
      */
     function _wp_upload_dir($time = \null)
     {
