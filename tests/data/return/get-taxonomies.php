@@ -8,14 +8,14 @@ use function get_taxonomies;
 use function PHPStan\Testing\assertType;
 
 // Default output
-assertType('array<int, string>', get_taxonomies([]));
-assertType('array<int, string>', get_taxonomies([], 'names'));
+assertType('array<string, string>', get_taxonomies([]));
+assertType('array<string, string>', get_taxonomies([], 'names'));
 
 // Objects output
-assertType('array<int, WP_Taxonomy>', get_taxonomies([], 'objects'));
+assertType('array<string, WP_Taxonomy>', get_taxonomies([], 'objects'));
 
 // Unexpected output
-assertType('array<int, WP_Taxonomy>', get_taxonomies([], 'Hello'));
+assertType('array<string, WP_Taxonomy>', get_taxonomies([], 'Hello'));
 
-// Unknown string
-assertType('array<int, string|WP_Taxonomy>', get_taxonomies([], Faker::string()));
+// Unknown string output
+assertType('array<string, string|WP_Taxonomy>', get_taxonomies([], Faker::string()));

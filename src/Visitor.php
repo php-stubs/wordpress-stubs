@@ -224,6 +224,9 @@ class Visitor extends NodeVisitor
         /** @var list<\phpDocumentor\Reflection\DocBlock\Tags\Return_> $returnTags */
         $returnTags = $docblock->getTagsByName('return');
 
+        /** @var list<\phpDocumentor\Reflection\DocBlock\Tag> $phpStanReturnTags */
+        $phpStanReturnTags = $docblock->getTagsByName('phpstan-return');
+
         /** @var list<\phpDocumentor\Reflection\DocBlock\Tags\Var_> $varTags */
         $varTags = $docblock->getTagsByName('var');
 
@@ -244,14 +247,16 @@ class Visitor extends NodeVisitor
             $additions[] = $addition;
         }
 
-        foreach ($returnTags as $returnTag) {
-            $addition = self::getAdditionFromReturn($returnTag);
+        if (! count($phpStanReturnTags)) {
+            foreach ($returnTags as $returnTag) {
+                $addition = self::getAdditionFromReturn($returnTag);
 
-            if (! ($addition instanceof WordPressTag)) {
-                continue;
+                if (! ($addition instanceof WordPressTag)) {
+                    continue;
+                }
+
+                $additions[] = $addition;
             }
-
-            $additions[] = $addition;
         }
 
         foreach ($varTags as $varTag) {
@@ -458,7 +463,7 @@ class Visitor extends NodeVisitor
 
         foreach ($parameters as $paramName => $paramType) {
             if (str_starts_with($paramName, '@')) {
-                $format = ( $paramType === '' ) ? '%s' : '%s %s';
+                $format = ($paramType === '') ? '%s' : '%s %s';
                 $additions[] = sprintf(
                     $format,
                     $paramName,
@@ -685,8 +690,8 @@ class Visitor extends NodeVisitor
 
         $tagVariableType = str_replace(
             [
-            'stdClass',
-            '\\object',
+                'stdClass',
+                '\\object',
             ],
             'object',
             $tagVariableType

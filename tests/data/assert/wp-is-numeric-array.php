@@ -31,7 +31,7 @@ if (wp_is_numeric_array($data)) {
     assertType('array<int, mixed>', $data);
 }
 if (! wp_is_numeric_array($data)) {
-    assertType('mixed~(mixed is list ? list : array<int, mixed>)', $data);
+    assertType('mixed~array<int, mixed>', $data);
 }
 
 // Check with indetermined array
@@ -64,7 +64,7 @@ if (! wp_is_numeric_array($data)) {
 // Check with mixed keys constant array
 $data = [1 => 'intKey', 'key' => 'stringKey'];
 if (wp_is_numeric_array($data)) {
-    assertType("non-empty-array<1, 'intKey'|'stringKey'>", $data);
+    assertType("array{1: 'intKey'}", $data);
 }
 if (! wp_is_numeric_array($data)) {
     assertType("array{1: 'intKey', key: 'stringKey'}", $data);

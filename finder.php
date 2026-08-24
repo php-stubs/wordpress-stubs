@@ -52,4 +52,5 @@ return Finder::create()
     //->notPath('wp-includes/theme-compat/footer.php')
     //->notPath('wp-includes/theme-compat/header.php')
     //->notPath('wp-includes/theme-compat/sidebar.php')
+    ->notPath('wp-includes/php-ai-client/third-party/Nyholm/Psr7/Factory/HttplugFactory.php')
     ->sortByName();

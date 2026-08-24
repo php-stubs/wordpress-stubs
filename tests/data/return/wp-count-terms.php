@@ -15,7 +15,7 @@ namespace PhpStubs\WordPress\Core\Tests;
 use function wp_count_terms;
 use function PHPStan\Testing\assertType;
 
-assertType('numeric-string|WP_Error', wp_count_terms());
-assertType('numeric-string|WP_Error', wp_count_terms([]));
-assertType('numeric-string|WP_Error', wp_count_terms(['key' => 'value']));
-assertType('numeric-string|WP_Error', wp_count_terms(Faker::strArray()));
+assertType('0|numeric-string|WP_Error', wp_count_terms());
+assertType('0|numeric-string|WP_Error', wp_count_terms([]));
+assertType('0|numeric-string|WP_Error', wp_count_terms(['key' => 'value']));
+assertType('0|numeric-string|WP_Error', wp_count_terms(Faker::strArray()));

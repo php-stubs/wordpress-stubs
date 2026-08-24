@@ -12,13 +12,13 @@
         "php": "^7.4 || ^8.0",
         "dealerdirect/phpcodesniffer-composer-installer": "^1.0",
         "nikic/php-parser": "^5.5",
-        "php-stubs/generator": "^0.8.6",
+        "php-stubs/generator": "^0.9",
         "phpdocumentor/reflection-docblock": "^6.0",
         "phpstan/phpstan": "^2.1",
         "phpunit/phpunit": "^9.5",
         "symfony/polyfill-php80": "*",
-        "szepeviktor/phpcs-psr-12-neutron-hybrid-ruleset": "^1.1.1",
-        "wp-coding-standards/wpcs": "3.1.0 as 2.3.0"
+        "szepeviktor/phpcs-psr-12-neutron-hybrid-ruleset": "^1.2",
+        "wp-coding-standards/wpcs": "3.4.1 as 2.3.0"
     },
     "conflict": {
         "phpdocumentor/reflection-docblock": "5.6.1"
