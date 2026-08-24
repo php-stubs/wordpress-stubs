@@ -101596,6 +101596,10 @@ namespace {
      * @param string $class_to_add The CSS class to add.
      * @param string $classes      The string to add the CSS class to.
      * @return string The string with the CSS class added.
+     * @phpstan-template T of string
+     * @phpstan-param T $class_to_add
+     * @phpstan-pure
+     * @phpstan-return ($classes is empty ? T : non-empty-string)
      */
     function add_cssclass($class_to_add, $classes)
     {
@@ -130068,6 +130072,7 @@ namespace {
      * @param string $base Base path.
      * @param string $path Path relative to $base.
      * @return string The path with the base or absolute path.
+     * @phpstan-return non-falsy-string
      */
     function path_join($base, $path)
     {
