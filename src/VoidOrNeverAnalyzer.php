@@ -11,6 +11,7 @@ use PhpParser\ConstExprEvaluator;
 use PhpParser\Node;
 use PhpParser\Node\Expr\Exit_;
 use PhpParser\Node\Expr\FuncCall;
+use PhpParser\Node\Expr\New_;
 use PhpParser\Node\Expr\Throw_;
 use PhpParser\Node\Expr\Yield_;
 use PhpParser\Node\Expr\YieldFrom;
@@ -137,11 +138,10 @@ final class VoidOrNeverAnalyzer
             }
         ) instanceof Node;
 
-        if ($hasNonVoidReturn) {
-            return;
-        }
-
-        $node->setAttribute(self::ATTRIBUTE_NAME, new Void_());
+        $node->setAttribute(
+            self::ATTRIBUTE_NAME,
+            $hasNonVoidReturn ? null : new Void_()
+        );
     }
 
     /**
@@ -155,7 +155,8 @@ final class VoidOrNeverAnalyzer
             }
 
             if (
-                ! $this->isTopLevelExitOrThrow($stmt)
+                ! $this->isTopLevelExit($stmt)
+                && ! $this->isTopLevelThrow($stmt)
                 && ! $this->isTopLevelNeverFunctionCall($stmt)
             ) {
                 continue;
@@ -166,25 +167,50 @@ final class VoidOrNeverAnalyzer
         }
     }
 
-    private function isTopLevelExitOrThrow(Expression $stmt): bool
+    private function isTopLevelExit(Expression $stmt): bool
     {
-        if (! ($stmt->expr instanceof Exit_ || $stmt->expr instanceof Throw_)) {
+
+        if (! ($stmt->expr instanceof Exit_)) {
             return false;
         }
 
-        if (! ($stmt->expr->expr instanceof String_)) {
+        if ($stmt->expr->expr === null) {
             return true;
         }
 
-        // Skip throw/exit for functions that are meant to be overridden.
-        return ! $this->isMeantToBeOverridden($stmt->expr->expr);
+        return ! $this->isMeantToBeOverridden($stmt);
     }
 
-    private function isMeantToBeOverridden(String_ $message): bool
+    private function isTopLevelThrow(Expression $stmt): bool
     {
-        $message = strtolower($message->value);
-        return str_contains($message, 'override')
-            || str_contains($message, 'overridden');
+        if (! ($stmt->expr instanceof Throw_) || ! ($stmt->expr->expr instanceof New_)) {
+            return false;
+        }
+
+        $args = $stmt->expr->expr->getRawArgs();
+
+        if (count($args) === 0) {
+            return true;
+        }
+
+        return ! $this->isMeantToBeOverridden($stmt);
+    }
+
+    private function isMeantToBeOverridden(Node $node): bool
+    {
+        return $this->nodeFinder->findFirst(
+            $node,
+            static function (Node $node): bool {
+                if (! $node instanceof String_) {
+                    return false;
+                }
+
+                $message = strtolower($node->value);
+
+                return str_contains($message, 'override')
+                    || str_contains($message, 'overridden');
+            }
+        ) instanceof String_;
     }
 
     private function isTopLevelNeverFunctionCall(Expression $stmt): bool
