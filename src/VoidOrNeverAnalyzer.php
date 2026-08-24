@@ -35,7 +35,8 @@ final class VoidOrNeverAnalyzer
     private NodeFinder $nodeFinder;
     private DocBlockFactoryInterface $docBlockFactory;
 
-    public function __construct(NodeFinder $nodeFinder, DocBlockFactoryInterface $docBlockFactory) {
+    public function __construct(NodeFinder $nodeFinder, DocBlockFactoryInterface $docBlockFactory)
+    {
         $this->nodeFinder = $nodeFinder;
         $this->docBlockFactory = $docBlockFactory;
     }
