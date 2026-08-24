@@ -73,6 +73,7 @@ return [
     'apply_filters_ref_array' => [null, 'hook_name' => 'non-empty-string'],
     'apply_filters_deprecated' => [null, 'hook_name' => 'non-empty-string'],
     'backslashit' => [null, '@phpstan-pure' => ''],
+    'block_core_breadcrumbs_create_item' => ['($is_paged is true ? array{label: T, url: string} : array{label: T})', '@phpstan-template T' => 'of string', 'text' => 'T'],
     'block_core_home_link_build_css_colors' => ['array{css_classes: list<string>, inline_styles: string}'],
     'block_core_home_link_build_css_font_sizes' => ['array{css_classes: list<string>, inline_styles: string}'],
     'block_core_navigation_build_css_colors' => ['array{css_classes: list<string>, inline_styles: string, overlay_css_classes: list<string>, overlay_inline_styles: string}'],

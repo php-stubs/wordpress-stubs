@@ -34,3 +34,9 @@ assertType('array{css_classes: list<string>, inline_styles: string}', block_core
 assertType('array{css_classes: list<string>, inline_styles: string}', block_core_navigation_submenu_build_css_font_sizes(Faker::array()));
 assertType('array{css_classes: list<string>, inline_styles: string, overlay_css_classes: list<string>, overlay_inline_styles: string}', block_core_page_list_build_css_colors(Faker::array(), Faker::array()));
 assertType('array{css_classes: list<string>, inline_styles: string}', block_core_page_list_build_css_font_sizes(Faker::array()));
+
+// Breadcrumbs
+assertType('array{label: string, url?: string}', block_core_breadcrumbs_create_item(Faker::string(), Faker::bool()));
+assertType("array{label: 'foo', url?: string}", block_core_breadcrumbs_create_item('foo', Faker::bool()));
+assertType('array{label: string}', block_core_breadcrumbs_create_item(Faker::string(), false));
+assertType('array{label: string, url: string}', block_core_breadcrumbs_create_item(Faker::string(), true));
