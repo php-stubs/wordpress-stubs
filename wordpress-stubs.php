@@ -113440,6 +113440,9 @@ namespace {
      * @param bool   $is_paged   Whether we're on a paginated view.
      *
      * @return array The breadcrumb item data.
+     * @phpstan-template T of string
+     * @phpstan-param T $text
+     * @phpstan-return ($is_paged is true ? array{label: T, url: string} : array{label: T})
      */
     function block_core_breadcrumbs_create_item($text, $is_paged = \false)
     {
