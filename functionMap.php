@@ -180,6 +180,7 @@ return [
     'newblog_notify_siteadmin' => [null, 'deprecated' => "''"],
     'next_posts' => ['($display is true ? void : string)'],
     'paginate_links' => ["(\$args is array{total: int<min, 1>}&array ? void : (\$args is array{type: 'array'}&array ? list<string> : string))"],
+    'path_join' => ['non-falsy-string'],
     'post_type_archive_title' => ['($display is true ? void : string|void)'],
     'prep_atom_text_construct' => ["array{'html'|'text'|'xhtml', string}"],
     'previous_posts' => ['($display is true ? void : string)'],
