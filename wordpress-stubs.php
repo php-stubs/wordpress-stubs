@@ -132616,6 +132616,7 @@ namespace {
      * @param string $base Base path.
      * @param string $path Path relative to $base.
      * @return string The path with the base or absolute path.
+     * @phpstan-return non-falsy-string
      */
     function path_join($base, $path)
     {
