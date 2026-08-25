@@ -103162,6 +103162,10 @@ namespace {
      * @param string $class_to_add The CSS class to add.
      * @param string $classes      The string to add the CSS class to.
      * @return string The string with the CSS class added.
+     * @phpstan-template T of string
+     * @phpstan-param T $class_to_add
+     * @phpstan-pure
+     * @phpstan-return ($classes is empty ? T : non-empty-string)
      */
     function add_cssclass($class_to_add, $classes)
     {
@@ -115492,6 +115496,9 @@ namespace {
      * @param bool   $is_paged   Whether we're on a paginated view.
      *
      * @return array The breadcrumb item data.
+     * @phpstan-template T of string
+     * @phpstan-param T $text
+     * @phpstan-return ($is_paged is true ? array{label: T, url: string} : array{label: T})
      */
     function block_core_breadcrumbs_create_item($text, $is_paged = \false)
     {
@@ -132601,6 +132608,8 @@ namespace {
      *
      * @param string $path File path.
      * @return bool True if path is absolute, false is not absolute.
+     * @phpstan-assert-if-true =non-falsy-string $path
+     * @phpstan-return ($path is non-falsy-string ? bool : false)
      */
     function path_is_absolute($path)
     {
