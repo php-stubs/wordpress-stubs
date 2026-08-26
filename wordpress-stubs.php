@@ -48532,6 +48532,7 @@ namespace {
          *
          * @since 4.6.0
          * @var stdClass $labels
+         * @phpstan-var object{name: string, singular_name: string, add_new: string, add_new_item: string, edit_item: string, new_item: string, view_item: string, view_items: string, search_items: string, not_found: string, not_found_in_trash: string, parent_item_colon: string|null, all_items: string, archives: string, attributes: string, insert_into_item: string, uploaded_to_this_item: string, featured_image: string, set_featured_image: string, remove_featured_image: string, use_featured_image: string, menu_name: string, name_admin_bar: string, filter_items_list: string, filter_by_date: string, items_list_navigation: string, items_list: string, item_published: string, item_published_privately: string, item_reverted_to_draft: string, item_trashed: string, item_scheduled: string, item_updated: string, item_link: string, item_link_description: string, template_name: string}
          */
         public $labels;
         /**
@@ -48796,6 +48797,7 @@ namespace {
          *
          * @since 4.6.0
          * @var stdClass $cap
+         * @phpstan-var object{edit_post: string, read_post: string, delete_post: string, edit_posts: string, edit_others_posts: string, delete_posts: string, publish_posts: string, read_private_posts: string, create_posts: string, read: string, delete_private_posts: string, delete_published_posts: string, delete_others_posts: string, edit_private_posts: string, edit_published_posts: string}
          */
         public $cap;
         /**
@@ -52150,6 +52152,7 @@ namespace {
          * @since 2.0.0
          * @var bool[] Array of key/value pairs where keys represent a capability name and boolean values
          *             represent whether the role has that capability.
+         * @phpstan-var array<string, bool>
          */
         public $capabilities;
         /**
@@ -54557,6 +54560,7 @@ namespace {
          *
          * @since 4.7.0
          * @var stdClass
+         * @phpstan-var object{name: string, singular_name: string, menu_name: string, name_admin_bar: string, search_items: string, popular_items: string|null, all_items: string, parent_item: string|null, parent_item_colon: string|null, name_field_description: string, slug_field_description: string, parent_field_description: string|null, desc_field_description: string, edit_item: string, view_item: string, update_item: string, add_new_item: string, new_item_name: string, template_name: string, separate_items_with_commas: string|null, add_or_remove_items: string|null, choose_from_most_used: string|null, not_found: string, no_terms: string, filter_by_item: string|null, items_list_navigation: string, items_list: string, most_used: string, back_to_items: string, item_link: string, item_link_description: string}
          */
         public $labels;
         /**
@@ -54657,6 +54661,7 @@ namespace {
          *
          * @since 4.7.0
          * @var stdClass
+         * @phpstan-var object{manage_terms: string, edit_terms: string, delete_terms: string, assign_terms: string}
          */
         public $cap;
         /**
@@ -59383,6 +59388,7 @@ namespace {
          * @since 2.0.0
          * @var bool[] Array of key/value pairs where keys represent a capability name
          *             and boolean values represent whether the user has that capability.
+         * @phpstan-var array<string, bool>
          */
         public $caps = array();
         /**
@@ -59405,6 +59411,7 @@ namespace {
          * @since 2.0.0
          * @var bool[] Array of key/value pairs where keys represent a capability name
          *             and boolean values represent whether the user has that capability.
+         * @phpstan-var array<string, bool>
          */
         public $allcaps = array();
         /**

@@ -40,6 +40,38 @@ final class VisitorTest extends TestCase
     }
 
     /**
+     * The `@phpstan-var` tag of the stubs, up to the end of its shape.
+     */
+    private static function phpStanVarTag(string $stubs): string
+    {
+        $position = strpos($stubs, '@phpstan-var');
+        self::assertIsInt($position, $stubs);
+
+        $tag = strstr(substr($stubs, $position), '}', true);
+        self::assertIsString($tag, $stubs);
+
+        return $tag;
+    }
+
+    /**
+     * A function documenting the shape of the object it returns, for the property tests below.
+     */
+    private const REFERENCED_FUNCTION = <<<'PHP'
+        <?php
+        /**
+         * Builds the labels.
+         *
+         * @return object {
+         *     Labels object.
+         *
+         *     @type string      $name   General name.
+         *     @type string|null $parent Only set for hierarchical things.
+         * }
+         */
+        function wpstubs_test_build_labels($thing) { return (object) array(); }
+        PHP;
+
+    /**
      * An existing `@phpstan-return` in the source docblock must be preserved as the only instance.
      */
     public function testHandWrittenPhpStanReturnIsNotDuplicated(): void
@@ -91,5 +123,107 @@ final class VisitorTest extends TestCase
         self::assertSame(1, substr_count($stubs, '@phpstan-return'), $stubs);
         self::assertStringContainsString('name: string', $stubs);
         self::assertStringContainsString('type: string', $stubs);
+    }
+
+    /**
+     * A property pointing at the function that builds its value takes that shape.
+     */
+    public function testPhpStanVarIsInheritedFromReferencedFunction(): void
+    {
+        $code = self::REFERENCED_FUNCTION . <<<'PHP'
+        class WPStubs_Test_Labelled {
+            /**
+             * Labels object for this thing.
+             *
+             * @see wpstubs_test_build_labels()
+             *
+             * @var stdClass
+             */
+            public $labels;
+        }
+        PHP;
+
+        $stubs = self::generateStubs($code);
+
+        $varTag = self::phpStanVarTag($stubs);
+
+        self::assertStringContainsString('@phpstan-var object{', $varTag);
+        self::assertStringContainsString('name: string', $varTag);
+        self::assertStringContainsString('parent: string|null', $varTag);
+    }
+
+    /**
+     * The referenced shape has to fit the type the property is declared as.
+     */
+    public function testPhpStanVarIsNotInheritedForAMismatchingType(): void
+    {
+        $code = self::REFERENCED_FUNCTION . <<<'PHP'
+        class WPStubs_Test_Mismatched {
+            /**
+             * An array cannot take the shape of a returned object.
+             *
+             * @see wpstubs_test_build_labels()
+             *
+             * @var array
+             */
+            public $labels = array();
+        }
+        PHP;
+
+        $stubs = self::generateStubs($code);
+
+        self::assertStringNotContainsString('@phpstan-var', $stubs);
+    }
+
+    /**
+     * A property that documents its own shape keeps it.
+     */
+    public function testPhpStanVarOfThePropertyWins(): void
+    {
+        $code = self::REFERENCED_FUNCTION . <<<'PHP'
+        class WPStubs_Test_Own_Shape {
+            /**
+             * Its own shape wins over the referenced one.
+             *
+             * @see wpstubs_test_build_labels()
+             *
+             * @var stdClass {
+             *     Own shape.
+             *
+             *     @type string $own Own key.
+             * }
+             */
+            public $labels;
+        }
+        PHP;
+
+        $stubs = self::generateStubs($code);
+
+        $varTag = self::phpStanVarTag($stubs);
+
+        self::assertSame(1, substr_count($stubs, '@phpstan-var'), $stubs);
+        self::assertStringContainsString('own: string', $varTag);
+        self::assertStringNotContainsString('parent: string|null', $varTag);
+    }
+
+    /**
+     * A property with no reference is left alone.
+     */
+    public function testPhpStanVarIsNotInheritedWithoutAReference(): void
+    {
+        $code = self::REFERENCED_FUNCTION . <<<'PHP'
+        class WPStubs_Test_Unreferenced {
+            /**
+             * No reference at all.
+             *
+             * @var stdClass
+             */
+            public $labels;
+        }
+        PHP;
+
+        $stubs = self::generateStubs($code);
+
+        self::assertStringNotContainsString('@phpstan-var', $stubs);
     }
 }
