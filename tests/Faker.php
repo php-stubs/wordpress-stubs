@@ -141,4 +141,18 @@ class Faker
     public static function intersection($type1, $type2)
     {
     }
+
+    /**
+     * Fakes a class string.
+     *
+     * @template T
+     * @param T $theClass
+     * @return (T is null ? class-string : class-string<T>)
+     *
+     * @phpcs:disable Generic.CodeAnalysis.UnusedFunctionParameter.Found
+     */
+    public static function classString($theClass = null): string
+    {
+        return self::class;
+    }
 }

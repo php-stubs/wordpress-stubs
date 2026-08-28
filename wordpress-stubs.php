@@ -1102,7 +1102,8 @@ namespace {
          * Media Manager.
          *
          * @since 4.1.0
-         * @phpstan-return never
+         *
+         * @return never
          */
         public function ajax_background_add()
         {
@@ -1130,7 +1131,8 @@ namespace {
         /**
          * @since 3.4.0
          * @deprecated 3.5.0
-         * @phpstan-return never
+         *
+         * @return never
          */
         public function wp_set_background_image()
         {
@@ -1432,7 +1434,8 @@ namespace {
          * new object. Returns JSON-encoded object details.
          *
          * @since 3.9.0
-         * @phpstan-return never
+         *
+         * @return never
          */
         public function ajax_header_crop()
         {
@@ -1445,7 +1448,8 @@ namespace {
          * Media Manager, even if s/he doesn't save that change.
          *
          * @since 3.9.0
-         * @phpstan-return never
+         *
+         * @return never
          */
         public function ajax_header_add()
         {
@@ -1458,7 +1462,8 @@ namespace {
          * choice in the Customizer's Header tool.
          *
          * @since 3.9.0
-         * @phpstan-return never
+         *
+         * @return never
          */
         public function ajax_header_remove()
         {
@@ -3506,27 +3511,31 @@ namespace {
          * The current list of items.
          *
          * @since 3.1.0
-         * @var array
+         *
+         * @var array<int|string, mixed>
          */
         public $items;
         /**
          * Various information about the current table.
          *
          * @since 3.1.0
-         * @var array
+         *
+         * @var array<string, mixed>
          */
         protected $_args;
         /**
          * Various information needed for displaying the pagination.
          *
          * @since 3.1.0
-         * @var array
+         *
+         * @var array<string, mixed>
          */
         protected $_pagination_args = array();
         /**
          * The current screen.
          *
          * @since 3.1.0
+         *
          * @var WP_Screen
          */
         protected $screen;
@@ -3534,26 +3543,32 @@ namespace {
          * The view switcher modes.
          *
          * @since 4.1.0
-         * @var array
+         *
+         * @var array<string, string>
          */
         protected $modes = array();
         /**
-         * Stores the value returned by ::get_column_info().
+         * Stores the value returned by {@see self::get_column_info()}.
          *
-         * @since 4.1.0
-         * @var array|null
+         * @since 4.2.0
+         *
+         * @var array<int, array|string>|null
          */
         protected $_column_headers;
         /**
          * List of private properties made readable for backward compatibility.
          *
-         * @var array
+         * @since 4.2.0
+         *
+         * @var string[]
          */
         protected $compat_fields = array('_args', '_pagination_args', 'screen', '_actions', '_pagination');
         /**
          * List of private/protected methods made readable for backward compatibility.
          *
-         * @var array
+         * @since 4.2.0
+         *
+         * @var string[]
          */
         protected $compat_methods = array('set_pagination_args', 'get_views', 'get_bulk_actions', 'bulk_actions', 'row_actions', 'months_dropdown', 'view_switcher', 'comments_bubble', 'get_items_per_page', 'pagination', 'get_sortable_columns', 'get_column_info', 'get_table_classes', 'display_tablenav', 'extra_tablenav', 'single_row_columns');
         /**
@@ -3562,7 +3577,7 @@ namespace {
          * The child class should call this constructor from its own constructor to override
          * the default $args.
          *
-         * @since 3.1.0
+         * @since 3.2.0
          *
          * @param array|string $args {
          *     Array or string of arguments.
@@ -3696,7 +3711,7 @@ namespace {
         {
         }
         /**
-         * Determines whether the table has items to display or not
+         * Determines whether the table has items to display or not.
          *
          * @since 3.1.0
          *
@@ -3706,7 +3721,7 @@ namespace {
         {
         }
         /**
-         * Message to be displayed when there are no items
+         * Message to be displayed when there are no items.
          *
          * @since 3.1.0
          */
@@ -3853,7 +3868,7 @@ namespace {
          *
          * @since 3.1.0
          *
-         * @param string $current_mode
+         * @param string $current_mode The current view mode slug, e.g. 'list' or 'excerpt'.
          */
         protected function view_switcher($current_mode)
         {
@@ -3996,7 +4011,7 @@ namespace {
          *
          * @since 3.1.0
          *
-         * @param bool $with_id Whether to set the ID attribute or not
+         * @param bool $with_id Whether to set the ID attribute or not. Default true.
          */
         public function print_column_headers($with_id = \true)
         {
@@ -4032,9 +4047,10 @@ namespace {
         {
         }
         /**
-         * Generates the table navigation above or below the table
+         * Generates the table navigation above or below the table.
          *
          * @since 3.1.0
+         *
          * @param string $which The location of the navigation: Either 'top' or 'bottom'.
          * @phpstan-param 'top'|'bottom' $which
          * @phpstan-return void
@@ -4080,16 +4096,43 @@ namespace {
         {
         }
         /**
-         * @param object|array $item
-         * @param string $column_name
+         * Handles an unknown column.
+         *
+         * @since 4.2.0
+         *
+         * @param object|array $item        The current item.
+         * @param string       $column_name Name of the column.
          */
         protected function column_default($item, $column_name)
         {
         }
         /**
-         * @param object|array $item
+         * Handles the checkbox column output.
+         *
+         * @since 4.2.0
+         *
+         * @param object|array $item The current item.
          */
         protected function column_cb($item)
+        {
+        }
+        /**
+         * Returns a clean, human-readable label for the primary column's row header.
+         *
+         * Used as the `aria-label` attribute value on the `<th scope="row">` element,
+         * giving screen readers a concise cell name instead of computing it from
+         * the full cell content (which may include row action links, excerpts, etc.).
+         *
+         * Subclasses should override this method to return the item's primary
+         * identifier (e.g. post title, plugin name, username). Return an empty string
+         * to omit the attribute.
+         *
+         * @since 7.1.0
+         *
+         * @param object|array $item The current item.
+         * @return string The aria-label value, or an empty string.
+         */
+        protected function get_primary_column_aria_label($item)
         {
         }
         /**
@@ -4120,7 +4163,8 @@ namespace {
          * Handles an incoming ajax request (called from admin-ajax.php)
          *
          * @since 3.1.0
-         * @phpstan-return never
+         *
+         * @return never
          */
         public function ajax_response()
         {
@@ -5022,6 +5066,23 @@ namespace {
      * Base WordPress Filesystem class which Filesystem implementations extend.
      *
      * @since 2.5.0
+     *
+     * @phpstan-type FileListing array{
+     *     name: string,
+     *     perms?: string,
+     *     permsn?: string,
+     *     number?: int|string|false,
+     *     owner?: string|int<1, max>|false,
+     *     group?: string|int<1, max>|false,
+     *     size: int|string|false,
+     *     lastmodunix?: int|string|false,
+     *     lastmod?: string|false,
+     *     time: int|string|false,
+     *     type: 'd'|'f'|'l',
+     *     islink?: bool,
+     *     isdir?: bool,
+     *     files?: mixed[]|false, // The mixed[] is actually FileListing[] but PHPStan does not support recursive or self-referencing array shapes.
+     * }
      */
     #[\AllowDynamicProperties]
     class WP_Filesystem_Base
@@ -5037,7 +5098,7 @@ namespace {
          * Cached list of local filepaths to mapped remote filepaths.
          *
          * @since 2.7.0
-         * @var array
+         * @var array<string, string>
          */
         public $cache = array();
         /**
@@ -5052,6 +5113,7 @@ namespace {
          */
         public $errors = \null;
         /**
+         * @var array<string, mixed>
          */
         public $options = array();
         /**
@@ -5059,7 +5121,7 @@ namespace {
          *
          * @since 2.7.0
          *
-         * @return string The location of the remote path.
+         * @return string|false The location of the remote path, or false on failure.
          */
         public function abspath()
         {
@@ -5069,7 +5131,7 @@ namespace {
          *
          * @since 2.7.0
          *
-         * @return string The location of the remote path.
+         * @return string|false The location of the remote path, or false on failure.
          */
         public function wp_content_dir()
         {
@@ -5079,7 +5141,7 @@ namespace {
          *
          * @since 2.7.0
          *
-         * @return string The location of the remote path.
+         * @return string|false The location of the remote path, or false on failure.
          */
         public function wp_plugins_dir()
         {
@@ -5091,7 +5153,7 @@ namespace {
          *
          * @param string|false $theme Optional. The theme stylesheet or template for the directory.
          *                            Default false.
-         * @return string The location of the remote path.
+         * @return string|false The location of the remote path, or false on failure.
          */
         public function wp_themes_dir($theme = \false)
         {
@@ -5101,7 +5163,7 @@ namespace {
          *
          * @since 3.2.0
          *
-         * @return string The location of the remote path.
+         * @return string|false The location of the remote path, or false on failure.
          */
         public function wp_lang_dir()
         {
@@ -5119,7 +5181,7 @@ namespace {
          *
          * @param string $base    Optional. The folder to start searching from. Default '.'.
          * @param bool   $verbose Optional. True to display debug information. Default false.
-         * @return string The location of the remote path.
+         * @return string|false The location of the remote path, or false on failure.
          */
         public function find_base_dir($base = '.', $verbose = \false)
         {
@@ -5137,7 +5199,7 @@ namespace {
          *
          * @param string $base    Optional. The folder to start searching from. Default '.'.
          * @param bool   $verbose Optional. True to display debug information. Default false.
-         * @return string The location of the remote path.
+         * @return string|false The location of the remote path, or false on failure.
          */
         public function get_base_dir($base = '.', $verbose = \false)
         {
@@ -5270,7 +5332,7 @@ namespace {
          * @abstract
          *
          * @param string $file Path to the file.
-         * @return array|false File contents in an array on success, false on failure.
+         * @return string[]|false File contents in an array on success, false on failure.
          */
         public function get_contents_array($file)
         {
@@ -5591,27 +5653,13 @@ namespace {
          *                                             False if not available.
          *         @type string|false     $lastmod     Last modified month (3 letters) and day (without leading 0), or
          *                                             false if not available.
-         *         @type string|false     $time        Last modified time, or false if not available.
+         *         @type int|string|false $time        Last modified time. A Unix timestamp on FTP transports, or false if not available.
          *         @type string           $type        Type of resource. 'f' for file, 'd' for directory, 'l' for link.
          *         @type array|false      $files       If a directory and `$recursive` is true, contains another array of
          *                                             files. False if unable to list directory contents.
          *     }
          * }
-         * @phpstan-return false|array<int|string, array{
-         *   name: string,
-         *   perms: string,
-         *   permsn: string,
-         *   number: int|string|false,
-         *   owner: string|false,
-         *   group: string|false,
-         *   size: int|string|false,
-         *   lastmodunix: int|string|false,
-         *   lastmod: string|false,
-         *   time: string|false,
-         *   type: string,
-         *   files: array|false,
-         * }>
-         * @phpstan-return false|array<string, array{name: string, perms: string, permsn: string, owner: string|false, size: int|string|false, lastmodunix: int|string|false, lastmod: string|false, time: string|false, type: 'f'|'d'|'l', group: string|false, number: int|string|false, files?: array|false}>
+         * @phpstan-return array<string, FileListing>|false
          */
         public function dirlist($path, $include_hidden = \true, $recursive = \false)
         {
@@ -5623,6 +5671,7 @@ namespace {
      * @since 2.5.0
      *
      * @see WP_Filesystem_Base
+     * @phpstan-import-type FileListing from WP_Filesystem_Base
      */
     class WP_Filesystem_Direct extends \WP_Filesystem_Base
     {
@@ -5653,7 +5702,7 @@ namespace {
          * @since 2.5.0
          *
          * @param string $file Path to the file.
-         * @return array|false File contents in an array on success, false on failure.
+         * @return string[]|false File contents in an array on success, false on failure.
          */
         public function get_contents_array($file)
         {
@@ -5742,7 +5791,7 @@ namespace {
          * @since 2.5.0
          *
          * @param string $file Path to the file.
-         * @return string|false Username of the owner on success, false on failure.
+         * @return string|int<1, max>|false Username of the owner on success, or UID of file owner if not available; false on failure.
          */
         public function owner($file)
         {
@@ -5764,7 +5813,7 @@ namespace {
          * @since 2.5.0
          *
          * @param string $file Path to the file.
-         * @return string|false The group on success, false on failure.
+         * @return string|int<1, max>|false Group name on success, or GID of the file's group if not available; false on failure.
          */
         public function group($file)
         {
@@ -5990,21 +6039,7 @@ namespace {
          *                                             files. False if unable to list directory contents.
          *     }
          * }
-         * @phpstan-return false|array<int|string, array{
-         *   name: string,
-         *   perms: string,
-         *   permsn: string,
-         *   number: false,
-         *   owner: string|false,
-         *   group: string|false,
-         *   size: int|string|false,
-         *   lastmodunix: int|string|false,
-         *   lastmod: string|false,
-         *   time: string|false,
-         *   type: string,
-         *   files: array|false,
-         * }>
-         * @phpstan-return false|array<string, array{name: string, perms: string, permsn: string, owner: string|false, size: int|string|false, lastmodunix: int|string|false, lastmod: string|false, time: string|false, type: 'f'|'d'|'l', group: string|false, number: int|string|false, files?: array|false}>
+         * @phpstan-return array<string, FileListing>|false
          */
         public function dirlist($path, $include_hidden = \true, $recursive = \false)
         {
@@ -6016,6 +6051,14 @@ namespace {
      * @since 2.5.0
      *
      * @see WP_Filesystem_Base
+     * @phpstan-type Options array{
+     *     hostname: string,
+     *     username: string,
+     *     password: string,
+     *     port: non-negative-int,
+     *     ssl: bool,
+     * }
+     * @phpstan-import-type FileListing from WP_Filesystem_Base
      */
     class WP_Filesystem_FTPext extends \WP_Filesystem_Base
     {
@@ -6025,14 +6068,35 @@ namespace {
          */
         public $link;
         /**
+         * @since 7.1.0
+         * @var array
+         * @phpstan-var Options
+         */
+        public $options;
+        /**
          * Constructor.
          *
          * @since 2.5.0
          *
-         * @param array $opt
+         * @param array $opt {
+         *     Array of connection options.
+         *
+         *     @type string $hostname        Required. FTP server hostname.
+         *     @type string $username        Required. FTP username.
+         *     @type string $password        Required. FTP password.
+         *     @type int    $port            Optional. FTP server port. Default 21.
+         *     @type string $connection_type Optional. Connection type. Use 'ftps' to enable SSL.
+         * }
+         * @phpstan-param array{
+         *     hostname: non-empty-string,
+         *     username: non-empty-string,
+         *     password: string,
+         *     port?: non-negative-int,
+         *     connection_type?: 'ftps',
+         * }|null $opt
          * @phpstan-return void
          */
-        public function __construct($opt = '')
+        public function __construct($opt = \null)
         {
         }
         /**
@@ -6063,7 +6127,7 @@ namespace {
          * @since 2.5.0
          *
          * @param string $file Path to the file.
-         * @return array|false File contents in an array on success, false on failure.
+         * @return string[]|false File contents in an array on success, false on failure.
          */
         public function get_contents_array($file)
         {
@@ -6124,7 +6188,7 @@ namespace {
          * @since 2.5.0
          *
          * @param string $file Path to the file.
-         * @return string|false Username of the owner on success, false on failure.
+         * @return string|int<1, max>|false Username of the owner on success, false on failure.
          */
         public function owner($file)
         {
@@ -6146,7 +6210,7 @@ namespace {
          * @since 2.5.0
          *
          * @param string $file Path to the file.
-         * @return string|false The group on success, false on failure.
+         * @return string|int<1, max>|false The group on success, false on failure.
          */
         public function group($file)
         {
@@ -6361,20 +6425,7 @@ namespace {
          *     @type array|false  $files       If a directory and `$recursive` is true, contains another array of files.
          *                                     False if unable to list directory contents.
          * }
-         * @phpstan-return string|array{
-         *   name: string,
-         *   perms: string,
-         *   permsn: string,
-         *   number: string|false,
-         *   owner: string|false,
-         *   group: string|false,
-         *   size: string|false,
-         *   lastmodunix: string|false,
-         *   lastmod: string|false,
-         *   time: string|false,
-         *   type: string,
-         *   files: array|false,
-         * }
+         * @phpstan-return FileListing|''
          */
         public function parselisting($line)
         {
@@ -6407,27 +6458,13 @@ namespace {
          *                                             False if not available.
          *         @type string|false     $lastmod     Last modified month (3 letters) and day (without leading 0), or
          *                                             false if not available.
-         *         @type string|false     $time        Last modified time, or false if not available.
+         *         @type int|string|false $time        Last modified time as a Unix timestamp, or false if not available.
          *         @type string           $type        Type of resource. 'f' for file, 'd' for directory, 'l' for link.
          *         @type array|false      $files       If a directory and `$recursive` is true, contains another array of
          *                                             files. False if unable to list directory contents.
          *     }
          * }
-         * @phpstan-return false|array<int|string, array{
-         *   name: string,
-         *   perms: string,
-         *   permsn: string,
-         *   number: int|string|false,
-         *   owner: string|false,
-         *   group: string|false,
-         *   size: int|string|false,
-         *   lastmodunix: int|string|false,
-         *   lastmod: string|false,
-         *   time: string|false,
-         *   type: string,
-         *   files: array|false,
-         * }>
-         * @phpstan-return false|array<string, array{name: string, perms: string, permsn: string, owner: string|false, size: int|string|false, lastmodunix: int|string|false, lastmod: string|false, time: string|false, type: 'f'|'d'|'l', group: string|false, number: int|string|false, files?: array|false}>
+         * @phpstan-return array<string, FileListing>|false
          */
         public function dirlist($path = '.', $include_hidden = \true, $recursive = \false)
         {
@@ -6447,6 +6484,13 @@ namespace {
      * @since 2.5.0
      *
      * @see WP_Filesystem_Base
+     * @phpstan-type Options array{
+     *     hostname: string,
+     *     username: string,
+     *     password: string,
+     *     port: non-negative-int,
+     * }
+     * @phpstan-import-type FileListing from WP_Filesystem_Base
      */
     class WP_Filesystem_ftpsockets extends \WP_Filesystem_Base
     {
@@ -6456,14 +6500,33 @@ namespace {
          */
         public $ftp;
         /**
+         * @since 7.1.0
+         * @var array
+         * @phpstan-var Options
+         */
+        public $options;
+        /**
          * Constructor.
          *
          * @since 2.5.0
          *
-         * @param array $opt
+         * @param array $opt {
+         *     Array of connection options.
+         *
+         *     @type string $hostname Required. FTP server hostname.
+         *     @type string $username Required. FTP username.
+         *     @type string $password Required. FTP password.
+         *     @type int $port Optional. FTP server port. Default 21.
+         * }
+         * @phpstan-param array{
+         *     hostname: non-empty-string,
+         *     username: non-empty-string,
+         *     password: string,
+         *     port?: non-negative-int,
+         * }|null $opt
          * @phpstan-return void
          */
-        public function __construct($opt = '')
+        public function __construct($opt = \null)
         {
         }
         /**
@@ -6494,7 +6557,7 @@ namespace {
          * @since 2.5.0
          *
          * @param string $file Path to the file.
-         * @return array|false File contents in an array on success, false on failure.
+         * @return string[]|false File contents in an array on success, false on failure.
          */
         public function get_contents_array($file)
         {
@@ -6555,7 +6618,7 @@ namespace {
          * @since 2.5.0
          *
          * @param string $file Path to the file.
-         * @return string|false Username of the owner on success, false on failure.
+         * @return string|int<1, max>|false Username of the owner on success, false on failure.
          */
         public function owner($file)
         {
@@ -6577,7 +6640,7 @@ namespace {
          * @since 2.5.0
          *
          * @param string $file Path to the file.
-         * @return string|false The group on success, false on failure.
+         * @return string|int<1, max>|false The group on success, false on failure.
          */
         public function group($file)
         {
@@ -6798,27 +6861,13 @@ namespace {
          *                                             False if not available.
          *         @type string|false     $lastmod     Last modified month (3 letters) and day (without leading 0), or
          *                                             false if not available.
-         *         @type string|false     $time        Last modified time, or false if not available.
+         *         @type int|string|false $time        Last modified time as a Unix timestamp, or false if not available.
          *         @type string           $type        Type of resource. 'f' for file, 'd' for directory, 'l' for link.
          *         @type array|false      $files       If a directory and `$recursive` is true, contains another array of
          *                                             files. False if unable to list directory contents.
          *     }
          * }
-         * @phpstan-return false|array<int|string, array{
-         *   name: string,
-         *   perms: string,
-         *   permsn: string,
-         *   number: int|string|false,
-         *   owner: string|false,
-         *   group: string|false,
-         *   size: int|string|false,
-         *   lastmodunix: int|string|false,
-         *   lastmod: string|false,
-         *   time: string|false,
-         *   type: string,
-         *   files: array|false,
-         * }>
-         * @phpstan-return false|array<string, array{name: string, perms: string, permsn: string, owner: string|false, size: int|string|false, lastmodunix: int|string|false, lastmod: string|false, time: string|false, type: 'f'|'d'|'l', group: string|false, number: int|string|false, files?: array|false}>
+         * @phpstan-return array<string, FileListing>|false
          */
         public function dirlist($path = '.', $include_hidden = \true, $recursive = \false)
         {
@@ -6865,17 +6914,28 @@ namespace {
      *
      * @package WordPress
      * @subpackage Filesystem
+     *
+     * @phpstan-type Options array{
+     *     hostname: string,
+     *     username: string,
+     *     password: string|null,
+     *     port: non-negative-int,
+     *     public_key?: non-empty-string,
+     *     private_key?: non-empty-string,
+     *     hostkey?: array{ hostkey: non-empty-string },
+     * }
+     * @phpstan-import-type FileListing from WP_Filesystem_Base
      */
     class WP_Filesystem_SSH2 extends \WP_Filesystem_Base
     {
         /**
          * @since 2.7.0
-         * @var resource
+         * @var resource|false
          */
         public $link = \false;
         /**
          * @since 2.7.0
-         * @var resource
+         * @var resource|false
          */
         public $sftp_link;
         /**
@@ -6884,14 +6944,37 @@ namespace {
          */
         public $keys = \false;
         /**
+         * @since 7.1.0
+         * @var array
+         * @phpstan-var Options
+         */
+        public $options;
+        /**
          * Constructor.
          *
          * @since 2.7.0
          *
-         * @param array $opt
+         * @param array $opt {
+         *     Array of connection options.
+         *
+         *     @type string $hostname    Required. SSH server hostname.
+         *     @type string $username    Required. SSH username.
+         *     @type int    $port        Optional. SSH server port. Default 22.
+         *     @type string $password    Optional. SSH password. May be empty when using keys.
+         *     @type string $public_key  Optional. Path to public key file for publickey authentication.
+         *     @type string $private_key Optional. Path to private key file for publickey authentication.
+         * }
+         * @phpstan-param array{
+         *     hostname: non-empty-string,
+         *     username: non-empty-string,
+         *     port?: non-negative-int,
+         *     password?: string,
+         *     public_key?: non-empty-string,
+         *     private_key?: non-empty-string,
+         * }|null $opt
          * @phpstan-return void
          */
-        public function __construct($opt = '')
+        public function __construct($opt = \null)
         {
         }
         /**
@@ -6927,6 +7010,8 @@ namespace {
          * @param bool   $returnbool
          * @return bool|string True on success, false on failure. String if the command was executed, `$returnbool`
          *                     is false (default), and data from the resulting stream was retrieved.
+         *
+         * @phpstan-return ( $returnbool is true ? bool : string )
          */
         public function run_command($command, $returnbool = \false)
         {
@@ -6949,7 +7034,7 @@ namespace {
          * @since 2.7.0
          *
          * @param string $file Path to the file.
-         * @return array|false File contents in an array on success, false on failure.
+         * @return string[]|false File contents in an array on success, false on failure.
          */
         public function get_contents_array($file)
         {
@@ -7038,7 +7123,7 @@ namespace {
          * @since 2.7.0
          *
          * @param string $file Path to the file.
-         * @return string|false Username of the owner on success, false on failure.
+         * @return string|int<1, max>|false Username of the owner on success, or UID of file owner if not available; false on failure.
          */
         public function owner($file)
         {
@@ -7049,7 +7134,7 @@ namespace {
          * @since 2.7.0
          *
          * @param string $file Path to the file.
-         * @return string Mode of the file (the last 3 digits).
+         * @return string Mode of the file (the last 3 digits). Empty string on failure.
          */
         public function getchmod($file)
         {
@@ -7060,7 +7145,7 @@ namespace {
          * @since 2.7.0
          *
          * @param string $file Path to the file.
-         * @return string|false The group on success, false on failure.
+         * @return string|int<1, max>|false Group name on success, or GID of the file's group if not available; false on failure.
          */
         public function group($file)
         {
@@ -7286,21 +7371,7 @@ namespace {
          *                                             files. False if unable to list directory contents.
          *     }
          * }
-         * @phpstan-return false|array<int|string, array{
-         *   name: string,
-         *   perms: string,
-         *   permsn: string,
-         *   number: false,
-         *   owner: string|false,
-         *   group: string|false,
-         *   size: int|string|false,
-         *   lastmodunix: int|string|false,
-         *   lastmod: string|false,
-         *   time: string|false,
-         *   type: string,
-         *   files: array|false,
-         * }>
-         * @phpstan-return false|array<string, array{name: string, perms: string, permsn: string, owner: string|false, size: int|string|false, lastmodunix: int|string|false, lastmod: string|false, time: string|false, type: 'f'|'d'|'l', group: string|false, number: int|string|false, files?: array|false}>
+         * @phpstan-return array<string, FileListing>|false
          */
         public function dirlist($path, $include_hidden = \true, $recursive = \false)
         {
@@ -7316,12 +7387,6 @@ namespace {
     #[\AllowDynamicProperties]
     class WP_Importer
     {
-        /**
-         * Class Constructor
-         */
-        public function __construct()
-        {
-        }
         /**
          * Returns array with imported permalinks from WordPress database.
          *
@@ -7358,15 +7423,21 @@ namespace {
         {
         }
         /**
-         * @param int $blog_id
-         * @return int|void
+         * Sets the blog to import to.
+         *
+         * Accepts a numeric blog ID or a URL string. When given a URL,
+         * the blog is looked up by domain and path. On multisite, switches
+         * to the resolved blog. Exits with an error if the blog cannot be found.
+         *
+         * @param int|string $blog_id Blog ID or URL.
+         * @return int Blog ID on success. Exits on failure.
          */
         public function set_blog($blog_id)
         {
         }
         /**
          * @param int $user_id
-         * @return int|void
+         * @return int
          */
         public function set_user($user_id)
         {
@@ -7704,6 +7775,20 @@ namespace {
         protected function handle_row_actions($item, $column_name, $primary)
         {
         }
+        /**
+         * Returns a clean label for the primary (Name) column's row header `aria-label`.
+         *
+         * Provides screen readers with just the link name as the row header name,
+         * preventing them from computing the name from the full cell content.
+         *
+         * @since 7.1.0
+         *
+         * @param object $link The current link object.
+         * @return string The link name.
+         */
+        protected function get_primary_column_aria_label($link)
+        {
+        }
     }
     /**
      * Helper class to be used only by back compat functions.
@@ -7990,6 +8075,20 @@ namespace {
         protected function handle_row_actions($item, $column_name, $primary)
         {
         }
+        /**
+         * Returns a clean label for the primary (File) column's row header `aria-label`.
+         *
+         * Provides screen readers with just the attachment title as the row header
+         * name, preventing them from computing the name from the full cell content.
+         *
+         * @since 7.1.0
+         *
+         * @param WP_Post $post The current WP_Post object.
+         * @return string The attachment title.
+         */
+        protected function get_primary_column_aria_label($post)
+        {
+        }
     }
     /**
      * Core class used to implement displaying sites in a list table for the network admin.
@@ -8243,6 +8342,20 @@ namespace {
          *                if the current column is not the primary column.
          */
         protected function handle_row_actions($item, $column_name, $primary)
+        {
+        }
+        /**
+         * Returns a clean label for the primary (URL) column's row header `aria-label`.
+         *
+         * Provides screen readers with just the site title as the row header name,
+         * preventing them from computing the name from the full cell content.
+         *
+         * @since 7.1.0
+         *
+         * @param array $blog The current site properties array.
+         * @return string The site title, or the site URL (domain + path) if the title is empty.
+         */
+        protected function get_primary_column_aria_label($blog)
         {
         }
     }
@@ -8669,6 +8782,20 @@ namespace {
         protected function handle_row_actions($item, $column_name, $primary)
         {
         }
+        /**
+         * Returns a clean label for the primary (Username) column's row header `aria-label`.
+         *
+         * Provides screen readers with just the user login as the row header name,
+         * preventing them from computing the name from the full cell content.
+         *
+         * @since 7.1.0
+         *
+         * @param WP_User $user The current WP_User object.
+         * @return string The user login.
+         */
+        protected function get_primary_column_aria_label($user)
+        {
+        }
     }
     /**
      * Core class used to implement displaying plugins to install in a list table.
@@ -8742,6 +8869,8 @@ namespace {
         }
         /**
          * Overrides parent views so we can use the filter bar display.
+         *
+         * @global string $tab The current tab.
          */
         public function views()
         {
@@ -8869,7 +8998,7 @@ namespace {
         /**
          * Constructor.
          *
-         * @since 3.1.0
+         * @since 3.2.0
          *
          * @see WP_List_Table::__construct() for more information on default arguments.
          *
@@ -8882,50 +9011,75 @@ namespace {
         {
         }
         /**
-         * @return array
+         * Gets the CSS classes for the list table element.
+         *
+         * @since 3.1.0
+         *
+         * @return string[] Array of CSS classes for the table tag.
          */
         protected function get_table_classes()
         {
         }
         /**
-         * @return bool
+         * Checks whether the current user can activate plugins for this screen.
+         *
+         * @since 3.1.0
+         *
+         * @return bool Whether the current user can activate plugins.
          */
         public function ajax_user_can()
         {
         }
         /**
-         * @global string $status
-         * @global array  $plugins
-         * @global array  $totals
-         * @global int    $page
-         * @global string $orderby
-         * @global string $order
-         * @global string $s
+         * Prepares the list of items for displaying.
+         *
+         * @since 3.1.0
+         *
+         * @global string                                             $status  Current plugin status filter slug.
+         * @global array<string, array<string, array<string, mixed>>> $plugins Array of plugin data arrays grouped by status.
+         * @global array<string, int>                                 $totals  Count of plugins for each status group.
+         * @global int                                                $page    Current page number.
+         * @global string                                             $orderby Column name to sort by.
+         * @global string                                             $order   Sort direction, 'ASC' or 'DESC'.
+         * @global string                                             $s       URL-encoded search term.
          */
         public function prepare_items()
         {
         }
         /**
+         * Callback to filter plugins by a search term.
+         *
+         * @since 3.1.0
+         *
          * @global string $s URL encoded search term.
          *
-         * @param array $plugin
-         * @return bool
+         * @param array<string, mixed> $plugin Plugin data array to check against the search term.
+         * @return bool True if the plugin matches the search term, false otherwise.
          */
         public function _search_callback($plugin)
         {
         }
         /**
-         * @global string $orderby
-         * @global string $order
-         * @param array $plugin_a
-         * @param array $plugin_b
-         * @return int
+         * Callback to sort plugins by a given column.
+         *
+         * @since 3.1.0
+         *
+         * @global string $orderby The column name to sort by.
+         * @global string $order   The sort direction ('ASC' or 'DESC').
+         *
+         * @param array<string, mixed> $plugin_a First plugin data array to compare.
+         * @param array<string, mixed> $plugin_b Second plugin data array to compare.
+         * @return int Negative if $plugin_a sorts before $plugin_b, positive if after, 0 if equal.
          */
         public function _order_callback($plugin_a, $plugin_b)
         {
         }
         /**
-         * @global array $plugins
+         * Message to be displayed when there are no items.
+         *
+         * @since 3.1.0
+         *
+         * @global array<string, array<string, array<string, mixed>>> $plugins Array of plugin data arrays grouped by status.
          */
         public function no_items()
         {
@@ -8943,52 +9097,89 @@ namespace {
         {
         }
         /**
-         * @global string $status
+         * Gets the list of columns for this list table.
          *
-         * @return string[] Array of column titles keyed by their column name.
+         * @since 3.1.0
+         *
+         * @global string $status Current plugin status filter slug.
+         *
+         * @return array<string, string> An associative array of column titles keyed by their column name.
          */
         public function get_columns()
         {
         }
         /**
-         * @return array
+         * Gets the list of sortable columns for this list table.
+         *
+         * @since 3.1.0
+         *
+         * @return array<string, array<int, string|bool>|string> An associative array of sortable columns.
          */
         protected function get_sortable_columns()
         {
         }
         /**
-         * @global array $totals
-         * @global string $status
-         * @return array
+         * Gets an associative array of status filter links for the views area.
+         *
+         * @since 3.1.0
+         *
+         * @global array<string, int> $totals Count of plugins for each status group.
+         * @global string             $status Current plugin status filter slug.
+         *
+         * @return array<string, string> An associative array of views.
          */
         protected function get_views()
         {
         }
         /**
-         * @global string $status
-         * @return array
+         * Gets the available bulk actions for the plugins list table.
+         *
+         * @since 3.1.0
+         *
+         * @global string $status Current plugin status filter slug.
+         *
+         * @return array<string, string> An associative array of bulk actions.
          */
         protected function get_bulk_actions()
         {
         }
         /**
-         * @global string $status
-         * @param string $which
+         * Displays the bulk actions dropdown.
+         *
+         * @since 3.1.0
+         *
+         * @global string $status Current plugin status filter slug.
+         *
+         * @param string $which The location of the bulk actions: Either 'top' or 'bottom'.
+         *                      This is designated as optional for backward compatibility.
+         * @phpstan-param 'top'|'bottom' $which
          * @phpstan-return void
          */
         public function bulk_actions($which = '')
         {
         }
         /**
-         * @global string $status
-         * @param string $which
+         * Displays extra table navigation for the plugins list table.
+         *
+         * @since 3.1.0
+         *
+         * @global string $status Current plugin status filter slug.
+         *
+         * @param string $which The location: 'top' or 'bottom'.
+         * @phpstan-param 'top'|'bottom' $which
          * @phpstan-return void
          */
         protected function extra_tablenav($which)
         {
         }
         /**
-         * @return string
+         * Gets the current action selected from the bulk actions dropdown.
+         *
+         * Also handles the 'clear-recent-list' action from the Recently Active plugins screen.
+         *
+         * @since 3.1.0
+         *
+         * @return string|false The action name. False if no action was selected.
          */
         public function current_action()
         {
@@ -8998,19 +9189,24 @@ namespace {
          *
          * @since 3.1.0
          *
-         * @global string $status
+         * @global string $status Current plugin status filter slug.
          * @phpstan-return void
          */
         public function display_rows()
         {
         }
         /**
-         * @global string $status
-         * @global int $page
-         * @global string $s
-         * @global array $totals
+         * Generates the markup for a single plugin row.
          *
-         * @param array $item
+         * @since 3.1.0
+         *
+         * @global string             $status Current plugin status filter slug.
+         * @global int                $page   Current page number.
+         * @global string             $s      URL-encoded search term.
+         * @global array<string, int> $totals Count of plugins for each status group.
+         *
+         * @param array $item The current item. An array containing the plugin file path and plugin data.
+         * @phpstan-param array{string, array<string, mixed>} $item
          */
         public function single_row($item)
         {
@@ -9296,10 +9492,27 @@ namespace {
         {
         }
         /**
+         * Gets a trimmed excerpt to display in place of a missing post title.
+         *
+         * Only returns text in the Compact list view for posts that have no title,
+         * do not require a password, and that the current user is allowed to read.
+         *
+         * @since 7.1.0
+         *
+         * @global string $mode List table view mode.
+         *
+         * @param WP_Post $post The current WP_Post object.
+         * @return string The escaped, trimmed excerpt, or an empty string.
+         */
+        protected function get_no_title_excerpt($post)
+        {
+        }
+        /**
          * Handles the checkbox column output.
          *
          * @since 4.3.0
          * @since 5.9.0 Renamed `$post` to `$item` to match parent class for PHP 8 named parameter support.
+         * @since 7.1.0 Includes a trimmed excerpt for untitled posts in Compact view.
          *
          * @param WP_Post $item The current WP_Post object.
          */
@@ -9318,9 +9531,25 @@ namespace {
         {
         }
         /**
+         * Returns a clean label for the primary (title) column's row header `aria-label`.
+         *
+         * Provides screen readers with just the post title as the row header name,
+         * preventing them from computing the name from the full cell content
+         * (which includes row action links, post states, and possibly an excerpt).
+         *
+         * @since 7.1.0
+         *
+         * @param WP_Post $item The current post object.
+         * @return string The post title, or 'no title' if no title.
+         */
+        protected function get_primary_column_aria_label($item)
+        {
+        }
+        /**
          * Handles the title column output.
          *
          * @since 4.3.0
+         * @since 7.1.0 Includes a trimmed excerpt for untitled posts in Compact view.
          *
          * @global string $mode List table view mode.
          *
@@ -9556,7 +9785,7 @@ namespace {
          * @since 4.9.6
          *
          * @param WP_User_Request $item Item being shown.
-         * @return string|void Status column markup. Returns a string if no status is found,
+         * @return string|null Status column markup. Returns a string if no status is found,
          *                     otherwise it displays the markup.
          */
         public function column_status($item)
@@ -9680,6 +9909,20 @@ namespace {
         public function column_next_steps($item)
         {
         }
+        /**
+         * Returns a clean label for the primary (Requester) column's row header `aria-label`.
+         *
+         * Provides screen readers with just the item email as the row header name,
+         * preventing them from computing the name from the full cell content.
+         *
+         * @since 7.1.0
+         *
+         * @param WP_User_Request $item Item being shown.
+         * @return string The user request item email.
+         */
+        protected function get_primary_column_aria_label($item)
+        {
+        }
     }
     /**
      * WP_Privacy_Data_Removal_Requests_List_Table class.
@@ -9723,6 +9966,20 @@ namespace {
          * @param WP_User_Request $item Item being shown.
          */
         public function column_next_steps($item)
+        {
+        }
+        /**
+         * Returns a clean label for the primary (Requester) column's row header `aria-label`.
+         *
+         * Provides screen readers with just the item email as the row header name,
+         * preventing them from computing the name from the full cell content.
+         *
+         * @since 7.1.0
+         *
+         * @param WP_User_Request $item Item being shown.
+         * @return string The user request item email.
+         */
+        protected function get_primary_column_aria_label($item)
         {
         }
     }
@@ -9901,7 +10158,7 @@ namespace {
          * have a `$parent_base` of 'edit'.
          *
          * @since 3.3.0
-         * @var string|null
+         * @var ?string
          */
         public $parent_base;
         /**
@@ -9910,7 +10167,7 @@ namespace {
          * Some `$parent_file` values are 'edit.php?post_type=page', 'edit.php', and 'options-general.php'.
          *
          * @since 3.3.0
-         * @var string|null
+         * @var ?string
          */
         public $parent_file;
         /**
@@ -11064,6 +11321,8 @@ namespace {
              * See https://developer.apple.com/library/prerelease/ios/documentation/UserExperience/Conceptual/MobileHIG/IconMatrix.html
              */
             180,
+            // High-density (2x) site icon for the admin bar and post embeds.
+            64,
             // Our regular Favicon.
             32,
         );
@@ -11316,6 +11575,20 @@ namespace {
          * @phpstan-return void
          */
         public function inline_edit()
+        {
+        }
+        /**
+         * Returns a clean label for the primary (Name) column's row header `aria-label`.
+         *
+         * Provides screen readers with just the term name as the row header name,
+         * preventing them from computing the name from the full cell content.
+         *
+         * @since 7.1.0
+         *
+         * @param WP_Term $term Term object.
+         * @return string The term name.
+         */
+        protected function get_primary_column_aria_label($term)
         {
         }
     }
@@ -15620,6 +15893,7 @@ namespace PHPMailer\PHPMailer {
         const ICAL_METHOD_REFRESH = 'REFRESH';
         const ICAL_METHOD_COUNTER = 'COUNTER';
         const ICAL_METHOD_DECLINECOUNTER = 'DECLINECOUNTER';
+        const RFC822_DATE_FORMAT = 'D, j M Y H:i:s O';
         /**
          * Email priority.
          * Options: null (default), 1 = High, 3 = Normal, 5 = low.
@@ -15635,7 +15909,7 @@ namespace PHPMailer\PHPMailer {
          */
         public $CharSet = self::CHARSET_ISO88591;
         /**
-         * The MIME Content-type of the message.
+         * The MIME Content-Type of the message.
          *
          * @var string
          */
@@ -15707,7 +15981,7 @@ namespace PHPMailer\PHPMailer {
          */
         public $Ical = '';
         /**
-         * Value-array of "method" in Contenttype header "text/calendar"
+         * Value-array of "method" in Content-Type header "text/calendar"
          *
          * @var string[]
          */
@@ -16241,7 +16515,7 @@ namespace PHPMailer\PHPMailer {
          *
          * @var string
          */
-        const VERSION = '7.0.2';
+        const VERSION = '7.1.1';
         /**
          * Error severity: message only, continue processing.
          *
@@ -16458,15 +16732,16 @@ namespace PHPMailer\PHPMailer {
         /**
          * Parse and validate a string containing one or more RFC822-style comma-separated email addresses
          * of the form "display name <address>" into an array of name/address pairs.
-         * Uses the imap_rfc822_parse_adrlist function if the IMAP extension is available.
+         * Uses the imap_rfc822_parse_adrlist function if the IMAP extension is available and
+         * the deprecated $useimap argument is truthy.
          * Note that quotes in the name part are removed.
          *
          * @see https://www.andrew.cmu.edu/user/agreen1/testing/mrbs/web/Mail/RFC822.php A more careful implementation
          *
          * @param string $addrstr The address list string
-         * @param null   $useimap Unused. Argument has been deprecated in PHPMailer 6.11.0.
-         *                        Previously this argument determined whether to use
-         *                        the IMAP extension to parse the list and accepted a boolean value.
+         * @param bool|null $useimap Deprecated in PHPMailer 6.11.0.
+         *                           Truthy values request the deprecated IMAP parser
+         *                           and trigger a deprecation warning.
          * @param string $charset The charset to use when decoding the address list string.
          *
          * @return array
@@ -17278,7 +17553,7 @@ namespace PHPMailer\PHPMailer {
         {
         }
         /**
-         * Return an RFC 822 formatted date.
+         * Return the current date and time as an RFC 822 formatted date.
          *
          * @return string
          */
@@ -17732,7 +18007,7 @@ namespace PHPMailer\PHPMailer {
          * @var string
          * @deprecated This constant will be removed in PHPMailer 8.0. Use `PHPMailer::VERSION` instead.
          */
-        const VERSION = '7.0.2';
+        const VERSION = '7.1.1';
         /**
          * Default POP3 port number.
          *
@@ -17912,7 +18187,7 @@ namespace PHPMailer\PHPMailer {
         }
         /**
          * Checks the POP3 server response.
-         * Looks for for +OK or -ERR.
+         * Looks for +OK or -ERR.
          *
          * @param string $string
          *
@@ -17949,6 +18224,16 @@ namespace PHPMailer\PHPMailer {
         protected function catchWarning($errno, $errstr, $errfile, $errline)
         {
         }
+        /**
+         * Strip all control chars from a string.
+         *
+         * @param $string
+         *
+         * @return string
+         */
+        protected static function stripControls($string)
+        {
+        }
     }
     /**
      * PHPMailer RFC821 SMTP email transport class.
@@ -17965,7 +18250,7 @@ namespace PHPMailer\PHPMailer {
          * @var string
          * @deprecated This constant will be removed in PHPMailer 8.0. Use `PHPMailer::VERSION` instead.
          */
-        const VERSION = '7.0.2';
+        const VERSION = '7.1.1';
         /**
          * SMTP line break constant.
          *
@@ -18472,7 +18757,7 @@ namespace PHPMailer\PHPMailer {
          *   3. EHLO has been sent -
          *     $name == 'HELO'|'EHLO': returns the server name
          *     $name == any other string: if extension $name exists, returns True
-         *       or its options (e.g. AUTH mechanisms supported). Otherwise returns False.
+         *       or its options (e.g. AUTH mechanisms supported). Otherwise, returns False.
          *
          * @param string $name Name of SMTP extension or 'HELO'|'EHLO'
          *
@@ -25826,7 +26111,6 @@ namespace SimplePie\HTTP {
         /**
          * Parsed a "Transfer-Encoding: chunked" body
          * @return void
-         * @phpstan-return void
          */
         protected function chunked()
         {
@@ -26043,7 +26327,6 @@ namespace SimplePie {
         }
         /**
          * @return void
-         * @phpstan-return void
          */
         protected function scheme_normalization()
         {
@@ -28422,7 +28705,6 @@ namespace SimplePie {
         /**
          * @param int-mask-of<SimplePie::CONSTRUCT_*> $type
          * @return void
-         * @phpstan-return void
          */
         protected function strip_tag(string $tag, \DOMDocument $document, \DOMXPath $xpath, int $type)
         {
@@ -30125,7 +30407,12 @@ namespace {
          *             @type bool|null $idempotent  Optional. If true, calling the ability repeatedly with the same arguments
          *                                          will have no additional effect on its environment.
          *         }
-         *         @type bool                     $show_in_rest Optional. Whether to expose this ability in the REST API. Default false.
+         *         @type bool                     $public       Optional. Whether the ability is meant to be available
+         *                                                      to clients such as the REST API, MCP, or AI agents.
+         *                                                      Seeds the default for per-channel flags like
+         *                                                      `$show_in_rest`. Defaults to false.
+         *         @type bool                     $show_in_rest Optional. Whether to expose this ability in the REST API.
+         *                                                      Default is the value of `$public` when set, false otherwise.
          *     }
          *     @type string               $ability_class         Optional. Custom class to instantiate instead of WP_Ability.
          * }
@@ -30377,6 +30664,7 @@ namespace {
          *     @type string               $description A description of the ability category.
          *     @type array<string, mixed> $meta        Optional. Additional metadata for the ability category.
          * }
+         * @throws InvalidArgumentException If an argument is invalid.
          */
         public function __construct(string $slug, array $args)
         {
@@ -30458,6 +30746,13 @@ namespace {
          * @var bool
          */
         protected const DEFAULT_SHOW_IN_REST = \false;
+        /**
+         * The default value for the `public` meta.
+         *
+         * @since 7.1.0
+         * @var bool
+         */
+        protected const DEFAULT_PUBLIC = \false;
         /**
          * The default ability annotations.
          * They are not guaranteed to provide a faithful description of ability behavior.
@@ -30580,7 +30875,12 @@ namespace {
          *             @type bool|null $idempotent  Optional. If true, calling the ability repeatedly with the same arguments
          *                                          will have no additional effect on its environment.
          *         }
-         *         @type bool                     $show_in_rest Optional. Whether to expose this ability in the REST API. Default false.
+         *         @type bool                     $public       Optional. Whether the ability is meant to be available
+         *                                                      to clients such as the REST API, MCP, or AI agents.
+         *                                                      Seeds the default for per-channel flags like
+         *                                                      `$show_in_rest`. Defaults to false.
+         *         @type bool                     $show_in_rest Optional. Whether to expose this ability in the REST API.
+         *                                                      Default is the value of `$public` when set, false otherwise.
          *     }
          * }
          */
@@ -30622,7 +30922,12 @@ namespace {
          *             @type bool|null $idempotent  Optional. If true, calling the ability repeatedly with the same arguments
          *                                          will have no additional effect on its environment.
          *         }
-         *         @type bool                     $show_in_rest Optional. Whether to expose this ability in the REST API. Default false.
+         *         @type bool                     $public       Optional. Whether the ability is meant to be available
+         *                                                      to clients such as the REST API, MCP, or AI agents.
+         *                                                      Seeds the default for per-channel flags like
+         *                                                      `$show_in_rest`. Defaults to false.
+         *         @type bool                     $show_in_rest Optional. Whether to expose this ability in the REST API.
+         *                                                      Default is the value of `$public` when set, false otherwise.
          *     }
          * }
          * @return array<string, mixed> {
@@ -30650,7 +30955,10 @@ namespace {
          *             @type bool|null $idempotent  If true, calling the ability repeatedly with the same arguments
          *                                          will have no additional effect on its environment.
          *         }
-         *         @type bool                     $show_in_rest Whether to expose this ability in the REST API. Default false.
+         *         @type bool                     $public       Whether the ability is meant to be available to clients
+         *                                                      such as the REST API, MCP, or AI agents. Defaults to
+         *                                                      false.
+         *         @type bool                     $show_in_rest Whether to expose this ability in the REST API.
          *     }
          * }
          * @throws InvalidArgumentException if an argument is invalid.
@@ -30748,10 +31056,14 @@ namespace {
          * the value of that key. If the input schema does not define a `default`, or if the input schema is empty,
          * this method returns null. If input is provided, it is returned as-is.
          *
+         * The {@see 'wp_ability_normalize_input'} filter fires after the built-in default-value handling,
+         * allowing plugins to transform the result.
+         *
          * @since 6.9.0
+         * @since 7.1.0 Added the `wp_ability_normalize_input` filter.
          *
          * @param mixed $input Optional. The raw input provided for the ability. Default `null`.
-         * @return mixed The same input, or the default from schema, or `null` if default not set.
+         * @return mixed The normalized input, or a `WP_Error` if a filter returned one.
          */
         public function normalize_input($input = \null)
         {
@@ -30785,7 +31097,11 @@ namespace {
          * Please note that input is not automatically validated against the input schema.
          * Use `validate_input()` method to validate input before calling this method if needed.
          *
+         * The {@see 'wp_ability_permission_result'} filter fires after the registered
+         * `permission_callback` returns, allowing plugins to override the result.
+         *
          * @since 6.9.0
+         * @since 7.1.0 Added the `wp_ability_permission_result` filter.
          *
          * @see validate_input()
          *
@@ -30798,7 +31114,11 @@ namespace {
         /**
          * Executes the ability callback.
          *
+         * The {@see 'wp_ability_execute_result'} filter fires before this method returns, allowing
+         * plugins to transform the result produced by the registered `execute_callback`.
+         *
          * @since 6.9.0
+         * @since 7.1.0 Added the `wp_ability_execute_result` filter.
          *
          * @param mixed $input Optional. The input data for the ability. Default `null`.
          * @return mixed|WP_Error The result of the ability execution, or WP_Error on failure.
@@ -30822,6 +31142,8 @@ namespace {
          * Before returning the return value, it also validates the output.
          *
          * @since 6.9.0
+         * @since 7.1.0 Added the `wp_ability_invoked` action.
+         * @since 7.1.0 Added the `wp_pre_execute_ability` filter.
          *
          * @param mixed $input Optional. The input data for the ability. Default `null`.
          * @return mixed|WP_Error The result of the ability execution, or WP_Error on failure.
@@ -32662,7 +32984,7 @@ namespace {
          * @since 3.3.0
          *
          * @param string $id
-         * @return object|void Node.
+         * @return object|null Node.
          */
         final public function get_node($id)
         {
@@ -32671,7 +32993,7 @@ namespace {
          * @since 3.3.0
          *
          * @param string $id
-         * @return object|void
+         * @return object|null
          */
         final protected function _get_node($id)
         {
@@ -32679,7 +33001,7 @@ namespace {
         /**
          * @since 3.3.0
          *
-         * @return array|void
+         * @return array|null
          */
         final public function get_nodes()
         {
@@ -32687,7 +33009,7 @@ namespace {
         /**
          * @since 3.3.0
          *
-         * @return array|void
+         * @return array|null
          */
         final protected function _get_nodes()
         {
@@ -32743,7 +33065,7 @@ namespace {
         /**
          * @since 3.3.0
          *
-         * @return object|void
+         * @return object|null
          */
         final protected function _bind()
         {
@@ -32889,6 +33211,8 @@ namespace {
          * Sets the content type header to text/xml.
          *
          * @since 2.1.0
+         *
+         * @return never
          */
         public function send()
         {
@@ -35342,6 +35666,9 @@ namespace {
      * @since 5.6.0
      *
      * @access private
+     *
+     * @phpstan-type ApplyCallback callable( WP_Block_Type, array<string, mixed> ): array<string, mixed>
+     * @phpstan-type RegisterCallback callable( WP_Block_Type ): void
      */
     #[\AllowDynamicProperties]
     class WP_Block_Supports
@@ -35350,7 +35677,8 @@ namespace {
          * Tracks the current block to be rendered.
          *
          * @since 5.6.0
-         * @var array
+         * @var array|null
+         * @phpstan-var array<string, mixed>|null
          */
         public static $block_to_render = \null;
         /**
@@ -35369,6 +35697,8 @@ namespace {
          * Initializes the block supports. It registers the block supports block attributes.
          *
          * @since 5.6.0
+         *
+         * @return void
          */
         public static function init()
         {
@@ -35382,6 +35712,13 @@ namespace {
          *
          * @param string $block_support_name   Block support name.
          * @param array  $block_support_config Array containing the properties of the block support.
+         *
+         * @phpstan-param array{
+         *     apply?: ApplyCallback,
+         *     register_attribute?: RegisterCallback,
+         * } $block_support_config
+         *
+         * @return void
          */
         public function register($block_support_name, $block_support_config)
         {
@@ -35537,6 +35874,13 @@ namespace {
          * @var string|null
          */
         public $modified;
+        /**
+         * Date.
+         *
+         * @since 7.1.0
+         * @var string|null
+         */
+        public $date;
     }
     /**
      * Core class used for interacting with templates.
@@ -36076,8 +36420,8 @@ namespace {
          *
          * @param string $name Deprecated property name.
          *
-         * @return string|string[]|null|void The value read from the new property if the first item in the array provided,
-         *                                   null when value not found, or void when unknown property name provided.
+         * @return string|string[]|null The value read from the new property if the first item in the array provided,
+         *                              null when value not found or when unknown property name provided.
          */
         public function __get($name)
         {
@@ -36385,6 +36729,7 @@ namespace {
          *
          * @since 5.5.0
          * @since 6.5.0 Added block bindings processing.
+         * @since 7.1.0 Preserve inner blocks when binding a rich text attribute.
          *
          * @global WP_Post $post Global post object.
          *
@@ -36494,8 +36839,11 @@ namespace {
         /**
          * List of comments located by the query.
          *
+         * Null until a query has been run.
+         *
          * @since 4.0.0
-         * @var int[]|WP_Comment[]
+         * @var int[]|WP_Comment[]|null
+         * @phpstan-var non-negative-int[]|array<int, WP_Comment>|null
          */
         public $comments;
         /**
@@ -36503,6 +36851,7 @@ namespace {
          *
          * @since 4.4.0
          * @var int
+         * @phpstan-var non-negative-int
          */
         public $found_comments = 0;
         /**
@@ -36510,6 +36859,7 @@ namespace {
          *
          * @since 4.4.0
          * @var int
+         * @phpstan-var non-negative-int
          */
         public $max_num_pages = 0;
         /**
@@ -36786,7 +37136,8 @@ namespace {
          * @since 4.2.0 Moved parsing to WP_Comment_Query::parse_query().
          *
          * @param string|array $query Array or URL query string of parameters.
-         * @return array|int List of comments, or number of comments when 'count' is passed as a query var.
+         * @return WP_Comment[]|int[]|int List of comments, or number of comments when 'count' is passed as a query var.
+         * @phpstan-return array<int, WP_Comment>|non-negative-int[]|non-negative-int
          */
         public function query($query)
         {
@@ -36799,6 +37150,7 @@ namespace {
          * @global wpdb $wpdb WordPress database abstraction object.
          *
          * @return int|int[]|WP_Comment[] List of comments or number of found comments if `$count` argument is true.
+         * @phpstan-return array<int, WP_Comment>|non-negative-int[]|non-negative-int
          */
         public function get_comments()
         {
@@ -36812,6 +37164,7 @@ namespace {
          * @global wpdb $wpdb WordPress database abstraction object.
          *
          * @return int|array A single count of comment IDs if a count query. An array of comment IDs if a full query.
+         * @phpstan-return non-negative-int|list<non-negative-int>
          */
         protected function get_comment_ids()
         {
@@ -36872,7 +37225,52 @@ namespace {
     /**
      * Core class used to organize comments as instantiated objects with defined members.
      *
+     * The `@property-read` fields below are not stored on the comment. They are proxied to the
+     * comment's post by {@see WP_Comment::__get()}, and are null when the comment is not attached
+     * to a post or when that post no longer exists.
+     *
      * @since 4.4.0
+     *
+     * @property-read numeric-string|''|null $post_author
+     * @property-read string|null            $post_date
+     * @property-read string|null            $post_date_gmt
+     * @property-read string|null            $post_content
+     * @property-read string|null            $post_title
+     * @property-read string|null            $post_excerpt
+     * @property-read non-empty-string|null  $post_status
+     * @property-read non-empty-string|null  $comment_status
+     * @property-read non-empty-string|null  $ping_status
+     * @property-read string|null            $post_name
+     * @property-read string|null            $to_ping
+     * @property-read string|null            $pinged
+     * @property-read string|null            $post_modified
+     * @property-read string|null            $post_modified_gmt
+     * @property-read string|null            $post_content_filtered
+     * @property-read non-negative-int|null  $post_parent
+     * @property-read string|null            $guid
+     * @property-read int|null               $menu_order
+     * @property-read non-empty-string|null  $post_type
+     * @property-read string|null            $post_mime_type
+     * @property-read numeric-string|null    $comment_count
+     *
+     * @phpstan-type Data_Array array{
+     *     comment_ID: numeric-string,
+     *     comment_post_ID: numeric-string,
+     *     comment_author: string,
+     *     comment_author_email: string,
+     *     comment_author_url: string,
+     *     comment_author_IP: string,
+     *     comment_date: non-empty-string,
+     *     comment_date_gmt: non-empty-string,
+     *     comment_content: string,
+     *     comment_karma: numeric-string,
+     *     comment_approved: non-empty-string,
+     *     comment_agent: string,
+     *     comment_type: string,
+     *     comment_parent: numeric-string,
+     *     user_id: numeric-string,
+     *     ...
+     * }
      */
     #[\AllowDynamicProperties]
     final class WP_Comment
@@ -36884,6 +37282,7 @@ namespace {
          *
          * @since 4.4.0
          * @var string
+         * @phpstan-var numeric-string
          */
         public $comment_ID;
         /**
@@ -36893,6 +37292,7 @@ namespace {
          *
          * @since 4.4.0
          * @var string
+         * @phpstan-var numeric-string
          */
         public $comment_post_ID = '0';
         /**
@@ -36928,6 +37328,7 @@ namespace {
          *
          * @since 4.4.0
          * @var string
+         * @phpstan-var non-empty-string
          */
         public $comment_date = '0000-00-00 00:00:00';
         /**
@@ -36935,6 +37336,7 @@ namespace {
          *
          * @since 4.4.0
          * @var string
+         * @phpstan-var non-empty-string
          */
         public $comment_date_gmt = '0000-00-00 00:00:00';
         /**
@@ -36951,13 +37353,18 @@ namespace {
          *
          * @since 4.4.0
          * @var string
+         * @phpstan-var numeric-string
          */
         public $comment_karma = '0';
         /**
          * Comment approval status.
          *
+         * The values used in core are '0' (unapproved), '1' (approved), 'spam', 'trash',
+         * and 'post-trashed' (set for every comment on a post that is moved to the trash).
+         *
          * @since 4.4.0
          * @var string
+         * @phpstan-var non-empty-string
          */
         public $comment_approved = '1';
         /**
@@ -36969,6 +37376,13 @@ namespace {
         public $comment_agent = '';
         /**
          * Comment type.
+         *
+         * The values used in core are 'comment', 'pingback', 'trackback', and 'note'. Custom
+         * comment types are possible.
+         *
+         * Comments created before 5.5.0 may store an empty string rather than 'comment', so this
+         * cannot be relied upon to be non-empty. {@see get_comment_type()} normalizes that case
+         * when reading.
          *
          * @since 4.4.0
          * @since 5.5.0 Default value changed to `comment`.
@@ -36982,6 +37396,7 @@ namespace {
          *
          * @since 4.4.0
          * @var string
+         * @phpstan-var numeric-string
          */
         public $comment_parent = '0';
         /**
@@ -36991,6 +37406,7 @@ namespace {
          *
          * @since 4.4.0
          * @var string
+         * @phpstan-var numeric-string
          */
         public $user_id = '0';
         /**
@@ -37001,6 +37417,7 @@ namespace {
          * @global wpdb $wpdb WordPress database abstraction object.
          *
          * @param int $id Comment ID.
+         * @phpstan-param int|numeric-string $id
          * @return WP_Comment|false Comment object, otherwise false.
          */
         public static function get_instance($id)
@@ -37023,18 +37440,25 @@ namespace {
          *
          * @since 4.4.0
          *
-         * @return array Object as array.
+         * @return array<string, mixed> Object as array.
+         * @phpstan-return Data_Array
          */
-        public function to_array()
+        public function to_array(): array
         {
         }
         /**
          * Gets the children of a comment.
          *
          * @since 4.4.0
+         * @since 7.1.0 A `count` or `fields` query now returns its result directly rather than
+         *              erroneously storing it in the comment's children cache.
          *
          * @param array $args {
-         *     Array of arguments used to pass to get_comments() and determine format.
+         *     Array of arguments used to pass to {@see get_comments()} and determine format.
+         *     Any other argument accepted by {@see WP_Comment_Query::__construct()} may also be passed, and is
+         *     forwarded to `get_comments()`. Note that `parent` is always overridden with this comment's ID.
+         *     A `$count` or `$fields` query returns the direct children only, and does not populate the
+         *     comment's cached children, since that cache holds `WP_Comment` objects.
          *
          *     @type string $format        Return value format. 'tree' for a hierarchical tree, 'flat' for a flattened array.
          *                                 Default 'tree'.
@@ -37061,14 +37485,42 @@ namespace {
          *                                 the value of $meta_key, and the array keys of
          *                                 `$meta_query`. Also accepts false, an empty array, or
          *                                 'none' to disable `ORDER BY` clause.
+         *     @type string $fields        Which fields to return. Accepts 'ids' for comment IDs, or an
+         *                                 empty string for full `WP_Comment` objects. Default empty.
+         *     @type bool   $count         Whether to return a comment count rather than comments.
+         *                                 Default false.
+         *     @type string $type          Limit results to comments of a given type, such as 'comment',
+         *                                 'pingback', 'trackback', or 'note'. Accepts 'all' for every
+         *                                 type. Default empty.
+         *     @type int    $number        Maximum number of comments to retrieve. Default empty (no limit).
+         *     @type int    $post_id       Limit results to comments on a given post. Default 0.
+         *     @type string $order         How to order retrieved comments. Accepts 'ASC' or 'DESC'.
+         *                                 Default 'DESC'.
          * }
-         * @return WP_Comment[] Array of `WP_Comment` objects.
+         * @return WP_Comment[]|int[]|int Array of `WP_Comment` objects, an array of comment IDs when
+         *                                `$fields` is 'ids', or the number of children when `$count`
+         *                                is true.
+         *
          * @phpstan-param array{
-         *   format?: string,
-         *   status?: string,
-         *   hierarchical?: string,
-         *   orderby?: string|array,
-         * } $args
+         *                    format?: 'tree'|'flat',
+         *                    status?: 'hold'|'approve'|'all'|string,
+         *                    hierarchical?: 'threaded'|'flat'|false,
+         *                    orderby?: string|string[]|false,
+         *                    fields?: 'ids'|'',
+         *                    count?: bool,
+         *                    type?: string,
+         *                    number?: int,
+         *                    post_id?: int,
+         *                    order?: 'ASC'|'DESC',
+         *                    ...
+         *                } $args
+         * @phpstan-return (
+         *     $args is array{ count: true, ... } ? non-negative-int : (
+         *         $args is array{ fields: 'ids', ... } ? non-negative-int[] : (
+         *             $args is array{ format: 'flat', ... } ? list<WP_Comment> : array<int, WP_Comment>
+         *         )
+         *     )
+         * )
          */
         public function get_children($args = array())
         {
@@ -37082,7 +37534,7 @@ namespace {
          *
          * @param WP_Comment $child Child comment.
          */
-        public function add_child(\WP_Comment $child)
+        public function add_child(\WP_Comment $child): void
         {
         }
         /**
@@ -37106,7 +37558,7 @@ namespace {
          *
          * @param bool $set Whether the comment's children have already been populated.
          */
-        public function populated_children($set)
+        public function populated_children($set): void
         {
         }
         /**
@@ -37115,6 +37567,7 @@ namespace {
          * If `$name` matches a post field, the comment post will be loaded and the post's value checked.
          *
          * @since 4.4.0
+         * @since 7.1.0 Returns false instead of causing a fatal error when the comment's post cannot be found.
          *
          * @param string $name Property to check if set.
          * @return bool Whether the property is set.
@@ -37128,6 +37581,8 @@ namespace {
          * If `$name` matches a post field, the comment post will be loaded and the post's value returned.
          *
          * @since 4.4.0
+         * @since 7.1.0 Returns null instead of the global post's field when the comment is not attached to
+         *              a post, and no longer raises a warning when the comment's post cannot be found.
          *
          * @param string $name Property name.
          * @return mixed
@@ -37162,7 +37617,7 @@ namespace {
      *     logo_url?: non-empty-string,
      *     type: non-empty-string,
      *     authentication: array{
-     *         method: 'api_key'|'none',
+     *         method: 'api_key'|'application_password'|'none',
      *         credentials_url?: non-empty-string,
      *         setting_name?: non-empty-string,
      *         constant_name?: non-empty-string,
@@ -37180,12 +37635,11 @@ namespace {
          * Registers a new connector.
          *
          * Validates the provided arguments and stores the connector in the registry.
-         * For connectors with `api_key` authentication, a `setting_name` can be provided
-         * explicitly. If omitted, one is automatically generated using the pattern
-         * `connectors_{$type}_{$id}_api_key`, with hyphens in the type and ID normalized
-         * to underscores (e.g., connector type `spam_filtering` with ID `my_plugin` produces
-         * `connectors_spam_filtering_my_plugin_api_key`). This setting name is used for the
-         * Settings API registration and REST API exposure.
+         * For connectors with `api_key` or `application_password` authentication, a
+         * `setting_name` can be provided explicitly. When omitted, setting names are
+         * automatically generated using the pattern `connectors_{$type}_{$id}_{$method}`,
+         * with hyphens in the type and ID normalized to underscores. These setting
+         * names are used for Settings API registration and REST API exposure.
          *
          * Registering a connector with an ID that is already registered will trigger a
          * `_doing_it_wrong()` notice and return `null`. To override an existing connector,
@@ -37207,16 +37661,24 @@ namespace {
          *     @type array  $authentication {
          *         Required. Authentication configuration.
          *
-         *         @type string $method          Required. The authentication method: 'api_key' or 'none'.
+         *         @type string $method          Required. The authentication method: 'api_key',
+         *                                       'application_password', or 'none'.
          *         @type string $credentials_url Optional. URL where users can obtain API credentials.
-         *         @type string $setting_name    Optional. The setting name for the API key.
-         *                                       When omitted, auto-generated as
-         *                                       `connectors_{$type}_{$id}_api_key`.
+         *         @type string $setting_name    Optional. The setting name for the API key
+         *                                       or application-password credentials. When
+         *                                       omitted, auto-generated as
+         *                                       `connectors_{$type}_{$id}_api_key` for API
+         *                                       keys and `connectors_{$type}_{$id}_application_password`
+         *                                       for application passwords.
          *                                       Must be a non-empty string when provided.
          *         @type string $constant_name   Optional. PHP constant name for the API key
-         *                                       (e.g. 'ANTHROPIC_API_KEY'). Only checked when provided.
+         *                                       (e.g. 'ANTHROPIC_API_KEY') or for application-password
+         *                                       credentials in `username:password` format. Only checked
+         *                                       when provided.
          *         @type string $env_var_name    Optional. Environment variable name for the API key
-         *                                       (e.g. 'ANTHROPIC_API_KEY'). Only checked when provided.
+         *                                       (e.g. 'ANTHROPIC_API_KEY') or for application-password
+         *                                       credentials in `username:password` format. Only checked
+         *                                       when provided.
          *     }
          *     @type array  $plugin         {
          *         Optional. Plugin data for install/activate UI.
@@ -37237,7 +37699,7 @@ namespace {
          *     logo_url?: non-empty-string,
          *     type: non-empty-string,
          *     authentication: array{
-         *         method: 'api_key'|'none',
+         *         method: 'api_key'|'application_password'|'none',
          *         credentials_url?: non-empty-string,
          *         setting_name?: non-empty-string,
          *         constant_name?: non-empty-string,
@@ -37249,23 +37711,6 @@ namespace {
          *     }
          * } $args
          * @phpstan-return Connector|null
-         * @phpstan-param array{
-         *   name?: string,
-         *   description?: string,
-         *   logo_url?: string,
-         *   type?: string,
-         *   authentication?: array{
-         *     method: string,
-         *     credentials_url?: string,
-         *     setting_name?: string,
-         *     constant_name?: string,
-         *     env_var_name?: string,
-         *   },
-         *   plugin?: array{
-         *     file?: string,
-         *     is_active?: callable,
-         *   },
-         * } $args
          */
         public function register(string $id, array $args): ?array
         {
@@ -38174,7 +38619,6 @@ namespace {
          * Prints JavaScript settings.
          *
          * @since 3.4.0
-         * @phpstan-return void
          */
         public function customize_preview_init()
         {
@@ -38393,6 +38837,8 @@ namespace {
          *
          * @since 3.4.0
          * @since 4.7.0 The semantics of this method have changed to update a changeset, optionally to also change the status and other attributes.
+         *
+         * @return never
          */
         public function save()
         {
@@ -38465,7 +38911,7 @@ namespace {
          *
          * The following re-formulates the logic from `wp_trash_post()` as done in
          * `wp_publish_post()`. The reason for bypassing `wp_trash_post()` is that it
-         * will mutate the the `post_content` and the `post_name` when they should be
+         * will mutate the `post_content` and the `post_name` when they should be
          * untouched.
          *
          * @since 4.9.0
@@ -38483,7 +38929,7 @@ namespace {
          * Handles request to trash a changeset.
          *
          * @since 4.9.0
-         * @phpstan-return void
+         * @phpstan-return never
          */
         public function handle_changeset_trash_request()
         {
@@ -38565,7 +39011,8 @@ namespace {
          * Removes changeset lock when take over request is sent via Ajax.
          *
          * @since 4.9.0
-         * @phpstan-return never
+         *
+         * @return never
          */
         public function handle_override_changeset_lock_request()
         {
@@ -38613,7 +39060,8 @@ namespace {
          * Refreshes nonces for the current preview.
          *
          * @since 4.2.0
-         * @phpstan-return never
+         *
+         * @return never
          */
         public function refresh_nonces()
         {
@@ -38622,7 +39070,8 @@ namespace {
          * Deletes a given auto-draft changeset or the autosave revision for a given changeset or delete changeset lock.
          *
          * @since 4.9.0
-         * @phpstan-return never
+         *
+         * @return never
          */
         public function handle_dismiss_autosave_or_lock_request()
         {
@@ -39146,7 +39595,8 @@ namespace {
          * Loads themes into the theme browsing/installation UI.
          *
          * @since 4.9.0
-         * @phpstan-return never
+         *
+         * @return never
          */
         public function handle_load_themes_request()
         {
@@ -39292,7 +39742,8 @@ namespace {
          * Ajax handler for loading available menu items.
          *
          * @since 4.3.0
-         * @phpstan-return never
+         *
+         * @return never
          */
         public function ajax_load_available_items()
         {
@@ -39315,6 +39766,8 @@ namespace {
          * Ajax handler for searching available menu items.
          *
          * @since 4.3.0
+         *
+         * @return never
          */
         public function ajax_search_available_items()
         {
@@ -39430,6 +39883,8 @@ namespace {
          * Ajax handler for adding a new auto-draft post.
          *
          * @since 4.7.0
+         *
+         * @return never
          */
         public function ajax_insert_auto_draft_post()
         {
@@ -41186,7 +41641,8 @@ namespace {
          * @since 3.9.0
          *
          * @see wp_ajax_save_widget()
-         * @phpstan-return never
+         *
+         * @return never
          */
         public function wp_ajax_update_widget()
         {
@@ -42774,21 +43230,21 @@ namespace {
          * Stores the list of errors.
          *
          * @since 2.1.0
-         * @var array
+         * @var array<int|string, string[]>
          */
         public $errors = array();
         /**
          * Stores the most recently added data for each error code.
          *
          * @since 2.1.0
-         * @var array
+         * @var array<int|string, mixed>
          */
         public $error_data = array();
         /**
          * Stores previously added data added for error codes, oldest-to-newest by code.
          *
          * @since 5.6.0
-         * @var array[]
+         * @var array<int|string, mixed[]>
          */
         protected $additional_data = array();
         /**
@@ -42817,7 +43273,7 @@ namespace {
          *
          * @since 2.1.0
          *
-         * @return array List of error codes, if available.
+         * @return list<int|string> List of error codes, if available.
          */
         public function get_error_codes()
         {
@@ -42888,6 +43344,7 @@ namespace {
          * @param string|int $code    Error code.
          * @param string     $message Error message.
          * @param mixed      $data    Optional. Error data. Default empty string.
+         * @return void
          */
         public function add($code, $message, $data = '')
         {
@@ -42900,6 +43357,7 @@ namespace {
          *
          * @param mixed      $data Error data.
          * @param string|int $code Error code.
+         * @return void
          */
         public function add_data($data, $code = '')
         {
@@ -42924,6 +43382,7 @@ namespace {
          * @since 4.1.0
          *
          * @param string|int $code Error code.
+         * @return void
          */
         public function remove($code)
         {
@@ -42934,6 +43393,7 @@ namespace {
          * @since 5.6.0
          *
          * @param WP_Error $error Error object to merge.
+         * @return void
          */
         public function merge_from(\WP_Error $error)
         {
@@ -42944,6 +43404,7 @@ namespace {
          * @since 5.6.0
          *
          * @param WP_Error $error Error object to export into.
+         * @return void
          */
         public function export_to(\WP_Error $error)
         {
@@ -42955,6 +43416,7 @@ namespace {
          *
          * @param WP_Error $from The WP_Error to copy from.
          * @param WP_Error $to   The WP_Error to copy to.
+         * @return void
          */
         protected static function copy_errors(\WP_Error $from, \WP_Error $to)
         {
@@ -43182,21 +43644,47 @@ namespace {
         }
     }
     /**
+     * Marker object used as a filter's default value when any user value — including
+     * `null`, `false`, or arbitrary objects — must remain distinguishable from the
+     * "no filter modified this" case.
+     *
+     * Each instance is unique by identity. Compare returned values with `===` against
+     * the original sentinel to detect that no filter callback replaced it.
+     *
+     * Filter callbacks that want to pass through without modifying the value should
+     * return the received value unchanged. Returning a freshly constructed
+     * `WP_Filter_Sentinel` is treated as a replacement, not as pass-through.
+     *
+     * @since 7.1.0
+     */
+    final class WP_Filter_Sentinel
+    {
+    }
+    /**
      * Core class used to implement action and filter hook functionality.
      *
      * @since 4.7.0
      *
      * @see Iterator
      * @see ArrayAccess
+     *
+     * @phpstan-type Hook_Callback array{
+     *   function: callable,
+     *   accepted_args: int,
+     * }
+     *
+     * @phpstan-implements Iterator<int, array<string, Hook_Callback>>
+     * @phpstan-implements ArrayAccess<int, array<string, Hook_Callback>>
      */
     #[\AllowDynamicProperties]
     final class WP_Hook implements \Iterator, \ArrayAccess
     {
         /**
-         * Hook callbacks.
+         * Hook callbacks keyed by priority.
          *
          * @since 4.7.0
          * @var array
+         * @phpstan-var array<int, array<string, Hook_Callback>>
          */
         public $callbacks = array();
         /**
@@ -43211,6 +43699,7 @@ namespace {
          *                                and functions with the same priority are executed in the order
          *                                in which they were added to the filter.
          * @param int      $accepted_args The number of arguments the function accepts.
+         * @phpstan-return void
          */
         public function add_filter($hook_name, $callback, $priority, $accepted_args)
         {
@@ -43346,7 +43835,8 @@ namespace {
          * @since 4.7.0
          *
          * @param array $filters Filters to normalize. See documentation above for details.
-         * @return WP_Hook[] Array of normalized filters.
+         * @phpstan-param array<string, WP_Hook|array<int, array<Hook_Callback>>> $filters
+         * @return array<string, WP_Hook> Array of normalized filters keyed by hook name.
          */
         public static function build_preinitialized_hooks($filters)
         {
@@ -43358,7 +43848,7 @@ namespace {
          *
          * @link https://www.php.net/manual/en/arrayaccess.offsetexists.php
          *
-         * @param mixed $offset An offset to check for.
+         * @param int $offset An offset to check for.
          * @return bool True if the offset exists, false otherwise.
          */
         #[\ReturnTypeWillChange]
@@ -43372,8 +43862,9 @@ namespace {
          *
          * @link https://www.php.net/manual/en/arrayaccess.offsetget.php
          *
-         * @param mixed $offset The offset to retrieve.
-         * @return mixed If set, the value at the specified offset, null otherwise.
+         * @param int $offset The offset to retrieve.
+         * @return array|null If set, the value at the specified offset, null otherwise.
+         * @phpstan-return array<string, Hook_Callback>|null
          */
         #[\ReturnTypeWillChange]
         public function offsetGet($offset)
@@ -43386,8 +43877,9 @@ namespace {
          *
          * @link https://www.php.net/manual/en/arrayaccess.offsetset.php
          *
-         * @param mixed $offset The offset to assign the value to.
-         * @param mixed $value The value to set.
+         * @param int|null $offset The offset to assign the value to.
+         * @param array    $value The value to set.
+         * @phpstan-param array<string, Hook_Callback> $value
          */
         #[\ReturnTypeWillChange]
         public function offsetSet($offset, $value)
@@ -43400,7 +43892,7 @@ namespace {
          *
          * @link https://www.php.net/manual/en/arrayaccess.offsetunset.php
          *
-         * @param mixed $offset The offset to unset.
+         * @param int $offset The offset to unset.
          */
         #[\ReturnTypeWillChange]
         public function offsetUnset($offset)
@@ -43413,7 +43905,8 @@ namespace {
          *
          * @link https://www.php.net/manual/en/iterator.current.php
          *
-         * @return array Of callbacks at current priority.
+         * @return array|false Array of callbacks at current priority, false if there are no more elements.
+         * @phpstan-return array<string, Hook_Callback>|false
          */
         #[\ReturnTypeWillChange]
         public function current()
@@ -43426,7 +43919,8 @@ namespace {
          *
          * @link https://www.php.net/manual/en/iterator.next.php
          *
-         * @return array Of callbacks at next priority.
+         * @return array|false Array of callbacks at next priority, false if there are no more elements.
+         * @phpstan-return array<string, Hook_Callback>|false
          */
         #[\ReturnTypeWillChange]
         public function next()
@@ -43439,7 +43933,7 @@ namespace {
          *
          * @link https://www.php.net/manual/en/iterator.key.php
          *
-         * @return mixed Returns current priority on success, or NULL on failure
+         * @return int|null Returns current priority on success, or NULL on failure
          */
         #[\ReturnTypeWillChange]
         public function key()
@@ -44786,6 +45280,110 @@ namespace {
         }
     }
     /**
+     * Core class used for interacting with registered icon collections.
+     *
+     * Icons are always associated with a single collection. Collections act as
+     * a namespace for icons and allow grouping icons coming from different
+     * sources (e.g. core, Font Awesome, Google Material Icons).
+     *
+     * @since 7.1.0
+     */
+    class WP_Icon_Collections_Registry
+    {
+        /**
+         * Registered icon collections array.
+         *
+         * @since 7.1.0
+         * @var array[]
+         */
+        protected $registered_collections = array();
+        /**
+         * Container for the main instance of the class.
+         *
+         * @since 7.1.0
+         * @var WP_Icon_Collections_Registry|null
+         */
+        protected static $instance = \null;
+        /**
+         * Registers an icon collection.
+         *
+         * @since 7.1.0
+         *
+         * @param string $collection_slug       Icon collection slug.
+         * @param array  $collection_properties {
+         *     List of properties for the icon collection.
+         *
+         *     @type string $label       Required. A human-readable label for the icon collection.
+         *     @type string $description Optional. A human-readable description for the icon collection.
+         * }
+         * @return bool True if the collection was registered successfully, false otherwise.
+         * @phpstan-param array{
+         *   label?: string,
+         *   description?: string,
+         * } $collection_properties
+         */
+        public function register($collection_slug, $collection_properties)
+        {
+        }
+        /**
+         * Unregisters an icon collection.
+         *
+         * Any icons registered under the given collection are also unregistered.
+         *
+         * @since 7.1.0
+         *
+         * @param string $collection_slug Icon collection slug.
+         * @return bool True if the collection was unregistered successfully, false otherwise.
+         */
+        public function unregister($collection_slug)
+        {
+        }
+        /**
+         * Retrieves an array containing the properties of a registered icon collection.
+         *
+         * @since 7.1.0
+         *
+         * @param string $collection_slug Icon collection slug.
+         * @return array|null Registered collection properties, or `null` if the collection is not registered.
+         */
+        public function get_registered($collection_slug)
+        {
+        }
+        /**
+         * Retrieves all registered icon collections.
+         *
+         * @since 7.1.0
+         *
+         * @return array[] Array of arrays containing the registered icon collections properties.
+         */
+        public function get_all_registered()
+        {
+        }
+        /**
+         * Checks if an icon collection is registered.
+         *
+         * @since 7.1.0
+         *
+         * @param string|null $collection_slug Icon collection slug.
+         * @return bool True if the icon collection is registered, false otherwise.
+         */
+        public function is_registered($collection_slug)
+        {
+        }
+        /**
+         * Utility method to retrieve the main instance of the class.
+         *
+         * The instance will be created if it does not exist yet.
+         *
+         * @since 7.1.0
+         *
+         * @return WP_Icon_Collections_Registry The main instance.
+         */
+        public static function get_instance()
+        {
+        }
+    }
+    /**
      * Core class used for interacting with registered icons.
      *
      * @since 7.0.0
@@ -44795,12 +45393,14 @@ namespace {
         /**
          * Registered icons array.
          *
+         * @since 7.0.0
          * @var array[]
          */
         protected $registered_icons = array();
         /**
          * Container for the main instance of the class.
          *
+         * @since 7.0.0
          * @var WP_Icons_Registry|null
          */
         protected static $instance = \null;
@@ -44809,13 +45409,11 @@ namespace {
          *
          * WP_Icons_Registry is a singleton class, so keep this protected.
          *
-         * For 7.0, the Icons Registry is closed for third-party icon registry,
-         * serving only a subset of core icons.
+         * Icons are populated via `_wp_register_default_icons()` during the
+         * `init` action. Third-party icons can be registered via
+         * {@see wp_register_icon()} once their collection is registered.
          *
-         * These icons are defined in @wordpress/packages (Gutenberg repository) as
-         * SVG files and as entries in a single manifest file. On init, the
-         * registry is loaded with those icons listed in the manifest.
-         * @phpstan-return void
+         * @since 7.0.0
          */
         protected function __construct()
         {
@@ -44823,24 +45421,40 @@ namespace {
         /**
          * Registers an icon.
          *
-         * @param string $icon_name       Icon name including namespace.
+         * @since 7.0.0
+         * @since 7.1.0 The icon name must be namespaced in the form "collection/icon-name".
+         *
+         * @param string $icon_name       Namespaced icon name in the form "collection/icon-name"
+         *                                (e.g. "core/arrow-left").
          * @param array  $icon_properties {
          *     List of properties for the icon.
          *
-         *     @type string $label    Required. A human-readable label for the icon.
-         *     @type string $content  Optional. SVG markup for the icon.
-         *                            If not provided, the content will be retrieved from the `filePath` if set.
-         *                            If both `content` and `filePath` are not set, the icon will not be registered.
-         *     @type string $filePath Optional. The full path to the file containing the icon content.
+         *     @type string $label     Required. A human-readable label for the icon.
+         *     @type string $content   Optional. SVG markup for the icon.
+         *                             If not provided, the content will be retrieved from the `file_path` if set.
+         *                             If both `content` and `file_path` are not set, the icon will not be registered.
+         *     @type string $file_path Optional. The full path to the file containing the icon content.
          * }
          * @return bool True if the icon was registered with success and false otherwise.
          * @phpstan-param array{
          *   label?: string,
          *   content?: string,
-         *   filePath?: string,
+         *   file_path?: string,
          * } $icon_properties
          */
-        protected function register($icon_name, $icon_properties)
+        public function register($icon_name, $icon_properties)
+        {
+        }
+        /**
+         * Unregisters an icon.
+         *
+         * @since 7.1.0
+         *
+         * @param string $icon_name Namespaced icon name in the form "collection/icon-name"
+         *                          (e.g. "core/arrow-left").
+         * @return bool True if the icon was unregistered successfully, false otherwise.
+         */
+        public function unregister($icon_name)
         {
         }
         /**
@@ -44848,6 +45462,8 @@ namespace {
          *
          * Logic borrowed from twentytwenty.
          * @see twentytwenty_get_theme_svg
+         *
+         * @since 7.0.0
          *
          * @param string $icon_content The icon SVG content to sanitize.
          * @return string The sanitized icon SVG content.
@@ -44858,6 +45474,8 @@ namespace {
         /**
          * Retrieves the content of a registered icon.
          *
+         * @since 7.0.0
+         *
          * @param string $icon_name Icon name including namespace.
          * @return string|null The content of the icon, if found.
          */
@@ -44867,6 +45485,7 @@ namespace {
         /**
          * Retrieves an array containing the properties of a registered icon.
          *
+         * @since 7.0.0
          *
          * @param string $icon_name Icon name including namespace.
          * @return array|null Registered icon properties or `null` if the icon is not registered.
@@ -44877,6 +45496,9 @@ namespace {
         /**
          * Retrieves all registered icons.
          *
+         * @since 7.0.0
+         * @since 7.1.0 Search also matches icon labels.
+         *
          * @param string $search Optional. Search term by which to filter the icons.
          * @return array[] Array of arrays containing the registered icon properties.
          */
@@ -44886,6 +45508,7 @@ namespace {
         /**
          * Checks if an icon is registered.
          *
+         * @since 7.0.0
          *
          * @param string $icon_name Icon name including namespace.
          * @return bool True if the icon is registered, false otherwise.
@@ -44898,6 +45521,7 @@ namespace {
          *
          * The instance will be created if it does not exist yet.
          *
+         * @since 7.0.0
          *
          * @return WP_Icons_Registry The main instance.
          */
@@ -45107,8 +45731,8 @@ namespace {
          *
          * @since 3.5.0
          *
-         * @param int $width
-         * @param int $height
+         * @param int|null $width  Image width.
+         * @param int|null $height Image height.
          * @return true
          */
         protected function update_size($width = \null, $height = \null)
@@ -45293,11 +45917,11 @@ namespace {
          *
          * @since 3.5.0
          *
-         * @param int $width
-         * @param int $height
+         * @param int|null $width  Image width.
+         * @param int|null $height Image height.
          * @return true
          */
-        protected function update_size($width = \false, $height = \false)
+        protected function update_size($width = \null, $height = \null)
         {
         }
         /**
@@ -45621,8 +46245,8 @@ namespace {
          *
          * @since 3.5.0
          *
-         * @param int $width
-         * @param int $height
+         * @param int|null $width  Image width.
+         * @param int|null $height Image height.
          * @return true|WP_Error
          */
         protected function update_size($width = \null, $height = \null)
@@ -47033,28 +47657,35 @@ namespace {
          * SQL query clauses.
          *
          * @since 4.6.0
-         * @var array
+         * @var array{
+         *     select: string,
+         *     from: string,
+         *     where: array<string, string>,
+         *     groupby: string,
+         *     orderby: string,
+         *     limits: string
+         * }
          */
         protected $sql_clauses = array('select' => '', 'from' => '', 'where' => array(), 'groupby' => '', 'orderby' => '', 'limits' => '');
         /**
          * Query vars set by the user.
          *
          * @since 4.6.0
-         * @var array
+         * @var array<string, mixed>
          */
         public $query_vars;
         /**
          * Default values for query vars.
          *
          * @since 4.6.0
-         * @var array
+         * @var array<string, mixed>
          */
         public $query_var_defaults;
         /**
          * List of networks located by the query.
          *
          * @since 4.6.0
-         * @var array
+         * @var WP_Network[]|int[]
          */
         public $networks;
         /**
@@ -47062,6 +47693,7 @@ namespace {
          *
          * @since 4.6.0
          * @var int
+         * @phpstan-var non-negative-int
          */
         public $found_networks = 0;
         /**
@@ -47069,6 +47701,7 @@ namespace {
          *
          * @since 4.6.0
          * @var int
+         * @phpstan-var non-negative-int
          */
         public $max_num_pages = 0;
         /**
@@ -47241,8 +47874,11 @@ namespace {
      *
      * @since 4.4.0
      *
-     * @property int $id
-     * @property int $site_id
+     * @property int    $id
+     * @property string $blog_id
+     * @property int    $site_id
+     *
+     * @phpstan-property numeric-string $blog_id
      */
     #[\AllowDynamicProperties]
     class WP_Network
@@ -47796,7 +48432,10 @@ namespace {
          * A list of oEmbed providers.
          *
          * @since 2.9.0
-         * @var array
+         * @var array<string, array{ 0: string, 1: bool }> An associative array mapping URL patterns to provider data.
+         *                                                 Each entry's value is an array with the provider endpoint URL
+         *                                                 string at index 0 and a boolean at index 1 indicating whether
+         *                                                 the URL pattern (array key) is a regular expression.
          */
         public $providers = array();
         /**
@@ -48398,6 +49037,8 @@ namespace {
          * Checks plugin dependencies after a plugin is installed via AJAX.
          *
          * @since 6.5.0
+         *
+         * @return never
          */
         public static function check_plugin_dependencies_during_ajax()
         {
@@ -48449,7 +49090,7 @@ namespace {
          *
          * @global string $pagenow The filename of the current screen.
          *
-         * @return array|void An array of dependency API data, or void on early exit.
+         * @return array|null An array of dependency API data, or null on early exit.
          */
         protected static function get_dependency_api_data()
         {
@@ -49128,9 +49769,41 @@ namespace {
      *
      * @property string $page_template
      *
-     * @property-read int[]    $ancestors
-     * @property-read int[]    $post_category
-     * @property-read string[] $tags_input
+     * @property-read list<non-negative-int> $ancestors
+     * @property-read list<non-negative-int> $post_category
+     * @property-read list<non-empty-string> $tags_input
+     *
+     * @phpstan-type Data_Array array{
+     *     ID: non-negative-int,
+     *     post_author: numeric-string|'',
+     *     post_date: string,
+     *     post_date_gmt: string,
+     *     post_content: string,
+     *     post_title: string,
+     *     post_excerpt: string,
+     *     post_status: non-empty-string,
+     *     comment_status: non-empty-string,
+     *     ping_status: non-empty-string,
+     *     post_password: string,
+     *     post_name: string,
+     *     to_ping: string,
+     *     pinged: string,
+     *     post_modified: string,
+     *     post_modified_gmt: string,
+     *     post_content_filtered: string,
+     *     post_parent: non-negative-int,
+     *     guid: string,
+     *     menu_order: int,
+     *     post_type: non-empty-string,
+     *     post_mime_type: string,
+     *     comment_count: numeric-string,
+     *     filter: 'raw'|'edit'|'db'|'display'|'attribute'|'js'|'sample'|null,
+     *     ancestors: list<non-negative-int>,
+     *     page_template: string,
+     *     post_category: list<non-negative-int>,
+     *     tags_input: list<non-empty-string>,
+     *     ...
+     * }
      */
     #[\AllowDynamicProperties]
     final class WP_Post
@@ -49140,15 +49813,18 @@ namespace {
          *
          * @since 3.5.0
          * @var int
+         * @phpstan-var non-negative-int
          */
         public $ID;
         /**
          * ID of post author.
          *
-         * A numeric string, for compatibility reasons.
+         * A numeric string, for compatibility reasons. May be an empty string for a
+         * default post that has not yet been assigned an author.
          *
          * @since 3.5.0
          * @var string
+         * @phpstan-var numeric-string|''
          */
         public $post_author = '0';
         /**
@@ -49191,6 +49867,7 @@ namespace {
          *
          * @since 3.5.0
          * @var string
+         * @phpstan-var non-empty-string
          */
         public $post_status = 'publish';
         /**
@@ -49198,6 +49875,7 @@ namespace {
          *
          * @since 3.5.0
          * @var string
+         * @phpstan-var non-empty-string
          */
         public $comment_status = 'open';
         /**
@@ -49205,6 +49883,7 @@ namespace {
          *
          * @since 3.5.0
          * @var string
+         * @phpstan-var non-empty-string
          */
         public $ping_status = 'open';
         /**
@@ -49261,6 +49940,7 @@ namespace {
          *
          * @since 3.5.0
          * @var int
+         * @phpstan-var non-negative-int
          */
         public $post_parent = 0;
         /**
@@ -49282,6 +49962,7 @@ namespace {
          *
          * @since 3.5.0
          * @var string
+         * @phpstan-var non-empty-string
          */
         public $post_type = 'post';
         /**
@@ -49298,6 +49979,7 @@ namespace {
          *
          * @since 3.5.0
          * @var string
+         * @phpstan-var numeric-string
          */
         public $comment_count = '0';
         /**
@@ -49305,8 +49987,11 @@ namespace {
          *
          * Does not correspond to a DB field.
          *
+         * The 'sample' value is set exclusively by {@see get_sample_permalink()} and is read during permalink previewing.
+         *
          * @since 3.5.0
-         * @var string
+         * @var string|null
+         * @phpstan-var 'raw'|'edit'|'db'|'display'|'attribute'|'js'|'sample'|null
          */
         public $filter;
         /**
@@ -49318,6 +50003,8 @@ namespace {
          *
          * @param int $post_id Post ID.
          * @return WP_Post|false Post object, false otherwise.
+         *
+         * @phpstan-param int|numeric-string $post_id
          */
         public static function get_instance($post_id)
         {
@@ -49355,12 +50042,22 @@ namespace {
         {
         }
         /**
-         * {@Missing Summary}
+         * Applies the provided context filter for the current post.
+         *
+         * If the requested filter was already applied, then it returns without any changes.
+         *
+         * If the 'raw' filter is supplied, then a new instance of the post is obtained and this method _may_ return false
+         * in case the underlying post was deleted.
          *
          * @since 3.5.0
          *
          * @param string $filter Filter.
-         * @return WP_Post
+         * @return WP_Post|false
+         *
+         * @phpstan-param 'raw'|'edit'|'db'|'display'|'attribute'|'js' $filter
+         * @phpstan-return (
+         *     $filter is 'raw' ? WP_Post|false : WP_Post
+         * )
          */
         public function filter($filter)
         {
@@ -49370,7 +50067,9 @@ namespace {
          *
          * @since 3.5.0
          *
-         * @return array Object as array.
+         * @return array<string, mixed> Object as array.
+         *
+         * @phpstan-return Data_Array
          */
         public function to_array()
         {
@@ -49734,6 +50433,12 @@ namespace {
          * @var bool
          */
         public $is_favicon = \false;
+        /**
+         * Signifies whether the current query is for a sitemap.
+         *
+         * @since 7.1.0
+         */
+        public bool $is_sitemap = \false;
         /**
          * Signifies whether the current query is for the page_for_posts page.
          *
@@ -50257,7 +50962,11 @@ namespace {
          *
          * @param string|array $query URL query string or array of query arguments.
          * @return WP_Post[]|int[] Array of post objects or post IDs.
-         * @phpstan-return ($query is array ? ($query is array{fields: 'id=>parent'|'ids'}&array ? array<int, int> : array<int, \WP_Post>) : array<int, int>|array<int, \WP_Post>)
+         *
+         * @phpstan-return (
+         *     $query is array{ fields: 'ids', ... } ? int[] : WP_Post[]
+         * )
+         * @phpstan-return ($query is array ? ($query is array{fields: 'id=>parent'|'ids', ...} ? array<int, int> : array<int, \WP_Post>) : array<int, int>|array<int, \WP_Post>)
          */
         public function query($query)
         {
@@ -50621,6 +51330,16 @@ namespace {
          * @return bool Whether the query is for the favicon.ico file.
          */
         public function is_favicon()
+        {
+        }
+        /**
+         * Determines whether the query is for a sitemap.
+         *
+         * @since 7.1.0
+         *
+         * @return bool Whether the query is for a sitemap.
+         */
+        public function is_sitemap(): bool
         {
         }
         /**
@@ -51106,9 +51825,9 @@ namespace {
          * @since 5.2.0
          *
          * @param array $error Error details from `error_get_last()`.
-         * @return true|WP_Error|void True if the error was handled and headers have already been sent.
-         *                            Or the request will exit to try and catch multiple errors at once.
-         *                            WP_Error if an error occurred preventing it from being handled.
+         * @return true|WP_Error True if the error was handled and headers have already been sent.
+         *                       Or the request will exit to try and catch multiple errors at once.
+         *                       WP_Error if an error occurred preventing it from being handled.
          */
         public function handle_error(array $error)
         {
@@ -51223,7 +51942,8 @@ namespace {
          * next request again. Otherwise it will create a redirect loop.
          *
          * @since 5.2.0
-         * @phpstan-return never
+         *
+         * @return never
          */
         protected function redirect_protected()
         {
@@ -52344,7 +53064,7 @@ namespace {
          * @param string                               $display_name Role display name.
          * @param array<string,bool>|array<int,string> $capabilities Capabilities to be added to the role.
          *                                                           Default empty array.
-         * @return WP_Role|void WP_Role object, if the role is added.
+         * @return WP_Role|null WP_Role object, if the role is added.
          */
         public function add_role($role, $display_name, $capabilities = array())
         {
@@ -52907,7 +53627,7 @@ namespace {
          * @param string $handle  The script's registered handle.
          * @param bool   $display Optional. Whether to print the extra script
          *                        instead of just returning it. Default true.
-         * @return bool|string|void Void if no data exists, extra scripts if `$display` is true,
+         * @return bool|string|null Null if no data exists, extra scripts if `$display` is true,
          *                          true otherwise.
          */
         public function print_scripts_l10n($handle, $display = \true)
@@ -52921,7 +53641,7 @@ namespace {
          * @param string $handle  The script's registered handle.
          * @param bool   $display Optional. Whether to print the extra script
          *                        instead of just returning it. Default true.
-         * @return bool|string|void Void if no data exists, extra scripts if `$display` is true,
+         * @return bool|string|null Null if no data exists, extra scripts if `$display` is true,
          *                          true otherwise.
          */
         public function print_extra_script($handle, $display = \true)
@@ -53757,12 +54477,14 @@ namespace {
      *
      * @since 4.5.0
      *
-     * @property int    $id
-     * @property int    $network_id
-     * @property string $blogname
-     * @property string $siteurl
-     * @property int    $post_count
-     * @property string $home
+     * @property int              $id
+     * @property int              $network_id
+     * @property string           $blogname
+     * @property string           $siteurl
+     * @property int|string|false $post_count
+     * @property string           $home
+     *
+     * @phpstan-property int|numeric-string|false $post_count
      */
     #[\AllowDynamicProperties]
     final class WP_Site
@@ -53776,6 +54498,7 @@ namespace {
          *
          * @since 4.5.0
          * @var string
+         * @phpstan-var numeric-string
          */
         public $blog_id;
         /**
@@ -53802,6 +54525,7 @@ namespace {
          *
          * @since 4.5.0
          * @var string
+         * @phpstan-var numeric-string
          */
         public $site_id = '0';
         /**
@@ -53825,6 +54549,7 @@ namespace {
          *
          * @since 4.5.0
          * @var string
+         * @phpstan-var numeric-string
          */
         public $public = '1';
         /**
@@ -53834,6 +54559,7 @@ namespace {
          *
          * @since 4.5.0
          * @var string
+         * @phpstan-var numeric-string
          */
         public $archived = '0';
         /**
@@ -53846,6 +54572,7 @@ namespace {
          *
          * @since 4.5.0
          * @var string
+         * @phpstan-var numeric-string
          */
         public $mature = '0';
         /**
@@ -53855,6 +54582,7 @@ namespace {
          *
          * @since 4.5.0
          * @var string
+         * @phpstan-var numeric-string
          */
         public $spam = '0';
         /**
@@ -53864,6 +54592,7 @@ namespace {
          *
          * @since 4.5.0
          * @var string
+         * @phpstan-var numeric-string
          */
         public $deleted = '0';
         /**
@@ -53873,6 +54602,7 @@ namespace {
          *
          * @since 4.5.0
          * @var string
+         * @phpstan-var numeric-string
          */
         public $lang_id = '0';
         /**
@@ -54003,22 +54733,28 @@ namespace {
          * Checks whether the given speculation rules mode is valid.
          *
          * @since 6.8.0
+         * @since 7.1.0 The $mode param now allows mixed and not just string.
          *
-         * @param string $mode Speculation rules mode.
+         * @param mixed $mode Speculation rules mode.
          * @return bool True if valid, false otherwise.
+         *
+         * @phpstan-assert-if-true 'prefetch'|'prerender' $mode
          */
-        public static function is_valid_mode(string $mode): bool
+        public static function is_valid_mode($mode): bool
         {
         }
         /**
          * Checks whether the given speculation rules eagerness is valid.
          *
          * @since 6.8.0
+         * @since 7.1.0 The $eagerness param now allows mixed and not just string.
          *
-         * @param string $eagerness Speculation rules eagerness.
+         * @param mixed $eagerness Speculation rules eagerness.
          * @return bool True if valid, false otherwise.
+         *
+         * @phpstan-assert-if-true 'conservative'|'moderate'|'eager'|'immediate' $eagerness
          */
-        public static function is_valid_eagerness(string $eagerness): bool
+        public static function is_valid_eagerness($eagerness): bool
         {
         }
         /**
@@ -55157,7 +55893,7 @@ namespace {
          * @param string|array $query Array or URL query string of parameters.
          * @return WP_Term[]|int[]|string[]|string Array of terms, or number of terms as numeric string
          *                                         when 'count' is passed to `$args['fields']`.
-         * @phpstan-return ($query is array ? ($query is array{fields: 'count'}&array ? 0|numeric-string : ($query is array{fields: 'names'|'slugs'}&array ? list<string> : ($query is array{fields: 'id=>name'|'id=>slug'}&array ? array<int, string> : ($query is array{fields: 'id=>parent'}&array ? array<int, int> : ($query is array{fields: 'ids'|'tt_ids'}&array ? list<int> : array<int, \WP_Term>))))) : 0|numeric-string|array<int, int|string|\WP_Term>)
+         * @phpstan-return ($query is array ? ($query is array{fields: 'count', ...} ? 0|numeric-string : ($query is array{fields: 'names'|'slugs', ...} ? list<string> : ($query is array{fields: 'id=>name'|'id=>slug', ...} ? array<int, string> : ($query is array{fields: 'id=>parent', ...} ? array<int, int> : ($query is array{fields: 'ids'|'tt_ids', ...} ? list<int> : array<int, \WP_Term>))))) : 0|numeric-string|array<int, int|string|\WP_Term>)
          */
         public function query($query)
         {
@@ -55954,7 +56690,7 @@ namespace {
         {
         }
         /**
-         * Updates the theme.json with the the given data.
+         * Updates the theme.json with the given data.
          *
          * @since 6.1.0
          *
@@ -56501,9 +57237,10 @@ namespace {
          * @since 6.7.0 Added `background-attachment` property.
          * @since 7.0.0 Added `dimensions.width` and `dimensions.height`.
          *              Added `text-indent` property.
+         * @since 7.1.0 Added `min-width` and `text-shadow`.
          * @var array
          */
-        const PROPERTIES_METADATA = array('aspect-ratio' => array('dimensions', 'aspectRatio'), 'background' => array('color', 'gradient'), 'background-color' => array('color', 'background'), 'background-image' => array('background', 'backgroundImage'), 'background-position' => array('background', 'backgroundPosition'), 'background-repeat' => array('background', 'backgroundRepeat'), 'background-size' => array('background', 'backgroundSize'), 'background-attachment' => array('background', 'backgroundAttachment'), 'border-radius' => array('border', 'radius'), 'border-top-left-radius' => array('border', 'radius', 'topLeft'), 'border-top-right-radius' => array('border', 'radius', 'topRight'), 'border-bottom-left-radius' => array('border', 'radius', 'bottomLeft'), 'border-bottom-right-radius' => array('border', 'radius', 'bottomRight'), 'border-color' => array('border', 'color'), 'border-width' => array('border', 'width'), 'border-style' => array('border', 'style'), 'border-top-color' => array('border', 'top', 'color'), 'border-top-width' => array('border', 'top', 'width'), 'border-top-style' => array('border', 'top', 'style'), 'border-right-color' => array('border', 'right', 'color'), 'border-right-width' => array('border', 'right', 'width'), 'border-right-style' => array('border', 'right', 'style'), 'border-bottom-color' => array('border', 'bottom', 'color'), 'border-bottom-width' => array('border', 'bottom', 'width'), 'border-bottom-style' => array('border', 'bottom', 'style'), 'border-left-color' => array('border', 'left', 'color'), 'border-left-width' => array('border', 'left', 'width'), 'border-left-style' => array('border', 'left', 'style'), 'color' => array('color', 'text'), 'text-align' => array('typography', 'textAlign'), 'column-count' => array('typography', 'textColumns'), 'font-family' => array('typography', 'fontFamily'), 'font-size' => array('typography', 'fontSize'), 'font-style' => array('typography', 'fontStyle'), 'font-weight' => array('typography', 'fontWeight'), 'letter-spacing' => array('typography', 'letterSpacing'), 'line-height' => array('typography', 'lineHeight'), 'margin' => array('spacing', 'margin'), 'margin-top' => array('spacing', 'margin', 'top'), 'margin-right' => array('spacing', 'margin', 'right'), 'margin-bottom' => array('spacing', 'margin', 'bottom'), 'margin-left' => array('spacing', 'margin', 'left'), 'min-height' => array('dimensions', 'minHeight'), 'outline-color' => array('outline', 'color'), 'outline-offset' => array('outline', 'offset'), 'outline-style' => array('outline', 'style'), 'outline-width' => array('outline', 'width'), 'padding' => array('spacing', 'padding'), 'padding-top' => array('spacing', 'padding', 'top'), 'padding-right' => array('spacing', 'padding', 'right'), 'padding-bottom' => array('spacing', 'padding', 'bottom'), 'padding-left' => array('spacing', 'padding', 'left'), '--wp--style--root--padding' => array('spacing', 'padding'), '--wp--style--root--padding-top' => array('spacing', 'padding', 'top'), '--wp--style--root--padding-right' => array('spacing', 'padding', 'right'), '--wp--style--root--padding-bottom' => array('spacing', 'padding', 'bottom'), '--wp--style--root--padding-left' => array('spacing', 'padding', 'left'), 'text-decoration' => array('typography', 'textDecoration'), 'text-transform' => array('typography', 'textTransform'), 'text-indent' => array('typography', 'textIndent'), 'filter' => array('filter', 'duotone'), 'box-shadow' => array('shadow'), 'height' => array('dimensions', 'height'), 'width' => array('dimensions', 'width'), 'writing-mode' => array('typography', 'writingMode'));
+        const PROPERTIES_METADATA = array('aspect-ratio' => array('dimensions', 'aspectRatio'), 'background' => array('color', 'gradient'), 'background-color' => array('color', 'background'), 'background-image' => array('background', 'backgroundImage'), 'background-position' => array('background', 'backgroundPosition'), 'background-repeat' => array('background', 'backgroundRepeat'), 'background-size' => array('background', 'backgroundSize'), 'background-attachment' => array('background', 'backgroundAttachment'), 'border-radius' => array('border', 'radius'), 'border-top-left-radius' => array('border', 'radius', 'topLeft'), 'border-top-right-radius' => array('border', 'radius', 'topRight'), 'border-bottom-left-radius' => array('border', 'radius', 'bottomLeft'), 'border-bottom-right-radius' => array('border', 'radius', 'bottomRight'), 'border-color' => array('border', 'color'), 'border-width' => array('border', 'width'), 'border-style' => array('border', 'style'), 'border-top-color' => array('border', 'top', 'color'), 'border-top-width' => array('border', 'top', 'width'), 'border-top-style' => array('border', 'top', 'style'), 'border-right-color' => array('border', 'right', 'color'), 'border-right-width' => array('border', 'right', 'width'), 'border-right-style' => array('border', 'right', 'style'), 'border-bottom-color' => array('border', 'bottom', 'color'), 'border-bottom-width' => array('border', 'bottom', 'width'), 'border-bottom-style' => array('border', 'bottom', 'style'), 'border-left-color' => array('border', 'left', 'color'), 'border-left-width' => array('border', 'left', 'width'), 'border-left-style' => array('border', 'left', 'style'), 'color' => array('color', 'text'), 'text-align' => array('typography', 'textAlign'), 'column-count' => array('typography', 'textColumns'), 'font-family' => array('typography', 'fontFamily'), 'font-size' => array('typography', 'fontSize'), 'font-style' => array('typography', 'fontStyle'), 'font-weight' => array('typography', 'fontWeight'), 'letter-spacing' => array('typography', 'letterSpacing'), 'line-height' => array('typography', 'lineHeight'), 'margin' => array('spacing', 'margin'), 'margin-top' => array('spacing', 'margin', 'top'), 'margin-right' => array('spacing', 'margin', 'right'), 'margin-bottom' => array('spacing', 'margin', 'bottom'), 'margin-left' => array('spacing', 'margin', 'left'), 'min-height' => array('dimensions', 'minHeight'), 'min-width' => array('dimensions', 'minWidth'), 'outline-color' => array('outline', 'color'), 'outline-offset' => array('outline', 'offset'), 'outline-style' => array('outline', 'style'), 'outline-width' => array('outline', 'width'), 'padding' => array('spacing', 'padding'), 'padding-top' => array('spacing', 'padding', 'top'), 'padding-right' => array('spacing', 'padding', 'right'), 'padding-bottom' => array('spacing', 'padding', 'bottom'), 'padding-left' => array('spacing', 'padding', 'left'), '--wp--style--root--padding' => array('spacing', 'padding'), '--wp--style--root--padding-top' => array('spacing', 'padding', 'top'), '--wp--style--root--padding-right' => array('spacing', 'padding', 'right'), '--wp--style--root--padding-bottom' => array('spacing', 'padding', 'bottom'), '--wp--style--root--padding-left' => array('spacing', 'padding', 'left'), 'text-decoration' => array('typography', 'textDecoration'), 'text-shadow' => array('typography', 'textShadow'), 'text-transform' => array('typography', 'textTransform'), 'text-indent' => array('typography', 'textIndent'), 'filter' => array('filter', 'duotone'), 'box-shadow' => array('shadow'), 'height' => array('dimensions', 'height'), 'width' => array('dimensions', 'width'), 'writing-mode' => array('typography', 'writingMode'));
         /**
          * Indirect metadata for style properties that are not directly output.
          *
@@ -56516,9 +57253,10 @@ namespace {
          *
          * @since 6.2.0
          * @since 6.6.0 Added background-image properties.
+         * @since 7.1.0 Added `background.gradient` to `background-image` paths.
          * @var array
          */
-        const INDIRECT_PROPERTIES_METADATA = array('gap' => array(array('spacing', 'blockGap')), 'column-gap' => array(array('spacing', 'blockGap', 'left')), 'row-gap' => array(array('spacing', 'blockGap', 'top')), 'max-width' => array(array('layout', 'contentSize'), array('layout', 'wideSize')), 'background-image' => array(array('background', 'backgroundImage', 'url')));
+        const INDIRECT_PROPERTIES_METADATA = array('gap' => array(array('spacing', 'blockGap')), 'column-gap' => array(array('spacing', 'blockGap', 'left')), 'row-gap' => array(array('spacing', 'blockGap', 'top')), 'max-width' => array(array('layout', 'contentSize'), array('layout', 'wideSize')), 'background-image' => array(array('background', 'backgroundImage', 'url'), array('background', 'gradient')));
         /**
          * Protected style properties.
          *
@@ -56565,9 +57303,11 @@ namespace {
          * @since 7.0.0 Added type markers to the schema for boolean values.
          *              Added support for `dimensions.width` and `dimensions.height`.
          *              Added support for `typography.textIndent`.
+         * @since 7.1.0 Added `viewport` property.
+         *              Added support for `background.gradient`, `dimensions.minWidth` and `blockVisibility.allowEditing`.
          * @var array
          */
-        const VALID_SETTINGS = array('appearanceTools' => \null, 'useRootPaddingAwareAlignments' => \null, 'background' => array('backgroundImage' => \null, 'backgroundSize' => \null), 'border' => array('color' => \null, 'radius' => \null, 'radiusSizes' => \null, 'style' => \null, 'width' => \null), 'color' => array('background' => \null, 'custom' => \null, 'customDuotone' => \null, 'customGradient' => \null, 'defaultDuotone' => \null, 'defaultGradients' => \null, 'defaultPalette' => \null, 'duotone' => \null, 'gradients' => \null, 'link' => \null, 'heading' => \null, 'button' => \null, 'caption' => \null, 'palette' => \null, 'text' => \null), 'custom' => \null, 'dimensions' => array('aspectRatio' => \null, 'aspectRatios' => \null, 'defaultAspectRatios' => \null, 'dimensionSizes' => \null, 'height' => \null, 'minHeight' => \null, 'width' => \null), 'layout' => array('contentSize' => \null, 'wideSize' => \null, 'allowEditing' => \null, 'allowCustomContentAndWideSize' => \null), 'lightbox' => array('enabled' => \true, 'allowEditing' => \true), 'position' => array('fixed' => \null, 'sticky' => \null), 'spacing' => array('customSpacingSize' => \null, 'defaultSpacingSizes' => \null, 'spacingSizes' => \null, 'spacingScale' => \null, 'blockGap' => \null, 'margin' => \null, 'padding' => \null, 'units' => \null), 'shadow' => array('presets' => \null, 'defaultPresets' => \null), 'typography' => array('fluid' => \null, 'customFontSize' => \null, 'defaultFontSizes' => \null, 'dropCap' => \null, 'fontFamilies' => \null, 'fontSizes' => \null, 'fontStyle' => \null, 'fontWeight' => \null, 'letterSpacing' => \null, 'lineHeight' => \null, 'textAlign' => \null, 'textColumns' => \null, 'textDecoration' => \null, 'textIndent' => \null, 'textTransform' => \null, 'writingMode' => \null));
+        const VALID_SETTINGS = array('appearanceTools' => \null, 'useRootPaddingAwareAlignments' => \null, 'background' => array('backgroundImage' => \null, 'backgroundSize' => \null, 'gradient' => \null), 'border' => array('color' => \null, 'radius' => \null, 'radiusSizes' => \null, 'style' => \null, 'width' => \null), 'color' => array('background' => \null, 'custom' => \null, 'customDuotone' => \null, 'customGradient' => \null, 'defaultDuotone' => \null, 'defaultGradients' => \null, 'defaultPalette' => \null, 'duotone' => \null, 'gradients' => \null, 'link' => \null, 'heading' => \null, 'button' => \null, 'caption' => \null, 'palette' => \null, 'text' => \null), 'custom' => \null, 'dimensions' => array('aspectRatio' => \null, 'aspectRatios' => \null, 'defaultAspectRatios' => \null, 'dimensionSizes' => \null, 'height' => \null, 'minHeight' => \null, 'minWidth' => \null, 'width' => \null), 'layout' => array('contentSize' => \null, 'wideSize' => \null, 'allowEditing' => \null, 'allowCustomContentAndWideSize' => \null), 'lightbox' => array('enabled' => \true, 'allowEditing' => \true), 'position' => array('fixed' => \null, 'sticky' => \null), 'blockVisibility' => array('allowEditing' => \true), 'spacing' => array('customSpacingSize' => \null, 'defaultSpacingSizes' => \null, 'spacingSizes' => \null, 'spacingScale' => \null, 'blockGap' => \null, 'margin' => \null, 'padding' => \null, 'units' => \null), 'shadow' => array('presets' => \null, 'defaultPresets' => \null), 'typography' => array('fluid' => \null, 'customFontSize' => \null, 'defaultFontSizes' => \null, 'dropCap' => \null, 'fontFamilies' => \null, 'fontSizes' => \null, 'fontStyle' => \null, 'fontWeight' => \null, 'letterSpacing' => \null, 'lineHeight' => \null, 'textAlign' => \null, 'textColumns' => \null, 'textDecoration' => \null, 'textIndent' => \null, 'textTransform' => \null, 'writingMode' => \null), 'viewport' => array('mobile' => \null, 'tablet' => \null));
         /**
          * The valid properties for fontFamilies under settings key.
          *
@@ -56590,9 +57330,11 @@ namespace {
          * @since 6.5.0 Added support for `dimensions.aspectRatio`.
          * @since 6.6.0 Added `background` sub properties to top-level only.
          * @since 7.0.0 Added support for `dimensions.width` and `dimensions.height`.
+         * @since 7.1.0 Added support for `background.gradient`,`dimensions.minWidth`,
+         *              and `typography.textShadow`.
          * @var array
          */
-        const VALID_STYLES = array('background' => array('backgroundImage' => \null, 'backgroundPosition' => \null, 'backgroundRepeat' => \null, 'backgroundSize' => \null, 'backgroundAttachment' => \null), 'border' => array('color' => \null, 'radius' => \null, 'style' => \null, 'width' => \null, 'top' => \null, 'right' => \null, 'bottom' => \null, 'left' => \null), 'color' => array('background' => \null, 'gradient' => \null, 'text' => \null), 'dimensions' => array('aspectRatio' => \null, 'height' => \null, 'minHeight' => \null, 'width' => \null), 'filter' => array('duotone' => \null), 'outline' => array('color' => \null, 'offset' => \null, 'style' => \null, 'width' => \null), 'shadow' => \null, 'spacing' => array('margin' => \null, 'padding' => \null, 'blockGap' => \null), 'typography' => array('fontFamily' => \null, 'fontSize' => \null, 'fontStyle' => \null, 'fontWeight' => \null, 'letterSpacing' => \null, 'lineHeight' => \null, 'textAlign' => \null, 'textColumns' => \null, 'textDecoration' => \null, 'textIndent' => \null, 'textTransform' => \null, 'writingMode' => \null), 'css' => \null);
+        const VALID_STYLES = array('background' => array('backgroundImage' => \null, 'backgroundPosition' => \null, 'backgroundRepeat' => \null, 'backgroundSize' => \null, 'backgroundAttachment' => \null, 'gradient' => \null), 'border' => array('color' => \null, 'radius' => \null, 'style' => \null, 'width' => \null, 'top' => \null, 'right' => \null, 'bottom' => \null, 'left' => \null), 'color' => array('background' => \null, 'gradient' => \null, 'text' => \null), 'dimensions' => array('aspectRatio' => \null, 'height' => \null, 'minHeight' => \null, 'minWidth' => \null, 'width' => \null), 'filter' => array('duotone' => \null), 'outline' => array('color' => \null, 'offset' => \null, 'style' => \null, 'width' => \null), 'shadow' => \null, 'spacing' => array('margin' => \null, 'padding' => \null, 'blockGap' => \null), 'typography' => array('fontFamily' => \null, 'fontSize' => \null, 'fontStyle' => \null, 'fontWeight' => \null, 'letterSpacing' => \null, 'lineHeight' => \null, 'textAlign' => \null, 'textColumns' => \null, 'textDecoration' => \null, 'textIndent' => \null, 'textShadow' => \null, 'textTransform' => \null, 'writingMode' => \null), 'css' => \null);
         /**
          * Defines which pseudo selectors are enabled for which elements.
          *
@@ -56617,7 +57359,57 @@ namespace {
          * @since 7.0
          * @var array
          */
-        const VALID_BLOCK_PSEUDO_SELECTORS = array('core/button' => array(':hover', ':focus', ':focus-visible', ':active'));
+        const VALID_BLOCK_PSEUDO_SELECTORS = array('core/button' => array(':hover', ':focus', ':focus-visible', ':active'), 'core/navigation-link' => array(':hover', ':focus', ':focus-visible', ':active'));
+        /**
+         * Custom states for blocks that map to CSS class selectors rather than
+         * CSS pseudo-selectors. Values use the '-' prefix (e.g. '-current') to
+         * distinguish them from real CSS pseudo-selectors and breakpoint states.
+         *
+         * The CSS selector for each state is defined in the block's block.json
+         * under `selectors.states`, e.g.:
+         *
+         *   "selectors": { "states": { "-current": ".some-css-selector" } }
+         *
+         * This constant controls which states are valid in theme.json for a given
+         * block. Blocks listed here also inherit their VALID_BLOCK_PSEUDO_SELECTORS
+         * as valid sub-states, producing compound selectors such as
+         * `.wp-block-navigation-item.current-menu-item:hover`.
+         *
+         * @since 7.1.0
+         * @var array
+         */
+        const VALID_BLOCK_CUSTOM_STATES = array('core/navigation-link' => array('-current'));
+        /**
+         * Default viewport breakpoint sizes.
+         *
+         * @since 7.1.0
+         * @var array
+         */
+        const DEFAULT_VIEWPORT_BREAKPOINTS = array('mobile' => '480px', 'tablet' => '782px');
+        /**
+         * Returns CSS media queries for responsive viewport style states.
+         *
+         * Breakpoint values are read from `settings.viewport`, sanitized, and
+         * normalized before the media query strings are generated. By default, the
+         * returned keys are the theme.json style-state names (`@mobile`, `@tablet`).
+         * When `$options['include_desktop']` is truthy, `@desktop` is included.
+         *
+         * @since 7.1.0
+         *
+         * @param mixed $viewport_settings Viewport settings from theme.json.
+         * @param array $options           {
+         *     Optional. Options for generating media queries.
+         *
+         *     @type bool $include_desktop Whether to include the desktop media query. Default false.
+         * }
+         * @return array Responsive media queries.
+         * @phpstan-param array{
+         *   include_desktop?: bool,
+         * } $options
+         */
+        public static function get_viewport_media_queries($viewport_settings = \null, $options = array())
+        {
+        }
         /**
          * The valid elements that can be found under styles.
          *
@@ -56713,9 +57505,11 @@ namespace {
          * @since 6.4.0 Added `background.backgroundImage`.
          * @since 6.5.0 Added `background.backgroundSize` and `dimensions.aspectRatio`.
          * @since 7.0.0 Added `dimensions.width` and `dimensions.height`.
+         * @since 7.1.0 Added `background.gradient`.
+         *              Added `dimensions.minWidth`.
          * @var array
          */
-        const APPEARANCE_TOOLS_OPT_INS = array(array('background', 'backgroundImage'), array('background', 'backgroundSize'), array('border', 'color'), array('border', 'radius'), array('border', 'style'), array('border', 'width'), array('color', 'link'), array('color', 'heading'), array('color', 'button'), array('color', 'caption'), array('dimensions', 'aspectRatio'), array('dimensions', 'height'), array('dimensions', 'minHeight'), array('dimensions', 'width'), array('position', 'sticky'), array('spacing', 'blockGap'), array('spacing', 'margin'), array('spacing', 'padding'), array('typography', 'lineHeight'), array('typography', 'textColumns'));
+        const APPEARANCE_TOOLS_OPT_INS = array(array('background', 'backgroundImage'), array('background', 'backgroundSize'), array('background', 'gradient'), array('border', 'color'), array('border', 'radius'), array('border', 'style'), array('border', 'width'), array('color', 'link'), array('color', 'heading'), array('color', 'button'), array('color', 'caption'), array('dimensions', 'aspectRatio'), array('dimensions', 'height'), array('dimensions', 'minHeight'), array('dimensions', 'minWidth'), array('dimensions', 'width'), array('position', 'sticky'), array('spacing', 'blockGap'), array('spacing', 'margin'), array('spacing', 'padding'), array('typography', 'lineHeight'), array('typography', 'textColumns'));
         /**
          * The latest version of the schema in use.
          *
@@ -56810,6 +57604,48 @@ namespace {
          * @return string The new selector.
          */
         protected static function prepend_to_selector($selector, $to_prepend)
+        {
+        }
+        /**
+         * Splits a selector list into separate selectors.
+         *
+         * While selectors are joined by commas, not all commas separate top-level selectors.
+         * This method only separates top-level selectors, so some commas may appear inside
+         * strings, nested selectors, and comments. Leading and trailing CSS whitespace is
+         * trimmed from the returned list items.
+         *
+         * Non-selector content, such as comments, are retained in the list in the same item
+         * as the selector content they follow.
+         *
+         * Example:
+         *
+         *     array( '.wp-block' )    === self::split_selector_list( '.wp-block' );
+         *     array( '.one', '.two' ) === self::split_selector_list( '.one, .two' );
+         *
+         *     // Nested selector lists are retained within their containing selector.
+         *     array( ':is(.a, .b)', 'c' ) === self::split_selector_list( ':is(.a, .b), .c' );
+         *
+         *     // Commas within strings do not separate selectors.
+         *     $selectors   = self::split_selector_list( '[data-label="Save, continue"],.fallback' );
+         *     $selectors === array( '[data-label="Save, continue"]', '.fallback' )
+         *
+         *     array( 'lang(zh, "*-hant")', '.foo' ) === self::split_selector_list( 'lang(zh, "*-hant"), .foo' );
+         *
+         *     // Identifiers may contain escaped commas.
+         *     array( '.foo\,bar', '.baz' ) === self::split_selector_list( '.foo\,bar,.baz' );
+         *
+         *     // Comments stay with the selector they follow.
+         *     array( '.a /* a, the first *\/', '.b' ) === self::split_selector_list( '.a /* a, the first *\/,.b' );
+         *
+         * @see https://www.w3.org/TR/selectors/#parse-selector
+         * @see https://www.w3.org/TR/css-syntax-3/
+         *
+         * @since 7.1.0
+         *
+         * @param string $selector CSS selector list as a string, e.g. '.wp-block .wp-block-paragraph'.
+         * @return string[] List of trimmed selectors parsed from input list.
+         */
+        protected static function split_selector_list($selector): array
         {
         }
         /**
@@ -57031,7 +57867,7 @@ namespace {
          *     background: value;
          *   }
          *
-         *   p.has-value-gradient-background {
+         *   :where(p).has-value-gradient-background {
          *     background: value;
          *   }
          *
@@ -57073,6 +57909,7 @@ namespace {
          * creates the corresponding ruleset.
          *
          * @since 5.8.0
+         * @since 7.1.0 Skip declarations whose value is not a plain string (booleans, arrays, objects, etc.).
          *
          * @param string $selector     CSS selector.
          * @param array  $declarations List of declarations.
@@ -57088,6 +57925,7 @@ namespace {
          * @since 5.8.0
          * @since 5.9.0 Added the `$origins` parameter.
          * @since 6.6.0 Added check for root CSS properties selector.
+         * @since 7.1.0 Wraps block-level preset classes in `:where()` to match root-level specificity.
          *
          * @param array    $settings Settings to process.
          * @param string   $selector Selector wrapping the classes.
@@ -57552,23 +58390,35 @@ namespace {
         /**
          * Remove insecure element styles within a variation or block.
          *
-         * @since 6.8.0
+         *  * When responsive media queries are provided, nested responsive state styles
+         * matching those viewport state keys are re-added after the base sanitization pass.
          *
-         * @param array $elements The elements to process.
+         * @since 6.8.0
+         * @since 7.1.0 Added the `$responsive_media_queries` parameter.
+         *
+         * @param array      $elements                 The elements to process.
+         * @param array|null $responsive_media_queries Optional. Media queries whose keys define allowed
+         *                                             viewport states. Default null.
          * @return array The sanitized elements styles.
          */
-        protected static function remove_insecure_element_styles($elements)
+        protected static function remove_insecure_element_styles($elements, $responsive_media_queries = \null)
         {
         }
         /**
          * Remove insecure styles from inner blocks and their elements.
          *
-         * @since 6.8.0
+         * When responsive media queries are provided, nested responsive state styles
+         * for those media-query keys are re-added after the base sanitization pass.
          *
-         * @param array $blocks The block styles to process.
+         * @since 6.8.0
+         * @since 7.1.0 Added the `$responsive_media_queries` parameter.
+         *
+         * @param array      $blocks                   The block styles to process.
+         * @param array|null $responsive_media_queries Optional. Media queries whose keys define allowed
+         *                                             viewport states. Default null.
          * @return array Sanitized block type styles.
          */
-        protected static function remove_insecure_inner_block_styles($blocks)
+        protected static function remove_insecure_inner_block_styles($blocks, $responsive_media_queries = \null)
         {
         }
         /**
@@ -57576,11 +58426,13 @@ namespace {
          * without the insecure settings.
          *
          * @since 5.9.0
+         * @since 7.1.0 Added the `$is_root` parameter.
          *
-         * @param array $input Node to process.
+         * @param array $input   Node to process.
+         * @param bool  $is_root Optional. Whether the node is the root settings node. Default false.
          * @return array
          */
-        protected static function remove_insecure_settings($input)
+        protected static function remove_insecure_settings($input, $is_root = \false)
         {
         }
         /**
@@ -57661,7 +58513,7 @@ namespace {
          *                   generated in the constructor and merge methods instead
          *                   of manually after instantiation.
          *
-         * @return null|void
+         * @return void
          */
         public function set_spacing_sizes()
         {
@@ -57725,6 +58577,25 @@ namespace {
          * @return string Block selector with block style variation selector added to it.
          */
         protected static function get_block_style_variation_selector($variation_name, $block_selector)
+        {
+        }
+        /**
+         * Applies a block style variation class to a feature selector.
+         *
+         * Feature selectors can target a different element than the block's root
+         * selector. For example, the Button block's root selector targets the inner
+         * link, while its dimensions width selector targets the outer wrapper. Apply
+         * the variation class directly to the selector that will receive the
+         * declarations instead of deriving it by subtracting the root selector from
+         * the feature selector.
+         *
+         * @since 7.0.0
+         *
+         * @param array  $style_variation Style variation metadata.
+         * @param string $feature_selector CSS selector for the feature.
+         * @return string Feature selector with block style variation selector added.
+         */
+        protected static function get_block_style_variation_feature_selector($style_variation, $feature_selector)
         {
         }
         /**
@@ -59250,9 +60121,10 @@ namespace {
          * User ID.
          *
          * @since 4.9.6
-         * @var int
+         * @var string
+         * @phpstan-var numeric-string
          */
-        public $user_id = 0;
+        public $user_id = '0';
         /**
          * User email.
          *
@@ -59336,29 +60208,32 @@ namespace {
      * @since 6.8.0 The `user_pass` property is now hashed using bcrypt by default instead of phpass.
      *              Existing passwords may still be hashed using phpass.
      *
-     * @property string $nickname
-     * @property string $description
-     * @property string $user_description
-     * @property string $first_name
-     * @property string $user_firstname
-     * @property string $last_name
-     * @property string $user_lastname
-     * @property string $user_login
-     * @property string $user_pass
-     * @property string $user_nicename
-     * @property string $user_email
-     * @property string $user_url
-     * @property string $user_registered
-     * @property string $user_activation_key
-     * @property string $user_status
-     * @property int    $user_level
-     * @property string $display_name
-     * @property string $spam
-     * @property string $deleted
-     * @property string $locale
-     * @property string $rich_editing
-     * @property string $syntax_highlighting
-     * @property string $use_ssl
+     * @property string     $nickname
+     * @property string     $description
+     * @property string     $user_description
+     * @property string     $first_name
+     * @property string     $user_firstname
+     * @property string     $last_name
+     * @property string     $user_lastname
+     * @property string     $user_login
+     * @property string     $user_pass
+     * @property string     $user_nicename
+     * @property string     $user_email
+     * @property string     $user_url
+     * @property string     $user_registered
+     * @property string     $user_activation_key
+     * @property string     $user_status
+     * @property int|string $user_level
+     * @property string     $display_name
+     * @property string     $spam
+     * @property string     $deleted
+     * @property string     $locale
+     * @property string     $rich_editing
+     * @property string     $syntax_highlighting
+     * @property string     $use_ssl
+     *
+     * @phpstan-property numeric-string        $user_status
+     * @phpstan-property int|numeric-string|'' $user_level
      */
     #[\AllowDynamicProperties]
     class WP_User
@@ -59781,6 +60656,245 @@ namespace {
         }
     }
     /**
+     * Holds an entity's view configuration while it is being built.
+     *
+     * An instance of this class is what `get_entity_view_config_{$kind}_{$name}`
+     * filter callbacks receive: a callback changes the configuration by calling
+     * methods on the instance and returning it. The configuration has four
+     * top-level keys — `default_view`, `default_layouts`, `view_list`, and
+     * `form` — and there are three ways to contribute. They form a gradient of how
+     * deep the replacement reaches:
+     *
+     * - The `merge()` method merges partial changes (patches) into what is already
+     *   there: `default_view`, `default_layouts`, and the `form` settings by key,
+     *   and the `view_list` entries by view `slug` identity. This is what plugins
+     *   should use: patches compose with core's configuration and with other
+     *   plugins'.
+     * - `replace()` applies a patch the same way `merge()` does, with one
+     *   difference: a list in the patch replaces the current list wholesale
+     *   instead of merging into it by member identity. It shouldn't be the
+     *   default choice — a callback that replaces a list stops inheriting core's
+     *   future additions to it — but it's useful when a contributor needs to pin
+     *   a list to an exact set of members.
+     * - `set()` goes one step further: it replaces each top-level key the patch
+     *   names wholesale, dropping whatever that key held instead of merging into
+     *   it. It's for a callback that owns a key outright and wants to pin it to an
+     *   exact shape without the inherited default leaking through a key-by-key
+     *   merge.
+     *
+     * All three touch only the top-level keys the patch names — an omitted key
+     * keeps whatever it had, and a top-level `null` value drops the key it names,
+     * which resets it to its default. They differ only in how deep the replacement
+     * reaches once a key is named: `merge()` and `replace()` merge the value in
+     * key by key (an associative array merges member by member, a nested `null`
+     * deletes just that leaf, a scalar replaces just that value), while `set()`
+     * swaps the whole value. A nested `null` deletes just the leaf it names in
+     * every case. A patch value whose shape does not match the current value —
+     * an associative array where a list lives, or the reverse — is rejected with
+     * a notice rather than merged, and an empty array under `merge()` is a
+     * no-op. Each patch also declares the configuration schema
+     * version it was written against (currently 1), so a future WordPress release
+     * that changes the configuration shape can migrate existing patches forward
+     * instead of breaking them.
+     *
+     * Where those three write values, `remove()` deletes them: it takes a spec of
+     * names — a list to delete entries at a level, or a nested map to reach deeper —
+     * and prunes just what it names, mirroring the configuration's shape all the way
+     * down to individual list members.
+     *
+     * @since 7.1.0
+     */
+    class WP_View_Config_Data
+    {
+        /**
+         * The latest supported configuration schema version.
+         *
+         * @since 7.1.0
+         * @var int
+         */
+        const LATEST_VERSION = 1;
+        /**
+         * The documented top-level configuration keys.
+         *
+         * @since 7.1.0
+         * @var string[]
+         */
+        const CONFIG_KEYS = array('default_view', 'default_layouts', 'view_list', 'form');
+        /**
+         * Constructor.
+         *
+         * @since 7.1.0
+         *
+         * @param array $config The base configuration to contribute to.
+         */
+        public function __construct(array $config)
+        {
+        }
+        /**
+         * Applies the entity view configuration filter and returns the result.
+         *
+         * Exposes the container through the dynamic
+         * `get_entity_view_config_{$kind}_{$name}` filter (with the dynamic portions
+         * lowercased), so that core and third parties can provide the configuration for a specific entity,
+         * then reconciles the filtered container back into a plain configuration array,
+         * limited to the documented configuration keys.
+         *
+         * @since 7.1.0
+         *
+         * @param string $kind The entity kind (e.g. `postType`).
+         * @param string $name The entity name (e.g. `page`).
+         * @return array The filtered configuration, limited to the documented keys.
+         */
+        public function apply_filters($kind, $name)
+        {
+        }
+        /**
+         * Replaces whole top-level keys, leaving the rest of the configuration alone.
+         *
+         * Like merge() and replace(), set() applies a patch of top-level keys and
+         * touches only the keys the patch names: a key the patch omits keeps whatever
+         * it had, and a `null` value drops the key it names (which resets it to its
+         * default). The difference is depth — where merge() and replace() merge a
+         * named key's value into the current one key by key, set() swaps the whole
+         * value in wholesale, dropping whatever the key held before. A `null` nested
+         * within that value still drops the property it names, so set() honours
+         * nulls at every depth just as merge() and replace() do.
+         *
+         * Use it when a callback owns a key outright and wants to pin it to an exact
+         * shape, without the inherited default leaking through a key-by-key merge.
+         *
+         * A patch that declares an unsupported schema version is rejected and does
+         * not change anything.
+         *
+         * @since 7.1.0
+         *
+         * @param array $patch   The partial configuration whose named keys to replace.
+         * @param int   $version The schema version the patch was authored against.
+         * @return WP_View_Config_Data The instance, for chaining.
+         */
+        public function set(array $patch, int $version)
+        {
+        }
+        /**
+         * Removes named properties from the configuration, leaving the rest alone.
+         *
+         * Where merge(), replace(), and set() take a patch of *values* to write,
+         * remove() takes a spec of *names* to delete, and its shape mirrors the
+         * configuration it prunes:
+         *
+         * - A list of names deletes each named entry from the value at that level: a
+         *   key from an associative array, or the member with a matching identity
+         *   (`id`, `slug`, `field`, or a bare scalar) from a list.
+         * - An associative array maps a name to a nested spec, recursing into that
+         *   entry's value to delete from within it.
+         *
+         * Naming a top-level configuration key is the one exception: like a `null`
+         * value in a patch, it resets that key to its default rather than dropping it
+         * outright, so top-level removal and top-level `null` compose the same way.
+         *
+         * So `array( 'default_view' )` resets the whole `default_view` key to its
+         * default, `array( 'default_view' => array( 'sort' ) )` drops just its `sort`
+         * property, and `array( 'default_view' => array( 'fields' => array( 'f2' ) ) )`
+         * drops the `f2` member from its `fields` list. A name that is not present is
+         * ignored, and a list is renumbered after a member is removed.
+         *
+         * A spec that declares an unsupported schema version is rejected and does not
+         * change anything.
+         *
+         * @since 7.1.0
+         *
+         * @param array $spec    The names to remove, keyed to match the configuration shape.
+         * @param int   $version The schema version the spec was authored against.
+         * @return WP_View_Config_Data The instance, for chaining.
+         */
+        public function remove(array $spec, int $version)
+        {
+        }
+        /**
+         * Replaces list values while merging the rest of a partial configuration.
+         *
+         * Takes the same arguments as merge() and applies the patch the same way,
+         * with one difference: a list in the patch replaces the current list
+         * wholesale instead of merging into it by member identity. Associative
+         * arrays still merge key by key, `null` still drops what it names, and a
+         * scalar still replaces the current value.
+         *
+         * It shouldn't be the default choice — a callback that replaces a list
+         * stops inheriting core's future additions to it — but it's useful when a
+         * contributor needs to pin a list to an exact set of members.
+         *
+         * The shape rule applies here too: a patch value whose shape does not match
+         * the current value — an associative array where a list lives, or a
+         * non-empty list where an associative value lives — is rejected with a
+         * notice and leaves the current value unchanged. An empty array is exempt,
+         * so replacing a list with an empty list still clears it.
+         *
+         * A patch that declares an unsupported schema version is rejected and does
+         * not change anything.
+         *
+         * @since 7.1.0
+         *
+         * @param array $patch   The partial configuration to apply.
+         * @param int   $version The schema version the patch was authored against.
+         * @return WP_View_Config_Data The instance, for chaining.
+         */
+        public function replace(array $patch, int $version)
+        {
+        }
+        /**
+         * Merges a partial configuration into the existing one.
+         *
+         * Applies a patch of top-level keys and touches only the keys the patch
+         * names: a key the patch omits keeps whatever it had, and a `null` value
+         * drops the key it names (which resets it to its default). Each named key's
+         * value is then merged into the current one by value shape:
+         *
+         * - a scalar replaces the current value;
+         * - an associative array merges key by key, with a nested `null` deleting
+         *   just the leaf it names;
+         * - a list merges into the current list by member identity.
+         *
+         * Identity is the member's value cast to a string: a bare scalar is its own
+         * identity, and a map is identified by the value of the first of the
+         * well-known identity keys (`id`, `slug`, `field`) it carries. A member
+         * whose identity matches one already present merges into it in place, keeping
+         * its position; a member with no identity is appended to the end of the list.
+         *
+         * For example, given this patch:
+         *
+         * ```php
+         * array(
+         *   'default_view' => array( 'titleField' => 'newTitleField', 'fields' => array( 'newField' ) ),
+         *   'default_layouts' => array( 'grid' => array( 'layout' => array( 'badgeFields' => array( 'newField' ) ) ) ),
+         *   'view_list' => array( array( 'slug' => 'table', 'title' => 'New title' ) ),
+         * )
+         * ```
+         *
+         * - default_view will be updated so the titleField is 'newTitleField' and the newField is appended to the list of fields.
+         * - default_layouts will be updated so that newField is appended to the badgeFields.
+         * - view_list will be updated so that the view with slug 'table' has its title changed to 'New title'.
+         *
+         * A patch value only merges into a current value of the same shape: an
+         * associative array where a list lives, or a non-empty list where an
+         * associative value lives, is rejected with a notice and leaves the current
+         * value unchanged. An empty array merges nothing and is a no-op — clear a
+         * list with replace() and an empty list, or reset a key to its default with
+         * a top-level `null`.
+         *
+         * A patch that declares an unsupported schema version is rejected and does
+         * not change anything.
+         *
+         * @since 7.1.0
+         *
+         * @param array $patch   The partial configuration to merge.
+         * @param int   $version The schema version the patch was authored against.
+         * @return WP_View_Config_Data The instance, for chaining.
+         */
+        public function merge(array $patch, int $version)
+        {
+        }
+    }
+    /**
      * Singleton that registers and instantiates WP_Widget classes.
      *
      * @since 2.8.0
@@ -59794,7 +60908,7 @@ namespace {
          *
          * @since 2.8.0
          * @var array
-         * @phpstan-var array<string, \WP_Widget>
+         * @phpstan-var array<int, \WP_Widget>
          */
         public $widgets = array();
         /**
@@ -59996,7 +61110,7 @@ namespace {
          * @since 2.8.0
          *
          * @param array $instance The settings for the particular instance of the widget.
-         * @return string|void Default return is 'noform'.
+         * @return string|null Default return is 'noform'. A subclass may opt to return null.
          * @phpstan-param T $instance
          */
         public function form($instance)
@@ -60389,7 +61503,7 @@ namespace {
          * @since 1.5.2
          *
          * @param string|array $data Escape single string or array of strings.
-         * @return string|void Returns with string is passed, alters by-reference
+         * @return string|null Returns with string if passed, alters by-reference
          *                     when array is passed.
          */
         public function escape(&$data)
@@ -62393,19 +63507,33 @@ namespace {
          * @since 1.5.0
          *
          * @param array $args {
-         *     Method arguments. Note: arguments must be ordered as documented.
+         *     Method arguments. Note: top-level arguments must be ordered as documented.
          *
          *     @type int    $0 Blog ID (unused).
          *     @type string $1 Username.
          *     @type string $2 Password.
-         *     @type array  $3 Data.
+         *     @type array  $3 {
+         *         Data for the file to upload.
+         *
+         *         @type string $name    File name. Sanitized with sanitize_file_name().
+         *         @type string $type    Optional. File MIME type, stored as the attachment's
+         *                               post MIME type. Default empty string.
+         *         @type string $bits    Optional. File contents. Default empty string.
+         *         @type int    $post_id Optional. ID of the post to attach the file to.
+         *                               Default 0.
+         *     }
          * }
          * @return array|IXR_Error
          * @phpstan-param array{
          *   0: int,
          *   1: string,
          *   2: string,
-         *   3: array,
+         *   3: array{
+         *     name: string,
+         *     type?: string,
+         *     bits?: string,
+         *     post_id?: int,
+         *   },
          * } $args
          */
         public function mw_newMediaObject($args)
@@ -63729,7 +64857,7 @@ namespace {
          *                             individual arguments.
          * @param mixed       ...$args Further variables to substitute into the query's placeholders
          *                             if being called with individual arguments.
-         * @return string|void Sanitized query string, if there is a query to prepare.
+         * @return string|null Sanitized query string, if there is a query to prepare.
          * @phpstan-param literal-string $query
          */
         public function prepare($query, ...$args)
@@ -63769,7 +64897,7 @@ namespace {
          * @global array $EZSQL_ERROR Stores error information of query and error string.
          *
          * @param string $str The error to display.
-         * @return void|false Void if the showing of errors is enabled, false if disabled.
+         * @return null|false Null if the showing of errors is enabled, false if disabled.
          */
         public function print_error($str = '')
         {
@@ -63883,7 +65011,7 @@ namespace {
          * @since 3.9.0
          *
          * @param bool $allow_bail Optional. Allows the function to bail. Default true.
-         * @return bool|void True if the connection is up.
+         * @return bool Whether the connection is up. Exits if down and $allow_bail is true.
          */
         public function check_connection($allow_bail = \true)
         {
@@ -64176,7 +65304,7 @@ namespace {
          * @param string[]|string $where_format Optional. An array of formats to be mapped to each of the values in $where.
          *                                      If string, that format will be used for all of the items in $where.
          *                                      A format is one of '%d', '%f', '%s' (integer, float, string).
-         *                                      If omitted, all values in $data will be treated as strings unless otherwise
+         *                                      If omitted, all values in $where will be treated as strings unless otherwise
          *                                      specified in wpdb::$field_types. Default null.
          * @return int|false The number of rows deleted, or false on error.
          */
@@ -64333,12 +65461,16 @@ namespace {
          * the value in the column and row specified is returned. If $query is null,
          * the value in the specified column and row from the previous SQL result is returned.
          *
+         * Returns null both on failure and when the matched cell value is an empty
+         * string. To distinguish the two cases, check {@see self::$last_error}.
+         *
          * @since 0.71
          *
          * @param string|null $query Optional. SQL query. Defaults to null, use the result from the previous query.
          * @param int         $x     Optional. Column of value to return. Indexed from 0. Default 0.
          * @param int         $y     Optional. Row of value to return. Indexed from 0. Default 0.
-         * @return string|null Database query result (as string), or null on failure.
+         * @return string|null Database query result (as string), or null on failure or when the value is an empty string.
+         * @phpstan-return non-empty-string|null
          */
         public function get_var($query = \null, $x = 0, $y = 0)
         {
@@ -64355,10 +65487,26 @@ namespace {
          *                            correspond to an stdClass object, an associative array, or a numeric array,
          *                            respectively. Default OBJECT.
          * @param int         $y      Optional. Row to return. Indexed from 0. Default 0.
-         * @return array|object|null|void Database query result in format specified by $output or null on failure.
+         * @return array|object|null Database query result in format specified by $output or null on failure.
          * @phpstan-param 'OBJECT'|'ARRAY_A'|'ARRAY_N' $output
+         * @phpstan-return (
+         *     $query is non-falsy-string
+         *         ? (
+         *             $output is 'OBJECT'
+         *                 ? stdClass|null
+         *                 : (
+         *                     $output is 'ARRAY_A'
+         *                         ? array<array-key, mixed>|null
+         *                         : (
+         *                             $output is 'ARRAY_N'
+         *                                 ? list<mixed>|null
+         *                                 : null
+         *                         )
+         *                 )
+         *         )
+         *         : null
+         * )
          * @phpstan-param int<0, max> $y
-         * @phpstan-return null|void|($output is 'ARRAY_A' ? array<array-key, mixed> : ($output is 'ARRAY_N' ? list<mixed> : \stdClass))
          */
         public function get_row($query = \null, $output = \OBJECT, $y = 0)
         {
@@ -64375,6 +65523,7 @@ namespace {
          * @param string|null $query Optional. SQL query. Defaults to previous query.
          * @param int         $x     Optional. Column to return. Indexed from 0. Default 0.
          * @return array Database query result. Array indexed from 0 by SQL result row number.
+         * @phpstan-return list<non-empty-string|null>
          */
         public function get_col($query = \null, $x = 0)
         {
@@ -64384,20 +65533,47 @@ namespace {
          *
          * Executes a SQL query and returns the entire SQL result.
          *
+         * Returns an empty array when no rows match or when the database
+         * reports an error for the query. Returns null when $query is empty,
+         * when $output is not one of the recognized constants, or when the
+         * query cannot run because the connection is not ready.
+         *
          * @since 0.71
          *
-         * @param string $query  SQL query.
-         * @param string $output Optional. Any of ARRAY_A | ARRAY_N | OBJECT | OBJECT_K constants.
-         *                       With one of the first three, return an array of rows indexed
-         *                       from 0 by SQL result row number. Each row is an associative array
-         *                       (column => value, ...), a numerically indexed array (0 => value, ...),
-         *                       or an object ( ->column = value ), respectively. With OBJECT_K,
-         *                       return an associative array of row objects keyed by the value
-         *                       of each row's first column's value. Duplicate keys are discarded.
-         *                       Default OBJECT.
-         * @return array|object|null Database query results.
+         * @param string|null $query  SQL query.
+         * @param string      $output Optional. Any of ARRAY_A | ARRAY_N | OBJECT | OBJECT_K constants.
+         *                            With one of the first three, return an array of rows indexed
+         *                            from 0 by SQL result row number. Each row is an associative array
+         *                            (column => value, ...), a numerically indexed array (0 => value, ...),
+         *                            or an object ( ->column = value ), respectively. With OBJECT_K,
+         *                            return an associative array of row objects keyed by the value
+         *                            of each row's first column's value. Duplicate keys are discarded.
+         *                            Default OBJECT.
+         * @return array|null Database query results. Empty array when no rows match
+         *                    or on database error. Null when $query is empty, when
+         *                    $output is invalid, or when the connection is not ready.
          * @phpstan-param 'OBJECT'|'OBJECT_K'|'ARRAY_A'|'ARRAY_N' $output
-         * @phpstan-return null|($output is 'ARRAY_A' ? list<array<array-key, mixed>> : ($output is 'ARRAY_N' ? list<array<int, mixed>> : ($output is 'OBJECT_K' ? array<array-key, \stdClass> : list<\stdClass>)))
+         * @phpstan-return (
+         *     $query is non-falsy-string
+         *         ? (
+         *             $output is 'OBJECT'
+         *                 ? list<stdClass>|null
+         *                 : (
+         *                     $output is 'OBJECT_K'
+         *                         ? array<array-key, stdClass>
+         *                         : (
+         *                             $output is 'ARRAY_A'
+         *                                 ? list<array<array-key, mixed>>
+         *                                 : (
+         *                                     $output is 'ARRAY_N'
+         *                                         ? list<list<mixed>>
+         *                                         : null
+         *                                 )
+         *                         )
+         *                 )
+         *         )
+         *         : null
+         * )
          */
         public function get_results($query = \null, $output = \OBJECT)
         {
@@ -64579,7 +65755,7 @@ namespace {
          * @param string $message    The error message.
          * @param string $error_code Optional. A computer-readable string to identify the error.
          *                           Default '500'.
-         * @return void|false Void if the showing of errors is enabled, false if disabled.
+         * @return false False if the showing of errors is disabled.
          */
         public function bail($message, $error_code = '500')
         {
@@ -64601,7 +65777,7 @@ namespace {
          * @since 2.5.0
          *
          * @global string $required_mysql_version The minimum required MySQL version string.
-         * @return void|WP_Error
+         * @return WP_Error|null
          */
         public function check_database_version()
         {
@@ -64687,348 +65863,6 @@ namespace {
          * @return string Database server version as a string.
          */
         public function db_server_info()
-        {
-        }
-    }
-    /**
-     * Core class that contains an HTTP server used for collaborative editing.
-     *
-     * @since 7.0.0
-     * @access private
-     */
-    class WP_HTTP_Polling_Sync_Server
-    {
-        /**
-         * REST API namespace.
-         *
-         * @since 7.0.0
-         * @var string
-         */
-        const REST_NAMESPACE = 'wp-sync/v1';
-        /**
-         * Awareness timeout in seconds. Clients that haven't updated
-         * their awareness state within this time are considered disconnected.
-         *
-         * @since 7.0.0
-         * @var int
-         */
-        const AWARENESS_TIMEOUT = 30;
-        /**
-         * Threshold used to signal clients to send a compaction update.
-         *
-         * @since 7.0.0
-         * @var int
-         */
-        const COMPACTION_THRESHOLD = 50;
-        /**
-         * Maximum total size (in bytes) of the request body.
-         *
-         * @since 7.0.0
-         * @var int
-         */
-        const MAX_BODY_SIZE = 16 * \MB_IN_BYTES;
-        /**
-         * Maximum number of rooms allowed per request.
-         *
-         * @since 7.0.0
-         * @var int
-         */
-        const MAX_ROOMS_PER_REQUEST = 50;
-        /**
-         * Maximum length of a single update data string.
-         *
-         * @since 7.0.0
-         * @var int
-         */
-        const MAX_UPDATE_DATA_SIZE = \MB_IN_BYTES;
-        /**
-         * Sync update type: compaction.
-         *
-         * @since 7.0.0
-         * @var string
-         */
-        const UPDATE_TYPE_COMPACTION = 'compaction';
-        /**
-         * Sync update type: sync step 1.
-         *
-         * @since 7.0.0
-         * @var string
-         */
-        const UPDATE_TYPE_SYNC_STEP1 = 'sync_step1';
-        /**
-         * Sync update type: sync step 2.
-         *
-         * @since 7.0.0
-         * @var string
-         */
-        const UPDATE_TYPE_SYNC_STEP2 = 'sync_step2';
-        /**
-         * Sync update type: regular update.
-         *
-         * @since 7.0.0
-         * @var string
-         */
-        const UPDATE_TYPE_UPDATE = 'update';
-        /**
-         * Constructor.
-         *
-         * @since 7.0.0
-         *
-         * @param WP_Sync_Storage $storage Storage backend for sync updates.
-         */
-        public function __construct(\WP_Sync_Storage $storage)
-        {
-        }
-        /**
-         * Registers REST API routes.
-         *
-         * @since 7.0.0
-         */
-        public function register_routes(): void
-        {
-        }
-        /**
-         * Checks if the current user has permission to access a room.
-         *
-         * @since 7.0.0
-         *
-         * @param WP_REST_Request $request The REST request.
-         * @return bool|WP_Error True if user has permission, otherwise WP_Error with details.
-         */
-        public function check_permissions(\WP_REST_Request $request)
-        {
-        }
-        /**
-         * Validates that the request body does not exceed the maximum allowed size.
-         *
-         * Runs as the route-level validate_callback, after per-arg schema
-         * validation has already passed.
-         *
-         * @since 7.0.0
-         *
-         * @param WP_REST_Request $request The REST request.
-         * @return true|WP_Error True if valid, WP_Error if the body is too large.
-         */
-        public function validate_request(\WP_REST_Request $request)
-        {
-        }
-        /**
-         * Handles request: stores sync updates and awareness data, and returns
-         * updates the client is missing.
-         *
-         * @since 7.0.0
-         *
-         * @param WP_REST_Request $request The REST request.
-         * @return WP_REST_Response|WP_Error Response object or error.
-         */
-        public function handle_request(\WP_REST_Request $request)
-        {
-        }
-    }
-    /**
-     * WP_Sync_Storage interface
-     *
-     * @package WordPress
-     */
-    interface WP_Sync_Storage
-    {
-        /**
-         * Adds a sync update to a given room.
-         *
-         * @since 7.0.0
-         *
-         * @param string $room   Room identifier.
-         * @param mixed  $update Serializable sync update, opaque to the storage implementation.
-         * @return bool True on success, false on failure.
-         */
-        public function add_update(string $room, $update): bool;
-        /**
-         * Gets awareness state for a given room.
-         *
-         * @since 7.0.0
-         *
-         * @param string $room Room identifier.
-         * @return array<int, mixed> Awareness state.
-         */
-        public function get_awareness_state(string $room): array;
-        /**
-         * Gets the current cursor for a given room. This should return a monotonically
-         * increasing integer that represents the last update that was returned for the
-         * room during the current request. This allows clients to retrieve updates
-         * after a specific cursor on subsequent requests.
-         *
-         * @since 7.0.0
-         *
-         * @param string $room Room identifier.
-         * @return int Current cursor for the room.
-         */
-        public function get_cursor(string $room): int;
-        /**
-         * Gets the total number of stored updates for a given room.
-         *
-         * @since 7.0.0
-         *
-         * @param string $room Room identifier.
-         * @return int Total number of updates.
-         */
-        public function get_update_count(string $room): int;
-        /**
-         * Retrieves sync updates from a room for a given client and cursor. Updates
-         * from the specified client should be excluded.
-         *
-         * @since 7.0.0
-         *
-         * @param string $room   Room identifier.
-         * @param int    $cursor Return updates after this cursor.
-         * @return array<int, mixed> Sync updates.
-         */
-        public function get_updates_after_cursor(string $room, int $cursor): array;
-        /**
-         * Removes updates from a room that are older than the provided cursor.
-         *
-         * @since 7.0.0
-         *
-         * @param string $room   Room identifier.
-         * @param int    $cursor Remove updates with markers < this cursor.
-         * @return bool True on success, false on failure.
-         */
-        public function remove_updates_before_cursor(string $room, int $cursor): bool;
-        /**
-         * Sets awareness state for a given room.
-         *
-         * @since 7.0.0
-         *
-         * @param string            $room      Room identifier.
-         * @param array<int, mixed> $awareness Serializable awareness state.
-         * @return bool True on success, false on failure.
-         */
-        public function set_awareness_state(string $room, array $awareness): bool;
-    }
-    /**
-     * Core class that provides an interface for storing and retrieving sync
-     * updates and awareness data during a collaborative session.
-     *
-     * Data is stored as post meta on a dedicated post per room of a custom post type.
-     *
-     * @since 7.0.0
-     *
-     * @access private
-     */
-    class WP_Sync_Post_Meta_Storage implements \WP_Sync_Storage
-    {
-        /**
-         * Post type for sync storage.
-         *
-         * @since 7.0.0
-         * @var string
-         */
-        const POST_TYPE = 'wp_sync_storage';
-        /**
-         * Meta key for awareness state.
-         *
-         * @since 7.0.0
-         * @var string
-         */
-        const AWARENESS_META_KEY = 'wp_sync_awareness_state';
-        /**
-         * Meta key for sync updates.
-         *
-         * @since 7.0.0
-         * @var string
-         */
-        const SYNC_UPDATE_META_KEY = 'wp_sync_update_data';
-        /**
-         * Adds a sync update to a given room.
-         *
-         * @since 7.0.0
-         *
-         * @global wpdb $wpdb WordPress database abstraction object.
-         *
-         * @param string $room   Room identifier.
-         * @param mixed  $update Sync update.
-         * @return bool True on success, false on failure.
-         */
-        public function add_update(string $room, $update): bool
-        {
-        }
-        /**
-         * Gets awareness state for a given room.
-         *
-         * @since 7.0.0
-         *
-         * @global wpdb $wpdb WordPress database abstraction object.
-         *
-         * @param string $room Room identifier.
-         * @return array<int, mixed> Awareness state.
-         */
-        public function get_awareness_state(string $room): array
-        {
-        }
-        /**
-         * Sets awareness state for a given room.
-         *
-         * @since 7.0.0
-         *
-         * @global wpdb $wpdb WordPress database abstraction object.
-         *
-         * @param string            $room      Room identifier.
-         * @param array<int, mixed> $awareness Serializable awareness state.
-         * @return bool True on success, false on failure.
-         */
-        public function set_awareness_state(string $room, array $awareness): bool
-        {
-        }
-        /**
-         * Gets the current cursor for a given room.
-         *
-         * The cursor is set during get_updates_after_cursor() and represents the
-         * highest meta_id seen for the room's sync updates.
-         *
-         * @since 7.0.0
-         *
-         * @param string $room Room identifier.
-         * @return int Current cursor for the room.
-         */
-        public function get_cursor(string $room): int
-        {
-        }
-        /**
-         * Gets the number of updates stored for a given room.
-         *
-         * @since 7.0.0
-         *
-         * @param string $room Room identifier.
-         * @return int Number of updates stored for the room.
-         */
-        public function get_update_count(string $room): int
-        {
-        }
-        /**
-         * Retrieves sync updates from a room after the given cursor.
-         *
-         * @since 7.0.0
-         *
-         * @global wpdb $wpdb WordPress database abstraction object.
-         *
-         * @param string $room   Room identifier.
-         * @param int    $cursor Return updates after this cursor (meta_id).
-         * @return array<int, mixed> Sync updates.
-         */
-        public function get_updates_after_cursor(string $room, int $cursor): array
-        {
-        }
-        /**
-         * Removes updates from a room that are older than the given cursor.
-         *
-         * @since 7.0.0
-         *
-         * @global wpdb $wpdb WordPress database abstraction object.
-         *
-         * @param string $room   Room identifier.
-         * @param int    $cursor Remove updates with meta_id < this cursor.
-         * @return bool True on success, false on failure.
-         */
-        public function remove_updates_before_cursor(string $room, int $cursor): bool
         {
         }
     }
@@ -68209,7 +69043,7 @@ namespace {
          *
          * @since 6.4.0
          *
-         * @return int How many node are in the stack of active formatting elements.
+         * @return int How many nodes are in the stack of active formatting elements.
          */
         public function count()
         {
@@ -68353,7 +69187,7 @@ namespace {
          */
         public $name;
         /**
-         * Attribute value.
+         * Byte offset in the input HTML where the attribute value starts.
          *
          * @since 6.2.0
          *
@@ -68417,7 +69251,7 @@ namespace {
          * @since 6.5.0 Replaced `end` with `length` to more closely match `substr()`.
          *
          * @param string $name         Attribute name.
-         * @param int    $value_start  Attribute value.
+         * @param int    $value_start  Byte offset where the attribute value starts.
          * @param int    $value_length Number of bytes attribute value spans.
          * @param int    $start        The string offset where the attribute name starts.
          * @param int    $length       Byte length of the entire attribute name or name and value pair expression.
@@ -68444,6 +69278,9 @@ namespace {
          * Use this method to determine if an attribute value starts with a given string, regardless
          * of how it might be encoded in HTML. For instance, `http:` could be represented as `http:`
          * or as `http&colon;` or as `&#x68;ttp:` or as `h&#116;tp&colon;`, or in many other ways.
+         *
+         * This is equivalent to a byte-prefix test against the decoded attribute value, without
+         * the need to allocate and decode the full string.
          *
          * Example:
          *
@@ -68472,7 +69309,7 @@ namespace {
          *
          * Example:
          *
-         *     '“😄”' === WP_HTML_Decode::decode_text_node( '&#x93;&#x1f604;&#x94' );
+         *     '“😄”' === WP_HTML_Decoder::decode_text_node( '&#x93;&#x1f604;&#x94' );
          *
          * @since 6.6.0
          *
@@ -68491,7 +69328,7 @@ namespace {
          *
          * Example:
          *
-         *     '“😄”' === WP_HTML_Decode::decode_attribute( '&#x93;&#x1f604;&#x94' );
+         *     '“😄”' === WP_HTML_Decoder::decode_attribute( '&#x93;&#x1f604;&#x94' );
          *
          * @since 6.6.0
          *
@@ -68629,6 +69466,8 @@ namespace {
      * @see https://www.iso.org/standard/16387.html
      *
      * @since 6.7.0
+     * @since 7.1.0 Spec update: missing and empty SYSTEM identifiers are handled
+     *              the same for determining the document mode.
      *
      * @access private
      *
@@ -68714,9 +69553,12 @@ namespace {
          * (e.g. "quirks" or "no-quirks" mode), it will be inferred from the properties
          * of the appropriate DOCTYPE declaration, if one exists. The DOCTYPE can
          * indicate one of three possible document compatibility modes:
+         * "no-quirks", "limited-quirks", or "quirks".
          *
-         *  - "no-quirks" and "limited-quirks" modes (also called "standards" mode).
-         *  - "quirks" mode (also called `CSS1Compat` mode).
+         * Browsers expose the resulting document mode via `document.compatMode`:
+         * - "BackCompat" indicates "quirks" mode.
+         * - "CSS1Compat" indicates "no-quirks" or "limited-quirks" (these modes are not
+         *   distinguished by `document.compatMode`).
          *
          * An appropriate DOCTYPE is one encountered in the "initial" insertion mode,
          * before the HTML element has been opened and before finding any other
@@ -68803,7 +69645,7 @@ namespace {
          * Sets a pop handler that will be called when an item is popped off the stack of
          * open elements.
          *
-         * The function will be called with the pushed item as its argument.
+         * The function will be called with the popped item as its argument.
          *
          * @since 6.6.0
          *
@@ -68826,7 +69668,7 @@ namespace {
         {
         }
         /**
-         * Returns the name of the node at the nth position on the stack
+         * Returns the node at the nth position on the stack
          * of open elements, or `null` if no such position exists.
          *
          * Note that this uses a 1-based index, which represents the
@@ -68837,18 +69679,18 @@ namespace {
          *
          * @param int $nth Retrieve the nth item on the stack, with 1 being
          *                 the top element, 2 being the second, etc...
-         * @return WP_HTML_Token|null Name of the node on the stack at the given location,
+         * @return WP_HTML_Token|null The node on the stack at the given location,
          *                            or `null` if the location isn't on the stack.
          */
         public function at(int $nth): ?\WP_HTML_Token
         {
         }
         /**
-         * Reports if a node of a given name is in the stack of open elements.
+         * Reports if an HTML element of a given name is on the stack of open elements.
          *
          * @since 6.7.0
          *
-         * @param string $node_name Name of node for which to check.
+         * @param string $node_name Name of HTML element for which to check.
          * @return bool Whether a node of the given name is in the stack of open elements.
          */
         public function contains(string $node_name): bool
@@ -68870,7 +69712,7 @@ namespace {
          *
          * @since 6.4.0
          *
-         * @return int How many node are in the stack of open elements.
+         * @return int How many nodes are in the stack of open elements.
          */
         public function count(): int
         {
@@ -68945,6 +69787,7 @@ namespace {
          * >   - th
          * >   - marquee
          * >   - object
+         * >   - select
          * >   - template
          * >   - MathML mi
          * >   - MathML mo
@@ -69036,9 +69879,8 @@ namespace {
         /**
          * Returns whether a particular element is in select scope.
          *
-         * This test differs from the others like it, in that its rules are inverted.
-         * Instead of arriving at a match when one of any tag in a termination group
-         * is reached, this one terminates if any other tag is reached.
+         * The "select scope" concept was removed from the HTML standard along with the
+         * customizable `<select>` changes, so nothing is ever in select scope.
          *
          * > The stack of open elements is said to have a particular element in select scope when it has
          * > that element in the specific scope consisting of all element types except the following:
@@ -69048,10 +69890,11 @@ namespace {
          * @since 6.4.0 Stub implementation (throws).
          * @since 6.7.0 Full implementation.
          *
-         * @see https://html.spec.whatwg.org/#has-an-element-in-select-scope
+         * @deprecated 7.1.0 This method is no longer part of the HTML standard.
+         * @ignore
          *
          * @param string $tag_name Name of tag to check.
-         * @return bool Whether the given element is in SELECT scope.
+         * @return bool Always false; select scope no longer exists.
          */
         public function has_element_in_select_scope(string $tag_name): bool
         {
@@ -69435,7 +70278,9 @@ namespace {
          *
          * @since 6.7.0
          *
-         * @see https://html.spec.whatwg.org/#parsing-main-inselect
+         * @deprecated 7.1.0 The "in select" insertion mode was removed from the standard.
+         * @ignore
+         *
          * @see WP_HTML_Processor_State::$insertion_mode
          *
          * @var string
@@ -69446,7 +70291,9 @@ namespace {
          *
          * @since 6.7.0
          *
-         * @see https://html.spec.whatwg.org/#parsing-main-inselectintable
+         * @deprecated 7.1.0 The "in select in table" insertion mode was removed from the standard.
+         * @ignore
+         *
          * @see WP_HTML_Processor_State::$insertion_mode
          *
          * @var string
@@ -69851,7 +70698,7 @@ namespace {
      *
      * ### Bookmarks
      *
-     * While scanning through the input HTMl document it's possible to set
+     * While scanning through the input HTML document it's possible to set
      * a named bookmark when a particular tag is found. Later on, after
      * continuing to scan other tags, it's possible to `seek` to one of
      * the set bookmarks and then proceed again from that point forward.
@@ -69924,7 +70771,7 @@ namespace {
      *
      * For these elements the Tag Processor treats the entire sequence as one,
      * from the opening tag, including its contents, through its closing tag.
-     * This means that the it's not possible to match the closing tag for a
+     * This means that it's not possible to match the closing tag for a
      * SCRIPT element unless it's unexpected; the Tag Processor already matched
      * it when it found the opening tag.
      *
@@ -69936,7 +70783,7 @@ namespace {
      *    closing the SCRIPT from inside a JavaScript string. E.g. `console.log( '</script>' )`.
      *  - `TITLE` and `TEXTAREA` whose contents are treated as plaintext and then any
      *    character references are decoded. E.g. `1 &lt; 2 < 3` becomes `1 < 2 < 3`.
-     *  - `IFRAME`, `NOSCRIPT`, `NOEMBED`, `NOFRAME`, `STYLE` whose contents are treated as
+     *  - `IFRAME`, `NOEMBED`, `NOFRAMES`, `STYLE`, `XMP` whose contents are treated as
      *    raw plaintext and left as-is. E.g. `1 &lt; 2 < 3` remains `1 &lt; 2 < 3`.
      *
      * #### Other tokens with modifiable text.
@@ -69954,7 +70801,7 @@ namespace {
      *    invalid. The text for these nodes is the text that a browser would transform into
      *    an HTML comment when parsing. E.g. for `</%post_author>` the text is `%post_author`.
      *  - `DOCTYPE` declarations like `<DOCTYPE html>` which have no closing tag.
-     *  - XML Processing instruction nodes like `<?wp __( "Like" ); ?>` (with restrictions [2]).
+     *  - Processing instruction nodes like `<?wp __( "Like" ); ?>` (with restrictions [2]).
      *  - The empty end tag `</>` which is ignored in the browser and DOM.
      *
      * [1]: There are no CDATA sections in HTML. When encountering `<![CDATA[`, everything
@@ -69963,12 +70810,12 @@ namespace {
      *      all valid and bogus HTML comments, and then if the comment _would_ have been a
      *      CDATA section _were they to exist_, it will indicate this as the type of comment.
      *
-     * [2]: XML allows a broader range of characters in a processing instruction's target name
-     *      and disallows "xml" as a name, since it's special. The Tag Processor only recognizes
-     *      target names with an ASCII-representable subset of characters. It also exhibits the
-     *      same constraint as with CDATA sections, in that `>` cannot exist within the token
-     *      since Processing Instructions do no exist within HTML and their syntax transforms
-     *      into a bogus comment in the DOM.
+     * [2]: HTML recognizes processing instructions whose target starts with an ASCII letter
+     *      or `_` and continues with ASCII alphanumerics, `-`, or `_`. The reserved `xml`
+     *      and `xml-stylesheet` targets, as well as XML-valid targets with characters
+     *      outside this set, transform into bogus comments in the DOM instead. Processing
+     *      instructions exhibit the same constraint as CDATA sections, in that `>` cannot
+     *      exist within the token since the processing instruction ends at the first `>`.
      *
      * ## Design and limitations
      *
@@ -70078,17 +70925,18 @@ namespace {
         /**
          * Specifies mode of operation of the parser at any given time.
          *
-         * | State           | Meaning                                                              |
-         * | ----------------|----------------------------------------------------------------------|
-         * | *Ready*         | The parser is ready to run.                                          |
-         * | *Complete*      | There is nothing left to parse.                                      |
-         * | *Incomplete*    | The HTML ended in the middle of a token; nothing more can be parsed. |
-         * | *Matched tag*   | Found an HTML tag; it's possible to modify its attributes.           |
-         * | *Text node*     | Found a #text node; this is plaintext and modifiable.                |
-         * | *CDATA node*    | Found a CDATA section; this is modifiable.                           |
-         * | *Comment*       | Found a comment or bogus comment; this is modifiable.                |
-         * | *Presumptuous*  | Found an empty tag closer: `</>`.                                    |
-         * | *Funky comment* | Found a tag closer with an invalid tag name; this is modifiable.     |
+         * | State                    | Meaning                                                              |
+         * |--------------------------|----------------------------------------------------------------------|
+         * | *Ready*                  | The parser is ready to run.                                          |
+         * | *Complete*               | There is nothing left to parse.                                      |
+         * | *Incomplete*             | The HTML ended in the middle of a token; nothing more can be parsed. |
+         * | *Matched tag*            | Found an HTML tag; it's possible to modify its attributes.           |
+         * | *Text node*              | Found a #text node; this is plaintext and modifiable.                |
+         * | *CDATA node*             | Found a CDATA section; this is modifiable.                           |
+         * | *Comment*                | Found a comment or bogus comment; this is modifiable.                |
+         * | *Presumptuous*           | Found an empty tag closer: `</>`.                                    |
+         * | *Funky comment*          | Found a tag closer with an invalid tag name; this is modifiable.     |
+         * | *Processing instruction* | Found a processing instruction, e.g. `<?pi-target data>`.            |
          *
          * @since 6.5.0
          *
@@ -70102,6 +70950,7 @@ namespace {
          * @see WP_HTML_Tag_Processor::STATE_DOCTYPE
          * @see WP_HTML_Tag_Processor::STATE_PRESUMPTUOUS_TAG
          * @see WP_HTML_Tag_Processor::STATE_FUNKY_COMMENT
+         * @see WP_HTML_Tag_Processor::STATE_PROCESSING_INSTRUCTION
          *
          * @var string
          */
@@ -70116,7 +70965,7 @@ namespace {
          *       - A TABLE start tag `<table>` implicitly closes any open `P` element.
          *
          *   - In `QUIRKS_MODE`:
-         *       - CSS class and ID selectors match match in an ASCII case-insensitive manner.
+         *       - CSS class and ID selectors match in an ASCII case-insensitive manner.
          *       - A TABLE start tag `<table>` opens a `TABLE` element as a child of a `P`
          *         element if one is open.
          *
@@ -70207,7 +71056,7 @@ namespace {
          *     );
          *
          * @since 6.2.0
-         * @var WP_HTML_Text_Replacement[]
+         * @var array<int|string, WP_HTML_Text_Replacement>
          */
         protected $lexical_updates = array();
         /**
@@ -70291,12 +71140,11 @@ namespace {
          *  - a text node - the plaintext inside tags.
          *  - an HTML comment.
          *  - a DOCTYPE declaration.
-         *  - a processing instruction, e.g. `<?xml version="1.0" ?>`.
-         *
-         * The Tag Processor currently only supports the tag token.
+         *  - an HTML processing instruction, e.g. `<?pi …data?>`.
          *
          * @since 6.5.0
          * @since 6.7.0 Recognizes CDATA sections within foreign content.
+         * @since 7.1.0 Recognizes processing instructions.
          *
          * @return bool Whether a token was parsed.
          */
@@ -70310,7 +71158,7 @@ namespace {
          * Example:
          *
          *     $processor = new WP_HTML_Tag_Processor( '<input type="text" value="Th' );
-         *     false      === $processor->get_next_tag();
+         *     false      === $processor->next_tag();
          *     true       === $processor->paused_at_incomplete_token();
          *
          * @since 6.5.0
@@ -70325,14 +71173,20 @@ namespace {
          *
          * This generator function is designed to be used inside a "foreach" loop.
          *
-         * Example:
-         *
-         *     $p = new WP_HTML_Tag_Processor( "<div class='free &lt;egg&lt;\tlang-en'>" );
-         *     $p->next_tag();
-         *     foreach ( $p->class_list() as $class_name ) {
-         *         echo "{$class_name} ";
-         *     }
-         *     // Outputs: "free <egg> lang-en "
+         * ```php interactive
+         * <?php
+         * require '/wordpress/wp-load.php';
+         * $p = new WP_HTML_Tag_Processor( "<div class='free &lt;egg&gt;\tlang-en'>" );
+         * $p->next_tag();
+         * foreach ( $p->class_list() as $class_name ) {
+         *   var_dump( $class_name );
+         * }
+         * ```
+         * ```expected-output
+         * string(4) "free"
+         * string(5) "<egg>"
+         * string(7) "lang-en"
+         * ```
          *
          * @since 6.4.0
          *
@@ -70519,6 +71373,7 @@ namespace {
          *
          * @param string $prefix Prefix of requested attribute names.
          * @return array|null List of attribute names, or `null` when no tag opener is matched.
+         * @phpstan-return list<non-empty-string>|null
          */
         public function get_attribute_names_with_prefix($prefix): ?array
         {
@@ -70567,6 +71422,12 @@ namespace {
         /**
          * Returns the adjusted attribute name for a given attribute, taking into
          * account the current parsing context, whether HTML, SVG, or MathML.
+         *
+         * In SVG and MathML contexts, adjusted foreign attributes with a namespace
+         * prefix use a space between the prefix and local name. For example,
+         * `xlink:href` is returned as `xlink href`, while the unprefixed `xmlns`
+         * attribute is returned as `xmlns`. Non-adjusted attributes with a colon in
+         * their name, such as `foo:bar`, are returned unchanged.
          *
          * @since 6.7.0
          *
@@ -70634,10 +71495,13 @@ namespace {
          *  - `#doctype` when matched on a DOCTYPE declaration.
          *  - `#presumptuous-tag` when matched on an empty tag closer.
          *  - `#funky-comment` when matched on a funky comment.
+         *  - `#processing-instruction` when matched on a processing instruction.
          *
          * @since 6.5.0
+         * @since 7.1.0 Recognizes processing instructions.
          *
          * @return string|null What kind of token is matched, or null.
+         * @phpstan-return '#tag'|'#text'|'#cdata-section'|'#comment'|'#doctype'|'#presumptuous-tag'|'#funky-comment'|'#processing-instruction'|null
          */
         public function get_token_type(): ?string
         {
@@ -70695,7 +71559,7 @@ namespace {
          *
          * This differs from {@see ::get_modifiable_text()} in that certain comment
          * types in the HTML API cannot allow their entire comment text content to
-         * be modified. Namely, "bogus comments" of the form `<?not allowed in html>`
+         * be modified. Namely, "bogus comments" of the form `<?xml not allowed in html>`
          * will create a comment whose text content starts with `?`. Note that if
          * that character were modified, it would be possible to change the node
          * type.
@@ -70729,9 +71593,9 @@ namespace {
          *     true  === $processor->next_token();                   // Text is "Apples & Oranges".
          *     false === $processor->subdivide_text_appropriately();
          *
-         *     $processor = new WP_HTML_Tag_Processor( "&#x13; \r\n\tMore" );
-         *     true  === $processor->next_token();                   // Text is "␤ ␤␉More".
-         *     true  === $processor->subdivide_text_appropriately(); // Text is "␤ ␤␉".
+         *     $processor = new WP_HTML_Tag_Processor( "&#xD; \r\n\tMore" );
+         *     true  === $processor->next_token();                   // Text is "␍ ␊␉More".
+         *     true  === $processor->subdivide_text_appropriately(); // Text is "␍ ␊␉".
          *     true  === $processor->next_token();                   // Text is "More".
          *     false === $processor->subdivide_text_appropriately();
          *
@@ -70791,7 +71655,11 @@ namespace {
          * that escaping strings like `</script>` won’t break the script; in these
          * cases, updates will be rejected and it’s up to calling code to perform
          * language-specific escaping or workarounds. Similarly, it will not allow
-         * setting content into a comment which would prematurely terminate the comment.
+         * setting content into a comment which would prematurely terminate the comment,
+         * or processing instruction data which cannot be represented: data containing
+         * a `>`, which would prematurely terminate the processing instruction, or data
+         * with leading whitespace, which is indistinguishable from the whitespace
+         * separating the data from its target.
          *
          * Example:
          *
@@ -70829,6 +71697,7 @@ namespace {
          *
          * @since 6.7.0
          * @since 6.9.0 Escapes all character references instead of trying to avoid double-escaping.
+         * @since 7.1.0 Supports setting processing instruction data.
          *
          * @param string $plaintext_content New text content to represent in the matched token.
          * @return bool Whether the text was able to update.
@@ -71063,7 +71932,7 @@ namespace {
          *     </2>
          *
          * Funky comments are tag closers with invalid tag names. Note
-         * that in HTML these are turn into bogus comments. Nonetheless,
+         * that in HTML these are turned into bogus comments. Nonetheless,
          * the Tag Processor recognizes them in a stream of HTML and
          * exposes them for inspection and modification.
          *
@@ -71072,6 +71941,26 @@ namespace {
          * @access private
          */
         const STATE_FUNKY_COMMENT = 'STATE_WP_FUNKY';
+        /**
+         * Indicates that the parser has found a processing instruction
+         * and it's possible to read its target and data.
+         *
+         * Example:
+         *
+         *     <?wp-bit {"just": "kidding"}>
+         *
+         * Processing instructions with an allowable target are parsed
+         * into processing instruction nodes. The reserved `xml` and
+         * `xml-stylesheet` targets, and targets with characters outside
+         * an ASCII-representable subset, are turned into bogus comments.
+         *
+         * @link https://html.spec.whatwg.org/multipage/parsing.html#processing-instruction-open-state
+         *
+         * @since 7.1.0
+         *
+         * @access private
+         */
+        const STATE_PROCESSING_INSTRUCTION = 'STATE_PROCESSING_INSTRUCTION';
         /**
          * Indicates that a comment was created when encountering abruptly-closed HTML comment.
          *
@@ -71109,15 +71998,23 @@ namespace {
         const COMMENT_AS_HTML_COMMENT = 'COMMENT_AS_HTML_COMMENT';
         /**
          * Indicates that a comment would be parsed as a Processing
-         * Instruction node, were they to exist within HTML.
+         * Instruction node, were its target allowed within HTML.
          *
          * Example:
          *
-         *     <?wp __( 'Like' ) ?>
+         *     <?xml version="1.0" ?>
+         *     <?wp.like count=5 ?>
          *
-         * This is an HTML comment, but it looks like a CDATA node.
+         * These are HTML comments, but they look like processing
+         * instructions. HTML parses processing instructions with
+         * an allowable target into processing instruction nodes,
+         * but the reserved `xml` and `xml-stylesheet` targets and
+         * XML-valid targets with characters outside of the allowed
+         * set become bogus comments instead.
          *
          * @since 6.5.0
+         * @since 7.1.0 Only applies to reserved and XML-specific target names;
+         *              other processing instructions produce their own token.
          */
         const COMMENT_AS_PI_NODE_LOOKALIKE = 'COMMENT_AS_PI_NODE_LOOKALIKE';
         /**
@@ -71126,7 +72023,7 @@ namespace {
          *
          * Example:
          *
-         *     <?nothing special>
+         *     <?= nothing special ?>
          *     <!{nothing special}>
          *
          * @since 6.5.0
@@ -71326,10 +72223,13 @@ namespace {
      * in the document that the parser had already processed, this parser does not support
      * these situations and will bail.
      *
+     * The parser does not implement the "maybe clone an option into selectedcontent" algorithm.
+     * SELECTEDCONTENT elements may not reflect the actual selected content.
+     *
      * @since 6.4.0
      *
      * @see WP_HTML_Tag_Processor
-     * @see https://html.spec.whatwg.org/
+     * @link https://html.spec.whatwg.org/
      * @phpstan-consistent-constructor
      */
     class WP_HTML_Processor extends \WP_HTML_Tag_Processor
@@ -71391,6 +72291,8 @@ namespace {
          * UTF-8 is the only allowed encoding. If working with a document that
          * isn't UTF-8, first convert the document to UTF-8, then pass in the
          * converted HTML.
+         *
+         * @since 6.7.0
          *
          * @param string      $html                    Input HTML document to process.
          * @param string|null $known_definite_encoding Optional. If provided, specifies the charset used
@@ -71558,7 +72460,7 @@ namespace {
          * token, or if it will self-close on the next step.
          *
          * Most HTML elements expect a closer, such as a P element or
-         * a DIV element. Others, like an IMG element are void and don't
+         * a DIV element. Others, like an IMG element, are void and don't
          * have a closing tag. Special elements, such as SCRIPT and STYLE,
          * are treated just like void tags. Text nodes and self-closing
          * foreign content will also act just like a void tag, immediately
@@ -71577,7 +72479,12 @@ namespace {
         /**
          * Steps through the HTML document and stop at the next tag, if any.
          *
+         * This is an internal method. The relevant public methods are
+         * {@see WP_HTML_Processor::next_tag()} and {@see WP_HTML_Processor::next_token()}.
+         *
          * @since 6.4.0
+         *
+         * @access private
          *
          * @throws Exception When unable to allocate a bookmark for the next token in the input HTML document.
          *
@@ -71829,8 +72736,11 @@ namespace {
          *  - `#doctype` when matched on a DOCTYPE declaration.
          *  - `#presumptuous-tag` when matched on an empty tag closer.
          *  - `#funky-comment` when matched on a funky comment.
+         *  - `#processing-instruction` when matched on a processing instruction.
          *
          * @since 6.6.0 Subclassed for the HTML Processor.
+         * @since 7.1.0 Recognize processing instructions according to an HTML
+         *              specification update.
          *
          * @return string|null What kind of token is matched, or null.
          */
@@ -71976,14 +72886,20 @@ namespace {
          *
          * This generator function is designed to be used inside a "foreach" loop.
          *
-         * Example:
-         *
-         *     $p = WP_HTML_Processor::create_fragment( "<div class='free &lt;egg&lt;\tlang-en'>" );
-         *     $p->next_tag();
-         *     foreach ( $p->class_list() as $class_name ) {
-         *         echo "{$class_name} ";
-         *     }
-         *     // Outputs: "free <egg> lang-en "
+         * ```php interactive
+         * <?php
+         * require '/wordpress/wp-load.php';
+         * $p = WP_HTML_Processor::create_fragment( "<div class='free &lt;egg&gt;\tlang-en'>" );
+         * $p->next_tag();
+         * foreach ( $p->class_list() as $class_name ) {
+         *   var_dump( $class_name );
+         * }
+         * ```
+         * ```expected-output
+         * string(4) "free"
+         * string(5) "<egg>"
+         * string(7) "lang-en"
+         * ```
          *
          * @since 6.6.0 Subclassed for the HTML Processor.
          */
@@ -72467,7 +73383,7 @@ namespace {
          *
          * @since 6.4.0
          *
-         * @var string
+         * @var string|null
          */
         public $bookmark_name = \null;
         /**
@@ -72774,8 +73690,8 @@ namespace {
          * @since 6.5.0
          * @since 6.6.0 The `$store_namespace` param is optional.
          *
-         * @param string $store_namespace Optional. The unique store namespace identifier.
-         * @param array  $state           Optional. The array that will be merged with the existing state for the specified
+         * @param string|null $store_namespace Optional. The unique store namespace identifier.
+         * @param array|null  $state           Optional. The array that will be merged with the existing state for the specified
          *                                store namespace.
          * @return array The current state for the specified store namespace. This will be the updated state if a $state
          *               argument was provided.
@@ -72853,7 +73769,7 @@ namespace {
          *
          * @since 6.6.0
          *
-         * @param string $store_namespace Optional. The unique store namespace identifier.
+         * @param string|null $store_namespace Optional. The unique store namespace identifier.
          */
         public function get_context(?string $store_namespace = \null): array
         {
@@ -84604,6 +85520,7 @@ namespace {
     {
         /**
          * PHP5 constructor.
+         * @phpstan-return void
          */
         public function __construct($filename)
         {
@@ -85175,6 +86092,15 @@ namespace {
          * @since 4.4.0
          *
          * @return array Parameter map of key to value.
+         *
+         * @phpstan-return array<string, array{
+         *                                   name: non-empty-string,
+         *                                   type: non-empty-string,
+         *                                   size: non-negative-int,
+         *                                   tmp_name: non-empty-string,
+         *                                   error: int<0, 8>,
+         *                                   full_path?: non-empty-string,
+         *                               }>
          */
         public function get_file_params()
         {
@@ -85187,6 +86113,15 @@ namespace {
          * @since 4.4.0
          *
          * @param array $params Parameter map of key to value.
+         *
+         * @phpstan-param array<string, array{
+         *                                  name: non-empty-string,
+         *                                  type: non-empty-string,
+         *                                  size: non-negative-int,
+         *                                  tmp_name: non-empty-string,
+         *                                  error: int<0, 8>,
+         *                                  full_path?: non-empty-string,
+         *                              }> $params
          */
         public function set_file_params($params)
         {
@@ -86787,6 +87722,24 @@ namespace {
         {
         }
         /**
+         * Sanitizes the run input by coercing it to the ability's input schema.
+         *
+         * Registered as the `input` argument `sanitize_callback` so that both
+         * `check_ability_permissions()` and `execute_ability()` receive natively typed input
+         * regardless of transport.
+         *
+         * @since 7.1.0
+         *
+         * @see WP_REST_Abilities_V1_Run_Controller::coerce_input_to_schema()
+         *
+         * @param mixed           $input   Raw input extracted from the request.
+         * @param WP_REST_Request $request The request object.
+         * @return mixed Coerced input, or the raw input when it cannot be safely coerced.
+         */
+        public function sanitize_input_for_ability($input, $request)
+        {
+        }
+        /**
          * Retrieves the arguments for ability execution endpoint.
          *
          * @since 6.9.0
@@ -87524,6 +88477,13 @@ namespace {
          * @since 4.7.0
          *
          * @return array Item schema data.
+         *
+         * @phpstan-return array{
+         *     title: non-empty-string,
+         *     type: non-empty-string,
+         *     properties: array<string, array<string, mixed>>,
+         *     ...
+         * }
          */
         public function get_item_schema()
         {
@@ -87571,6 +88531,16 @@ namespace {
      * @since 4.7.0
      *
      * @see WP_REST_Posts_Controller
+     *
+     * @phpstan-type Image_Sub_Size array{
+     *     image_size: non-empty-string|non-empty-list<non-empty-string>,
+     *     width?: positive-int,
+     *     height?: positive-int,
+     *     file?: non-empty-string,
+     *     mime_type?: non-empty-string,
+     *     filesize?: positive-int,
+     *     original_image?: non-empty-string,
+     * }
      */
     class WP_REST_Attachments_Controller extends \WP_REST_Posts_Controller
     {
@@ -87582,6 +88552,41 @@ namespace {
          */
         protected $allow_batch = \false;
         /**
+         * Image size token for the source-format original preserved alongside a
+         * client-generated derivative (e.g. the HEIC file kept next to its JPEG).
+         *
+         * Used both in the `/sideload` route schema and when dispatching the
+         * sideloaded file to its metadata key, so the two never drift apart.
+         *
+         * @since 7.1.0
+         * @var string
+         */
+        const IMAGE_SIZE_SOURCE_ORIGINAL = 'source_original';
+        /**
+         * Metadata key holding the basename of the source-format original.
+         *
+         * Deliberately specific so it never collides with the generic `original`
+         * or `original_image` keys other flows write to.
+         *
+         * @since 7.1.0
+         * @var string
+         */
+        const META_KEY_SOURCE_IMAGE = 'source_image';
+        /**
+         * Post meta key recording the file names produced by the sideload endpoint.
+         *
+         * Each successful sideload appends the file name(s) it created for an
+         * attachment under this key. The finalize endpoint reads them back to
+         * confirm every stored sub-size was actually produced here, rather than
+         * trusting a client-supplied name that could point at another attachment's
+         * files. Stored as one row per value (via {@see add_post_meta()}) so concurrent
+         * sideloads never read-modify-write a shared value.
+         *
+         * @since 7.1.0
+         * @var string
+         */
+        const META_KEY_SIDELOAD_FILE_NAME = '_wp_sideloaded_file';
+        /**
          * Registers the routes for attachments.
          *
          * @since 5.3.0
@@ -87589,6 +88594,20 @@ namespace {
          * @see register_rest_route()
          */
         public function register_routes()
+        {
+        }
+        /**
+         * Retrieves the query params for the attachments collection.
+         *
+         * @since 7.1.0
+         *
+         * @param string $method Optional. HTTP method of the request.
+         *                       The arguments for `CREATABLE` requests are
+         *                       checked for required values and may fall-back to a given default.
+         *                       Default WP_REST_Server::CREATABLE.
+         * @return array<string, array<string, mixed>> Endpoint arguments.
+         */
+        public function get_endpoint_args_for_item_schema($method = \WP_REST_Server::CREATABLE)
         {
         }
         /**
@@ -87620,11 +88639,27 @@ namespace {
          * Creates a single attachment.
          *
          * @since 4.7.0
+         * @since 7.1.0 Added the `generate_sub_sizes`, `convert_format`, and `url` parameters.
          *
          * @param WP_REST_Request $request Full details about the request.
          * @return WP_REST_Response|WP_Error Response object on success, WP_Error object on failure.
          */
         public function create_item($request)
+        {
+        }
+        /**
+         * Sideloads an external image from a URL into the media library.
+         *
+         * Downloads the remote file on the server, avoiding a cross-origin browser
+         * fetch that fails under cross-origin isolation. Whether sub-sizes are
+         * generated is governed by the filters applied in create_item().
+         *
+         * @since 7.1.0
+         *
+         * @param WP_REST_Request $request Full details about the request.
+         * @return WP_REST_Response|WP_Error Response object on success, WP_Error object on failure.
+         */
+        protected function create_item_from_url(\WP_REST_Request $request)
         {
         }
         /**
@@ -87699,6 +88734,7 @@ namespace {
          *
          * @since 5.5.0
          * @since 6.9.0 Adds flips capability and editable fields for the newly-created attachment post.
+         * @since 7.1.0 Applies EXIF orientation correction before image modifications.
          *
          * @param WP_REST_Request $request Full details about the request.
          * @return WP_REST_Response|WP_Error Response object on success, WP_Error object on failure.
@@ -87760,7 +88796,7 @@ namespace {
          * @param string      $data    Supplied file data.
          * @param array       $headers HTTP headers from the request.
          * @param string|null $time    Optional. Time formatted in 'yyyy/mm'. Default null.
-         * @return array|WP_Error Data from wp_handle_sideload().
+         * @return array{ file: non-empty-string, url: non-empty-string, type: non-empty-string }|WP_Error Data from wp_handle_sideload().
          */
         protected function upload_from_data($data, $headers, $time = \null)
         {
@@ -87817,7 +88853,7 @@ namespace {
          * @param array       $files   Data from the `$_FILES` superglobal.
          * @param array       $headers HTTP headers from the request.
          * @param string|null $time    Optional. Time formatted in 'yyyy/mm'. Default null.
-         * @return array|WP_Error Data from wp_handle_upload().
+         * @return array{ file: non-empty-string, url: non-empty-string, type: non-empty-string }|WP_Error Data from wp_handle_upload().
          */
         protected function upload_from_file($files, $headers, $time = \null)
         {
@@ -87876,8 +88912,120 @@ namespace {
          *
          * @param int $attachment_id Attachment ID.
          * @return int|null Attachment file size in bytes, or null if not available.
+         * @phpstan-return non-negative-int|null
          */
         protected function get_attachment_filesize(int $attachment_id): ?int
+        {
+        }
+        /**
+         * Checks if a given request has access to sideload a file.
+         *
+         * Sideloading a file for an existing attachment
+         * requires both update and create permissions.
+         *
+         * @since 7.1.0
+         *
+         * @param WP_REST_Request $request Full details about the request.
+         * @return true|WP_Error True if the request has access to update the item, WP_Error object otherwise.
+         */
+        public function sideload_item_permissions_check($request)
+        {
+        }
+        /**
+         * Side-loads a media file without creating a new attachment.
+         *
+         * @since 7.1.0
+         *
+         * @param WP_REST_Request $request Full details about the request.
+         * @return WP_REST_Response|WP_Error Response object on success, WP_Error object on failure.
+         */
+        public function sideload_item(\WP_REST_Request $request)
+        {
+        }
+        /**
+         * Validates the `sub_sizes` file names against what this attachment produced.
+         *
+         * The {@see self::finalize_item()} method stores the client-supplied `file`
+         * and `original_image` values in the attachment metadata, where they are
+         * later resolved within the attachment's upload directory and read or deleted
+         * (for example by {@see wp_get_original_image_path()}, {@see wp_getimagesize()},
+         * and {@see wp_delete_attachment_files()}).
+         *
+         * Every file the sideload endpoint creates is recorded under
+         * {@see self::META_KEY_SIDELOAD_FILE_NAME} as it is produced, using
+         * server-generated names. finalize accepts a `file` or `original_image`
+         * value only when it matches one of those recorded names (or the
+         * attachment's own attached file, which it definitionally owns).
+         *
+         * @since 7.1.0
+         *
+         * @param int   $attachment_id The attachment being finalized.
+         * @param array $sub_sizes     Sub-size metadata collected from sideloads.
+         * @return true|WP_Error True if every file name was produced here, WP_Error otherwise.
+         *
+         * @phpstan-param list<Image_Sub_Size> $sub_sizes
+         */
+        protected function validate_sub_size_provenance(int $attachment_id, array $sub_sizes)
+        {
+        }
+        /**
+         * Returns the file names which a finalize request may store for an attachment.
+         *
+         * The set is the file names the sideload endpoint recorded as it produced
+         * them (ref. {@see self::META_KEY_SIDELOAD_FILE_NAME}), plus the attachment's own
+         * attached file - accepted in both its uploads-relative and basename form so
+         * a scaled main-file pointer validates regardless of which the client
+         * echoes - plus the names already stored in the attachment's own metadata.
+         *
+         * @since 7.1.0
+         *
+         * @param int  $attachment_id      The attachment being finalized.
+         * @param bool $include_provenance Whether to include the sideload provenance rows.
+         *                                 Pass false to get only the names recoverable from
+         *                                 the attached file and stored metadata, e.g. to decide
+         *                                 whether a provenance row is still needed. Default true.
+         * @return string[] File names that may appear in the finalize submission.
+         *
+         * @phpstan-return list<string>
+         */
+        protected function get_sideloaded_file_names(int $attachment_id, bool $include_provenance = \true): array
+        {
+        }
+        /**
+         * Returns the uploads subdirectory an attachment is stored in.
+         *
+         * Used to place a sideloaded file alongside the attachment it extends. The
+         * result is concatenated into a filesystem path by the caller, so it is
+         * returned only when the attachment resolves inside the uploads directory
+         * and the stored path is well formed.
+         *
+         * @since 7.1.0
+         *
+         * @param string $attached_file Absolute path to the attached file.
+         * @return string|null Subdirectory beginning with a slash, an empty string when the
+         *                     attachment sits in the base directory, or null when the
+         *                     attachment is not inside the uploads directory.
+         *
+         * @phpstan-param non-empty-string $attached_file
+         */
+        protected function get_attachment_upload_subdir(string $attached_file): ?string
+        {
+        }
+        /**
+         * Finalizes an attachment after client-side media processing.
+         *
+         * Applies the sub-size metadata collected from sideload responses in a
+         * single metadata update, then triggers the 'wp_generate_attachment_metadata'
+         * filter so that server-side plugins can process the attachment after all
+         * client-side operations (upload, thumbnail generation, sideloads) are
+         * complete.
+         *
+         * @since 7.1.0
+         *
+         * @param WP_REST_Request $request Full details about the request.
+         * @return WP_REST_Response|WP_Error Response object on success, WP_Error object on failure.
+         */
+        public function finalize_item(\WP_REST_Request $request)
         {
         }
     }
@@ -88026,8 +89174,9 @@ namespace {
          *
          * @since 4.7.0
          * @since 5.9.0 Renamed `$post` to `$item` to match parent class for PHP 8 named parameter support.
+         * @since 7.1.0 The global post is now restored to its previous value before returning.
          *
-         * @global WP_Post $post Global post object.
+         * @global WP_Post|null $post Global post object.
          *
          * @param WP_Post         $item    Post revision object.
          * @param WP_REST_Request $request Request object.
@@ -89895,10 +91044,11 @@ namespace {
          * @since 7.0.0 Only restricts contents which risk prematurely closing the STYLE element,
          *              either through a STYLE end tag or a prefix of one which might become a
          *              full end tag when combined with the contents of other styles.
+         * @since 7.1.0 Rejects non-string values with a WP_Error instead of a fatal error.
          *
          * @see WP_Customize_Custom_CSS_Setting::validate()
          *
-         * @param string $css CSS to validate.
+         * @param mixed $css CSS to validate.
          * @return true|WP_Error True if the input was validated, otherwise WP_Error.
          */
         protected function validate_custom_css($css)
@@ -90012,9 +91162,124 @@ namespace {
     }
     /**
      * Controller which provides a REST endpoint for the editor to read registered
-     * icons. For the time being, only core icons are available, which are defined
-     * in a single manifest file (wp-includes/assets/icon-library-manifest.php).
-     * Icons are comprised of their SVG source, a name and a translatable label.
+     * icon collections.
+     *
+     * @since 7.1.0
+     *
+     * @see WP_REST_Controller
+     */
+    class WP_REST_Icon_Collections_Controller extends \WP_REST_Controller
+    {
+        /**
+         * Constructs the controller.
+         *
+         * @since 7.1.0
+         */
+        public function __construct()
+        {
+        }
+        /**
+         * Registers the routes for the objects of the controller.
+         *
+         * @since 7.1.0
+         */
+        public function register_routes()
+        {
+        }
+        /**
+         * Checks whether a given request has permission to read icon collections.
+         *
+         * @since 7.1.0
+         *
+         * @param WP_REST_Request $request Full details about the request.
+         * @return true|WP_Error True if the request has read access, WP_Error object otherwise.
+         */
+        public function get_items_permissions_check(
+            // phpcs:ignore VariableAnalysis.CodeAnalysis.VariableAnalysis.UnusedVariable
+            $request
+        )
+        {
+        }
+        /**
+         * Checks if a given request has access to read a specific icon collection.
+         *
+         * @since 7.1.0
+         *
+         * @param WP_REST_Request $request Full details about the request.
+         * @return true|WP_Error True if the request has read access for the item, WP_Error object otherwise.
+         */
+        public function get_item_permissions_check($request)
+        {
+        }
+        /**
+         * Retrieves all icon collections.
+         *
+         * @since 7.1.0
+         *
+         * @param WP_REST_Request $request Full details about the request.
+         * @return WP_REST_Response|WP_Error Response object on success, or WP_Error object on failure.
+         */
+        public function get_items($request)
+        {
+        }
+        /**
+         * Retrieves a specific icon collection.
+         *
+         * @since 7.1.0
+         *
+         * @param WP_REST_Request $request Full details about the request.
+         * @return WP_REST_Response|WP_Error Response object on success, or WP_Error object on failure.
+         */
+        public function get_item($request)
+        {
+        }
+        /**
+         * Retrieves a specific icon collection from the registry.
+         *
+         * @since 7.1.0
+         *
+         * @param string $slug Icon collection slug.
+         * @return array|WP_Error Icon collection data on success, or WP_Error object on failure.
+         */
+        public function get_icon_collection($slug)
+        {
+        }
+        /**
+         * Prepares a raw icon collection before it gets output in a REST API response.
+         *
+         * @since 7.1.0
+         *
+         * @param array           $item    Raw icon collection as registered, before any changes.
+         * @param WP_REST_Request $request Request object.
+         * @return WP_REST_Response|WP_Error Response object on success, or WP_Error object on failure.
+         */
+        public function prepare_item_for_response($item, $request)
+        {
+        }
+        /**
+         * Retrieves the icon collection schema, conforming to JSON Schema.
+         *
+         * @since 7.1.0
+         *
+         * @return array Item schema data.
+         */
+        public function get_item_schema()
+        {
+        }
+        /**
+         * Retrieves the query params for the icon collections collection.
+         *
+         * @since 7.1.0
+         *
+         * @return array Collection parameters.
+         */
+        public function get_collection_params()
+        {
+        }
+    }
+    /**
+     * Controller which provides a REST endpoint for the editor to read registered
+     * icons. Icons are grouped into collections (the default one being `core`).
      *
      * @since 7.0.0
      *
@@ -90024,18 +91289,25 @@ namespace {
     {
         /**
          * Constructs the controller.
+         *
+         * @since 7.0.0
          */
         public function __construct()
         {
         }
         /**
          * Registers the routes for the objects of the controller.
+         *
+         * @since 7.0.0
+         * @since 7.1.0 Added the `/icons/<collection>` collection-scoped route.
          */
         public function register_routes()
         {
         }
         /**
          * Checks whether a given request has permission to read icons.
+         *
+         * @since 7.0.0
          *
          * @param WP_REST_Request $request Full details about the request.
          * @return true|WP_Error True if the request has read access, WP_Error object otherwise.
@@ -90049,6 +91321,8 @@ namespace {
         /**
          * Checks if a given request has access to read a specific icon.
          *
+         * @since 7.0.0
+         *
          * @param WP_REST_Request $request Full details about the request.
          * @return true|WP_Error True if the request has read access for the item, WP_Error object otherwise.
          */
@@ -90056,7 +91330,10 @@ namespace {
         {
         }
         /**
-         * Retrieves all icons.
+         * Retrieves all icons, optionally scoped to a collection.
+         *
+         * @since 7.0.0
+         * @since 7.1.0 Supports filtering by collection.
          *
          * @param WP_REST_Request $request Full details about the request.
          * @return WP_REST_Response|WP_Error Response object on success, or WP_Error object on failure.
@@ -90067,6 +91344,8 @@ namespace {
         /**
          * Retrieves a specific icon.
          *
+         * @since 7.0.0
+         *
          * @param WP_REST_Request $request Full details about the request.
          * @return WP_REST_Response|WP_Error Response object on success, or WP_Error object on failure.
          */
@@ -90076,6 +91355,8 @@ namespace {
         /**
          * Retrieves a specific icon from the registry.
          *
+         * @since 7.0.0
+         *
          * @param string $name Icon name.
          * @return array|WP_Error Icon data on success, or WP_Error object on failure.
          */
@@ -90084,6 +91365,9 @@ namespace {
         }
         /**
          * Prepare a raw icon before it gets output in a REST API response.
+         *
+         * @since 7.0.0
+         * @since 7.1.0 Added the `collection` field.
          *
          * @param array           $item    Raw icon as registered, before any changes.
          * @param WP_REST_Request $request Request object.
@@ -90095,6 +91379,9 @@ namespace {
         /**
          * Retrieves the icon schema, conforming to JSON Schema.
          *
+         * @since 7.0.0
+         * @since 7.1.0 Added the `collection` property.
+         *
          * @return array Item schema data.
          */
         public function get_item_schema()
@@ -90102,6 +91389,9 @@ namespace {
         }
         /**
          * Retrieves the query params for the icons collection.
+         *
+         * @since 7.0.0
+         * @since 7.1.0 Added the `collection` parameter.
          *
          * @return array Collection parameters.
          */
@@ -92629,6 +93919,9 @@ namespace {
          * @since 5.8.0
          * @since 5.9.0 Renamed `$template` to `$item` to match parent class for PHP 8 named parameter support.
          * @since 6.3.0 Added `modified` property to the response.
+         * @since 7.1.0 Added `date` property to the response.
+         * @since 7.1.0 The `modified` property is `null` for templates that have no
+         *              modification date.
          *
          * @param WP_Block_Template $item    Template instance.
          * @param WP_REST_Request   $request Request object.
@@ -93258,6 +94551,215 @@ namespace {
          * @return array Collection parameters.
          */
         public function get_collection_params()
+        {
+        }
+    }
+    /**
+     * Controller which provides a REST endpoint for retrieving the default
+     * view configuration for a given entity type.
+     *
+     * @since 7.1.0
+     *
+     * @see WP_REST_Controller
+     */
+    class WP_REST_View_Config_Controller extends \WP_REST_Controller
+    {
+        /**
+         * Constructor.
+         *
+         * @since 7.1.0
+         */
+        public function __construct()
+        {
+        }
+        /**
+         * Registers the routes for the controller.
+         *
+         * @since 7.1.0
+         */
+        public function register_routes()
+        {
+        }
+        /**
+         * Checks if a given request has access to read view config.
+         *
+         * @since 7.1.0
+         *
+         * @param WP_REST_Request $request Full details about the request.
+         * @return true|WP_Error True if the request has read access, WP_Error object otherwise.
+         */
+        public function get_items_permissions_check($request)
+        {
+        }
+        /**
+         * Resolves the capability required to read the view config for an entity.
+         *
+         * Known kinds map to the capability that gates managing that entity's list:
+         * post types use their own `edit_posts` capability (which honors custom
+         * `capability_type` registrations), taxonomies use `manage_terms`, and
+         * root-level entities use `manage_options`. A post type or taxonomy that is
+         * not registered, or not exposed to the REST API, resolves to `null` so the
+         * request is treated as referencing an unknown entity.
+         *
+         * Any other kind falls back to `edit_posts`. This keeps entities registered
+         * through the `get_entity_view_config_{$kind}_{$name}` filter readable behind
+         * a baseline capability.
+         *
+         * @since 7.1.0
+         *
+         * @param string $kind The entity kind (e.g. `postType`).
+         * @param string $name The entity name (e.g. `page`).
+         * @return string|null Capability required to read the config, or null if the
+         *                     entity is not registered.
+         */
+        protected function get_required_capability($kind, $name)
+        {
+        }
+        /**
+         * Returns the default view configuration for the given entity type.
+         *
+         * @since 7.1.0
+         *
+         * @param WP_REST_Request $request Full details about the request.
+         * @return WP_REST_Response|WP_Error Response object on success, or WP_Error object on failure.
+         */
+        public function get_items($request)
+        {
+        }
+        /**
+         * Recursively casts empty arrays to objects where the schema types them as
+         * objects.
+         *
+         * PHP cannot distinguish an empty associative array from an empty list, so
+         * `json_encode()` always serializes `array()` as a JSON array (`[]`). The
+         * REST schema, however, types several values as objects, which must encode
+         * as `{}`. This walks the value against its schema and casts any empty,
+         * object-typed array to an object. Non-empty associative arrays already
+         * encode as objects, so they are left as arrays and only recursed into to
+         * fix any nested empty objects.
+         *
+         * Union schemas (`oneOf`/`anyOf`) are handled only for the empty-array case:
+         * an empty value is cast to an object when any branch allows an object. Such
+         * values are not recursed into, which is sufficient for the form schema
+         * where they never contain empty nested objects.
+         *
+         * @since 7.1.0
+         *
+         * @param mixed $value  The value to normalize.
+         * @param array $schema The schema node describing the value.
+         * @return mixed The normalized value, with empty object-typed arrays cast to objects.
+         */
+        protected function cast_empty_objects($value, $schema)
+        {
+        }
+        /**
+         * Retrieves the item's schema, conforming to JSON Schema.
+         *
+         * @since 7.1.0
+         *
+         * @return array Item schema data.
+         */
+        public function get_item_schema()
+        {
+        }
+        /**
+         * Returns the schema properties shared by all view types (ViewBase), excluding 'type'.
+         *
+         * Note that `search` and `page` are not part of the schema: they are managed
+         * via the URL, which is their only source of truth.
+         *
+         * @since 7.1.0
+         *
+         * @return array Schema properties for the base view configuration.
+         */
+        protected function get_view_base_schema()
+        {
+        }
+        /**
+         * Returns the schema for the ColumnStyle type.
+         *
+         * @since 7.1.0
+         *
+         * @return array Schema for a column style object.
+         */
+        protected function get_column_style_schema()
+        {
+        }
+        /**
+         * Returns the layout schema for table-type views (ViewTable, ViewPickerTable).
+         *
+         * @since 7.1.0
+         *
+         * @return array Schema for a table layout object.
+         */
+        protected function get_table_layout_schema()
+        {
+        }
+        /**
+         * Returns the layout schema for list-type views (ViewList, ViewActivity).
+         *
+         * @since 7.1.0
+         *
+         * @return array Schema for a list layout object.
+         */
+        protected function get_list_layout_schema()
+        {
+        }
+        /**
+         * Returns a combined layout schema that accepts properties from all view types.
+         *
+         * This is useful for contexts where the view type is not known ahead of time
+         * (e.g. the `view` override in a view list item), so all possible layout
+         * properties must be accepted.
+         *
+         * @since 7.1.0
+         *
+         * @return array Schema for a combined layout object.
+         */
+        protected function get_combined_layout_schema()
+        {
+        }
+        /**
+         * Returns the layout schema for grid-type views (ViewGrid, ViewPickerGrid).
+         *
+         * @since 7.1.0
+         *
+         * @return array Schema for a grid layout object.
+         */
+        protected function get_grid_layout_schema()
+        {
+        }
+        /**
+         * Returns the schema for a form layout object as a discriminated union.
+         *
+         * Each variant is discriminated by a single-value enum on its `type` property,
+         * matching the TypeScript Layout union in dataviews/src/types/dataform.ts.
+         *
+         * @since 7.1.0
+         *
+         * @return array Schema for a form layout object.
+         */
+        protected function get_form_layout_schema()
+        {
+        }
+        /**
+         * Returns the schema for a form field item (string or object).
+         *
+         * @since 7.1.0
+         *
+         * @return array Schema for a form field.
+         */
+        protected function get_form_field_schema()
+        {
+        }
+        /**
+         * Returns the schema for the form configuration object.
+         *
+         * @since 7.1.0
+         *
+         * @return array Schema properties for the form configuration.
+         */
+        protected function get_form_schema()
         {
         }
     }
@@ -94745,8 +96247,8 @@ namespace {
          * Renders the XSL stylesheet depending on whether it's the sitemap index or not.
          *
          * @param string $type Stylesheet type. Either 'sitemap' or 'index'.
+         * @return never
          * @phpstan-param 'sitemap'|'index' $type
-         * @phpstan-return never
          */
         public function render_stylesheet($type)
         {
@@ -95098,6 +96600,14 @@ namespace {
          */
         protected $declarations = array();
         /**
+         * CSS declaration options keyed by property name.
+         *
+         * @since 7.1.0
+         *
+         * @var array
+         */
+        protected $declaration_options = array();
+        /**
          * Constructor for this object.
          *
          * If a `$declarations` array is passed, it will be used to populate
@@ -95116,12 +96626,21 @@ namespace {
          * Adds a single declaration.
          *
          * @since 6.1.0
+         * @since 7.1.0 Added the `$options` parameter.
          *
          * @param string $property The CSS property.
          * @param string $value    The CSS value.
+         * @param array  $options  {
+         *     Optional. An array of options. Default empty array.
+         *
+         *     @type bool $important Whether to output the declaration with !important. Default false.
+         * }
          * @return WP_Style_Engine_CSS_Declarations Returns the object to allow chaining methods.
+         * @phpstan-param array{
+         *   important?: bool,
+         * } $options
          */
-        public function add_declaration($property, $value)
+        public function add_declaration($property, $value, $options = array())
         {
         }
         /**
@@ -95168,17 +96687,36 @@ namespace {
         {
         }
         /**
+         * Gets declaration options keyed by property name.
+         *
+         * @since 7.1.0
+         *
+         * @return array Declaration options keyed by property name.
+         */
+        public function get_declaration_options()
+        {
+        }
+        /**
          * Filters a CSS property + value pair.
          *
          * @since 6.1.0
+         * @since 7.1.0 Added the `$options` parameter.
          *
          * @param string $property The CSS property.
          * @param string $value    The value to be filtered.
          * @param string $spacer   Optional. The spacer between the colon and the value.
          *                         Default empty string.
+         * @param array  $options  {
+         *     Optional. An array of options. Default empty array.
+         *
+         *     @type bool $important Whether to output the declaration with !important. Default false.
+         * }
          * @return string The filtered declaration or an empty string.
+         * @phpstan-param array{
+         *   important?: bool,
+         * } $options
          */
-        protected static function filter_declaration($property, $value, $spacer = '')
+        protected static function filter_declaration($property, $value, $spacer = '', $options = array())
         {
         }
         /**
@@ -95273,6 +96811,7 @@ namespace {
          * Sets the declarations.
          *
          * @since 6.1.0
+         * @since 7.1.0 Preserves declaration options when declarations are provided as a `WP_Style_Engine_CSS_Declarations` object.
          *
          * @param string[]|WP_Style_Engine_CSS_Declarations $declarations An array of declarations (property => value pairs),
          *                                                                or a WP_Style_Engine_CSS_Declarations object.
@@ -95380,7 +96919,7 @@ namespace {
          * @since 6.1.0
          *
          * @param string $store_name The name of the store.
-         * @return WP_Style_Engine_CSS_Rules_Store|void
+         * @return WP_Style_Engine_CSS_Rules_Store|null
          */
         public static function get_store($store_name = 'default')
         {
@@ -95443,8 +96982,8 @@ namespace {
          * @param string $selector The CSS selector.
          * @param string $rules_group A parent CSS selector in the case of nested CSS, or a CSS nested @rule,
          *                            such as `@media (min-width: 80rem)` or `@layer module`.
-         * @return WP_Style_Engine_CSS_Rule|void Returns a WP_Style_Engine_CSS_Rule object,
-         *                                       or void if the selector is empty.
+         * @return WP_Style_Engine_CSS_Rule|null Returns a WP_Style_Engine_CSS_Rule object,
+         *                                       or null if the selector is empty.
          */
         public function add_rule($selector, $rules_group = '')
         {
@@ -95573,23 +97112,27 @@ namespace {
          *  - value_func    => (string) the name of a function to generate a CSS definition array for a particular style object. The output of this function should be `array( "$property" => "$value", ... )`.
          *
          * @since 6.1.0
+         * @since 7.1.0 Added `background.gradient` property.
          * @var array
          */
-        const BLOCK_STYLE_DEFINITIONS_METADATA = array('background' => array('backgroundImage' => array('property_keys' => array('default' => 'background-image'), 'value_func' => array(self::class, 'get_url_or_value_css_declaration'), 'path' => array('background', 'backgroundImage')), 'backgroundPosition' => array('property_keys' => array('default' => 'background-position'), 'path' => array('background', 'backgroundPosition')), 'backgroundRepeat' => array('property_keys' => array('default' => 'background-repeat'), 'path' => array('background', 'backgroundRepeat')), 'backgroundSize' => array('property_keys' => array('default' => 'background-size'), 'path' => array('background', 'backgroundSize')), 'backgroundAttachment' => array('property_keys' => array('default' => 'background-attachment'), 'path' => array('background', 'backgroundAttachment'))), 'color' => array('text' => array('property_keys' => array('default' => 'color'), 'path' => array('color', 'text'), 'css_vars' => array('color' => '--wp--preset--color--$slug'), 'classnames' => array('has-text-color' => \true, 'has-$slug-color' => 'color')), 'background' => array('property_keys' => array('default' => 'background-color'), 'path' => array('color', 'background'), 'css_vars' => array('color' => '--wp--preset--color--$slug'), 'classnames' => array('has-background' => \true, 'has-$slug-background-color' => 'color')), 'gradient' => array('property_keys' => array('default' => 'background'), 'path' => array('color', 'gradient'), 'css_vars' => array('gradient' => '--wp--preset--gradient--$slug'), 'classnames' => array('has-background' => \true, 'has-$slug-gradient-background' => 'gradient'))), 'border' => array('color' => array('property_keys' => array('default' => 'border-color', 'individual' => 'border-%s-color'), 'path' => array('border', 'color'), 'classnames' => array('has-border-color' => \true, 'has-$slug-border-color' => 'color')), 'radius' => array('property_keys' => array('default' => 'border-radius', 'individual' => 'border-%s-radius'), 'path' => array('border', 'radius'), 'css_vars' => array('border-radius' => '--wp--preset--border-radius--$slug')), 'style' => array('property_keys' => array('default' => 'border-style', 'individual' => 'border-%s-style'), 'path' => array('border', 'style')), 'width' => array('property_keys' => array('default' => 'border-width', 'individual' => 'border-%s-width'), 'path' => array('border', 'width')), 'top' => array('value_func' => array(self::class, 'get_individual_property_css_declarations'), 'path' => array('border', 'top'), 'css_vars' => array('color' => '--wp--preset--color--$slug')), 'right' => array('value_func' => array(self::class, 'get_individual_property_css_declarations'), 'path' => array('border', 'right'), 'css_vars' => array('color' => '--wp--preset--color--$slug')), 'bottom' => array('value_func' => array(self::class, 'get_individual_property_css_declarations'), 'path' => array('border', 'bottom'), 'css_vars' => array('color' => '--wp--preset--color--$slug')), 'left' => array('value_func' => array(self::class, 'get_individual_property_css_declarations'), 'path' => array('border', 'left'), 'css_vars' => array('color' => '--wp--preset--color--$slug'))), 'shadow' => array('shadow' => array('property_keys' => array('default' => 'box-shadow'), 'path' => array('shadow'), 'css_vars' => array('shadow' => '--wp--preset--shadow--$slug'))), 'dimensions' => array('aspectRatio' => array('property_keys' => array('default' => 'aspect-ratio'), 'path' => array('dimensions', 'aspectRatio'), 'classnames' => array('has-aspect-ratio' => \true)), 'height' => array('property_keys' => array('default' => 'height'), 'path' => array('dimensions', 'height'), 'css_vars' => array('dimension' => '--wp--preset--dimension--$slug')), 'minHeight' => array('property_keys' => array('default' => 'min-height'), 'path' => array('dimensions', 'minHeight'), 'css_vars' => array('dimension' => '--wp--preset--dimension--$slug')), 'width' => array('property_keys' => array('default' => 'width'), 'path' => array('dimensions', 'width'), 'css_vars' => array('dimension' => '--wp--preset--dimension--$slug'))), 'spacing' => array('padding' => array('property_keys' => array('default' => 'padding', 'individual' => 'padding-%s'), 'path' => array('spacing', 'padding'), 'css_vars' => array('spacing' => '--wp--preset--spacing--$slug')), 'margin' => array('property_keys' => array('default' => 'margin', 'individual' => 'margin-%s'), 'path' => array('spacing', 'margin'), 'css_vars' => array('spacing' => '--wp--preset--spacing--$slug'))), 'typography' => array('fontSize' => array('property_keys' => array('default' => 'font-size'), 'path' => array('typography', 'fontSize'), 'css_vars' => array('font-size' => '--wp--preset--font-size--$slug'), 'classnames' => array('has-$slug-font-size' => 'font-size')), 'fontFamily' => array('property_keys' => array('default' => 'font-family'), 'css_vars' => array('font-family' => '--wp--preset--font-family--$slug'), 'path' => array('typography', 'fontFamily'), 'classnames' => array('has-$slug-font-family' => 'font-family')), 'fontStyle' => array('property_keys' => array('default' => 'font-style'), 'path' => array('typography', 'fontStyle')), 'fontWeight' => array('property_keys' => array('default' => 'font-weight'), 'path' => array('typography', 'fontWeight')), 'lineHeight' => array('property_keys' => array('default' => 'line-height'), 'path' => array('typography', 'lineHeight')), 'textColumns' => array('property_keys' => array('default' => 'column-count'), 'path' => array('typography', 'textColumns')), 'textDecoration' => array('property_keys' => array('default' => 'text-decoration'), 'path' => array('typography', 'textDecoration')), 'textIndent' => array('property_keys' => array('default' => 'text-indent'), 'path' => array('typography', 'textIndent')), 'textTransform' => array('property_keys' => array('default' => 'text-transform'), 'path' => array('typography', 'textTransform')), 'letterSpacing' => array('property_keys' => array('default' => 'letter-spacing'), 'path' => array('typography', 'letterSpacing')), 'writingMode' => array('property_keys' => array('default' => 'writing-mode'), 'path' => array('typography', 'writingMode'))));
+        const BLOCK_STYLE_DEFINITIONS_METADATA = array('background' => array('backgroundImage' => array('property_keys' => array('default' => 'background-image'), 'value_func' => array(self::class, 'get_url_or_value_css_declaration'), 'path' => array('background', 'backgroundImage')), 'backgroundPosition' => array('property_keys' => array('default' => 'background-position'), 'path' => array('background', 'backgroundPosition')), 'backgroundRepeat' => array('property_keys' => array('default' => 'background-repeat'), 'path' => array('background', 'backgroundRepeat')), 'backgroundSize' => array('property_keys' => array('default' => 'background-size'), 'path' => array('background', 'backgroundSize')), 'backgroundAttachment' => array('property_keys' => array('default' => 'background-attachment'), 'path' => array('background', 'backgroundAttachment')), 'gradient' => array('property_keys' => array('default' => 'background-image'), 'css_vars' => array('gradient' => '--wp--preset--gradient--$slug'), 'path' => array('background', 'gradient'), 'classnames' => array('has-background' => \true))), 'color' => array('text' => array('property_keys' => array('default' => 'color'), 'path' => array('color', 'text'), 'css_vars' => array('color' => '--wp--preset--color--$slug'), 'classnames' => array('has-text-color' => \true, 'has-$slug-color' => 'color')), 'background' => array('property_keys' => array('default' => 'background-color'), 'path' => array('color', 'background'), 'css_vars' => array('color' => '--wp--preset--color--$slug'), 'classnames' => array('has-background' => \true, 'has-$slug-background-color' => 'color')), 'gradient' => array('property_keys' => array('default' => 'background'), 'path' => array('color', 'gradient'), 'css_vars' => array('gradient' => '--wp--preset--gradient--$slug'), 'classnames' => array('has-background' => \true, 'has-$slug-gradient-background' => 'gradient'))), 'border' => array('color' => array('property_keys' => array('default' => 'border-color', 'individual' => 'border-%s-color'), 'path' => array('border', 'color'), 'classnames' => array('has-border-color' => \true, 'has-$slug-border-color' => 'color')), 'radius' => array('property_keys' => array('default' => 'border-radius', 'individual' => 'border-%s-radius'), 'path' => array('border', 'radius'), 'css_vars' => array('border-radius' => '--wp--preset--border-radius--$slug')), 'style' => array('property_keys' => array('default' => 'border-style', 'individual' => 'border-%s-style'), 'path' => array('border', 'style')), 'width' => array('property_keys' => array('default' => 'border-width', 'individual' => 'border-%s-width'), 'path' => array('border', 'width')), 'top' => array('value_func' => array(self::class, 'get_individual_property_css_declarations'), 'path' => array('border', 'top'), 'css_vars' => array('color' => '--wp--preset--color--$slug')), 'right' => array('value_func' => array(self::class, 'get_individual_property_css_declarations'), 'path' => array('border', 'right'), 'css_vars' => array('color' => '--wp--preset--color--$slug')), 'bottom' => array('value_func' => array(self::class, 'get_individual_property_css_declarations'), 'path' => array('border', 'bottom'), 'css_vars' => array('color' => '--wp--preset--color--$slug')), 'left' => array('value_func' => array(self::class, 'get_individual_property_css_declarations'), 'path' => array('border', 'left'), 'css_vars' => array('color' => '--wp--preset--color--$slug'))), 'shadow' => array('shadow' => array('property_keys' => array('default' => 'box-shadow'), 'path' => array('shadow'), 'css_vars' => array('shadow' => '--wp--preset--shadow--$slug'))), 'dimensions' => array('aspectRatio' => array('property_keys' => array('default' => 'aspect-ratio'), 'path' => array('dimensions', 'aspectRatio'), 'classnames' => array('has-aspect-ratio' => \true)), 'height' => array('property_keys' => array('default' => 'height'), 'path' => array('dimensions', 'height'), 'css_vars' => array('dimension' => '--wp--preset--dimension--$slug')), 'minHeight' => array('property_keys' => array('default' => 'min-height'), 'path' => array('dimensions', 'minHeight'), 'css_vars' => array('dimension' => '--wp--preset--dimension--$slug')), 'minWidth' => array('property_keys' => array('default' => 'min-width'), 'path' => array('dimensions', 'minWidth'), 'css_vars' => array('dimension' => '--wp--preset--dimension--$slug')), 'objectFit' => array('property_keys' => array('default' => 'object-fit'), 'path' => array('dimensions', 'objectFit')), 'width' => array('property_keys' => array('default' => 'width'), 'path' => array('dimensions', 'width'), 'css_vars' => array('dimension' => '--wp--preset--dimension--$slug'))), 'spacing' => array('padding' => array('property_keys' => array('default' => 'padding', 'individual' => 'padding-%s'), 'path' => array('spacing', 'padding'), 'css_vars' => array('spacing' => '--wp--preset--spacing--$slug')), 'margin' => array('property_keys' => array('default' => 'margin', 'individual' => 'margin-%s'), 'path' => array('spacing', 'margin'), 'css_vars' => array('spacing' => '--wp--preset--spacing--$slug'))), 'typography' => array('fontSize' => array('property_keys' => array('default' => 'font-size'), 'path' => array('typography', 'fontSize'), 'css_vars' => array('font-size' => '--wp--preset--font-size--$slug'), 'classnames' => array('has-$slug-font-size' => 'font-size')), 'fontFamily' => array('property_keys' => array('default' => 'font-family'), 'css_vars' => array('font-family' => '--wp--preset--font-family--$slug'), 'path' => array('typography', 'fontFamily'), 'classnames' => array('has-$slug-font-family' => 'font-family')), 'fontStyle' => array('property_keys' => array('default' => 'font-style'), 'path' => array('typography', 'fontStyle')), 'fontWeight' => array('property_keys' => array('default' => 'font-weight'), 'path' => array('typography', 'fontWeight')), 'lineHeight' => array('property_keys' => array('default' => 'line-height'), 'path' => array('typography', 'lineHeight')), 'textColumns' => array('property_keys' => array('default' => 'column-count'), 'path' => array('typography', 'textColumns')), 'textDecoration' => array('property_keys' => array('default' => 'text-decoration'), 'path' => array('typography', 'textDecoration')), 'textIndent' => array('property_keys' => array('default' => 'text-indent'), 'path' => array('typography', 'textIndent')), 'textTransform' => array('property_keys' => array('default' => 'text-transform'), 'path' => array('typography', 'textTransform')), 'letterSpacing' => array('property_keys' => array('default' => 'letter-spacing'), 'path' => array('typography', 'letterSpacing')), 'writingMode' => array('property_keys' => array('default' => 'writing-mode'), 'path' => array('typography', 'writingMode'))));
         /**
          * Stores a CSS rule using the provided CSS selector and CSS declarations.
          *
          * @since 6.1.0
          * @since 6.6.0 Added the `$rules_group` parameter.
+         * @since 7.1.0 Extended `$css_declarations` parameter to accept `WP_Style_Engine_CSS_Declarations` object.
          *
-         * @param string   $store_name       A valid store key.
-         * @param string   $css_selector     When a selector is passed, the function will return
-         *                                   a full CSS rule `$selector { ...rules }`
-         *                                   otherwise a concatenated string of properties and values.
-         * @param string[] $css_declarations An associative array of CSS definitions,
-         *                                   e.g. `array( "$property" => "$value", "$property" => "$value" )`.
-         * @param string $rules_group        Optional. A parent CSS selector in the case of nested CSS, or a CSS nested @rule,
-         *                                   such as `@media (min-width: 80rem)` or `@layer module`.
+         * @param string                                    $store_name       A valid store key.
+         * @param string                                    $css_selector     When a selector is passed, the function will return
+         *                                                                    a full CSS rule `$selector { ...rules }`
+         *                                                                    otherwise a concatenated string of properties and values.
+         * @param string[]|WP_Style_Engine_CSS_Declarations $css_declarations An associative array of CSS definitions,
+         *                                                                    e.g. `array( "$property" => "$value", "$property" => "$value" )`,
+         *                                                                    or a WP_Style_Engine_CSS_Declarations object.
+         * @param string                                    $rules_group      Optional. A parent CSS selector in the case of nested CSS,
+         *                                                                    or a CSS nested @rule, such as `@media (min-width: 80rem)`
+         *                                                                    or `@layer module`.
          * @phpstan-return void
          */
         public static function store_css_rule($store_name, $css_selector, $css_declarations, $rules_group = '')
@@ -97401,7 +98944,10 @@ namespace {
      * Handles user autocomplete via AJAX.
      *
      * @since 3.4.0
-     * @phpstan-return never
+     * @since 7.1.0 The search term is now sanitized, and a missing, non-string,
+     *              or empty term results in a `0` response instead of an empty array.
+     *
+     * @return never
      */
     function wp_ajax_autocomplete_user()
     {
@@ -98486,8 +100032,11 @@ namespace {
      *
      * @param string $param    The parameter name to retrieve.
      * @param bool   $required Optional. Whether the parameter is required. Default false.
-     * @return string|true|null|never The parameter value or true if found, null otherwise.
-     *                                The function exits when a required parameter is missing.
+     * @return string|true|null The parameter value, or true if the parameter was supplied
+     *                          without a value, or null if it was not supplied at all.
+     *                          Never returns when `$required` is true and the parameter
+     *                          is missing, as the function exits instead.
+     * @phpstan-return ( $required is true ? string|true : string|true|null )
      */
     function get_cli_args($param, $required = \false)
     {
@@ -98517,6 +100066,7 @@ namespace {
      *
      * @since 2.0.0
      * @since 5.5.0 A return value was added.
+     * @since 7.1.0 The comment parent can be updated via `$_POST['comment_parent']`.
      *
      * @return int|WP_Error The value 1 if the comment was updated, 0 if not updated.
      *                      A WP_Error object on failure.
@@ -98574,7 +100124,7 @@ namespace {
      * @since 2.5.0
      *
      * @param string $msg Error Message. Assumed to contain HTML and be sanitized.
-     * @phpstan-return never
+     * @return never
      */
     function comment_footer_die($msg)
     {
@@ -98718,13 +100268,15 @@ namespace {
      * Displays the Quick Draft widget.
      *
      * @since 3.8.0
+     * @since 7.1.0 Added $notice_type parameter.
      *
      * @global int $post_ID
      *
-     * @param string|false $error_msg Optional. Error message. Default false.
+     * @param string|false $message     Optional. Error or success message. Default false.
+     * @param string       $notice_type Optional. Admin notice type. Default 'error'.
      * @phpstan-return void
      */
-    function wp_dashboard_quick_press($error_msg = \false)
+    function wp_dashboard_quick_press($message = \false, $notice_type = 'error')
     {
     }
     /**
@@ -98907,7 +100459,7 @@ namespace {
      *
      * @since 3.0.0
      *
-     * @return true|void True if not multisite, user can't upload files, or the space check option is disabled.
+     * @return true|null True if not multisite, user can't upload files, or the space check option is disabled.
      */
     function wp_dashboard_quota()
     {
@@ -99822,6 +101374,16 @@ namespace {
     {
     }
     /**
+     * Was used to add JavaScript to the delete users form.
+     *
+     * @since 3.5.0
+     * @deprecated 7.1.0
+     * @access private
+     */
+    function delete_users_add_js()
+    {
+    }
+    /**
      * Generates the WXR export file for download.
      *
      * Default behavior is to export all content, however, note that post content will only
@@ -100004,7 +101566,7 @@ namespace {
      * @param string   $file          File the user is attempting to edit.
      * @param string[] $allowed_files Optional. Array of allowed files to edit.
      *                                `$file` must match an entry exactly.
-     * @return string|void Returns the file name on success, dies on failure.
+     * @return string|null Returns the file name on success, null in case of absolute Windows drive paths, and dies on failure.
      */
     function validate_file_to_edit($file, $allowed_files = array())
     {
@@ -100054,6 +101616,9 @@ namespace {
      *     @type string $url  URL of the newly-uploaded file.
      *     @type string $type Mime type of the newly-uploaded file.
      * }
+     *
+     * @phpstan-return array{ file: non-empty-string, url: non-empty-string, type: non-empty-string }
+     *                |array{ error: non-empty-string }
      * @phpstan-param array{
      *   name?: string,
      *   type?: string,
@@ -100070,11 +101635,6 @@ namespace {
      *   test_type?: bool,
      *   mimes?: string[],
      * } $overrides
-     * @phpstan-return array{
-     *   file: string,
-     *   url: string,
-     *   type: string,
-     * }
      */
     function _wp_handle_upload(&$file, $overrides, $time, $action)
     {
@@ -100096,6 +101656,9 @@ namespace {
      *                               See _wp_handle_upload() for accepted values.
      * @param string|null $time      Optional. Time formatted in 'yyyy/mm'. Default null.
      * @return array See _wp_handle_upload() for return value.
+     *
+     * @phpstan-return array{ file: non-empty-string, url: non-empty-string, type: non-empty-string }
+     *                |array{ error: non-empty-string }
      * @phpstan-param array{
      *   name?: string,
      *   type?: string,
@@ -100133,6 +101696,9 @@ namespace {
      *                               See _wp_handle_upload() for accepted values.
      * @param string|null $time      Optional. Time formatted in 'yyyy/mm'. Default null.
      * @return array See _wp_handle_upload() for return value.
+     *
+     * @phpstan-return array{ file: non-empty-string, url: non-empty-string, type: non-empty-string }
+     *                |array{ error: non-empty-string }
      * @phpstan-param array{
      *   name?: string,
      *   type?: string,
@@ -101079,7 +102645,7 @@ namespace {
      * @since 2.5.0
      *
      * @param string $html
-     * @phpstan-return never
+     * @return never
      */
     function media_send_to_editor($html)
     {
@@ -101161,7 +102727,7 @@ namespace {
      *
      * @since 2.5.0
      *
-     * @return null|array|void Array of error messages keyed by attachment ID, null or void on success.
+     * @return null|array Array of error messages keyed by attachment ID, null on success, or exit.
      */
     function media_upload_form_handler()
     {
@@ -103782,8 +105348,8 @@ namespace {
      * @since 2.7.0
      *
      * @param string $plugin Path to the plugin file relative to the plugins directory.
-     * @return true|void True if a plugin's uninstall.php file has been found and included.
-     *                   Void otherwise.
+     * @return true|null True if a plugin's uninstall.php file has been found and included.
+     *                   Null otherwise.
      */
     function uninstall_plugin($plugin)
     {
@@ -104573,7 +106139,7 @@ namespace {
      *
      * @since 2.0.0
      *
-     * @return int|void Post ID on success, void on failure.
+     * @return int Post ID on success. Dies on failure.
      */
     function write_post()
     {
@@ -104894,7 +106460,7 @@ namespace {
      * @since 2.7.0
      *
      * @param int $post_id Optional. Post ID.
-     * @phpstan-return never
+     * @return never
      */
     function redirect_post($post_id = 0)
     {
@@ -106319,7 +107885,7 @@ namespace {
      *
      * @param string       $text             Optional. The text of the button. Defaults to 'Save Changes'.
      * @param string       $type             Optional. The type and CSS class(es) of the button. Core values
-     *                                       include 'primary', 'small', and 'large'. Default 'primary'.
+     *                                       include 'primary', 'small', 'compact' and 'large'. Default 'primary'.
      * @param string       $name             Optional. The HTML name of the submit button. If no `id` attribute
      *                                       is given in the `$other_attributes` parameter, `$name` will be used
      *                                       as the button's `id`. Default 'submit'.
@@ -106342,7 +107908,7 @@ namespace {
      *
      * @param string       $text             Optional. The text of the button. Defaults to 'Save Changes'.
      * @param string       $type             Optional. The type and CSS class(es) of the button. Core values
-     *                                       include 'primary', 'small', and 'large'. Default 'primary large'.
+     *                                       include 'primary', 'small', 'compact' and 'large'. Default 'primary large'.
      * @param string       $name             Optional. The HTML name of the submit button. If no `id` attribute
      *                                       is given in the `$other_attributes` parameter, `$name` will be used
      *                                       as the button's `id`. Default 'submit'.
@@ -106506,7 +108072,8 @@ namespace {
      * @since 2.8.0
      *
      * @global WP_Theme_Install_List_Table $wp_list_table
-     * @phpstan-return never
+     *
+     * @return never
      */
     function install_theme_information()
     {
@@ -108394,13 +109961,6 @@ namespace {
     {
     }
     /**
-     * @since 3.5.0
-     * @access private
-     */
-    function delete_users_add_js()
-    {
-    }
-    /**
      * Optional SSL preference that can be turned on by hooking to the 'personal_options' action.
      *
      * See the {@see 'personal_options'} action.
@@ -108835,10 +110395,10 @@ namespace {
      *                 'execute_callback'    => 'my_plugin_analyze_text',
      *                 'permission_callback' => 'my_plugin_can_analyze_text',
      *                 'meta'                => array(
-     *                     'annotations'   => array(
+     *                     'annotations' => array(
      *                         'readonly' => true,
      *                     ),
-     *                     'show_in_rest' => true,
+     *                     'public'      => true,
      *                 ),
      *             )
      *         );
@@ -108925,16 +110485,24 @@ namespace {
      *         return current_user_can( 'edit_posts' );
      *     }
      *
-     * ### REST API Integration
+     * ### Client Exposure
      *
-     * Abilities can be exposed through the REST API by setting `show_in_rest`
-     * to `true` in the meta configuration:
+     * Set the high-level `public` flag to make an ability available to clients
+     * such as the REST API, MCP, or AI agents:
      *
      *     'meta' => array(
-     *         'show_in_rest' => true,
+     *         'public' => true,
      *     ),
      *
-     * This allows abilities to be invoked via HTTP requests to the WordPress REST API.
+     * The `public` flag seeds the default for each per-channel flag. For the REST
+     * API it seeds `show_in_rest`, which lets the ability be invoked via HTTP
+     * requests. Set a per-channel flag directly to override that default. For
+     * example, keep a public ability out of the REST API:
+     *
+     *     'meta' => array(
+     *         'public'       => true,
+     *         'show_in_rest' => false,
+     *     ),
      *
      * @since 6.9.0
      *
@@ -108981,9 +110549,13 @@ namespace {
      *             @type bool|null $idempotent  Optional. If true, calling the ability repeatedly with the same arguments
      *                                          will have no additional effect on its environment.
      *         }
+     *         @type bool                     $public       Optional. Whether the ability is meant to be available to
+     *                                                      clients such as the REST API, MCP, or AI agents. Seeds
+     *                                                      the default for per-channel flags like `$show_in_rest`.
+     *                                                      Defaults to false.
      *         @type bool                     $show_in_rest Optional. Whether to expose this ability in the REST API.
      *                                                      When true, the ability can be invoked via HTTP requests.
-     *                                                      Default false.
+     *                                                      Default is the value of `$public` when set, false otherwise.
      *     }
      *     @type string               $ability_class       Optional. Fully-qualified custom class name to instantiate
      *                                                     instead of the default `WP_Ability` class. The custom class
@@ -109076,27 +110648,117 @@ namespace {
     {
     }
     /**
-     * Retrieves all registered abilities.
+     * Retrieves registered abilities, optionally filtered by the given arguments.
      *
-     * Returns an array of all ability instances currently registered in the system.
-     * Use this for discovery, debugging, or building administrative interfaces.
+     * When called without arguments, returns all registered abilities. When called
+     * with an $args array, returns only abilities that match every specified condition.
      *
-     * Example:
+     * Filtering pipeline (executed in order):
      *
-     *     // Prints information about all available abilities.
+     * 1. Declarative filters (`category`, `namespace`, `meta`) — per-item, AND logic between
+     *    arg types.
+     * 2. `item_include_callback` — per-item, caller-scoped. Return true to include, false to exclude.
+     * 3. `wp_get_abilities_item_include` filter — per-item, ecosystem-scoped. Plugins can enforce
+     *    universal inclusion rules regardless of what the caller passed.
+     * 4. `result_callback` — on the full matched array, caller-scoped. Sort, slice, or reshape.
+     * 5. `wp_get_abilities_result` filter — on the full array, ecosystem-scoped.
+     *
+     * Steps 1–3 run inside a single loop over the registry — no extra iteration.
+     *
+     * Examples:
+     *
+     *     // All abilities (unchanged behaviour).
      *     $abilities = wp_get_abilities();
-     *     foreach ( $abilities as $ability ) {
-     *         echo $ability->get_label() . ': ' . $ability->get_description() . "\n";
-     *     }
+     *
+     *     // Filter by category.
+     *     $abilities = wp_get_abilities( array( 'category' => 'content' ) );
+     *
+     *     // Filter by namespace.
+     *     $abilities = wp_get_abilities( array( 'namespace' => 'woocommerce' ) );
+     *
+     *     // Filter by meta.
+     *     $abilities = wp_get_abilities( array( 'meta' => array( 'show_in_rest' => true ) ) );
+     *
+     *     // Combine filters (AND logic between arg types).
+     *     $abilities = wp_get_abilities( array(
+     *         'category'  => 'content',
+     *         'namespace' => 'core',
+     *         'meta'      => array( 'show_in_rest' => true ),
+     *     ) );
+     *
+     *     // Caller-scoped per-item callback.
+     *     $abilities = wp_get_abilities( array(
+     *         'item_include_callback' => function ( WP_Ability $ability ) {
+     *             return current_user_can( 'manage_options' );
+     *         },
+     *     ) );
+     *
+     *     // Caller-scoped result callback (sort + paginate).
+     *     $abilities = wp_get_abilities( array(
+     *         'result_callback' => function ( array $abilities ) {
+     *             usort( $abilities, fn( $a, $b ) => strcasecmp( $a->get_label(), $b->get_label() ) );
+     *             return array_slice( $abilities, 0, 10 );
+     *         },
+     *     ) );
+     *
+     * The pipeline always runs, even when called with no arguments. This ensures that the
+     * `wp_get_abilities_item_include` and `wp_get_abilities_result` filters always fire,
+     * giving plugins a reliable place to enforce universal inclusion or shaping rules.
+     * For raw, unfiltered registry data that bypasses the filter pipeline entirely, use
+     * {@see WP_Abilities_Registry::get_all_registered()} directly.
      *
      * @since 6.9.0
+     * @since 7.1.0 Added the `$args` parameter for filtering support.
      *
      * @see WP_Abilities_Registry::get_all_registered()
      *
-     * @return WP_Ability[] An array of registered WP_Ability instances. Returns an empty
-     *                     array if no abilities are registered or if the registry is unavailable.
+     * @param array $args {
+     *     Optional. Arguments to filter the returned abilities. Default empty array (returns all).
+     *
+     *     @type string          $category              Filter by category slug. Only abilities whose category
+     *                                                  exactly matches the given slug are included.
+     *     @type string          $namespace             Filter by ability namespace prefix. Pass the namespace
+     *                                                  without a trailing slash, e.g. `'woocommerce'` matches
+     *                                                  `'woocommerce/create-order'`.
+     *     @type array           $meta                  Filter by meta key/value pairs. All conditions must
+     *                                                  match (AND logic). Supports nested arrays for structured
+     *                                                  meta, e.g. `array( 'mcp' => array( 'public' => true ) )`.
+     *     @type callable        $item_include_callback Optional. A callback invoked per ability after declarative
+     *                                                  filters. Receives a WP_Ability instance, returns bool.
+     *                                                  Return true to include, false to exclude.
+     *     @type callable        $result_callback       Optional. A callback invoked once on the full matched
+     *                                                  array. Receives WP_Ability[], must return WP_Ability[].
+     *                                                  Use for sorting, slicing, or reshaping the result.
+     * }
+     * @return WP_Ability[] An array of registered WP_Ability instances matching the given args,
+     *                      keyed by ability name. Returns an empty array if no abilities are
+     *                      registered, the registry is unavailable, or no abilities match the
+     *                      given args.
+     * @phpstan-param array{
+     *   category?: string,
+     *   namespace?: string,
+     *   meta?: array,
+     *   item_include_callback?: callable,
+     *   result_callback?: callable,
+     * } $args
      */
-    function wp_get_abilities(): array
+    function wp_get_abilities(array $args = array()): array
+    {
+    }
+    /**
+     * Checks whether an ability's meta array matches a set of required key/value conditions.
+     *
+     * All conditions must match (AND logic). Supports nested arrays for structured meta,
+     * e.g. `array( 'mcp' => array( 'public' => true ) )`.
+     *
+     * @since 7.1.0
+     * @access private
+     *
+     * @param array $meta       The ability's meta array.
+     * @param array $conditions The required key/value conditions to match against.
+     * @return bool True if all conditions match, false otherwise.
+     */
+    function _wp_get_abilities_match_meta(array $meta, array $conditions): bool
     {
     }
     /**
@@ -110031,6 +111693,7 @@ namespace {
      * Retrieves the list of block attributes supported by block bindings.
      *
      * @since 6.9.0
+     * @since 7.1.0 Added support for the List Item block.
      *
      * @param string $block_type The block type whose supported attributes are being retrieved.
      * @return array The list of block attributes that are supported by block bindings.
@@ -110568,6 +112231,7 @@ namespace {
      * @since 6.5.0 Added support for `backgroundPosition` and `backgroundRepeat` output.
      * @since 6.6.0 Removed requirement for `backgroundImage.source`. A file/url is the default.
      * @since 6.7.0 Added support for `backgroundAttachment` output.
+     * @since 7.1.0 Added support for `background.gradient` output.
      *
      * @access private
      *
@@ -110740,6 +112404,7 @@ namespace {
      *
      * @since 5.6.0
      * @since 6.1.0 Implemented the style engine to generate CSS and classnames.
+     * @since 7.1.0 Suppresses color.gradient when background.gradient is supported and set.
      * @access private
      *
      * @param  WP_Block_Type $block_type       Block type.
@@ -110795,6 +112460,18 @@ namespace {
      *     },
      *     ...
      * } $parsed_block
+     * @phpstan-return array{
+     *     blockName: string|null,
+     *     attrs: array{
+     *         className?: string,
+     *         style?: array{
+     *             css?: string,
+     *             ...
+     *         },
+     *         ...
+     *     },
+     *     ...
+     * }
      */
     function wp_render_custom_css_support_styles($parsed_block)
     {
@@ -110929,6 +112606,18 @@ namespace {
     {
     }
     /**
+     * Checks whether an aspectRatio block-support value is explicitly set.
+     *
+     * @since 7.1.0
+     * @access private
+     *
+     * @param mixed $aspect_ratio Aspect-ratio value.
+     * @return bool Whether the value is an explicit aspect ratio.
+     */
+    function wp_is_explicit_aspect_ratio_value($aspect_ratio)
+    {
+    }
+    /**
      * Renders server-side dimensions styles to the block wrapper.
      * This block support uses the `render_block` hook to ensure that
      * it is also applied to non-server-rendered blocks.
@@ -110949,11 +112638,10 @@ namespace {
      * @since 6.0.0
      * @access private
      *
-     * @param array $block Block object.
      * @return string The unique class name.
-     * @phpstan-return non-falsy-string
+     * @phpstan-return lowercase-string&non-falsy-string
      */
-    function wp_get_elements_class_name($block)
+    function wp_get_elements_class_name(): string
     {
     }
     /**
@@ -110983,6 +112671,29 @@ namespace {
      *
      * @param array $parsed_block The parsed block.
      * @return array The same parsed block with elements classname added if appropriate.
+     *
+     * @phpstan-param array{
+     *     blockName: string,
+     *     attrs: array{
+     *         className?: string,
+     *         style?: array{
+     *             elements?: array<string, array{
+     *                 ":hover"?: array<string, string>,
+     *                 ...
+     *             }>,
+     *         },
+     *         ...
+     *     },
+     *     ...
+     * } $parsed_block
+     * @phpstan-return array{
+     *     blockName: string,
+     *     attrs: array{
+     *         className?: string,
+     *         ...
+     *     },
+     *     ...
+     * }
      */
     function wp_render_elements_support_styles($parsed_block)
     {
@@ -110995,9 +112706,17 @@ namespace {
      * @see wp_render_elements_support_styles
      * @since 6.6.0
      *
-     * @param  string $block_content Rendered block content.
-     * @param  array  $block         Block object.
-     * @return string                Filtered block content.
+     * @param string $block_content Rendered block content.
+     * @param array  $block         Block object.
+     * @return string               Filtered block content.
+     *
+     * @phpstan-param array{
+     *     attrs: array{
+     *         className?: string,
+     *         ...
+     *     },
+     *     ...
+     * } $block
      */
     function wp_render_elements_class_name($block_content, $block)
     {
@@ -111041,6 +112760,53 @@ namespace {
     {
     }
     /**
+     * Returns the child-layout-only subset of a layout object.
+     *
+     * @since 7.1.0
+     *
+     * @param mixed $layout Layout object.
+     * @return array Child layout values, or an empty array.
+     */
+    function wp_get_layout_child_values($layout)
+    {
+    }
+    /**
+     * Returns the container-layout subset of a layout object.
+     *
+     * @since 7.1.0
+     *
+     * @param mixed $layout Layout object.
+     * @return array Container layout values, or an empty array.
+     */
+    function wp_get_layout_container_values($layout)
+    {
+    }
+    /**
+     * Sanitizes a block gap value before layout style generation.
+     *
+     * @since 7.1.0
+     *
+     * @param string|array|null $gap_value Block gap value.
+     * @return string|array|null Sanitized block gap value.
+     */
+    function wp_sanitize_block_gap_value($gap_value)
+    {
+    }
+    /**
+     * Returns child layout styles for a block affected by its parent's layout.
+     *
+     * @since 7.1.0
+     *
+     * @param string     $selector           CSS selector.
+     * @param array      $child_layout       Child layout values.
+     * @param array      $parent_layout      Parent layout values.
+     * @param array|null $viewport_overrides Optional. Child viewport layout overrides to emit.
+     * @return array Child layout style rules.
+     */
+    function wp_get_child_layout_style_rules($selector, $child_layout, $parent_layout = array(), $viewport_overrides = \null)
+    {
+    }
+    /**
      * Returns layout definitions, keyed by layout type.
      *
      * Provides a common definition of slugs, classnames, base styles, and spacing styles for each layout type.
@@ -111076,6 +112842,7 @@ namespace {
      * @since 6.3.0 Added grid layout type.
      * @since 6.6.0 Removed duplicated selector from layout styles.
      *              Enabled negative margins for alignfull children of blocks with custom padding.
+     * @since 7.1.0 Added options array with options to process responsive styles.
      * @access private
      *
      * @param string               $selector                      CSS selector.
@@ -111086,9 +112853,22 @@ namespace {
      * @param bool                 $should_skip_gap_serialization Optional. Whether to skip applying the user-defined value set in the editor. Default false.
      * @param string|array         $fallback_gap_value            Optional. The block gap value to apply. If it's an array expected properties are "top" and/or "left". Default '0.5em'.
      * @param array|null           $block_spacing                 Optional. Custom spacing set on the block. Default null.
+     * @param array                $options                       {
+     *     Optional. Extra options for internal callers. Default empty array.
+     *
+     *     @type array       $viewport_overrides     An array of layout property overrides for the sake of style generation,
+     *                                               keyed by property name.
+     *     @type string|null $rules_group            Optional group name for the rules. Default null.
+     *     @type bool        $has_block_gap_override Whether the block gap has been overridden. Default false.
+     * }
      * @return string CSS styles on success. Else, empty string.
+     * @phpstan-param array{
+     *   viewport_overrides?: array,
+     *   rules_group?: string|null,
+     *   has_block_gap_override?: bool,
+     * } $options
      */
-    function wp_get_layout_style($selector, $layout, $has_block_gap_support = \false, $gap_value = \null, $should_skip_gap_serialization = \false, $fallback_gap_value = '0.5em', $block_spacing = \null)
+    function wp_get_layout_style($selector, $layout, $has_block_gap_support = \false, $gap_value = \null, $should_skip_gap_serialization = \false, $fallback_gap_value = '0.5em', $block_spacing = \null, $options = array())
     {
     }
     /**
@@ -111277,6 +113057,199 @@ namespace {
     {
     }
     /**
+     * Converts internal preset references to CSS custom property references.
+     *
+     * State styles are emitted as CSS rules and cannot rely on preset classnames.
+     * Converting `var:preset|color|contrast` to
+     * `var(--wp--preset--color--contrast)` ensures preset values are emitted as
+     * declarations by the style engine.
+     *
+     * @since 7.1.0
+     *
+     * @param mixed $value Style value to normalize.
+     * @return mixed Normalized style value.
+     */
+    function wp_normalize_state_preset_vars($value)
+    {
+    }
+    /**
+     * Normalizes a state style object before generating CSS declarations.
+     *
+     * @since 7.1.0
+     *
+     * @param array $style State style object.
+     * @return array Normalized state style object.
+     */
+    function wp_normalize_state_style_for_css_output($style)
+    {
+    }
+    /**
+     * Adds fallback border-style declarations for visible border declarations.
+     *
+     * CSS does not render border color or width unless a border style is also set.
+     * State styles are emitted as stylesheet rules rather than inline styles, so
+     * they cannot rely on the block-library inline-style attribute fallback rules.
+     *
+     * @since 7.1.0
+     *
+     * @param array $declarations CSS declarations generated by the style engine.
+     * @return array CSS declarations with fallback border styles applied where needed.
+     */
+    function wp_get_state_declarations_with_fallback_border_styles($declarations)
+    {
+    }
+    /**
+     * Adds background reset declarations to prevent gradient/solid color conflicts.
+     *
+     * When a state sets a solid background-color, any gradient applied to the
+     * default state (via `background` shorthand or `background-image`) must be
+     * explicitly cleared. Without this, the gradient image layer remains visible
+     * on top of the solid hover color even when `!important` is used, because
+     * `background-color` and `background-image` are separate CSS properties.
+     *
+     * @since 7.1.0
+     *
+     * @param array $declarations CSS declarations generated by the style engine.
+     * @return array CSS declarations with background resets applied where needed.
+     */
+    function wp_get_state_declarations_with_background_resets($declarations)
+    {
+    }
+    /**
+     * Adds fallback dimension styles for aspectRatio and height block-support values.
+     *
+     * @since 7.1.0
+     *
+     * @param array $state_style State style object.
+     * @return array State style object with fallback dimension styles applied where needed.
+     */
+    function wp_get_state_style_with_fallback_dimension_styles($state_style)
+    {
+    }
+    /**
+     * Adds a style fragment to a selector-keyed state style group.
+     *
+     * @since 7.1.0
+     *
+     * @param array       $groups   Selector-keyed style groups.
+     * @param string|null $selector Block or feature selector.
+     * @param array       $style    Style fragment.
+     */
+    function wp_add_state_style_group(&$groups, $selector, $style)
+    {
+    }
+    /**
+     * Splits a state style object into groups based on block feature selectors.
+     *
+     * @since 7.1.0
+     *
+     * @param array $state_style     State style object.
+     * @param array $block_selectors Block selectors metadata.
+     * @return array[] Selector/style groups.
+     */
+    function wp_get_state_style_groups($state_style, $block_selectors)
+    {
+    }
+    /**
+     * Returns a style object with nested state keys removed.
+     *
+     * @since 7.1.0
+     *
+     * @param array $state_style State style object.
+     * @param array $nested_keys Keys to remove from the root style object.
+     * @return array Root-only style object.
+     */
+    function wp_get_root_state_style($state_style, $nested_keys)
+    {
+    }
+    /**
+     * Generates all element selectors for a block root selector.
+     *
+     * @since 7.1.0
+     *
+     * @param string $root_selector The block root CSS selector.
+     * @return string[] Element selectors keyed by element name.
+     */
+    function wp_get_block_state_element_selectors($root_selector)
+    {
+    }
+    /**
+     * Adds a compiled state style rule to a rule list.
+     *
+     * @since 7.1.0
+     *
+     * @param array       $css_rules   Style rules.
+     * @param string      $state       Pseudo-state selector.
+     * @param string|null $selector    Block, feature, or element selector.
+     * @param array       $style       Style object.
+     * @param string|null $rules_group Optional CSS grouping rule, e.g. a media query.
+     * @phpstan-return void
+     */
+    function wp_add_block_state_style_rule(&$css_rules, $state, $selector, $style, $rules_group = \null)
+    {
+    }
+    /**
+     * Builds compiled state style rules, preserving the selector each rule targets.
+     *
+     * @since 7.1.0
+     *
+     * @param array         $state_styles Map of state to style array.
+     * @param WP_Block_Type $block_type   Block type.
+     * @param string|null   $rules_group  Optional CSS grouping rule, e.g. a media query.
+     * @return array[] State style rules.
+     */
+    function wp_get_block_state_style_rules($state_styles, $block_type, $rules_group = \null)
+    {
+    }
+    /**
+     * Returns a unique class for a set of state style rules.
+     *
+     * @since 7.1.0
+     *
+     * @param string $block_name Block name.
+     * @param array  $css_rules  State style rules.
+     * @return string Unique class name.
+     */
+    function wp_get_block_state_unique_class($block_name, $css_rules)
+    {
+    }
+    /**
+     * Splits a selector list by top-level commas.
+     *
+     * @since 7.1.0
+     *
+     * @param string $selector CSS selector list.
+     * @return string[] Selectors.
+     */
+    function wp_split_selector_list($selector)
+    {
+    }
+    /**
+     * Builds a scoped selector from a block selector and optional pseudo-state.
+     *
+     * @since 7.1.0
+     *
+     * @param string      $base_selector  Block-instance scoping selector.
+     * @param string|null $block_selector Block or feature selector from metadata.
+     * @param string      $state          Pseudo-state selector.
+     * @return string Scoped selector.
+     */
+    function wp_build_state_selector($base_selector, $block_selector, $state)
+    {
+    }
+    /**
+     * Renders per-instance state styles on the frontend.
+     *
+     * @since 7.1.0
+     *
+     * @param string $block_content The block's rendered HTML.
+     * @param array  $block         The block data including blockName and attrs.
+     * @return string Modified block content with injected state styles.
+     */
+    function wp_render_block_states_support($block_content, $block)
+    {
+    }
+    /**
      * Registers the style and typography block attributes for block types that support it.
      *
      * @since 5.6.0
@@ -111356,12 +113329,13 @@ namespace {
      * @return array|null An array consisting of `'value'` and `'unit'` properties on success.
      *                    `null` on failure.
      * @phpstan-param array{
-     *   coerce_to?: string,
-     *   root_size_value?: int,
-     *   acceptable_units?: string[],
+     *     coerce_to?: string,
+     *     root_size_value?: positive-int,
+     *     acceptable_units?: non-empty-array<non-empty-string>,
      * } $options
+     * @phpstan-return array{ value: float, unit: non-empty-string }|null
      */
-    function wp_get_typography_value_and_unit($raw_value, $options = array())
+    function wp_get_typography_value_and_unit($raw_value, $options = array()): ?array
     {
     }
     /**
@@ -111673,6 +113647,7 @@ namespace {
      *
      * @since 5.9.0
      * @since 6.3.0 Added `modified` property to template objects.
+     * @since 7.1.0 Added `date` property to template objects.
      * @access private
      *
      * @param array  $template_file Theme file.
@@ -112051,7 +114026,7 @@ namespace {
     /**
      * Sets the current WP_Query to return auto-draft posts.
      *
-     * The auto-draft status indicates a new post, so allow the the WP_Query instance to
+     * The auto-draft status indicates a new post, so allow the WP_Query instance to
      * return an auto-draft post for template resolution when editing a new post.
      *
      * @access private
@@ -112127,6 +114102,11 @@ namespace {
      * @param int    $index      Optional. Index of the asset when multiple items passed.
      *                           Default 0.
      * @return string Generated asset name for the block's field.
+     *
+     * @phpstan-param non-falsy-string $block_name
+     * @phpstan-param 'editorScript'|'editorStyle'|'script'|'style'|'viewScript'|'viewScriptModule'|'viewStyle' $field_name
+     * @phpstan-param int<0, max> $index
+     * @phpstan-return non-falsy-string
      */
     function generate_block_asset_handle($block_name, $field_name, $index = 0)
     {
@@ -112138,16 +114118,19 @@ namespace {
      *
      * @param string $path A normalized path to a block asset.
      * @return string|false The URL to the block asset or false on failure.
+     *
+     * @phpstan-return non-falsy-string|false
      */
     function get_block_asset_url($path)
     {
     }
     /**
-     * Finds a script module ID for the selected block metadata field. It detects
-     * when a path to file was provided and optionally finds a corresponding asset
-     * file with details necessary to register the script module under with an
-     * automatically generated module ID. It returns unprocessed script module
-     * ID otherwise.
+     * Finds a script module ID for the selected block metadata field.
+     *
+     * Detects when a path to a file was provided and optionally finds a
+     * corresponding asset file with details necessary to register the script
+     * module with an automatically generated module ID. It returns the
+     * unprocessed script module ID otherwise.
      *
      * @since 6.5.0
      *
@@ -112156,15 +114139,33 @@ namespace {
      * @param int    $index      Optional. Index of the script module ID to register when multiple
      *                           items passed. Default 0.
      * @return string|false Script module ID or false on failure.
+     *
+     * @phpstan-param array{
+     *     name?: non-falsy-string,
+     *     file: non-falsy-string|null,
+     *     version?: string,
+     *     supports?: array{
+     *         interactivity?: bool|array{interactive?: bool, clientNavigation?: bool, ...},
+     *         ...
+     *     },
+     *     viewScriptModule?: string|list<string>,
+     *     ...
+     * } $metadata
+     * @phpstan-param 'viewScriptModule' $field_name
+     * @phpstan-param int<0, max> $index
+     * @phpstan-return non-falsy-string|false
      */
     function register_block_script_module_id($metadata, $field_name, $index = 0)
     {
     }
     /**
-     * Finds a script handle for the selected block metadata field. It detects
-     * when a path to file was provided and optionally finds a corresponding asset
-     * file with details necessary to register the script under automatically
-     * generated handle name. It returns unprocessed script handle otherwise.
+     * Finds a script handle for the selected block metadata field.
+     *
+     * Detects when a path to a file was provided and optionally finds a
+     * corresponding asset file with details necessary to register the script. The
+     * handle is taken from the asset file when it provides one, and is otherwise
+     * generated automatically. It returns the unprocessed script handle when a
+     * handle rather than a path was given.
      *
      * @since 5.5.0
      * @since 6.1.0 Added `$index` parameter.
@@ -112176,14 +114177,32 @@ namespace {
      *                           Default 0.
      * @return string|false Script handle provided directly or created through
      *                      script's registration, or false on failure.
+     *
+     * @phpstan-param array{
+     *     name?: non-falsy-string,
+     *     file: non-falsy-string|null,
+     *     version?: string,
+     *     textdomain?: string,
+     *     editorScript?: string|list<string>,
+     *     script?: string|list<string>,
+     *     viewScript?: string|list<string>,
+     *     ...
+     * } $metadata
+     * @phpstan-param 'editorScript'|'script'|'viewScript' $field_name
+     * @phpstan-param int<0, max> $index
+     * @phpstan-return non-falsy-string|false
      */
     function register_block_script_handle($metadata, $field_name, $index = 0)
     {
     }
     /**
-     * Finds a style handle for the block metadata field. It detects when a path
-     * to file was provided and registers the style under automatically
-     * generated handle name. It returns unprocessed style handle otherwise.
+     * Finds a style handle for the block metadata field.
+     *
+     * Detects when a path to a file was provided and registers the style under an
+     * automatically generated handle name. It returns the unprocessed style handle
+     * otherwise, except for the first style of a core block, which is instead
+     * registered from the block's own stylesheet when separate core block assets
+     * are loaded. Core blocks accept only handles, not paths.
      *
      * @since 5.5.0
      * @since 6.1.0 Added `$index` parameter.
@@ -112194,6 +114213,19 @@ namespace {
      *                           Default 0.
      * @return string|false Style handle provided directly or created through
      *                      style's registration, or false on failure.
+     *
+     * @phpstan-param array{
+     *     name?: non-falsy-string,
+     *     file: non-falsy-string|null,
+     *     version?: string,
+     *     editorStyle?: string|list<string>,
+     *     style?: string|list<string>,
+     *     viewStyle?: string|list<string>,
+     *     ...
+     * } $metadata
+     * @phpstan-param 'editorStyle'|'style'|'viewStyle' $field_name
+     * @phpstan-param int<0, max> $index
+     * @phpstan-return non-falsy-string|false
      */
     function register_block_style_handle($metadata, $field_name, $index = 0)
     {
@@ -113041,6 +115073,29 @@ namespace {
     {
     }
     /**
+     * Applies standard content filters similar to the 'the_content' filter.
+     *
+     * This function runs the typical content processing filters that WordPress
+     * applies to post content, useful for blocks that render nested content.
+     *
+     * @since 7.1.0
+     * @access private
+     *
+     * @global WP_Embed $wp_embed WordPress Embed object.
+     *
+     * @param string      $content  The content to process.
+     * @param string      $context  Optional. Context identifier for wp_filter_content_tags().
+     *                              Default empty string.
+     * @param array|null  $seen_ids Optional. Reference to an array tracking seen IDs for
+     *                              recursion prevention. Default null.
+     * @param string|null $id       Optional. Unique identifier for this content, used with
+     *                              $seen_ids. Default null.
+     * @return string The processed content.
+     */
+    function _wp_apply_block_content_filters($content, $context = '', &$seen_ids = \null, $id = \null)
+    {
+    }
+    /**
      * Returns the current version of the block format that the content string is using.
      *
      * If the string doesn't contain blocks, it returns 0.
@@ -113131,6 +115186,7 @@ namespace {
      * @since 6.1.0 Added `query_loop_block_query_vars` filter and `parents` support in query.
      * @since 6.7.0 Added support for the `format` property in query.
      * @since 7.0.0 Updated `taxQuery` structure.
+     * @since 7.1.0 Added support for the `excludeCurrent` property in query.
      *
      * @param WP_Block $block Block instance.
      * @param int      $page  Current query's page.
@@ -114122,6 +116178,74 @@ namespace {
     {
     }
     /**
+     * Returns the column gap value used for Gallery image width calculations.
+     *
+     * @since 7.1.0
+     *
+     * @param string|array|null $gap          Gallery block gap value.
+     * @param string            $fallback_gap Fallback gap value.
+     * @return string Gallery column gap value.
+     */
+    function block_core_gallery_get_column_gap_value($gap, $fallback_gap)
+    {
+    }
+    /**
+     * Resolves a Gallery block's `dynamicContent` to an ordered list of image
+     * attachment IDs.
+     *
+     * The `source` key is the dispatch discriminator and `args` holds the source's
+     * parameters. This `{ source, args }` shape mirrors the Block Bindings metadata
+     * shape so dynamic mode can migrate to an `innerBlocks` binding with minimal
+     * change. `core/attached-media` is a context-relative anchor (the post the gallery is
+     * rendered within); future sources translate their REST-named `args` (`author`,
+     * `categories`, `after`/`before`, `media_type`, etc.) into `WP_Query` arguments
+     * here.
+     *
+     * @since 7.0.0
+     *
+     * @param array    $source The gallery's `dynamicContent` attribute.
+     * @param WP_Block $block  The gallery block instance being rendered.
+     * @return int[] Ordered list of image attachment IDs.
+     */
+    function block_core_gallery_resolve_dynamic_source($source, $block)
+    {
+    }
+    /**
+     * Builds the link-related image block attributes for a dynamically rendered
+     * gallery image, mapping the gallery-wide `linkTo` setting onto a single image.
+     *
+     * Mirrors the editor's `getHrefAndDestination()` (see `gallery/utils.js`).
+     *
+     * @since 7.0.0
+     *
+     * @param int   $attachment_id The image attachment ID.
+     * @param array $attributes    The gallery block attributes.
+     * @return array Partial image block attributes (`href`, `linkDestination`,
+     *               `linkTarget`, `rel`, `lightbox`).
+     */
+    function block_core_gallery_dynamic_image_link_attributes($attachment_id, $attributes)
+    {
+    }
+    /**
+     * Renders a single `core/image` block for a Gallery block running in dynamic
+     * mode, applying the gallery-wide settings that affect how an image renders.
+     *
+     * The image markup is generated here (via `wp_get_attachment_image()`) and
+     * rendered through a real `core/image` block instance so that the image block's
+     * own render callback and lightbox behavior run, and so the gallery's existing
+     * lightbox/interactivity post-processing can pick it up.
+     *
+     * @since 7.0.0
+     *
+     * @param int   $attachment_id The image attachment ID.
+     * @param array $attributes    The gallery block attributes.
+     * @param array $context       Context to expose to the inner image block.
+     * @return string The rendered image block HTML, or an empty string on failure.
+     */
+    function block_core_gallery_render_dynamic_image($attachment_id, $attributes, $context)
+    {
+    }
+    /**
      * Renders the `core/gallery` block on the server.
      *
      * @since 6.0.0
@@ -114183,19 +116307,6 @@ namespace {
     {
     }
     /**
-     * Build an array with CSS classes and inline styles defining the font sizes
-     * which will be applied to the home link markup in the front-end.
-     *
-     * @since 6.0.0
-     *
-     * @param  array $context Home link block context.
-     * @return array Font size CSS classes and inline styles.
-     * @phpstan-return array{css_classes: list<string>, inline_styles: string}
-     */
-    function block_core_home_link_build_css_font_sizes($context)
-    {
-    }
-    /**
      * Builds an array with classes and style for the li wrapper
      *
      * @since 6.0.0
@@ -114236,9 +116347,7 @@ namespace {
      *
      * @since 7.0.0
      *
-     * @param array    $attributes The block attributes.
-     * @param string   $content    The block content.
-     * @param WP_Block $block      The block instance.
+     * @param array $attributes The block attributes.
      *
      * @return string Returns the Icon.
      */
@@ -114287,13 +116396,13 @@ namespace {
      *
      * @since 6.4.0
      *
-     * @param string $block_content  Rendered block content.
-     * @param array  $block          Block object.
-     * @param array  $block_instance Block instance.
+     * @param string   $block_content  Rendered block content.
+     * @param array    $block          Block object.
+     * @param WP_Block $block_instance Block instance.
      *
      * @return string Filtered block content.
      */
-    function block_core_image_render_lightbox($block_content, $block, $block_instance)
+    function block_core_image_render_lightbox($block_content, array $block, \WP_Block $block_instance)
     {
     }
     /**
@@ -114566,13 +116675,28 @@ namespace {
      * Build an array with CSS classes and inline styles defining the font sizes
      * which will be applied to the navigation markup in the front-end.
      *
+     * This function is no longer used internally and is kept only for backward
+     * compatibility with third-party code that may call it directly.
+     *
      * @since 5.9.0
+     * @deprecated 7.0.0
      *
      * @param  array $context Navigation block context.
      * @return array Font size CSS classes and inline styles.
      * @phpstan-return array{css_classes: list<string>, inline_styles: string}
      */
     function block_core_navigation_link_build_css_font_sizes($context)
+    {
+    }
+    /**
+     * Returns the top-level submenu SVG chevron icon.
+     *
+     * @since 5.9.0
+     * @deprecated 7.0.0 Use block_core_shared_navigation_render_submenu_icon() instead.
+     *
+     * @return string
+     */
+    function block_core_navigation_link_render_submenu_icon()
     {
     }
     /**
@@ -114732,19 +116856,6 @@ namespace {
     {
     }
     /**
-     * Build an array with CSS classes and inline styles defining the font sizes
-     * which will be applied to the navigation markup in the front-end.
-     *
-     * @since 5.9.0
-     *
-     * @param  array $context Navigation block context.
-     * @return array Font size CSS classes and inline styles.
-     * @phpstan-return array{css_classes: list<string>, inline_styles: string}
-     */
-    function block_core_navigation_submenu_build_css_font_sizes($context)
-    {
-    }
-    /**
      * Renders the `core/navigation-submenu` block.
      *
      * @since 5.9.0
@@ -114780,13 +116891,24 @@ namespace {
      * will always have a value even for legacy blocks. We check the legacy openSubmenusOnClick
      * attribute first to preserve original behavior for blocks saved before the migration.
      *
-     * @since 6.9.0
+     * @since 7.0.0
      *
      * @param array $attributes Block attributes containing submenuVisibility and/or openSubmenusOnClick.
      * @return string The visibility mode: 'hover', 'click', or 'always'.
      * @phpstan-return 'hover'|'click'|'always'
      */
     function block_core_navigation_get_submenu_visibility($attributes)
+    {
+    }
+    /**
+     * Returns the custom properties used by the Navigation block for a layout.
+     *
+     * @since 7.1.0
+     *
+     * @param array $layout Layout configuration.
+     * @return array Navigation layout custom property declarations.
+     */
+    function block_core_navigation_get_layout_custom_property_declarations($layout)
     {
     }
     /**
@@ -115010,6 +117132,32 @@ namespace {
     {
     }
     /**
+     * Adds Navigation block support classes to inner list containers.
+     *
+     * State block support adds the generated `wp-states-*` class to the outer
+     * block wrapper. The Navigation block renders its menu items inside an inner
+     * `wp-block-navigation__container` list, so the same state class is also needed
+     * there for state styles to apply directly to the menu list.
+     *
+     * Navigation also uses layout classes on its outer wrapper to define custom
+     * properties consumed by its inner containers. Viewport layout styles cannot
+     * change those classes, so equivalent custom properties and a scoping class
+     * are generated for each configured viewport layout.
+     *
+     * Currently this is required as a workaround because of how difficult it is for nav
+     * child blocks to inherit styles through the complex responsive nav block html. The
+     * bug in https://github.com/WordPress/gutenberg/issues/62690 also prevents inheritance.
+     *
+     * @since 7.1.0
+     *
+     * @param string $block_content The block content.
+     * @param array  $block         The full block, including name and attributes.
+     * @return string The updated block content.
+     */
+    function block_core_navigation_add_support_classes_to_container($block_content, $block)
+    {
+    }
+    /**
      * Filter that changes the parsed attribute values of navigation blocks contain typographic presets to contain the values directly.
      *
      * @since 5.9.0
@@ -115100,7 +117248,7 @@ namespace {
      * Returns the submenu visibility value with backward compatibility
      * for the deprecated openSubmenusOnClick attribute.
      *
-     * @since 6.9.0
+     * @since 7.0.0
      *
      * @param array $context Block context from parent Navigation block.
      * @return string The visibility mode: 'hover', 'click', or 'always'.
@@ -115124,24 +117272,11 @@ namespace {
     {
     }
     /**
-     * Build an array with CSS classes and inline styles defining the font sizes
-     * which will be applied to the pages markup in the front-end when it is a descendant of navigation.
-     *
-     * @since 5.8.0
-     *
-     * @param  array $context Navigation block context.
-     * @return array Font size CSS classes and inline styles.
-     * @phpstan-return array{css_classes: list<string>, inline_styles: string}
-     */
-    function block_core_page_list_build_css_font_sizes($context)
-    {
-    }
-    /**
      * Outputs Page list markup from an array of pages with nested children.
      *
      * @since 5.8.0
      *
-     * @param boolean $open_submenus_on_click Whether to open submenus on click instead of hover.
+     * @param string  $submenu_visibility The submenu visibility mode: 'hover', 'click', or 'always'.
      * @param boolean $show_submenu_icons Whether to show submenu indicator icons.
      * @param boolean $is_navigation_child If block is a child of Navigation block.
      * @param array   $nested_pages The array of nested pages.
@@ -115151,6 +117286,7 @@ namespace {
      * @param integer $depth The nesting depth.
      *
      * @return string List markup.
+     * @phpstan-param 'hover'|'click'|'always' $submenu_visibility
      */
     function block_core_page_list_render_nested_page_list($submenu_visibility, $show_submenu_icons, $is_navigation_child, $nested_pages, $is_nested, $active_page_ancestor_ids = array(), $colors = array(), $depth = 0)
     {
@@ -115237,6 +117373,50 @@ namespace {
      * @return string Returns the output of the pattern.
      */
     function render_block_core_pattern($attributes)
+    {
+    }
+    /**
+     * Renders the `core/playlist-track` block on server.
+     *
+     * @since 7.1.0
+     *
+     * @param array         $attributes The block attributes.
+     * @param string        $content    The block content.
+     * @param WP_Block|null $block      The block instance.
+     *
+     * @return string Returns the Playlist Track.
+     */
+    function render_block_core_playlist_track($attributes, $content = '', $block = \null)
+    {
+    }
+    /**
+     * Registers the `core/playlist-track` block on server.
+     *
+     * @since 7.1.0
+     */
+    function register_block_core_playlist_track()
+    {
+    }
+    /**
+     * Renders the `core/playlist` block on server.
+     *
+     * @since 7.1.0
+     *
+     * @param array    $attributes The block attributes.
+     * @param string   $content    The block content.
+     * @param WP_Block $block      The block instance.
+     *
+     * @return string Returns the Playlist.
+     */
+    function render_block_core_playlist($attributes, $content, $block)
+    {
+    }
+    /**
+     * Registers the `core/playlist` block on server.
+     *
+     * @since 7.1.0
+     */
+    function register_block_core_playlist()
     {
     }
     /**
@@ -115781,7 +117961,7 @@ namespace {
      * @since 5.8.0
      *
      * @param array  $attributes Block attributes.
-     * @param array  $_content   Block content.
+     * @param array  $content    Block content.
      * @param object $block      Block instance.
      *
      * @return string Returns the query title based on the queried object.
@@ -116284,6 +118464,107 @@ namespace {
     {
     }
     /**
+     * Render callback for core/tab-list.
+     *
+     * Injects IAPI directives into the saved button HTML. The buttons already
+     * carry color/border/padding styles from save.js; this callback adds
+     * tab-specific attributes (id, aria-controls, context) and interactivity
+     * directives using data from the tabs-list context.
+     *
+     * @since 7.1.0
+     *
+     * @param array     $attributes Block attributes.
+     * @param string    $content    Block content (rendered buttons from save.js).
+     * @param \WP_Block $block      WP_Block instance.
+     *
+     * @return string Updated HTML.
+     */
+    function block_core_tab_list_render_callback(array $attributes, string $content, \WP_Block $block): string
+    {
+    }
+    /**
+     * Registers the `core/tab-list` block on the server.
+     *
+     * @since 7.1.0
+     */
+    function register_block_core_tab_list()
+    {
+    }
+    /**
+     * Render callback for core/tab-panel.
+     *
+     * @since 7.1.0
+     *
+     * @param array     $attributes Block attributes.
+     * @param string    $content    Block content.
+     * @param \WP_Block $block      Block instance.
+     *
+     * @return string Updated HTML.
+     */
+    function block_core_tab_panel_render(array $attributes, string $content, \WP_Block $block): string
+    {
+    }
+    /**
+     * Registers the `core/tab-panel` block on the server.
+     *
+     * @hook init
+     *
+     * @since 7.1.0
+     */
+    function register_block_core_tab_panel()
+    {
+    }
+    /**
+     * Extract tabs list from tab-panel innerblocks.
+     *
+     * @since 7.1.0
+     *
+     * @param array  $innerblocks Parsed inner blocks of tabs block.
+     * @param string $tabs_id     Unique ID for the tabs instance, used to generate tab IDs.
+     *
+     * @return array List of tab IDs.
+     */
+    function block_core_tabs_generate_tabs_list(array $innerblocks = array(), string $tabs_id = ''): array
+    {
+    }
+    /**
+     * Filter to provide tabs list context to core/tabs and core/tab-list blocks.
+     * It is more performant to do this here, once, rather than in the tabs render and tabs context filters.
+     * In this way core/tabs is both a provider and a consumer of the core/tabs-list context.
+     *
+     * @since 7.1.0
+     *
+     * @param array $context      Default block context.
+     * @param array $parsed_block The block being rendered.
+     *
+     * @return array Modified context.
+     */
+    function block_core_tabs_provide_context(array $context, array $parsed_block): array
+    {
+    }
+    /**
+     * Render callback for core/tabs.
+     *
+     * @since 7.1.0
+     *
+     * @param array     $attributes Block attributes.
+     * @param string    $content    Block content.
+     * @param \WP_Block $block      WP_Block instance.
+     *
+     * @return string Updated HTML.
+     */
+    function block_core_tabs_render_block_callback(array $attributes, string $content, \WP_Block $block): string
+    {
+    }
+    /**
+     * Registers the `core/tabs` block on the server.
+     *
+     * @since 7.1.0
+     */
+    function register_block_core_tabs()
+    {
+    }
+    /**
      * Renders the `core/tag-cloud` block on server.
      *
      * @since 5.2.0
@@ -116647,7 +118928,7 @@ namespace {
      *   category_orderby?: string,
      *   category_order?: string,
      * } $args
-     * @phpstan-return ($args is array{echo: false|0}&array ? string : void)
+     * @phpstan-return ($args is array{echo: false|0, ...} ? string : void)
      */
     function wp_list_bookmarks($args = '')
     {
@@ -117435,7 +119716,8 @@ namespace {
      * @param string $requested_url Optional. The URL that was requested, used to
      *                              figure if redirect is needed.
      * @param bool   $do_redirect   Optional. Redirect to the new URL.
-     * @return string|void The string of the URL, if redirect needed.
+     * @return string|null The string of the URL, if redirect needed. Never returns if a redirect occurs, depending on $do_redirect.
+     * @phpstan-return ( $do_redirect is true ? null : string|null )
      */
     function redirect_canonical($requested_url = \null, $do_redirect = \true)
     {
@@ -117718,7 +120000,7 @@ namespace {
      * @param string                               $display_name Display name for role.
      * @param array<string,bool>|array<int,string> $capabilities Capabilities to be added to the role.
      *                                                           Default empty array.
-     * @return WP_Role|void WP_Role object, if the role is added.
+     * @return WP_Role|null WP_Role object, if the role is added.
      */
     function add_role($role, $display_name, $capabilities = array())
     {
@@ -118143,7 +120425,7 @@ namespace {
      *   walker?: Walker,
      *   taxonomy?: string,
      * } $args
-     * @phpstan-return ($args is array{echo: false|0}&array ? string|false : false|void)
+     * @phpstan-return ($args is array{echo: false|0, ...} ? string|false : false|void)
      */
     function wp_list_categories($args = '')
     {
@@ -118192,7 +120474,7 @@ namespace {
      *   topic_count_scale_callback?: callable,
      *   show_count?: bool|int,
      * } $args
-     * @phpstan-return ($args is array{format: 'array'}&array ? array<int, string>|void : ($args is array{echo: false|0}&array ? string|void : void))
+     * @phpstan-return ($args is array{format: 'array', ...} ? array<int, string>|void : ($args is array{echo: false|0, ...} ? string|void : void))
      */
     function wp_tag_cloud($args = '')
     {
@@ -118268,7 +120550,7 @@ namespace {
      *   topic_count_scale_callback?: callable,
      *   show_count?: bool|int,
      * } $args
-     * @phpstan-return ($args is array{format: 'array'}&array ? array<int, string> : string)
+     * @phpstan-return ($args is array{format: 'array', ...} ? array<int, string> : string)
      */
     function wp_generate_tag_cloud($tags, $args = '')
     {
@@ -118570,7 +120852,7 @@ namespace {
      * @phpstan-param array{
      *   taxonomy?: string,
      * } $args
-     * @phpstan-return ($args is array{fields: 'count'}&array ? list<numeric-string> : ($args is array{fields: 'names'|'slugs'}&array ? list<string> : ($args is array{fields: 'id=>name'|'id=>slug'}&array ? array<int, string> : ($args is array{fields: 'id=>parent'}&array ? array<int, int> : ($args is array{fields: 'ids'|'tt_ids'}&array ? list<int> : array<int, \WP_Term>)))))
+     * @phpstan-return ($args is array{fields: 'count', ...} ? list<numeric-string> : ($args is array{fields: 'names'|'slugs', ...} ? list<string> : ($args is array{fields: 'id=>name'|'id=>slug', ...} ? array<int, string> : ($args is array{fields: 'id=>parent', ...} ? array<int, int> : ($args is array{fields: 'ids'|'tt_ids', ...} ? list<int> : array<int, \WP_Term>)))))
      */
     function get_categories($args = '')
     {
@@ -118721,7 +121003,7 @@ namespace {
      * @phpstan-param array{
      *   taxonomy?: string,
      * } $args
-     * @phpstan-return ($args is array{fields: 'count'}&array ? numeric-string : ($args is array{fields: 'names'|'slugs'}&array ? list<string> : ($args is array{fields: 'id=>name'|'id=>slug'}&array ? array<int, string> : ($args is array{fields: 'id=>parent'}&array ? array<int, int> : ($args is array{fields: 'ids'|'tt_ids'}&array ? list<int> : array<int, \WP_Term>)))))|\WP_Error
+     * @phpstan-return ($args is array{fields: 'count', ...} ? numeric-string : ($args is array{fields: 'names'|'slugs', ...} ? list<string> : ($args is array{fields: 'id=>name'|'id=>slug', ...} ? array<int, string> : ($args is array{fields: 'id=>parent', ...} ? array<int, int> : ($args is array{fields: 'ids'|'tt_ids', ...} ? list<int> : array<int, \WP_Term>)))))|\WP_Error
      */
     function get_tags($args = '')
     {
@@ -118807,48 +121089,6 @@ namespace {
      * @phpstan-return ($extra_attributes is empty ? string : non-falsy-string)
      */
     function get_block_wrapper_attributes($extra_attributes = array())
-    {
-    }
-    /**
-     * Determines whether real-time collaboration is enabled.
-     *
-     * If the WP_ALLOW_COLLABORATION constant is false,
-     * collaboration is always disabled regardless of the database option.
-     * Otherwise, falls back to the 'wp_collaboration_enabled' option.
-     *
-     * @since 7.0.0
-     *
-     * @return bool Whether real-time collaboration is enabled.
-     */
-    function wp_is_collaboration_enabled()
-    {
-    }
-    /**
-     * Determines whether real-time collaboration is allowed.
-     *
-     * If the WP_ALLOW_COLLABORATION constant is false,
-     * collaboration is not allowed and cannot be enabled.
-     * The constant defaults to true, unless the WP_ALLOW_COLLABORATION
-     * environment variable is set to string "false".
-     *
-     * @since 7.0.0
-     *
-     * @return bool Whether real-time collaboration is enabled.
-     */
-    function wp_is_collaboration_allowed()
-    {
-    }
-    /**
-     * Injects the real-time collaboration setting into a global variable.
-     *
-     * @since 7.0.0
-     *
-     * @access private
-     *
-     * @global string $pagenow The filename of the current screen.
-     * @phpstan-return void
-     */
-    function wp_collaboration_inject_setting()
     {
     }
     /**
@@ -119904,9 +122144,13 @@ namespace {
      * If the comment author was approved before, then the comment is automatically
      * approved.
      *
+     * Pingbacks originating from the same site are automatically approved, as the
+     * link they report was created by someone who can already publish here.
+     *
      * If all checks pass, the function will return true.
      *
      * @since 1.2.0
+     * @since 7.1.0 Pingbacks from the same site are no longer held for moderation.
      *
      * @global wpdb $wpdb WordPress database abstraction object.
      *
@@ -119938,7 +122182,15 @@ namespace {
      *     @type string $order   How to order retrieved comments. Default 'ASC'.
      * }
      * @return WP_Comment[]|int[]|int The approved comments, or number of comments if `$count`
-     *                                argument is true.
+     *                                argument is true. An empty array is returned when `$post_id`
+     *                                is falsey, even when `$count` is true.
+     * @phpstan-return (
+     *     $post_id is 0 ? array{} : (
+     *         $args is array{ count: true, ... } ? non-negative-int : (
+     *             $args is array{ fields: 'ids', ... } ? non-negative-int[] : array<int, WP_Comment>
+     *         )
+     *     )
+     * )
      * @phpstan-param array{
      *   status?: int,
      *   post_id?: int,
@@ -119991,7 +122243,6 @@ namespace {
      *   update_comment_meta_cache?: bool,
      *   update_comment_post_cache?: bool,
      * } $args
-     * @phpstan-return ($args is array{count: true}&array ? int : ($args is array{fields: 'ids'}&array ? array<int, int> : array<int, \WP_Comment>))
      */
     function get_approved_comments($post_id, $args = array())
     {
@@ -120004,6 +122255,8 @@ namespace {
      * comment variable will be used, if it is set.
      *
      * @since 2.0.0
+     * @since 7.1.0 Only numeric values are now treated as comment IDs; other unrecognized values
+     *              return null instead of being cast to an integer ID.
      *
      * @global WP_Comment $comment Global comment object.
      *
@@ -120013,7 +122266,11 @@ namespace {
      *                                       respectively. Default OBJECT.
      * @return WP_Comment|array|null Depends on $output value.
      * @phpstan-param 'OBJECT'|'ARRAY_A'|'ARRAY_N' $output
-     * @phpstan-return ($comment is \WP_Comment ? array<array-key, mixed>|\WP_Comment : array<array-key, mixed>|\WP_Comment|null) & ($output is 'ARRAY_A' ? array<string, mixed>|null : ($output is 'ARRAY_N' ? array<int, mixed>|null : \WP_Comment|null))
+     * @phpstan-return (
+     *     $output is 'ARRAY_A' ? non-empty-array<string, mixed>|null : (
+     *         $output is 'ARRAY_N' ? non-empty-list<mixed>|null : WP_Comment|null
+     *     )
+     * )
      */
     function get_comment($comment = \null, $output = \OBJECT)
     {
@@ -120028,6 +122285,11 @@ namespace {
      * @param string|array $args Optional. Array or string of arguments. See WP_Comment_Query::__construct()
      *                           for information on accepted arguments. Default empty string.
      * @return WP_Comment[]|int[]|int List of comments or number of found comments if `$count` argument is true.
+     * @phpstan-return (
+     *     $args is array{ count: true, ... } ? non-negative-int : (
+     *         $args is array{ fields: 'ids', ... } ? non-negative-int[] : array<int, WP_Comment>
+     *     )
+     * )
      * @phpstan-param array{
      *   author_email?: string,
      *   author_url?: string,
@@ -120224,6 +122486,7 @@ namespace {
      *               - true values are returned as '1'
      *               - numbers are returned as strings
      *               Arrays and objects retain their original type.
+     * @phpstan-param int|numeric-string $comment_id
      */
     function get_comment_meta($comment_id, $key = '', $single = \false)
     {
@@ -120814,10 +123077,13 @@ namespace {
     /**
      * Sends a notification of a new comment to the post author.
      *
-     * @since 4.4.0
-     *
      * Uses the {@see 'notify_post_author'} filter to determine whether the post author
      * should be notified when a new comment is added, overriding site setting.
+     *
+     * @since 4.4.0
+     * @since 7.1.0 The comment approval status is now checked before the
+     *              {@see 'notify_post_author'} filter, and invalid comment IDs
+     *              return false without firing the filter.
      *
      * @param int $comment_id Comment ID.
      * @return bool True on success, false on failure.
@@ -120833,6 +123099,61 @@ namespace {
      * @param WP_Comment $comment The comment object.
      */
     function wp_new_comment_via_rest_notify_postauthor($comment)
+    {
+    }
+    /**
+     * Extracts the mentioned user IDs from note content.
+     *
+     * Mentions are stored as chips carrying the `wp-note-mention` class plus a
+     * `user-N` class token holding the mentioned user's ID:
+     * `<span class="wp-note-mention user-N">@Name</span>`. Only elements that
+     * carry both classes are treated as mentions.
+     *
+     * @since 7.1.0
+     *
+     * @param string $content Note (comment) content, as stored.
+     * @return int[] Unique, positive mentioned user IDs.
+     * @phpstan-return list<positive-int>
+     */
+    function wp_get_note_mentioned_user_ids(string $content): array
+    {
+    }
+    /**
+     * Notifies mentioned users about a new note.
+     *
+     * Runs on {@see 'rest_insert_comment'} alongside the post author notification.
+     * The recipient set is the users mentioned in this note, minus the note's own
+     * author (a user is not notified about their own note) and the post author,
+     * who is already notified about every note by
+     * {@see wp_new_comment_via_rest_notify_postauthor()}.
+     *
+     * Only fires when a note is created, not when an existing one is edited, so
+     * correcting a note does not re-notify everyone who already received it.
+     *
+     * @since 7.1.0
+     *
+     * @param WP_Comment|null $comment  The note that was just inserted. (May only be null as an edge case.)
+     * @param mixed           $request  The REST request. Unused.
+     * @param bool            $creating Whether this is a create (true) or update (false).
+     */
+    function wp_notify_note_mentions(?\WP_Comment $comment, $request = \null, bool $creating = \true): void
+    {
+    }
+    /**
+     * Sends a single note mention notification email.
+     *
+     * The email is composed in the recipient's locale, matching how other
+     * user-directed notifications are composed, and links to the post editor the
+     * same way the post author's note notification does.
+     *
+     * @since 7.1.0
+     *
+     * @param WP_User      $user    The recipient.
+     * @param WP_Comment   $comment The note that triggered the notification.
+     * @param WP_Post|null $post    The post the note belongs to.
+     * @return bool Whether the email was accepted for delivery by {@see wp_mail()}.
+     */
+    function wp_send_note_notification(\WP_User $user, \WP_Comment $comment, ?\WP_Post $post): bool
     {
     }
     /**
@@ -120911,7 +123232,7 @@ namespace {
      * @param int|null $post_id     Post ID.
      * @param bool     $do_deferred Optional. Whether to process previously deferred
      *                              post comment counts. Default false.
-     * @return bool|void True on success, false on failure or if post with ID does
+     * @return bool|null True on success, false on failure or if post with ID does
      *                   not exist.
      */
     function wp_update_comment_count($post_id, $do_deferred = \false)
@@ -121006,6 +123327,54 @@ namespace {
     {
     }
     /**
+     * Determines whether pings should be disabled for the current environment.
+     *
+     * By default, all pings (outgoing pingbacks, trackbacks, and ping service
+     * notifications, as well as incoming pingbacks and trackbacks) are disabled
+     * for non-production environments ('local', 'development', 'staging').
+     *
+     * @since 7.1.0
+     *
+     * @return bool True if pings should be disabled, false otherwise.
+     */
+    function wp_should_disable_pings_for_environment()
+    {
+    }
+    /**
+     * Removes outgoing ping callbacks in non-production environments.
+     *
+     * Hooked to `do_all_pings` at priority 1 so it runs before the default
+     * priority 10 callbacks. Does not remove `do_all_enclosures`.
+     *
+     * @since 7.1.0
+     */
+    function wp_maybe_disable_outgoing_pings_for_environment()
+    {
+    }
+    /**
+     * Rejects incoming trackbacks in non-production environments.
+     *
+     * Hooked to `pre_trackback_post` which fires in `wp-trackback.php` before the
+     * trackback is processed. Calls `trackback_response()` which sends an XML error
+     * response and terminates the request.
+     *
+     * @since 7.1.0
+     */
+    function wp_maybe_disable_trackback_for_environment()
+    {
+    }
+    /**
+     * Removes the pingback XML-RPC method in non-production environments.
+     *
+     * @since 7.1.0
+     *
+     * @param string[] $methods An array of XML-RPC methods, keyed by their methodName.
+     * @return string[] Modified array of XML-RPC methods.
+     */
+    function wp_maybe_disable_xmlrpc_pingback_for_environment($methods)
+    {
+    }
+    /**
      * Pings back the links found in a post.
      *
      * @since 0.71
@@ -121043,7 +123412,7 @@ namespace {
      * @param string $title         Title of post.
      * @param string $excerpt       Excerpt of post.
      * @param int    $post_id       Post ID.
-     * @return int|false|void Database query from update.
+     * @return int|false|null Database query from update.
      */
     function trackback($trackback_url, $title, $excerpt, $post_id)
     {
@@ -121297,6 +123666,50 @@ namespace {
     {
     }
     /**
+     * Strips inline note markers from rendered block output.
+     *
+     * Inline notes - notes anchored to a text selection within a block rather than
+     * the whole block - are anchored in raw block content with
+     * `<mark class="wp-note" data-id="N">...</mark>` so the marker survives edits,
+     * but the public HTML should not expose note metadata. This filter unwraps the
+     * marker entirely - dropping the `<mark>` open tag and its matching closer while
+     * keeping the marked text - so nothing leaks to the front end. The raw
+     * `post_content` (and the REST `raw` view, revisions, exports) keeps the marker
+     * so the editor can re-attach it on reload.
+     *
+     * Only note markers are unwrapped: {@see WP_HTML_Tag_Processor::has_class()}
+     * matches the `wp-note` class by exact token, so a `<mark>` a user or plugin
+     * added (e.g. a `core/text-color` highlight, or an unrelated `wp-note-foo`
+     * class) is never flagged and survives byte-for-byte with all of its attributes
+     * intact. A naive regex would be wrong here: a `\bwp-note\b` word boundary also
+     * matches `wp-note-foo`, which is why the class check goes through the HTML API
+     * instead.
+     *
+     * The HTML API has no public token-removal method yet, so an anonymous
+     * {@see WP_HTML_Tag_Processor} subclass unwraps each note `<mark>` and its
+     * matching closer directly on the parsed token stream. Walking tokens - rather
+     * than matching `<mark>` with a regex - means a `</mark>`-looking sequence inside
+     * a comment or attribute value can never be mistaken for a real tag, and a
+     * nesting stack keeps each note opener paired with its own closer so overlapping
+     * notes and any user highlight `<mark>` left intact still resolve correctly.
+     *
+     * The low-level {@see WP_HTML_Tag_Processor} is used deliberately, rather than
+     * the tree-building {@see WP_HTML_Processor}. Note markers live in user-editable
+     * content, so the markup is not guaranteed to be well formed. On certain
+     * ill-formed nesting the tree builder aborts, which would leave note markers -
+     * and their metadata - in the rendered output. Scanning tokens instead removes
+     * every `wp-note` marker it encounters and degrades gracefully: an unbalanced or
+     * stray tag is left exactly as it was rather than corrupting surrounding markup.
+     *
+     * @since 7.1.0
+     *
+     * @param string $block_content Rendered block HTML.
+     * @return string Block HTML with `wp-note` markers unwrapped.
+     */
+    function wp_strip_inline_note_markers($block_content)
+    {
+    }
+    /**
      * Finds spans of valid and invalid UTF-8 bytes in a given string.
      *
      * This is a low-level tool to power various UTF-8 functionality.
@@ -121431,6 +123844,7 @@ namespace {
      * Fallback support for determining if a string contains Unicode noncharacters.
      *
      * @since 6.9.0
+     * @deprecated 7.1.0
      * @access private
      *
      * @see \wp_has_noncharacters()
@@ -121500,15 +123914,17 @@ namespace {
      *     @type string $logo_url       Optional. URL to the connector's logo image.
      *     @type string $type           The connector type, e.g. 'ai_provider'.
      *     @type array  $authentication {
-     *         Authentication configuration. When method is 'api_key', includes
-     *         credentials_url, setting_name, and optionally constant_name and
-     *         env_var_name. When 'none', only method is present.
+     *         Authentication configuration. When method is 'api_key' or
+     *         'application_password', includes credentials_url, setting_name, and
+     *         optionally constant_name and env_var_name. When 'none', only method
+     *         is present.
      *
-     *         @type string $method          The authentication method: 'api_key' or 'none'.
+     *         @type string $method          The authentication method: 'api_key',
+     *                                       'application_password', or 'none'.
      *         @type string $credentials_url Optional. URL where users can obtain API credentials.
-     *         @type string $setting_name    Optional. The setting name for the API key.
-     *         @type string $constant_name   Optional. PHP constant name for the API key.
-     *         @type string $env_var_name    Optional. Environment variable name for the API key.
+     *         @type string $setting_name    Optional. The setting name for the API key or application-password credentials.
+     *         @type string $constant_name   Optional. PHP constant name for the API key or application-password credentials.
+     *         @type string $env_var_name    Optional. Environment variable name for the API key or application-password credentials.
      *     }
      *     @type array  $plugin         {
      *         Optional. Plugin data for install/activate UI.
@@ -121525,7 +123941,7 @@ namespace {
      *     logo_url?: non-empty-string,
      *     type: non-empty-string,
      *     authentication: array{
-     *         method: 'api_key'|'none',
+     *         method: 'api_key'|'application_password'|'none',
      *         credentials_url?: non-empty-string,
      *         setting_name?: non-empty-string,
      *         constant_name?: non-empty-string,
@@ -121558,15 +123974,17 @@ namespace {
      *         @type string      $logo_url       Optional. URL to the connector's logo image.
      *         @type string      $type           The connector type, e.g. 'ai_provider'.
      *         @type array       $authentication {
-     *             Authentication configuration. When method is 'api_key', includes
-     *             credentials_url, setting_name, and optionally constant_name and
-     *             env_var_name. When 'none', only method is present.
+     *             Authentication configuration. When method is 'api_key' or
+     *             'application_password', includes credentials_url, setting_name,
+     *             and optionally constant_name and env_var_name. When 'none', only
+     *             method is present.
      *
-     *             @type string $method          The authentication method: 'api_key' or 'none'.
+     *             @type string $method          The authentication method: 'api_key',
+     *                                           'application_password', or 'none'.
      *             @type string $credentials_url Optional. URL where users can obtain API credentials.
-     *             @type string $setting_name    Optional. The setting name for the API key.
-     *             @type string $constant_name   Optional. PHP constant name for the API key.
-     *             @type string $env_var_name    Optional. Environment variable name for the API key.
+     *             @type string $setting_name    Optional. The setting name for the API key or application-password credentials.
+     *             @type string $constant_name   Optional. PHP constant name for the API key or application-password credentials.
+     *             @type string $env_var_name    Optional. Environment variable name for the API key or application-password credentials.
      *         }
      *         @type array       $plugin         {
      *             Optional. Plugin data for install/activate UI.
@@ -121584,7 +124002,7 @@ namespace {
      *     logo_url?: non-empty-string,
      *     type: non-empty-string,
      *     authentication: array{
-     *         method: 'api_key'|'none',
+     *         method: 'api_key'|'application_password'|'none',
      *         credentials_url?: non-empty-string,
      *         setting_name?: non-empty-string,
      *         constant_name?: non-empty-string,
@@ -121669,6 +124087,44 @@ namespace {
     {
     }
     /**
+     * Parses a `username:password` credentials string.
+     *
+     * Splits on the first colon, matching the HTTP Basic authentication
+     * userinfo format, so passwords may contain colons.
+     *
+     * @since 7.1.0
+     * @access private
+     *
+     * @param string $value The raw credentials string.
+     * @return array{username: string, password: string} Parsed credentials. Both values
+     *                                                   are empty when the string is malformed.
+     */
+    function wp_connectors_parse_application_password_credentials(string $value): array
+    {
+    }
+    /**
+     * Resolves application-password credentials for a connector.
+     *
+     * Checks in order: environment variable, PHP constant, database. The
+     * environment variable and constant are only checked when their respective
+     * names are provided, and must contain the credentials as a single
+     * `username:password` string. A non-empty environment variable or constant
+     * that cannot be parsed as `username:password` is reported with
+     * `_doing_it_wrong()` and ignored, so resolution falls through to the next
+     * source.
+     *
+     * @since 7.1.0
+     * @access private
+     *
+     * @param array $auth The connector's authentication configuration.
+     * @return array{username: string, password: string, source: string} Resolved credentials and
+     *                                                                   their source: 'env', 'constant',
+     *                                                                   'database', or 'none'.
+     */
+    function wp_connectors_get_application_password_credentials(array $auth): array
+    {
+    }
+    /**
      * Checks whether an API key is valid for a given provider.
      *
      * @since 7.0.0
@@ -121682,13 +124138,38 @@ namespace {
     {
     }
     /**
-     * Masks and validates connector API keys in REST responses.
+     * Sanitizes stored application-password credentials for a connector.
      *
-     * On every `/wp/v2/settings` response, masks connector API key values so raw
-     * keys are never exposed via the REST API.
+     * Credential fields that are missing or not strings keep their currently
+     * stored values, so partial updates cannot silently clear a stored secret.
+     * A password matching the mask that `_wp_connectors_rest_settings_dispatch()`
+     * places in REST responses also keeps the stored password, so a masked
+     * settings response can be submitted back to the endpoint unchanged.
+     * Pass an empty string to clear a field.
+     * If the sanitized username is empty, both fields are discarded so partial
+     * credentials cannot leave an orphaned secret.
      *
-     * On POST or PUT requests, validates each updated key against the provider
-     * before masking. If validation fails, the key is reverted to an empty string.
+     * @since 7.1.0
+     * @access private
+     *
+     * @param mixed  $value  The submitted setting value.
+     * @param string $option The option name being sanitized. Passed explicitly by the
+     *                       registered sanitize callback; falls back to the current
+     *                       `sanitize_option_{$option}` filter name when omitted.
+     * @return array{username: string, password: string} Sanitized credentials.
+     */
+    function wp_connectors_sanitize_application_password_credentials($value, string $option = ''): array
+    {
+    }
+    /**
+     * Masks and validates connector credentials in REST responses.
+     *
+     * On every `/wp/v2/settings` response, masks connector API key values and the
+     * password field of default application-password credential objects.
+     *
+     * On POST or PUT requests, validates each updated AI provider API key before
+     * masking. If validation fails, the key is reverted to an empty string.
+     * Application password values are masked but not validated.
      *
      * @since 7.0.0
      * @access private
@@ -122120,8 +124601,7 @@ namespace {
      * @since 6.1.0 Return type modified to consistently return an array.
      * @access private
      *
-     * @return array[] Array of cron events.
-     * @phpstan-return array<int, array<string, array<string, array{schedule: string|false, args: array<mixed>, interval?: int<0, max>}>>>
+     * @return array<int, array<string, array<string, array{ schedule: string|false, args: array<mixed>, interval?: non-negative-int }>>>|array{} Array of cron events.
      */
     function _get_cron_array()
     {
@@ -122138,6 +124618,9 @@ namespace {
      * @param array[] $cron     Array of cron info arrays from _get_cron_array().
      * @param bool    $wp_error Optional. Whether to return a WP_Error on failure. Default false.
      * @return bool|WP_Error True if cron array updated. False or WP_Error on failure.
+     *
+     * @phpstan-param array<int, array<string, array<string, array{ schedule: string|false, args: array<mixed>, interval?: non-negative-int }>>> $cron
+     * @phpstan-return ( $wp_error is true ? true|WP_Error : bool )
      */
     function _set_cron_array($cron, $wp_error = \false)
     {
@@ -122152,6 +124635,10 @@ namespace {
      *
      * @param array $cron Cron info array from _get_cron_array().
      * @return array An upgraded cron info array.
+     *
+     * @phpstan-param array{ version: int, ...<int, array<string, array<string, array{ schedule: string|false, args: array<mixed>, interval?: non-negative-int }>>> }
+     *               |array<int, array<string, array{ schedule: string|false, args: array<mixed>, interval?: non-negative-int }>> $cron
+     * @phpstan-return array{ version: 2, ...<int, array<string, array<string, array{ schedule: string|false, args: array<mixed>, interval?: non-negative-int }>>> }
      */
     function _upgrade_cron_array($cron)
     {
@@ -126327,7 +128814,7 @@ namespace {
      *
      * @since 4.5.0
      */
-    function the_embed_site_title()
+    function the_embed_site_title(): void
     {
     }
     /**
@@ -126831,7 +129318,7 @@ namespace {
     {
     }
     /**
-     * Generates and prints font-face styles defined the the theme style variations.
+     * Generates and prints font-face styles defined in the theme style variations.
      *
      * @since 6.7.0
      *
@@ -127717,6 +130204,7 @@ namespace {
      *
      * @param string $key String key.
      * @return string Sanitized key.
+     * @phpstan-return lowercase-string
      */
     function sanitize_key($key)
     {
@@ -127976,9 +130464,14 @@ namespace {
      *
      * @param mixed $value The value to be stripped.
      * @return mixed Stripped value.
+     *
      * @phpstan-template T
      * @phpstan-param T $value
-     * @phpstan-return T
+     * @phpstan-return (
+     *     T is string ? string : (
+     *         T is array ? array<key-of<T>, ( value-of<T> is string ? string : value-of<T> )> : T
+     *     )
+     * )
      */
     function stripslashes_deep($value)
     {
@@ -127990,6 +130483,10 @@ namespace {
      *
      * @param mixed $value The array or string to be stripped.
      * @return mixed The stripped value.
+     *
+     * @phpstan-template T
+     * @phpstan-param T $value
+     * @phpstan-return (T is string ? string : T)
      * @phpstan-template T
      * @phpstan-param T|string $value
      * @phpstan-pure
@@ -128041,9 +130538,36 @@ namespace {
     {
     }
     /**
-     * Converts email addresses characters to HTML entities to block spam bots.
+     * Obscures email addresses in HTML to prevent spam bots from harvesting them.
+     *
+     * Typically this will randomly replace characters from the email address with
+     * HTML character references; however, when the hex encoding parameter is set,
+     * some characters will also be represented in their percent-encoded form.
+     *
+     * Because this function is randomized, the outputs for any given input may
+     * differ between calls. This helps diversify the ways the email addresses
+     * are obscured.
+     *
+     * When non-UTF-8 inputs are provided, any spans of invalid UTF-8 bytes will
+     * be passed through without any obfuscation.
+     *
+     * Example:
+     *
+     *     $email      = 'noreply@example.com';
+     *     $obscured   = antispambot( $email );
+     *     $obscured === 'nore&#112;&#108;y&#64;e&#120;ample.com';
+     *
+     *     // Hex-encoding also obscures characters with percent-encoding.
+     *     $obscured   = antispambot( $email, 1 );
+     *     $obscured === '%6e&#111;&#114;e%70l%79&#64;%65x%61mp&#108;&#101;%2e%63%6f&#109;';
+     *
+     *     // Non-UTF-8 characters are not obfuscated. "\xFC" is Latin1 "ü".
+     *     $obscured   = antispambot( "b\xFCcher@library.de" );
+     *     $obscured === 'b�cher&#64;li&#98;r&#97;r&#121;.&#100;&#101;';
+     *     $obscured === "b\xFCcher&#64;li&#98;r&#97;r&#121;.&#100;&#101;"
      *
      * @since 0.71
+     * @since 7.1.0 Masquerades multibyte characters.
      *
      * @param string $email_address Email address.
      * @param int    $hex_encoding  Optional. Set to 1 to enable hex encoding.
@@ -128695,6 +131219,10 @@ namespace {
      * @param mixed    $value    The array, object, or scalar.
      * @param callable $callback The function to map onto $value.
      * @return mixed The value with the callback applied to all non-arrays and non-objects inside it.
+     *
+     * @phpstan-template T
+     * @phpstan-param T $value
+     * @phpstan-return (T is array ? array<key-of<T>, mixed> : (T is object ? T : mixed))
      */
     function map_deep($value, $callback)
     {
@@ -129002,8 +131530,15 @@ namespace {
      *
      * @param string|array $value String or array of data to slash.
      * @return string|array Slashed `$value`, in the same type as supplied.
+     *
+     * @phpstan-template T
+     * @phpstan-param T $value
+     * @phpstan-return (
+     *     T is string ? string : (
+     *         T is array ? array<key-of<T>, ( value-of<T> is string ? string : value-of<T> )> : T
+     *     )
+     * )
      * @phpstan-pure
-     * @phpstan-return ($value is string ? string : array)
      */
     function wp_slash($value)
     {
@@ -129018,9 +131553,14 @@ namespace {
      *
      * @param string|array $value String or array of data to unslash.
      * @return string|array Unslashed `$value`, in the same type as supplied.
+     *
      * @phpstan-template T
      * @phpstan-param T $value
-     * @phpstan-return T
+     * @phpstan-return (
+     *     T is string ? string : (
+     *         T is array ? array<key-of<T>, ( value-of<T> is string ? string : value-of<T> )> : T
+     *     )
+     * )
      */
     function wp_unslash($value)
     {
@@ -129150,7 +131690,7 @@ namespace {
      * @since 3.4.0
      *
      * @param string $color
-     * @return string|void
+     * @return string|null The sanitized hex color, or null if invalid.
      */
     function sanitize_hex_color($color)
     {
@@ -129587,14 +132127,19 @@ namespace {
      * This is a convenient function for easily building URL queries.
      * It sets the separator to '&' and uses the _http_build_query() function.
      *
+     * Unlike PHP's native http_build_query(), this function does NOT URL-encode
+     * the keys or values. Callers are responsible for encoding values beforehand
+     * with urlencode() or rawurlencode(), or late-escaping the output with
+     * esc_url() before use.
+     *
      * @since 2.3.0
      *
-     * @see _http_build_query() Used to build the query
+     * @see _http_build_query() Used to build the query.
      * @link https://www.php.net/manual/en/function.http-build-query.php for more on what
      *       http_build_query() does.
      *
-     * @param array $data URL-encode key/value pairs.
-     * @return string URL-encoded string.
+     * @param array $data Array of key/value pairs to build the query from.
+     * @return string Query string, without URL encoding applied.
      */
     function build_query($data)
     {
@@ -129693,6 +132238,10 @@ namespace {
      *
      * @param array $input_array Array to walk while sanitizing contents.
      * @return array Sanitized $input_array.
+     *
+     * @phpstan-template T of array
+     * @phpstan-param T $input_array
+     * @phpstan-return array<key-of<T>, ( value-of<T> is string ? string : value-of<T> )>
      */
     function add_magic_quotes($input_array)
     {
@@ -129898,7 +132447,8 @@ namespace {
      * Displays the favicon.ico file content.
      *
      * @since 5.4.0
-     * @phpstan-return never
+     *
+     * @return never
      */
     function do_favicon()
     {
@@ -130166,6 +132716,15 @@ namespace {
      * @see wp_upload_dir()
      *
      * @return array See wp_upload_dir() for description.
+     * @phpstan-return array{
+     *                     path: non-empty-string,
+     *                     url: non-empty-string,
+     *                     subdir: non-empty-string,
+     *                     basedir: non-empty-string,
+     *                     baseurl: non-empty-string,
+     *                 }
+     *                |array{ error: non-empty-string }
+     * @phpstan-return array{path: string, url: string, subdir: string, basedir: string, baseurl: string, error: false|string}
      */
     function wp_get_upload_dir()
     {
@@ -130207,13 +132766,14 @@ namespace {
      *     @type string|false $error   False or error message.
      * }
      * @phpstan-return array{
-     *   path: string,
-     *   url: string,
-     *   subdir: string,
-     *   basedir: string,
-     *   baseurl: string,
-     *   error: string|false,
-     * }
+     *                     path: non-empty-string,
+     *                     url: non-empty-string,
+     *                     subdir: non-empty-string,
+     *                     basedir: non-empty-string,
+     *                     baseurl: non-empty-string,
+     *                 }
+     *                |array{ error: non-empty-string }
+     * @phpstan-return array{path: string, url: string, subdir: string, basedir: string, baseurl: string, error: false|string}
      */
     function wp_upload_dir($time = \null, $create_dir = \true, $refresh_cache = \false)
     {
@@ -130226,6 +132786,7 @@ namespace {
      *
      * @param string|null $time Optional. Time formatted in 'yyyy/mm'. Default null.
      * @return array See wp_upload_dir()
+     * @phpstan-return array{path: non-falsy-string, url: non-falsy-string, subdir: string, basedir: non-falsy-string, baseurl: non-falsy-string, error: false}
      */
     function _wp_upload_dir($time = \null)
     {
@@ -130325,7 +132886,7 @@ namespace {
      * @since 2.5.0
      *
      * @param string $ext The extension to search.
-     * @return string|void The file type, example: audio, video, document, spreadsheet, etc.
+     * @return string|null The file type, example: audio, video, document, spreadsheet, etc.
      */
     function wp_ext2type($ext)
     {
@@ -130443,13 +133004,15 @@ namespace {
      * Wrapper for PHP filesize with filters and casting the result as an integer.
      *
      * @since 6.0.0
+     * @since 7.1.0 The return value is now ensured to always be greater than or equal to zero.
      *
      * @link https://www.php.net/manual/en/function.filesize.php
      *
      * @param string $path Path to the file.
      * @return int The size of the file in bytes, or 0 in the event of an error.
+     * @phpstan-return non-negative-int
      */
-    function wp_filesize($path)
+    function wp_filesize($path): int
     {
     }
     /**
@@ -130473,6 +133036,7 @@ namespace {
      * @since 2.0.4
      *
      * @param string $action The nonce action.
+     * @return never
      */
     function wp_nonce_ays($action)
     {
@@ -130499,13 +133063,15 @@ namespace {
      *
      * @global WP_Query $wp_query WordPress Query object.
      *
-     * @param string|WP_Error  $message Optional. Error message. If this is a WP_Error object,
-     *                                  and not an Ajax or XML-RPC request, the error's messages are used.
-     *                                  Default empty string.
-     * @param string|int       $title   Optional. Error title. If `$message` is a `WP_Error` object,
-     *                                  error data with the key 'title' may be used to specify the title.
-     *                                  If `$title` is an integer, then it is treated as the response code.
-     *                                  Default empty string.
+     * @param string|WP_Error|int $message Optional. Error message. If this is a WP_Error object,
+     *                                     and not an Ajax or XML-RPC request, the error's messages are used.
+     *                                     An integer is echoed as the entire response body by legacy Ajax
+     *                                     handlers, which use -1 for a failed nonce or capability check,
+     *                                     0 for failure, and 1 for success. Default empty string.
+     * @param string|int          $title   Optional. Error title. If `$message` is a `WP_Error` object,
+     *                                     error data with the key 'title' may be used to specify the title.
+     *                                     If `$title` is an integer, then it is treated as the response code.
+     *                                     Default empty string.
      * @param string|array|int $args {
      *     Optional. Arguments to control behavior. If `$args` is an integer, then it is treated
      *     as the response code. Default empty array.
@@ -130524,9 +133090,9 @@ namespace {
      *                                  is a WP_Error.
      *     @type bool   $exit           Whether to exit the process after completion. Default true.
      * }
-     * @return never|void Returns void if `$args['exit']` is false, otherwise exits.
-     *
-     * @phpstan-return ( $args['exit'] is false ? void : never )
+     * @return void Never returns if `$args['exit']` is true (the default), otherwise returns void.
+     * @phpstan-param string|WP_Error|int<-1, max> $message
+     * @phpstan-return ( $args is array{exit: false} ? void : never )
      * @phpstan-param int|array{
      *   response?: int,
      *   link_url?: string,
@@ -130537,7 +133103,7 @@ namespace {
      *   code?: string,
      *   exit?: bool,
      * } $args
-     * @phpstan-return ($args is array{exit: false}&array ? void : never)
+     * @phpstan-return ($args is array{exit: false, ...} ? void : never)
      */
     function wp_die($message = '', $title = '', $args = array())
     {
@@ -130554,6 +133120,7 @@ namespace {
      * @param string|WP_Error $message Error message or WP_Error object.
      * @param string          $title   Optional. Error title. Default empty string.
      * @param string|array    $args    Optional. Arguments to control behavior. Default empty array.
+     * @phpstan-return ( $args is array{exit: false} ? void : never )
      */
     function _default_wp_die_handler($message, $title = '', $args = array())
     {
@@ -130569,6 +133136,7 @@ namespace {
      * @param string       $message Error message.
      * @param string       $title   Optional. Error title (unused). Default empty string.
      * @param string|array $args    Optional. Arguments to control behavior. Default empty array.
+     * @phpstan-return ( $args is array{exit: false} ? void : never )
      */
     function _ajax_wp_die_handler($message, $title = '', $args = array())
     {
@@ -130584,6 +133152,7 @@ namespace {
      * @param string       $message Error message.
      * @param string       $title   Optional. Error title. Default empty string.
      * @param string|array $args    Optional. Arguments to control behavior. Default empty array.
+     * @phpstan-return ( $args is array{exit: false} ? void : never )
      */
     function _json_wp_die_handler($message, $title = '', $args = array())
     {
@@ -130599,6 +133168,7 @@ namespace {
      * @param string       $message Error message.
      * @param string       $title   Optional. Error title. Default empty string.
      * @param string|array $args    Optional. Arguments to control behavior. Default empty array.
+     * @phpstan-return ( $args is array{exit: false} ? void : never )
      */
     function _jsonp_wp_die_handler($message, $title = '', $args = array())
     {
@@ -130616,6 +133186,7 @@ namespace {
      * @param string       $message Error message.
      * @param string       $title   Optional. Error title. Default empty string.
      * @param string|array $args    Optional. Arguments to control behavior. Default empty array.
+     * @phpstan-return ( $args is array{exit: false} ? void : never )
      */
     function _xmlrpc_wp_die_handler($message, $title = '', $args = array())
     {
@@ -130631,6 +133202,7 @@ namespace {
      * @param string       $message Error message.
      * @param string       $title   Optional. Error title. Default empty string.
      * @param string|array $args    Optional. Arguments to control behavior. Default empty array.
+     * @phpstan-return ( $args is array{exit: false} ? void : never )
      */
     function _xml_wp_die_handler($message, $title = '', $args = array())
     {
@@ -130647,6 +133219,7 @@ namespace {
      * @param string       $message Optional. Response to print. Default empty string.
      * @param string       $title   Optional. Error title (unused). Default empty string.
      * @param string|array $args    Optional. Arguments to control behavior. Default empty array.
+     * @phpstan-return ( $args is array{exit: false} ? void : never )
      */
     function _scalar_wp_die_handler($message = '', $title = '', $args = array())
     {
@@ -130756,6 +133329,7 @@ namespace {
      *                           then print and die.
      * @param int   $status_code Optional. The HTTP status code to output. Default null.
      * @param int   $flags       Optional. Options to be passed to json_encode(). Default 0.
+     * @return never
      */
     function wp_send_json($response, $status_code = \null, $flags = 0)
     {
@@ -130770,7 +133344,7 @@ namespace {
      * @param mixed $value       Optional. Data to encode as JSON, then print and die. Default null.
      * @param int   $status_code Optional. The HTTP status code to output. Default null.
      * @param int   $flags       Optional. Options to be passed to json_encode(). Default 0.
-     * @phpstan-return never
+     * @return never
      */
     function wp_send_json_success($value = \null, $status_code = \null, $flags = 0)
     {
@@ -130791,7 +133365,7 @@ namespace {
      * @param mixed $value       Optional. Data to encode as JSON, then print and die. Default null.
      * @param int   $status_code Optional. The HTTP status code to output. Default null.
      * @param int   $flags       Optional. Options to be passed to json_encode(). Default 0.
-     * @phpstan-return never
+     * @return never
      */
     function wp_send_json_error($value = \null, $status_code = \null, $flags = 0)
     {
@@ -130963,11 +133537,16 @@ namespace {
      *
      * @since 5.1.0
      *
-     * @param array|string $input_list List of values.
-     * @return array Array of values.
-     * @phpstan-return ($input_list is array ? array<scalar> : list<string>)
+     * @param mixed[]|string $input_list List of values.
+     * @return array Array of scalar values. A string is split into a list, while an array
+     *               keeps its keys, so the result is not necessarily a list.
+     * @phpstan-return (
+     *     $input_list is string ? list<string> : (
+     *         $input_list is array<string> ? array<string> : array<scalar>
+     *     )
+     * )
      */
-    function wp_parse_list($input_list)
+    function wp_parse_list($input_list): array
     {
     }
     /**
@@ -130976,10 +133555,13 @@ namespace {
      * @since 3.0.0
      * @since 5.1.0 Refactored to use wp_parse_list().
      *
-     * @param array|string $input_list List of IDs.
-     * @return int[] Sanitized array of IDs.
+     * @param mixed[]|string $input_list List of IDs.
+     * @return int[] Sanitized array of IDs. May include zero. Keys are preserved
+     *               from the input and `array_unique()` may leave gaps, so the
+     *               result is not necessarily a list.
+     * @phpstan-return array<non-negative-int>
      */
-    function wp_parse_id_list($input_list)
+    function wp_parse_id_list($input_list): array
     {
     }
     /**
@@ -130988,10 +133570,12 @@ namespace {
      * @since 4.7.0
      * @since 5.1.0 Refactored to use wp_parse_list().
      *
-     * @param array|string $input_list List of slugs.
-     * @return string[] Sanitized array of slugs.
+     * @param mixed[]|string $input_list List of slugs.
+     * @return string[] Sanitized array of slugs. May include an empty string. Keys
+     *                  are preserved from the input and `array_unique()` may leave
+     *                  gaps, so the result is not necessarily a list.
      */
-    function wp_parse_slug_list($input_list)
+    function wp_parse_slug_list($input_list): array
     {
     }
     /**
@@ -131116,17 +133700,32 @@ namespace {
     /**
      * Determines if the variable is a numeric-indexed array.
      *
+     * Note! This answers a different question than {@see array_is_list()} and is
+     *       more flexible to handle situations where some numeric array indices
+     *       have been removed. A numeric-indexed array is only a “list” when the
+     *       array keys form a contiguous range from zero to the highest key.
+     *
+     * Example:
+     *
+     *     true  === wp_is_numeric_array( array( 1, 2, 3, 4 ) );
+     *     false === wp_is_numeric_array( array( 'name' => 'WordPress' ) );
+     *
+     *     // All-numeric keys vs. list.
+     *     $above_two   = array_filter( array( 1, 2, 8, 9 ), fn ( $v ) => $v > 2 );
+     *     $above_two === array( '2' => 8, '3' => 9 );
+     *     true       === wp_is_numeric_array( $above_two );
+     *     false      === array_is_list( $above_two );
+     *
      * @since 4.4.0
      *
      * @param mixed $data Variable to check.
      * @return bool Whether the variable is a list.
-     * @phpstan-template T of mixed
-     * @phpstan-param T $data
-     * @phpstan-assert-if-true (T is list ? T : array<int, mixed>) $data
+     *
+     * @phpstan-assert-if-true array<int, mixed> $data
      * @phpstan-pure
-     * @phpstan-return (T is array<int, mixed> ? true : false)
+     * @phpstan-return ($data is array<int, mixed> ? true : false)
      */
-    function wp_is_numeric_array($data)
+    function wp_is_numeric_array($data): bool
     {
     }
     /**
@@ -131279,7 +133878,8 @@ namespace {
      * @since 2.3.2
      *
      * @global wpdb $wpdb WordPress database abstraction object.
-     * @phpstan-return never
+     *
+     * @return never
      */
     function dead_db()
     {
@@ -132272,7 +134872,7 @@ namespace {
      * @param string $prefix Prefix for the returned ID.
      * @return string Unique ID.
      * @phpstan-impure
-     * @phpstan-return ($prefix is empty ? numeric-string : ($prefix is numeric ? numeric-string : string))&non-falsy-string
+     * @phpstan-return ($prefix is ''|numeric-string ? numeric-string : string)&non-falsy-string&($prefix is lowercase-string ? lowercase-string : string)
      */
     function wp_unique_id($prefix = '')
     {
@@ -132291,7 +134891,7 @@ namespace {
      * @param string $prefix Optional. Prefix for the returned ID. Default empty string.
      * @return string Incremental ID per prefix.
      * @phpstan-impure
-     * @phpstan-return ($prefix is empty ? numeric-string : ($prefix is numeric ? numeric-string : string))&non-falsy-string
+     * @phpstan-return ($prefix is ''|numeric-string ? numeric-string : string)&non-falsy-string&($prefix is lowercase-string ? lowercase-string : string)
      */
     function wp_unique_prefixed_id($prefix = '')
     {
@@ -132408,6 +135008,27 @@ namespace {
     {
     }
     /**
+     * Schedules a WP-Cron job to clean up personal data requests.
+     *
+     * @since 7.1.0
+     *
+     * @see wp_privacy_personal_data_cleanup_requests()
+     */
+    function wp_schedule_personal_data_cleanup_requests(): void
+    {
+    }
+    /**
+     * Fires the personal data cleanup requests handler during cron.
+     *
+     * Loads the admin privacy tools file if needed (e.g. during cron, where
+     * wp-admin/includes/privacy-tools.php is not loaded automatically).
+     *
+     * @since 7.1.0
+     */
+    function wp_privacy_personal_data_cleanup_requests(): void
+    {
+    }
+    /**
      * Cleans up export files older than three days old.
      *
      * The export files are stored in `wp-content/uploads`, and are therefore publicly
@@ -132466,7 +135087,7 @@ namespace {
      * @param string $after   Markup to output after the annotation. Default `</p>`.
      * @param bool   $display Whether to echo or return the markup. Default `true` for echo.
      *
-     * @return string|void
+     * @return string|null Update PHP page annotation if available and $display is false, null otherwise.
      */
     function wp_update_php_annotation($before = '<p class="description">', $after = '</p>', $display = \true)
     {
@@ -132927,12 +135548,6 @@ namespace {
      *     fetchpriority?: 'low'|'auto'|'high',
      *     module_dependencies?: array<non-empty-string|array{ id: non-empty-string, ... }>,
      * }|bool $args
-     * @phpstan-param bool|array{
-     *   strategy?: string,
-     *   in_footer?: bool,
-     *   fetchpriority?: string,
-     *   module_dependencies?: array,
-     * } $args
      */
     function wp_register_script($handle, $src, $deps = array(), $ver = \false, $args = array())
     {
@@ -133049,12 +135664,6 @@ namespace {
      *     fetchpriority?: 'low'|'auto'|'high',
      *     module_dependencies?: array<non-empty-string|array{ id: non-empty-string, ... }>,
      * }|bool $args
-     * @phpstan-param bool|array{
-     *   strategy?: string,
-     *   in_footer?: bool,
-     *   fetchpriority?: string,
-     *   module_dependencies?: array,
-     * } $args
      */
     function wp_enqueue_script($handle, $src = '', $deps = array(), $ver = \false, $args = array())
     {
@@ -133406,6 +136015,124 @@ namespace {
      * } $args
      */
     function get_search_form($args = array())
+    {
+    }
+    /**
+     * Retrieves the markup for an accessible tooltip.
+     *
+     * Returns a button with an accessible name popover hint.
+     *
+     * @since 7.1.0
+     *
+     * @param string $content Plain-text tooltip content. An empty value returns an empty string.
+     * @param array  $args {
+     *     Optional. Arguments for building the tooltip.
+     *
+     *     @type string $id          Unique ID for the popover element. Default is a
+     *                               generated unique ID.
+     *     @type string $button      Existing `button` or `a` markup. Used instead of generated button.
+     *                               Default standard button HTML.
+     *     @type string $label       Not used for tooltips.
+     *     @type string $close_label Not used for tooltips.
+     *     @type string $icon        Dashicons icon class for the toggle button.
+     *                               Default 'dashicons-editor-help'. Should match the control's
+     *                               visible label.
+     *     @type string $class       Additional class(es) for the wrapping element.
+     *                               Default empty.
+     * }
+     * @return string Tooltip HTML markup, or an empty string when no content is provided.
+     * @phpstan-param array{
+     *   id?: string,
+     *   button?: string,
+     *   label?: string,
+     *   close_label?: string,
+     *   icon?: string,
+     *   class?: string,
+     * } $args
+     */
+    function wp_get_tooltip($content, $args = array())
+    {
+    }
+    /**
+     * Retrieves the markup for an accessible toggle tip.
+     *
+     * Returns a button and an action triggered toggle tip with `$content`.
+     *
+     * @since 7.1.0
+     *
+     * @param string $content Plain-text tooltip content. An empty value returns an empty string.
+     * @param array  $args {
+     *     Optional. Arguments for building the tooltip.
+     *
+     *     @type string $id          Unique ID for the popover element. Default is a
+     *                               generated unique ID.
+     *     @type string $button      Existing `button` markup. Used instead of generated button.
+     *                               Default standard button HTML.
+     *     @type string $label       Accessible label for the toggle button.
+     *                               Default 'Help', matching the default icon.
+     *                               Ignored for tooltips.
+     *     @type string $close_label Accessible label for the close button. Default 'Close'.
+     *     @type string $icon        Dashicons icon class for the toggle button.
+     *                               Default 'dashicons-editor-help'. Should match the control's
+     *                               visible label.
+     *     @type string $class       Additional class(es) for the wrapping element.
+     *                               Default empty.
+     * }
+     * @return string Toggletip HTML markup, or an empty string when no content is provided.
+     * @phpstan-param array{
+     *   id?: string,
+     *   button?: string,
+     *   label?: string,
+     *   close_label?: string,
+     *   icon?: string,
+     *   class?: string,
+     * } $args
+     */
+    function wp_get_toggletip($content, $args = array())
+    {
+    }
+    /**
+     * Retrieves the markup for an accessible tooltip or toggletip.
+     *
+     * Returns a button and either a hover/focus triggered tooltip popover or an action
+     * triggered toggle tip. Enqueue the `wp-tooltip` style and script where it is used.
+     * Tooltips are used to show the accessible name of a control.
+     * Toggletips are used for longer supporting text explaining context.
+     *
+     * @since 7.1.0
+     *
+     * @param string $content Plain-text tooltip content. An empty value returns an empty string.
+     * @param array  $args {
+     *     Optional. Arguments for building the tooltip.
+     *
+     *     @type string $id          Unique ID for the popover element. Default is a
+     *                               generated unique ID.
+     *     @type string $button      Existing `button` or `a` markup. Used instead of generated button.
+     *                               Default standard button HTML.
+     *     @type string $label       Accessible label for the toggle button.
+     *                               Default 'Help', matching the default icon.
+     *                               Ignored for tooltips.
+     *     @type string $close_label Accessible label for the close button. Default 'Close'.
+     *     @type string $icon        Dashicons icon class for the toggle button.
+     *                               Default 'dashicons-editor-help'. Should match the control's
+     *                               visible label.
+     *     @type string $class       Additional class(es) for the wrapping element.
+     *                               Default empty.
+     *     @type string $type        Type of tooltip: either `tooltip` or `toggletip`.
+     *                               Default 'tooltip'.
+     * }
+     * @return string Tooltip HTML markup, or an empty string when no content is provided.
+     * @phpstan-param array{
+     *   id?: string,
+     *   button?: string,
+     *   label?: string,
+     *   close_label?: string,
+     *   icon?: string,
+     *   class?: string,
+     *   type?: string,
+     * } $args
+     */
+    function wp_get_tooltip_helper($content, $args = array())
     {
     }
     /**
@@ -134006,7 +136733,7 @@ namespace {
      *   day?: string,
      *   w?: string,
      * } $args
-     * @phpstan-return ($args is array{echo: false|0}&array ? string|void : void)
+     * @phpstan-return ($args is array{echo: false|0, ...} ? string|void : void)
      */
     function wp_get_archives($args = '')
     {
@@ -134052,7 +136779,7 @@ namespace {
      *   display?: bool,
      *   post_type?: string,
      * } $args
-     * @phpstan-return ($args is array{display: false}&array ? string : void)
+     * @phpstan-return ($args is array{display: false, ...} ? string : void)
      */
     function get_calendar($args = array())
     {
@@ -134759,7 +137486,7 @@ namespace {
      *   before_page_number?: string,
      *   after_page_number?: string,
      * } $args
-     * @phpstan-return ($args is array{total: int<min, 1>}&array ? void : ($args is array{type: 'array'}&array ? list<string> : string))
+     * @phpstan-return ($args is array{total: int<min, 1>, ...} ? void : ($args is array{type: 'array', ...} ? list<string> : string))
      */
     function paginate_links($args = '')
     {
@@ -136020,6 +138747,127 @@ namespace {
     {
     }
     /**
+     * Registers a new icon collection.
+     *
+     * @since 7.1.0
+     *
+     * @param string $slug Icon collection slug.
+     * @param array  $args {
+     *     Arguments for registering an icon collection.
+     *
+     *     @type string $label       Required. A human-readable label for the icon collection.
+     *     @type string $description Optional. A human-readable description for the icon collection.
+     * }
+     * @return bool True if the icon collection was registered successfully, else false.
+     * @phpstan-param array{
+     *   label?: string,
+     *   description?: string,
+     * } $args
+     */
+    function wp_register_icon_collection($slug, $args)
+    {
+    }
+    /**
+     * Unregisters an icon collection.
+     *
+     * @since 7.1.0
+     *
+     * @param string $slug Icon collection slug.
+     * @return bool True if the icon collection was unregistered successfully, else false.
+     */
+    function wp_unregister_icon_collection($slug)
+    {
+    }
+    /**
+     * Registers a new icon.
+     *
+     * @since 7.1.0
+     *
+     * @param string $icon_name Namespaced icon name in the form "collection/icon-name"
+     *                          (e.g. "my-plugin/arrow-left"). The "core" collection is
+     *                          reserved for WordPress core icons; third-party code should
+     *                          register icons under its own collection rather than the
+     *                          "core" collection.
+     * @param array  $args {
+     *     List of properties for the icon.
+     *
+     *     @type string $label     Required. A human-readable label for the icon.
+     *     @type string $content   Optional. SVG markup for the icon.
+     *                             If not provided, the content will be retrieved from the `file_path` if set.
+     *                             If both `content` and `file_path` are not set, the icon will not be registered.
+     *     @type string $file_path Optional. The full path to the file containing the icon content.
+     * }
+     * @return bool True if the icon was registered successfully, else false.
+     * @phpstan-param array{
+     *   label?: string,
+     *   content?: string,
+     *   file_path?: string,
+     * } $args
+     */
+    function wp_register_icon($icon_name, $args)
+    {
+    }
+    /**
+     * Unregisters an icon.
+     *
+     * @since 7.1.0
+     *
+     * @param string $icon_name Namespaced icon name in the form "collection/icon-name"
+     *                          (e.g. "core/arrow-left").
+     * @return bool True if the icon was unregistered successfully, else false.
+     */
+    function wp_unregister_icon($icon_name)
+    {
+    }
+    /**
+     * Registers the default icon collections.
+     *
+     * @since 7.1.0
+     * @access private
+     */
+    function _wp_register_default_icon_collections()
+    {
+    }
+    /**
+     * Registers the default core icons from the manifest.
+     *
+     * @since 7.1.0
+     * @access private
+     * @phpstan-return void
+     */
+    function _wp_register_default_icons()
+    {
+    }
+    /**
+     * Returns the SVG markup for a registered icon.
+     *
+     * @since 7.1.0
+     *
+     * @param string $name The namespaced icon name (e.g. 'core/plus',
+     *                     'core/arrow-down', 'my-plugin/custom-icon').
+     * @param array  $args {
+     *     Optional. Arguments for the icon. Default empty array.
+     *
+     *     @type int|null $size  Width and height in pixels. Pass null to leave the
+     *                           SVG's intrinsic dimensions untouched. Default 24.
+     *     @type string   $class Additional CSS class names. Multiple classes may be
+     *                           provided as a space-separated string. Default empty string.
+     *     @type string   $label Accessible label. If provided, the SVG gets
+     *                           role="img" and aria-label. If omitted, the SVG
+     *                           gets aria-hidden="true" and focusable="false".
+     *                           Default empty string.
+     * }
+     * @return string SVG markup for the icon, or empty string if not found.
+     * @phpstan-param array{
+     *   size?: int|null,
+     *   class?: string,
+     *   label?: string,
+     * } $args
+     */
+    function wp_get_icon($name, $args = array())
+    {
+    }
+    /**
      * Retrieves the main WP_Interactivity_API instance.
      *
      * It provides access to the WP_Interactivity_API instance, creating one if it
@@ -136059,9 +138907,9 @@ namespace {
      * @since 6.5.0
      * @since 6.6.0 The namespace can be omitted when called inside derived state getters.
      *
-     * @param string $store_namespace The unique store namespace identifier.
-     * @param array  $state           Optional. The array that will be merged with the existing state for the specified
-     *                                store namespace.
+     * @param string|null $store_namespace The unique store namespace identifier.
+     * @param array       $state           Optional. The array that will be merged with the existing state for the specified
+     *                                     store namespace.
      * @return array The state for the specified store namespace. This will be the updated state if a $state argument was
      *               provided.
      */
@@ -136119,7 +138967,7 @@ namespace {
      *
      * @since 6.6.0
      *
-     * @param string $store_namespace Optional. The unique store namespace identifier.
+     * @param string|null $store_namespace Optional. The unique store namespace identifier.
      * @return array The context for the specified store namespace.
      */
     function wp_interactivity_get_context(?string $store_namespace = \null): array
@@ -136138,6 +138986,67 @@ namespace {
     {
     }
     function get_file($path)
+    {
+    }
+    /**
+     * Gets the JSON Schema keywords allowed for a given schema profile.
+     *
+     * Use this when preparing a schema that will be consumed outside of
+     * WordPress's server-side validation, such as by REST clients, frontend code,
+     * or AI providers.
+     *
+     * The 'rest-api' profile returns the subset of JSON Schema draft-04 keywords
+     * that the REST API has historically exposed. The 'draft-04' profile preserves
+     * the larger draft-04 vocabulary used by clients that can consume standalone
+     * schemas.
+     *
+     * Allowing a keyword to be exposed does not make WordPress validate or
+     * sanitize values against it.
+     *
+     * @since 7.1.0
+     *
+     * @param string $schema_profile Optional. Name of the schema profile to get keywords for.
+     *                               Accepts 'rest-api' or 'draft-04'. Any other value falls
+     *                               back to the 'rest-api' profile. Default 'rest-api'.
+     * @return string[] Allowed JSON Schema keywords.
+     * @phpstan-param 'rest-api'|'draft-04' $schema_profile
+     */
+    function wp_get_json_schema_allowed_keywords(string $schema_profile = 'rest-api'): array
+    {
+    }
+    /**
+     * Prepares a JSON Schema for clients.
+     *
+     * Use this before exposing a schema outside of WordPress's server-side
+     * validation, for example in REST responses, Ability metadata, or AI provider
+     * requests. The prepared schema uses forms that JSON Schema draft-04 clients
+     * can understand.
+     *
+     * WordPress-internal schema conveniences are converted or removed only where
+     * needed to keep the exposed schema valid for the selected profile.
+     *
+     * @since 7.1.0
+     *
+     * @param array<string, mixed> $schema         The schema array.
+     * @param string               $schema_profile Optional. Name of the schema profile
+     *                                             whose keywords should be preserved.
+     *                                             Default 'draft-04'.
+     * @return array<string, mixed> The prepared schema.
+     */
+    function wp_prepare_json_schema_for_client(array $schema, string $schema_profile = 'draft-04'): array
+    {
+    }
+    /**
+     * Prepares a JSON Schema for clients using a given keyword lookup.
+     *
+     * @since 7.1.0
+     * @access private
+     *
+     * @param array<string, mixed> $schema           The schema array.
+     * @param array<string, true>  $allowed_keywords Lookup map of allowed JSON Schema keywords.
+     * @return array<string, mixed> The prepared schema.
+     */
+    function _wp_prepare_json_schema_for_client_with_allowed_keywords(array $schema, array $allowed_keywords): array
     {
     }
     /**
@@ -136194,6 +139103,56 @@ namespace {
      * @return array Array of allowed HTML tags and their allowed attributes.
      */
     function wp_kses_allowed_html($context = '')
+    {
+    }
+    /**
+     * Allows the note mention chip markup in comment content.
+     *
+     * The notes `@` mention completer stores a mention as a chip carrying the
+     * mentioned user's ID in a class token:
+     * `<span class="wp-note-mention user-N">@Name</span>`. The default comment
+     * allowlist does not allow `span` at all, so for users without
+     * `unfiltered_html` the mention would be stripped on save.
+     *
+     * The allowance is deliberately narrow and always on: `span` is a
+     * semantics-free element and _wp_kses_sanitize_note_mention_classes()
+     * reduces its `class` to the two mention tokens right after kses runs, so
+     * regular (including anonymous) commenters gain nothing beyond the inert
+     * mention markup itself.
+     *
+     * @since 7.1.0
+     * @access private
+     *
+     * @param array<string, array<string, bool>> $allowed The allowed tags structure for the context.
+     * @param string                             $context The kses context.
+     * @return array<string, array<string, bool>> Modified allowed tags structure.
+     */
+    function _wp_kses_allow_note_mention_span($allowed, $context): array
+    {
+    }
+    /**
+     * Reduces `span` classes in comment content to the note mention tokens.
+     *
+     * _wp_kses_allow_note_mention_span() lets `class` through kses on `span` so
+     * the mention chip survives, but `class` is an open-ended styling and
+     * scripting hook, so this companion pass - running right after
+     * `wp_filter_kses` at priority 10 - strips every class token except the two
+     * the mention markup uses: `wp-note-mention` and `user-N`. `span` is the only
+     * comment tag allowed to carry `class` at all, so walking `span` tags covers
+     * the entire allowance.
+     *
+     * The pass only applies while the restrictive comment allowlist is active:
+     * users with `unfiltered_html` are filtered through `wp_filter_post_kses`
+     * (or not at all), where arbitrary classes are already permitted, and
+     * narrowing their markup here would restrict what core allows them to post.
+     *
+     * @since 7.1.0
+     * @access private
+     *
+     * @param string $content Slashed comment content, already filtered by kses.
+     * @return string Slashed comment content with span classes reduced.
+     */
+    function _wp_kses_sanitize_note_mention_classes($content): string
     {
     }
     /**
@@ -136858,6 +139817,9 @@ namespace {
      * @since 6.5.0 Added support for `background-repeat`.
      * @since 6.6.0 Added support for `grid-column`, `grid-row`, and `container-type`.
      * @since 6.9.0 Added support for `white-space`.
+     * @since 7.1.0 Extended gradient support to allow any single-level nested function.
+     *              Added support for transform functions, `clip-path` basic shapes,
+     *              and URLs in the SVG element reference properties.
      *
      * @param string $css        A string of CSS rules, decoded from an HTML `style` attribute.
      * @param string $deprecated Not used.
@@ -136875,6 +139837,7 @@ namespace {
      * @since 6.0.0 Added `dir`, `lang`, and `xml:lang` to global attributes.
      * @since 6.3.0 Added `aria-controls`, `aria-current`, and `aria-expanded` attributes.
      * @since 6.4.0 Added `aria-live` and `hidden` attributes.
+     * @since 7.1.0 Added `tabindex` attribute.
      *
      * @access private
      * @ignore
@@ -137713,7 +140676,7 @@ namespace {
      *   show_option_en_us?: bool,
      *   explicit_option_en_us?: bool,
      * } $args
-     * @phpstan-return ($args is array{id: null|''}&array ? void : ($args is array{name: null|''}&array ? void : string))
+     * @phpstan-return ($args is array{id: null|'', ...} ? void : ($args is array{name: null|'', ...} ? void : string))
      */
     function wp_dropdown_languages($args = array())
     {
@@ -138221,7 +141184,7 @@ namespace {
      * @param int|WP_Term|null $term    Optional. Term ID or object. If null, the queried object will be inspected. Default null.
      * @param bool             $display Optional. Whether or not to echo the return. Default true.
      * @return string|null HTML content.
-     * @phpstan-return ($display is true ? void : string|void)
+     * @phpstan-return ($display is true ? void : string)|null
      */
     function edit_term_link($link = '', $before = '', $after = '', $term = \null, $display = \true)
     {
@@ -138627,7 +141590,7 @@ namespace {
      *
      * @since 3.7.0
      *
-     * @param string       $format         Optional. Link anchor format. Default '&laquo; %link'.
+     * @param string       $format         Optional. Link anchor format. Default '%link &raquo;'.
      * @param string       $link           Optional. Link permalink format. Default '%title'.
      * @param bool         $in_same_term   Optional. Whether link should be in the same taxonomy term.
      *                                     Default false.
@@ -138646,7 +141609,7 @@ namespace {
      *
      * @see get_next_post_link()
      *
-     * @param string       $format         Optional. Link anchor format. Default '&laquo; %link'.
+     * @param string       $format         Optional. Link anchor format. Default '%link &raquo;'.
      * @param string       $link           Optional. Link permalink format. Default '%title'.
      * @param bool         $in_same_term   Optional. Whether link should be in the same taxonomy term.
      *                                     Default false.
@@ -140698,9 +143661,17 @@ namespace {
      *
      * @since 4.7.0
      *
+     * @see add_image_size()
+     *
      * @global array $_wp_additional_image_sizes
      *
      * @return array Additional images size data.
+     *
+     * @phpstan-return array<string, array{
+     *                     width: non-negative-int,
+     *                     height: non-negative-int,
+     *                     crop: array{ 'left'|'center'|'right', 'top'|'center'|'bottom' }|bool,
+     *                 }>
      */
     function wp_get_additional_image_sizes()
     {
@@ -140816,10 +143787,10 @@ namespace {
      *     @type string $0 The x crop position. Accepts 'left', 'center', or 'right'.
      *     @type string $1 The y crop position. Accepts 'top', 'center', or 'bottom'.
      * }
-     * @phpstan-param bool|array{
-     *   0: string,
-     *   1: string,
-     * } $crop
+     *
+     * @phpstan-param non-negative-int $width
+     * @phpstan-param non-negative-int $height
+     * @phpstan-param array{ 'left'|'center'|'right', 'top'|'center'|'bottom' }|bool $crop
      */
     function add_image_size($name, $width = 0, $height = 0, $crop = \false)
     {
@@ -141060,8 +144031,47 @@ namespace {
      *
      * @return array[] Associative array of arrays of image sub-size information,
      *                 keyed by image size name.
+     *
+     * @phpstan-return array<string, array{
+     *                     width: non-negative-int,
+     *                     height: non-negative-int,
+     *                     crop: array{ 'left'|'center'|'right', 'top'|'center'|'bottom' }|bool,
+     *                 }>
      */
-    function wp_get_registered_image_subsizes()
+    function wp_get_registered_image_subsizes(): array
+    {
+    }
+    /**
+     * Determines the encode quality WordPress would use for an image.
+     *
+     * Resolves the quality the same way WP_Image_Editor::set_quality() does when no
+     * explicit quality is supplied: it starts from the per-format default, applies the
+     * 'wp_editor_set_quality' filter, then the 'jpeg_quality' filter for JPEG output,
+     * resets out-of-range values to the per-format default, and squashes 0 to 1.
+     *
+     * This lets code outside of an image editor instance - such as the REST API, which
+     * reports the quality client-side processing should use - resolve the same value the
+     * server would apply, without loading the image into an editor.
+     *
+     * @since 7.1.0
+     *
+     * @param string   $mime_type       The output image MIME type, e.g. 'image/jpeg'.
+     * @param array    $size            {
+     *     Optional. Dimensions of the image, passed to the 'wp_editor_set_quality' filter.
+     *
+     *     @type int $width  The image width in pixels.
+     *     @type int $height The image height in pixels.
+     * }
+     * @param int|null $default_quality Optional. Starting quality before filters are applied.
+     *                                  Defaults to the per-format default (86 for WebP, 82 otherwise).
+     * @return int Encode quality between 1 and 100.
+     *
+     * @phpstan-param non-empty-string $mime_type
+     * @phpstan-param array{ width?: non-negative-int, height?: non-negative-int } $size
+     * @phpstan-param int<0, 100>|null $default_quality
+     * @phpstan-return int<1, 100>
+     */
+    function wp_get_image_encode_quality(string $mime_type, array $size = array(), ?int $default_quality = \null): int
     {
     }
     /**
@@ -141748,7 +144758,7 @@ namespace {
      *     @type string $style    The 'style' attribute for the `<audio>` element. Default 'width: 100%;'.
      * }
      * @param string $content Shortcode content.
-     * @return string|void HTML content to display audio.
+     * @return string|null HTML content to display audio.
      * @phpstan-param array{
      *   src?: string,
      *   loop?: string,
@@ -141798,7 +144808,7 @@ namespace {
      *                            Default 'wp-video-shortcode'.
      * }
      * @param string $content Shortcode content.
-     * @return string|void HTML content to display video.
+     * @return string|null HTML content to display video.
      * @phpstan-param array{
      *   src?: string,
      *   height?: int,
@@ -142054,8 +145064,8 @@ namespace {
      * @since 3.5.0
      *
      * @param int|WP_Post $attachment Attachment ID or object.
-     * @return array|void {
-     *     Array of attachment details, or void if the parameter does not correspond to an attachment.
+     * @return array|null {
+     *     Array of attachment details, or null if the parameter does not correspond to an attachment.
      *
      *     @type string $alt                   Alt text of the attachment.
      *     @type string $author                ID of the attachment author, as a string.
@@ -142094,7 +145104,7 @@ namespace {
      *     @type string $url                   Direct URL to the attachment file (from wp-content).
      *     @type int    $width                 If the attachment is an image, represents the width of the image in pixels.
      * }
-     * @phpstan-return void|array{
+     * @phpstan-return null|array{
      *   alt: string,
      *   author: string,
      *   authorName: string,
@@ -142478,9 +145488,79 @@ namespace {
      *
      * @param string $filename  Path to the image.
      * @param string $mime_type The source image mime type.
-     * @return string[] An array of mime type mappings.
+     * @return array<string, string> An array of mime type mappings.
      */
     function wp_get_image_editor_output_format($filename, $mime_type)
+    {
+    }
+    /**
+     * Checks whether client-side media processing is enabled.
+     *
+     * Client-side media processing uses the browser's capabilities to handle
+     * tasks like image resizing and compression before uploading to the server.
+     *
+     * @since 7.1.0
+     *
+     * @return bool Whether client-side media processing is enabled.
+     */
+    function wp_is_client_side_media_processing_enabled(): bool
+    {
+    }
+    /**
+     * Sets a global JS variable to indicate that client-side media processing is enabled.
+     *
+     * @since 7.1.0
+     */
+    function wp_set_client_side_media_processing_flag(): void
+    {
+    }
+    /**
+     * Returns the major Chrome/Chromium version from the current request's User-Agent.
+     *
+     * Matches all Chromium-based browsers (Chrome, Edge, Opera, Brave).
+     *
+     * @since 7.1.0
+     *
+     * @return int|null The major Chrome version, or null if not a Chromium browser.
+     */
+    function wp_get_chromium_major_version(): ?int
+    {
+    }
+    /**
+     * Enables cross-origin isolation in the block editor.
+     *
+     * Required for enabling SharedArrayBuffer for WebAssembly-based
+     * media processing in the editor. Uses Document-Isolation-Policy
+     * on supported browsers (Chromium 137+).
+     *
+     * Skips setup when a third-party page builder overrides the block
+     * editor via a custom `action` query parameter, as DIP would block
+     * same-origin iframe access that these editors rely on.
+     *
+     * @since 7.1.0
+     */
+    function wp_set_up_cross_origin_isolation(): void
+    {
+    }
+    /**
+     * Sends the Document-Isolation-Policy header for cross-origin isolation.
+     *
+     * Uses an output buffer to add crossorigin="anonymous" where needed.
+     *
+     * @since 7.1.0
+     */
+    function wp_start_cross_origin_isolation_output_buffer(): void
+    {
+    }
+    /**
+     * Adds crossorigin="anonymous" to relevant tags in the given HTML string.
+     *
+     * @since 7.1.0
+     *
+     * @param string $html HTML input.
+     * @return string Modified HTML.
+     */
+    function wp_add_crossorigin_attributes(string $html): string
     {
     }
     /**
@@ -143499,7 +146579,8 @@ namespace {
      * @since MU (3.0.0)
      * @deprecated 3.0.0 Use wp_die()
      * @see wp_die()
-     * @phpstan-return never
+     *
+     * @return never
      */
     function graceful_fail($message)
     {
@@ -143597,7 +146678,7 @@ namespace {
      * @see wp_redirect()
      *
      * @param string $url Optional. Redirect URL. Default empty.
-     * @phpstan-return never
+     * @return never
      */
     function wpmu_admin_do_redirect($url = '')
     {
@@ -143847,7 +146928,7 @@ namespace {
      * @since MU (3.0.0)
      *
      * @param int $user_id The unique ID of the user
-     * @return WP_Site|void The blog object
+     * @return WP_Site|object|null|false The blog object
      */
     function get_active_blog_for_user($user_id)
     {
@@ -144164,6 +147245,17 @@ namespace {
      *
      * @param string $key The activation key provided to the user.
      * @return array|WP_Error An array containing information about the activated user and/or blog.
+     * @phpstan-return array{
+     *     user_id: int,
+     *     password: string,
+     *     meta: array<string, mixed>,
+     * }|array{
+     *     blog_id: int,
+     *     user_id: int,
+     *     password: string,
+     *     title: string,
+     *     meta: array<string, mixed>,
+     * }|WP_Error
      */
     function wpmu_activate_signup(
         #[\SensitiveParameter]
@@ -144519,8 +147611,8 @@ namespace {
      *     @type int    $user_id The ID of the user being added to the current blog.
      *     @type string $role    The role to be assigned to the user.
      * }
-     * @return true|WP_Error|void True on success or a WP_Error object if the user doesn't exist
-     *                            or could not be added. Void if $details array was not provided.
+     * @return true|WP_Error|null True on success or a WP_Error object if the user doesn't exist
+     *                            or could not be added. Null if $details array was not provided.
      * @phpstan-param false|array{
      *   user_id?: int,
      *   role?: string,
@@ -144932,7 +148024,7 @@ namespace {
      *
      * @param string $domain The requested domain for the error to reference.
      * @param string $path   The requested path for the error to reference.
-     * @phpstan-return never
+     * @return never
      */
     function ms_not_installed($domain, $path)
     {
@@ -145275,7 +148367,7 @@ namespace {
      *   meta_type_key?: string,
      *   meta_query?: array,
      * } $args See WP_Site_Query::__construct()
-     * @phpstan-return ($args is array{count: true}&array ? int : ($args is array{fields: 'ids'}&array ? array<int, int> : array<int, \WP_Site>))
+     * @phpstan-return ($args is array{count: true, ...} ? int : ($args is array{fields: 'ids', ...} ? array<int, int> : array<int, \WP_Site>))
      */
     function get_sites($args = array())
     {
@@ -146329,6 +149421,8 @@ namespace {
      * @since 2.2.0
      *
      * @param string $option Option name.
+     * @return void Never returns if `$option` is protected, as the function dies in that case.
+     * @phpstan-return ( $option is 'alloptions'|'notoptions' ? never : void )
      */
     function wp_protect_special_option($option)
     {
@@ -147434,9 +150528,11 @@ namespace {
      * @param string     $query_arg Optional. Key to check for nonce in `$_REQUEST`. Default '_wpnonce'.
      * @return int|false 1 if the nonce is valid and generated between 0-12 hours ago,
      *                   2 if the nonce is valid and generated between 12-24 hours ago.
-     *                   False if the nonce is invalid.
+     *                   False if the nonce is invalid. Only possible when `$action` is -1,
+     *                   as the function otherwise exits rather than returning false.
+     * @phpstan-return ( $action is -1 ? int|false : int )
      * @phpstan-param string $action
-     * @phpstan-return 1|2|false
+     * @phpstan-return ($action is -1 ? 1|2|false : 1|2)
      */
     function check_admin_referer($action = -1, $query_arg = '_wpnonce')
     {
@@ -147454,9 +150550,11 @@ namespace {
      *                                Default true.
      * @return int|false 1 if the nonce is valid and generated between 0-12 hours ago,
      *                   2 if the nonce is valid and generated between 12-24 hours ago.
-     *                   False if the nonce is invalid.
+     *                   False if the nonce is invalid. Only possible when `$stop` is false,
+     *                   as the function otherwise exits rather than returning false.
+     * @phpstan-return ( $stop is true ? int : int|false )
      * @phpstan-param string $action
-     * @phpstan-return 1|2|false
+     * @phpstan-return ($stop is true ? 1|2 : 1|2|false)
      */
     function check_ajax_referer($action = -1, $query_arg = \false, $stop = \true)
     {
@@ -148644,19 +151742,20 @@ namespace {
      * @since 2.2.3
      * @since 5.3.0 Removed workarounds for spl_object_hash().
      *              `$hook_name` and `$priority` are no longer used,
-     *              and the function always returns a string.
+     *              and no longer returns false, but can still return void for invalid callbacks.
+     * @since 6.9.0 Returns explicit null if an invalid callback is supplied.
+     * @since 7.1.0 Uses spl_object_id() instead of spl_object_hash() for performance.
      *
      * @access private
      *
-     * @param string                $hook_name Unused. The name of the filter to build ID for.
-     * @param callable|string|array $callback  The callback to generate ID for. The callback may
-     *                                         or may not exist.
-     * @param int                   $priority  Unused. The order in which the functions
-     *                                         associated with a particular action are executed.
-     * @return string|null Unique function ID for usage as array key.
-     *                     Null if a valid `$callback` is not passed.
+     * @param string   $hook_name Unused. The name of the filter to build ID for.
+     * @param callable $callback  The callback to generate ID for. The callback may
+     *                            or may not exist.
+     * @param int      $priority  Unused. The order in which the functions
+     *                            associated with a particular action are executed.
+     * @return string|null Unique function ID for usage as array key, or null if it couldn't be determined.
      */
-    function _wp_filter_build_unique_id($hook_name, $callback, $priority)
+    function _wp_filter_build_unique_id($hook_name, $callback, $priority): ?string
     {
     }
     /**
@@ -149278,7 +152377,7 @@ namespace {
      *   post_type?: string,
      *   post_status?: string|array,
      * } $args
-     * @phpstan-return ($args is array{echo: false}&array ? string : void)
+     * @phpstan-return ($args is array{echo: false, ...} ? string : void)
      */
     function wp_list_pages($args = '')
     {
@@ -149791,6 +152890,15 @@ namespace {
      *                       correspond to a WP_Post object, an associative array, or a numeric array,
      *                       respectively. Default OBJECT.
      * @return WP_Post[]|array[]|int[] Array of post objects, arrays, or IDs, depending on `$output`.
+     *
+     * @phpstan-param 'OBJECT'|'ARRAY_A'|'ARRAY_N' $output
+     * @phpstan-return (
+     *     $args is array{ fields: 'ids', ... } ? int[] : (
+     *         $output is 'ARRAY_A' ? array<int, non-empty-array<string, mixed>> : (
+     *             $output is 'ARRAY_N' ? array<int, non-empty-array<int, mixed>> : WP_Post[]
+     *         )
+     *     )
+     * )
      */
     function get_children($args = '', $output = \OBJECT)
     {
@@ -149845,9 +152953,17 @@ namespace {
      *                                 or 'display'. Default 'raw'.
      * @return WP_Post|array|null Type corresponding to $output on success or null on failure.
      *                            When $output is OBJECT, a `WP_Post` instance is returned.
-     * @phpstan-param 'raw'|'edit'|'db'|'display' $filter
+     *
+     * @phpstan-param int|numeric-string|WP_Post|null $post
      * @phpstan-param 'OBJECT'|'ARRAY_A'|'ARRAY_N' $output
-     * @phpstan-return ($post is \WP_Post ? array<array-key, mixed>|\WP_Post : array<array-key, mixed>|\WP_Post|null) & ($output is 'ARRAY_A' ? array<string, mixed>|null : ($output is 'ARRAY_N' ? array<int, mixed>|null : \WP_Post|null))
+     * @phpstan-param 'raw'|'edit'|'db'|'display' $filter
+     * @phpstan-return (
+     *     $output is 'ARRAY_A' ? non-empty-array<string, mixed>|null : (
+     *         $output is 'ARRAY_N' ? non-empty-array<int, mixed>|null : (
+     *             WP_Post|null
+     *         )
+     *     )
+     * )
      */
     function get_post($post = \null, $output = \OBJECT, $filter = 'raw')
     {
@@ -149859,7 +152975,7 @@ namespace {
      *
      * @param int|WP_Post $post Post ID or post object.
      * @return int[] Array of ancestor IDs or empty array if there are none.
-     * @phpstan-return list<int>
+     * @phpstan-return list<non-negative-int>
      */
     function get_post_ancestors($post)
     {
@@ -149883,7 +152999,13 @@ namespace {
      * @param string      $context Optional. How to filter the field. Accepts 'raw', 'edit', 'db',
      *                             or 'display'. Default 'display'.
      * @return int|string|int[] The value of the post field on success, empty string on failure.
+     *
      * @phpstan-param 'raw'|'edit'|'db'|'display' $context
+     * @phpstan-return (
+     *     $field is 'ID'|'post_parent'|'menu_order' ? int|'' : (
+     *         $field is 'ancestors' ? non-negative-int[]|'' : string
+     *     )
+     * )
      */
     function get_post_field($field, $post = \null, $context = 'display')
     {
@@ -150132,6 +153254,7 @@ namespace {
      *                               element from the array needs to match; 'and' means all elements
      *                               must match; 'not' means no elements may match. Default 'and'.
      * @return string[]|WP_Post_Type[] An array of post type names or objects.
+     * @phpstan-return ( $output is 'names' ? string[] : WP_Post_Type[] )
      * @phpstan-param 'names'|'objects' $output
      * @phpstan-return ($output is 'names' ? array<string, string> : array<string, \WP_Post_Type>)
      */
@@ -150779,6 +153902,10 @@ namespace {
      *     @type bool       $suppress_filters Whether to suppress filters. Default true.
      * }
      * @return WP_Post[]|int[] Array of post objects or post IDs.
+     *
+     * @phpstan-return (
+     *     $args is array{ fields: 'ids', ... } ? int[] : WP_Post[]
+     * )
      * @phpstan-param array{
      *   numberposts?: int,
      *   category?: int|string,
@@ -150861,7 +153988,7 @@ namespace {
      *   w?: int,
      *   year?: int,
      * } $args
-     * @phpstan-return ($args is array{fields: 'id=>parent'|'ids'}&array ? array<int, int> : array<int, \WP_Post>)
+     * @phpstan-return ($args is array{fields: 'id=>parent'|'ids', ...} ? array<int, int> : array<int, \WP_Post>)
      */
     function get_posts($args = \null)
     {
@@ -151042,7 +154169,7 @@ namespace {
      * @since 1.2.0
      *
      * @param int $post_id Optional. Post ID. Default is the ID of the global `$post`.
-     * @return array|void Array of the keys, if retrieved.
+     * @return array|null Array of the keys, if retrieved.
      */
     function get_post_custom_keys($post_id = 0)
     {
@@ -151096,10 +154223,14 @@ namespace {
      *                                      'attribute', or 'js'. Default 'display'.
      * @return object|WP_Post|array The now sanitized post object or array (will be the
      *                              same type as `$post`).
+     *
+     * @phpstan-param stdClass|WP_Post|array<string, mixed> $post
      * @phpstan-param 'raw'|'edit'|'db'|'display'|'attribute'|'js' $context
-     * @phpstan-template T of mixed
-     * @phpstan-param T $post
-     * @phpstan-return (T is \WP_Post ? \WP_Post : (T is object ? object : (T is array ? array : T)))
+     * @phpstan-return (
+     *     $post is WP_Post ? WP_Post : (
+     *         $post is stdClass ? stdClass : array<string, mixed>
+     *     )
+     * )
      */
     function sanitize_post($post, $context = 'display')
     {
@@ -151109,7 +154240,8 @@ namespace {
      *
      * Possible context values are:  'raw', 'edit', 'db', 'display', 'attribute' and
      * 'js'. The 'display' context is used by default. 'attribute' and 'js' contexts
-     * are treated like 'display' when calling filters.
+     * are treated like 'display' when calling filters. The 'sample' value is used
+     * for permalink previewing.
      *
      * @since 2.3.0
      * @since 4.4.0 Like `sanitize_post()`, `$context` defaults to 'display'.
@@ -151117,10 +154249,16 @@ namespace {
      * @param string $field   The Post Object field name.
      * @param mixed  $value   The Post Object value.
      * @param int    $post_id Post ID.
-     * @param string $context Optional. How to sanitize the field. Possible values are 'raw', 'edit',
-     *                        'db', 'display', 'attribute' and 'js'. Default 'display'.
+     * @param string $context Optional. How to sanitize the field. Possible values are 'raw', 'edit', 'db', 'display',
+     *                        'attribute' and 'js'. The 'sample' value is used for permalink previewing. Default 'display'.
      * @return mixed Sanitized value.
-     * @phpstan-param 'raw'|'edit'|'db'|'display'|'attribute'|'js' $context
+     *
+     * @phpstan-param 'raw'|'edit'|'db'|'display'|'attribute'|'js'|'sample' $context
+     * @phpstan-return (
+     *     $field is 'ID'|'post_parent'|'menu_order' ? int : (
+     *         $field is 'ancestors' ? non-negative-int[] : string
+     *     )
+     * )
      * @phpstan-template T of mixed
      * @phpstan-param T $value
      * @phpstan-return ($field is 'ID'|'post_parent'|'menu_order' ? (T is int ? T : int) : ($field is 'ancestors' ? (T is array<int<0, max>>|list<int<0, max>> ? T : (T is list ? list<int<0, max>> : array<int<0, max>>)) : ($context is 'raw' ? T : ($context is 'attribute'|'js' ? string : ($context is 'edit' ? ($field is not 'post_content' ? string : mixed) : mixed)))))
@@ -151289,6 +154427,19 @@ namespace {
     {
     }
     /**
+     * Resets the Privacy Policy page ID option when the Privacy Policy page
+     * is permanently deleted, to prevent uncached database queries for a
+     * non-existent page.
+     *
+     * @since 7.1.0
+     * @access private
+     *
+     * @param int $post_id The ID of the post being deleted.
+     */
+    function _reset_privacy_policy_page_for_post(int $post_id): void
+    {
+    }
+    /**
      * Moves a post or page to the Trash
      *
      * If Trash is disabled, the post or page is permanently deleted.
@@ -151325,7 +154476,7 @@ namespace {
      * @global wpdb $wpdb WordPress database abstraction object.
      *
      * @param int|WP_Post|null $post Optional. Post ID or post object. Defaults to global $post.
-     * @return mixed|void False on failure.
+     * @return int|false|null int if the comments were successfully deleted, false on failure and null if the post or comment did not exist.
      */
     function wp_trash_post_comments($post = \null)
     {
@@ -151338,7 +154489,7 @@ namespace {
      * @global wpdb $wpdb WordPress database abstraction object.
      *
      * @param int|WP_Post|null $post Optional. Post ID or post object. Defaults to global $post.
-     * @return true|void
+     * @return true|null
      */
     function wp_untrash_post_comments($post = \null)
     {
@@ -151396,7 +154547,7 @@ namespace {
      *   meta_type_key?: string,
      *   meta_query?: array,
      * } $args See WP_Term_Query::__construct()
-     * @phpstan-return ($post_id is 0 ? array{} : (($args is array{fields: 'names'|'slugs'}&array ? list<string> : ($args is array{fields: 'id=>name'|'id=>slug'}&array ? array<int, string> : ($args is array{fields: 'id=>parent'}&array ? array<int, int> : ($args is array{fields: 'all'|'all_with_object_id'}&array ? array<int, \WP_Term> : ($args is array{fields: 'count'}&array ? numeric-string : list<int>)))))|\WP_Error))
+     * @phpstan-return ($post_id is 0 ? array{} : (($args is array{fields: 'names'|'slugs', ...} ? list<string> : ($args is array{fields: 'id=>name'|'id=>slug', ...} ? array<int, string> : ($args is array{fields: 'id=>parent', ...} ? array<int, int> : ($args is array{fields: 'all'|'all_with_object_id', ...} ? array<int, \WP_Term> : ($args is array{fields: 'count', ...} ? numeric-string : list<int>)))))|\WP_Error))
      */
     function wp_get_post_categories($post_id = 0, $args = array())
     {
@@ -151451,7 +154602,7 @@ namespace {
      *   meta_type_key?: string,
      *   meta_query?: array,
      * } $args See WP_Term_Query::__construct()
-     * @phpstan-return ($post_id is 0 ? array{} : (($args is array{fields: 'names'|'slugs'}&array ? list<string> : ($args is array{fields: 'id=>name'|'id=>slug'}&array ? array<int, string> : ($args is array{fields: 'id=>parent'}&array ? array<int, int> : ($args is array{fields: 'ids'|'tt_ids'}&array ? list<int> : ($args is array{fields: 'count'}&array ? numeric-string : array<int, \WP_Term>)))))|\WP_Error))
+     * @phpstan-return ($post_id is 0 ? array{} : (($args is array{fields: 'names'|'slugs', ...} ? list<string> : ($args is array{fields: 'id=>name'|'id=>slug', ...} ? array<int, string> : ($args is array{fields: 'id=>parent', ...} ? array<int, int> : ($args is array{fields: 'ids'|'tt_ids', ...} ? list<int> : ($args is array{fields: 'count', ...} ? numeric-string : array<int, \WP_Term>)))))|\WP_Error))
      */
     function wp_get_post_tags($post_id = 0, $args = array())
     {
@@ -151508,7 +154659,7 @@ namespace {
      *   meta_type_key?: string,
      *   meta_query?: array,
      * } $args
-     * @phpstan-return ($post_id is 0 ? array{} : ($taxonomy is empty ? array{} : (($args is array{fields: 'names'|'slugs'}&array ? list<string> : ($args is array{fields: 'id=>name'|'id=>slug'}&array ? array<int, string> : ($args is array{fields: 'id=>parent'}&array ? array<int, int> : ($args is array{fields: 'ids'|'tt_ids'}&array ? list<int> : ($args is array{fields: 'count'}&array ? numeric-string : array<int, \WP_Term>)))))|\WP_Error)))
+     * @phpstan-return ($post_id is 0 ? array{} : ($taxonomy is empty ? array{} : (($args is array{fields: 'names'|'slugs', ...} ? list<string> : ($args is array{fields: 'id=>name'|'id=>slug', ...} ? array<int, string> : ($args is array{fields: 'id=>parent', ...} ? array<int, int> : ($args is array{fields: 'ids'|'tt_ids', ...} ? list<int> : ($args is array{fields: 'count', ...} ? numeric-string : array<int, \WP_Term>)))))|\WP_Error)))
      */
     function wp_get_post_terms($post_id = 0, $taxonomy = 'post_tag', $args = array())
     {
@@ -151526,6 +154677,11 @@ namespace {
      *                       Default ARRAY_A.
      * @return array|false Array of recent posts, where the type of each element is determined
      *                     by the `$output` parameter. Empty array on failure.
+     *
+     * @phpstan-param 'OBJECT'|'ARRAY_A' $output
+     * @phpstan-return (
+     *     $output is 'ARRAY_A' ? array<int, non-empty-array<string, mixed>> : WP_Post[]|false
+     * )
      */
     function wp_get_recent_posts($args = array(), $output = \ARRAY_A)
     {
@@ -151599,6 +154755,10 @@ namespace {
      * @param bool  $wp_error         Optional. Whether to return a WP_Error on failure. Default false.
      * @param bool  $fire_after_hooks Optional. Whether to fire the after insert hooks. Default true.
      * @return int|WP_Error The post ID on success. The value 0 or WP_Error on failure.
+     *
+     * @phpstan-return (
+     *     $wp_error is false ? int : int|WP_Error
+     * )
      * @phpstan-param array{
      *   ID?: int,
      *   post_author?: int,
@@ -151648,6 +154808,10 @@ namespace {
      * @param bool         $wp_error         Optional. Whether to return a WP_Error on failure. Default false.
      * @param bool         $fire_after_hooks Optional. Whether to fire the after insert hooks. Default true.
      * @return int|WP_Error The post ID on success. The value 0 or WP_Error on failure.
+     *
+     * @phpstan-return (
+     *     $wp_error is false ? int : int|WP_Error
+     * )
      * @phpstan-param array{
      *   ID?: int,
      *   post_author?: int,
@@ -151925,6 +155089,7 @@ namespace {
      *
      * @param string $tb_list Comma separated list of URLs.
      * @param int    $post_id Post ID.
+     * @phpstan-return void
      */
     function trackback_url_list($tb_list, $post_id)
     {
@@ -151956,6 +155121,17 @@ namespace {
      * @param string      $filter Optional. How the return value should be filtered. Accepts 'raw',
      *                            'edit', 'db', 'display'. Default 'raw'.
      * @return WP_Post|array|null WP_Post or array on success, null on failure.
+     *
+     * @phpstan-param int|numeric-string|WP_Post|null $page
+     * @phpstan-param 'OBJECT'|'ARRAY_A'|'ARRAY_N' $output
+     * @phpstan-param 'raw'|'edit'|'db'|'display' $filter
+     * @phpstan-return (
+     *     $output is 'ARRAY_A' ? non-empty-array<string, mixed>|null : (
+     *         $output is 'ARRAY_N' ? non-empty-array<int, mixed>|null : (
+     *             WP_Post|null
+     *         )
+     *     )
+     * )
      */
     function get_page($page, $output = \OBJECT, $filter = 'raw')
     {
@@ -151973,7 +155149,16 @@ namespace {
      *                                respectively. Default OBJECT.
      * @param string|array $post_type Optional. Post type or array of post types. Default 'page'.
      * @return WP_Post|array|null WP_Post (or array) on success, or null on failure.
-     * @phpstan-return ($output is 'ARRAY_A' ? array<string, mixed>|null : ($output is 'ARRAY_N' ? array<int, mixed>|null : \WP_Post|null))
+     *
+     * @phpstan-param 'OBJECT'|'ARRAY_A'|'ARRAY_N' $output
+     * @phpstan-param string|string[]              $post_type
+     * @phpstan-return (
+     *     $output is 'ARRAY_A' ? non-empty-array<string, mixed>|null : (
+     *         $output is 'ARRAY_N' ? non-empty-array<int, mixed>|null : (
+     *             WP_Post|null
+     *         )
+     *     )
+     * )
      */
     function get_page_by_path($page_path, $output = \OBJECT, $post_type = 'page')
     {
@@ -152142,6 +155327,10 @@ namespace {
      * @param bool         $wp_error         Optional. Whether to return a WP_Error on failure. Default false.
      * @param bool         $fire_after_hooks Optional. Whether to fire the after insert hooks. Default true.
      * @return int|WP_Error The attachment ID on success. The value 0 or WP_Error on failure.
+     *
+     * @phpstan-return (
+     *     $wp_error is false ? int : int|WP_Error
+     * )
      * @phpstan-return ($wp_error is false ? int<0, max> : int<1, max>|\WP_Error)
      */
     function wp_insert_attachment($args, $file = \false, $parent_post_id = 0, $wp_error = \false, $fire_after_hooks = \true)
@@ -152190,6 +155379,8 @@ namespace {
      *
      * @since 2.1.0
      * @since 6.0.0 The `$filesize` value was added to the returned array.
+     * @since 7.1.0 `false` is now returned if the metadata is not an array, and when the result is
+     *              filtered the `sizes` key is always an array when present.
      *
      * @param int  $attachment_id Attachment post ID. Defaults to global $post.
      * @param bool $unfiltered    Optional. If true, filters are not run. Default false.
@@ -152204,14 +155395,39 @@ namespace {
      *     @type array  $image_meta Image metadata.
      *     @type int    $filesize   File size of the attachment.
      * }
-     * @phpstan-return false|array{
-     *   width: int,
-     *   height: int,
-     *   file: string,
-     *   sizes: array,
-     *   image_meta: array,
-     *   filesize: int,
-     * }
+     *
+     * @phpstan-return array{
+     *                     width?: int<1, max>,
+     *                     height?: int<1, max>,
+     *                     file?: non-empty-string,
+     *                     filesize?: int<0, max>,
+     *                     original_image?: non-empty-string,
+     *                     source_image?: non-empty-string,
+     *                     sizes?: array<non-empty-string, array{
+     *                                                         file: non-empty-string,
+     *                                                         width: int<1, max>,
+     *                                                         height: int<1, max>,
+     *                                                         'mime-type': non-empty-string,
+     *                                                         filesize?: int<0, max>,
+     *                                                         ...
+     *                                                     }>,
+     *                     image_meta?: array{
+     *                                      aperture: numeric-string|int,
+     *                                      credit: string,
+     *                                      camera: string,
+     *                                      caption: string,
+     *                                      created_timestamp: numeric-string|int,
+     *                                      copyright: string,
+     *                                      focal_length: numeric-string|int,
+     *                                      iso: numeric-string|int,
+     *                                      shutter_speed: numeric-string|int,
+     *                                      title: string,
+     *                                      orientation: numeric-string|int,
+     *                                      keywords: list<string>,
+     *                                      alt: string,
+     *                                  },
+     *                     ...
+     *                 }|false
      */
     function wp_get_attachment_metadata($attachment_id = 0, $unfiltered = \false)
     {
@@ -152488,10 +155704,11 @@ namespace {
      *
      * @since 1.5.0
      *
-     * @param WP_Post[] $posts             Array of post objects (passed by reference).
-     * @param string    $post_type         Optional. Post type. Default 'post'.
-     * @param bool      $update_term_cache Optional. Whether to update the term cache. Default true.
-     * @param bool      $update_meta_cache Optional. Whether to update the meta cache. Default true.
+     * @param WP_Post[]       $posts             Array of post objects (passed by reference).
+     * @param string|string[] $post_type         Optional. Single post type, 'any', or an array of post types.
+     *                                           Default 'post'.
+     * @param bool            $update_term_cache Optional. Whether to update the term cache. Default true.
+     * @param bool            $update_meta_cache Optional. Whether to update the meta cache. Default true.
      * @phpstan-return void
      */
     function update_post_caches(&$posts, $post_type = 'post', $update_term_cache = \true, $update_meta_cache = \true)
@@ -153351,6 +156568,18 @@ namespace {
      * @return bool Whether the query is for the favicon.ico file.
      */
     function is_favicon()
+    {
+    }
+    /**
+     * Is the query for a sitemap?
+     *
+     * @since 7.1.0
+     *
+     * @global WP_Query $wp_query WordPress Query object.
+     *
+     * @return bool Whether the query is for a sitemap.
+     */
+    function is_sitemap(): bool
     {
     }
     /**
@@ -154267,12 +157496,21 @@ namespace {
     /**
      * Determines if a given value is integer-like.
      *
+     * This reports whether the value represents an integer; it does not guarantee that the
+     * value can be represented as a native PHP integer. Values whose magnitude exceeds
+     * `PHP_INT_MAX` are still reported as integer-like, even though the `(int)` cast that
+     * {@see rest_sanitize_value_from_schema()} applies for the 'integer' type cannot round-trip
+     * them: an out-of-range numeric *string* saturates to `PHP_INT_MAX` or `PHP_INT_MIN`, while
+     * an out-of-range *float* is an undefined conversion in PHP that yields an arbitrary wrapped
+     * value. Likewise, a numeric value with a fractional part that is too large for the fraction
+     * to be represented as a float (greater than 2 ** 53) is reported as integer-like.
+     *
      * @since 5.5.0
      *
      * @param mixed $maybe_integer The value being evaluated.
      * @return bool True if an integer, otherwise false.
      */
-    function rest_is_integer($maybe_integer)
+    function rest_is_integer($maybe_integer): bool
     {
     }
     /**
@@ -154821,7 +158059,7 @@ namespace {
      * @since 2.6.0
      *
      * @param int $post_id The ID of the post to save as a revision.
-     * @return int|WP_Error|void Void or 0 if error, new revision ID, if success.
+     * @return int|WP_Error|null Null or 0 if error, new revision ID, if success.
      */
     function wp_save_post_revision($post_id)
     {
@@ -154902,6 +158140,17 @@ namespace {
      *                            respectively. Default OBJECT.
      * @param string      $filter Optional sanitization filter. See sanitize_post(). Default 'raw'.
      * @return WP_Post|array|null WP_Post (or array) on success, or null on failure.
+     *
+     * @phpstan-param int|WP_Post $post
+     * @phpstan-param 'OBJECT'|'ARRAY_A'|'ARRAY_N' $output
+     * @phpstan-param 'raw'|'edit'|'db'|'display' $filter
+     * @phpstan-return (
+     *     $output is 'ARRAY_A' ? non-empty-array<string, mixed>|null : (
+     *         $output is 'ARRAY_N' ? non-empty-array<int, mixed>|null : (
+     *             WP_Post|null
+     *         )
+     *     )
+     * )
      */
     function wp_get_post_revision(&$post, $output = \OBJECT, $filter = 'raw')
     {
@@ -155856,7 +159105,7 @@ namespace {
      * @global WP_Styles $wp_styles
      * @global bool      $concatenate_scripts
      *
-     * @return string[]|void
+     * @return string[]|null
      */
     function print_late_styles()
     {
@@ -156887,12 +160136,57 @@ namespace {
      * Returns the speculation rules configuration.
      *
      * @since 6.8.0
+     * @since 7.1.0 The `WP_SPECULATIVE_LOADING_DEFAULT_MODE` and `WP_SPECULATIVE_LOADING_DEFAULT_EAGERNESS` constants and
+     *              environment variables can now specify the default mode and eagerness, respectively.
+     *
+     * @see wp_get_speculation_rules_default_configuration()
      *
      * @return array<string, string>|null Associative array with 'mode' and 'eagerness' keys, or null if speculative
      *                                    loading is disabled.
-     * @phpstan-return array{mode: 'prefetch'|'prerender', eagerness: 'conservative'|'eager'|'moderate'}|null
+     * @phpstan-return array{
+     *     mode: 'prefetch'|'prerender',
+     *     eagerness: 'conservative'|'moderate'|'eager',
+     * }|null
      */
     function wp_get_speculation_rules_configuration(): ?array
+    {
+    }
+    /**
+     * Returns the default speculation rules configuration that the value 'auto' resolves to.
+     *
+     * WordPress Core defaults to a mode of 'prefetch' and an eagerness of 'conservative'. Hosting providers can override
+     * either default by way of the `WP_SPECULATIVE_LOADING_DEFAULT_MODE` and `WP_SPECULATIVE_LOADING_DEFAULT_EAGERNESS`
+     * constants or environment variables. This only changes what the 'auto' value resolves to, so a plugin which supplies
+     * an explicit mode or eagerness via the {@see 'wp_speculation_rules_configuration'} filter continues to take
+     * precedence.
+     *
+     * Note that an eagerness of 'immediate' is not permitted as a default, since WordPress does not allow it for the
+     * document-level rules that it generates.
+     *
+     * @since 7.1.0
+     * @access private
+     *
+     * @return array<string, string> Associative array with 'mode' and 'eagerness' keys.
+     * @phpstan-return array{
+     *     mode: 'prefetch'|'prerender',
+     *     eagerness: 'conservative'|'moderate'|'eager',
+     * }
+     */
+    function wp_get_speculation_rules_default_configuration(): array
+    {
+    }
+    /**
+     * Returns the value of a speculative loading override, as supplied by a constant or an environment variable.
+     *
+     * The constant takes precedence over the environment variable, consistent with {@see wp_get_environment_type()}.
+     *
+     * @since 7.1.0
+     * @access private
+     *
+     * @param string $name Name of the constant and environment variable to look up.
+     * @return string|null The override value, or null if neither is set.
+     */
+    function wp_get_speculative_loading_override(string $name): ?string
     {
     }
     /**
@@ -157011,16 +160305,18 @@ namespace {
      *
      * @since 6.1.0
      * @since 6.6.0 Added support for `$rules_group` in the `$css_rules` array.
+     * @since 7.1.0 Extended `declarations` in `$css_rules` array to accept `WP_Style_Engine_CSS_Declarations` object.
      *
      * @param array $css_rules {
      *     Required. A collection of CSS rules.
      *
      *     @type array ...$0 {
-     *         @type string   $rules_group  A parent CSS selector in the case of nested CSS,
-     *                                      or a CSS nested @rule, such as `@media (min-width: 80rem)` or `@layer module`.
-     *         @type string   $selector     A CSS selector.
-     *         @type string[] $declarations An associative array of CSS definitions,
-     *                                      e.g. `array( "$property" => "$value", "$property" => "$value" )`.
+     *         @type string                                    $rules_group  A parent CSS selector in the case of nested CSS,
+     *                                                                       or a CSS nested @rule, such as `@media (min-width: 80rem)` or `@layer module`.
+     *         @type string                                    $selector     A CSS selector.
+     *         @type string[]|WP_Style_Engine_CSS_Declarations $declarations An associative array of CSS definitions,
+     *                                                                       e.g. `array( "$property" => "$value", "$property" => "$value" )`,
+     *                                                                       or a WP_Style_Engine_CSS_Declarations object.
      *     }
      * }
      * @param array $options {
@@ -157038,7 +160334,7 @@ namespace {
      * @phpstan-param array<int|string, array{
      *   rules_group: string,
      *   selector: string,
-     *   declarations: string[],
+     *   declarations: string[]|WP_Style_Engine_CSS_Declarations,
      * }> $css_rules
      * @phpstan-param array{
      *   context?: string|null,
@@ -157772,7 +161068,7 @@ namespace {
      *   meta_query?: array,
      * } $args See WP_Term_Query::__construct()
      * @phpstan-param '' $deprecated
-     * @phpstan-return ($args is array{fields: 'count'}&array ? 0|numeric-string : ($args is array{fields: 'names'|'slugs'}&array ? list<string> : ($args is array{fields: 'id=>name'|'id=>slug'}&array ? array<int, string> : ($args is array{fields: 'id=>parent'}&array ? array<int, int> : ($args is array{fields: 'ids'|'tt_ids'}&array ? list<int> : array<int, \WP_Term>)))))|\WP_Error
+     * @phpstan-return ($args is array{fields: 'count', ...} ? 0|numeric-string : ($args is array{fields: 'names'|'slugs', ...} ? list<string> : ($args is array{fields: 'id=>name'|'id=>slug', ...} ? array<int, string> : ($args is array{fields: 'id=>parent', ...} ? array<int, int> : ($args is array{fields: 'ids'|'tt_ids', ...} ? list<int> : array<int, \WP_Term>)))))|\WP_Error
      */
     function get_terms($args = array(), $deprecated = '')
     {
@@ -157961,13 +161257,26 @@ namespace {
      *
      * @global bool $_wp_suspend_cache_invalidation
      *
-     * @param int|string $term        The term to check. Accepts term ID, slug, or name.
-     * @param string     $taxonomy    Optional. The taxonomy name to use.
-     * @param int        $parent_term Optional. ID of parent term under which to confine the exists search.
+     * @param int|string|null $term        The term to check. Accepts term ID, slug, or name.
+     * @param string          $taxonomy    Optional. The taxonomy name to use.
+     * @param int             $parent_term Optional. ID of parent term under which to confine the exists search.
      * @return mixed Returns null if the term does not exist.
      *               Returns the term ID if no taxonomy is specified and the term ID exists.
      *               Returns an array of the term ID and the term taxonomy ID if the taxonomy is specified and the pairing exists.
      *               Returns 0 if term ID 0 is passed to the function.
+     *
+     * @phpstan-return (
+     *     $term is null ? null : (
+     *         $term is 0 ? 0 : (
+     *             $taxonomy is '' ? int|null : (
+     *                 array{
+     *                     term_id: numeric-string,
+     *                     term_taxonomy_id: numeric-string,
+     *                 }|null
+     *             )
+     *         )
+     *     )
+     * )
      * @phpstan-return ($term is 0 ? 0 : ($term is '' ? null : ($taxonomy is '' ? string|null : array{term_id: string, term_taxonomy_id: string}|null)))
      */
     function term_exists($term, $taxonomy = '', $parent_term = \null)
@@ -158144,10 +161453,12 @@ namespace {
      * }
      * @return bool|int|WP_Error True on success, false if term does not exist. Zero on attempted
      *                           deletion of default Category. WP_Error if the taxonomy does not exist.
-     * @phpstan-param array{
-     *   default?: int,
-     *   force_default?: bool,
+     * @phpstan-param non-empty-string $taxonomy
+     * @phpstan-param string|array{
+     *     default?: positive-int,
+     *     force_default?: bool,
      * } $args
+     * @phpstan-return bool|WP_Error|0
      */
     function wp_delete_term($term, $taxonomy, $args = array())
     {
@@ -158218,7 +161529,7 @@ namespace {
      *   meta_type_key?: string,
      *   meta_query?: array,
      * } $args See WP_Term_Query::__construct()
-     * @phpstan-return ($object_ids is empty ? array{} : ($taxonomies is empty ? array{} : (($args is array{fields: 'names'|'slugs'}&array ? list<string> : ($args is array{fields: 'id=>name'|'id=>slug'}&array ? array<int, string> : ($args is array{fields: 'id=>parent'}&array ? array<int, int> : ($args is array{fields: 'ids'|'tt_ids'}&array ? list<int> : ($args is array{fields: 'count'}&array ? numeric-string : array<int, \WP_Term>)))))|\WP_Error)))
+     * @phpstan-return ($object_ids is empty ? array{} : ($taxonomies is empty ? array{} : (($args is array{fields: 'names'|'slugs', ...} ? list<string> : ($args is array{fields: 'id=>name'|'id=>slug', ...} ? array<int, string> : ($args is array{fields: 'id=>parent', ...} ? array<int, int> : ($args is array{fields: 'ids'|'tt_ids', ...} ? list<int> : ($args is array{fields: 'count', ...} ? numeric-string : array<int, \WP_Term>)))))|\WP_Error)))
      */
     function wp_get_object_terms($object_ids, $taxonomies, $args = array())
     {
@@ -158269,16 +161580,17 @@ namespace {
      *     @type int        $term_id          The new term ID.
      *     @type int|string $term_taxonomy_id The new term taxonomy ID. Can be a numeric string.
      * }
-     * @phpstan-param array{
-     *   alias_of?: string,
-     *   description?: string,
-     *   parent?: int,
-     *   slug?: string,
+     * @phpstan-param string|array{
+     *     alias_of?: string,
+     *     description?: string|null,
+     *     parent?: non-negative-int,
+     *     slug?: string|null,
+     *     ...
      * } $args
-     * @phpstan-return \WP_Error|array{
-     *   term_id: int,
-     *   term_taxonomy_id: int|string,
-     * }
+     * @phpstan-return array{
+     *     term_id: int,
+     *     term_taxonomy_id: int|numeric-string,
+     * }|WP_Error
      */
     function wp_insert_term($term, $taxonomy, $args = array())
     {
@@ -158398,11 +161710,16 @@ namespace {
      * @return array|WP_Error An array containing the `term_id` and `term_taxonomy_id`,
      *                        WP_Error otherwise.
      * @phpstan-param array{
-     *   alias_of?: string,
-     *   description?: string,
-     *   parent?: int,
-     *   slug?: string,
+     *     alias_of?: string,
+     *     description?: string,
+     *     parent?: non-negative-int,
+     *     slug?: string|null,
+     *     ...
      * } $args
+     * @phpstan-return array{
+     *     term_id: int,
+     *     term_taxonomy_id: int,
+     * }|WP_Error
      */
     function wp_update_term($term_id, $taxonomy, $args = array())
     {
@@ -160158,7 +163475,7 @@ namespace {
      * @global array $_wp_default_headers
      *
      * @param string|array $header The header string id (key of array) to remove, or an array thereof.
-     * @return bool|void A single header returns true on success, false on failure.
+     * @return bool|null A single header returns true on success, false on failure.
      *                   There is currently no return value for multiple headers.
      */
     function unregister_default_headers($header)
@@ -160557,7 +163874,7 @@ namespace {
      *
      * @param string $feature The feature being removed. See add_theme_support() for the list
      *                        of possible values.
-     * @return bool|void Whether feature was removed.
+     * @return bool Whether feature was removed.
      */
     function remove_theme_support($feature)
     {
@@ -161473,6 +164790,7 @@ namespace {
      * Finds out whether a user is a member of a given blog.
      *
      * @since MU (3.0.0)
+     * @since 7.1.0 Introduced the {@see 'is_user_member_of_blog'} filter.
      *
      * @global wpdb $wpdb WordPress database abstraction object.
      *
@@ -162293,10 +165611,13 @@ namespace {
      *
      * @since 3.0.0
      * @since 4.9.0 This function was moved from wp-admin/includes/ms.php so it's no longer Multisite specific.
+     * @since 7.0.3 Added the `$user_id` parameter, which is sent with the `personal_options_update` action.
      *
      * @global WP_Error $errors WP_Error object.
+     *
+     * @param int $user_id Optional. The ID of the user whose email is being changed. Defaults to `$_POST['user_id']` if set, otherwise 0.
      */
-    function send_confirmation_on_profile_email()
+    function send_confirmation_on_profile_email($user_id = 0)
     {
     }
     /**
@@ -162480,7 +165801,7 @@ namespace {
     /**
      * Returns the user request object for the specified request ID.
      *
-     * @since 4.9.6
+     * @since 5.4.0
      *
      * @param int $request_id The ID of the user request.
      * @return WP_User_Request|false
@@ -162684,6 +166005,119 @@ namespace {
      * @return bool Whether the request is from a mobile device.
      */
     function wp_is_mobile()
+    {
+    }
+    /**
+     * Builds the name of the dynamic filter that provides the view configuration
+     * for an entity.
+     *
+     * The entity kind and name are embedded in the hook name lowercased, so the
+     * hook follows the WordPress convention of lowercase hook names regardless of
+     * how the entity identifiers are spelled: the `postType`/`page` entity maps to
+     * the `get_entity_view_config_posttype_page` hook.
+     *
+     * @since 7.1.0
+     *
+     * @param string $kind The entity kind (e.g. `postType`).
+     * @param string $name The entity name (e.g. `page`).
+     * @return string The filter name.
+     */
+    function wp_get_entity_view_config_hook_name($kind, $name)
+    {
+    }
+    /**
+     * Builds the default `form` configuration for post types that don't provide their own.
+     *
+     * It is a sensible default for `post`, `page`, and custom post types alike rather
+     * than being tailored per type. Post types that need a different shape can replace
+     * it entirely with a dedicated `form` through their own filter callback.
+     *
+     * It is intentionally NOT gated by `supports`. The registered fields are the
+     * single source of truth for what applies: each field is registered for a post
+     * type based on its `supports` (and related flags such as `theme_supports`), and
+     * the editor drops any form field whose definition is absent or whose `isVisible`
+     * returns `false`.
+     *
+     * @since 7.1.0
+     *
+     * @return array The default form configuration.
+     */
+    function _wp_get_default_posttype_form()
+    {
+    }
+    /**
+     * Returns the view configuration for the given entity.
+     *
+     * Builds the default configuration shared by all entities and then exposes it
+     * through the dynamic `get_entity_view_config_{$kind}_{$name}` filter — with the
+     * dynamic portions lowercased, see wp_get_entity_view_config_hook_name()
+     * — so that core and third parties can provide the configuration for a
+     * specific entity.
+     *
+     * @since 7.1.0
+     *
+     * @param string $kind The entity kind (e.g. `postType`).
+     * @param string $name The entity name (e.g. `page`).
+     * @return array {
+     *     The view configuration for the entity.
+     *
+     *     @type array $default_view    Default view configuration.
+     *     @type array $default_layouts Default layouts configuration.
+     *     @type array $view_list       List of available views.
+     *     @type array $form            Form configuration.
+     * }
+     * @phpstan-return array{
+     *   default_view: array,
+     *   default_layouts: array,
+     *   view_list: array,
+     *   form: array,
+     * }
+     */
+    function wp_get_entity_view_config($kind, $name)
+    {
+    }
+    /**
+     * Provides the view configuration for the `page` post type.
+     *
+     * @since 7.1.0
+     *
+     * @param WP_View_Config_Data $data The view configuration container for the entity.
+     * @return WP_View_Config_Data The updated view configuration container.
+     */
+    function _wp_get_entity_view_config_posttype_page($data)
+    {
+    }
+    /**
+     * Provides the view configuration for the `wp_block` post type.
+     *
+     * @since 7.1.0
+     *
+     * @param WP_View_Config_Data $data The view configuration container for the entity.
+     * @return WP_View_Config_Data The updated view configuration container.
+     */
+    function _wp_get_entity_view_config_posttype_wp_block($data)
+    {
+    }
+    /**
+     * Provides the view configuration for the `wp_template_part` post type.
+     *
+     * @since 7.1.0
+     *
+     * @param WP_View_Config_Data $data The view configuration container for the entity.
+     * @return WP_View_Config_Data The updated view configuration container.
+     */
+    function _wp_get_entity_view_config_posttype_wp_template_part($data)
+    {
+    }
+    /**
+     * Provides the view configuration for the `wp_template` post type.
+     *
+     * @since 7.1.0
+     *
+     * @param WP_View_Config_Data $data The view configuration container for the entity.
+     * @return WP_View_Config_Data The updated view configuration container.
+     */
+    function _wp_get_entity_view_config_posttype_wp_template($data)
     {
     }
     /**
@@ -162924,7 +166358,7 @@ namespace {
      * @global array $wp_registered_widgets The registered widgets.
      *
      * @param int|string $id Widget ID.
-     * @return string|void Widget description, if available.
+     * @return string|null Widget description, if available.
      */
     function wp_widget_description($id)
     {
@@ -162940,7 +166374,7 @@ namespace {
      * @global array $wp_registered_sidebars The registered sidebars.
      *
      * @param string $id sidebar ID.
-     * @return string|void Sidebar description, if available.
+     * @return string|null Sidebar description, if available.
      */
     function wp_sidebar_description($id)
     {
@@ -163743,8 +167177,11 @@ namespace {
      * @since 0.71
      *
      * @param int|bool $error         Whether there was an error.
-     *                                Default '0'. Accepts '0' or '1', true or false.
+     *                                Default 0. Accepts 0 or 1, true or false.
      * @param string   $error_message Error message if an error occurred. Default empty string.
+     * @return void Never returns if `$error` is truthy, as the function dies after
+     *              sending the error response.
+     * @phpstan-return ( $error is 0|false ? void : never )
      */
     function trackback_response($error = 0, $error_message = '')
     {
