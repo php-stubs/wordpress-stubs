@@ -107600,7 +107600,7 @@ namespace {
      * @phpstan-param callable $callback
      * @phpstan-param string $page
      * @phpstan-param string $section
-     * @phpstan-param array{before_section?:string,after_section?:string,section_class?:string,...} $args
+     * @phpstan-param array{label_for?:string,class?:string,...} $args
      * @phpstan-return void
      */
     function add_settings_field($id, $title, $callback, $page, $section = 'default', $args = array())
@@ -120859,7 +120859,7 @@ namespace {
      * @phpstan-param array{
      *   taxonomy?: string,
      * } $args
-     * @phpstan-param array{taxonomy?:string,...} $args
+     * @phpstan-param string|array{taxonomy?:string,...} $args
      * @phpstan-return ($args is array{fields: 'count', ...} ? list<numeric-string> : ($args is array{fields: 'names'|'slugs', ...} ? list<string> : ($args is array{fields: 'id=>name'|'id=>slug', ...} ? array<int, string> : ($args is array{fields: 'id=>parent', ...} ? array<int, int> : ($args is array{fields: 'ids'|'tt_ids', ...} ? list<int> : array<int, \WP_Term>)))))
      */
     function get_categories($args = '')
