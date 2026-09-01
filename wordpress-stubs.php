@@ -120859,7 +120859,7 @@ namespace {
      * @phpstan-param array{
      *   taxonomy?: string,
      * } $args
-     * @phpstan-param string|array{taxonomy?:string,...} $args
+     * @phpstan-param array{taxonomy?:string,...} $args
      * @phpstan-return ($args is array{fields: 'count', ...} ? list<numeric-string> : ($args is array{fields: 'names'|'slugs', ...} ? list<string> : ($args is array{fields: 'id=>name'|'id=>slug', ...} ? array<int, string> : ($args is array{fields: 'id=>parent', ...} ? array<int, int> : ($args is array{fields: 'ids'|'tt_ids', ...} ? list<int> : array<int, \WP_Term>)))))
      */
     function get_categories($args = '')
@@ -137494,7 +137494,7 @@ namespace {
      *   before_page_number?: string,
      *   after_page_number?: string,
      * } $args
-     * @phpstan-return ($args is array{total: int<min, 1>, ...} ? void : ($args is array{type: 'array', ...} ? list<string> : string))
+     * @phpstan-return ($args is array{total: int<min, 1>, ...} ? null : ($args is array{type: 'array', ...} ? list<string> : string))
      */
     function paginate_links($args = '')
     {
