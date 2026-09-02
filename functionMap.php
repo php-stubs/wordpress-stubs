@@ -172,7 +172,7 @@ return [
     'mysql2date' => ["(\$format is 'G'|'U' ? int|false : string|false)"],
     'newblog_notify_siteadmin' => [null, 'deprecated' => "''"],
     'next_posts' => ['($display is true ? void : string)'],
-    'paginate_links' => ["(\$args is array{total: int<min, 1>, ...} ? void : (\$args is array{type: 'array', ...} ? list<string> : string))"],
+    'paginate_links' => ["(\$args is array{total: int<min, 1>, ...} ? null : (\$args is array{type: 'array', ...} ? list<string> : string))"],
     'path_is_absolute' => ['($path is non-falsy-string ? bool : false)', '@phpstan-assert-if-true =non-falsy-string $path' => ''],
     'path_join' => ['non-falsy-string'],
     'post_type_archive_title' => ['($display is true ? void : string|void)'],
