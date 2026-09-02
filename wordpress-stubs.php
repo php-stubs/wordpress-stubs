@@ -107595,12 +107595,7 @@ namespace {
      *   label_for?: string,
      *   class?: string,
      * } $args
-     * @phpstan-param string $id
-     * @phpstan-param string $title
-     * @phpstan-param callable $callback
-     * @phpstan-param string $page
-     * @phpstan-param string $section
-     * @phpstan-param array{label_for?:string,class?:string,...} $args
+     * @phpstan-param array{label_for?: string, class?: string, ...} $args
      * @phpstan-return void
      */
     function add_settings_field($id, $title, $callback, $page, $section = 'default', $args = array())
