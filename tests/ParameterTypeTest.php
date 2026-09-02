@@ -66,6 +66,11 @@ class ParameterTypeTest extends IntegrationTest
         );
     }
 
+    public function testAddSettingsField(): void
+    {
+        $this->analyse(__DIR__ . '/data/param/add-settings-field.php', []);
+    }
+
     public function testAddShortcode(): void
     {
         $this->analyse(
