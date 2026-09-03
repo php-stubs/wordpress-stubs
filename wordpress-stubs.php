@@ -68802,7 +68802,7 @@ namespace {
          * @param array[][] $fonts Optional. The font-families and their font variations.
          *                         See {@see wp_print_font_faces()} for the supported fields.
          *                         Default empty array.
-         * @phpstan-param array[]<int|string, array{
+         * @phpstan-param array<int|string, array{
          * ?: array<array-key, array{
          *     font-family: string,
          *     src: string|string[],
@@ -129297,7 +129297,7 @@ namespace {
      *         }
      *     }
      * }
-     * @phpstan-param array[]<int|string, array{
+     * @phpstan-param array<int|string, array{
      * ?: array<array-key, array{
      *     font-family: string,
      *     src: string|string[],
