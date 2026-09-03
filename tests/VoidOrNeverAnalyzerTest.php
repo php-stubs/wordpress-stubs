@@ -296,7 +296,7 @@ final class VoidOrNeverAnalyzerTest extends TestCase
             ],
             'top level exit meant to be overridden' => [
                 self::documentedFunction("exit('Method must be overridden.');"),
-                self::RESULT_VOID,
+                self::RESULT_NULL,
             ],
             'exit inside a condition' => [
                 self::documentedFunction("if (true) {\n        exit;\n    }"),
@@ -312,7 +312,7 @@ final class VoidOrNeverAnalyzerTest extends TestCase
             ],
             'top level throw meant to be overridden' => [
                 self::documentedFunction("throw new \RuntimeException('Method must be overridden.');"),
-                self::RESULT_VOID,
+                self::RESULT_NULL,
             ],
             'top level throw of a variable' => [
                 self::documentedFunction('throw $exception;'),

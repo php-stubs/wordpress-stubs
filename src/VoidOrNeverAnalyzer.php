@@ -155,11 +155,16 @@ final class VoidOrNeverAnalyzer
                 continue;
             }
 
-            if (
-                ! $this->isTopLevelExit($stmt)
-                && ! $this->isTopLevelThrow($stmt)
-                && ! $this->isTopLevelNeverFunctionCall($stmt)
-            ) {
+            if ($this->isTopLevelExit($stmt) || $this->isTopLevelThrow($stmt)) {
+                // Pseudo-abstract functions leave the return type to the overriding method.
+                $node->setAttribute(
+                    self::ATTRIBUTE_NAME,
+                    $this->isMeantToBeOverridden($stmt) ? null : new Never_()
+                );
+                return;
+            }
+
+            if (! $this->isTopLevelNeverFunctionCall($stmt)) {
                 continue;
             }
 
@@ -170,30 +175,12 @@ final class VoidOrNeverAnalyzer
 
     private function isTopLevelExit(Expression $stmt): bool
     {
-        if (! ($stmt->expr instanceof Exit_)) {
-            return false;
-        }
-
-        if ($stmt->expr->expr === null) {
-            return true;
-        }
-
-        return ! $this->isMeantToBeOverridden($stmt);
+        return $stmt->expr instanceof Exit_;
     }
 
     private function isTopLevelThrow(Expression $stmt): bool
     {
-        if (! ($stmt->expr instanceof Throw_) || ! ($stmt->expr->expr instanceof New_)) {
-            return false;
-        }
-
-        $args = $stmt->expr->expr->getRawArgs();
-
-        if (count($args) === 0) {
-            return true;
-        }
-
-        return ! $this->isMeantToBeOverridden($stmt);
+        return $stmt->expr instanceof Throw_ && $stmt->expr->expr instanceof New_;
     }
 
     private function isMeantToBeOverridden(Node $node): bool
