@@ -41,6 +41,7 @@
     </rule>
     <rule ref="SlevomatCodingStandard.Functions.FunctionLength">
         <exclude-pattern>tests/ParameterTypeTest.php</exclude-pattern>
+        <exclude-pattern>tests/VoidOrNeverAnalyzerTest.php</exclude-pattern>
     </rule>
     <rule ref="SlevomatCodingStandard.Namespaces.FullyQualifiedExceptions">
         <properties>
