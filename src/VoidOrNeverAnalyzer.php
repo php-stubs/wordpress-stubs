@@ -85,7 +85,7 @@ final class VoidOrNeverAnalyzer
             return false;
         }
 
-        if (! isset($node->stmts) || count($node->stmts) === 0) {
+        if (count($node->getStmts() ?? []) === 0) {
             // Interfaces and abstract methods.
             return false;
         }
@@ -170,7 +170,6 @@ final class VoidOrNeverAnalyzer
 
     private function isTopLevelExit(Expression $stmt): bool
     {
-
         if (! ($stmt->expr instanceof Exit_)) {
             return false;
         }
@@ -228,7 +227,7 @@ final class VoidOrNeverAnalyzer
         }
 
         // wp_die() needs additional checks.
-        if (str_starts_with($name, 'wp_die')) {
+        if ($name === 'wp_die') {
             return $this->isNeverFromWpDieCall($stmt->expr);
         }
 
