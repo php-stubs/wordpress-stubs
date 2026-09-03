@@ -134583,6 +134583,7 @@ namespace {
      *
      * @param string $path The resource path or URL.
      * @return bool True if the path is a stream URL.
+     * @phpstan-assert-if-true =non-falsy-string $path
      */
     function wp_is_stream($path)
     {
