@@ -156,10 +156,9 @@ final class VoidOrNeverAnalyzer
             }
 
             if ($this->isTopLevelExit($stmt) || $this->isTopLevelThrow($stmt)) {
-                // Pseudo-abstract functions leave the return type to the overriding method.
                 $node->setAttribute(
                     self::ATTRIBUTE_NAME,
-                    $this->isMeantToBeOverridden($stmt) ? null : new Never_()
+                    $this->isNeverFromExitOrThrow($stmt) ? new Never_() : null
                 );
                 return;
             }
@@ -180,7 +179,16 @@ final class VoidOrNeverAnalyzer
 
     private function isTopLevelThrow(Expression $stmt): bool
     {
-        return $stmt->expr instanceof Throw_ && $stmt->expr->expr instanceof New_;
+        return $stmt->expr instanceof Throw_;
+    }
+
+    private function isNeverFromExitOrThrow(Expression $stmt): bool
+    {
+        if ($this->isMeantToBeOverridden($stmt)) {
+            return false;
+        }
+
+        return ! ($stmt->expr instanceof Throw_) || $stmt->expr->expr instanceof New_;
     }
 
     private function isMeantToBeOverridden(Node $node): bool

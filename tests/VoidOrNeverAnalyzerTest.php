@@ -316,7 +316,7 @@ final class VoidOrNeverAnalyzerTest extends TestCase
             ],
             'top level throw of a variable' => [
                 self::documentedFunction('throw $exception;'),
-                self::RESULT_VOID,
+                self::RESULT_NULL,
             ],
             'wp_send_json call' => [
                 self::documentedFunction("wp_send_json(['a' => 1]);"),
