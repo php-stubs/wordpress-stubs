@@ -6191,7 +6191,6 @@ namespace {
          *     port?: non-negative-int,
          *     connection_type?: 'ftps',
          * }|null $opt
-         * @phpstan-return void
          */
         public function __construct($opt = \null)
         {
@@ -37866,7 +37865,6 @@ namespace {
          * @since 4.4.0
          *
          * @param WP_Comment $child Child comment.
-         * @phpstan-return void
          */
         public function add_child(\WP_Comment $child): void
         {
@@ -37891,7 +37889,6 @@ namespace {
          * @since 4.4.0
          *
          * @param bool $set Whether the comment's children have already been populated.
-         * @phpstan-return void
          */
         public function populated_children($set): void
         {
@@ -38963,6 +38960,7 @@ namespace {
          * Prints JavaScript settings.
          *
          * @since 3.4.0
+         * @phpstan-return void
          */
         public function customize_preview_init()
         {
@@ -86152,7 +86150,6 @@ namespace {
     {
         /**
          * PHP5 constructor.
-         * @phpstan-return void
          */
         public function __construct($filename)
         {
@@ -89255,7 +89252,6 @@ namespace {
          * @since 5.3.0
          *
          * @see register_rest_route()
-         * @phpstan-return void
          */
         public function register_routes()
         {
@@ -91858,6 +91854,7 @@ namespace {
          * Registers the routes for the objects of the controller.
          *
          * @since 7.1.0
+         * @phpstan-return void
          */
         public function register_routes()
         {
@@ -95272,6 +95269,7 @@ namespace {
          * Registers the routes for the controller.
          *
          * @since 7.1.0
+         * @phpstan-return void
          */
         public function register_routes()
         {
@@ -114150,6 +114148,7 @@ namespace {
      * @param array       $groups   Selector-keyed style groups.
      * @param string|null $selector Block or feature selector.
      * @param array       $style    Style fragment.
+     * @phpstan-return void
      */
     function wp_add_state_style_group(&$groups, $selector, $style)
     {
@@ -118472,6 +118471,7 @@ namespace {
      * Registers the `core/playlist-track` block on server.
      *
      * @since 7.1.0
+     * @phpstan-return void
      */
     function register_block_core_playlist_track()
     {
@@ -118494,6 +118494,7 @@ namespace {
      * Registers the `core/playlist` block on server.
      *
      * @since 7.1.0
+     * @phpstan-return void
      */
     function register_block_core_playlist()
     {
@@ -119601,6 +119602,7 @@ namespace {
      * Registers the `core/tab-list` block on the server.
      *
      * @since 7.1.0
+     * @phpstan-return void
      */
     function register_block_core_tab_list()
     {
@@ -119625,6 +119627,7 @@ namespace {
      * @hook init
      *
      * @since 7.1.0
+     * @phpstan-return void
      */
     function register_block_core_tab_panel()
     {
@@ -119675,6 +119678,7 @@ namespace {
      * Registers the `core/tabs` block on the server.
      *
      * @since 7.1.0
+     * @phpstan-return void
      */
     function register_block_core_tabs()
     {
@@ -124532,6 +124536,7 @@ namespace {
      * priority 10 callbacks. Does not remove `do_all_enclosures`.
      *
      * @since 7.1.0
+     * @phpstan-return void
      */
     function wp_maybe_disable_outgoing_pings_for_environment()
     {
@@ -124544,6 +124549,7 @@ namespace {
      * response and terminates the request.
      *
      * @since 7.1.0
+     * @phpstan-return void
      */
     function wp_maybe_disable_trackback_for_environment()
     {
@@ -130008,7 +130014,6 @@ namespace {
      * Prints the necessary markup for the site title in an embed template.
      *
      * @since 4.5.0
-     * @phpstan-return void
      */
     function the_embed_site_title(): void
     {
@@ -140098,6 +140103,7 @@ namespace {
      *
      * @since 7.1.0
      * @access private
+     * @phpstan-return void
      */
     function _wp_register_default_icon_collections()
     {
@@ -145107,6 +145113,7 @@ namespace {
      * @phpstan-param non-negative-int $width
      * @phpstan-param non-negative-int $height
      * @phpstan-param array{ 'left'|'center'|'right', 'top'|'center'|'bottom' }|bool $crop
+     * @phpstan-return void
      */
     function add_image_size($name, $width = 0, $height = 0, $crop = \false)
     {
