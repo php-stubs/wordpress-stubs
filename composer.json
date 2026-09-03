@@ -14,7 +14,7 @@
         "nikic/php-parser": "^5.5",
         "php-stubs/generator": "^0.9",
         "phpdocumentor/reflection-docblock": "^6.0",
-        "phpstan/phpstan": "^2.1",
+        "phpstan/phpstan": "^2.2",
         "phpunit/phpunit": "^9.5",
         "symfony/polyfill-php80": "*",
         "szepeviktor/phpcs-psr-12-neutron-hybrid-ruleset": "^1.2",

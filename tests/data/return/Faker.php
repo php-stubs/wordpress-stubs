@@ -91,3 +91,6 @@ assertType('WP_Translations', Faker::wpTranslations());
 assertType('WP_User', Faker::wpUser());
 assertType('WP_Widget_Factory', Faker::wpWidgetFactory());
 assertType('wpdb', Faker::wpdb());
+
+// class-string
+assertType('class-string<WP_Widget>', Faker::classString(Faker::wpWidget()));

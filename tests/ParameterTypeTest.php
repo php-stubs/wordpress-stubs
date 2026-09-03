@@ -66,6 +66,11 @@ class ParameterTypeTest extends IntegrationTest
         );
     }
 
+    public function testAddSettingsField(): void
+    {
+        $this->analyse(__DIR__ . '/data/param/add-settings-field.php', []);
+    }
+
     public function testAddShortcode(): void
     {
         $this->analyse(
@@ -332,10 +337,10 @@ class ParameterTypeTest extends IntegrationTest
         $this->analyse(
             __DIR__ . '/data/param/register-widget.php',
             [
-                ['Parameter #1 $widget of function register_widget expects class-string<WP_Widget>|WP_Widget, PhpStubs\WordPress\Core\Tests\NoWidget given.', 21],
-                ['Parameter #1 $widget of function register_widget expects class-string<WP_Widget>|WP_Widget, PhpStubs\WordPress\Core\Tests\NoWidget given.', 22],
-                ['Parameter #1 $widget of function register_widget expects class-string<WP_Widget>|WP_Widget, string given.', 23],
-                ['Parameter #1 $widget of function register_widget expects class-string<WP_Widget>|WP_Widget, string given.', 24],
+                ['Parameter #1 $widget of function register_widget expects class-string<WP_Widget>|WP_Widget, WP_Post given.', 11],
+                ['Parameter #1 $widget of function register_widget expects class-string<WP_Widget>|WP_Widget, WP_Post given.', 12],
+                ['Parameter #1 $widget of function register_widget expects class-string<WP_Widget>|WP_Widget, class-string<WP_Post> given.', 13],
+                ['Parameter #1 $widget of function register_widget expects class-string<WP_Widget>|WP_Widget, string given.', 14],
             ]
         );
     }
@@ -345,11 +350,8 @@ class ParameterTypeTest extends IntegrationTest
         $this->analyse(
             __DIR__ . '/data/param/wpdb.php',
             [
-                ["Parameter #2 \$output of method wpdb::get_row() expects 'ARRAY_A'|'ARRAY_N'|'OBJECT', 'OBJECT_K' given.", 25],
-                ["Parameter #2 \$output of method wpdb::get_row() expects 'ARRAY_A'|'ARRAY_N'|'OBJECT', string given.", 26],
-                ["Parameter #2 \$output of method wpdb::get_row() expects 'ARRAY_A'|'ARRAY_N'|'OBJECT', int given.", 27],
-                ['Parameter #3 $y of method wpdb::get_row() expects int<0, max>, -1 given.', 28],
-                ['Parameter #3 $y of method wpdb::get_row() expects int<0, max>, int given.', 29],
+                ['Parameter #3 $y of method wpdb::get_row() expects int<0, max>, -1 given.', 21],
+                ['Parameter #3 $y of method wpdb::get_row() expects int<0, max>, int given.', 22],
             ]
         );
     }
@@ -419,6 +421,21 @@ class ParameterTypeTest extends IntegrationTest
                 ['Parameter #3 $error_level of function wp_trigger_error expects 256|512|1024|16384, 2 given.', 27],
                 ['Parameter #3 $error_level of function wp_trigger_error expects 256|512|1024|16384, 2 given.', 34],
                 ['Parameter #3 $error_level of function wp_trigger_error expects 256|512|1024|16384, 0 given.', 35],
+            ]
+        );
+    }
+
+    public function testwpWidgetFactory(): void
+    {
+        $this->analyse(
+            __DIR__ . '/data/param/wp-widget-factory.php',
+            [
+                ['Parameter #1 $widget of method WP_Widget_Factory::register() expects class-string<WP_Widget>|WP_Widget, WP_Post given.', 8],
+                ['Parameter #1 $widget of method WP_Widget_Factory::register() expects class-string<WP_Widget>|WP_Widget, class-string<WP_Post> given.', 9],
+                ['Parameter #1 $widget of method WP_Widget_Factory::register() expects class-string<WP_Widget>|WP_Widget, string given.', 10],
+                ['Parameter #1 $widget of method WP_Widget_Factory::unregister() expects class-string<WP_Widget>|WP_Widget, WP_Post given.', 11],
+                ['Parameter #1 $widget of method WP_Widget_Factory::unregister() expects class-string<WP_Widget>|WP_Widget, class-string<WP_Post> given.', 12],
+                ['Parameter #1 $widget of method WP_Widget_Factory::unregister() expects class-string<WP_Widget>|WP_Widget, string given.', 13],
             ]
         );
     }

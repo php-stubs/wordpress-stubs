@@ -6,4 +6,4 @@ namespace PhpStubs\WordPress\Core\Tests;
 
 use function PHPStan\Testing\assertType;
 
-assertType('array<string, WP_Widget>', Faker::wpWidgetFactory()->widgets);
+assertType('array<int, WP_Widget>', Faker::wpWidgetFactory()->widgets);
