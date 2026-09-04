@@ -69,6 +69,7 @@ namespace {
          * @since 2.8.0
          *
          * @param WP_Upgrader $upgrader
+         * @phpstan-return void
          */
         public function set_upgrader(&$upgrader)
         {
@@ -87,6 +88,7 @@ namespace {
          * @since 2.8.0
          *
          * @param string|bool|WP_Error $result The result of an upgrade.
+         * @phpstan-return void
          */
         public function set_result($result)
         {
@@ -134,6 +136,7 @@ namespace {
          * @since 2.8.0
          *
          * @param string|WP_Error $errors Errors.
+         * @phpstan-return void
          */
         public function error($errors)
         {
@@ -267,6 +270,7 @@ namespace {
          * Creates a new output buffer.
          *
          * @since 3.7.0
+         * @phpstan-return void
          */
         public function header()
         {
@@ -275,6 +279,7 @@ namespace {
          * Retrieves the buffered content, deletes the buffer, and processes the output.
          *
          * @since 3.7.0
+         * @phpstan-return void
          */
         public function footer()
         {
@@ -320,6 +325,7 @@ namespace {
          * Sets up the strings used in the update process.
          *
          * @since 3.0.0
+         * @phpstan-return void
          */
         public function add_strings()
         {
@@ -341,6 +347,7 @@ namespace {
          * Displays the header before the update process.
          *
          * @since 3.0.0
+         * @phpstan-return void
          */
         public function header()
         {
@@ -349,6 +356,7 @@ namespace {
          * Displays the footer following the update process.
          *
          * @since 3.0.0
+         * @phpstan-return void
          */
         public function footer()
         {
@@ -360,6 +368,7 @@ namespace {
          * @since 5.9.0 Renamed `$error` to `$errors` for PHP 8 named parameter support.
          *
          * @param string|WP_Error $errors Errors.
+         * @phpstan-return void
          */
         public function error($errors)
         {
@@ -368,6 +377,7 @@ namespace {
          * Displays the header before the bulk update process.
          *
          * @since 3.0.0
+         * @phpstan-return void
          */
         public function bulk_header()
         {
@@ -376,6 +386,7 @@ namespace {
          * Displays the footer following the bulk update process.
          *
          * @since 3.0.0
+         * @phpstan-return void
          */
         public function bulk_footer()
         {
@@ -386,6 +397,7 @@ namespace {
          * @since 3.0.0
          *
          * @param string $title
+         * @phpstan-return void
          */
         public function before($title = '')
         {
@@ -396,6 +408,7 @@ namespace {
          * @since 3.0.0
          *
          * @param string $title
+         * @phpstan-return void
          */
         public function after($title = '')
         {
@@ -404,6 +417,7 @@ namespace {
          * Resets the properties used in the update process.
          *
          * @since 3.0.0
+         * @phpstan-return void
          */
         public function reset()
         {
@@ -412,6 +426,7 @@ namespace {
          * Flushes all output buffers.
          *
          * @since 3.0.0
+         * @phpstan-return void
          */
         public function flush_output()
         {
@@ -441,6 +456,7 @@ namespace {
          * Sets up the strings used in the update process.
          *
          * @since 3.0.0
+         * @phpstan-return void
          */
         public function add_strings()
         {
@@ -451,6 +467,7 @@ namespace {
          * @since 3.0.0
          *
          * @param string $title
+         * @phpstan-return void
          */
         public function before($title = '')
         {
@@ -461,6 +478,7 @@ namespace {
          * @since 3.0.0
          *
          * @param string $title
+         * @phpstan-return void
          */
         public function after($title = '')
         {
@@ -469,6 +487,7 @@ namespace {
          * Displays the footer following the bulk update process.
          *
          * @since 3.0.0
+         * @phpstan-return void
          */
         public function bulk_footer()
         {
@@ -499,6 +518,7 @@ namespace {
          * Sets up the strings used in the update process.
          *
          * @since 3.0.0
+         * @phpstan-return void
          */
         public function add_strings()
         {
@@ -509,6 +529,7 @@ namespace {
          * @since 3.0.0
          *
          * @param string $title
+         * @phpstan-return void
          */
         public function before($title = '')
         {
@@ -519,6 +540,7 @@ namespace {
          * @since 3.0.0
          *
          * @param string $title
+         * @phpstan-return void
          */
         public function after($title = '')
         {
@@ -527,6 +549,7 @@ namespace {
          * Displays the footer following the bulk update process.
          *
          * @since 3.0.0
+         * @phpstan-return void
          */
         public function bulk_footer()
         {
@@ -627,6 +650,7 @@ namespace {
          *
          * @since 2.8.0
          * @since 6.3.0 Added the `schedule_temp_backup_cleanup()` task.
+         * @phpstan-return void
          */
         public function init()
         {
@@ -635,6 +659,7 @@ namespace {
          * Schedules the cleanup of the temporary backup directory.
          *
          * @since 6.3.0
+         * @phpstan-return void
          */
         protected function schedule_temp_backup_cleanup()
         {
@@ -643,6 +668,7 @@ namespace {
          * Adds the generic strings to WP_Upgrader::$strings.
          *
          * @since 2.8.0
+         * @phpstan-return void
          */
         public function generic_strings()
         {
@@ -955,6 +981,7 @@ namespace {
          * Initializes the upgrade strings.
          *
          * @since 2.8.0
+         * @phpstan-return void
          */
         public function upgrade_strings()
         {
@@ -1065,6 +1092,7 @@ namespace {
          * Sets up the enqueue for the CSS & JavaScript files.
          *
          * @since 3.0.0
+         * @phpstan-return void
          */
         public function admin_load()
         {
@@ -1082,6 +1110,7 @@ namespace {
          * Displays the custom background page.
          *
          * @since 3.0.0
+         * @phpstan-return void
          */
         public function admin_page()
         {
@@ -1195,6 +1224,7 @@ namespace {
          * Adds contextual help.
          *
          * @since 3.0.0
+         * @phpstan-return void
          */
         public function help()
         {
@@ -1213,6 +1243,7 @@ namespace {
          * Sets up the enqueue for the JavaScript files.
          *
          * @since 2.1.0
+         * @phpstan-return void
          */
         public function js_includes()
         {
@@ -1221,6 +1252,7 @@ namespace {
          * Sets up the enqueue for the CSS files.
          *
          * @since 2.7.0
+         * @phpstan-return void
          */
         public function css_includes()
         {
@@ -1256,6 +1288,7 @@ namespace {
          * @param string $type The header type. One of 'default' (for the Uploaded Images control)
          *                     or 'uploaded' (for the Uploaded Images control).
          * @phpstan-param 'default'|'uploaded' $type
+         * @phpstan-return void
          */
         public function show_header_selector($type = 'default')
         {
@@ -1264,6 +1297,7 @@ namespace {
          * Executes JavaScript depending on step.
          *
          * @since 2.1.0
+         * @phpstan-return void
          */
         public function js()
         {
@@ -1272,6 +1306,7 @@ namespace {
          * Displays JavaScript based on Step 1 and 3.
          *
          * @since 2.6.0
+         * @phpstan-return void
          */
         public function js_1()
         {
@@ -1280,6 +1315,7 @@ namespace {
          * Displays JavaScript based on Step 2.
          *
          * @since 2.6.0
+         * @phpstan-return void
          */
         public function js_2()
         {
@@ -1288,6 +1324,7 @@ namespace {
          * Displays first step of custom header image page.
          *
          * @since 2.1.0
+         * @phpstan-return void
          */
         public function step_1()
         {
@@ -1322,6 +1359,7 @@ namespace {
          * Displays last step of custom header image page.
          *
          * @since 2.1.0
+         * @phpstan-return void
          */
         public function finished()
         {
@@ -1330,6 +1368,7 @@ namespace {
          * Displays the page based on the current step.
          *
          * @since 2.1.0
+         * @phpstan-return void
          */
         public function admin_page()
         {
@@ -1378,6 +1417,7 @@ namespace {
          * Removes a header image.
          *
          * @since 3.4.0
+         * @phpstan-return void
          */
         final public function remove_header_image()
         {
@@ -1882,6 +1922,7 @@ namespace {
          * Performs an action before a language pack update.
          *
          * @since 3.7.0
+         * @phpstan-return void
          */
         public function before()
         {
@@ -1893,6 +1934,7 @@ namespace {
          * @since 5.9.0 Renamed `$error` to `$errors` for PHP 8 named parameter support.
          *
          * @param string|WP_Error $errors Errors.
+         * @phpstan-return void
          */
         public function error($errors)
         {
@@ -1901,6 +1943,7 @@ namespace {
          * Performs an action following a language pack update.
          *
          * @since 3.7.0
+         * @phpstan-return void
          */
         public function after()
         {
@@ -1909,6 +1952,7 @@ namespace {
          * Displays the footer following the bulk update process.
          *
          * @since 3.7.0
+         * @phpstan-return void
          */
         public function bulk_footer()
         {
@@ -1959,6 +2003,7 @@ namespace {
          * Initializes the upgrade strings.
          *
          * @since 3.7.0
+         * @phpstan-return void
          */
         public function upgrade_strings()
         {
@@ -2237,6 +2282,7 @@ namespace {
          * Performs an action before installing a plugin.
          *
          * @since 2.8.0
+         * @phpstan-return void
          */
         public function before()
         {
@@ -2313,6 +2359,7 @@ namespace {
          * Performs an action following a single plugin update.
          *
          * @since 2.8.0
+         * @phpstan-return void
          */
         public function after()
         {
@@ -2360,6 +2407,7 @@ namespace {
          * Initializes the upgrade strings.
          *
          * @since 2.8.0
+         * @phpstan-return void
          */
         public function upgrade_strings()
         {
@@ -2368,6 +2416,7 @@ namespace {
          * Initializes the installation strings.
          *
          * @since 2.8.0
+         * @phpstan-return void
          */
         public function install_strings()
         {
@@ -2555,6 +2604,7 @@ namespace {
          * Performs an action before installing a theme.
          *
          * @since 2.8.0
+         * @phpstan-return void
          */
         public function before()
         {
@@ -2615,6 +2665,7 @@ namespace {
          * Performs an action following a single theme update.
          *
          * @since 2.8.0
+         * @phpstan-return void
          */
         public function after()
         {
@@ -2661,6 +2712,7 @@ namespace {
          * Initializes the upgrade strings.
          *
          * @since 2.8.0
+         * @phpstan-return void
          */
         public function upgrade_strings()
         {
@@ -2669,6 +2721,7 @@ namespace {
          * Initializes the installation strings.
          *
          * @since 2.8.0
+         * @phpstan-return void
          */
         public function install_strings()
         {
@@ -3083,6 +3136,7 @@ namespace {
          *   checked_ontop?: bool,
          *   echo?: bool,
          * } $args See wp_terms_checklist()
+         * @phpstan-return void
          */
         public function start_lvl(&$output, $depth = 0, $args = array())
         {
@@ -3106,6 +3160,7 @@ namespace {
          *   checked_ontop?: bool,
          *   echo?: bool,
          * } $args See wp_terms_checklist()
+         * @phpstan-return void
          */
         public function end_lvl(&$output, $depth = 0, $args = array())
         {
@@ -3133,6 +3188,7 @@ namespace {
          *   checked_ontop?: bool,
          *   echo?: bool,
          * } $args See wp_terms_checklist()
+         * @phpstan-return void
          */
         public function start_el(&$output, $data_object, $depth = 0, $args = array(), $current_object_id = 0)
         {
@@ -3158,6 +3214,7 @@ namespace {
          *   checked_ontop?: bool,
          *   echo?: bool,
          * } $args See wp_terms_checklist()
+         * @phpstan-return void
          */
         public function end_el(&$output, $data_object, $depth = 0, $args = array())
         {
@@ -3209,6 +3266,7 @@ namespace {
          * @param string   $output Used to append additional content (passed by reference).
          * @param int      $depth  Depth of menu item. Used for padding.
          * @param stdClass $args   An object of wp_nav_menu() arguments.
+         * @phpstan-return void
          */
         public function start_lvl(&$output, $depth = 0, $args = \null)
         {
@@ -3223,6 +3281,7 @@ namespace {
          * @param string   $output Used to append additional content (passed by reference).
          * @param int      $depth  Depth of menu item. Used for padding.
          * @param stdClass $args   An object of wp_nav_menu() arguments.
+         * @phpstan-return void
          */
         public function end_lvl(&$output, $depth = 0, $args = \null)
         {
@@ -3243,6 +3302,7 @@ namespace {
          * @param int      $depth             Depth of menu item. Used for padding.
          * @param stdClass $args              An object of wp_nav_menu() arguments.
          * @param int      $current_object_id Optional. ID of the current menu item. Default 0.
+         * @phpstan-return void
          */
         public function start_el(&$output, $data_object, $depth = 0, $args = \null, $current_object_id = 0)
         {
@@ -3259,6 +3319,7 @@ namespace {
          * @param WP_Post  $data_object Menu item data object. Not used.
          * @param int      $depth       Depth of page. Not Used.
          * @param stdClass $args        An object of wp_nav_menu() arguments.
+         * @phpstan-return void
          */
         public function end_el(&$output, $data_object, $depth = 0, $args = \null)
         {
@@ -3300,6 +3361,7 @@ namespace {
          * @param string   $output Used to append additional content (passed by reference).
          * @param int      $depth  Depth of page. Used for padding.
          * @param stdClass $args   Not used.
+         * @phpstan-return void
          */
         public function start_lvl(&$output, $depth = 0, $args = \null)
         {
@@ -3314,6 +3376,7 @@ namespace {
          * @param string   $output Used to append additional content (passed by reference).
          * @param int      $depth  Depth of page. Used for padding.
          * @param stdClass $args   Not used.
+         * @phpstan-return void
          */
         public function end_lvl(&$output, $depth = 0, $args = \null)
         {
@@ -3335,6 +3398,7 @@ namespace {
          * @param int      $depth             Depth of menu item. Used for padding.
          * @param stdClass $args              Not used.
          * @param int      $current_object_id Optional. ID of the current menu item. Default 0.
+         * @phpstan-return void
          */
         public function start_el(&$output, $data_object, $depth = 0, $args = \null, $current_object_id = 0)
         {
@@ -3392,6 +3456,7 @@ namespace {
          * @param int      $depth             Depth of menu item. Used for padding.
          * @param stdClass $args              Not used.
          * @param int      $current_object_id Optional. ID of the current menu item. Default 0.
+         * @phpstan-return void
          */
         public function start_el(&$output, $data_object, $depth = 0, $args = \null, $current_object_id = 0)
         {
@@ -3480,6 +3545,7 @@ namespace {
          *
          * @param string|WP_Error $errors  Errors.
          * @param mixed           ...$args Optional text replacements.
+         * @phpstan-return void
          */
         public function error($errors, ...$args)
         {
@@ -3494,6 +3560,7 @@ namespace {
          *
          * @param string|array|WP_Error $feedback Message data.
          * @param mixed                 ...$args  Optional text replacements.
+         * @phpstan-return void
          */
         public function feedback($feedback, ...$args)
         {
@@ -3724,6 +3791,7 @@ namespace {
          * Message to be displayed when there are no items.
          *
          * @since 3.1.0
+         * @phpstan-return void
          */
         public function no_items()
         {
@@ -3869,6 +3937,7 @@ namespace {
          * @since 3.1.0
          *
          * @param string $current_mode The current view mode slug, e.g. 'list' or 'excerpt'.
+         * @phpstan-return void
          */
         protected function view_switcher($current_mode)
         {
@@ -4012,6 +4081,7 @@ namespace {
          * @since 3.1.0
          *
          * @param bool $with_id Whether to set the ID attribute or not. Default true.
+         * @phpstan-return void
          */
         public function print_column_headers($with_id = \true)
         {
@@ -4032,6 +4102,7 @@ namespace {
          * Displays the table.
          *
          * @since 3.1.0
+         * @phpstan-return void
          */
         public function display()
         {
@@ -4073,6 +4144,7 @@ namespace {
          * Generates the tbody element for the list table.
          *
          * @since 3.1.0
+         * @phpstan-return void
          */
         public function display_rows_or_placeholder()
         {
@@ -4081,6 +4153,7 @@ namespace {
          * Generates the list table rows.
          *
          * @since 3.1.0
+         * @phpstan-return void
          */
         public function display_rows()
         {
@@ -4091,6 +4164,7 @@ namespace {
          * @since 3.1.0
          *
          * @param object|array $item The current item
+         * @phpstan-return void
          */
         public function single_row($item)
         {
@@ -4141,6 +4215,7 @@ namespace {
          * @since 3.1.0
          *
          * @param object|array $item The current item.
+         * @phpstan-return void
          */
         protected function single_row_columns($item)
         {
@@ -4173,6 +4248,7 @@ namespace {
          * Sends required variables to JavaScript land.
          *
          * @since 3.1.0
+         * @phpstan-return void
          */
         public function _js_vars()
         {
@@ -4203,6 +4279,7 @@ namespace {
          * @since 5.6.0
          *
          * @global int $user_id User ID.
+         * @phpstan-return void
          */
         public function prepare_items()
         {
@@ -4213,6 +4290,7 @@ namespace {
          * @since 5.6.0
          *
          * @param array $item The current application password item.
+         * @phpstan-return void
          */
         public function column_name($item)
         {
@@ -4223,6 +4301,7 @@ namespace {
          * @since 5.6.0
          *
          * @param array $item The current application password item.
+         * @phpstan-return void
          */
         public function column_created($item)
         {
@@ -4233,6 +4312,7 @@ namespace {
          * @since 5.6.0
          *
          * @param array $item The current application password item.
+         * @phpstan-return void
          */
         public function column_last_used($item)
         {
@@ -4243,6 +4323,7 @@ namespace {
          * @since 5.6.0
          *
          * @param array $item The current application password item.
+         * @phpstan-return void
          */
         public function column_last_ip($item)
         {
@@ -4253,6 +4334,7 @@ namespace {
          * @since 5.6.0
          *
          * @param array $item The current application password item.
+         * @phpstan-return void
          */
         public function column_revoke($item)
         {
@@ -4264,6 +4346,7 @@ namespace {
          *
          * @param array  $item        The current item.
          * @param string $column_name The current column name.
+         * @phpstan-return void
          */
         protected function column_default($item, $column_name)
         {
@@ -4275,6 +4358,7 @@ namespace {
          *
          * @param string $which The location of the bulk actions: Either 'top' or 'bottom'.
          * @phpstan-param 'top'|'bottom' $which
+         * @phpstan-return void
          */
         protected function display_tablenav($which)
         {
@@ -4285,6 +4369,7 @@ namespace {
          * @since 5.6.0
          *
          * @param array $item The current item.
+         * @phpstan-return void
          */
         public function single_row($item)
         {
@@ -4303,6 +4388,7 @@ namespace {
          * Prints the JavaScript template for the new row item.
          *
          * @since 5.6.0
+         * @phpstan-return void
          */
         public function print_js_template_row()
         {
@@ -4472,6 +4558,7 @@ namespace {
          * Prepares and sends an email of a full log of background update results, useful for debugging and geekery.
          *
          * @since 3.7.0
+         * @phpstan-return void
          */
         protected function send_debug_email()
         {
@@ -4546,6 +4633,7 @@ namespace {
          * @global string $comment_status Comment status filter.
          * @global string $comment_type   Comment type filter.
          * @global string $search         Search term.
+         * @phpstan-return void
          */
         public function prepare_items()
         {
@@ -4562,6 +4650,7 @@ namespace {
         /**
          * Displays a message when no comments are found.
          * @global string $comment_status The current comment status filter.
+         * @phpstan-return void
          */
         public function no_items()
         {
@@ -4596,6 +4685,7 @@ namespace {
          *
          * @param string $which The location of the extra table nav markup: Either 'top' or 'bottom'.
          * @phpstan-param 'top'|'bottom' $which
+         * @phpstan-return void
          */
         protected function extra_tablenav($which)
         {
@@ -4625,6 +4715,7 @@ namespace {
          * @since 5.6.0 Renamed from `comment_status_dropdown()` to `comment_type_dropdown()`.
          *
          * @param string $comment_type The current comment type slug.
+         * @phpstan-return void
          */
         protected function comment_type_dropdown($comment_type)
         {
@@ -4653,6 +4744,7 @@ namespace {
          * Overrides the parent display() method to render extra comments.
          *
          * @since 3.1.0
+         * @phpstan-return void
          */
         public function display()
         {
@@ -4692,6 +4784,7 @@ namespace {
          * @since 5.9.0 Renamed `$comment` to `$item` to match parent class for PHP 8 named parameter support.
          *
          * @param WP_Comment $item The comment object.
+         * @phpstan-return void
          */
         public function column_cb($item)
         {
@@ -4700,6 +4793,7 @@ namespace {
          * Outputs the comment column.
          *
          * @param WP_Comment $comment The comment object.
+         * @phpstan-return void
          */
         public function column_comment($comment)
         {
@@ -4710,6 +4804,7 @@ namespace {
          * @global string $comment_status The current comment status.
          *
          * @param WP_Comment $comment The comment object.
+         * @phpstan-return void
          */
         public function column_author($comment)
         {
@@ -4718,6 +4813,7 @@ namespace {
          * Outputs the date column.
          *
          * @param WP_Comment $comment The comment object.
+         * @phpstan-return void
          */
         public function column_date($comment)
         {
@@ -4738,6 +4834,7 @@ namespace {
          *
          * @param WP_Comment $item        The comment object.
          * @param string     $column_name The custom column's name.
+         * @phpstan-return void
          */
         public function column_default($item, $column_name)
         {
@@ -4970,7 +5067,6 @@ namespace {
          * @param string $message A description of what occurred.
          * @param array  $details Details that provide more context for the
          *                        log entry.
-         * @phpstan-return void
          */
         protected function maybe_log_events_response($message, $details)
         {
@@ -4990,6 +5086,7 @@ namespace {
          * Calls all core functions to check for updates.
          *
          * @since 5.2.0
+         * @phpstan-return void
          */
         public static function check_for_updates()
         {
@@ -6094,7 +6191,6 @@ namespace {
          *     port?: non-negative-int,
          *     connection_type?: 'ftps',
          * }|null $opt
-         * @phpstan-return void
          */
         public function __construct($opt = \null)
         {
@@ -6473,6 +6569,7 @@ namespace {
          * Destructor.
          *
          * @since 2.5.0
+         * @phpstan-return void
          */
         public function __destruct()
         {
@@ -6524,7 +6621,6 @@ namespace {
          *     password: string,
          *     port?: non-negative-int,
          * }|null $opt
-         * @phpstan-return void
          */
         public function __construct($opt = \null)
         {
@@ -6876,6 +6972,7 @@ namespace {
          * Destructor.
          *
          * @since 2.5.0
+         * @phpstan-return void
          */
         public function __destruct()
         {
@@ -6972,7 +7069,6 @@ namespace {
          *     public_key?: non-empty-string,
          *     private_key?: non-empty-string,
          * }|null $opt
-         * @phpstan-return void
          */
         public function __construct($opt = \null)
         {
@@ -7503,6 +7599,7 @@ namespace {
          *
          * @global wpdb  $wpdb       WordPress database abstraction object.
          * @global int[] $wp_actions Stores the number of times each action was triggered.
+         * @phpstan-return void
          */
         public function stop_the_insanity()
         {
@@ -7579,6 +7676,7 @@ namespace {
          * @since 3.3.0
          *
          * @param int $user_id User ID.
+         * @phpstan-return void
          */
         public static function dismiss_pointers_for_new_users($user_id)
         {
@@ -7616,12 +7714,14 @@ namespace {
          * @global string $s       Search string.
          * @global string $orderby The field to order the links by.
          * @global string $order   The direction to order the links.
+         * @phpstan-return void
          */
         public function prepare_items()
         {
         }
         /**
          * Displays the message for no items.
+         * @phpstan-return void
          */
         public function no_items()
         {
@@ -7674,6 +7774,7 @@ namespace {
          * @since 5.9.0 Renamed `$link` to `$item` to match parent class for PHP 8 named parameter support.
          *
          * @param object $item The current link object.
+         * @phpstan-return void
          */
         public function column_cb($item)
         {
@@ -7684,6 +7785,7 @@ namespace {
          * @since 4.3.0
          *
          * @param object $link The current link object.
+         * @phpstan-return void
          */
         public function column_name($link)
         {
@@ -7694,6 +7796,7 @@ namespace {
          * @since 4.3.0
          *
          * @param object $link The current link object.
+         * @phpstan-return void
          */
         public function column_url($link)
         {
@@ -7706,6 +7809,7 @@ namespace {
          * @global int $cat_id Link category ID.
          *
          * @param object $link The current link object.
+         * @phpstan-return void
          */
         public function column_categories($link)
         {
@@ -7716,6 +7820,7 @@ namespace {
          * @since 4.3.0
          *
          * @param object $link The current link object.
+         * @phpstan-return void
          */
         public function column_rel($link)
         {
@@ -7726,6 +7831,7 @@ namespace {
          * @since 4.3.0
          *
          * @param object $link The current link object.
+         * @phpstan-return void
          */
         public function column_visible($link)
         {
@@ -7736,6 +7842,7 @@ namespace {
          * @since 4.3.0
          *
          * @param object $link The current link object.
+         * @phpstan-return void
          */
         public function column_rating($link)
         {
@@ -7748,6 +7855,7 @@ namespace {
          *
          * @param object $item        Link object.
          * @param string $column_name Current column name.
+         * @phpstan-return void
          */
         public function column_default($item, $column_name)
         {
@@ -7756,6 +7864,7 @@ namespace {
          * Generates the list table rows.
          *
          * @since 3.1.0
+         * @phpstan-return void
          */
         public function display_rows()
         {
@@ -7879,6 +7988,7 @@ namespace {
          * @global WP_Query $wp_query              WordPress Query object.
          * @global array    $post_mime_types       An array of post mime types.
          * @global array    $avail_post_mime_types An array of available post mime types.
+         * @phpstan-return void
          */
         public function prepare_items()
         {
@@ -7929,6 +8039,7 @@ namespace {
          * Displays a message when no media items are found.
          *
          * @since 3.1.0
+         * @phpstan-return void
          */
         public function no_items()
         {
@@ -7937,6 +8048,7 @@ namespace {
          * Overrides parent views to use the filter bar display.
          *
          * @global string $mode List table view mode.
+         * @phpstan-return void
          */
         public function views()
         {
@@ -7960,6 +8072,7 @@ namespace {
          * @since 5.9.0 Renamed `$post` to `$item` to match parent class for PHP 8 named parameter support.
          *
          * @param WP_Post $item The current WP_Post object.
+         * @phpstan-return void
          */
         public function column_cb($item)
         {
@@ -7970,6 +8083,7 @@ namespace {
          * @since 4.3.0
          *
          * @param WP_Post $post The current WP_Post object.
+         * @phpstan-return void
          */
         public function column_title($post)
         {
@@ -7981,6 +8095,7 @@ namespace {
          * @since 6.8.0 Added fallback text when author's name is unknown.
          *
          * @param WP_Post $post The current WP_Post object.
+         * @phpstan-return void
          */
         public function column_author($post)
         {
@@ -8002,6 +8117,7 @@ namespace {
          * @since 4.3.0
          *
          * @param WP_Post $post The current WP_Post object.
+         * @phpstan-return void
          */
         public function column_date($post)
         {
@@ -8012,6 +8128,7 @@ namespace {
          * @since 4.3.0
          *
          * @param WP_Post $post The current WP_Post object.
+         * @phpstan-return void
          */
         public function column_parent($post)
         {
@@ -8022,6 +8139,7 @@ namespace {
          * @since 4.3.0
          *
          * @param WP_Post $post The current WP_Post object.
+         * @phpstan-return void
          */
         public function column_comments($post)
         {
@@ -8046,6 +8164,7 @@ namespace {
          *
          * @global WP_Post  $post     Global post object.
          * @global WP_Query $wp_query WordPress Query object.
+         * @phpstan-return void
          */
         public function display_rows()
         {
@@ -8136,6 +8255,7 @@ namespace {
          * @global string $mode List table view mode.
          * @global string $s    Search string.
          * @global wpdb   $wpdb WordPress database abstraction object.
+         * @phpstan-return void
          */
         public function prepare_items()
         {
@@ -8144,6 +8264,7 @@ namespace {
          * Displays a message when no sites are found.
          *
          * @since 3.1.0
+         * @phpstan-return void
          */
         public function no_items()
         {
@@ -8177,6 +8298,7 @@ namespace {
          *
          * @param string $which The location of the pagination nav markup: Either 'top' or 'bottom'.
          * @phpstan-param 'top'|'bottom' $which
+         * @phpstan-return void
          */
         protected function pagination($which)
         {
@@ -8188,6 +8310,7 @@ namespace {
          *
          * @param string $which The location of the extra table nav markup: Either 'top' or 'bottom'.
          * @phpstan-param 'top'|'bottom' $which
+         * @phpstan-return void
          */
         protected function extra_tablenav($which)
         {
@@ -8219,6 +8342,7 @@ namespace {
          * @since 5.9.0 Renamed `$blog` to `$item` to match parent class for PHP 8 named parameter support.
          *
          * @param array $item Current site.
+         * @phpstan-return void
          */
         public function column_cb($item)
         {
@@ -8229,6 +8353,7 @@ namespace {
          * @since 4.4.0
          *
          * @param array $blog Current site.
+         * @phpstan-return void
          */
         public function column_id($blog)
         {
@@ -8241,6 +8366,7 @@ namespace {
          * @global string $mode List table view mode.
          *
          * @param array $blog Current site.
+         * @phpstan-return void
          */
         public function column_blogname($blog)
         {
@@ -8253,6 +8379,7 @@ namespace {
          * @global string $mode List table view mode.
          *
          * @param array $blog Current site.
+         * @phpstan-return void
          */
         public function column_lastupdated($blog)
         {
@@ -8265,6 +8392,7 @@ namespace {
          * @global string $mode List table view mode.
          *
          * @param array $blog Current site.
+         * @phpstan-return void
          */
         public function column_registered($blog)
         {
@@ -8275,6 +8403,7 @@ namespace {
          * @since 4.3.0
          *
          * @param array $blog Current site.
+         * @phpstan-return void
          */
         public function column_users($blog)
         {
@@ -8285,6 +8414,7 @@ namespace {
          * @since 4.3.0
          *
          * @param array $blog Current site.
+         * @phpstan-return void
          */
         public function column_plugins($blog)
         {
@@ -8297,6 +8427,7 @@ namespace {
          *
          * @param array  $item        Current site.
          * @param string $column_name Current column name.
+         * @phpstan-return void
          */
         public function column_default($item, $column_name)
         {
@@ -8305,6 +8436,7 @@ namespace {
          * Generates the list table rows.
          *
          * @since 3.1.0
+         * @phpstan-return void
          */
         public function display_rows()
         {
@@ -8315,6 +8447,7 @@ namespace {
          * @since 5.3.0
          *
          * @param array<string, mixed> $site An array of site data.
+         * @phpstan-return void
          */
         protected function site_states($site)
         {
@@ -8418,6 +8551,7 @@ namespace {
          * @global string             $orderby The column to order the themes list by.
          * @global string             $order   The order of the themes list (ASC or DESC).
          * @global string             $s       The search string.
+         * @phpstan-return void
          */
         public function prepare_items()
         {
@@ -8446,6 +8580,7 @@ namespace {
         }
         /**
          * Displays the message when there are no items to list.
+         * @phpstan-return void
          */
         public function no_items()
         {
@@ -8501,6 +8636,7 @@ namespace {
          * Generates the list table rows.
          *
          * @since 3.1.0
+         * @phpstan-return void
          */
         public function display_rows()
         {
@@ -8512,6 +8648,7 @@ namespace {
          * @since 5.9.0 Renamed `$theme` to `$item` to match parent class for PHP 8 named parameter support.
          *
          * @param WP_Theme $item The current WP_Theme object.
+         * @phpstan-return void
          */
         public function column_cb($item)
         {
@@ -8526,6 +8663,7 @@ namespace {
          * @global string $s      The search string.
          *
          * @param WP_Theme $theme The current WP_Theme object.
+         * @phpstan-return void
          */
         public function column_name($theme)
         {
@@ -8539,6 +8677,7 @@ namespace {
          * @global array<string, int> $totals An array of theme counts for each status.
          *
          * @param WP_Theme $theme The current WP_Theme object.
+         * @phpstan-return void
          */
         public function column_description($theme)
         {
@@ -8552,6 +8691,7 @@ namespace {
          * @global int    $page   The current page number.
          *
          * @param WP_Theme $theme The current WP_Theme object.
+         * @phpstan-return void
          */
         public function column_autoupdates($theme)
         {
@@ -8564,6 +8704,7 @@ namespace {
          *
          * @param WP_Theme $item        The current WP_Theme object.
          * @param string   $column_name The current column name.
+         * @phpstan-return void
          */
         public function column_default($item, $column_name)
         {
@@ -8574,6 +8715,7 @@ namespace {
          * @since 4.3.0
          *
          * @param WP_Theme $item The current WP_Theme object.
+         * @phpstan-return void
          */
         public function single_row_columns($item)
         {
@@ -8585,6 +8727,7 @@ namespace {
          * @global array<string, int> $totals An array of theme counts for each status.
          *
          * @param WP_Theme $theme The current WP_Theme object.
+         * @phpstan-return void
          */
         public function single_row($theme)
         {
@@ -8609,6 +8752,7 @@ namespace {
          * @global string $mode       List table view mode.
          * @global string $usersearch
          * @global string $role
+         * @phpstan-return void
          */
         public function prepare_items()
         {
@@ -8620,6 +8764,7 @@ namespace {
         {
         }
         /**
+         * @phpstan-return void
          */
         public function no_items()
         {
@@ -8635,6 +8780,7 @@ namespace {
          * @global string $mode List table view mode.
          *
          * @param string $which
+         * @phpstan-return void
          */
         protected function pagination($which)
         {
@@ -8669,6 +8815,7 @@ namespace {
          * @since 4.4.0
          *
          * @param WP_User $user The current WP_User object.
+         * @phpstan-return void
          */
         public function column_id($user)
         {
@@ -8679,6 +8826,7 @@ namespace {
          * @since 4.3.0
          *
          * @param WP_User $user The current WP_User object.
+         * @phpstan-return void
          */
         public function column_username($user)
         {
@@ -8689,6 +8837,7 @@ namespace {
          * @since 4.3.0
          *
          * @param WP_User $user The current WP_User object.
+         * @phpstan-return void
          */
         public function column_name($user)
         {
@@ -8699,6 +8848,7 @@ namespace {
          * @since 4.3.0
          *
          * @param WP_User $user The current WP_User object.
+         * @phpstan-return void
          */
         public function column_email($user)
         {
@@ -8711,6 +8861,7 @@ namespace {
          * @global string $mode List table view mode.
          *
          * @param WP_User $user The current WP_User object.
+         * @phpstan-return void
          */
         public function column_registered($user)
         {
@@ -8722,6 +8873,7 @@ namespace {
          * @param string  $classes
          * @param string  $data
          * @param string  $primary
+         * @phpstan-return void
          */
         protected function _column_blogs($user, $classes, $data, $primary)
         {
@@ -8745,6 +8897,7 @@ namespace {
          *
          * @param WP_User $item        The current WP_User object.
          * @param string  $column_name The current column name.
+         * @phpstan-return void
          */
         public function column_default($item, $column_name)
         {
@@ -8753,6 +8906,7 @@ namespace {
          * Generates the list table rows.
          *
          * @since 3.1.0
+         * @phpstan-return void
          */
         public function display_rows()
         {
@@ -8854,6 +9008,7 @@ namespace {
         {
         }
         /**
+         * @phpstan-return void
          */
         public function no_items()
         {
@@ -8871,6 +9026,7 @@ namespace {
          * Overrides parent views so we can use the filter bar display.
          *
          * @global string $tab The current tab.
+         * @phpstan-return void
          */
         public function views()
         {
@@ -8881,6 +9037,7 @@ namespace {
          * Overrides the parent display() method to provide a different container.
          *
          * @since 4.0.0
+         * @phpstan-return void
          */
         public function display()
         {
@@ -8910,6 +9067,7 @@ namespace {
          * Generates the list table rows.
          *
          * @since 3.1.0
+         * @phpstan-return void
          */
         public function display_rows()
         {
@@ -9042,6 +9200,7 @@ namespace {
          * @global string                                             $orderby Column name to sort by.
          * @global string                                             $order   Sort direction, 'ASC' or 'DESC'.
          * @global string                                             $s       URL-encoded search term.
+         * @phpstan-return void
          */
         public function prepare_items()
         {
@@ -9080,6 +9239,7 @@ namespace {
          * @since 3.1.0
          *
          * @global array<string, array<string, array<string, mixed>>> $plugins Array of plugin data arrays grouped by status.
+         * @phpstan-return void
          */
         public function no_items()
         {
@@ -9207,6 +9367,7 @@ namespace {
          *
          * @param array $item The current item. An array containing the plugin file path and plugin data.
          * @phpstan-param array{string, array<string, mixed>} $item
+         * @phpstan-return void
          */
         public function single_row($item)
         {
@@ -9291,6 +9452,7 @@ namespace {
         }
         /**
          * @param bool $output_empty
+         * @phpstan-return void
          */
         public function display($output_empty = \false)
         {
@@ -9354,6 +9516,7 @@ namespace {
          * @since 4.2.0
          *
          * @param bool $display Whether the table layout should be hierarchical.
+         * @phpstan-return void
          */
         public function set_hierarchical_display($display)
         {
@@ -9369,6 +9532,7 @@ namespace {
          * @global array    $avail_post_stati
          * @global WP_Query $wp_query         WordPress Query object.
          * @global int      $per_page
+         * @phpstan-return void
          */
         public function prepare_items()
         {
@@ -9380,6 +9544,7 @@ namespace {
         {
         }
         /**
+         * @phpstan-return void
          */
         public function no_items()
         {
@@ -9447,6 +9612,7 @@ namespace {
         }
         /**
          * @param string $which
+         * @phpstan-return void
          */
         protected function extra_tablenav($which)
         {
@@ -9487,6 +9653,7 @@ namespace {
          *
          * @param array $posts
          * @param int   $level
+         * @phpstan-return void
          */
         public function display_rows($posts = array(), $level = 0)
         {
@@ -9515,6 +9682,7 @@ namespace {
          * @since 7.1.0 Includes a trimmed excerpt for untitled posts in Compact view.
          *
          * @param WP_Post $item The current WP_Post object.
+         * @phpstan-return void
          */
         public function column_cb($item)
         {
@@ -9526,6 +9694,7 @@ namespace {
          * @param string  $classes
          * @param string  $data
          * @param string  $primary
+         * @phpstan-return void
          */
         protected function _column_title($post, $classes, $data, $primary)
         {
@@ -9554,6 +9723,7 @@ namespace {
          * @global string $mode List table view mode.
          *
          * @param WP_Post $post The current WP_Post object.
+         * @phpstan-return void
          */
         public function column_title($post)
         {
@@ -9566,6 +9736,7 @@ namespace {
          * @global string $mode List table view mode.
          *
          * @param WP_Post $post The current WP_Post object.
+         * @phpstan-return void
          */
         public function column_date($post)
         {
@@ -9576,6 +9747,7 @@ namespace {
          * @since 4.3.0
          *
          * @param WP_Post $post The current WP_Post object.
+         * @phpstan-return void
          */
         public function column_comments($post)
         {
@@ -9587,6 +9759,7 @@ namespace {
          * @since 6.8.0 Added fallback text when author's name is unknown.
          *
          * @param WP_Post $post The current WP_Post object.
+         * @phpstan-return void
          */
         public function column_author($post)
         {
@@ -9609,6 +9782,7 @@ namespace {
          *
          * @param int|WP_Post $post
          * @param int         $level
+         * @phpstan-return void
          */
         public function single_row($post, $level = 0)
         {
@@ -9644,6 +9818,7 @@ namespace {
          * @since 3.1.0
          *
          * @global string $mode List table view mode.
+         * @phpstan-return void
          */
         public function inline_edit()
         {
@@ -9764,6 +9939,7 @@ namespace {
          *
          * @since 4.9.6
          * @since 5.1.0 Added support for column sorting.
+         * @phpstan-return void
          */
         public function prepare_items()
         {
@@ -9810,6 +9986,7 @@ namespace {
          *
          * @param WP_User_Request $item        Item being shown.
          * @param string          $column_name Name of column being shown.
+         * @phpstan-return void
          */
         public function column_default($item, $column_name)
         {
@@ -9852,6 +10029,7 @@ namespace {
          * @since 4.9.6
          *
          * @param WP_User_Request $item The current item.
+         * @phpstan-return void
          */
         public function single_row($item)
         {
@@ -9905,6 +10083,7 @@ namespace {
          * @since 4.9.6
          *
          * @param WP_User_Request $item Item being shown.
+         * @phpstan-return void
          */
         public function column_next_steps($item)
         {
@@ -9964,6 +10143,7 @@ namespace {
          * @since 4.9.6
          *
          * @param WP_User_Request $item Item being shown.
+         * @phpstan-return void
          */
         public function column_next_steps($item)
         {
@@ -10070,6 +10250,7 @@ namespace {
          * Outputs the privacy policy guide together with content from the theme and plugins.
          *
          * @since 4.9.6
+         * @phpstan-return void
          */
         public static function privacy_policy_guide()
         {
@@ -10091,6 +10272,7 @@ namespace {
          * Adds the suggested privacy policy text to the policy postbox.
          *
          * @since 4.9.6
+         * @phpstan-return void
          */
         public static function add_suggested_content()
         {
@@ -10219,6 +10401,7 @@ namespace {
          * @global WP_Screen $current_screen WordPress current screen object.
          * @global string    $typenow        The post type of the current screen.
          * @global string    $taxnow         The taxonomy of the current screen.
+         * @phpstan-return void
          */
         public function set_current_screen()
         {
@@ -10253,6 +10436,7 @@ namespace {
          *
          * @param WP_Screen $screen A screen object.
          * @param string    $help   Help text.
+         * @phpstan-return void
          */
         public static function add_old_compat_help($screen, $help)
         {
@@ -10265,6 +10449,7 @@ namespace {
          * @since 3.3.0
          *
          * @param string $parent_file The parent file of the screen. Typically the $parent_file global.
+         * @phpstan-return void
          */
         public function set_parentage($parent_file)
         {
@@ -10279,6 +10464,7 @@ namespace {
          *
          * @param string $option Option ID.
          * @param mixed  $args   Option-dependent arguments.
+         * @phpstan-return void
          */
         public function add_option($option, $args = array())
         {
@@ -10289,6 +10475,7 @@ namespace {
          * @since 3.8.0
          *
          * @param string $option Option ID.
+         * @phpstan-return void
          */
         public function remove_option($option)
         {
@@ -10297,6 +10484,7 @@ namespace {
          * Removes all options from the screen.
          *
          * @since 3.8.0
+         * @phpstan-return void
          */
         public function remove_options()
         {
@@ -10387,6 +10575,7 @@ namespace {
          * @since 3.3.0
          *
          * @param string $id The help tab ID.
+         * @phpstan-return void
          */
         public function remove_help_tab($id)
         {
@@ -10395,6 +10584,7 @@ namespace {
          * Removes all help tabs from the contextual help for the screen.
          *
          * @since 3.3.0
+         * @phpstan-return void
          */
         public function remove_help_tabs()
         {
@@ -10418,6 +10608,7 @@ namespace {
          * @since 3.3.0
          *
          * @param string $content Sidebar content in plain text or HTML.
+         * @phpstan-return void
          */
         public function set_help_sidebar($content)
         {
@@ -10481,6 +10672,7 @@ namespace {
          *   heading_pagination?: string,
          *   heading_list?: string,
          * } $content
+         * @phpstan-return void
          */
         public function set_screen_reader_content($content = array())
         {
@@ -10489,6 +10681,7 @@ namespace {
          * Removes all the accessible hidden headings and text for the screen.
          *
          * @since 4.4.0
+         * @phpstan-return void
          */
         public function remove_screen_reader_content()
         {
@@ -10529,6 +10722,7 @@ namespace {
          * @phpstan-param array{
          *   wrap?: bool,
          * } $options
+         * @phpstan-return void
          */
         public function render_screen_options($options = array())
         {
@@ -10767,6 +10961,7 @@ namespace {
          * @since 5.8.0
          *
          * @param string $tab Slug of the current tab being displayed.
+         * @phpstan-return void
          */
         public function show_site_health_tab($tab)
         {
@@ -11227,6 +11422,7 @@ namespace {
          * Creates a weekly cron event, if one does not already exist.
          *
          * @since 5.4.0
+         * @phpstan-return void
          */
         public function maybe_create_scheduled_event()
         {
@@ -11235,6 +11431,7 @@ namespace {
          * Runs the scheduled event to check and update the latest site health status for the website.
          *
          * @since 5.4.0
+         * @phpstan-return void
          */
         public function wp_cron_scheduled_check()
         {
@@ -11387,6 +11584,7 @@ namespace {
          * @since 4.3.0
          *
          * @param int $post_id Attachment ID.
+         * @phpstan-return void
          */
         public function delete_attachment_data($post_id)
         {
@@ -11441,11 +11639,13 @@ namespace {
         {
         }
         /**
+         * @phpstan-return void
          */
         public function prepare_items()
         {
         }
         /**
+         * @phpstan-return void
          */
         public function no_items()
         {
@@ -11485,6 +11685,7 @@ namespace {
          *
          * @param WP_Term $tag   Term object.
          * @param int     $level
+         * @phpstan-return void
          */
         public function single_row($tag, $level = 0)
         {
@@ -11622,6 +11823,7 @@ namespace {
         {
         }
         /**
+         * @phpstan-return void
          */
         public function prepare_items()
         {
@@ -11645,6 +11847,7 @@ namespace {
          * Overrides the parent display() method to provide a different container.
          *
          * @since 3.1.0
+         * @phpstan-return void
          */
         public function display()
         {
@@ -11656,6 +11859,7 @@ namespace {
         {
         }
         /**
+         * @phpstan-return void
          */
         public function display_rows_or_placeholder()
         {
@@ -11664,6 +11868,7 @@ namespace {
          * Generates the list table rows.
          *
          * @since 3.1.0
+         * @phpstan-return void
          */
         public function display_rows()
         {
@@ -11681,6 +11886,7 @@ namespace {
          * @since 3.4.0
          *
          * @param array $extra_args
+         * @phpstan-return void
          */
         public function _js_vars($extra_args = array())
         {
@@ -11714,6 +11920,7 @@ namespace {
         {
         }
         /**
+         * @phpstan-return void
          */
         public function no_items()
         {
@@ -11732,6 +11939,7 @@ namespace {
          * Overrides the parent display() method to provide a different container.
          *
          * @since 3.1.0
+         * @phpstan-return void
          */
         public function display()
         {
@@ -11740,6 +11948,7 @@ namespace {
          * Generates the list table rows.
          *
          * @since 3.1.0
+         * @phpstan-return void
          */
         public function display_rows()
         {
@@ -11786,6 +11995,7 @@ namespace {
         }
         /**
          * Prints the wrapper for the theme installer.
+         * @phpstan-return void
          */
         public function theme_installer()
         {
@@ -11795,6 +12005,7 @@ namespace {
          * Used to make the theme installer work for no-js.
          *
          * @param stdClass $theme A WordPress.org Theme API object.
+         * @phpstan-return void
          */
         public function theme_installer_single($theme)
         {
@@ -11819,6 +12030,7 @@ namespace {
          * @global string $type Type of search.
          *
          * @param array $extra_args Unused.
+         * @phpstan-return void
          */
         public function _js_vars($extra_args = array())
         {
@@ -11876,6 +12088,7 @@ namespace {
          *
          * @global string $role
          * @global string $usersearch
+         * @phpstan-return void
          */
         public function prepare_items()
         {
@@ -11884,6 +12097,7 @@ namespace {
          * Outputs 'no users' message.
          *
          * @since 3.1.0
+         * @phpstan-return void
          */
         public function no_items()
         {
@@ -11921,6 +12135,7 @@ namespace {
          *
          * @param string $which Whether this is being invoked above ("top")
          *                      or below the table ("bottom").
+         * @phpstan-return void
          */
         protected function extra_tablenav($which)
         {
@@ -11962,6 +12177,7 @@ namespace {
          * Generates the list table rows.
          *
          * @since 3.1.0
+         * @phpstan-return void
          */
         public function display_rows()
         {
@@ -12174,6 +12390,7 @@ namespace {
          * @access public
          *
          * @global wpdb $wpdb WordPress database abstraction object.
+         * @phpstan-return void
          */
         public function prepare_query()
         {
@@ -12185,6 +12402,7 @@ namespace {
          * @access public
          *
          * @global wpdb $wpdb WordPress database abstraction object.
+         * @phpstan-return void
          */
         public function query()
         {
@@ -12203,6 +12421,7 @@ namespace {
          *
          * @since 2.1.0
          * @access public
+         * @phpstan-return void
          */
         public function do_paging()
         {
@@ -12225,6 +12444,7 @@ namespace {
          *
          * @since 2.1.0
          * @access public
+         * @phpstan-return void
          */
         function page_links()
         {
@@ -13206,7 +13426,6 @@ namespace {
         const ATTACHMENTS_INLINE = \true;
         /**
          * @throws getid3_exception
-         * @phpstan-return void
          */
         public function __construct()
         {
@@ -13428,12 +13647,14 @@ namespace {
          * Analyze from string instead.
          *
          * @param string $string
+         * @phpstan-return void
          */
         public function AnalyzeString($string)
         {
         }
         /**
          * @param string $string
+         * @phpstan-return void
          */
         public function setStringMode($string)
         {
@@ -13515,6 +13736,7 @@ namespace {
         }
         /**
          * @param string $text
+         * @phpstan-return void
          */
         protected function notice($text)
         {
@@ -13917,6 +14139,7 @@ namespace {
         }
         /**
          * @param int $bits
+         * @phpstan-return void
          */
         public function skipBits($bits)
         {
@@ -14212,6 +14435,7 @@ namespace {
          * @param string $tag
          * @param string $history
          * @param array  $result
+         * @phpstan-return void
          */
         public function search_tag_by_key($info, $tag, $history, &$result)
         {
@@ -14222,6 +14446,7 @@ namespace {
          * @param string $v
          * @param string $history
          * @param array  $result
+         * @phpstan-return void
          */
         public function search_tag_by_pair($info, $k, $v, $history, &$result)
         {
@@ -15319,6 +15544,7 @@ namespace {
         }
         /**
          * PHP4 constructor.
+         * @phpstan-return void
          */
         public function IXR_Base64($data)
         {
@@ -15354,6 +15580,7 @@ namespace {
         }
         /**
          * PHP4 constructor.
+         * @phpstan-return void
          */
         public function IXR_Client($server, $path = \false, $port = 80, $timeout = 15)
         {
@@ -15398,6 +15625,7 @@ namespace {
         }
         /**
          * PHP4 constructor.
+         * @phpstan-return void
          */
         public function IXR_ClientMulticall($server, $path = \false, $port = 80)
         {
@@ -15406,6 +15634,7 @@ namespace {
          * @since 1.5.0
          * @since 5.5.0 Formalized the existing `...$args` parameter by adding it
          *              to the function signature.
+         * @phpstan-return void
          */
         function addCall(...$args)
         {
@@ -15444,6 +15673,7 @@ namespace {
         }
         /**
          * PHP4 constructor.
+         * @phpstan-return void
          */
         public function IXR_Date($time)
         {
@@ -15482,6 +15712,7 @@ namespace {
         }
         /**
          * PHP4 constructor.
+         * @phpstan-return void
          */
         public function IXR_Error($code, $message)
         {
@@ -15510,6 +15741,7 @@ namespace {
         }
         /**
          * PHP4 constructor.
+         * @phpstan-return void
          */
         public function IXR_Server($callbacks = \false, $data = \false, $wait = \false)
         {
@@ -15563,6 +15795,7 @@ namespace {
         }
         /**
          * PHP4 constructor.
+         * @phpstan-return void
          */
         public function IXR_IntrospectionServer()
         {
@@ -15611,6 +15844,7 @@ namespace {
         }
         /**
          * PHP4 constructor.
+         * @phpstan-return void
          */
         public function IXR_Message($message)
         {
@@ -15647,6 +15881,7 @@ namespace {
         }
         /**
          * PHP4 constructor.
+         * @phpstan-return void
          */
         public function IXR_Request($method, $args)
         {
@@ -15676,6 +15911,7 @@ namespace {
         }
         /**
          * PHP4 constructor.
+         * @phpstan-return void
          */
         public function IXR_Value($data, $type = \false)
         {
@@ -16583,6 +16819,7 @@ namespace PHPMailer\PHPMailer {
         }
         /**
          * Destructor.
+         * @phpstan-return void
          */
         public function __destruct()
         {
@@ -16604,30 +16841,35 @@ namespace PHPMailer\PHPMailer {
          * Sets message type to HTML or plain.
          *
          * @param bool $isHtml True for HTML mode
+         * @phpstan-return void
          */
         public function isHTML($isHtml = true)
         {
         }
         /**
          * Send messages using SMTP.
+         * @phpstan-return void
          */
         public function isSMTP()
         {
         }
         /**
          * Send messages using PHP's mail() function.
+         * @phpstan-return void
          */
         public function isMail()
         {
         }
         /**
          * Send messages using $Sendmail.
+         * @phpstan-return void
          */
         public function isSendmail()
         {
         }
         /**
          * Send messages using qmail.
+         * @phpstan-return void
          */
         public function isQmail()
         {
@@ -17010,6 +17252,7 @@ namespace PHPMailer\PHPMailer {
         }
         /**
          * Close the active SMTP session if one exists.
+         * @phpstan-return void
          */
         public function smtpClose()
         {
@@ -17180,6 +17423,7 @@ namespace PHPMailer\PHPMailer {
         /**
          * Set the message type.
          * PHPMailer only supports some preset message types, not arbitrary MIME structures.
+         * @phpstan-return void
          */
         protected function setMessageType()
         {
@@ -17471,48 +17715,56 @@ namespace PHPMailer\PHPMailer {
          * Clear queued addresses of given kind.
          *
          * @param string $kind 'to', 'cc', or 'bcc'
+         * @phpstan-return void
          */
         public function clearQueuedAddresses($kind)
         {
         }
         /**
          * Clear all To recipients.
+         * @phpstan-return void
          */
         public function clearAddresses()
         {
         }
         /**
          * Clear all CC recipients.
+         * @phpstan-return void
          */
         public function clearCCs()
         {
         }
         /**
          * Clear all BCC recipients.
+         * @phpstan-return void
          */
         public function clearBCCs()
         {
         }
         /**
          * Clear all ReplyTo recipients.
+         * @phpstan-return void
          */
         public function clearReplyTos()
         {
         }
         /**
          * Clear all recipient types.
+         * @phpstan-return void
          */
         public function clearAllRecipients()
         {
         }
         /**
          * Clear all filesystem, string, and binary attachments.
+         * @phpstan-return void
          */
         public function clearAttachments()
         {
         }
         /**
          * Clear all custom headers.
+         * @phpstan-return void
          */
         public function clearCustomHeaders()
         {
@@ -17548,6 +17800,7 @@ namespace PHPMailer\PHPMailer {
          * Add an error message to the error container.
          *
          * @param string $msg
+         * @phpstan-return void
          */
         protected function setError($msg)
         {
@@ -17803,6 +18056,7 @@ namespace PHPMailer\PHPMailer {
          * Set the line break format string, e.g. "\r\n".
          *
          * @param string $le
+         * @phpstan-return void
          */
         protected static function setLE($le)
         {
@@ -17814,6 +18068,7 @@ namespace PHPMailer\PHPMailer {
          * @param string $key_filename
          * @param string $key_pass            Password for private key
          * @param string $extracerts_filename Optional path to chain certificate
+         * @phpstan-return void
          */
         public function sign($cert_filename, $key_filename, $key_pass, $extracerts_filename = '')
         {
@@ -17962,6 +18217,7 @@ namespace PHPMailer\PHPMailer {
          * @param string $body
          * @param string $from
          * @param array  $extra
+         * @phpstan-return void
          */
         protected function doCallback($isSent, $to, $cc, $bcc, $subject, $body, $from, $extra)
         {
@@ -17976,6 +18232,7 @@ namespace PHPMailer\PHPMailer {
         }
         /**
          * Set an OAuthTokenProvider instance.
+         * @phpstan-return void
          */
         public function setOAuth(\PHPMailer\PHPMailer\OAuthTokenProvider $oauth)
         {
@@ -18201,6 +18458,7 @@ namespace PHPMailer\PHPMailer {
          * Also display debug output if it's enabled.
          *
          * @param string $error
+         * @phpstan-return void
          */
         protected function setError($error)
         {
@@ -18220,6 +18478,7 @@ namespace PHPMailer\PHPMailer {
          * @param string $errstr
          * @param string $errfile
          * @param int    $errline
+         * @phpstan-return void
          */
         protected function catchWarning($errno, $errstr, $errfile, $errline)
         {
@@ -18534,6 +18793,7 @@ namespace PHPMailer\PHPMailer {
          * Don't use this function without first trying to use QUIT.
          *
          * @see quit()
+         * @phpstan-return void
          */
         public function close()
         {
@@ -18587,6 +18847,7 @@ namespace PHPMailer\PHPMailer {
          * In case of HELO, the only parameter that can be discovered is a server name.
          *
          * @param string $type `HELO` or `EHLO`
+         * @phpstan-return void
          */
         protected function parseHelloFields($type)
         {
@@ -18790,6 +19051,7 @@ namespace PHPMailer\PHPMailer {
          * Enable or disable VERP address generation.
          *
          * @param bool $enabled
+         * @phpstan-return void
          */
         public function setVerp($enabled = false)
         {
@@ -18806,6 +19068,7 @@ namespace PHPMailer\PHPMailer {
          * Enable or disable use of SMTPUTF8.
          *
          * @param bool $enabled
+         * @phpstan-return void
          */
         public function setSMTPUTF8($enabled = false)
         {
@@ -18825,6 +19088,7 @@ namespace PHPMailer\PHPMailer {
          * @param string $detail       Further detail on the error
          * @param string $smtp_code    An associated SMTP error code
          * @param string $smtp_code_ex Extended SMTP code
+         * @phpstan-return void
          */
         protected function setError($message, $detail = '', $smtp_code = '', $smtp_code_ex = '')
         {
@@ -18833,6 +19097,7 @@ namespace PHPMailer\PHPMailer {
          * Set debug output method.
          *
          * @param string|callable $method The name of the mechanism to use for debugging output, or a callable to handle it
+         * @phpstan-return void
          */
         public function setDebugOutput($method = 'echo')
         {
@@ -18849,6 +19114,7 @@ namespace PHPMailer\PHPMailer {
          * Set debug output level.
          *
          * @param int $level
+         * @phpstan-return void
          */
         public function setDebugLevel($level = 0)
         {
@@ -18865,6 +19131,7 @@ namespace PHPMailer\PHPMailer {
          * Set SMTP timeout.
          *
          * @param int $timeout The timeout duration in seconds
+         * @phpstan-return void
          */
         public function setTimeout($timeout = 0)
         {
@@ -18884,6 +19151,7 @@ namespace PHPMailer\PHPMailer {
          * @param string $errmsg  The error message returned by PHP
          * @param string $errfile The file the error occurred in
          * @param int    $errline The line number the error occurred on
+         * @phpstan-return void
          */
         protected function errorHandler($errno, $errmsg, $errfile = '', $errline = 0)
         {
@@ -18975,7 +19243,6 @@ namespace WpOrg\Requests\Auth {
          *
          * @throws \WpOrg\Requests\Exception\InvalidArgument When the passed argument is not an array or null.
          * @throws \WpOrg\Requests\Exception\ArgumentCount   On incorrect number of array elements (`authbasicbadargs`).
-         * @phpstan-return void
          */
         public function __construct($args = null)
         {
@@ -18986,6 +19253,7 @@ namespace WpOrg\Requests\Auth {
          * @see \WpOrg\Requests\Auth\Basic::curl_before_send()
          * @see \WpOrg\Requests\Auth\Basic::fsockopen_header()
          * @param \WpOrg\Requests\Hooks $hooks Hook system
+         * @phpstan-return void
          */
         public function register(\WpOrg\Requests\Hooks $hooks)
         {
@@ -18994,6 +19262,7 @@ namespace WpOrg\Requests\Auth {
          * Set cURL parameters before the data is sent
          *
          * @param resource|\CurlHandle $handle cURL handle
+         * @phpstan-return void
          */
         public function curl_before_send(&$handle)
         {
@@ -19002,6 +19271,7 @@ namespace WpOrg\Requests\Auth {
          * Add extra headers to the request before sending
          *
          * @param string $out HTTP header string
+         * @phpstan-return void
          */
         public function fsockopen_header(&$out)
         {
@@ -19329,6 +19599,7 @@ namespace WpOrg\Requests\Cookie {
          * @param string $value Item value
          *
          * @throws \WpOrg\Requests\Exception On attempting to use dictionary as list (`invalidset`)
+         * @phpstan-return void
          */
         #[\ReturnTypeWillChange]
         public function offsetSet($offset, $value)
@@ -19338,6 +19609,7 @@ namespace WpOrg\Requests\Cookie {
          * Unset the given header
          *
          * @param string $offset The key for the item to unset.
+         * @phpstan-return void
          */
         #[\ReturnTypeWillChange]
         public function offsetUnset($offset)
@@ -19356,6 +19628,7 @@ namespace WpOrg\Requests\Cookie {
          * Register the cookie handler with the request's hooking system
          *
          * @param \WpOrg\Requests\HookManager $hooks Hooking system
+         * @phpstan-return void
          */
         public function register(\WpOrg\Requests\HookManager $hooks)
         {
@@ -19370,6 +19643,7 @@ namespace WpOrg\Requests\Cookie {
          * @param array $data
          * @param string $type
          * @param array $options
+         * @phpstan-return void
          */
         public function before_request($url, &$headers, &$data, &$type, &$options)
         {
@@ -19378,6 +19652,7 @@ namespace WpOrg\Requests\Cookie {
          * Parse all cookies from a response and attach them to the response
          *
          * @param \WpOrg\Requests\Response $response Response as received.
+         * @phpstan-return void
          */
         public function before_redirect_check(\WpOrg\Requests\Response $response)
         {
@@ -19914,6 +20189,7 @@ namespace WpOrg\Requests {
          * @throws \WpOrg\Requests\Exception\InvalidArgument When the passed $hook argument is not a string.
          * @throws \WpOrg\Requests\Exception\InvalidArgument When the passed $callback argument is not callable.
          * @throws \WpOrg\Requests\Exception\InvalidArgument When the passed $priority argument is not an integer.
+         * @phpstan-return void
          */
         public function register($hook, $callback, $priority = 0)
         {
@@ -20262,6 +20538,7 @@ namespace WpOrg\Requests {
          *
          * @param string $name Property name
          * @param mixed $value Property value
+         * @phpstan-return void
          */
         public function __set($name, $value)
         {
@@ -20288,6 +20565,7 @@ namespace WpOrg\Requests {
          * Overload __unset() to provide access via properties
          *
          * @param string $name Property name
+         * @phpstan-return void
          */
         public function __unset($name)
         {
@@ -20637,6 +20915,7 @@ namespace WpOrg\Requests\Proxy {
          * @see \WpOrg\Requests\Proxy\Http::fsockopen_remote_host_path()
          * @see \WpOrg\Requests\Proxy\Http::fsockopen_header()
          * @param \WpOrg\Requests\Hooks $hooks Hook system
+         * @phpstan-return void
          */
         public function register(\WpOrg\Requests\Hooks $hooks)
         {
@@ -20646,6 +20925,7 @@ namespace WpOrg\Requests\Proxy {
          *
          * @since 1.6
          * @param resource|\CurlHandle $handle cURL handle
+         * @phpstan-return void
          */
         public function curl_before_send(&$handle)
         {
@@ -20655,6 +20935,7 @@ namespace WpOrg\Requests\Proxy {
          *
          * @since 1.6
          * @param string $remote_socket Socket connection string
+         * @phpstan-return void
          */
         public function fsockopen_remote_socket(&$remote_socket)
         {
@@ -20665,6 +20946,7 @@ namespace WpOrg\Requests\Proxy {
          * @since 1.6
          * @param string $path Path to send in HTTP request string ("GET ...")
          * @param string $url Full URL we're requesting
+         * @phpstan-return void
          */
         public function fsockopen_remote_host_path(&$path, $url)
         {
@@ -20674,6 +20956,7 @@ namespace WpOrg\Requests\Proxy {
          *
          * @since 1.6
          * @param string $out HTTP header string
+         * @phpstan-return void
          */
         public function fsockopen_header(&$out)
         {
@@ -20808,6 +21091,7 @@ namespace WpOrg\Requests {
          * Register a transport
          *
          * @param string $transport Transport class to add, must support the \WpOrg\Requests\Transport interface
+         * @phpstan-return void
          */
         public static function add_transport($transport)
         {
@@ -21054,6 +21338,7 @@ namespace WpOrg\Requests {
          * @param string|Stringable|bool $path Certificate path, pointing to a PEM file.
          *
          * @throws \WpOrg\Requests\Exception\InvalidArgument When the passed $url argument is not a string, Stringable or boolean.
+         * @phpstan-return void
          */
         public static function set_certificate_path($path)
         {
@@ -21258,6 +21543,7 @@ namespace WpOrg\Requests {
          *
          * @throws \WpOrg\Requests\Exception If `$allow_redirects` is false, and code is 3xx (`response.no_redirects`)
          * @throws \WpOrg\Requests\Exception\Http On non-successful status code. Exception class corresponds to "Status" + code (e.g. {@see \WpOrg\Requests\Exception\Http\Status404})
+         * @phpstan-return void
          */
         public function throw_for_status($allow_redirects = true)
         {
@@ -21338,6 +21624,7 @@ namespace WpOrg\Requests\Utility {
          * @param string $value Item value
          *
          * @throws \WpOrg\Requests\Exception On attempting to use dictionary as list (`invalidset`)
+         * @phpstan-return void
          */
         #[\ReturnTypeWillChange]
         public function offsetSet($offset, $value)
@@ -21347,6 +21634,7 @@ namespace WpOrg\Requests\Utility {
          * Unset the given header
          *
          * @param string $offset The key for the item to unset.
+         * @phpstan-return void
          */
         #[\ReturnTypeWillChange]
         public function offsetUnset($offset)
@@ -21401,6 +21689,7 @@ namespace WpOrg\Requests\Response {
          * @param string $value Item value
          *
          * @throws \WpOrg\Requests\Exception On attempting to use dictionary as list (`invalidset`)
+         * @phpstan-return void
          */
         public function offsetSet($offset, $value)
         {
@@ -21521,6 +21810,7 @@ namespace WpOrg\Requests {
          *
          * @param string $name Property name.
          * @param mixed $value Property value
+         * @phpstan-return void
          */
         public function __set($name, $value)
         {
@@ -21537,6 +21827,7 @@ namespace WpOrg\Requests {
          * Remove a property's value
          *
          * @param string $name Property name.
+         * @phpstan-return void
          */
         public function __unset($name)
         {
@@ -21784,6 +22075,7 @@ namespace WpOrg\Requests\Transport {
         }
         /**
          * Destructor
+         * @phpstan-return void
          */
         public function __destruct()
         {
@@ -24127,7 +24419,6 @@ namespace SimplePie\Cache {
          * @param string $location Location string (from SimplePie::$cache_location)
          * @param string $name Unique ID for the cache
          * @param Base::TYPE_FEED|Base::TYPE_IMAGE $type Either TYPE_FEED for SimplePie data, or TYPE_IMAGE for image data
-         * @phpstan-return void
          */
         public function __construct(string $location, string $name, $type)
         {
@@ -24394,7 +24685,6 @@ namespace SimplePie\Cache {
          * @param string $location Location string (from SimplePie::$cache_location)
          * @param string $name Unique ID for the cache
          * @param Base::TYPE_FEED|Base::TYPE_IMAGE $type Either TYPE_FEED for SimplePie data, or TYPE_IMAGE for image data
-         * @phpstan-return void
          */
         public function __construct(string $location, string $name, $type)
         {
@@ -25866,7 +26156,6 @@ namespace SimplePie {
          * @param ?string $useragent
          * @param bool $force_fsockopen
          * @param array<int, mixed> $curl_options
-         * @phpstan-return void
          */
         public function __construct(string $url, int $timeout = 10, int $redirects = 5, ?array $headers = null, ?string $useragent = null, bool $force_fsockopen = false, array $curl_options = [])
         {
@@ -26554,6 +26843,7 @@ namespace SimplePie {
         }
         /**
          * Remove items that link back to this before destroying this object
+         * @phpstan-return void
          */
         public function __destruct()
         {
@@ -29169,6 +29459,7 @@ namespace SimplePie {
          *
          * @param string $name
          * @param mixed $value
+         * @phpstan-return never
          */
         public function __set(string $name, $value)
         {
@@ -29681,6 +29972,7 @@ namespace {
         }
         /**
          * PHP4 constructor.
+         * @phpstan-return void
          */
         public function Text_Diff($engine, $params)
         {
@@ -29772,6 +30064,7 @@ namespace {
          *
          * @param string $line  The line to trim.
          * @param int    $key   The index of the line in the array. Not used.
+         * @phpstan-return void
          */
         static function trimNewlines(&$line, $key)
         {
@@ -29822,6 +30115,7 @@ namespace {
         }
         /**
          * PHP4 constructor.
+         * @phpstan-return void
          */
         public function Text_MappedDiff($from_lines, $to_lines, $mapped_from_lines, $mapped_to_lines)
         {
@@ -29861,6 +30155,7 @@ namespace {
         }
         /**
          * PHP4 constructor.
+         * @phpstan-return void
          */
         public function Text_Diff_Op_copy($orig, $final = \false)
         {
@@ -29885,6 +30180,7 @@ namespace {
         }
         /**
          * PHP4 constructor.
+         * @phpstan-return void
          */
         public function Text_Diff_Op_delete($lines)
         {
@@ -29909,6 +30205,7 @@ namespace {
         }
         /**
          * PHP4 constructor.
+         * @phpstan-return void
          */
         public function Text_Diff_Op_add($lines)
         {
@@ -29933,6 +30230,7 @@ namespace {
         }
         /**
          * PHP4 constructor.
+         * @phpstan-return void
          */
         public function Text_Diff_Op_change($orig, $final)
         {
@@ -30015,6 +30313,7 @@ namespace {
          *
          * Note that XLIM, YLIM are exclusive bounds.  All line numbers are
          * origin-0 and discarded lines are not counted.
+         * @phpstan-return void
          */
         function _compareseq($xoff, $xlim, $yoff, $ylim)
         {
@@ -30030,6 +30329,7 @@ namespace {
          * following identical line to be the "change".
          *
          * This is extracted verbatim from analyze.c (GNU diffutils-2.7).
+         * @phpstan-return void
          */
         function _shiftBoundaries($lines, &$changed, $other_changed)
         {
@@ -30205,6 +30505,7 @@ namespace {
         }
         /**
          * PHP4 constructor.
+         * @phpstan-return void
          */
         public function Text_Diff_Renderer($params = array())
         {
@@ -31937,6 +32238,7 @@ namespace {
         }
         /**
          * PHP4 constructor.
+         * @phpstan-return void
          */
         public function AtomParser()
         {
@@ -32196,6 +32498,7 @@ namespace {
         }
         /**
          * PHP4 constructor.
+         * @phpstan-return void
          */
         public function POP3($server = '', $timeout = '')
         {
@@ -32361,6 +32664,7 @@ namespace {
          *   walker?: Walker,
          *   aria_describedby?: string,
          * } $args See wp_dropdown_categories()
+         * @phpstan-return void
          */
         public function start_el(&$output, $data_object, $depth = 0, $args = array(), $current_object_id = 0)
         {
@@ -32584,6 +32888,7 @@ namespace {
          * @param string $output Used to append additional content (passed by reference).
          * @param int    $depth  Optional. Depth of the current comment. Default 0.
          * @param array  $args   Optional. Uses 'style' argument for type of HTML list. Default empty array.
+         * @phpstan-return void
          */
         public function start_lvl(&$output, $depth = 0, $args = array())
         {
@@ -32600,6 +32905,7 @@ namespace {
          * @param int    $depth  Optional. Depth of the current comment. Default 0.
          * @param array  $args   Optional. Will only append content if style argument value is 'ol' or 'ul'.
          *                       Default empty array.
+         * @phpstan-return void
          */
         public function end_lvl(&$output, $depth = 0, $args = array())
         {
@@ -32689,6 +32995,7 @@ namespace {
          * @param WP_Comment $comment The comment object.
          * @param int        $depth   Depth of the current comment.
          * @param array      $args    An array of arguments.
+         * @phpstan-return void
          */
         protected function ping($comment, $depth, $args)
         {
@@ -32718,6 +33025,7 @@ namespace {
          * @param WP_Comment $comment Comment to display.
          * @param int        $depth   Depth of the current comment.
          * @param array      $args    An array of arguments.
+         * @phpstan-return void
          */
         protected function comment($comment, $depth, $args)
         {
@@ -32732,6 +33040,7 @@ namespace {
          * @param WP_Comment $comment Comment to display.
          * @param int        $depth   Depth of the current comment.
          * @param array      $args    An array of arguments.
+         * @phpstan-return void
          */
         protected function html5_comment($comment, $depth, $args)
         {
@@ -32796,6 +33105,7 @@ namespace {
          *   option_none_value?: string,
          *   value_field?: string,
          * } $args See wp_dropdown_pages()
+         * @phpstan-return void
          */
         public function start_el(&$output, $data_object, $depth = 0, $args = array(), $current_object_id = 0)
         {
@@ -32840,6 +33150,7 @@ namespace {
          * @param int    $depth  Optional. Depth of page. Used for padding. Default 0.
          * @param array  $args   Optional. Arguments for outputting the next level.
          *                       Default empty array.
+         * @phpstan-return void
          */
         public function start_lvl(&$output, $depth = 0, $args = array())
         {
@@ -32855,6 +33166,7 @@ namespace {
          * @param int    $depth  Optional. Depth of page. Used for padding. Default 0.
          * @param array  $args   Optional. Arguments for outputting the end of the current level.
          *                       Default empty array.
+         * @phpstan-return void
          */
         public function end_lvl(&$output, $depth = 0, $args = array())
         {
@@ -32872,6 +33184,7 @@ namespace {
          * @param int     $depth             Optional. Depth of page. Used for padding. Default 0.
          * @param array   $args              Optional. Array of arguments. Default empty array.
          * @param int     $current_object_id Optional. ID of the current page. Default 0.
+         * @phpstan-return void
          */
         public function start_el(&$output, $data_object, $depth = 0, $args = array(), $current_object_id = 0)
         {
@@ -32888,6 +33201,7 @@ namespace {
          * @param WP_Post $data_object Page data object. Not used.
          * @param int     $depth       Optional. Depth of page. Default 0 (unused).
          * @param array   $args        Optional. Array of arguments. Default empty array.
+         * @phpstan-return void
          */
         public function end_el(&$output, $data_object, $depth = 0, $args = array())
         {
@@ -32915,6 +33229,7 @@ namespace {
          * Initializes the admin bar.
          *
          * @since 3.1.0
+         * @phpstan-return void
          */
         public function initialize()
         {
@@ -32925,6 +33240,7 @@ namespace {
          * @since 3.3.0
          *
          * @param array $node The attributes that define the node.
+         * @phpstan-return void
          */
         public function add_menu($node)
         {
@@ -32935,6 +33251,7 @@ namespace {
          * @since 3.1.0
          *
          * @param string $id The menu slug to remove.
+         * @phpstan-return void
          */
         public function remove_menu($id)
         {
@@ -32974,6 +33291,7 @@ namespace {
          * @since 3.3.0
          *
          * @param array $args
+         * @phpstan-return void
          */
         final protected function _set_node($args)
         {
@@ -33034,6 +33352,7 @@ namespace {
          *   parent?: string,
          *   meta?: array,
          * } $args
+         * @phpstan-return void
          */
         final public function add_group($args)
         {
@@ -33044,6 +33363,7 @@ namespace {
          * @since 3.1.0
          *
          * @param string $id The ID of the item.
+         * @phpstan-return void
          */
         public function remove_node($id)
         {
@@ -33052,12 +33372,14 @@ namespace {
          * @since 3.3.0
          *
          * @param string $id
+         * @phpstan-return void
          */
         final protected function _unset_node($id)
         {
         }
         /**
          * @since 3.1.0
+         * @phpstan-return void
          */
         public function render()
         {
@@ -33074,6 +33396,7 @@ namespace {
          * @since 3.3.0
          *
          * @param object $root
+         * @phpstan-return void
          */
         final protected function _render($root)
         {
@@ -33125,6 +33448,7 @@ namespace {
          * Adds menus to the admin bar.
          *
          * @since 3.1.0
+         * @phpstan-return void
          */
         public function add_menus()
         {
@@ -33719,6 +34043,7 @@ namespace {
          * Wakeup magic method.
          *
          * @since 6.5.0
+         * @phpstan-return never
          */
         public function __wakeup()
         {
@@ -33881,6 +34206,7 @@ namespace {
          * @since 5.5.0
          *
          * @link https://www.php.net/manual/en/iterator.rewind.php
+         * @phpstan-return void
          */
         #[\ReturnTypeWillChange]
         public function rewind()
@@ -33918,6 +34244,7 @@ namespace {
          * @since 5.5.0
          *
          * @link https://www.php.net/manual/en/iterator.next.php
+         * @phpstan-return void
          */
         #[\ReturnTypeWillChange]
         public function next()
@@ -34301,6 +34628,7 @@ namespace {
          * @param int                   $token_start  Byte offset into the document where the first token for the block starts.
          * @param int                   $token_length Byte length of entire block from start of opening token to end of closing token.
          * @param int|null              $last_offset  Last byte offset into document if continuing form earlier output.
+         * @phpstan-return void
          */
         public function add_inner_block(\WP_Block_Parser_Block $block, $token_start, $token_length, $last_offset = \null)
         {
@@ -34311,6 +34639,7 @@ namespace {
          * @internal
          * @since 5.0.0
          * @param int|null $end_offset byte offset into document for where we should stop sending text output as HTML.
+         * @phpstan-return void
          */
         public function add_block_from_stack($end_offset = \null)
         {
@@ -36525,6 +36854,7 @@ namespace {
          *   style_handles?: string[],
          *   view_style_handles?: string[],
          * } $args See WP_Block_Type::__construct()
+         * @phpstan-return void
          */
         public function set_props($args)
         {
@@ -36689,6 +37019,7 @@ namespace {
          * for each inner block and updating their context based on the block's `provides_context` property.
          *
          * @since 6.8.0
+         * @phpstan-return void
          */
         public function refresh_context_dependents()
         {
@@ -36704,6 +37035,7 @@ namespace {
          * correct content and context are updated for each nested block.
          *
          * @since 6.8.0
+         * @phpstan-return void
          */
         public function refresh_parsed_block_dependents()
         {
@@ -37121,6 +37453,7 @@ namespace {
          *   update_comment_meta_cache?: bool,
          *   update_comment_post_cache?: bool,
          * } $query See WP_Comment_Query::__construct()
+         * @phpstan-return void
          */
         public function parse_query($query = '')
         {
@@ -38066,6 +38399,7 @@ namespace {
          * Refreshes the parameters passed to the JavaScript via JSON.
          *
          * @since 3.4.0
+         * @phpstan-return void
          */
         public function to_json()
         {
@@ -38119,6 +38453,7 @@ namespace {
          * Renders the control wrapper and calls $this->render_content() for the internals.
          *
          * @since 3.4.0
+         * @phpstan-return void
          */
         protected function render()
         {
@@ -38144,6 +38479,7 @@ namespace {
          * @uses WP_Customize_Control::get_link()
          *
          * @param string $setting_key Default 'default'.
+         * @phpstan-return void
          */
         public function link($setting_key = 'default')
         {
@@ -38152,6 +38488,7 @@ namespace {
          * Renders the custom attributes for the control's input element.
          *
          * @since 4.0.0
+         * @phpstan-return void
          */
         public function input_attrs()
         {
@@ -38182,6 +38519,7 @@ namespace {
          * element and be override-able.
          *
          * @since 4.1.0
+         * @phpstan-return void
          */
         final public function print_template()
         {
@@ -38318,6 +38656,7 @@ namespace {
          * @since 4.9.0
          *
          * @global string $pagenow The filename of the current screen.
+         * @phpstan-return void
          */
         public function establish_loaded_changeset()
         {
@@ -38326,6 +38665,7 @@ namespace {
          * Callback to validate a theme once it is loaded
          *
          * @since 3.4.0
+         * @phpstan-return void
          */
         public function after_setup_theme()
         {
@@ -38473,6 +38813,7 @@ namespace {
          * Registers styles/scripts and initialize the preview of each setting
          *
          * @since 3.4.0
+         * @phpstan-return void
          */
         public function wp_loaded()
         {
@@ -38611,6 +38952,7 @@ namespace {
          *
          * @param string $setting_id ID for the WP_Customize_Setting instance.
          * @param mixed  $value      Post value.
+         * @phpstan-return void
          */
         public function set_post_value($setting_id, $value)
         {
@@ -38619,6 +38961,7 @@ namespace {
          * Prints JavaScript settings.
          *
          * @since 3.4.0
+         * @phpstan-return void
          */
         public function customize_preview_init()
         {
@@ -38680,6 +39023,7 @@ namespace {
          * Prints CSS for loading indicators for the Customizer preview.
          *
          * @since 4.2.0
+         * @phpstan-return void
          */
         public function customize_preview_loading_style()
         {
@@ -38700,6 +39044,7 @@ namespace {
          * Prints JavaScript settings for preview frame.
          *
          * @since 3.4.0
+         * @phpstan-return void
          */
         public function customize_preview_settings()
         {
@@ -38966,6 +39311,7 @@ namespace {
          *
          * @param int  $changeset_post_id Changeset post ID.
          * @param bool $take_over Whether to take over the changeset. Default false.
+         * @phpstan-return void
          */
         public function set_changeset_lock($changeset_post_id, $take_over = \false)
         {
@@ -39141,6 +39487,7 @@ namespace {
          * @since 3.4.0
          *
          * @param string $id Customize Setting ID.
+         * @phpstan-return void
          */
         public function remove_setting($id)
         {
@@ -39190,6 +39537,7 @@ namespace {
          * @since 4.0.0
          *
          * @param string $id Panel ID to remove.
+         * @phpstan-return void
          */
         public function remove_panel($id)
         {
@@ -39204,6 +39552,7 @@ namespace {
          * @see WP_Customize_Panel
          *
          * @param string $panel Name of a custom panel which is a subclass of WP_Customize_Panel.
+         * @phpstan-return void
          */
         public function register_panel_type($panel)
         {
@@ -39212,6 +39561,7 @@ namespace {
          * Renders JS templates for all registered panel types.
          *
          * @since 4.3.0
+         * @phpstan-return void
          */
         public function render_panel_templates()
         {
@@ -39263,6 +39613,7 @@ namespace {
          * @since 3.4.0
          *
          * @param string $id Section ID.
+         * @phpstan-return void
          */
         public function remove_section($id)
         {
@@ -39277,6 +39628,7 @@ namespace {
          * @see WP_Customize_Section
          *
          * @param string $section Name of a custom section which is a subclass of WP_Customize_Section.
+         * @phpstan-return void
          */
         public function register_section_type($section)
         {
@@ -39285,6 +39637,7 @@ namespace {
          * Renders JS templates for all registered section types.
          *
          * @since 4.3.0
+         * @phpstan-return void
          */
         public function render_section_templates()
         {
@@ -39343,6 +39696,7 @@ namespace {
          * @since 3.4.0
          *
          * @param string $id ID of the control.
+         * @phpstan-return void
          */
         public function remove_control($id)
         {
@@ -39356,6 +39710,7 @@ namespace {
          *
          * @param string $control Name of a custom control which is a subclass of
          *                        WP_Customize_Control.
+         * @phpstan-return void
          */
         public function register_control_type($control)
         {
@@ -39364,6 +39719,7 @@ namespace {
          * Renders JS templates for all registered control types.
          *
          * @since 4.1.0
+         * @phpstan-return void
          */
         public function render_control_templates()
         {
@@ -39376,6 +39732,7 @@ namespace {
          * and sort by priority.
          *
          * @since 3.4.0
+         * @phpstan-return void
          */
         public function prepare_controls()
         {
@@ -39384,6 +39741,7 @@ namespace {
          * Enqueues scripts for customize controls.
          *
          * @since 3.4.0
+         * @phpstan-return void
          */
         public function enqueue_control_scripts()
         {
@@ -39416,6 +39774,7 @@ namespace {
          * @since 4.4.0
          *
          * @param string $preview_url URL to be previewed.
+         * @phpstan-return void
          */
         public function set_preview_url($preview_url)
         {
@@ -39475,6 +39834,7 @@ namespace {
          * @since 4.4.0
          *
          * @param string $return_url URL for return link.
+         * @phpstan-return void
          */
         public function set_return_url($return_url)
         {
@@ -39508,6 +39868,7 @@ namespace {
          *   section?: string,
          *   panel?: string,
          * } $autofocus
+         * @phpstan-return void
          */
         public function set_autofocus($autofocus)
         {
@@ -39547,6 +39908,7 @@ namespace {
          * Prints JavaScript settings for parent window.
          *
          * @since 4.4.0
+         * @phpstan-return void
          */
         public function customize_pane_settings()
         {
@@ -39565,6 +39927,7 @@ namespace {
          * Registers some default controls.
          *
          * @since 3.4.0
+         * @phpstan-return void
          */
         public function register_controls()
         {
@@ -39587,6 +39950,7 @@ namespace {
          * @since 4.2.0
          *
          * @see add_dynamic_settings()
+         * @phpstan-return void
          */
         public function register_dynamic_settings()
         {
@@ -39722,7 +40086,6 @@ namespace {
          * @since 4.3.0
          *
          * @param WP_Customize_Manager $manager Customizer bootstrap instance.
-         * @phpstan-return void
          */
         public function __construct($manager)
         {
@@ -39789,6 +40152,7 @@ namespace {
          * Enqueues scripts and styles for Customizer pane.
          *
          * @since 4.3.0
+         * @phpstan-return void
          */
         public function enqueue_scripts()
         {
@@ -39826,6 +40190,7 @@ namespace {
          * Adds the customizer settings and controls.
          *
          * @since 4.3.0
+         * @phpstan-return void
          */
         public function customize_register()
         {
@@ -39895,6 +40260,7 @@ namespace {
          * Templates are imported into the JS use wp.template.
          *
          * @since 4.3.0
+         * @phpstan-return void
          */
         public function print_templates()
         {
@@ -39903,6 +40269,7 @@ namespace {
          * Prints the HTML template used to render the add-menu-item frame.
          *
          * @since 4.3.0
+         * @phpstan-return void
          */
         public function available_items_template()
         {
@@ -39930,6 +40297,7 @@ namespace {
          * Adds hooks for the Customizer preview.
          *
          * @since 4.3.0
+         * @phpstan-return void
          */
         public function customize_preview_init()
         {
@@ -39940,6 +40308,7 @@ namespace {
          * @since 4.7.0
          *
          * @global stdClass[] $wp_post_statuses List of post statuses.
+         * @phpstan-return void
          */
         public function make_auto_draft_status_previewable()
         {
@@ -39966,6 +40335,7 @@ namespace {
          * @since 4.7.0
          *
          * @param WP_Customize_Setting $setting Customizer setting object.
+         * @phpstan-return void
          */
         public function save_nav_menus_created_posts($setting)
         {
@@ -40018,6 +40388,7 @@ namespace {
          * Enqueues scripts for the Customizer preview.
          *
          * @since 4.3.0
+         * @phpstan-return void
          */
         public function customize_preview_enqueue_deps()
         {
@@ -40026,6 +40397,7 @@ namespace {
          * Exports data from PHP to JS.
          *
          * @since 4.3.0
+         * @phpstan-return void
          */
         public function export_preview_data()
         {
@@ -40295,6 +40667,7 @@ namespace {
          * @since 4.3.0
          *
          * @see WP_Customize_Manager::register_panel_type()
+         * @phpstan-return void
          */
         public function print_template()
         {
@@ -40308,6 +40681,7 @@ namespace {
          * @see WP_Customize_Panel::print_template()
          *
          * @since 4.3.0
+         * @phpstan-return void
          */
         protected function render_template()
         {
@@ -40321,6 +40695,7 @@ namespace {
          * @see WP_Customize_Panel::print_template()
          *
          * @since 4.3.0
+         * @phpstan-return void
          */
         protected function content_template()
         {
@@ -40571,6 +40946,7 @@ namespace {
          * @since 4.3.0
          *
          * @see WP_Customize_Manager::render_template()
+         * @phpstan-return void
          */
         public function print_template()
         {
@@ -40584,6 +40960,7 @@ namespace {
          * @since 4.3.0
          *
          * @see WP_Customize_Section::print_template()
+         * @phpstan-return void
          */
         protected function render_template()
         {
@@ -40783,6 +41160,7 @@ namespace {
          * calls get combined into one call, greatly improving performance.
          *
          * @since 4.4.0
+         * @phpstan-return void
          */
         protected function aggregate_multidimensional()
         {
@@ -40794,6 +41172,7 @@ namespace {
          *
          * @since 4.5.0
          * @ignore
+         * @phpstan-return void
          */
         public static function reset_aggregated_multidimensionals()
         {
@@ -40849,6 +41228,7 @@ namespace {
          *
          * @see WP_Customize_Manager::set_post_value()
          * @see WP_Customize_Setting::_multidimensional_preview_filter()
+         * @phpstan-return void
          */
         final public function _clear_aggregated_multidimensional_preview_applied_flag()
         {
@@ -41100,7 +41480,6 @@ namespace {
          * @since 3.9.0
          *
          * @param WP_Customize_Manager $manager Customizer bootstrap instance.
-         * @phpstan-return void
          */
         public function __construct($manager)
         {
@@ -41137,6 +41516,7 @@ namespace {
          * them up-front so widgets will be initialized properly.
          *
          * @since 4.2.0
+         * @phpstan-return void
          */
         public function register_settings()
         {
@@ -41213,6 +41593,7 @@ namespace {
          * Note: these actions are also fired in wp_ajax_update_widget().
          *
          * @since 3.9.0
+         * @phpstan-return void
          */
         public function customize_controls_init()
         {
@@ -41224,6 +41605,7 @@ namespace {
          * so that all filters have been initialized (e.g. Widget Visibility).
          *
          * @since 3.9.0
+         * @phpstan-return void
          */
         public function schedule_customize_register()
         {
@@ -41236,6 +41618,7 @@ namespace {
          * @global array $wp_registered_widgets
          * @global array $wp_registered_widget_controls
          * @global array $wp_registered_sidebars
+         * @phpstan-return void
          */
         public function customize_register()
         {
@@ -41313,6 +41696,7 @@ namespace {
          * allow custom styles from plugins.
          *
          * @since 3.9.0
+         * @phpstan-return void
          */
         public function print_styles()
         {
@@ -41322,6 +41706,7 @@ namespace {
          * allow custom scripts from plugins.
          *
          * @since 3.9.0
+         * @phpstan-return void
          */
         public function print_scripts()
         {
@@ -41334,6 +41719,7 @@ namespace {
          * @global WP_Scripts $wp_scripts
          * @global array $wp_registered_sidebars
          * @global array $wp_registered_widgets
+         * @phpstan-return void
          */
         public function enqueue_scripts()
         {
@@ -41342,6 +41728,7 @@ namespace {
          * Renders the widget form control templates into the DOM.
          *
          * @since 3.9.0
+         * @phpstan-return void
          */
         public function output_widget_control_templates()
         {
@@ -41351,6 +41738,7 @@ namespace {
          * allow custom scripts from plugins.
          *
          * @since 3.9.0
+         * @phpstan-return void
          */
         public function print_footer_scripts()
         {
@@ -41428,6 +41816,7 @@ namespace {
          * Adds hooks for the Customizer preview.
          *
          * @since 3.9.0
+         * @phpstan-return void
          */
         public function customize_preview_init()
         {
@@ -41475,6 +41864,7 @@ namespace {
          * Enqueues scripts for the Customizer preview.
          *
          * @since 3.9.0
+         * @phpstan-return void
          */
         public function customize_preview_enqueue()
         {
@@ -41484,6 +41874,7 @@ namespace {
          * stylesheet can override.
          *
          * @since 3.9.0
+         * @phpstan-return void
          */
         public function print_preview_css()
         {
@@ -41496,6 +41887,7 @@ namespace {
          *
          * @global array $wp_registered_sidebars
          * @global array $wp_registered_widgets
+         * @phpstan-return void
          */
         public function export_preview_data()
         {
@@ -41506,6 +41898,7 @@ namespace {
          * @since 3.9.0
          *
          * @param array $widget Rendered widget to tally.
+         * @phpstan-return void
          */
         public function tally_rendered_widgets($widget)
         {
@@ -41711,6 +42104,7 @@ namespace {
          * @since 4.5.0
          *
          * @param int|string $index Index, name, or ID of the dynamic sidebar.
+         * @phpstan-return void
          */
         public function start_dynamic_sidebar($index)
         {
@@ -41723,6 +42117,7 @@ namespace {
          * @since 4.5.0
          *
          * @param int|string $index Index, name, or ID of the dynamic sidebar.
+         * @phpstan-return void
          */
         public function end_dynamic_sidebar($index)
         {
@@ -41970,7 +42365,6 @@ namespace {
          * @param string $default_column Optional. Default column to query against. See WP_Date_Query::validate_column()
          *                               and the {@see 'date_query_valid_columns'} filter for the list of accepted values.
          *                               Default 'post_date'.
-         * @phpstan-return void
          */
         public function __construct($date_query, $default_column = 'post_date')
         {
@@ -42403,6 +42797,7 @@ namespace {
          * @since 2.6.0 Moved from `WP_Scripts`.
          *
          * @param string|string[] $handles Item handle (string) or item handles (array of strings).
+         * @phpstan-return void
          */
         public function remove($handles)
         {
@@ -42419,6 +42814,7 @@ namespace {
          * @since 2.6.0 Moved from `WP_Scripts`.
          *
          * @param string|string[] $handles Item handle (string) or item handles (array of strings).
+         * @phpstan-return void
          */
         public function enqueue($handles)
         {
@@ -42433,6 +42829,7 @@ namespace {
          * @since 2.6.0 Moved from `WP_Scripts`.
          *
          * @param string|string[] $handles Item handle (string) or item handles (array of strings).
+         * @phpstan-return void
          */
         public function dequeue($handles)
         {
@@ -42659,6 +43056,7 @@ namespace {
          * @since 6.3.0
          *
          * @param WP_Block_Type $block_type Block Type.
+         * @phpstan-return void
          */
         public static function register_duotone_support($block_type)
         {
@@ -42697,6 +43095,7 @@ namespace {
          * Uses the declarations saved in earlier calls to self::enqueue_block_css.
          *
          * @since 6.3.0
+         * @phpstan-return void
          */
         public static function output_block_styles()
         {
@@ -42708,6 +43107,7 @@ namespace {
          * Uses the declarations saved in earlier calls to self::enqueue_global_styles_preset.
          *
          * @since 6.3.0
+         * @phpstan-return void
          */
         public static function output_global_styles()
         {
@@ -42719,6 +43119,7 @@ namespace {
          * and self::enqueue_custom_filter.
          *
          * @since 6.3.0
+         * @phpstan-return void
          */
         public static function output_footer_assets()
         {
@@ -42861,6 +43262,7 @@ namespace {
          *   tinymce?: bool|array,
          *   quicktags?: bool|array,
          * } $settings See _WP_Editors::parse_settings()
+         * @phpstan-return void
          */
         public static function editor($content, $editor_id, $settings = array())
         {
@@ -42870,6 +43272,7 @@ namespace {
          *
          * @param string $editor_id Unique editor identifier, e.g. 'content'.
          * @param array  $set       Array of editor arguments.
+         * @phpstan-return void
          */
         public static function editor_settings($editor_id, $set)
         {
@@ -42878,6 +43281,7 @@ namespace {
          * @since 3.3.0
          *
          * @param bool $default_scripts Optional. Whether default scripts should be enqueued. Default false.
+         * @phpstan-return void
          */
         public static function enqueue_scripts($default_scripts = \false)
         {
@@ -42897,6 +43301,7 @@ namespace {
          * For use when the editor is going to be initialized after page load.
          *
          * @since 4.8.0
+         * @phpstan-return void
          */
         public static function print_default_editor_scripts()
         {
@@ -42965,6 +43370,7 @@ namespace {
          * @since 3.3.0
          *
          * @global string $tinymce_version
+         * @phpstan-return void
          */
         public static function editor_js()
         {
@@ -43091,6 +43497,7 @@ namespace {
          * @param int      $priority Optional. Used to specify the order in which the registered handlers will be tested.
          *                           Lower numbers correspond with earlier testing, and handlers with the same priority are
          *                           tested in the order in which they were added to the action. Default 10.
+         * @phpstan-return void
          */
         public function register_handler($id, $regex, $callback, $priority = 10)
         {
@@ -43102,6 +43509,7 @@ namespace {
          *
          * @param string $id       The handler ID that should be removed.
          * @param int    $priority Optional. The priority of the handler to be removed (default: 10).
+         * @phpstan-return void
          */
         public function unregister_handler($id, $priority = 10)
         {
@@ -43263,7 +43671,6 @@ namespace {
          * @param string|int $code    Error code.
          * @param string     $message Error message.
          * @param mixed      $data    Optional. Error data. Default empty string.
-         * @phpstan-return void
          */
         public function __construct($code = '', $message = '', $data = '')
         {
@@ -43515,6 +43922,7 @@ namespace {
          *
          * @param array         $error   Error information retrieved from `error_get_last()`.
          * @param true|WP_Error $handled Whether Recovery Mode handled the fatal error.
+         * @phpstan-return void
          */
         protected function display_default_error_template($error, $handled)
         {
@@ -43783,6 +44191,7 @@ namespace {
          * @since 4.7.0
          *
          * @param array $args Parameters to pass to the callback functions.
+         * @phpstan-return void
          */
         public function do_action($args)
         {
@@ -43793,6 +44202,7 @@ namespace {
          * @since 4.7.0
          *
          * @param array $args Arguments to pass to the hook callbacks. Passed by reference.
+         * @phpstan-return void
          */
         public function do_all_hook(&$args)
         {
@@ -43880,6 +44290,7 @@ namespace {
          * @param int|null $offset The offset to assign the value to.
          * @param array    $value The value to set.
          * @phpstan-param array<string, Hook_Callback> $value
+         * @phpstan-return void
          */
         #[\ReturnTypeWillChange]
         public function offsetSet($offset, $value)
@@ -43893,6 +44304,7 @@ namespace {
          * @link https://www.php.net/manual/en/arrayaccess.offsetunset.php
          *
          * @param int $offset The offset to unset.
+         * @phpstan-return void
          */
         #[\ReturnTypeWillChange]
         public function offsetUnset($offset)
@@ -43958,6 +44370,7 @@ namespace {
          * @since 4.7.0
          *
          * @link https://www.php.net/manual/en/iterator.rewind.php
+         * @phpstan-return void
          */
         #[\ReturnTypeWillChange]
         public function rewind()
@@ -44065,7 +44478,6 @@ namespace {
          *   port?: int|string,
          *   host_only?: bool,
          * } $data
-         * @phpstan-return void
          */
         public function __construct($data, $requested_url = '')
         {
@@ -44552,6 +44964,7 @@ namespace {
          * @since 4.4.0
          *
          * @param array $headers Map of header name to header value.
+         * @phpstan-return void
          */
         public function set_headers($headers)
         {
@@ -44565,6 +44978,7 @@ namespace {
          * @param string $value   Header value.
          * @param bool   $replace Optional. Whether to replace an existing header of the same name.
          *                        Default true.
+         * @phpstan-return void
          */
         public function header($key, $value, $replace = \true)
         {
@@ -44585,6 +44999,7 @@ namespace {
          * @since 4.4.0
          *
          * @param int $code HTTP status.
+         * @phpstan-return void
          */
         public function set_status($code)
         {
@@ -44605,6 +45020,7 @@ namespace {
          * @since 4.4.0
          *
          * @param mixed $data Response data.
+         * @phpstan-return void
          */
         public function set_data($data)
         {
@@ -44683,6 +45099,7 @@ namespace {
          * @since 4.6.0
          *
          * @param array $headers Map of header name to header value.
+         * @phpstan-return void
          */
         public function set_headers($headers)
         {
@@ -44696,6 +45113,7 @@ namespace {
          * @param string $value   Header value.
          * @param bool   $replace Optional. Whether to replace an existing header of the same name.
          *                        Default true.
+         * @phpstan-return void
          */
         public function header($key, $value, $replace = \true)
         {
@@ -44716,6 +45134,7 @@ namespace {
          * @since 4.6.0
          *
          * @param int $code HTTP status.
+         * @phpstan-return void
          */
         public function set_status($code)
         {
@@ -44736,6 +45155,7 @@ namespace {
          * @since 4.6.0
          *
          * @param string $data Response data.
+         * @phpstan-return void
          */
         public function set_data($data)
         {
@@ -45035,6 +45455,7 @@ namespace {
          * @param string|array            $data     Body to send with the request.
          * @param array                   $options  Redirect request options.
          * @param WpOrg\Requests\Response $original Response object.
+         * @phpstan-return void
          */
         public static function browser_redirect_compatibility($location, $headers, $data, &$options, $original)
         {
@@ -45046,6 +45467,7 @@ namespace {
          *
          * @throws WpOrg\Requests\Exception On unsuccessful URL validation.
          * @param string $location URL to redirect to.
+         * @phpstan-return void
          */
         public static function validate_redirects($location)
         {
@@ -45177,6 +45599,7 @@ namespace {
          * @since 2.8.0
          *
          * @param array $r Full array of args passed into ::request()
+         * @phpstan-return void
          */
         public static function buildCookieHeader(&$r)
         {
@@ -46681,6 +47104,7 @@ namespace {
          * to change the locale on the fly.
          *
          * @since 4.7.0
+         * @phpstan-return void
          */
         public function init()
         {
@@ -46894,6 +47318,7 @@ namespace {
          * @since 2.1.0
          *
          * @global string $text_direction
+         * @phpstan-return void
          */
         public function init()
         {
@@ -47043,6 +47468,7 @@ namespace {
          * otherwise be added to the admin POT.
          *
          * @since 3.6.0
+         * @phpstan-return void
          */
         public function _strings_for_pot()
         {
@@ -47270,7 +47696,6 @@ namespace {
          *                                            Default is 'CHAR'.
          *     }
          * }
-         * @phpstan-return void
          */
         public function __construct($meta_query = array())
         {
@@ -47308,6 +47733,7 @@ namespace {
          * @since 3.2.0
          *
          * @param array $qv The query variables.
+         * @phpstan-return void
          */
         public function parse_query_vars($qv)
         {
@@ -47785,6 +48211,7 @@ namespace {
          *   search?: string,
          *   update_network_cache?: bool,
          * } $query See WP_Network_Query::__construct()
+         * @phpstan-return void
          */
         public function parse_query($query = '')
         {
@@ -47974,6 +48401,7 @@ namespace {
          *
          * @param string $key   Property to set.
          * @param mixed  $value Value to assign to the property.
+         * @phpstan-return void
          */
         public function __set($key, $value)
         {
@@ -48063,6 +48491,7 @@ namespace {
          *
          * @param string $name  Property to set.
          * @param mixed  $value Property value.
+         * @phpstan-return void
          */
         public function __set($name, $value)
         {
@@ -48084,6 +48513,7 @@ namespace {
          * @since 4.0.0
          *
          * @param string $name Property to unset.
+         * @phpstan-return void
          */
         public function __unset($name)
         {
@@ -48321,6 +48751,7 @@ namespace {
          * @since 3.0.0
          *
          * @param string|string[] $groups List of groups that are global.
+         * @phpstan-return void
          */
         public function add_global_groups($groups)
         {
@@ -48333,6 +48764,7 @@ namespace {
          * @since 3.5.0
          *
          * @param int $blog_id Blog ID.
+         * @phpstan-return void
          */
         public function switch_to_blog($blog_id)
         {
@@ -48355,6 +48787,7 @@ namespace {
          * key and the data.
          *
          * @since 2.0.0
+         * @phpstan-return void
          */
         public function stats()
         {
@@ -48375,6 +48808,7 @@ namespace {
          * Register the oEmbed REST API route.
          *
          * @since 4.4.0
+         * @phpstan-return void
          */
         public function register_routes()
         {
@@ -48505,6 +48939,7 @@ namespace {
          * @param string $provider The URL to the oEmbed provider..
          * @param bool   $regex    Optional. Whether the $format parameter is in a regex format.
          *                         Default false.
+         * @phpstan-return void
          */
         public static function _add_provider_early($format, $provider, $regex = \false)
         {
@@ -48523,6 +48958,7 @@ namespace {
          *
          * @param string $format The format of URL that this provider can handle. You can use
          *                       asterisks as wildcards.
+         * @phpstan-return void
          */
         public static function _remove_provider_early($format)
         {
@@ -48880,6 +49316,7 @@ namespace {
          * Initializes by fetching plugin header and plugin API data.
          *
          * @since 6.5.0
+         * @phpstan-return void
          */
         public static function initialize()
         {
@@ -49021,6 +49458,7 @@ namespace {
          * Displays an admin notice if dependencies are not installed.
          *
          * @since 6.5.0
+         * @phpstan-return void
          */
         public static function display_admin_notice_for_unmet_dependencies()
         {
@@ -49029,6 +49467,7 @@ namespace {
          * Displays an admin notice if circular dependencies are installed.
          *
          * @since 6.5.0
+         * @phpstan-return void
          */
         public static function display_admin_notice_for_circular_dependencies()
         {
@@ -49057,6 +49496,7 @@ namespace {
          * Reads and stores dependency slugs from a plugin's 'Requires Plugins' header.
          *
          * @since 6.5.0
+         * @phpstan-return void
          */
         protected static function read_dependencies_from_plugin_headers()
         {
@@ -49611,6 +50051,7 @@ namespace {
          * @since 4.6.0
          *
          * @param array|string $args Array or string of arguments for registering a post type.
+         * @phpstan-return void
          */
         public function set_props($args)
         {
@@ -49619,6 +50060,7 @@ namespace {
          * Sets the features support for the post type.
          *
          * @since 4.6.0
+         * @phpstan-return void
          */
         public function add_supports()
         {
@@ -49630,6 +50072,7 @@ namespace {
          *
          * @global WP_Rewrite $wp_rewrite WordPress rewrite component.
          * @global WP         $wp         Current WordPress environment instance.
+         * @phpstan-return void
          */
         public function add_rewrite_rules()
         {
@@ -49638,6 +50081,7 @@ namespace {
          * Registers the post type meta box if a custom callback was specified.
          *
          * @since 4.6.0
+         * @phpstan-return void
          */
         public function register_meta_boxes()
         {
@@ -49646,6 +50090,7 @@ namespace {
          * Adds the future post hook action for the post type.
          *
          * @since 4.6.0
+         * @phpstan-return void
          */
         public function add_hooks()
         {
@@ -49654,6 +50099,7 @@ namespace {
          * Registers the taxonomies for the post type.
          *
          * @since 4.6.0
+         * @phpstan-return void
          */
         public function register_taxonomies()
         {
@@ -49664,6 +50110,7 @@ namespace {
          * @since 4.6.0
          *
          * @global array $_wp_post_type_features Post type features.
+         * @phpstan-return void
          */
         public function remove_supports()
         {
@@ -49676,6 +50123,7 @@ namespace {
          * @global WP_Rewrite $wp_rewrite          WordPress rewrite component.
          * @global WP         $wp                  Current WordPress environment instance.
          * @global array      $post_type_meta_caps Used to remove meta capabilities.
+         * @phpstan-return void
          */
         public function remove_rewrite_rules()
         {
@@ -49684,6 +50132,7 @@ namespace {
          * Unregisters the post type meta box if a custom callback was specified.
          *
          * @since 4.6.0
+         * @phpstan-return void
          */
         public function unregister_meta_boxes()
         {
@@ -49692,6 +50141,7 @@ namespace {
          * Removes the post type from all taxonomies.
          *
          * @since 4.6.0
+         * @phpstan-return void
          */
         public function unregister_taxonomies()
         {
@@ -49700,6 +50150,7 @@ namespace {
          * Removes the future post hook action for the post type.
          *
          * @since 4.6.0
+         * @phpstan-return void
          */
         public function remove_hooks()
         {
@@ -49757,6 +50208,7 @@ namespace {
          * Resets the cache for the default labels.
          *
          * @since 6.0.0
+         * @phpstan-return void
          */
         public static function reset_default_labels()
         {
@@ -50473,6 +50925,7 @@ namespace {
          * Initiates object properties and sets default values.
          *
          * @since 1.5.0
+         * @phpstan-return void
          */
         public function init()
         {
@@ -50481,6 +50934,7 @@ namespace {
          * Reparses the query vars.
          *
          * @since 1.5.0
+         * @phpstan-return void
          */
         public function parse_query_vars()
         {
@@ -50730,6 +51184,7 @@ namespace {
          *   w?: int,
          *   year?: int,
          * } $query
+         * @phpstan-return void
          */
         public function parse_query($query = '')
         {
@@ -50742,6 +51197,7 @@ namespace {
          * @since 3.1.0
          *
          * @param array $query_vars The query variables. Passed by reference.
+         * @phpstan-return void
          */
         public function parse_tax_query(&$query_vars)
         {
@@ -50825,6 +51281,7 @@ namespace {
          * Sets the 404 property and saves whether query is feed.
          *
          * @since 2.0.0
+         * @phpstan-return void
          */
         public function set_404()
         {
@@ -50850,6 +51307,7 @@ namespace {
          *
          * @param string $query_var Query variable key.
          * @param mixed  $value     Query variable value.
+         * @phpstan-return void
          */
         public function set($query_var, $value)
         {
@@ -50888,6 +51346,7 @@ namespace {
          * @since 1.5.0
          *
          * @global WP_Post $post Global post object.
+         * @phpstan-return void
          */
         public function the_post()
         {
@@ -50909,6 +51368,7 @@ namespace {
          * Rewinds the posts and resets post index.
          *
          * @since 1.5.0
+         * @phpstan-return void
          */
         public function rewind_posts()
         {
@@ -50929,6 +51389,7 @@ namespace {
          * @since 2.2.0
          *
          * @global WP_Comment $comment Global comment object.
+         * @phpstan-return void
          */
         public function the_comment()
         {
@@ -50949,6 +51410,7 @@ namespace {
          * Rewinds the comments, resets the comment index and comment to first.
          *
          * @since 2.2.0
+         * @phpstan-return void
          */
         public function rewind_comments()
         {
@@ -51508,6 +51970,7 @@ namespace {
          * @since 3.7.0
          *
          * @global WP_Post $post Global post object.
+         * @phpstan-return void
          */
         public function reset_postdata()
         {
@@ -51563,6 +52026,7 @@ namespace {
          * This must be immediately followed by exiting the request.
          *
          * @since 5.2.0
+         * @phpstan-return void
          */
         public function set_cookie()
         {
@@ -51571,6 +52035,7 @@ namespace {
          * Clears the recovery mode cookie.
          *
          * @since 5.2.0
+         * @phpstan-return void
          */
         public function clear_cookie()
         {
@@ -51705,6 +52170,7 @@ namespace {
          * @since 5.2.0
          *
          * @param int $ttl Time in seconds for the keys to be valid for.
+         * @phpstan-return void
          */
         public function clean_expired_keys($ttl)
         {
@@ -51857,6 +52323,7 @@ namespace {
          * Executes on a daily cron schedule.
          *
          * @since 5.2.0
+         * @phpstan-return void
          */
         public function clean_expired_keys()
         {
@@ -51865,6 +52332,7 @@ namespace {
          * Handles checking for the recovery mode cookie and validating it.
          *
          * @since 5.2.0
+         * @phpstan-return void
          */
         protected function handle_cookie()
         {
@@ -52483,6 +52951,7 @@ namespace {
          * @param string $tag   Name of the rewrite tag to add or update.
          * @param string $regex Regular expression to substitute the tag for in rewrite rules.
          * @param string $query String to append to the rewritten query. Must end in '='.
+         * @phpstan-return void
          */
         public function add_rewrite_tag($tag, $regex, $query)
         {
@@ -52497,6 +52966,7 @@ namespace {
          * @see WP_Rewrite::$queryreplace
          *
          * @param string $tag Name of the rewrite tag to remove.
+         * @phpstan-return void
          */
         public function remove_rewrite_tag($tag)
         {
@@ -52644,6 +53114,7 @@ namespace {
          * @param string       $after Optional. Priority of the new rule. Accepts 'top'
          *                            or 'bottom'. Default 'bottom'.
          * @phpstan-param 'top'|'bottom' $after
+         * @phpstan-return void
          */
         public function add_rule($regex, $query, $after = 'bottom')
         {
@@ -52655,6 +53126,7 @@ namespace {
          *
          * @param string $regex Regular expression to match request against.
          * @param string $query The corresponding query vars for this rewrite rule.
+         * @phpstan-return void
          */
         public function add_external_rule($regex, $query)
         {
@@ -52691,6 +53163,7 @@ namespace {
          * @param string|bool $query_var Optional. Name of the corresponding query variable. Pass `false` to
          *                               skip registering a query_var for this endpoint. Defaults to the
          *                               value of `$name`.
+         * @phpstan-return void
          */
         public function add_endpoint($name, $places, $query_var = \true)
         {
@@ -52755,6 +53228,7 @@ namespace {
          *   walk_dirs?: bool,
          *   endpoints?: bool,
          * } $args
+         * @phpstan-return void
          */
         public function add_permastruct($name, $struct, $args = array())
         {
@@ -52765,6 +53239,7 @@ namespace {
          * @since 4.5.0
          *
          * @param string $name Name for permalink structure.
+         * @phpstan-return void
          */
         public function remove_permastruct($name)
         {
@@ -52791,6 +53266,7 @@ namespace {
          * '%tag%', or '%author%'.
          *
          * @since 1.5.0
+         * @phpstan-return void
          */
         public function init()
         {
@@ -52808,6 +53284,7 @@ namespace {
          * @since 1.5.0
          *
          * @param string $permalink_structure Permalink structure.
+         * @phpstan-return void
          */
         public function set_permalink_structure($permalink_structure)
         {
@@ -52822,6 +53299,7 @@ namespace {
          * @since 1.5.0
          *
          * @param string $category_base Category permalink structure base.
+         * @phpstan-return void
          */
         public function set_category_base($category_base)
         {
@@ -52836,6 +53314,7 @@ namespace {
          * @since 2.3.0
          *
          * @param string $tag_base Tag permalink structure base.
+         * @phpstan-return void
          */
         public function set_tag_base($tag_base)
         {
@@ -52894,6 +53373,7 @@ namespace {
          *
          * @param string $cap   Capability name.
          * @param bool   $grant Whether role has capability privilege.
+         * @phpstan-return void
          */
         public function add_cap($cap, $grant = \true)
         {
@@ -52904,6 +53384,7 @@ namespace {
          * @since 2.0.0
          *
          * @param string $cap Capability name.
+         * @phpstan-return void
          */
         public function remove_cap($cap)
         {
@@ -53336,6 +53817,7 @@ namespace {
          * @since 6.5.0
          *
          * @param string $id The identifier of the script module.
+         * @phpstan-return void
          */
         public function dequeue(string $id)
         {
@@ -53346,6 +53828,7 @@ namespace {
          * @since 6.5.0
          *
          * @param string $id The identifier of the script module.
+         * @phpstan-return void
          */
         public function deregister(string $id)
         {
@@ -53395,6 +53878,7 @@ namespace {
          * footer.
          *
          * @since 6.5.0
+         * @phpstan-return void
          */
         public function add_hooks()
         {
@@ -53405,6 +53889,7 @@ namespace {
          * This is only used in block themes.
          *
          * @since 6.9.0
+         * @phpstan-return void
          */
         public function print_head_enqueued_script_modules()
         {
@@ -53413,6 +53898,7 @@ namespace {
          * Prints the enqueued script modules in footer.
          *
          * @since 6.5.0
+         * @phpstan-return void
          */
         public function print_enqueued_script_modules()
         {
@@ -53424,6 +53910,7 @@ namespace {
          * If a script module is marked for enqueue, it will not be preloaded.
          *
          * @since 6.5.0
+         * @phpstan-return void
          */
         public function print_script_module_preloads()
         {
@@ -53432,6 +53919,7 @@ namespace {
          * Prints the import map using a script tag with a type="importmap" attribute.
          *
          * @since 6.5.0
+         * @phpstan-return void
          */
         public function print_import_map()
         {
@@ -53593,6 +54081,7 @@ namespace {
          * Initialize the class.
          *
          * @since 3.4.0
+         * @phpstan-return void
          */
         public function init()
         {
@@ -53849,6 +54338,7 @@ namespace {
          * Resets class properties.
          *
          * @since 2.8.0
+         * @phpstan-return void
          */
         public function reset()
         {
@@ -53956,6 +54446,7 @@ namespace {
          *
          * @param string $token Session token to update.
          * @param array  $session Session information.
+         * @phpstan-return void
          */
         final public function update($token, $session)
         {
@@ -53966,6 +54457,7 @@ namespace {
          * @since 4.0.0
          *
          * @param string $token Session token to destroy.
+         * @phpstan-return void
          */
         final public function destroy($token)
         {
@@ -53976,6 +54468,7 @@ namespace {
          * @since 4.0.0
          *
          * @param string $token_to_keep Session token to keep.
+         * @phpstan-return void
          */
         final public function destroy_others($token_to_keep)
         {
@@ -53995,6 +54488,7 @@ namespace {
          * Destroys all sessions for a user.
          *
          * @since 4.0.0
+         * @phpstan-return void
          */
         final public function destroy_all()
         {
@@ -54003,6 +54497,7 @@ namespace {
          * Destroys all sessions for all users.
          *
          * @since 4.0.0
+         * @phpstan-return void
          */
         final public static function destroy_all_for_all_users()
         {
@@ -54389,6 +54884,7 @@ namespace {
          *   meta_type_key?: string,
          *   meta_query?: array,
          * } $query See WP_Site_Query::__construct()
+         * @phpstan-return void
          */
         public function parse_query($query = '')
         {
@@ -54678,6 +55174,7 @@ namespace {
          *
          * @param string $key   Property to set.
          * @param mixed  $value Value to assign to the property.
+         * @phpstan-return void
          */
         public function __set($key, $value)
         {
@@ -54979,6 +55476,7 @@ namespace {
          * Resets class properties.
          *
          * @since 3.3.0
+         * @phpstan-return void
          */
         public function reset()
         {
@@ -55555,6 +56053,7 @@ namespace {
          *
          * @param string|string[] $object_type Name or array of names of the object types for the taxonomy.
          * @param array|string    $args        Array or query string of arguments for registering a taxonomy.
+         * @phpstan-return void
          */
         public function set_props($object_type, $args)
         {
@@ -55565,6 +56064,7 @@ namespace {
          * @since 4.7.0
          *
          * @global WP $wp Current WordPress environment instance.
+         * @phpstan-return void
          */
         public function add_rewrite_rules()
         {
@@ -55575,6 +56075,7 @@ namespace {
          * @since 4.7.0
          *
          * @global WP $wp Current WordPress environment instance.
+         * @phpstan-return void
          */
         public function remove_rewrite_rules()
         {
@@ -55583,6 +56084,7 @@ namespace {
          * Registers the ajax callback for the meta box.
          *
          * @since 4.7.0
+         * @phpstan-return void
          */
         public function add_hooks()
         {
@@ -55591,6 +56093,7 @@ namespace {
          * Removes the ajax callback for the meta box.
          *
          * @since 4.7.0
+         * @phpstan-return void
          */
         public function remove_hooks()
         {
@@ -55622,6 +56125,7 @@ namespace {
          * Resets the cache for the default labels.
          *
          * @since 6.0.0
+         * @phpstan-return void
          */
         public static function reset_default_labels()
         {
@@ -55878,6 +56382,7 @@ namespace {
          *   meta_type_key?: string,
          *   meta_query?: array,
          * } $query See WP_Term_Query::__construct()
+         * @phpstan-return void
          */
         public function parse_query($query = '')
         {
@@ -56143,6 +56648,7 @@ namespace {
          *
          * @param string $filter Filter context. Accepts 'edit', 'db', 'display', 'attribute', 'js', 'rss', or 'raw'.
          * @phpstan-param 'edit'|'db'|'display'|'attribute'|'js'|'rss'|'raw' $filter
+         * @phpstan-return void
          */
         public function filter($filter)
         {
@@ -56549,6 +57055,7 @@ namespace {
          * to invalidate MO files caches.
          *
          * @since 6.5.0
+         * @phpstan-return void
          */
         public function init()
         {
@@ -56592,6 +57099,7 @@ namespace {
          * @param string       $domain Text domain.
          * @param string       $locale Locale.
          * @param string|false $path   Language directory path or false if there is none available.
+         * @phpstan-return void
          */
         public function set($domain, $locale, $path)
         {
@@ -56605,6 +57113,7 @@ namespace {
          *
          * @param string $domain Text domain.
          * @param string $path   Language directory path.
+         * @phpstan-return void
          */
         public function set_custom_path($domain, $path)
         {
@@ -57012,6 +57521,7 @@ namespace {
          *              and `$i18n_schema` variables to reset.
          * @since 6.1.0 Added the `$blocks` and `$blocks_cache` variables
          *              to reset.
+         * @phpstan-return void
          */
         public static function clean_cached_data()
         {
@@ -57551,6 +58061,7 @@ namespace {
          * @since 5.9.0
          *
          * @param array $context The context to which the settings belong.
+         * @phpstan-return void
          */
         protected static function do_opt_in_into_settings(&$context)
         {
@@ -58296,6 +58807,7 @@ namespace {
          * @since 6.7.0 Replace background image objects during merge.
          *
          * @param WP_Theme_JSON $incoming Data to merge.
+         * @phpstan-return void
          */
         public function merge($incoming)
         {
@@ -58655,7 +59167,6 @@ namespace {
          * @param string        $theme_dir  Directory of the theme within the theme_root.
          * @param string        $theme_root Theme root.
          * @param WP_Theme|null $_child If this theme is a parent theme, the child may be passed for validation purposes.
-         * @phpstan-return void
          */
         public function __construct($theme_dir, $theme_root, $_child = \null)
         {
@@ -58785,6 +59296,7 @@ namespace {
          * Perform reinitialization tasks.
          *
          * Prevents a callback from being injected during unserialization of an object.
+         * @phpstan-return void
          */
         public function __wakeup()
         {
@@ -58793,6 +59305,7 @@ namespace {
          * Clears the cache for the theme.
          *
          * @since 3.4.0
+         * @phpstan-return void
          */
         public function cache_delete()
         {
@@ -59153,6 +59666,7 @@ namespace {
          *
          * @since 6.4.0
          * @since 6.6.0 Uses transients to cache regardless of site environment.
+         * @phpstan-return void
          */
         public function delete_pattern_cache()
         {
@@ -59185,6 +59699,7 @@ namespace {
          * @since 3.4.0
          *
          * @param WP_Theme[] $themes Array of theme objects to sort (passed by reference).
+         * @phpstan-return void
          */
         public static function sort_by_name(&$themes)
         {
@@ -59609,6 +60124,7 @@ namespace {
          *
          * @param string $verifier Verifier for the session to update.
          * @param array  $session  Optional. Session. Omitting this argument destroys the session.
+         * @phpstan-return void
          */
         protected function update_session($verifier, $session = \null)
         {
@@ -59619,6 +60135,7 @@ namespace {
          * @since 4.0.0
          *
          * @param array $sessions Sessions.
+         * @phpstan-return void
          */
         protected function update_sessions($sessions)
         {
@@ -59629,6 +60146,7 @@ namespace {
          * @since 4.0.0
          *
          * @param string $verifier Verifier of the session to keep.
+         * @phpstan-return void
          */
         protected function destroy_other_sessions($verifier)
         {
@@ -59637,6 +60155,7 @@ namespace {
          * Destroys all session tokens for the user.
          *
          * @since 4.0.0
+         * @phpstan-return void
          */
         protected function destroy_all_sessions()
         {
@@ -59645,6 +60164,7 @@ namespace {
          * Destroys all sessions for all users.
          *
          * @since 4.0.0
+         * @phpstan-return void
          */
         public static function drop_sessions()
         {
@@ -59915,6 +60435,7 @@ namespace {
          *   login__not_in?: string[],
          *   cache_results?: bool,
          * } $query
+         * @phpstan-return void
          */
         public function prepare_query($query = array())
         {
@@ -59948,6 +60469,7 @@ namespace {
          *
          * @param string $query_var Query variable key.
          * @param mixed  $value     Query variable value.
+         * @phpstan-return void
          */
         public function set($query_var, $value)
         {
@@ -60301,7 +60823,6 @@ namespace {
          * @param int|string|object $id      User's ID, a WP_User object, or a user object from the DB.
          * @param string            $name    Optional. User's username
          * @param int               $site_id Optional Site ID, defaults to current site.
-         * @phpstan-return void
          */
         public function __construct($id = 0, $name = '', $site_id = 0)
         {
@@ -60313,6 +60834,7 @@ namespace {
          *
          * @param object $data    User DB row object.
          * @param int    $site_id Optional. The site ID to initialize for.
+         * @phpstan-return void
          */
         public function init($data, $site_id = 0)
         {
@@ -60376,6 +60898,7 @@ namespace {
          * @since 4.4.0
          *
          * @param string $key User meta key to unset.
+         * @phpstan-return void
          */
         public function __unset($key)
         {
@@ -60542,6 +61065,7 @@ namespace {
          * @since 2.0.0
          *
          * @global wpdb $wpdb WordPress database abstraction object.
+         * @phpstan-return void
          */
         public function update_user_level_from_caps()
         {
@@ -60553,6 +61077,7 @@ namespace {
          *
          * @param string $cap   Capability name.
          * @param bool   $grant Whether to grant capability to user.
+         * @phpstan-return void
          */
         public function add_cap($cap, $grant = \true)
         {
@@ -60574,6 +61099,7 @@ namespace {
          * @since 2.1.0
          *
          * @global wpdb $wpdb WordPress database abstraction object.
+         * @phpstan-return void
          */
         public function remove_all_caps()
         {
@@ -60640,6 +61166,7 @@ namespace {
          * @global wpdb $wpdb WordPress database abstraction object.
          *
          * @param int $site_id Site ID to initialize user capabilities for. Default is the current site.
+         * @phpstan-return void
          */
         public function for_site($site_id = 0)
         {
@@ -60939,6 +61466,7 @@ namespace {
          *
          * @param string|WP_Widget $widget Either the name of a `WP_Widget` subclass or an instance of a `WP_Widget` subclass.
          * @phpstan-param class-string<\WP_Widget>|\WP_Widget $widget
+         * @phpstan-return void
          */
         public function register($widget)
         {
@@ -60952,6 +61480,7 @@ namespace {
          *
          * @param string|WP_Widget $widget Either the name of a `WP_Widget` subclass or an instance of a `WP_Widget` subclass.
          * @phpstan-param class-string<\WP_Widget>|\WP_Widget $widget
+         * @phpstan-return void
          */
         public function unregister($widget)
         {
@@ -60962,6 +61491,7 @@ namespace {
          * @since 2.8.0
          *
          * @global array $wp_registered_widgets
+         * @phpstan-return void
          */
         public function _register_widgets()
         {
@@ -61207,6 +61737,7 @@ namespace {
          * Register all widget instances of this widget class.
          *
          * @since 2.8.0
+         * @phpstan-return void
          */
         public function _register()
         {
@@ -61218,6 +61749,7 @@ namespace {
          *
          * @param int $number The unique order number of this widget instance compared to other
          *                    instances of the same class.
+         * @phpstan-return void
          */
         public function _set($number)
         {
@@ -61335,6 +61867,7 @@ namespace {
          *
          * @param int $number Optional. The unique order number of this widget instance
          *                    compared to other instances of the same class. Default -1.
+         * @phpstan-return void
          */
         public function _register_one($number = -1)
         {
@@ -61345,6 +61878,7 @@ namespace {
          * @since 2.8.0
          *
          * @param array $settings Multi-dimensional array of widget instance settings.
+         * @phpstan-return void
          */
         public function save_settings($settings)
         {
@@ -61429,6 +61963,7 @@ namespace {
          * Serves the XML-RPC request.
          *
          * @since 2.9.0
+         * @phpstan-return void
          */
         public function serve_request()
         {
@@ -61519,6 +62054,7 @@ namespace {
          *
          * @param IXR_Error|string $error   Error code or an error object.
          * @param false            $message Error message. Optional.
+         * @phpstan-return void
          */
         public function error($error, $message = \false)
         {
@@ -61541,6 +62077,7 @@ namespace {
          *
          * @param int   $post_id Post ID.
          * @param array $fields  Custom fields.
+         * @phpstan-return void
          */
         public function set_custom_fields($post_id, $fields)
         {
@@ -61563,6 +62100,7 @@ namespace {
          *
          * @param int   $term_id Term ID.
          * @param array $fields  Custom fields.
+         * @phpstan-return void
          */
         public function set_term_custom_fields($term_id, $fields)
         {
@@ -61573,6 +62111,7 @@ namespace {
          * Passes property through {@see 'xmlrpc_blog_options'} filter.
          *
          * @since 2.6.0
+         * @phpstan-return void
          */
         public function initialise_blog_option_info()
         {
@@ -63386,6 +63925,7 @@ namespace {
          *
          * @param int   $post_id   Post ID.
          * @param array $enclosure Enclosure data.
+         * @phpstan-return void
          */
         public function add_enclosure_if_new($post_id, $enclosure)
         {
@@ -63399,6 +63939,7 @@ namespace {
          *
          * @param int    $post_id      Post ID.
          * @param string $post_content Post Content for attachment.
+         * @phpstan-return void
          */
         public function attach_uploads($post_id, $post_content)
         {
@@ -63816,6 +64357,7 @@ namespace {
          * @since 2.1.0
          *
          * @param string $qv Query variable name.
+         * @phpstan-return void
          */
         public function add_query_var($qv)
         {
@@ -63826,6 +64368,7 @@ namespace {
          * @since 4.5.0
          *
          * @param string $name Query variable name.
+         * @phpstan-return void
          */
         public function remove_query_var($name)
         {
@@ -63837,6 +64380,7 @@ namespace {
          *
          * @param string $key   Query variable name.
          * @param mixed  $value Query variable value.
+         * @phpstan-return void
          */
         public function set_query_var($key, $value)
         {
@@ -63869,6 +64413,7 @@ namespace {
          * @since 6.1.0 Runs after posts have been queried.
          *
          * @global WP_Query $wp_query WordPress Query object.
+         * @phpstan-return void
          */
         public function send_headers()
         {
@@ -63880,6 +64425,7 @@ namespace {
          * use the {@see 'request'} filter instead.
          *
          * @since 2.0.0
+         * @phpstan-return void
          */
         public function build_query_string()
         {
@@ -63901,6 +64447,7 @@ namespace {
          * @global int          $more         Only set, if single page or post.
          * @global int          $single       If single page or post. Only set, if single page or post.
          * @global WP_User      $authordata   Only set, if author archive.
+         * @phpstan-return void
          */
         public function register_globals()
         {
@@ -63909,6 +64456,7 @@ namespace {
          * Set up the current user.
          *
          * @since 2.0.0
+         * @phpstan-return void
          */
         public function init()
         {
@@ -63919,6 +64467,7 @@ namespace {
          * @since 2.0.0
          *
          * @global WP_Query $wp_the_query WordPress Query object.
+         * @phpstan-return void
          */
         public function query_posts()
         {
@@ -63954,6 +64503,7 @@ namespace {
          * @since 2.0.0
          *
          * @param string|array $query_args Passed to parse_request().
+         * @phpstan-return void
          */
         public function main($query_args = '')
         {
@@ -64517,7 +65067,6 @@ namespace {
          * @param string $dbpassword Database password.
          * @param string $dbname     Database name.
          * @param string $dbhost     Database host.
-         * @phpstan-return void
          */
         public function __construct(
             $dbuser,
@@ -64568,6 +65117,7 @@ namespace {
          * @since 3.5.0
          *
          * @param string $name The private member to unset.
+         * @phpstan-return void
          */
         public function __unset($name)
         {
@@ -64576,6 +65126,7 @@ namespace {
          * Sets $this->charset and $this->collate.
          *
          * @since 3.1.0
+         * @phpstan-return void
          */
         public function init_charset()
         {
@@ -64611,6 +65162,7 @@ namespace {
          * @param mysqli $dbh     The connection returned by `mysqli_connect()`.
          * @param string $charset Optional. The character set. Default null.
          * @param string $collate Optional. The collation. Default null.
+         * @phpstan-return void
          */
         public function set_charset($dbh, $charset = \null, $collate = \null)
         {
@@ -64710,6 +65262,7 @@ namespace {
          * @param string $db  Database name.
          * @param mysqli $dbh Optional. Database connection.
          *                    Defaults to the current database handle.
+         * @phpstan-return void
          */
         public function select($db, $dbh = \null)
         {
@@ -64780,6 +65333,7 @@ namespace {
          * @since 2.3.0
          *
          * @param string $data String to escape.
+         * @phpstan-return void
          */
         public function escape_by_ref(&$data)
         {
@@ -65042,6 +65596,7 @@ namespace {
          * @param string $query_callstack Comma-separated list of the calling functions.
          * @param float  $query_start     Unix timestamp of the time at the start of the query.
          * @param array  $query_data      Custom query data.
+         * @phpstan-return void
          */
         public function log_query($query, $query_time, $query_callstack, $query_start, $query_data)
         {
@@ -65936,6 +66491,7 @@ namespace {
          *
          * @since 3.4.0
          * @since 4.2.0 Moved from WP_Customize_Upload_Control.
+         * @phpstan-return void
          */
         public function enqueue()
         {
@@ -65947,6 +66503,7 @@ namespace {
          * @since 4.2.0 Moved from WP_Customize_Upload_Control.
          *
          * @see WP_Customize_Control::to_json()
+         * @phpstan-return void
          */
         public function to_json()
         {
@@ -65967,6 +66524,7 @@ namespace {
          *
          * @since 4.1.0
          * @since 4.2.0 Moved from WP_Customize_Upload_Control.
+         * @phpstan-return void
          */
         public function content_template()
         {
@@ -66023,6 +66581,7 @@ namespace {
          * @since 3.4.0
          *
          * @uses WP_Customize_Media_Control::to_json()
+         * @phpstan-return void
          */
         public function to_json()
         {
@@ -66120,6 +66679,7 @@ namespace {
          * Enqueue control related scripts/styles.
          *
          * @since 4.1.0
+         * @phpstan-return void
          */
         public function enqueue()
         {
@@ -66180,6 +66740,7 @@ namespace {
          * Render a JS template for the content of the position control.
          *
          * @since 4.7.0
+         * @phpstan-return void
          */
         public function content_template()
         {
@@ -66220,6 +66781,7 @@ namespace {
          * Enqueue control related scripts/styles.
          *
          * @since 4.9.0
+         * @phpstan-return void
          */
         public function enqueue()
         {
@@ -66248,6 +66810,7 @@ namespace {
          * Render a JS template for control display.
          *
          * @since 4.9.0
+         * @phpstan-return void
          */
         public function content_template()
         {
@@ -66319,6 +66882,7 @@ namespace {
          * Enqueue scripts/styles for the color picker.
          *
          * @since 3.4.0
+         * @phpstan-return void
          */
         public function enqueue()
         {
@@ -66328,6 +66892,7 @@ namespace {
          *
          * @since 3.4.0
          * @uses WP_Customize_Control::to_json()
+         * @phpstan-return void
          */
         public function to_json()
         {
@@ -66344,6 +66909,7 @@ namespace {
          * Render a JS template for the content of the color picker control.
          *
          * @since 4.1.0
+         * @phpstan-return void
          */
         public function content_template()
         {
@@ -66397,6 +66963,7 @@ namespace {
          * Enqueue control related scripts/styles.
          *
          * @since 4.3.0
+         * @phpstan-return void
          */
         public function enqueue()
         {
@@ -66407,6 +66974,7 @@ namespace {
          * @since 4.3.0
          *
          * @see WP_Customize_Control::to_json()
+         * @phpstan-return void
          */
         public function to_json()
         {
@@ -66609,6 +67177,7 @@ namespace {
          * Renders a JS template for the content of date time control.
          *
          * @since 4.9.0
+         * @phpstan-return void
          */
         public function content_template()
         {
@@ -66730,6 +67299,7 @@ namespace {
          * Enqueues control related scripts/styles.
          *
          * @since 3.9.0
+         * @phpstan-return void
          */
         public function enqueue()
         {
@@ -66749,6 +67319,7 @@ namespace {
          * Prints header image template.
          *
          * @since 3.9.0
+         * @phpstan-return void
          */
         public function print_header_image_template()
         {
@@ -66767,6 +67338,7 @@ namespace {
          * Renders the control's content.
          *
          * @since 3.9.0
+         * @phpstan-return void
          */
         public function render_content()
         {
@@ -66831,6 +67403,7 @@ namespace {
          * Render the Underscore template for this control.
          *
          * @since 4.3.0
+         * @phpstan-return void
          */
         protected function content_template()
         {
@@ -66864,6 +67437,7 @@ namespace {
          * JS/Underscore template for the control UI.
          *
          * @since 4.3.0
+         * @phpstan-return void
          */
         public function content_template()
         {
@@ -66948,6 +67522,7 @@ namespace {
          * JS/Underscore template for the control UI.
          *
          * @since 4.3.0
+         * @phpstan-return void
          */
         public function content_template()
         {
@@ -67119,6 +67694,7 @@ namespace {
          *
          * @param int $menu_id       The term ID for the menu.
          * @param int $menu_item_id  The post ID for the menu item.
+         * @phpstan-return void
          */
         public function flush_cached_value($menu_id, $menu_item_id)
         {
@@ -67316,6 +67892,7 @@ namespace {
          * @since 4.3.0
          *
          * @see WP_Customize_Control::to_json()
+         * @phpstan-return void
          */
         public function to_json()
         {
@@ -67359,6 +67936,7 @@ namespace {
          * JS/Underscore template for the control UI.
          *
          * @since 4.9.0
+         * @phpstan-return void
          */
         public function content_template()
         {
@@ -67392,6 +67970,7 @@ namespace {
          * Render the Underscore template for this control.
          *
          * @since 4.3.0
+         * @phpstan-return void
          */
         protected function content_template()
         {
@@ -67742,6 +68321,7 @@ namespace {
          * Render screen options for Menus.
          *
          * @since 4.3.0
+         * @phpstan-return void
          */
         public function render_screen_options()
         {
@@ -67766,6 +68346,7 @@ namespace {
          * @since 4.3.0
          *
          * @see WP_Customize_Panel::print_template()
+         * @phpstan-return void
          */
         protected function content_template()
         {
@@ -68194,6 +68775,7 @@ namespace {
          * @since 4.5.0
          *
          * @param string $id Customize Partial ID.
+         * @phpstan-return void
          */
         public function remove_partial($id)
         {
@@ -68202,6 +68784,7 @@ namespace {
          * Initializes the Customizer preview.
          *
          * @since 4.5.0
+         * @phpstan-return void
          */
         public function init_preview()
         {
@@ -68210,6 +68793,7 @@ namespace {
          * Enqueues preview scripts.
          *
          * @since 4.5.0
+         * @phpstan-return void
          */
         public function enqueue_preview_scripts()
         {
@@ -68218,6 +68802,7 @@ namespace {
          * Exports data in preview after it has finished rendering so that partials can be added at runtime.
          *
          * @since 4.5.0
+         * @phpstan-return void
          */
         public function export_preview_data()
         {
@@ -68374,6 +68959,7 @@ namespace {
          * Renders a JS template for the content of the site icon control.
          *
          * @since 4.5.0
+         * @phpstan-return void
          */
         public function content_template()
         {
@@ -68408,6 +68994,7 @@ namespace {
          * @since 4.2.0
          *
          * @see WP_Customize_Control::to_json()
+         * @phpstan-return void
          */
         public function to_json()
         {
@@ -68424,6 +69011,7 @@ namespace {
          * Render a JS template for theme display.
          *
          * @since 4.2.0
+         * @phpstan-return void
          */
         public function content_template()
         {
@@ -68453,6 +69041,7 @@ namespace {
          * @see WP_Customize_Panel::print_template()
          *
          * @since 4.9.0
+         * @phpstan-return void
          */
         protected function render_template()
         {
@@ -68466,6 +69055,7 @@ namespace {
          * @since 4.9.0
          *
          * @see WP_Customize_Panel::print_template()
+         * @phpstan-return void
          */
         protected function content_template()
         {
@@ -68523,6 +69113,7 @@ namespace {
          * The template is only rendered by PHP once, so all actions are prepared at once on the server side.
          *
          * @since 4.9.0
+         * @phpstan-return void
          */
         protected function render_template()
         {
@@ -68534,6 +69125,7 @@ namespace {
          * The filter bar container is rendered by {@see render_template()}.
          *
          * @since 4.9.0
+         * @phpstan-return void
          */
         protected function filter_bar_content_template()
         {
@@ -68544,6 +69136,7 @@ namespace {
          * The filter bar container is rendered by {@see render_template()}.
          *
          * @since 4.9.0
+         * @phpstan-return void
          */
         protected function filter_drawer_content_template()
         {
@@ -68571,6 +69164,7 @@ namespace {
          * Render the widgets block editor container.
          *
          * @since 5.8.0
+         * @phpstan-return void
          */
         public function render_content()
         {
@@ -68603,6 +69197,7 @@ namespace {
          * Refreshes the parameters passed to the JavaScript via JSON.
          *
          * @since 3.9.0
+         * @phpstan-return void
          */
         public function to_json()
         {
@@ -68611,6 +69206,7 @@ namespace {
          * Renders the control's content.
          *
          * @since 3.9.0
+         * @phpstan-return void
          */
         public function render_content()
         {
@@ -68687,6 +69283,7 @@ namespace {
          * @since 3.9.0
          *
          * @global array $wp_registered_widgets
+         * @phpstan-return void
          */
         public function to_json()
         {
@@ -69082,6 +69679,7 @@ namespace {
          * @see https://html.spec.whatwg.org/#push-onto-the-list-of-active-formatting-elements
          *
          * @param WP_HTML_Token $token Push this node onto the stack.
+         * @phpstan-return void
          */
         public function push(\WP_HTML_Token $token)
         {
@@ -70085,6 +70683,7 @@ namespace {
          * Wakeup magic method.
          *
          * @since 6.6.0
+         * @phpstan-return never
          */
         public function __wakeup()
         {
@@ -72090,6 +72689,7 @@ namespace {
          * Wakeup magic method.
          *
          * @since 6.9.2
+         * @phpstan-return never
          */
         public function __wakeup()
         {
@@ -73451,6 +74051,7 @@ namespace {
          * Destructor.
          *
          * @since 6.4.0
+         * @phpstan-return void
          */
         public function __destruct()
         {
@@ -73459,6 +74060,7 @@ namespace {
          * Wakeup magic method.
          *
          * @since 6.4.2
+         * @phpstan-return never
          */
         public function __wakeup()
         {
@@ -73801,6 +74403,7 @@ namespace {
          *
          * @since 6.5.0
          * @since 6.9.0 Adds support for client-side navigation in script modules.
+         * @phpstan-return void
          */
         public function add_hooks()
         {
@@ -73832,6 +74435,7 @@ namespace {
          * @since 6.9.0
          *
          * @param string $script_module_id The script module identifier.
+         * @phpstan-return void
          */
         public function add_client_navigation_support_to_script_module(string $script_module_id)
         {
@@ -73864,6 +74468,7 @@ namespace {
          * navigation.
          *
          * @since 6.7.0
+         * @phpstan-return void
          */
         public function print_router_markup()
         {
@@ -73904,6 +74509,7 @@ namespace {
          * @since 6.5.0
          *
          * @param string $locale Locale.
+         * @phpstan-return void
          */
         public function set_locale(string $locale)
         {
@@ -74720,7 +75326,6 @@ namespace WordPress\AiClient\Builders {
          *
          * @param Input $input Optional initial content.
          * @param \WordPress\AiClient\Messages\Enums\MessageRoleEnum|null $role Optional role.
-         * @phpstan-return void
          */
         public function __construct($input = null, ?\WordPress\AiClient\Messages\Enums\MessageRoleEnum $role = null)
         {
@@ -74732,6 +75337,7 @@ namespace WordPress\AiClient\Builders {
          * the cloned builder is independent of the original.
          *
          * @since 0.4.2
+         * @phpstan-return void
          */
         public function __clone()
         {
@@ -74892,7 +75498,6 @@ namespace WordPress\AiClient\Builders {
          * @param \WordPress\AiClient\Providers\ProviderRegistry $registry The provider registry for finding suitable models.
          * @param Prompt $prompt Optional initial prompt content.
          * @param \WordPress\AiClientDependencies\Psr\EventDispatcher\EventDispatcherInterface|null $eventDispatcher Optional event dispatcher for lifecycle events.
-         * @phpstan-return void
          */
         public function __construct(\WordPress\AiClient\Providers\ProviderRegistry $registry, $prompt = null, ?\WordPress\AiClientDependencies\Psr\EventDispatcher\EventDispatcherInterface $eventDispatcher = null)
         {
@@ -74905,6 +75510,7 @@ namespace WordPress\AiClient\Builders {
          * as they are shared dependencies.
          *
          * @since 0.4.2
+         * @phpstan-return void
          */
         public function __clone()
         {
@@ -76169,6 +76775,7 @@ namespace WordPress\AiClient\Events {
          * The model object is not cloned as it is a service object.
          *
          * @since 0.4.2
+         * @phpstan-return void
          */
         public function __clone()
         {
@@ -76235,6 +76842,7 @@ namespace WordPress\AiClient\Events {
          * The model object is not cloned as it is a service object.
          *
          * @since 0.4.2
+         * @phpstan-return void
          */
         public function __clone()
         {
@@ -76273,7 +76881,6 @@ namespace WordPress\AiClient\Files\DTO {
          * @param string $file The file string (URL, base64 data, or local path).
          * @param string|null $mimeType The MIME type of the file (optional).
          * @throws \WordPress\AiClient\Common\Exception\InvalidArgumentException If the file format is invalid or MIME type cannot be determined.
-         * @phpstan-return void
          */
         public function __construct(string $file, ?string $mimeType = null)
         {
@@ -76453,6 +77060,7 @@ namespace WordPress\AiClient\Files\DTO {
          * any shared references between the original and cloned file.
          *
          * @since 0.4.2
+         * @phpstan-return void
          */
         public function __clone()
         {
@@ -76772,6 +77380,7 @@ namespace WordPress\AiClient\Messages\DTO {
          * modifications to the cloned message from affecting the original.
          *
          * @since 0.4.2
+         * @phpstan-return void
          */
         public function __clone()
         {
@@ -76926,6 +77535,7 @@ namespace WordPress\AiClient\Messages\DTO {
          * are cloned to prevent modifications to the cloned part from affecting the original.
          *
          * @since 0.4.2
+         * @phpstan-return void
          */
         public function __clone()
         {
@@ -77166,6 +77776,7 @@ namespace WordPress\AiClient\Operations\DTO {
          * The state enum is immutable and can be safely shared.
          *
          * @since 0.4.2
+         * @phpstan-return void
          */
         public function __clone()
         {
@@ -78148,6 +78759,7 @@ namespace WordPress\AiClient\Providers\DTO {
          * to ensure the cloned instance is independent of the original.
          *
          * @since 0.4.2
+         * @phpstan-return void
          */
         public function __clone()
         {
@@ -78520,6 +79132,7 @@ namespace WordPress\AiClient\Providers\Http\DTO {
          * The HTTP method enum is immutable and can be safely shared.
          *
          * @since 0.4.2
+         * @phpstan-return void
          */
         public function __clone()
         {
@@ -78896,6 +79509,7 @@ namespace WordPress\AiClient\Providers\Http\DTO {
          * response is independent of the original.
          *
          * @since 0.4.2
+         * @phpstan-return void
          */
         public function __clone()
         {
@@ -79596,6 +80210,7 @@ namespace WordPress\AiClient\Providers\Models\DTO {
          * are intentionally shared as they are immutable.
          *
          * @since 0.4.2
+         * @phpstan-return void
          */
         public function __clone()
         {
@@ -80209,6 +80824,7 @@ namespace WordPress\AiClient\Providers\Models\DTO {
          * modifications to the cloned metadata from affecting the original.
          *
          * @since 0.4.2
+         * @phpstan-return void
          */
         public function __clone()
         {
@@ -81589,6 +82205,7 @@ namespace WordPress\AiClient\Results\DTO {
          * modifications to the cloned candidate from affecting the original.
          *
          * @since 0.4.2
+         * @phpstan-return void
          */
         public function __clone()
         {
@@ -81878,6 +82495,7 @@ namespace WordPress\AiClient\Results\DTO {
          * are cloned to prevent modifications to the cloned result from affecting the original.
          *
          * @since 0.4.2
+         * @phpstan-return void
          */
         public function __clone()
         {
@@ -82397,6 +83015,7 @@ namespace WordPress\AiClientDependencies\Http\Discovery {
          * Set new strategies and clear the cache.
          *
          * @param string[] $strategies list of fully qualified class names that implement DiscoveryStrategy
+         * @phpstan-return void
          */
         public static function setStrategies(array $strategies)
         {
@@ -82413,6 +83032,7 @@ namespace WordPress\AiClientDependencies\Http\Discovery {
          * Append a strategy at the end of the strategy queue.
          *
          * @param string $strategy Fully qualified class name of a DiscoveryStrategy
+         * @phpstan-return void
          */
         public static function appendStrategy($strategy)
         {
@@ -82421,6 +83041,7 @@ namespace WordPress\AiClientDependencies\Http\Discovery {
          * Prepend a strategy at the beginning of the strategy queue.
          *
          * @param string $strategy Fully qualified class name to a DiscoveryStrategy
+         * @phpstan-return void
          */
         public static function prependStrategy($strategy)
         {
@@ -83941,6 +84562,7 @@ namespace WordPress\AiClientDependencies\Nyholm\Psr7 {
         }
         /**
          * Closes the stream when the destructed.
+         * @phpstan-return void
          */
         public function __destruct()
         {
@@ -84647,7 +85269,6 @@ namespace {
          *   references?: array,
          *   flags?: array,
          * } $args
-         * @phpstan-return void
          */
         public function __construct($args = array())
         {
@@ -84679,6 +85300,7 @@ namespace {
          * @since 2.8.0
          *
          * @param Translation_Entry $other Other translation entry.
+         * @phpstan-return void
          */
         public function merge_with(&$other)
         {
@@ -84741,6 +85363,7 @@ namespace {
          *
          * @param string $header header name, without trailing :
          * @param string $value header value, without trailing \n
+         * @phpstan-return void
          */
         public function set_header($header, $value)
         {
@@ -84751,6 +85374,7 @@ namespace {
          * @since 2.8.0
          *
          * @param array $headers Associative array of headers.
+         * @phpstan-return void
          */
         public function set_headers($headers)
         {
@@ -84836,6 +85460,7 @@ namespace {
          * @since 2.8.0
          *
          * @param Translations $other Another Translation object, whose translations will be merged in this one (passed by reference).
+         * @phpstan-return void
          */
         public function merge_with(&$other)
         {
@@ -84846,6 +85471,7 @@ namespace {
          * @since 2.8.0
          *
          * @param Translations $other
+         * @phpstan-return void
          */
         public function merge_originals_with(&$other)
         {
@@ -84945,6 +85571,7 @@ namespace {
          *
          * @param string $header
          * @param string $value
+         * @phpstan-return void
          */
         public function set_header($header, $value)
         {
@@ -85128,6 +85755,7 @@ namespace {
          * @throws Exception If there is a syntax or parsing error with the string.
          *
          * @param string $str String to parse.
+         * @phpstan-return void
          */
         protected function parse($str)
         {
@@ -85203,6 +85831,7 @@ namespace {
          * Doesn't need to include # in the beginning of lines, these are added automatically
          *
          * @param string $text Text to include as a comment.
+         * @phpstan-return void
          */
         public function set_comment_before_headers($text)
         {
@@ -85295,6 +85924,7 @@ namespace {
         /**
          * @param Translation_Entry $entry
          * @param string            $po_comment_line
+         * @phpstan-return void
          */
         public function add_comment_to_entry(&$entry, $po_comment_line)
         {
@@ -85334,6 +85964,7 @@ namespace {
          *
          * @param string $endian Set the endianness of the file. Accepts 'big', or 'little'.
          * @phpstan-param 'big'|'little' $endian
+         * @phpstan-return void
          */
         public function setEndian($endian)
         {
@@ -85520,7 +86151,6 @@ namespace {
     {
         /**
          * PHP5 constructor.
-         * @phpstan-return void
          */
         public function __construct($filename)
         {
@@ -85801,6 +86431,7 @@ namespace {
          * @since 4.4.0
          *
          * @param string $method HTTP method.
+         * @phpstan-return void
          */
         public function set_method($method)
         {
@@ -85880,6 +86511,7 @@ namespace {
          *
          * @param string $key   Header name.
          * @param string $value Header value, or list of values.
+         * @phpstan-return void
          */
         public function set_header($key, $value)
         {
@@ -85891,6 +86523,7 @@ namespace {
          *
          * @param string $key   Header name.
          * @param string $value Header value, or list of values.
+         * @phpstan-return void
          */
         public function add_header($key, $value)
         {
@@ -85901,6 +86534,7 @@ namespace {
          * @since 4.4.0
          *
          * @param string $key Header name.
+         * @phpstan-return void
          */
         public function remove_header($key)
         {
@@ -85912,6 +86546,7 @@ namespace {
          *
          * @param array $headers  Map of header name to value.
          * @param bool  $override If true, replace the request's headers. Otherwise, merge with existing.
+         * @phpstan-return void
          */
         public function set_headers($headers, $override = \true)
         {
@@ -86032,6 +86667,7 @@ namespace {
          * @since 4.4.0
          *
          * @param array $params Parameter map of key to value.
+         * @phpstan-return void
          */
         public function set_url_params($params)
         {
@@ -86056,6 +86692,7 @@ namespace {
          * @since 4.4.0
          *
          * @param array $params Parameter map of key to value.
+         * @phpstan-return void
          */
         public function set_query_params($params)
         {
@@ -86080,6 +86717,7 @@ namespace {
          * @since 4.4.0
          *
          * @param array $params Parameter map of key to value.
+         * @phpstan-return void
          */
         public function set_body_params($params)
         {
@@ -86122,6 +86760,7 @@ namespace {
          *                                  error: int<0, 8>,
          *                                  full_path?: non-empty-string,
          *                              }> $params
+         * @phpstan-return void
          */
         public function set_file_params($params)
         {
@@ -86146,6 +86785,7 @@ namespace {
          * @since 4.4.0
          *
          * @param array $params Parameter map of key to value.
+         * @phpstan-return void
          */
         public function set_default_params($params)
         {
@@ -86166,6 +86806,7 @@ namespace {
          * @since 4.4.0
          *
          * @param string $data Binary data from the request body.
+         * @phpstan-return void
          */
         public function set_body($data)
         {
@@ -86220,6 +86861,7 @@ namespace {
          * @since 4.4.0
          *
          * @param string $route Route matching regex.
+         * @phpstan-return void
          */
         public function set_route($route)
         {
@@ -86242,6 +86884,7 @@ namespace {
          * @since 4.4.0
          *
          * @param array $attributes Attributes for the request.
+         * @phpstan-return void
          */
         public function set_attributes($attributes)
         {
@@ -86384,6 +87027,7 @@ namespace {
          *                           or an absolute URL.
          * @param string $href       Target URI for the link.
          * @param array  $attributes Optional. Link parameters to send along with the URL. Default empty array.
+         * @phpstan-return void
          */
         public function add_link($rel, $href, $attributes = array())
         {
@@ -86412,6 +87056,7 @@ namespace {
          * @since 4.4.0
          *
          * @param array $links Map of link relation to list of links.
+         * @phpstan-return void
          */
         public function add_links($links)
         {
@@ -86440,6 +87085,7 @@ namespace {
          * @param string $link  Target IRI for the link.
          * @param array  $other Optional. Other parameters to send, as an associative array.
          *                      Default empty array.
+         * @phpstan-return void
          */
         public function link_header($rel, $link, $other = array())
         {
@@ -86460,6 +87106,7 @@ namespace {
          * @since 4.4.0
          *
          * @param string $route Route name.
+         * @phpstan-return void
          */
         public function set_matched_route($route)
         {
@@ -86480,6 +87127,7 @@ namespace {
          * @since 4.4.0
          *
          * @param array $handler The matched handler.
+         * @phpstan-return void
          */
         public function set_matched_handler($handler)
         {
@@ -86788,6 +87436,7 @@ namespace {
          * @param array  $route_args      Route arguments.
          * @param bool   $override        Optional. Whether the route should be overridden if it already exists.
          *                                Default false.
+         * @phpstan-return void
          */
         public function register_route($route_namespace, $route, $route_args, $override = \false)
         {
@@ -86920,6 +87569,7 @@ namespace {
          * @since 5.7.0
          *
          * @param WP_REST_Response $response REST API response.
+         * @phpstan-return void
          */
         protected function add_active_theme_link_to_index(\WP_REST_Response $response)
         {
@@ -86933,6 +87583,7 @@ namespace {
          * @since 5.8.0
          *
          * @param WP_REST_Response $response REST API response.
+         * @phpstan-return void
          */
         protected function add_site_logo_to_index(\WP_REST_Response $response)
         {
@@ -86946,6 +87597,7 @@ namespace {
          * @since 5.9.0
          *
          * @param WP_REST_Response $response REST API response.
+         * @phpstan-return void
          */
         protected function add_site_icon_to_index(\WP_REST_Response $response)
         {
@@ -86960,6 +87612,7 @@ namespace {
          * @param WP_REST_Response $response REST API response.
          * @param int              $image_id Image attachment ID.
          * @param string           $type     Type of Image.
+         * @phpstan-return void
          */
         protected function add_image_to_index(\WP_REST_Response $response, $image_id, $type)
         {
@@ -87030,6 +87683,7 @@ namespace {
          * @since 4.4.0
          *
          * @param int $code HTTP status.
+         * @phpstan-return void
          */
         protected function set_status($code)
         {
@@ -87041,6 +87695,7 @@ namespace {
          *
          * @param string $key Header key.
          * @param string $value Header value.
+         * @phpstan-return void
          */
         public function send_header($key, $value)
         {
@@ -87051,6 +87706,7 @@ namespace {
          * @since 4.4.0
          *
          * @param array $headers Map of header name to header value.
+         * @phpstan-return void
          */
         public function send_headers($headers)
         {
@@ -87061,6 +87717,7 @@ namespace {
          * @since 4.8.0
          *
          * @param string $key Header key.
+         * @phpstan-return void
          */
         public function remove_header($key)
         {
@@ -87124,6 +87781,7 @@ namespace {
          * @since 4.7.0
          *
          * @see register_rest_route()
+         * @phpstan-return void
          */
         public function register_routes()
         {
@@ -87781,6 +88439,7 @@ namespace {
          * Registers the REST API routes for the application passwords controller.
          *
          * @since 5.6.0
+         * @phpstan-return void
          */
         public function register_routes()
         {
@@ -88082,6 +88741,7 @@ namespace {
          * @since 4.7.0
          *
          * @see register_rest_route()
+         * @phpstan-return void
          */
         public function register_routes()
         {
@@ -88335,6 +88995,7 @@ namespace {
          * @param string $template Page template filename.
          * @param int    $post_id  Post ID.
          * @param bool   $validate Whether to validate that the template selected is valid.
+         * @phpstan-return void
          */
         public function handle_template($template, $post_id, $validate = \false)
         {
@@ -88592,6 +89253,7 @@ namespace {
          * @since 5.3.0
          *
          * @see register_rest_route()
+         * @phpstan-return void
          */
         public function register_routes()
         {
@@ -89061,6 +89723,7 @@ namespace {
          * @since 4.7.0
          *
          * @see register_rest_route()
+         * @phpstan-return void
          */
         public function register_routes()
         {
@@ -89257,6 +89920,7 @@ namespace {
          * @since 5.0.0
          *
          * @see register_rest_route()
+         * @phpstan-return void
          */
         public function register_routes()
         {
@@ -89398,6 +90062,7 @@ namespace {
         }
         /**
          * Registers the necessary REST API routes.
+         * @phpstan-return void
          */
         public function register_routes()
         {
@@ -89501,6 +90166,7 @@ namespace {
          * Registers the routes for the objects of the controller.
          *
          * @since 6.0.0
+         * @phpstan-return void
          */
         public function register_routes()
         {
@@ -89578,6 +90244,7 @@ namespace {
          * Registers the routes for the objects of the controller.
          *
          * @since 6.0.0
+         * @phpstan-return void
          */
         public function register_routes()
         {
@@ -89667,6 +90334,7 @@ namespace {
          * @since 5.0.0
          *
          * @see register_rest_route()
+         * @phpstan-return void
          */
         public function register_routes()
         {
@@ -89746,6 +90414,7 @@ namespace {
          * @since 5.5.0
          *
          * @see register_rest_route()
+         * @phpstan-return void
          */
         public function register_routes()
         {
@@ -89940,6 +90609,7 @@ namespace {
          * @since 4.7.0
          *
          * @see register_rest_route()
+         * @phpstan-return void
          */
         public function register_routes()
         {
@@ -90243,6 +90913,7 @@ namespace {
          * Registers the site export route.
          *
          * @since 5.9.0
+         * @phpstan-return void
          */
         public function register_routes()
         {
@@ -90288,6 +90959,7 @@ namespace {
          * Registers the routes for the objects of the controller.
          *
          * @since 6.5.0
+         * @phpstan-return void
          */
         public function register_routes()
         {
@@ -90393,6 +91065,7 @@ namespace {
          * @since 6.5.0
          *
          * @see register_rest_route()
+         * @phpstan-return void
          */
         public function register_routes()
         {
@@ -90851,6 +91524,7 @@ namespace {
          * Registers the controllers routes.
          *
          * @since 5.9.0
+         * @phpstan-return void
          */
         public function register_routes()
         {
@@ -91094,6 +91768,7 @@ namespace {
          *
          * @since 6.3.0
          * @since 6.6.0 Added route to fetch individual global styles revisions.
+         * @phpstan-return void
          */
         public function register_routes()
         {
@@ -91182,6 +91857,7 @@ namespace {
          * Registers the routes for the objects of the controller.
          *
          * @since 7.1.0
+         * @phpstan-return void
          */
         public function register_routes()
         {
@@ -91300,6 +91976,7 @@ namespace {
          *
          * @since 7.0.0
          * @since 7.1.0 Added the `/icons/<collection>` collection-scoped route.
+         * @phpstan-return void
          */
         public function register_routes()
         {
@@ -91600,6 +92277,7 @@ namespace {
          * @since 5.9.0
          *
          * @see register_rest_route()
+         * @phpstan-return void
          */
         public function register_routes()
         {
@@ -91763,6 +92441,7 @@ namespace {
          * @since 4.7.0
          *
          * @see register_rest_route()
+         * @phpstan-return void
          */
         public function register_routes()
         {
@@ -92165,6 +92844,7 @@ namespace {
          * Registers the controllers routes.
          *
          * @since 6.3.0
+         * @phpstan-return void
          */
         public function register_routes()
         {
@@ -92238,6 +92918,7 @@ namespace {
          * Registers the necessary REST API routes.
          *
          * @since 5.8.0
+         * @phpstan-return void
          */
         public function register_routes()
         {
@@ -92341,6 +93022,7 @@ namespace {
          * Registers the routes for the plugins controller.
          *
          * @since 5.5.0
+         * @phpstan-return void
          */
         public function register_routes()
         {
@@ -92644,6 +93326,7 @@ namespace {
          * @since 4.7.0
          *
          * @see register_rest_route()
+         * @phpstan-return void
          */
         public function register_routes()
         {
@@ -92760,6 +93443,7 @@ namespace {
          * @since 4.7.0
          *
          * @see register_rest_route()
+         * @phpstan-return void
          */
         public function register_routes()
         {
@@ -92902,6 +93586,7 @@ namespace {
          * @since 5.0.0
          *
          * @see register_rest_route()
+         * @phpstan-return void
          */
         public function register_routes()
         {
@@ -93010,6 +93695,7 @@ namespace {
          * @since 4.7.0
          *
          * @see register_rest_route()
+         * @phpstan-return void
          */
         public function register_routes()
         {
@@ -93142,6 +93828,7 @@ namespace {
          * Registers the controllers routes.
          *
          * @since 5.8.0
+         * @phpstan-return void
          */
         public function register_routes()
         {
@@ -93250,6 +93937,7 @@ namespace {
          * @since 5.9.0
          *
          * @see retrieve_widgets()
+         * @phpstan-return void
          */
         protected function retrieve_widgets()
         {
@@ -93318,6 +94006,7 @@ namespace {
          * @since 6.1.0 Adds page-cache async test.
          *
          * @see register_rest_route()
+         * @phpstan-return void
          */
         public function register_routes()
         {
@@ -93410,6 +94099,7 @@ namespace {
          * This means that the translations for Site Health won't be loaded by default in {@see load_default_textdomain()}.
          *
          * @since 5.6.0
+         * @phpstan-return void
          */
         protected function load_admin_textdomain()
         {
@@ -93448,6 +94138,7 @@ namespace {
          * @since 4.7.0
          *
          * @see register_rest_route()
+         * @phpstan-return void
          */
         public function register_routes()
         {
@@ -93568,6 +94259,7 @@ namespace {
          * @since 6.4.0
          *
          * @see register_rest_route()
+         * @phpstan-return void
          */
         public function register_routes()
         {
@@ -93653,6 +94345,7 @@ namespace {
          * @since 6.4.0
          *
          * @see register_rest_route()
+         * @phpstan-return void
          */
         public function register_routes()
         {
@@ -93744,6 +94437,7 @@ namespace {
          *
          * @since 5.8.0
          * @since 6.1.0 Endpoint for fallback template content.
+         * @phpstan-return void
          */
         public function register_routes()
         {
@@ -94002,6 +94696,7 @@ namespace {
          * @since 5.0.0
          *
          * @see register_rest_route()
+         * @phpstan-return void
          */
         public function register_routes()
         {
@@ -94179,6 +94874,7 @@ namespace {
          * Registers the necessary REST API routes.
          *
          * @since 5.9.0
+         * @phpstan-return void
          */
         public function register_routes()
         {
@@ -94252,6 +94948,7 @@ namespace {
          * @since 4.7.0
          *
          * @see register_rest_route()
+         * @phpstan-return void
          */
         public function register_routes()
         {
@@ -94576,6 +95273,7 @@ namespace {
          * Registers the routes for the controller.
          *
          * @since 7.1.0
+         * @phpstan-return void
          */
         public function register_routes()
         {
@@ -94786,6 +95484,7 @@ namespace {
          * @since 5.8.0
          *
          * @see register_rest_route()
+         * @phpstan-return void
          */
         public function register_routes()
         {
@@ -94986,6 +95685,7 @@ namespace {
          * Registers the widget routes for the controller.
          *
          * @since 5.8.0
+         * @phpstan-return void
          */
         public function register_routes()
         {
@@ -95133,6 +95833,7 @@ namespace {
          * @since 5.9.0
          *
          * @see retrieve_widgets()
+         * @phpstan-return void
          */
         protected function retrieve_widgets()
         {
@@ -96198,6 +96899,7 @@ namespace {
          * @since 5.5.0
          *
          * @param array $sitemaps Array of sitemap URLs.
+         * @phpstan-return void
          */
         public function render_index($sitemaps)
         {
@@ -96219,6 +96921,7 @@ namespace {
          * @since 5.5.0
          *
          * @param array $url_list Array of URLs for a sitemap.
+         * @phpstan-return void
          */
         public function render_sitemap($url_list)
         {
@@ -96346,6 +97049,7 @@ namespace {
          * Registers and sets up the functionality for all supported sitemaps.
          *
          * @since 5.5.0
+         * @phpstan-return void
          */
         public function register_sitemaps()
         {
@@ -96354,6 +97058,7 @@ namespace {
          * Registers sitemap rewrite tags and routing rules.
          *
          * @since 5.5.0
+         * @phpstan-return void
          */
         public function register_rewrites()
         {
@@ -96938,6 +97643,7 @@ namespace {
          * Clears all stores from static::$stores.
          *
          * @since 6.1.0
+         * @phpstan-return void
          */
         public static function remove_all_stores()
         {
@@ -96948,6 +97654,7 @@ namespace {
          * @since 6.1.0
          *
          * @param string $name The store name.
+         * @phpstan-return void
          */
         public function set_name($name)
         {
@@ -96994,6 +97701,7 @@ namespace {
          * @since 6.1.0
          *
          * @param string $selector The CSS selector.
+         * @phpstan-return void
          */
         public function remove_rule($selector)
         {
@@ -97281,6 +97989,7 @@ namespace {
          * @global WP_Customize_Manager $wp_customize
          *
          * @param array $instance Current settings.
+         * @phpstan-return void
          */
         public function form($instance)
         {
@@ -97311,6 +98020,7 @@ namespace {
          * @param array $args     Display arguments including 'before_title', 'after_title',
          *                        'before_widget', and 'after_widget'.
          * @param array $instance Settings for the current Archives widget instance.
+         * @phpstan-return void
          */
         public function widget($args, $instance)
         {
@@ -97334,6 +98044,7 @@ namespace {
          * @since 2.8.0
          *
          * @param array $instance Current settings.
+         * @phpstan-return void
          */
         public function form($instance)
         {
@@ -97371,6 +98082,7 @@ namespace {
          * @param array $args     Display arguments including 'before_title', 'after_title',
          *                        'before_widget', and 'after_widget'.
          * @param array $instance Settings for the current Block widget instance.
+         * @phpstan-return void
          */
         public function widget($args, $instance)
         {
@@ -97395,6 +98107,7 @@ namespace {
          * @see WP_Widget_Custom_HTML::render_control_template_scripts()
          *
          * @param array $instance Current instance.
+         * @phpstan-return void
          */
         public function form($instance)
         {
@@ -97437,6 +98150,7 @@ namespace {
          * @param array $args     Display arguments including 'before_title', 'after_title',
          *                        'before_widget', and 'after_widget'.
          * @param array $instance The settings for the particular instance of the widget.
+         * @phpstan-return void
          */
         public function widget($args, $instance)
         {
@@ -97460,6 +98174,7 @@ namespace {
          * @since 2.8.0
          *
          * @param array $instance Current settings.
+         * @phpstan-return void
          */
         public function form($instance)
         {
@@ -97492,6 +98207,7 @@ namespace {
          * @param array $args     Display arguments including 'before_title', 'after_title',
          *                        'before_widget', and 'after_widget'.
          * @param array $instance Settings for the current Categories widget instance.
+         * @phpstan-return void
          */
         public function widget($args, $instance)
         {
@@ -97515,6 +98231,7 @@ namespace {
          * @since 2.8.0
          *
          * @param array $instance Current settings.
+         * @phpstan-return void
          */
         public function form($instance)
         {
@@ -97587,6 +98304,7 @@ namespace {
          * @param array $args     Display arguments including 'before_title', 'after_title',
          *                        'before_widget', and 'after_widget'.
          * @param array $instance Settings for the current Custom HTML widget instance.
+         * @phpstan-return void
          */
         public function widget($args, $instance)
         {
@@ -97608,6 +98326,7 @@ namespace {
          * Loads the required scripts and styles for the widget control.
          *
          * @since 4.9.0
+         * @phpstan-return void
          */
         public function enqueue_admin_scripts()
         {
@@ -97621,6 +98340,7 @@ namespace {
          * @see WP_Widget_Custom_HTML::render_control_template_scripts()
          *
          * @param array $instance Current instance.
+         * @phpstan-return void
          */
         public function form($instance)
         {
@@ -97629,6 +98349,7 @@ namespace {
          * Render form template scripts.
          *
          * @since 4.9.0
+         * @phpstan-return void
          */
         public static function render_control_template_scripts()
         {
@@ -97637,6 +98358,7 @@ namespace {
          * Add help text to widgets admin screen.
          *
          * @since 4.9.0
+         * @phpstan-return void
          */
         public static function add_help_text()
         {
@@ -97667,6 +98389,7 @@ namespace {
          * @param array $args     Display arguments including 'before_title', 'after_title',
          *                        'before_widget', and 'after_widget'.
          * @param array $instance Settings for the current Links widget instance.
+         * @phpstan-return void
          */
         public function widget($args, $instance)
         {
@@ -97690,6 +98413,7 @@ namespace {
          * @since 2.8.0
          *
          * @param array $instance Current settings.
+         * @phpstan-return void
          */
         public function form($instance)
         {
@@ -97858,6 +98582,7 @@ namespace {
          * @see \WP_Widget_Media::render_control_template_scripts() Where the JS template is located.
          *
          * @param array $instance Current settings.
+         * @phpstan-return void
          */
         final public function form($instance)
         {
@@ -97891,6 +98616,7 @@ namespace {
          * Loads the required scripts and styles for the widget control.
          *
          * @since 4.8.0
+         * @phpstan-return void
          */
         public function enqueue_admin_scripts()
         {
@@ -97899,6 +98625,7 @@ namespace {
          * Render form template scripts.
          *
          * @since 4.8.0
+         * @phpstan-return void
          */
         public function render_control_template_scripts()
         {
@@ -97907,6 +98634,7 @@ namespace {
          * Resets the cache for the default labels.
          *
          * @since 6.0.0
+         * @phpstan-return void
          */
         public static function reset_default_labels()
         {
@@ -97981,6 +98709,7 @@ namespace {
          * @since 4.8.0
          *
          * @param array $instance Widget instance props.
+         * @phpstan-return void
          */
         public function render_media($instance)
         {
@@ -97994,6 +98723,7 @@ namespace {
          * case a widget does get added.
          *
          * @since 4.8.0
+         * @phpstan-return void
          */
         public function enqueue_preview_scripts()
         {
@@ -98002,6 +98732,7 @@ namespace {
          * Loads the required media files for the media manager and scripts for media widgets.
          *
          * @since 4.8.0
+         * @phpstan-return void
          */
         public function enqueue_admin_scripts()
         {
@@ -98010,6 +98741,7 @@ namespace {
          * Render form template scripts.
          *
          * @since 4.8.0
+         * @phpstan-return void
          */
         public function render_control_template_scripts()
         {
@@ -98053,6 +98785,7 @@ namespace {
          * @since 4.9.0
          *
          * @param array $instance Widget instance props.
+         * @phpstan-return void
          */
         public function render_media($instance)
         {
@@ -98061,6 +98794,7 @@ namespace {
          * Loads the required media files for the media manager and scripts for media widgets.
          *
          * @since 4.9.0
+         * @phpstan-return void
          */
         public function enqueue_admin_scripts()
         {
@@ -98069,6 +98803,7 @@ namespace {
          * Render form template scripts.
          *
          * @since 4.9.0
+         * @phpstan-return void
          */
         public function render_control_template_scripts()
         {
@@ -98132,6 +98867,7 @@ namespace {
          * Loads the required media files for the media manager and scripts for media widgets.
          *
          * @since 4.8.0
+         * @phpstan-return void
          */
         public function enqueue_admin_scripts()
         {
@@ -98140,6 +98876,7 @@ namespace {
          * Render form template scripts.
          *
          * @since 4.8.0
+         * @phpstan-return void
          */
         public function render_control_template_scripts()
         {
@@ -98208,6 +98945,7 @@ namespace {
          * case a widget does get added.
          *
          * @since 4.8.0
+         * @phpstan-return void
          */
         public function enqueue_preview_scripts()
         {
@@ -98216,6 +98954,7 @@ namespace {
          * Loads the required scripts and styles for the widget control.
          *
          * @since 4.8.0
+         * @phpstan-return void
          */
         public function enqueue_admin_scripts()
         {
@@ -98224,6 +98963,7 @@ namespace {
          * Render form template scripts.
          *
          * @since 4.8.0
+         * @phpstan-return void
          */
         public function render_control_template_scripts()
         {
@@ -98256,6 +98996,7 @@ namespace {
          * @param array $args     Display arguments including 'before_title', 'after_title',
          *                        'before_widget', and 'after_widget'.
          * @param array $instance Settings for the current Meta widget instance.
+         * @phpstan-return void
          */
         public function widget($args, $instance)
         {
@@ -98279,6 +99020,7 @@ namespace {
          * @since 2.8.0
          *
          * @param array $instance Current settings.
+         * @phpstan-return void
          */
         public function form($instance)
         {
@@ -98309,6 +99051,7 @@ namespace {
          * @param array $args     Display arguments including 'before_title', 'after_title',
          *                        'before_widget', and 'after_widget'.
          * @param array $instance Settings for the current Pages widget instance.
+         * @phpstan-return void
          */
         public function widget($args, $instance)
         {
@@ -98332,6 +99075,7 @@ namespace {
          * @since 2.8.0
          *
          * @param array $instance Current settings.
+         * @phpstan-return void
          */
         public function form($instance)
         {
@@ -98373,6 +99117,7 @@ namespace {
          * @param array $args     Display arguments including 'before_title', 'after_title',
          *                        'before_widget', and 'after_widget'.
          * @param array $instance Settings for the current Recent Comments widget instance.
+         * @phpstan-return void
          */
         public function widget($args, $instance)
         {
@@ -98396,6 +99141,7 @@ namespace {
          * @since 2.8.0
          *
          * @param array $instance Current settings.
+         * @phpstan-return void
          */
         public function form($instance)
         {
@@ -98460,6 +99206,7 @@ namespace {
          * @since 2.8.0
          *
          * @param array $instance Current settings.
+         * @phpstan-return void
          */
         public function form($instance)
         {
@@ -98514,6 +99261,7 @@ namespace {
          * @since 2.8.0
          *
          * @param array $instance Current settings.
+         * @phpstan-return void
          */
         public function form($instance)
         {
@@ -98544,6 +99292,7 @@ namespace {
          * @param array $args     Display arguments including 'before_title', 'after_title',
          *                        'before_widget', and 'after_widget'.
          * @param array $instance Settings for the current Search widget instance.
+         * @phpstan-return void
          */
         public function widget($args, $instance)
         {
@@ -98554,6 +99303,7 @@ namespace {
          * @since 2.8.0
          *
          * @param array $instance Current settings.
+         * @phpstan-return void
          */
         public function form($instance)
         {
@@ -98621,6 +99371,7 @@ namespace {
          * @since 2.8.0
          *
          * @param array $instance Current settings.
+         * @phpstan-return void
          */
         public function form($instance)
         {
@@ -98717,6 +99468,7 @@ namespace {
          * @param array $args     Display arguments including 'before_title', 'after_title',
          *                        'before_widget', and 'after_widget'.
          * @param array $instance Settings for the current Text widget instance.
+         * @phpstan-return void
          */
         public function widget($args, $instance)
         {
@@ -98755,6 +99507,7 @@ namespace {
          * dynamically added via selective refresh, so it is important to unconditionally enqueue them.
          *
          * @since 4.9.3
+         * @phpstan-return void
          */
         public function enqueue_preview_scripts()
         {
@@ -98763,6 +99516,7 @@ namespace {
          * Loads the required scripts and styles for the widget control.
          *
          * @since 4.8.0
+         * @phpstan-return void
          */
         public function enqueue_admin_scripts()
         {
@@ -98778,6 +99532,7 @@ namespace {
          * @see _WP_Editors::editor()
          *
          * @param array $instance Current settings.
+         * @phpstan-return void
          */
         public function form($instance)
         {
@@ -98787,6 +99542,7 @@ namespace {
          *
          * @since 4.8.0
          * @since 4.9.0 The method is now static.
+         * @phpstan-return void
          */
         public static function render_control_template_scripts()
         {
@@ -98848,6 +99604,7 @@ namespace {
      * Fires on {@see 'wp_head'}.
      *
      * @since MU (3.0.0)
+     * @phpstan-return void
      */
     function do_activate_header()
     {
@@ -98856,6 +99613,7 @@ namespace {
      * Loads styles specific to this page.
      *
      * @since MU (3.0.0)
+     * @phpstan-return void
      */
     function wpmu_activate_stylesheet()
     {
@@ -98864,6 +99622,7 @@ namespace {
      * Display JavaScript on the page.
      *
      * @since 3.5.0
+     * @phpstan-return void
      */
     function export_add_js()
     {
@@ -98956,6 +99715,7 @@ namespace {
      * Handles Ajax requests for community events
      *
      * @since 4.8.0
+     * @phpstan-return void
      */
     function wp_ajax_get_community_events()
     {
@@ -98988,6 +99748,7 @@ namespace {
      *
      * @param int $comment_id Comment ID.
      * @param int $delta      Optional. Change in the number of total comments. Default -1.
+     * @phpstan-return void
      */
     function _wp_ajax_delete_comment_response($comment_id, $delta = -1)
     {
@@ -98997,6 +99758,7 @@ namespace {
      *
      * @since 3.1.0
      * @access private
+     * @phpstan-return void
      */
     function _wp_ajax_add_hierarchical_term()
     {
@@ -99014,6 +99776,7 @@ namespace {
      * Handles deleting a tag via AJAX.
      *
      * @since 3.1.0
+     * @phpstan-return void
      */
     function wp_ajax_delete_tag()
     {
@@ -99022,6 +99785,7 @@ namespace {
      * Handles deleting a link via AJAX.
      *
      * @since 3.1.0
+     * @phpstan-return void
      */
     function wp_ajax_delete_link()
     {
@@ -99041,6 +99805,7 @@ namespace {
      * @since 3.1.0
      *
      * @param string $action Action to perform.
+     * @phpstan-return void
      */
     function wp_ajax_delete_post($action)
     {
@@ -99062,6 +99827,7 @@ namespace {
      * @since 3.1.0
      *
      * @param string $action Action to perform.
+     * @phpstan-return void
      */
     function wp_ajax_untrash_post($action)
     {
@@ -99072,6 +99838,7 @@ namespace {
      * @since 3.1.0
      *
      * @param string $action Action to perform.
+     * @phpstan-return void
      */
     function wp_ajax_delete_page($action)
     {
@@ -99091,6 +99858,7 @@ namespace {
      * @since 3.1.0
      *
      * @param string $action Action to perform.
+     * @phpstan-return void
      */
     function wp_ajax_add_link_category($action)
     {
@@ -99099,6 +99867,7 @@ namespace {
      * Handles adding a tag via AJAX.
      *
      * @since 3.1.0
+     * @phpstan-return void
      */
     function wp_ajax_add_tag()
     {
@@ -99120,6 +99889,7 @@ namespace {
      * @global int $post_id Post ID.
      *
      * @param string $action Action to perform.
+     * @phpstan-return void
      */
     function wp_ajax_get_comments($action)
     {
@@ -99130,6 +99900,7 @@ namespace {
      * @since 3.1.0
      *
      * @param string $action Action to perform.
+     * @phpstan-return void
      */
     function wp_ajax_replyto_comment($action)
     {
@@ -99138,6 +99909,7 @@ namespace {
      * Handles editing a comment via AJAX.
      *
      * @since 3.1.0
+     * @phpstan-return void
      */
     function wp_ajax_edit_comment()
     {
@@ -99155,6 +99927,7 @@ namespace {
      * Handles adding meta via AJAX.
      *
      * @since 3.1.0
+     * @phpstan-return void
      */
     function wp_ajax_add_meta()
     {
@@ -99165,6 +99938,7 @@ namespace {
      * @since 3.1.0
      *
      * @param string $action Action to perform.
+     * @phpstan-return void
      */
     function wp_ajax_add_user($action)
     {
@@ -99318,6 +100092,7 @@ namespace {
      * @since 3.9.0
      *
      * @global WP_Customize_Manager $wp_customize Customizer manager object.
+     * @phpstan-return void
      */
     function wp_ajax_update_widget()
     {
@@ -99410,7 +100185,6 @@ namespace {
      *
      * @since 3.1.0
      * @deprecated 4.3.0
-     * @phpstan-return never
      */
     function wp_ajax_wp_fullscreen_save_post()
     {
@@ -99736,6 +100510,7 @@ namespace {
      * @since 4.9.0
      *
      * @see wp_edit_theme_plugin_file()
+     * @phpstan-return void
      */
     function wp_ajax_edit_theme_plugin_file()
     {
@@ -99764,7 +100539,6 @@ namespace {
      * @since 5.2.0
      * @deprecated 5.6.0 Use WP_REST_Site_Health_Controller::test_dotorg_communication()
      * @see WP_REST_Site_Health_Controller::test_dotorg_communication()
-     * @phpstan-return never
      */
     function wp_ajax_health_check_dotorg_communication()
     {
@@ -99775,7 +100549,6 @@ namespace {
      * @since 5.2.0
      * @deprecated 5.6.0 Use WP_REST_Site_Health_Controller::test_background_updates()
      * @see WP_REST_Site_Health_Controller::test_background_updates()
-     * @phpstan-return never
      */
     function wp_ajax_health_check_background_updates()
     {
@@ -99786,7 +100559,6 @@ namespace {
      * @since 5.2.0
      * @deprecated 5.6.0 Use WP_REST_Site_Health_Controller::test_loopback_requests()
      * @see WP_REST_Site_Health_Controller::test_loopback_requests()
-     * @phpstan-return never
      */
     function wp_ajax_health_check_loopback_requests()
     {
@@ -99806,7 +100578,6 @@ namespace {
      * @since 5.2.0
      * @deprecated 5.6.0 Use WP_REST_Site_Health_Controller::get_directory_sizes()
      * @see WP_REST_Site_Health_Controller::get_directory_sizes()
-     * @phpstan-return never
      */
     function wp_ajax_health_check_get_sizes()
     {
@@ -99833,6 +100604,7 @@ namespace {
      * Handles sending a password reset link via AJAX.
      *
      * @since 5.7.0
+     * @phpstan-return void
      */
     function wp_ajax_send_password_reset()
     {
@@ -99965,6 +100737,7 @@ namespace {
      *
      * @param int   $link_id         ID of the link to update.
      * @param int[] $link_categories Array of link category IDs to add the link to.
+     * @phpstan-return void
      */
     function wp_set_link_cats($link_id = 0, $link_categories = array())
     {
@@ -100114,6 +100887,7 @@ namespace {
      * Enqueues comment shortcuts jQuery script.
      *
      * @since 2.7.0
+     * @phpstan-return void
      */
     function enqueue_comment_hotkeys_js()
     {
@@ -100151,6 +100925,7 @@ namespace {
      * @param string $display_name  The contributor's display name (passed by reference).
      * @param string $username      The contributor's username.
      * @param string $profiles      URL to the contributor's WordPress.org profile page.
+     * @phpstan-return void
      */
     function _wp_credits_add_profile_link(&$display_name, $username, $profiles)
     {
@@ -100162,6 +100937,7 @@ namespace {
      * @since 3.2.0
      *
      * @param string $data External library data (passed by reference).
+     * @phpstan-return void
      */
     function _wp_credits_build_object_link(&$data)
     {
@@ -100199,6 +100975,7 @@ namespace {
      * @global array $wp_registered_widgets
      * @global array $wp_registered_widget_controls
      * @global callable[] $wp_dashboard_control_callbacks
+     * @phpstan-return void
      */
     function wp_dashboard_setup()
     {
@@ -100224,6 +101001,7 @@ namespace {
      *                                   Accepts 'high', 'core', 'default', or 'low'. Default 'core'.
      * @phpstan-param 'normal'|'side'|'column3'|'column4' $context
      * @phpstan-param 'high'|'core'|'default'|'low' $priority
+     * @phpstan-return void
      */
     function wp_add_dashboard_widget($widget_id, $widget_name, $callback, $control_callback = \null, $callback_args = \null, $context = 'normal', $priority = 'core')
     {
@@ -100236,6 +101014,7 @@ namespace {
      *
      * @param mixed $dashboard
      * @param array $meta_box
+     * @phpstan-return void
      */
     function _wp_dashboard_control_callback($dashboard, $meta_box)
     {
@@ -100244,6 +101023,7 @@ namespace {
      * Displays the dashboard.
      *
      * @since 2.5.0
+     * @phpstan-return void
      */
     function wp_dashboard()
     {
@@ -100254,12 +101034,14 @@ namespace {
      * Formerly 'Right Now'. A streamlined 'At a Glance' as of 3.8.
      *
      * @since 2.7.0
+     * @phpstan-return void
      */
     function wp_dashboard_right_now()
     {
     }
     /**
      * @since 3.1.0
+     * @phpstan-return void
      */
     function wp_network_dashboard_right_now()
     {
@@ -100300,6 +101082,7 @@ namespace {
      *
      * @param WP_Comment $comment   The current comment.
      * @param bool       $show_date Optional. Whether to display the date.
+     * @phpstan-return void
      */
     function _wp_dashboard_recent_comments_row(&$comment, $show_date = \true)
     {
@@ -100310,6 +101093,7 @@ namespace {
      * Callback function for {@see 'dashboard_activity'}.
      *
      * @since 3.8.0
+     * @phpstan-return void
      */
     function wp_dashboard_site_activity()
     {
@@ -100357,6 +101141,7 @@ namespace {
      * @since 2.5.0
      *
      * @param string $widget_id
+     * @phpstan-return void
      */
     function wp_dashboard_rss_output($widget_id)
     {
@@ -100390,6 +101175,7 @@ namespace {
      * @global callable[] $wp_dashboard_control_callbacks
      *
      * @param int|false $widget_control_id Optional. Registered widget ID. Default false.
+     * @phpstan-return void
      */
     function wp_dashboard_trigger_widget_control($widget_control_id = \false)
     {
@@ -100403,6 +101189,7 @@ namespace {
      *
      * @param string $widget_id
      * @param array  $form_inputs
+     * @phpstan-return void
      */
     function wp_dashboard_rss_control($widget_id, $form_inputs = array())
     {
@@ -100411,6 +101198,7 @@ namespace {
      * Renders the Events and News dashboard widget.
      *
      * @since 4.8.0
+     * @phpstan-return void
      */
     function wp_dashboard_events_news()
     {
@@ -100419,6 +101207,7 @@ namespace {
      * Prints the markup for the Community Events section of the Events and News Dashboard widget.
      *
      * @since 4.8.0
+     * @phpstan-return void
      */
     function wp_print_community_events_markup()
     {
@@ -100427,6 +101216,7 @@ namespace {
      * Renders the events templates for the Event and News widget.
      *
      * @since 4.8.0
+     * @phpstan-return void
      */
     function wp_print_community_events_templates()
     {
@@ -100436,6 +101226,7 @@ namespace {
      *
      * @since 2.7.0
      * @since 4.8.0 Removed popular plugins feed.
+     * @phpstan-return void
      */
     function wp_dashboard_primary()
     {
@@ -100448,6 +101239,7 @@ namespace {
      *
      * @param string $widget_id Widget ID.
      * @param array  $feeds     Array of RSS feeds.
+     * @phpstan-return void
      */
     function wp_dashboard_primary_output($widget_id, $feeds)
     {
@@ -100471,6 +101263,7 @@ namespace {
      * @since 5.8.0 Added a special message for Internet Explorer users.
      *
      * @global bool $is_IE
+     * @phpstan-return void
      */
     function wp_dashboard_browser_nag()
     {
@@ -100520,6 +101313,7 @@ namespace {
      * Displays the Site Health Status widget.
      *
      * @since 5.4.0
+     * @phpstan-return void
      */
     function wp_dashboard_site_health()
     {
@@ -100539,6 +101333,7 @@ namespace {
      *
      * @since 3.3.0
      * @since 5.9.0 Send users to the Site Editor if the active theme is block-based.
+     * @phpstan-return void
      */
     function wp_welcome_panel()
     {
@@ -101429,6 +102224,7 @@ namespace {
      *   end_date?: string,
      *   status?: string,
      * } $args
+     * @phpstan-return void
      */
     function export_wp($args = array())
     {
@@ -101503,6 +102299,7 @@ namespace {
      * Prints file editor templates (for plugins and themes).
      *
      * @since 4.9.0
+     * @phpstan-return void
      */
     function wp_print_file_editor_templates()
     {
@@ -102038,6 +102835,7 @@ namespace {
      * @param int          $post_id Attachment post ID.
      * @param false|object $msg     Optional. Message to display for image editor updates or errors.
      *                              Default false.
+     * @phpstan-return void
      */
     function wp_image_editor($post_id, $msg = \false)
     {
@@ -102489,6 +103287,7 @@ namespace {
      * @since 2.0.0
      *
      * @param string $id Importer ID.
+     * @phpstan-return void
      */
     function wp_import_cleanup($id)
     {
@@ -102542,6 +103341,7 @@ namespace {
      *                          usually the hook name returned by the `add_*_page()` functions.
      * @param string[] $columns An array of columns with column IDs as the keys and translated
      *                          column names as the values.
+     * @phpstan-return void
      */
     function register_column_headers($screen, $columns)
     {
@@ -102553,6 +103353,7 @@ namespace {
      *
      * @param string|WP_Screen $screen  The screen hook name or screen object.
      * @param bool             $with_id Whether to set the ID attribute or not.
+     * @phpstan-return void
      */
     function print_column_headers($screen, $with_id = \true)
     {
@@ -102586,6 +103387,7 @@ namespace {
      * @since 2.5.0
      *
      * @global string $redir_tab The name of the tab to redirect to.
+     * @phpstan-return void
      */
     function the_media_upload_tabs()
     {
@@ -102691,6 +103493,7 @@ namespace {
      *
      * @param callable $content_func Function that outputs the content.
      * @param mixed    ...$args      Optional additional parameters to pass to the callback function when it's called.
+     * @phpstan-return void
      */
     function wp_iframe($content_func, ...$args)
     {
@@ -102703,6 +103506,7 @@ namespace {
      * @global int $post_ID
      *
      * @param string $editor_id
+     * @phpstan-return void
      */
     function media_buttons($editor_id = 'content')
     {
@@ -102945,6 +103749,7 @@ namespace {
      * Outputs the legacy media upload header.
      *
      * @since 2.5.0
+     * @phpstan-return void
      */
     function media_upload_header()
     {
@@ -102971,6 +103776,7 @@ namespace {
      * @param string       $type
      * @param array        $errors
      * @param int|WP_Error $id
+     * @phpstan-return void
      */
     function media_upload_type_form($type = 'file', $errors = \null, $id = \null)
     {
@@ -102983,6 +103789,7 @@ namespace {
      * @param string  $type
      * @param object  $errors
      * @param int     $id
+     * @phpstan-return void
      */
     function media_upload_type_url_form($type = \null, $errors = \null, $id = \null)
     {
@@ -102997,6 +103804,7 @@ namespace {
      * @global string $tab
      *
      * @param array $errors
+     * @phpstan-return void
      */
     function media_upload_gallery_form($errors)
     {
@@ -103014,6 +103822,7 @@ namespace {
      * @global array     $post_mime_types
      *
      * @param array $errors
+     * @phpstan-return void
      */
     function media_upload_library_form($errors)
     {
@@ -103034,6 +103843,7 @@ namespace {
      * Displays the multi-file uploader message.
      *
      * @since 2.6.0
+     * @phpstan-return void
      */
     function media_upload_flash_bypass()
     {
@@ -103042,6 +103852,7 @@ namespace {
      * Displays the browser's built-in uploader message.
      *
      * @since 2.6.0
+     * @phpstan-return void
      */
     function media_upload_html_bypass()
     {
@@ -103058,6 +103869,7 @@ namespace {
      * Displays the checkbox to scale images.
      *
      * @since 3.3.0
+     * @phpstan-return void
      */
     function media_upload_max_image_resize()
     {
@@ -103066,6 +103878,7 @@ namespace {
      * Displays the out of storage quota message in Multisite.
      *
      * @since 3.5.0
+     * @phpstan-return void
      */
     function multisite_over_quota_message()
     {
@@ -103076,6 +103889,7 @@ namespace {
      * @since 3.5.0
      *
      * @param WP_Post $post A post object.
+     * @phpstan-return void
      */
     function edit_form_image_editor($post)
     {
@@ -103084,6 +103898,7 @@ namespace {
      * Displays non-editable attachment metadata in the publish meta box.
      *
      * @since 3.5.0
+     * @phpstan-return void
      */
     function attachment_submitbox_metadata()
     {
@@ -103095,6 +103910,7 @@ namespace {
      *
      * @param array $metadata An existing array with data.
      * @param array $data Data supplied by ID3 tags.
+     * @phpstan-return void
      */
     function wp_add_id3_tag_data(&$metadata, $data)
     {
@@ -103216,6 +104032,7 @@ namespace {
      *   callback?: callable,
      *   args?: array,
      * } $args
+     * @phpstan-return void
      */
     function post_submit_meta_box($post, $args = array())
     {
@@ -103226,6 +104043,7 @@ namespace {
      * @since 3.5.0
      *
      * @param WP_Post $post Current post object.
+     * @phpstan-return void
      */
     function attachment_submit_meta_box($post)
     {
@@ -103250,6 +104068,7 @@ namespace {
      *   callback?: callable,
      *   args?: array,
      * } $box
+     * @phpstan-return void
      */
     function post_format_meta_box($post, $box)
     {
@@ -103282,6 +104101,7 @@ namespace {
      *     taxonomy?: string,
      *   },
      * } $box
+     * @phpstan-return void
      */
     function post_tags_meta_box($post, $box)
     {
@@ -103314,6 +104134,7 @@ namespace {
      *     taxonomy?: string,
      *   },
      * } $box
+     * @phpstan-return void
      */
     function post_categories_meta_box($post, $box)
     {
@@ -103324,6 +104145,7 @@ namespace {
      * @since 2.6.0
      *
      * @param WP_Post $post Current post object.
+     * @phpstan-return void
      */
     function post_excerpt_meta_box($post)
     {
@@ -103334,6 +104156,7 @@ namespace {
      * @since 2.6.0
      *
      * @param WP_Post $post Current post object.
+     * @phpstan-return void
      */
     function post_trackback_meta_box($post)
     {
@@ -103344,6 +104167,7 @@ namespace {
      * @since 2.6.0
      *
      * @param WP_Post $post Current post object.
+     * @phpstan-return void
      */
     function post_custom_meta_box($post)
     {
@@ -103354,6 +104178,7 @@ namespace {
      * @since 2.6.0
      *
      * @param WP_Post $post Current post object.
+     * @phpstan-return void
      */
     function post_comment_status_meta_box($post)
     {
@@ -103375,6 +104200,7 @@ namespace {
      * @since 2.8.0
      *
      * @param WP_Post $post Current post object.
+     * @phpstan-return void
      */
     function post_comment_meta_box($post)
     {
@@ -103385,6 +104211,7 @@ namespace {
      * @since 2.6.0
      *
      * @param WP_Post $post Current post object.
+     * @phpstan-return void
      */
     function post_slug_meta_box($post)
     {
@@ -103397,6 +104224,7 @@ namespace {
      * @global int $user_ID
      *
      * @param WP_Post $post Current post object.
+     * @phpstan-return void
      */
     function post_author_meta_box($post)
     {
@@ -103407,6 +104235,7 @@ namespace {
      * @since 2.6.0
      *
      * @param WP_Post $post Current post object.
+     * @phpstan-return void
      */
     function post_revisions_meta_box($post)
     {
@@ -103417,6 +104246,7 @@ namespace {
      * @since 2.7.0
      *
      * @param WP_Post $post Current post object.
+     * @phpstan-return void
      */
     function page_attributes_meta_box($post)
     {
@@ -103427,6 +104257,7 @@ namespace {
      * @since 2.7.0
      *
      * @param object $link Current link object.
+     * @phpstan-return void
      */
     function link_submit_meta_box($link)
     {
@@ -103437,6 +104268,7 @@ namespace {
      * @since 2.6.0
      *
      * @param object $link Current link object.
+     * @phpstan-return void
      */
     function link_categories_meta_box($link)
     {
@@ -103447,6 +104279,7 @@ namespace {
      * @since 2.6.0
      *
      * @param object $link Current link object.
+     * @phpstan-return void
      */
     function link_target_meta_box($link)
     {
@@ -103466,6 +104299,7 @@ namespace {
      *                                 Default empty string.
      * @param mixed  $deprecated       Deprecated. Not used.
      * @phpstan-param '' $deprecated
+     * @phpstan-return void
      */
     function xfn_check($xfn_relationship, $xfn_value = '', $deprecated = '')
     {
@@ -103476,6 +104310,7 @@ namespace {
      * @since 2.6.0
      *
      * @param object $link Current link object.
+     * @phpstan-return void
      */
     function link_xfn_meta_box($link)
     {
@@ -103486,6 +104321,7 @@ namespace {
      * @since 2.6.0
      *
      * @param object $link Current link object.
+     * @phpstan-return void
      */
     function link_advanced_meta_box($link)
     {
@@ -103496,6 +104332,7 @@ namespace {
      * @since 2.9.0
      *
      * @param WP_Post $post Current post object.
+     * @phpstan-return void
      */
     function post_thumbnail_meta_box($post)
     {
@@ -103506,6 +104343,7 @@ namespace {
      * @since 3.9.0
      *
      * @param WP_Post $post Current post object.
+     * @phpstan-return void
      */
     function attachment_id3_data_meta_box($post)
     {
@@ -103516,6 +104354,7 @@ namespace {
      * @since 5.0.0
      *
      * @param WP_Post $post The post object that these meta boxes are being generated for.
+     * @phpstan-return void
      */
     function register_and_do_post_meta_boxes($post)
     {
@@ -103608,6 +104447,7 @@ namespace {
      * @since 1.5.0
      *
      * @param string $file Path to the recently edited file.
+     * @phpstan-return void
      */
     function update_recently_edited($file)
     {
@@ -103638,6 +104478,7 @@ namespace {
      * @param int          $level The aria-level for the current iteration.
      * @param int          $size  The aria-setsize for the current iteration.
      * @param int          $index The aria-posinset for the current iteration.
+     * @phpstan-return void
      */
     function wp_print_theme_file_tree($tree, $level = 2, $size = 1, $index = 1)
     {
@@ -103668,6 +104509,7 @@ namespace {
      * @param int          $level The aria-level for the current iteration.
      * @param int          $size  The aria-setsize for the current iteration.
      * @param int          $index The aria-posinset for the current iteration.
+     * @phpstan-return void
      */
     function wp_print_plugin_file_tree($tree, $label = '', $level = 2, $size = 1, $index = 1)
     {
@@ -103694,6 +104536,7 @@ namespace {
      * @since 2.0.0
      *
      * @param array $vars An array of globals to reset.
+     * @phpstan-return void
      */
     function wp_reset_vars($vars)
     {
@@ -103704,6 +104547,7 @@ namespace {
      * @since 2.1.0
      *
      * @param string|WP_Error $message The message to display, or a WP_Error object.
+     * @phpstan-return void
      */
     function show_message($message)
     {
@@ -103769,6 +104613,7 @@ namespace {
      *
      * @param DOMDocument $doc      The DOMDocument object to save.
      * @param string      $filename The file path to save the XML document to.
+     * @phpstan-return void
      */
     function saveDomDocument($doc, $filename)
     {
@@ -103781,6 +104626,7 @@ namespace {
      * @global array $_wp_admin_css_colors
      *
      * @param int $user_id User ID.
+     * @phpstan-return void
      */
     function admin_color_scheme_picker($user_id)
     {
@@ -103791,6 +104637,7 @@ namespace {
      * @since 3.8.0
      *
      * @global array $_wp_admin_css_colors
+     * @phpstan-return void
      */
     function wp_color_scheme_settings()
     {
@@ -103923,6 +104770,7 @@ namespace {
      * so the post title and editor content are the last saved versions. Ideally this script should run first in the head.
      *
      * @since 4.6.0
+     * @phpstan-return void
      */
     function wp_page_reload_on_back_button_js()
     {
@@ -104104,6 +104952,7 @@ namespace {
      *
      * @param int  $blog_id Site ID.
      * @param bool $drop    True if site's database tables should be dropped. Default false.
+     * @phpstan-return void
      */
     function wpmu_delete_blog($blog_id, $drop = \false)
     {
@@ -104144,6 +104993,7 @@ namespace {
      * Displays the amount of disk space used by the current site. Not used in core.
      *
      * @since MU (3.0.0)
+     * @phpstan-return void
      */
     function display_space_usage()
     {
@@ -104165,6 +105015,7 @@ namespace {
      * @since 3.0.0
      *
      * @param int $id The ID of the site to display the setting for.
+     * @phpstan-return void
      */
     function upload_space_setting($id)
     {
@@ -104221,6 +105072,7 @@ namespace {
      *
      * @param string[] $lang_files Optional. An array of the language files. Default empty array.
      * @param string   $current    Optional. The current language code. Default empty.
+     * @phpstan-return void
      */
     function mu_dropdown_languages($lang_files = array(), $current = '')
     {
@@ -104260,6 +105112,7 @@ namespace {
      * which site is primary.
      *
      * @since 3.0.0
+     * @phpstan-return void
      */
     function choose_primary_blog()
     {
@@ -104284,6 +105137,7 @@ namespace {
      * @since 3.1.0
      *
      * @access private
+     * @phpstan-return void
      */
     function _thickbox_path_admin_subfolder()
     {
@@ -104301,6 +105155,7 @@ namespace {
      * Prints JavaScript in the header on the Network Settings screen.
      *
      * @since 4.1.0
+     * @phpstan-return void
      */
     function network_settings_add_js()
     {
@@ -104324,6 +105179,7 @@ namespace {
      *   links?: array,
      *   selected?: string,
      * } $args
+     * @phpstan-return void
      */
     function network_edit_site_nav($args = array())
     {
@@ -104356,6 +105212,7 @@ namespace {
      * @since 6.8.0
      *
      * @param string $role Role the user is attempting to assign.
+     * @phpstan-return void
      */
     function wp_ensure_editable_role($role)
     {
@@ -104375,6 +105232,7 @@ namespace {
      * Register nav menu meta boxes and advanced menu items.
      *
      * @since 3.0.0
+     * @phpstan-return void
      */
     function wp_nav_menu_setup()
     {
@@ -104430,6 +105288,7 @@ namespace {
      *
      * @global int        $_nav_menu_placeholder
      * @global int|string $nav_menu_selected_id
+     * @phpstan-return void
      */
     function wp_nav_menu_item_link_meta_box()
     {
@@ -104544,6 +105403,7 @@ namespace {
      * @since 3.0.0
      *
      * @global wpdb $wpdb WordPress database abstraction object.
+     * @phpstan-return void
      */
     function _wp_delete_orphaned_draft_menu_items()
     {
@@ -104626,6 +105486,7 @@ namespace {
      * @global bool $is_apache
      *
      * @param false|WP_Error $errors Optional. Error object. Default false.
+     * @phpstan-return void
      */
     function network_step1($errors = \false)
     {
@@ -104639,6 +105500,7 @@ namespace {
      * @global bool $is_nginx Whether the server software is Nginx or something else.
      *
      * @param false|WP_Error $errors Optional. Error object. Default false.
+     * @phpstan-return void
      */
     function network_step2($errors = \false)
     {
@@ -104647,6 +105509,7 @@ namespace {
      * Output JavaScript to toggle display of additional settings if avatars are disabled.
      *
      * @since 4.2.0
+     * @phpstan-return void
      */
     function options_discussion_add_js()
     {
@@ -104655,6 +105518,7 @@ namespace {
      * Display JavaScript on the page.
      *
      * @since 3.5.0
+     * @phpstan-return void
      */
     function options_general_add_js()
     {
@@ -104663,6 +105527,7 @@ namespace {
      * Display JavaScript on the page.
      *
      * @since 3.5.0
+     * @phpstan-return void
      */
     function options_reading_add_js()
     {
@@ -104671,6 +105536,7 @@ namespace {
      * Render the site charset setting.
      *
      * @since 3.5.0
+     * @phpstan-return void
      */
     function options_reading_blog_charset()
     {
@@ -104823,6 +105689,7 @@ namespace {
      * Displays the Featured tab of Add Plugins screen.
      *
      * @since 2.7.0
+     * @phpstan-return void
      */
     function install_dashboard()
     {
@@ -104835,6 +105702,7 @@ namespace {
      *
      * @param bool $deprecated Not used.
      * @phpstan-param true $deprecated
+     * @phpstan-return void
      */
     function install_search_form($deprecated = \true)
     {
@@ -104843,6 +105711,7 @@ namespace {
      * Displays a form to upload plugins from zip files.
      *
      * @since 2.8.0
+     * @phpstan-return void
      */
     function install_plugins_upload()
     {
@@ -104851,6 +105720,7 @@ namespace {
      * Shows a username form for the favorites page.
      *
      * @since 3.5.0
+     * @phpstan-return void
      */
     function install_plugins_favorites_form()
     {
@@ -105244,6 +106114,7 @@ namespace {
      * @param bool|null       $network_wide Whether to deactivate the plugin for all sites in the network.
      *                                      A value of null will deactivate plugins for both the network
      *                                      and the current site. Multisite only. Default null.
+     * @phpstan-return void
      */
     function deactivate_plugins($plugins, $silent = \false, $network_wide = \null)
     {
@@ -105882,6 +106753,7 @@ namespace {
      *
      * @param string $option_group A settings group name. This should match the group name
      *                             used in register_setting().
+     * @phpstan-return void
      */
     function settings_fields($option_group)
     {
@@ -105892,6 +106764,7 @@ namespace {
      * @since 3.7.0
      *
      * @param bool $clear_update_cache Whether to clear the plugin updates cache. Default true.
+     * @phpstan-return void
      */
     function wp_clean_plugins_cache($clear_update_cache = \true)
     {
@@ -105903,6 +106776,7 @@ namespace {
      * @since 4.4.0 Function was moved into the `wp-admin/includes/plugin.php` file.
      *
      * @param string $plugin Path to the plugin file relative to the plugins directory.
+     * @phpstan-return void
      */
     function plugin_sandbox_scrape($plugin)
     {
@@ -106426,6 +107300,7 @@ namespace {
      * @since 6.4.0
      *
      * @param array $new_autosave The new post data being autosaved.
+     * @phpstan-return void
      */
     function wp_autosave_post_revisioned_meta_fields($new_autosave)
     {
@@ -106512,6 +107387,7 @@ namespace {
      * @global WP_Post   $post           Global post object.
      * @global WP_Screen $current_screen WordPress current screen object.
      * @global array     $wp_meta_boxes  Global meta box state.
+     * @phpstan-return void
      */
     function the_block_editor_meta_boxes()
     {
@@ -106522,6 +107398,7 @@ namespace {
      * @since 5.0.0
      *
      * @param WP_Post $post Current post object.
+     * @phpstan-return void
      */
     function the_block_editor_meta_box_post_form_hidden_fields($post)
     {
@@ -106599,6 +107476,7 @@ namespace {
      *
      * @since 4.9.6
      * @access private
+     * @phpstan-return void
      */
     function _wp_personal_data_handle_actions()
     {
@@ -106608,6 +107486,7 @@ namespace {
      *
      * @since 4.9.6
      * @access private
+     * @phpstan-return void
      */
     function _wp_personal_data_cleanup_requests()
     {
@@ -106655,6 +107534,7 @@ namespace {
      * @since 4.9.6
      *
      * @param int $request_id The export request ID.
+     * @phpstan-return void
      */
     function wp_privacy_generate_personal_data_export_file($request_id)
     {
@@ -106747,6 +107627,7 @@ namespace {
      * @since 4.1.0
      *
      * @global WP_Post $post Global post object.
+     * @phpstan-return void
      */
     function wp_print_revision_templates()
     {
@@ -106776,6 +107657,7 @@ namespace {
      * @global int  $wp_current_db_version The old (current) database version.
      *
      * @param array $options Optional. Custom option $key => $value pairs to use. Default empty array.
+     * @phpstan-return void
      */
     function populate_options(array $options = array())
     {
@@ -106784,6 +107666,7 @@ namespace {
      * Execute WordPress role creation for the various WordPress versions.
      *
      * @since 2.0.0
+     * @phpstan-return void
      */
     function populate_roles()
     {
@@ -106792,6 +107675,7 @@ namespace {
      * Create the roles for WordPress 2.0
      *
      * @since 2.0.0
+     * @phpstan-return void
      */
     function populate_roles_160()
     {
@@ -106800,6 +107684,7 @@ namespace {
      * Create and modify WordPress roles for WordPress 2.1.
      *
      * @since 2.1.0
+     * @phpstan-return void
      */
     function populate_roles_210()
     {
@@ -106808,6 +107693,7 @@ namespace {
      * Create and modify WordPress roles for WordPress 2.3.
      *
      * @since 2.3.0
+     * @phpstan-return void
      */
     function populate_roles_230()
     {
@@ -106816,6 +107702,7 @@ namespace {
      * Create and modify WordPress roles for WordPress 2.5.
      *
      * @since 2.5.0
+     * @phpstan-return void
      */
     function populate_roles_250()
     {
@@ -106824,6 +107711,7 @@ namespace {
      * Create and modify WordPress roles for WordPress 2.6.
      *
      * @since 2.6.0
+     * @phpstan-return void
      */
     function populate_roles_260()
     {
@@ -106832,6 +107720,7 @@ namespace {
      * Create and modify WordPress roles for WordPress 2.7.
      *
      * @since 2.7.0
+     * @phpstan-return void
      */
     function populate_roles_270()
     {
@@ -106840,6 +107729,7 @@ namespace {
      * Create and modify WordPress roles for WordPress 2.8.
      *
      * @since 2.8.0
+     * @phpstan-return void
      */
     function populate_roles_280()
     {
@@ -106848,6 +107738,7 @@ namespace {
      * Create and modify WordPress roles for WordPress 3.0.
      *
      * @since 3.0.0
+     * @phpstan-return void
      */
     function populate_roles_300()
     {
@@ -106856,6 +107747,7 @@ namespace {
      * Install Network.
      *
      * @since 3.0.0
+     * @phpstan-return void
      */
     function install_network()
     {
@@ -106892,6 +107784,7 @@ namespace {
      *
      * @param int   $network_id Network ID to populate meta for.
      * @param array $meta       Optional. Custom meta $key => $value pairs to use. Default empty array.
+     * @phpstan-return void
      */
     function populate_network_meta($network_id, array $meta = array())
     {
@@ -106987,6 +107880,7 @@ namespace {
      *
      * @param string|WP_Screen $hook_name Optional. The hook name (also known as the hook suffix) used to determine the screen,
      *                                    or an existing screen object.
+     * @phpstan-return void
      */
     function set_current_screen($hook_name = '')
     {
@@ -107168,6 +108062,7 @@ namespace {
      *                                          Default is a Walker_Category_Checklist instance.
      * @param bool        $checked_ontop        Optional. Whether to move checked items out of the hierarchy and to
      *                                          the top of the list. Default true.
+     * @phpstan-return void
      */
     function wp_category_checklist($post_id = 0, $descendants_and_self = 0, $selected_cats = \false, $popular_cats = \false, $walker = \null, $checked_ontop = \true)
     {
@@ -107273,6 +108168,7 @@ namespace {
      * Outputs 'undo move to Trash' text for comments.
      *
      * @since 2.9.0
+     * @phpstan-return void
      */
     function wp_comment_trashnotice()
     {
@@ -107308,6 +108204,7 @@ namespace {
      * @global wpdb $wpdb WordPress database abstraction object.
      *
      * @param WP_Post $post Optional. The post being edited.
+     * @phpstan-return void
      */
     function meta_form($post = \null)
     {
@@ -107338,6 +108235,7 @@ namespace {
      *
      * @param string $default_template Optional. The template file name. Default empty.
      * @param string $post_type        Optional. Post type to get templates for. Default 'page'.
+     * @phpstan-return void
      */
     function page_template_dropdown($default_template = '', $post_type = 'page')
     {
@@ -107368,6 +108266,7 @@ namespace {
      * @param string $selected       Slug for the role that should be already selected.
      * @param array  $editable_roles Array of roles to include in the dropdown. Defaults to all
      *                               roles the current user is allowed to edit.
+     * @phpstan-return void
      */
     function wp_dropdown_roles($selected = '', $editable_roles = \null)
     {
@@ -107378,6 +108277,7 @@ namespace {
      * @since 2.0.0
      *
      * @param string $action The action attribute for the form.
+     * @phpstan-return void
      */
     function wp_import_upload_form($action)
     {
@@ -107439,6 +108339,7 @@ namespace {
      *   old_callback?: callable,
      *   args?: array,
      * } $box
+     * @phpstan-return void
      */
     function do_block_editor_incompatible_meta_box($data_object, $box)
     {
@@ -107553,6 +108454,7 @@ namespace {
      *   after_section?: string,
      *   section_class?: string,
      * } $args
+     * @phpstan-return void
      */
     function add_settings_section($id, $title, $callback, $page, $args = array())
     {
@@ -107661,6 +108563,7 @@ namespace {
      *                        `<div>` and `<p>` tags).
      * @param string $type    Optional. Message type, controls HTML class. Possible values include 'error',
      *                        'success', 'warning', 'info'. Default 'error'.
+     * @phpstan-return void
      */
     function add_settings_error($setting, $code, $message, $type = 'error')
     {
@@ -107749,6 +108652,7 @@ namespace {
      * @since 2.7.0
      *
      * @param string $found_action Optional. The value of the 'found_action' input field. Default empty string.
+     * @phpstan-return void
      */
     function find_posts_div($found_action = '')
     {
@@ -107759,6 +108663,7 @@ namespace {
      * The password is passed through esc_attr() to ensure that it is safe for placing in an HTML attribute.
      *
      * @since 2.7.0
+     * @phpstan-return void
      */
     function the_post_password()
     {
@@ -107784,6 +108689,7 @@ namespace {
      * should only be used when the_search_query() cannot.
      *
      * @since 2.7.0
+     * @phpstan-return void
      */
     function _admin_search_query()
     {
@@ -107801,6 +108707,7 @@ namespace {
      * @param string $title      Optional. Title of the Iframe page. Default empty.
      * @param bool   $deprecated Not used.
      * @phpstan-param false $deprecated
+     * @phpstan-return void
      */
     function iframe_header($title = '', $deprecated = \false)
     {
@@ -107809,6 +108716,7 @@ namespace {
      * Generic Iframe footer for use with Thickbox.
      *
      * @since 2.7.0
+     * @phpstan-return void
      */
     function iframe_footer()
     {
@@ -107874,6 +108782,7 @@ namespace {
      * has to be deleted.
      *
      * @since 2.8.0
+     * @phpstan-return void
      */
     function compression_test()
     {
@@ -107899,6 +108808,7 @@ namespace {
      *                                       where attribute is the key. Attributes can also be provided as a string,
      *                                       e.g. `id="search-submit"`, though the array format is generally preferred.
      *                                       Default empty string.
+     * @phpstan-return void
      */
     function submit_button($text = '', $type = 'primary', $name = 'submit', $wrap = \true, $other_attributes = '')
     {
@@ -107934,6 +108844,7 @@ namespace {
      * @since 3.3.0
      *
      * @global bool $is_IE
+     * @phpstan-return void
      */
     function _wp_admin_html_begin()
     {
@@ -107954,6 +108865,7 @@ namespace {
      *
      * @since 3.6.0
      * @access private
+     * @phpstan-return void
      */
     function _local_storage_notice()
     {
@@ -107995,6 +108907,7 @@ namespace {
      *
      * @ignore
      * @since 4.2.0
+     * @phpstan-return void
      */
     function _wp_posts_page_notice()
     {
@@ -108004,6 +108917,7 @@ namespace {
      *
      * @ignore
      * @since 5.8.0
+     * @phpstan-return void
      */
     function _wp_block_editor_posts_page_notice()
     {
@@ -108026,6 +108940,7 @@ namespace {
      * @since 2.8.0
      *
      * @param bool $type_selector
+     * @phpstan-return void
      */
     function install_theme_search_form($type_selector = \true)
     {
@@ -108034,6 +108949,7 @@ namespace {
      * Displays tags filter for themes.
      *
      * @since 2.8.0
+     * @phpstan-return void
      */
     function install_themes_dashboard()
     {
@@ -108042,6 +108958,7 @@ namespace {
      * Displays a form to upload themes from zip files.
      *
      * @since 2.8.0
+     * @phpstan-return void
      */
     function install_themes_upload()
     {
@@ -108064,6 +108981,7 @@ namespace {
      * @since 2.8.0
      *
      * @global WP_Theme_Install_List_Table $wp_list_table
+     * @phpstan-return void
      */
     function display_themes()
     {
@@ -108131,6 +109049,7 @@ namespace {
      * @see get_theme_update_available()
      *
      * @param WP_Theme $theme Theme data object.
+     * @phpstan-return void
      */
     function theme_update_available($theme)
     {
@@ -108320,6 +109239,7 @@ namespace {
      * Prints JS templates for the theme-browsing UI in the Customizer.
      *
      * @since 4.2.0
+     * @phpstan-return void
      */
     function customize_themes_print_templates()
     {
@@ -108477,6 +109397,7 @@ namespace {
      * @global string $wp_local_package Locale code of the package.
      *
      * @param array[] $languages Array of available languages (populated via the Translation API).
+     * @phpstan-return void
      */
     function wp_install_language_form($languages)
     {
@@ -108611,6 +109532,7 @@ namespace {
      *
      * @global string[]           $wp_theme_directories
      * @global WP_Filesystem_Base $wp_filesystem
+     * @phpstan-return void
      */
     function _upgrade_422_remove_genericons()
     {
@@ -108630,6 +109552,7 @@ namespace {
     /**
      * @ignore
      * @since 4.4.0
+     * @phpstan-return void
      */
     function _upgrade_440_force_deactivate_incompatible_plugins()
     {
@@ -108642,6 +109565,7 @@ namespace {
      * @since 6.1.1 The minimum compatible version of Gutenberg is 14.1.
      * @since 6.4.0 The minimum compatible version of Gutenberg is 16.5.
      * @since 6.5.0 The minimum compatible version of Gutenberg is 17.6.
+     * @phpstan-return void
      */
     function _upgrade_core_deactivate_incompatible_plugins()
     {
@@ -108753,6 +109677,7 @@ namespace {
      * Displays WordPress version and active theme in the 'At a Glance' dashboard widget.
      *
      * @since 2.5.0
+     * @phpstan-return void
      */
     function update_right_now_message()
     {
@@ -108846,6 +109771,7 @@ namespace {
      *         @type string message   The notice's message.
      *         @type string type      The type of update the notice is for. Either 'plugin' or 'theme'.
      *     }
+     * @phpstan-return void
      */
     function wp_print_admin_notice_templates()
     {
@@ -108876,6 +109802,7 @@ namespace {
      *         @type string name    Plugin name.
      *         @type string colspan The number of table columns this row spans.
      *     }
+     * @phpstan-return void
      */
     function wp_print_update_row_templates()
     {
@@ -108982,6 +109909,7 @@ namespace {
      * @global string     $table_prefix The database table prefix.
      *
      * @param int $user_id User ID.
+     * @phpstan-return void
      */
     function wp_install_defaults($user_id)
     {
@@ -109013,6 +109941,7 @@ namespace {
      * @param int    $user_id    Administrator's user ID.
      * @param string $password   Administrator's password. Note that a placeholder message is
      *                           usually passed instead of the actual password.
+     * @phpstan-return void
      */
     function wp_new_blog_notification(
         $blog_title,
@@ -109060,6 +109989,7 @@ namespace {
      * @since 1.0.0
      *
      * @global wpdb $wpdb WordPress database abstraction object.
+     * @phpstan-return void
      */
     function upgrade_100()
     {
@@ -109071,6 +110001,7 @@ namespace {
      * @since 1.0.1
      *
      * @global wpdb $wpdb WordPress database abstraction object.
+     * @phpstan-return void
      */
     function upgrade_101()
     {
@@ -109083,6 +110014,7 @@ namespace {
      * @since 6.8.0 User passwords are no longer hashed with md5.
      *
      * @global wpdb $wpdb WordPress database abstraction object.
+     * @phpstan-return void
      */
     function upgrade_110()
     {
@@ -109094,6 +110026,7 @@ namespace {
      * @since 1.5.0
      *
      * @global wpdb $wpdb WordPress database abstraction object.
+     * @phpstan-return void
      */
     function upgrade_130()
     {
@@ -109106,6 +110039,7 @@ namespace {
      *
      * @global wpdb $wpdb                  WordPress database abstraction object.
      * @global int  $wp_current_db_version The old (current) database version.
+     * @phpstan-return void
      */
     function upgrade_160()
     {
@@ -109118,6 +110052,7 @@ namespace {
      *
      * @global int  $wp_current_db_version The old (current) database version.
      * @global wpdb $wpdb                  WordPress database abstraction object.
+     * @phpstan-return void
      */
     function upgrade_210()
     {
@@ -109130,6 +110065,7 @@ namespace {
      *
      * @global int  $wp_current_db_version The old (current) database version.
      * @global wpdb $wpdb                  WordPress database abstraction object.
+     * @phpstan-return void
      */
     function upgrade_230()
     {
@@ -109141,6 +110077,7 @@ namespace {
      * @since 2.3.0
      *
      * @global wpdb $wpdb WordPress database abstraction object.
+     * @phpstan-return void
      */
     function upgrade_230_options_table()
     {
@@ -109152,6 +110089,7 @@ namespace {
      * @since 2.3.0
      *
      * @global wpdb $wpdb WordPress database abstraction object.
+     * @phpstan-return void
      */
     function upgrade_230_old_tables()
     {
@@ -109163,6 +110101,7 @@ namespace {
      * @since 2.2.0
      *
      * @global wpdb $wpdb WordPress database abstraction object.
+     * @phpstan-return void
      */
     function upgrade_old_slugs()
     {
@@ -109174,6 +110113,7 @@ namespace {
      * @since 2.5.0
      *
      * @global int $wp_current_db_version The old (current) database version.
+     * @phpstan-return void
      */
     function upgrade_250()
     {
@@ -109185,6 +110125,7 @@ namespace {
      * @since 2.5.2
      *
      * @global wpdb $wpdb WordPress database abstraction object.
+     * @phpstan-return void
      */
     function upgrade_252()
     {
@@ -109196,6 +110137,7 @@ namespace {
      * @since 2.6.0
      *
      * @global int $wp_current_db_version The old (current) database version.
+     * @phpstan-return void
      */
     function upgrade_260()
     {
@@ -109208,6 +110150,7 @@ namespace {
      *
      * @global int  $wp_current_db_version The old (current) database version.
      * @global wpdb $wpdb                  WordPress database abstraction object.
+     * @phpstan-return void
      */
     function upgrade_270()
     {
@@ -109220,6 +110163,7 @@ namespace {
      *
      * @global int  $wp_current_db_version The old (current) database version.
      * @global wpdb $wpdb                  WordPress database abstraction object.
+     * @phpstan-return void
      */
     function upgrade_280()
     {
@@ -109231,6 +110175,7 @@ namespace {
      * @since 2.9.0
      *
      * @global int $wp_current_db_version The old (current) database version.
+     * @phpstan-return void
      */
     function upgrade_290()
     {
@@ -109243,6 +110188,7 @@ namespace {
      *
      * @global int  $wp_current_db_version The old (current) database version.
      * @global wpdb $wpdb                  WordPress database abstraction object.
+     * @phpstan-return void
      */
     function upgrade_300()
     {
@@ -109270,6 +110216,7 @@ namespace {
      *
      * @global int  $wp_current_db_version The old (current) database version.
      * @global wpdb $wpdb                  WordPress database abstraction object.
+     * @phpstan-return void
      */
     function upgrade_340()
     {
@@ -109282,6 +110229,7 @@ namespace {
      *
      * @global int  $wp_current_db_version The old (current) database version.
      * @global wpdb $wpdb                  WordPress database abstraction object.
+     * @phpstan-return void
      */
     function upgrade_350()
     {
@@ -109293,6 +110241,7 @@ namespace {
      * @since 3.7.0
      *
      * @global int $wp_current_db_version The old (current) database version.
+     * @phpstan-return void
      */
     function upgrade_370()
     {
@@ -109304,6 +110253,7 @@ namespace {
      * @since 3.7.2
      *
      * @global int $wp_current_db_version The old (current) database version.
+     * @phpstan-return void
      */
     function upgrade_372()
     {
@@ -109315,6 +110265,7 @@ namespace {
      * @since 3.8.0
      *
      * @global int $wp_current_db_version The old (current) database version.
+     * @phpstan-return void
      */
     function upgrade_380()
     {
@@ -109326,6 +110277,7 @@ namespace {
      * @since 4.0.0
      *
      * @global int $wp_current_db_version The old (current) database version.
+     * @phpstan-return void
      */
     function upgrade_400()
     {
@@ -109347,6 +110299,7 @@ namespace {
      *
      * @global int  $wp_current_db_version The old (current) database version.
      * @global wpdb $wpdb                  WordPress database abstraction object.
+     * @phpstan-return void
      */
     function upgrade_430()
     {
@@ -109368,6 +110321,7 @@ namespace {
      *
      * @ignore
      * @since 4.3.1
+     * @phpstan-return void
      */
     function upgrade_431()
     {
@@ -109380,6 +110334,7 @@ namespace {
      *
      * @global int  $wp_current_db_version The old (current) database version.
      * @global wpdb $wpdb                  WordPress database abstraction object.
+     * @phpstan-return void
      */
     function upgrade_440()
     {
@@ -109392,6 +110347,7 @@ namespace {
      *
      * @global int  $wp_current_db_version The old (current) database version.
      * @global wpdb $wpdb                  WordPress database abstraction object.
+     * @phpstan-return void
      */
     function upgrade_450()
     {
@@ -109403,6 +110359,7 @@ namespace {
      * @since 4.6.0
      *
      * @global int $wp_current_db_version The old (current) database version.
+     * @phpstan-return void
      */
     function upgrade_460()
     {
@@ -109422,6 +110379,7 @@ namespace {
      *
      * @ignore
      * @since 5.1.0
+     * @phpstan-return void
      */
     function upgrade_510()
     {
@@ -109431,6 +110389,7 @@ namespace {
      *
      * @ignore
      * @since 5.3.0
+     * @phpstan-return void
      */
     function upgrade_530()
     {
@@ -109442,6 +110401,7 @@ namespace {
      * @since 5.5.0
      *
      * @global int $wp_current_db_version The old (current) database version.
+     * @phpstan-return void
      */
     function upgrade_550()
     {
@@ -109454,6 +110414,7 @@ namespace {
      *
      * @global int  $wp_current_db_version The old (current) database version.
      * @global wpdb $wpdb                  WordPress database abstraction object.
+     * @phpstan-return void
      */
     function upgrade_560()
     {
@@ -109465,6 +110426,7 @@ namespace {
      * @since 5.9.0
      *
      * @global int $wp_current_db_version The old (current) database version.
+     * @phpstan-return void
      */
     function upgrade_590()
     {
@@ -109476,6 +110438,7 @@ namespace {
      * @since 6.0.0
      *
      * @global int $wp_current_db_version The old (current) database version.
+     * @phpstan-return void
      */
     function upgrade_600()
     {
@@ -109487,6 +110450,7 @@ namespace {
      * @since 6.3.0
      *
      * @global int $wp_current_db_version The old (current) database version.
+     * @phpstan-return void
      */
     function upgrade_630()
     {
@@ -109498,6 +110462,7 @@ namespace {
      * @since 6.4.0
      *
      * @global int $wp_current_db_version The old (current) database version.
+     * @phpstan-return void
      */
     function upgrade_640()
     {
@@ -109510,6 +110475,7 @@ namespace {
      *
      * @global int  $wp_current_db_version The old (current) database version.
      * @global wpdb $wpdb                  WordPress database abstraction object.
+     * @phpstan-return void
      */
     function upgrade_650()
     {
@@ -109521,6 +110487,7 @@ namespace {
      * @since 6.7.0
      *
      * @global int  $wp_current_db_version The old (current) database version.
+     * @phpstan-return void
      */
     function upgrade_670()
     {
@@ -109532,6 +110499,7 @@ namespace {
      * @since 6.8.2
      *
      * @global int $wp_current_db_version The old (current) database version.
+     * @phpstan-return void
      */
     function upgrade_682()
     {
@@ -109544,6 +110512,7 @@ namespace {
      *
      * @global int  $wp_current_db_version The old (current) database version.
      * @global wpdb $wpdb                  WordPress database abstraction object.
+     * @phpstan-return void
      */
     function upgrade_700()
     {
@@ -109555,6 +110524,7 @@ namespace {
      *
      * @global int  $wp_current_db_version The old (current) database version.
      * @global wpdb $wpdb                  WordPress database abstraction object.
+     * @phpstan-return void
      */
     function upgrade_network()
     {
@@ -109703,6 +110673,7 @@ namespace {
      * @uses dbDelta
      *
      * @param string $tables Optional. Which set of tables to update. Default is 'all'.
+     * @phpstan-return void
      */
     function make_db_current($tables = 'all')
     {
@@ -109718,6 +110689,7 @@ namespace {
      * @see make_db_current()
      *
      * @param string $tables Optional. Which set of tables to update. Default is 'all'.
+     * @phpstan-return void
      */
     function make_db_current_silent($tables = 'all')
     {
@@ -109779,6 +110751,7 @@ namespace {
      * @since 2.1.0
      *
      * @global wpdb $wpdb WordPress database abstraction object.
+     * @phpstan-return void
      */
     function wp_check_mysql_version()
     {
@@ -109787,6 +110760,7 @@ namespace {
      * Disables the Automattic widgets plugin, which was merged into core.
      *
      * @since 2.2.0
+     * @phpstan-return void
      */
     function maybe_disable_automattic_widgets()
     {
@@ -109798,6 +110772,7 @@ namespace {
      *
      * @global int  $wp_current_db_version The old (current) database version.
      * @global wpdb $wpdb                  WordPress database abstraction object.
+     * @phpstan-return void
      */
     function maybe_disable_link_manager()
     {
@@ -109809,6 +110784,7 @@ namespace {
      *
      * @global int  $wp_current_db_version The old (current) database version.
      * @global wpdb $wpdb                  WordPress database abstraction object.
+     * @phpstan-return void
      */
     function pre_schema_upgrade()
     {
@@ -109928,6 +110904,7 @@ namespace {
      * @since 2.1.0
      *
      * @param int $id User ID.
+     * @phpstan-return void
      */
     function wp_revoke_user($id)
     {
@@ -109970,6 +110947,7 @@ namespace {
      * @since 2.7.0
      *
      * @param WP_User $user User data object.
+     * @phpstan-return void
      */
     function use_ssl_preference($user)
     {
@@ -110031,6 +111009,7 @@ namespace {
      *
      * @global array $wp_registered_widgets
      * @global array $wp_registered_widget_controls
+     * @phpstan-return void
      */
     function wp_list_widgets()
     {
@@ -110056,6 +111035,7 @@ namespace {
      *
      * @param string $sidebar      Sidebar ID.
      * @param string $sidebar_name Optional. Sidebar name. Default empty.
+     * @phpstan-return void
      */
     function wp_list_widget_controls($sidebar, $sidebar_name = '')
     {
@@ -110113,6 +111093,7 @@ namespace {
      * @since 2.5.0
      *
      * @param string $body_classes Class attribute values for the body tag.
+     * @phpstan-return void
      */
     function display_header($body_classes = '')
     {
@@ -110125,6 +111106,7 @@ namespace {
      * @global wpdb $wpdb WordPress database abstraction object.
      *
      * @param string|null $error Error message to display, if any.
+     * @phpstan-return void
      */
     function display_setup_form($error = \null)
     {
@@ -110146,6 +111128,7 @@ namespace {
      * @param resource $parser   XML Parser resource.
      * @param string   $tag_name XML element name.
      * @param array    $attrs    XML element attributes.
+     * @phpstan-return void
      */
     function startElement($parser, $tag_name, $attrs)
     {
@@ -110160,6 +111143,7 @@ namespace {
      *
      * @param resource $parser   XML Parser resource.
      * @param string   $tag_name XML tag name.
+     * @phpstan-return void
      */
     function endElement($parser, $tag_name)
     {
@@ -110179,6 +111163,7 @@ namespace {
      * @param array $menu
      * @param array $submenu
      * @param bool  $submenu_as_parent
+     * @phpstan-return void
      */
     function _wp_menu_output($menu, $submenu, $submenu_as_parent = \true)
     {
@@ -110191,6 +111176,7 @@ namespace {
      * @since 3.0.0
      * @since 5.9.0 Renamed 'Theme Editor' to 'Theme File Editor'.
      *              Relocates to Tools for block themes.
+     * @phpstan-return void
      */
     function _add_themes_utility_last()
     {
@@ -110229,6 +111215,7 @@ namespace {
      * @since 2.3.0
      *
      * @param string|string[] $body_classes Class attribute values for the body tag.
+     * @phpstan-return void
      */
     function setup_config_display_header($body_classes = array())
     {
@@ -110265,6 +111252,7 @@ namespace {
      * @global wpdb   $wpdb             WordPress database abstraction object.
      *
      * @param object $update
+     * @phpstan-return void
      */
     function list_core_update($update)
     {
@@ -110273,6 +111261,7 @@ namespace {
      * Display dismissed updates.
      *
      * @since 2.7.0
+     * @phpstan-return void
      */
     function dismissed_updates()
     {
@@ -110281,6 +111270,7 @@ namespace {
      * Display upgrade WordPress for downloading latest or upgrading automatically form.
      *
      * @since 2.7.0
+     * @phpstan-return void
      */
     function core_upgrade_preamble()
     {
@@ -110289,6 +111279,7 @@ namespace {
      * Display WordPress auto-updates settings.
      *
      * @since 5.6.0
+     * @phpstan-return void
      */
     function core_auto_updates_settings()
     {
@@ -110969,6 +111960,7 @@ namespace {
      * @since 3.3.0
      *
      * @param WP_Admin_Bar $wp_admin_bar The WP_Admin_Bar instance.
+     * @phpstan-return void
      */
     function wp_admin_bar_wp_menu($wp_admin_bar)
     {
@@ -110979,6 +111971,7 @@ namespace {
      * @since 3.8.0
      *
      * @param WP_Admin_Bar $wp_admin_bar The WP_Admin_Bar instance.
+     * @phpstan-return void
      */
     function wp_admin_bar_sidebar_toggle($wp_admin_bar)
     {
@@ -111170,6 +112163,7 @@ namespace {
      * @since 3.3.0
      *
      * @param WP_Admin_Bar $wp_admin_bar The WP_Admin_Bar instance.
+     * @phpstan-return void
      */
     function wp_admin_bar_add_secondary_groups($wp_admin_bar)
     {
@@ -111203,6 +112197,7 @@ namespace {
      * @global bool $show_admin_bar
      *
      * @param bool $show Whether to allow the admin bar to show.
+     * @phpstan-return void
      */
     function show_admin_bar($show)
     {
@@ -111330,6 +112325,7 @@ namespace {
      * @since 2.8.0
      *
      * @see get_the_author()
+     * @phpstan-return void
      */
     function the_modified_author()
     {
@@ -111386,6 +112382,7 @@ namespace {
      * @param int|false $user_id Optional. User ID. Defaults to the current post author.
      *
      * @see get_the_author_meta()
+     * @phpstan-return void
      */
     function the_author_meta($field = '', $user_id = \false)
     {
@@ -111422,6 +112419,7 @@ namespace {
      *
      * @param bool $use_title_attr Optional. Whether to add a title attribute.
      *                             Default true.
+     * @phpstan-return void
      */
     function the_author_link($use_title_attr = \true)
     {
@@ -111441,6 +112439,7 @@ namespace {
      *
      * @link https://developer.wordpress.org/reference/functions/the_author_posts/
      * @since 0.71
+     * @phpstan-return void
      */
     function the_author_posts()
     {
@@ -111468,6 +112467,7 @@ namespace {
      *
      * @param string $deprecated Unused.
      * @phpstan-param '' $deprecated
+     * @phpstan-return void
      */
     function the_author_posts_link($deprecated = '')
     {
@@ -111565,6 +112565,7 @@ namespace {
      *
      * @since 3.2.0
      * @access private
+     * @phpstan-return void
      */
     function __clear_multi_author_cache()
     {
@@ -111723,6 +112724,7 @@ namespace {
      *
      * @since 6.5.0
      * @access private
+     * @phpstan-return void
      */
     function _register_block_bindings_pattern_overrides_source()
     {
@@ -111746,6 +112748,7 @@ namespace {
      *
      * @since 6.9.0
      * @access private
+     * @phpstan-return void
      */
     function _register_block_bindings_post_data_source()
     {
@@ -111769,6 +112772,7 @@ namespace {
      *
      * @since 6.5.0
      * @access private
+     * @phpstan-return void
      */
     function _register_block_bindings_post_meta_source()
     {
@@ -111963,6 +112967,7 @@ namespace {
      * This function sets IFRAME_REQUEST to true if the site preview parameter is set.
      *
      * @since 6.8.0
+     * @phpstan-return void
      */
     function wp_initialize_site_preview_hooks()
     {
@@ -112038,6 +113043,7 @@ namespace {
      * @since 5.5.0
      * @since 6.3.0 Added source to core block patterns.
      * @access private
+     * @phpstan-return void
      */
     function _register_core_block_patterns_and_categories()
     {
@@ -112119,6 +113125,7 @@ namespace {
      * @access private
      *
      * @param WP_Block_Type $block_type Block Type.
+     * @phpstan-return void
      */
     function wp_register_alignment_support($block_type)
     {
@@ -112264,6 +113271,7 @@ namespace {
      *
      * @param array $variation_data Reference to the variation data being processed.
      * @param array $theme_json     Theme.json data to retrieve referenced values from.
+     * @phpstan-return void
      */
     function wp_resolve_block_style_variation_ref_values(&$variation_data, $theme_json)
     {
@@ -112311,6 +113319,7 @@ namespace {
      *
      * @since 6.6.0
      * @access private
+     * @phpstan-return void
      */
     function wp_enqueue_block_style_variation_styles()
     {
@@ -112350,6 +113359,7 @@ namespace {
      * @access private
      *
      * @param WP_Block_Type $block_type Block Type.
+     * @phpstan-return void
      */
     function wp_register_border_support($block_type)
     {
@@ -112396,6 +113406,7 @@ namespace {
      * @access private
      *
      * @param WP_Block_Type $block_type Block Type.
+     * @phpstan-return void
      */
     function wp_register_colors_support($block_type)
     {
@@ -112424,6 +113435,7 @@ namespace {
      * @access private
      *
      * @param WP_Block_Type $block_type Block Type.
+     * @phpstan-return void
      */
     function wp_register_custom_classname_support($block_type)
     {
@@ -112482,6 +113494,7 @@ namespace {
      * Enqueues the block custom CSS styles.
      *
      * @since 7.0.0
+     * @phpstan-return void
      */
     function wp_enqueue_block_custom_css()
     {
@@ -112540,6 +113553,7 @@ namespace {
      *
      * @since 7.0.0
      * @access private
+     * @phpstan-return void
      */
     function wp_custom_css_kses_init_filters()
     {
@@ -112550,6 +113564,7 @@ namespace {
      *
      * @since 7.0.0
      * @access private
+     * @phpstan-return void
      */
     function wp_custom_css_remove_filters()
     {
@@ -112559,6 +113574,7 @@ namespace {
      *
      * @since 7.0.0
      * @access private
+     * @phpstan-return void
      */
     function wp_custom_css_kses_init()
     {
@@ -112832,6 +113848,7 @@ namespace {
      * @access private
      *
      * @param WP_Block_Type $block_type Block Type.
+     * @phpstan-return void
      */
     function wp_register_layout_support($block_type)
     {
@@ -112942,6 +113959,7 @@ namespace {
      * @access private
      *
      * @param WP_Block_Type $block_type Block Type.
+     * @phpstan-return void
      */
     function wp_register_position_support($block_type)
     {
@@ -113039,6 +114057,7 @@ namespace {
      * @access private
      *
      * @param WP_Block_Type $block_type Block Type.
+     * @phpstan-return void
      */
     function wp_register_spacing_support($block_type)
     {
@@ -113136,6 +114155,7 @@ namespace {
      * @param array       $groups   Selector-keyed style groups.
      * @param string|null $selector Block or feature selector.
      * @param array       $style    Style fragment.
+     * @phpstan-return void
      */
     function wp_add_state_style_group(&$groups, $selector, $style)
     {
@@ -113629,6 +114649,7 @@ namespace {
      * @access private
      *
      * @param array $block a parsed block.
+     * @phpstan-return void
      */
     function _inject_theme_attribute_in_template_part_block(&$block)
     {
@@ -113640,6 +114661,7 @@ namespace {
      * @access private
      *
      * @param array $block a parsed block.
+     * @phpstan-return void
      */
     function _remove_theme_attribute_from_template_part_block(&$block)
     {
@@ -113796,6 +114818,7 @@ namespace {
      * Prints the header block template part.
      *
      * @since 5.9.0
+     * @phpstan-return void
      */
     function block_header_area()
     {
@@ -113804,6 +114827,7 @@ namespace {
      * Prints the footer block template part.
      *
      * @since 5.9.0
+     * @phpstan-return void
      */
     function block_footer_area()
     {
@@ -113877,6 +114901,7 @@ namespace {
      *
      * @access private
      * @since 5.9.0
+     * @phpstan-return void
      */
     function _add_template_loader_filters()
     {
@@ -113933,6 +114958,7 @@ namespace {
      * @since 5.8.0
      *
      * @see _wp_render_title_tag()
+     * @phpstan-return void
      */
     function _block_template_render_title_tag()
     {
@@ -113996,6 +115022,7 @@ namespace {
      *
      * @access private
      * @since 5.8.0
+     * @phpstan-return void
      */
     function _block_template_viewport_meta_tag()
     {
@@ -114256,6 +115283,7 @@ namespace {
      * @param string $manifest Optional. The absolute path to the manifest file containing the metadata collection, in
      *                         order to register the collection. If this parameter is not provided, the `$path` parameter
      *                         must reference a previously registered block metadata collection.
+     * @phpstan-return void
      */
     function wp_register_block_types_from_metadata_collection($path, $manifest = '')
     {
@@ -114271,6 +115299,7 @@ namespace {
      *
      * @param string $path     The base path in which block files for the collection reside.
      * @param string $manifest The path to the manifest file for the collection.
+     * @phpstan-return void
      */
     function wp_register_block_metadata_collection($path, $manifest)
     {
@@ -115268,6 +116297,7 @@ namespace {
      *
      * @access private
      * @since 6.3.2
+     * @phpstan-return void
      */
     function _wp_footnotes_kses_init_filters()
     {
@@ -115277,6 +116307,7 @@ namespace {
      *
      * @access private
      * @since 6.3.2
+     * @phpstan-return void
      */
     function _wp_footnotes_remove_filters()
     {
@@ -115286,6 +116317,7 @@ namespace {
      *
      * @access private
      * @since 6.3.2
+     * @phpstan-return void
      */
     function _wp_footnotes_kses_init()
     {
@@ -115315,6 +116347,7 @@ namespace {
      *
      * @access private
      * @since 7.0.0
+     * @phpstan-return void
      */
     function _wp_enqueue_auto_register_blocks()
     {
@@ -115336,6 +116369,7 @@ namespace {
      * Registers the `core/accordion-item` block on server.
      *
      * @since 6.9.0
+     * @phpstan-return void
      */
     function register_block_core_accordion_item()
     {
@@ -115358,6 +116392,7 @@ namespace {
      * Registers the `core/accordion` block on server.
      *
      * @since 6.9.0
+     * @phpstan-return void
      */
     function register_block_core_accordion()
     {
@@ -115393,6 +116428,7 @@ namespace {
      * Register archives block.
      *
      * @since 5.0.0
+     * @phpstan-return void
      */
     function register_block_core_archives()
     {
@@ -115426,6 +116462,7 @@ namespace {
      * Registers the `core/avatar` block on the server.
      *
      * @since 6.0.0
+     * @phpstan-return void
      */
     function register_block_core_avatar()
     {
@@ -115448,6 +116485,7 @@ namespace {
      * Registers the `core/block` block.
      *
      * @since 5.3.0
+     * @phpstan-return void
      */
     function register_block_core_block()
     {
@@ -115577,6 +116615,7 @@ namespace {
      * Registers the `core/breadcrumbs` block on the server.
      *
      * @since 7.0.0
+     * @phpstan-return void
      */
     function register_block_core_breadcrumbs()
     {
@@ -115598,6 +116637,7 @@ namespace {
      * Registers the `core/button` block on server.
      *
      * @since 6.6.0
+     * @phpstan-return void
      */
     function register_block_core_button()
     {
@@ -115621,6 +116661,7 @@ namespace {
      * Registers the `core/calendar` block on server.
      *
      * @since 5.2.0
+     * @phpstan-return void
      */
     function register_block_core_calendar()
     {
@@ -115708,6 +116749,7 @@ namespace {
      * Registers the `core/categories` block on server.
      *
      * @since 5.0.0
+     * @phpstan-return void
      */
     function register_block_core_categories()
     {
@@ -115729,6 +116771,7 @@ namespace {
      * Registers the `core/comment-author-name` block on the server.
      *
      * @since 6.0.0
+     * @phpstan-return void
      */
     function register_block_core_comment_author_name()
     {
@@ -115750,6 +116793,7 @@ namespace {
      * Registers the `core/comment-content` block on the server.
      *
      * @since 6.0.0
+     * @phpstan-return void
      */
     function register_block_core_comment_content()
     {
@@ -115771,6 +116815,7 @@ namespace {
      * Registers the `core/comment-date` block on the server.
      *
      * @since 6.0.0
+     * @phpstan-return void
      */
     function register_block_core_comment_date()
     {
@@ -115793,6 +116838,7 @@ namespace {
      * Registers the `core/comment-edit-link` block on the server.
      *
      * @since 6.0.0
+     * @phpstan-return void
      */
     function register_block_core_comment_edit_link()
     {
@@ -115814,6 +116860,7 @@ namespace {
      * Registers the `core/comment-reply-link` block on the server.
      *
      * @since 6.0.0
+     * @phpstan-return void
      */
     function register_block_core_comment_reply_link()
     {
@@ -115851,6 +116898,7 @@ namespace {
      * Registers the `core/comment-template` block on the server.
      *
      * @since 6.0.0
+     * @phpstan-return void
      */
     function register_block_core_comment_template()
     {
@@ -115873,6 +116921,7 @@ namespace {
      * Registers the `core/comments-pagination-next` block on the server.
      *
      * @since 6.0.0
+     * @phpstan-return void
      */
     function register_block_core_comments_pagination_next()
     {
@@ -115895,6 +116944,7 @@ namespace {
      * Registers the `core/comments-pagination-numbers` block on the server.
      *
      * @since 6.0.0
+     * @phpstan-return void
      */
     function register_block_core_comments_pagination_numbers()
     {
@@ -115917,6 +116967,7 @@ namespace {
      * Registers the `core/comments-pagination-previous` block on the server.
      *
      * @since 6.0.0
+     * @phpstan-return void
      */
     function register_block_core_comments_pagination_previous()
     {
@@ -115938,6 +116989,7 @@ namespace {
      * Registers the `core/comments-pagination` block on the server.
      *
      * @since 6.0.0
+     * @phpstan-return void
      */
     function register_block_core_comments_pagination()
     {
@@ -115958,6 +117010,7 @@ namespace {
      * Registers the `core/comments-title` block on the server.
      *
      * @since 6.0.0
+     * @phpstan-return void
      */
     function register_block_core_comments_title()
     {
@@ -115989,6 +117042,7 @@ namespace {
      * Registers the `core/comments` block on the server.
      *
      * @since 6.1.0
+     * @phpstan-return void
      */
     function register_block_core_comments()
     {
@@ -116012,6 +117066,7 @@ namespace {
      * @since 6.1.0
      *
      * @param string $block_name Name of the new block type.
+     * @phpstan-return void
      */
     function enqueue_legacy_post_comments_block_styles($block_name)
     {
@@ -116027,6 +117082,7 @@ namespace {
      *
      * @see https://github.com/WordPress/gutenberg/pull/41807
      * @see https://github.com/WordPress/gutenberg/pull/32514
+     * @phpstan-return void
      */
     function register_legacy_post_comments_block()
     {
@@ -116048,6 +117104,7 @@ namespace {
      * Registers the `core/cover` block renderer on server.
      *
      * @since 6.0.0
+     * @phpstan-return void
      */
     function register_block_core_cover()
     {
@@ -116071,6 +117128,7 @@ namespace {
      * Registers the `core/details` block on server.
      *
      * @since 7.0.0
+     * @phpstan-return void
      */
     function register_block_core_details()
     {
@@ -116092,6 +117150,7 @@ namespace {
      * Registers the `core/file` block on server.
      *
      * @since 5.8.0
+     * @phpstan-return void
      */
     function register_block_core_file()
     {
@@ -116114,6 +117173,7 @@ namespace {
      * Registers the `core/footnotes` block on the server.
      *
      * @since 6.3.0
+     * @phpstan-return void
      */
     function register_block_core_footnotes()
     {
@@ -116122,6 +117182,7 @@ namespace {
      * Registers the footnotes meta field required for footnotes to work.
      *
      * @since 6.5.0
+     * @phpstan-return void
      */
     function register_block_core_footnotes_post_meta()
     {
@@ -116264,6 +117325,7 @@ namespace {
      * Registers the `core/gallery` block on server.
      *
      * @since 5.9.0
+     * @phpstan-return void
      */
     function register_block_core_gallery()
     {
@@ -116291,6 +117353,7 @@ namespace {
      * Registers the `core/heading` block on server.
      *
      * @since 6.2.0
+     * @phpstan-return void
      */
     function register_block_core_heading()
     {
@@ -116340,6 +117403,7 @@ namespace {
      *
      * @uses render_block_core_home_link()
      * @throws WP_Error An WP_Error exception parsing the block definition.
+     * @phpstan-return void
      */
     function register_block_core_home_link()
     {
@@ -116360,6 +117424,7 @@ namespace {
      * Registers the `core/icon` block on server.
      *
      * @since 7.0.0
+     * @phpstan-return void
      */
     function register_block_core_icon()
     {
@@ -116409,6 +117474,7 @@ namespace {
     }
     /**
      * @since 6.5.0
+     * @phpstan-return void
      */
     function block_core_image_print_lightbox_overlay()
     {
@@ -116417,6 +117483,7 @@ namespace {
      * Registers the `core/image` block on server.
      *
      * @since 5.9.0
+     * @phpstan-return void
      */
     function register_block_core_image()
     {
@@ -116429,6 +117496,7 @@ namespace {
      * avoids unnecessary logic and filesystem lookups in the other function.
      *
      * @since 6.3.0
+     * @phpstan-return void
      */
     function register_core_block_style_handles()
     {
@@ -116438,6 +117506,7 @@ namespace {
      * Dynamic core blocks are registered separately.
      *
      * @since 5.5.0
+     * @phpstan-return void
      */
     function register_core_block_types_from_metadata()
     {
@@ -116450,6 +117519,7 @@ namespace {
      * block initialization that happens at priority 10.
      *
      * @since 6.7.0
+     * @phpstan-return void
      */
     function wp_register_core_block_metadata_collection()
     {
@@ -116495,6 +117565,7 @@ namespace {
      * Registers the `core/latest-comments` block.
      *
      * @since 5.3.0
+     * @phpstan-return void
      */
     function register_block_core_latest_comments()
     {
@@ -116533,6 +117604,7 @@ namespace {
      * Registers the `core/latest-posts` block on server.
      *
      * @since 5.0.0
+     * @phpstan-return void
      */
     function register_block_core_latest_posts()
     {
@@ -116576,6 +117648,7 @@ namespace {
      * Registers the 'core/legacy-widget' block.
      *
      * @since 5.8.0
+     * @phpstan-return void
      */
     function register_block_core_legacy_widget()
     {
@@ -116612,6 +117685,7 @@ namespace {
      * Registers the `core/list` block on server.
      *
      * @since 6.6.0
+     * @phpstan-return void
      */
     function register_block_core_list()
     {
@@ -116633,6 +117707,7 @@ namespace {
      * Registers the `core/loginout` block on server.
      *
      * @since 5.8.0
+     * @phpstan-return void
      */
     function register_block_core_loginout()
     {
@@ -116654,6 +117729,7 @@ namespace {
      * Registers the `core/media-text` block renderer on server.
      *
      * @since 6.6.0
+     * @phpstan-return void
      */
     function register_block_core_media_text()
     {
@@ -116770,6 +117846,7 @@ namespace {
      *
      * @uses render_block_core_navigation_link()
      * @throws WP_Error An WP_Error exception parsing the block definition.
+     * @phpstan-return void
      */
     function register_block_core_navigation_link()
     {
@@ -116813,6 +117890,7 @@ namespace {
      * Registers the navigation overlay close block.
      *
      * @since 7.0.0
+     * @phpstan-return void
      */
     function register_block_core_navigation_overlay_close()
     {
@@ -116878,6 +117956,7 @@ namespace {
      *
      * @uses render_block_core_navigation_submenu()
      * @throws WP_Error An WP_Error exception parsing the block definition.
+     * @phpstan-return void
      */
     function register_block_core_navigation_submenu()
     {
@@ -117129,6 +118208,7 @@ namespace {
      *
      * @uses render_block_core_navigation()
      * @throws WP_Error An WP_Error exception parsing the block definition.
+     * @phpstan-return void
      */
     function register_block_core_navigation()
     {
@@ -117242,6 +118322,7 @@ namespace {
      * Registers the `core/page-list-item` block on server.
      *
      * @since 6.3.0
+     * @phpstan-return void
      */
     function register_block_core_page_list_item()
     {
@@ -117324,6 +118405,7 @@ namespace {
      * Registers the `core/pages` block on server.
      *
      * @since 5.8.0
+     * @phpstan-return void
      */
     function register_block_core_page_list()
     {
@@ -117351,6 +118433,7 @@ namespace {
      * Registers the `core/paragraph` block on server.
      *
      * @since 7.0.0
+     * @phpstan-return void
      */
     function register_block_core_paragraph()
     {
@@ -117359,6 +118442,7 @@ namespace {
      *  Registers the `core/pattern` block on the server.
      *
      * @since 5.9.0
+     * @phpstan-return void
      */
     function register_block_core_pattern()
     {
@@ -117395,6 +118479,7 @@ namespace {
      * Registers the `core/playlist-track` block on server.
      *
      * @since 7.1.0
+     * @phpstan-return void
      */
     function register_block_core_playlist_track()
     {
@@ -117417,6 +118502,7 @@ namespace {
      * Registers the `core/playlist` block on server.
      *
      * @since 7.1.0
+     * @phpstan-return void
      */
     function register_block_core_playlist()
     {
@@ -117438,6 +118524,7 @@ namespace {
      * Registers the `core/post-author-biography` block on the server.
      *
      * @since 6.0.0
+     * @phpstan-return void
      */
     function register_block_core_post_author_biography()
     {
@@ -117459,6 +118546,7 @@ namespace {
      * Registers the `core/post-author-name` block on the server.
      *
      * @since 6.2.0
+     * @phpstan-return void
      */
     function register_block_core_post_author_name()
     {
@@ -117480,6 +118568,7 @@ namespace {
      * Registers the `core/post-author` block on the server.
      *
      * @since 5.9.0
+     * @phpstan-return void
      */
     function register_block_core_post_author()
     {
@@ -117501,6 +118590,7 @@ namespace {
      * Registers the `core/post-comments-count` block on the server.
      *
      * @since 6.9.0
+     * @phpstan-return void
      */
     function register_block_core_post_comments_count()
     {
@@ -117522,6 +118612,7 @@ namespace {
      * Registers the `core/post-comments-form` block on the server.
      *
      * @since 6.0.0
+     * @phpstan-return void
      */
     function register_block_core_post_comments_form()
     {
@@ -117555,6 +118646,7 @@ namespace {
      * Registers the `core/post-comments-link` block on the server.
      *
      * @since 6.9.0
+     * @phpstan-return void
      */
     function register_block_core_post_comments_link()
     {
@@ -117576,6 +118668,7 @@ namespace {
      * Registers the `core/post-content` block on the server.
      *
      * @since 5.8.0
+     * @phpstan-return void
      */
     function register_block_core_post_content()
     {
@@ -117598,6 +118691,7 @@ namespace {
      * Registers the `core/post-date` block on the server.
      *
      * @since 5.8.0
+     * @phpstan-return void
      */
     function register_block_core_post_date()
     {
@@ -117619,6 +118713,7 @@ namespace {
      * Registers the `core/post-excerpt` block on the server.
      *
      * @since 5.8.0
+     * @phpstan-return void
      */
     function register_block_core_post_excerpt()
     {
@@ -117680,6 +118775,7 @@ namespace {
      * Registers the `core/post-featured-image` block on the server.
      *
      * @since 5.8.0
+     * @phpstan-return void
      */
     function register_block_core_post_featured_image()
     {
@@ -117701,6 +118797,7 @@ namespace {
      * Registers the `core/post-navigation-link` block on the server.
      *
      * @since 5.9.0
+     * @phpstan-return void
      */
     function register_block_core_post_navigation_link()
     {
@@ -117737,6 +118834,7 @@ namespace {
      * Registers the `core/post-template` block on the server.
      *
      * @since 5.8.0
+     * @phpstan-return void
      */
     function register_block_core_post_template()
     {
@@ -117768,6 +118866,7 @@ namespace {
      * Registers the `core/post-terms` block on the server.
      *
      * @since 5.8.0
+     * @phpstan-return void
      */
     function register_block_core_post_terms()
     {
@@ -117814,6 +118913,7 @@ namespace {
      * Registers the `core/post-time-to-read` block on the server.
      *
      * @since 6.9.0
+     * @phpstan-return void
      */
     function register_block_core_post_time_to_read()
     {
@@ -117836,6 +118936,7 @@ namespace {
      * Registers the `core/post-title` block on the server.
      *
      * @since 5.8.0
+     * @phpstan-return void
      */
     function register_block_core_post_title()
     {
@@ -117860,6 +118961,7 @@ namespace {
      * Registers the `core/query-no-results` block on the server.
      *
      * @since 6.0.0
+     * @phpstan-return void
      */
     function register_block_core_query_no_results()
     {
@@ -117884,6 +118986,7 @@ namespace {
      * Registers the `core/query-pagination-next` block on the server.
      *
      * @since 5.8.0
+     * @phpstan-return void
      */
     function register_block_core_query_pagination_next()
     {
@@ -117908,6 +119011,7 @@ namespace {
      * Registers the `core/query-pagination-numbers` block on the server.
      *
      * @since 5.8.0
+     * @phpstan-return void
      */
     function register_block_core_query_pagination_numbers()
     {
@@ -117930,6 +119034,7 @@ namespace {
      * Registers the `core/query-pagination-previous` block on the server.
      *
      * @since 5.8.0
+     * @phpstan-return void
      */
     function register_block_core_query_pagination_previous()
     {
@@ -117951,6 +119056,7 @@ namespace {
      * Registers the `core/query-pagination` block on the server.
      *
      * @since 5.8.0
+     * @phpstan-return void
      */
     function register_block_core_query_pagination()
     {
@@ -117975,6 +119081,7 @@ namespace {
      * Registers the `core/query-title` block on the server.
      *
      * @since 5.8.0
+     * @phpstan-return void
      */
     function register_block_core_query_title()
     {
@@ -118000,6 +119107,7 @@ namespace {
      * Registers the `query-total` block.
      *
      * @since 6.8.0
+     * @phpstan-return void
      */
     function register_block_core_query_total()
     {
@@ -118022,6 +119130,7 @@ namespace {
      * Registers the `core/query` block on the server.
      *
      * @since 5.8.0
+     * @phpstan-return void
      */
     function register_block_core_query()
     {
@@ -118057,6 +119166,7 @@ namespace {
      * Registers the `core/read-more` block on the server.
      *
      * @since 6.0.0
+     * @phpstan-return void
      */
     function register_block_core_read_more()
     {
@@ -118078,6 +119188,7 @@ namespace {
      * Registers the `core/rss` block on server.
      *
      * @since 5.2.0
+     * @phpstan-return void
      */
     function register_block_core_rss()
     {
@@ -118099,6 +119210,7 @@ namespace {
      * Registers the `core/search` block on the server.
      *
      * @since 5.2.0
+     * @phpstan-return void
      */
     function register_block_core_search()
     {
@@ -118146,6 +119258,7 @@ namespace {
      * @param array  $wrapper_styles Current collection of wrapper styles.
      * @param array  $button_styles  Current collection of button styles.
      * @param array  $input_styles   Current collection of input styles.
+     * @phpstan-return void
      */
     function apply_block_core_search_border_styles($attributes, $property, &$wrapper_styles, &$button_styles, &$input_styles)
     {
@@ -118232,6 +119345,7 @@ namespace {
      * Registers the `core/shortcode` block on server.
      *
      * @since 5.0.0
+     * @phpstan-return void
      */
     function register_block_core_shortcode()
     {
@@ -118253,6 +119367,7 @@ namespace {
      * Register a core site setting for a site logo
      *
      * @since 5.8.0
+     * @phpstan-return void
      */
     function register_block_core_site_logo_setting()
     {
@@ -118261,6 +119376,7 @@ namespace {
      * Register a core site setting for a site icon
      *
      * @since 5.9.0
+     * @phpstan-return void
      */
     function register_block_core_site_icon_setting()
     {
@@ -118269,6 +119385,7 @@ namespace {
      * Registers the `core/site-logo` block on the server.
      *
      * @since 5.8.0
+     * @phpstan-return void
      */
     function register_block_core_site_logo()
     {
@@ -118328,6 +119445,7 @@ namespace {
      * Runs on `setup_theme` to account for dynamically-switched themes in the Customizer.
      *
      * @since 5.8.0
+     * @phpstan-return void
      */
     function _delete_site_logo_on_remove_custom_logo_on_setup_theme()
     {
@@ -118338,6 +119456,7 @@ namespace {
      * @since 5.9.0
      *
      * @global array $_ignore_site_logo_changes
+     * @phpstan-return void
      */
     function _delete_custom_logo_on_remove_site_logo()
     {
@@ -118358,6 +119477,7 @@ namespace {
      * Registers the `core/site-tagline` block on the server.
      *
      * @since 5.8.0
+     * @phpstan-return void
      */
     function register_block_core_site_tagline()
     {
@@ -118378,6 +119498,7 @@ namespace {
      * Registers the `core/site-title` block on the server.
      *
      * @since 5.8.0
+     * @phpstan-return void
      */
     function register_block_core_site_title()
     {
@@ -118400,6 +119521,7 @@ namespace {
      * Registers the `core/social-link` blocks.
      *
      * @since 5.4.0
+     * @phpstan-return void
      */
     function register_block_core_social_link()
     {
@@ -118488,6 +119610,7 @@ namespace {
      * Registers the `core/tab-list` block on the server.
      *
      * @since 7.1.0
+     * @phpstan-return void
      */
     function register_block_core_tab_list()
     {
@@ -118512,6 +119635,7 @@ namespace {
      * @hook init
      *
      * @since 7.1.0
+     * @phpstan-return void
      */
     function register_block_core_tab_panel()
     {
@@ -118562,6 +119686,7 @@ namespace {
      * Registers the `core/tabs` block on the server.
      *
      * @since 7.1.0
+     * @phpstan-return void
      */
     function register_block_core_tabs()
     {
@@ -118582,6 +119707,7 @@ namespace {
      * Registers the `core/tag-cloud` block on server.
      *
      * @since 5.2.0
+     * @phpstan-return void
      */
     function register_block_core_tag_cloud()
     {
@@ -118636,6 +119762,7 @@ namespace {
      * Registers the `core/template-part` block on the server.
      *
      * @since 5.9.0
+     * @phpstan-return void
      */
     function register_block_core_template_part()
     {
@@ -118658,6 +119785,7 @@ namespace {
      * Registers the `core/term-count` block on the server.
      *
      * @since 6.9.0
+     * @phpstan-return void
      */
     function register_block_core_term_count()
     {
@@ -118680,6 +119808,7 @@ namespace {
      * Registers the `core/term-description` block on the server.
      *
      * @since 5.9.0
+     * @phpstan-return void
      */
     function register_block_core_term_description()
     {
@@ -118702,6 +119831,7 @@ namespace {
      * Registers the `core/term-name` block on the server.
      *
      * @since 6.9.0
+     * @phpstan-return void
      */
     function register_block_core_term_name()
     {
@@ -118724,6 +119854,7 @@ namespace {
      * Registers the `core/term-template` block on the server.
      *
      * @since 6.9.0
+     * @phpstan-return void
      */
     function register_block_core_term_template()
     {
@@ -118772,6 +119903,7 @@ namespace {
      * Registers the 'core/widget-group' block.
      *
      * @since 5.9.0
+     * @phpstan-return void
      */
     function register_block_core_widget_group()
     {
@@ -118786,6 +119918,7 @@ namespace {
      * @global int|string $_sidebar_being_rendered
      *
      * @param int|string $index       Index, name, or ID of the dynamic sidebar.
+     * @phpstan-return void
      */
     function note_sidebar_being_rendered($index)
     {
@@ -118797,6 +119930,7 @@ namespace {
      * @since 5.9.0
      *
      * @global int|string $_sidebar_being_rendered
+     * @phpstan-return void
      */
     function discard_sidebar_being_rendered()
     {
@@ -119072,6 +120206,7 @@ namespace {
      * @since 2.7.0
      *
      * @param int $bookmark_id Bookmark ID.
+     * @phpstan-return void
      */
     function clean_bookmark_cache($bookmark_id)
     {
@@ -119082,6 +120217,7 @@ namespace {
      * @param string      $path           Route path (e.g., '/types/$type/edit/$id').
      * @param string|null $content_module Script module ID for content (stage/inspector).
      * @param string|null $route_module   Script module ID for route lifecycle hooks.
+     * @phpstan-return void
      */
     function wp_register_font_library_wp_admin_route($path, $content_module = \null, $route_module = \null)
     {
@@ -119094,6 +120230,7 @@ namespace {
      * @param string $label     Display label.
      * @param string $to        Route path to navigate to.
      * @param string $parent_id Optional. Parent menu item ID.
+     * @phpstan-return void
      */
     function wp_register_font_library_wp_admin_menu_item($id, $label, $to, $parent_id = '')
     {
@@ -119117,6 +120254,7 @@ namespace {
     /**
      * Preload REST API data for the font-library-wp-admin page.
      * Automatically called during page rendering.
+     * @phpstan-return void
      */
     function wp_font_library_wp_admin_preload_data()
     {
@@ -119126,6 +120264,7 @@ namespace {
      * Hooked to admin_enqueue_scripts.
      *
      * @param string $hook_suffix The current admin page.
+     * @phpstan-return void
      */
     function wp_font_library_wp_admin_enqueue_scripts($hook_suffix)
     {
@@ -119134,6 +120273,7 @@ namespace {
      * Render the font-library-wp-admin page.
      * Call this function from add_menu_page or add_submenu_page.
      * This renders within the normal WordPress admin interface.
+     * @phpstan-return void
      */
     function wp_font_library_wp_admin_render_page()
     {
@@ -119144,6 +120284,7 @@ namespace {
      * @param string      $path           Route path (e.g., '/types/$type/edit/$id').
      * @param string|null $content_module Script module ID for content (stage/inspector).
      * @param string|null $route_module   Script module ID for route lifecycle hooks.
+     * @phpstan-return void
      */
     function wp_register_font_library_route($path, $content_module = \null, $route_module = \null)
     {
@@ -119157,6 +120298,7 @@ namespace {
      * @param string $parent_id   Optional. Parent menu item ID.
      * @param string $parent_type Optional. Parent type: 'drilldown' or 'dropdown'.
      * @phpstan-param 'drilldown'|'dropdown' $parent_type
+     * @phpstan-return void
      */
     function wp_register_font_library_menu_item($id, $label, $to, $parent_id = '', $parent_type = '')
     {
@@ -119180,6 +120322,7 @@ namespace {
     /**
      * Preload REST API data for the font-library page.
      * Automatically called during page rendering.
+     * @phpstan-return void
      */
     function wp_font_library_preload_data()
     {
@@ -119187,6 +120330,7 @@ namespace {
     /**
      * Render the font-library page.
      * Call this function from add_menu_page or add_submenu_page.
+     * @phpstan-return never
      */
     function wp_font_library_render_page()
     {
@@ -119194,6 +120338,7 @@ namespace {
     /**
      * Intercept admin_init to render the page early.
      * This bypasses the default WordPress admin template.
+     * @phpstan-return void
      */
     function wp_font_library_intercept_render()
     {
@@ -119204,6 +120349,7 @@ namespace {
      * @param string      $path           Route path (e.g., '/types/$type/edit/$id').
      * @param string|null $content_module Script module ID for content (stage/inspector).
      * @param string|null $route_module   Script module ID for route lifecycle hooks.
+     * @phpstan-return void
      */
     function wp_register_options_connectors_wp_admin_route($path, $content_module = \null, $route_module = \null)
     {
@@ -119216,6 +120362,7 @@ namespace {
      * @param string $label     Display label.
      * @param string $to        Route path to navigate to.
      * @param string $parent_id Optional. Parent menu item ID.
+     * @phpstan-return void
      */
     function wp_register_options_connectors_wp_admin_menu_item($id, $label, $to, $parent_id = '')
     {
@@ -119239,6 +120386,7 @@ namespace {
     /**
      * Preload REST API data for the options-connectors-wp-admin page.
      * Automatically called during page rendering.
+     * @phpstan-return void
      */
     function wp_options_connectors_wp_admin_preload_data()
     {
@@ -119248,6 +120396,7 @@ namespace {
      * Hooked to admin_enqueue_scripts.
      *
      * @param string $hook_suffix The current admin page.
+     * @phpstan-return void
      */
     function wp_options_connectors_wp_admin_enqueue_scripts($hook_suffix)
     {
@@ -119256,6 +120405,7 @@ namespace {
      * Render the options-connectors-wp-admin page.
      * Call this function from add_menu_page or add_submenu_page.
      * This renders within the normal WordPress admin interface.
+     * @phpstan-return void
      */
     function wp_options_connectors_wp_admin_render_page()
     {
@@ -119266,6 +120416,7 @@ namespace {
      * @param string      $path           Route path (e.g., '/types/$type/edit/$id').
      * @param string|null $content_module Script module ID for content (stage/inspector).
      * @param string|null $route_module   Script module ID for route lifecycle hooks.
+     * @phpstan-return void
      */
     function wp_register_options_connectors_route($path, $content_module = \null, $route_module = \null)
     {
@@ -119279,6 +120430,7 @@ namespace {
      * @param string $parent_id   Optional. Parent menu item ID.
      * @param string $parent_type Optional. Parent type: 'drilldown' or 'dropdown'.
      * @phpstan-param 'drilldown'|'dropdown' $parent_type
+     * @phpstan-return void
      */
     function wp_register_options_connectors_menu_item($id, $label, $to, $parent_id = '', $parent_type = '')
     {
@@ -119302,6 +120454,7 @@ namespace {
     /**
      * Preload REST API data for the options-connectors page.
      * Automatically called during page rendering.
+     * @phpstan-return void
      */
     function wp_options_connectors_preload_data()
     {
@@ -119309,6 +120462,7 @@ namespace {
     /**
      * Render the options-connectors page.
      * Call this function from add_menu_page or add_submenu_page.
+     * @phpstan-return never
      */
     function wp_options_connectors_render_page()
     {
@@ -119316,6 +120470,7 @@ namespace {
     /**
      * Intercept admin_init to render the page early.
      * This bypasses the default WordPress admin template.
+     * @phpstan-return void
      */
     function wp_options_connectors_intercept_render()
     {
@@ -119325,30 +120480,35 @@ namespace {
      *
      * @param array  $page_routes           Array of route data for the page.
      * @param string $register_function_name Name of the function to call for registering each route.
+     * @phpstan-return void
      */
     function wp_register_page_routes($page_routes, $register_function_name)
     {
     }
     /**
      * Register routes for options-connectors page (full-page mode).
+     * @phpstan-return void
      */
     function wp_register_options_connectors_page_routes()
     {
     }
     /**
      * Register routes for options-connectors page (wp-admin mode).
+     * @phpstan-return void
      */
     function wp_register_options_connectors_wp_admin_page_routes()
     {
     }
     /**
      * Register routes for font-library page (full-page mode).
+     * @phpstan-return void
      */
     function wp_register_font_library_page_routes()
     {
     }
     /**
      * Register routes for font-library page (wp-admin mode).
+     * @phpstan-return void
      */
     function wp_register_font_library_wp_admin_page_routes()
     {
@@ -119359,6 +120519,7 @@ namespace {
      * @since 2.0.0
      *
      * @global WP_Object_Cache $wp_object_cache
+     * @phpstan-return void
      */
     function wp_cache_init()
     {
@@ -119640,6 +120801,7 @@ namespace {
      * @global WP_Object_Cache $wp_object_cache Object cache global instance.
      *
      * @param string|string[] $groups A group or an array of groups to add.
+     * @phpstan-return void
      */
     function wp_cache_add_global_groups($groups)
     {
@@ -119650,6 +120812,7 @@ namespace {
      * @since 2.6.0
      *
      * @param string|string[] $groups A group or an array of groups to add.
+     * @phpstan-return void
      */
     function wp_cache_add_non_persistent_groups($groups)
     {
@@ -119665,6 +120828,7 @@ namespace {
      * @global WP_Object_Cache $wp_object_cache Object cache global instance.
      *
      * @param int $blog_id Site ID.
+     * @phpstan-return void
      */
     function wp_cache_switch_to_blog($blog_id)
     {
@@ -120013,6 +121177,7 @@ namespace {
      * @since 2.0.0
      *
      * @param string $role Role name.
+     * @phpstan-return void
      */
     function remove_role($role)
     {
@@ -120232,6 +121397,7 @@ namespace {
      * @param string    $parents   Optional. How to display the parents. Accepts 'multiple', 'single', or empty.
      *                             Default empty string.
      * @param int|false $post_id   Optional. ID of the post to retrieve categories for. Defaults to the current post.
+     * @phpstan-return void
      */
     function the_category($separator = '', $parents = '', $post_id = \false)
     {
@@ -120669,6 +121835,7 @@ namespace {
      * @param string $before Optional. String to use before the tags. Defaults to 'Tags:'.
      * @param string $sep    Optional. String to use between the tags. Default ', '.
      * @param string $after  Optional. String to use after the tags. Default empty.
+     * @phpstan-return void
      */
     function the_tags($before = \null, $sep = ', ', $after = '')
     {
@@ -121042,6 +122209,7 @@ namespace {
      * @since 2.1.0
      *
      * @param int $id Category ID
+     * @phpstan-return void
      */
     function clean_category_cache($id)
     {
@@ -121065,6 +122233,7 @@ namespace {
      * @access private
      *
      * @param array|object|WP_Term $category Category row object or array.
+     * @phpstan-return void
      */
     function _make_cat_compat(&$category)
     {
@@ -121118,6 +122287,7 @@ namespace {
      *
      * @param int|WP_Comment $comment_id Optional. WP_Comment or the ID of the comment for which to print the author.
      *                                   Default current comment.
+     * @phpstan-return void
      */
     function comment_author($comment_id = 0)
     {
@@ -121149,6 +122319,7 @@ namespace {
      *
      * @param int|WP_Comment $comment_id Optional. WP_Comment or the ID of the comment for which to print the author's email.
      *                                   Default current comment.
+     * @phpstan-return void
      */
     function comment_author_email($comment_id = 0)
     {
@@ -121170,6 +122341,7 @@ namespace {
      * @param string         $before    Optional. Text or HTML to display before the email link. Default empty.
      * @param string         $after     Optional. Text or HTML to display after the email link. Default empty.
      * @param int|WP_Comment $comment   Optional. Comment ID or WP_Comment object. Default is the current comment.
+     * @phpstan-return void
      */
     function comment_author_email_link($link_text = '', $before = '', $after = '', $comment = \null)
     {
@@ -121221,6 +122393,7 @@ namespace {
      *
      * @param int|WP_Comment $comment_id Optional. WP_Comment or the ID of the comment for which to print the author's link.
      *                                   Default current comment.
+     * @phpstan-return void
      */
     function comment_author_link($comment_id = 0)
     {
@@ -121246,6 +122419,7 @@ namespace {
      *
      * @param int|WP_Comment $comment_id Optional. WP_Comment or the ID of the comment for which to print the author's IP address.
      *                                   Default current comment.
+     * @phpstan-return void
      */
     function comment_author_IP($comment_id = 0)
     {
@@ -121271,6 +122445,7 @@ namespace {
      *
      * @param int|WP_Comment $comment_id Optional. WP_Comment or the ID of the comment for which to print the author's URL.
      *                                   Default current comment.
+     * @phpstan-return void
      */
     function comment_author_url($comment_id = 0)
     {
@@ -121315,6 +122490,7 @@ namespace {
      *                                  Default empty.
      * @param int|WP_Comment $comment   Optional. Comment ID or WP_Comment object.
      *                                  Default is the current comment.
+     * @phpstan-return void
      */
     function comment_author_url_link($link_text = '', $before = '', $after = '', $comment = 0)
     {
@@ -121379,6 +122555,7 @@ namespace {
      * @param string         $format     Optional. PHP date format. Defaults to the 'date_format' option.
      * @param int|WP_Comment $comment_id WP_Comment or ID of the comment for which to print the date.
      *                                   Default current comment.
+     * @phpstan-return void
      */
     function comment_date($format = '', $comment_id = 0)
     {
@@ -121406,6 +122583,7 @@ namespace {
      *
      * @param int|WP_Comment $comment_id Optional. WP_Comment or ID of the comment for which to print the excerpt.
      *                                   Default current comment.
+     * @phpstan-return void
      */
     function comment_excerpt($comment_id = 0)
     {
@@ -121424,6 +122602,7 @@ namespace {
      * Displays the comment ID of the current comment.
      *
      * @since 0.71
+     * @phpstan-return void
      */
     function comment_ID()
     {
@@ -121483,6 +122662,7 @@ namespace {
      * @param string $deprecated_2 Not Used.
      * @phpstan-param '' $deprecated
      * @phpstan-param '' $deprecated_2
+     * @phpstan-return void
      */
     function comments_link($deprecated = '', $deprecated_2 = '')
     {
@@ -121509,6 +122689,7 @@ namespace {
      * @param string|false $one  Optional. Text for one comment. Default false.
      * @param string|false $more Optional. Text for more than one comment. Default false.
      * @param int|WP_Post  $post Optional. Post ID or WP_Post object. Default is the global `$post`.
+     * @phpstan-return void
      */
     function comments_number($zero = \false, $one = \false, $more = \false, $post = 0)
     {
@@ -121556,6 +122737,7 @@ namespace {
      * @param int|WP_Comment $comment_id Optional. WP_Comment or ID of the comment for which to print the text.
      *                                   Default current comment.
      * @param array          $args       Optional. An array of arguments. Default empty array.
+     * @phpstan-return void
      */
     function comment_text($comment_id = 0, $args = array())
     {
@@ -121586,6 +122768,7 @@ namespace {
      * @param string         $format     Optional. PHP time format. Defaults to the 'time_format' option.
      * @param int|WP_Comment $comment_id Optional. WP_Comment or ID of the comment for which to print the time.
      *                                   Default current comment.
+     * @phpstan-return void
      */
     function comment_time($format = '', $comment_id = 0)
     {
@@ -121611,6 +122794,7 @@ namespace {
      * @param string|false $comment_text   Optional. String to display for comment type. Default false.
      * @param string|false $trackback_text Optional. String to display for trackback type. Default false.
      * @param string|false $pingback_text  Optional. String to display for pingback type. Default false.
+     * @phpstan-return void
      */
     function comment_type($comment_text = \false, $trackback_text = \false, $pingback_text = \false)
     {
@@ -121699,6 +122883,7 @@ namespace {
      * Backported to 2.0.10.
      *
      * @since 2.1.3
+     * @phpstan-return void
      */
     function wp_comment_form_unfiltered_html_nonce()
     {
@@ -121816,6 +123001,7 @@ namespace {
      * @param int|WP_Comment $comment Optional. Comment being replied to. Default current comment.
      * @param int|WP_Post    $post    Optional. Post ID or WP_Post object the comment is going to be displayed on.
      *                                Default current post.
+     * @phpstan-return void
      */
     function comment_reply_link($args = array(), $comment = \null, $post = \null)
     {
@@ -121864,6 +123050,7 @@ namespace {
      * @param array       $args Optional. Override default options. Default empty array.
      * @param int|WP_Post $post Optional. Post ID or WP_Post object the comment is going to be displayed on.
      *                          Default current post.
+     * @phpstan-return void
      */
     function post_reply_link($args = array(), $post = \null)
     {
@@ -121890,6 +123077,7 @@ namespace {
      *
      * @param string $link_text Optional. Text to display for cancel reply link. If empty,
      *                     defaults to 'Click here to cancel reply'. Default empty.
+     * @phpstan-return void
      */
     function cancel_comment_reply_link($link_text = '')
     {
@@ -121922,6 +123110,7 @@ namespace {
      *
      * @param int|WP_Post|null $post Optional. The post the comment is being displayed for.
      *                               Defaults to the current global post.
+     * @phpstan-return void
      */
     function comment_id_fields($post = \null)
     {
@@ -122554,6 +123743,7 @@ namespace {
      * Mostly used after cookies had been sent to use elsewhere.
      *
      * @since 2.0.4
+     * @phpstan-return void
      */
     function sanitize_comment_cookies()
     {
@@ -122587,6 +123777,7 @@ namespace {
      *
      * @since 2.3.0
      * @since 4.7.0 Converted to be an add_filter() wrapper.
+     * @phpstan-return void
      */
     function check_comment_flood_db()
     {
@@ -122858,6 +124049,7 @@ namespace {
      * @param string     $new_status New comment status.
      * @param string     $old_status Previous comment status.
      * @param WP_Comment $comment    Comment object.
+     * @phpstan-return void
      */
     function wp_transition_comment_status($new_status, $old_status, $comment)
     {
@@ -122873,6 +124065,7 @@ namespace {
      *
      * @param string $new_status The new comment status.
      * @param string $old_status The old comment status.
+     * @phpstan-return void
      */
     function _clear_modified_cache_on_transition_comment_status($new_status, $old_status)
     {
@@ -123100,6 +124293,7 @@ namespace {
      * @since 6.9.0
      *
      * @param WP_Comment $comment The comment object.
+     * @phpstan-return void
      */
     function wp_new_comment_via_rest_notify_postauthor($comment)
     {
@@ -123276,6 +124470,7 @@ namespace {
      *
      * @since 2.1.0
      * @since 5.6.0 Introduced `do_all_pings` action hook for individual services.
+     * @phpstan-return void
      */
     function do_all_pings()
     {
@@ -123284,6 +124479,7 @@ namespace {
      * Performs all pingbacks.
      *
      * @since 5.6.0
+     * @phpstan-return void
      */
     function do_all_pingbacks()
     {
@@ -123292,6 +124488,7 @@ namespace {
      * Performs all enclosures.
      *
      * @since 5.6.0
+     * @phpstan-return void
      */
     function do_all_enclosures()
     {
@@ -123300,6 +124497,7 @@ namespace {
      * Performs all trackbacks.
      *
      * @since 5.6.0
+     * @phpstan-return void
      */
     function do_all_trackbacks()
     {
@@ -123350,6 +124548,7 @@ namespace {
      * priority 10 callbacks. Does not remove `do_all_enclosures`.
      *
      * @since 7.1.0
+     * @phpstan-return void
      */
     function wp_maybe_disable_outgoing_pings_for_environment()
     {
@@ -123362,6 +124561,7 @@ namespace {
      * response and terminates the request.
      *
      * @since 7.1.0
+     * @phpstan-return void
      */
     function wp_maybe_disable_trackback_for_environment()
     {
@@ -123427,6 +124627,7 @@ namespace {
      *
      * @param string $server Host of blog to connect to.
      * @param string $path Path to send the ping.
+     * @phpstan-return void
      */
     function weblog_ping($server = '', $path = '')
     {
@@ -123466,6 +124667,7 @@ namespace {
      * @since 2.3.0
      *
      * @param int|array $ids Comment ID or an array of comment IDs to remove from cache.
+     * @phpstan-return void
      */
     function clean_comment_cache($ids)
     {
@@ -123482,6 +124684,7 @@ namespace {
      *
      * @param WP_Comment[] $comments          Array of comment objects
      * @param bool         $update_meta_cache Whether to update commentmeta cache. Default true.
+     * @phpstan-return void
      */
     function update_comment_cache($comments, $update_meta_cache = \true)
     {
@@ -123498,6 +124701,7 @@ namespace {
      *
      * @param int[] $comment_ids       Array of comment IDs.
      * @param bool  $update_meta_cache Optional. Whether to update the meta cache. Default true.
+     * @phpstan-return void
      */
     function _prime_comment_caches($comment_ids, $update_meta_cache = \true)
     {
@@ -123635,6 +124839,7 @@ namespace {
      * Sets the last changed time for the 'comment' cache group.
      *
      * @since 5.0.0
+     * @phpstan-return void
      */
     function wp_cache_set_comments_last_changed()
     {
@@ -123656,6 +124861,7 @@ namespace {
      *
      * @ignore
      * @since 5.5.0
+     * @phpstan-return void
      */
     function _wp_check_for_scheduled_update_comment_type()
     {
@@ -123664,6 +124870,7 @@ namespace {
      * Register initial note status meta.
      *
      * @since 6.9.0
+     * @phpstan-return void
      */
     function wp_create_initial_comment_meta()
     {
@@ -124655,6 +125862,7 @@ namespace {
      *
      * @global int    $blog_id    The current site ID.
      * @global string $wp_version The WordPress version string.
+     * @phpstan-return void
      */
     function wp_initial_constants()
     {
@@ -124665,6 +125873,7 @@ namespace {
      * Defines must-use plugin directory constants, which may be overridden in the sunrise.php drop-in.
      *
      * @since 3.0.0
+     * @phpstan-return void
      */
     function wp_plugin_directory_constants()
     {
@@ -124675,6 +125884,7 @@ namespace {
      * Defines constants after multisite is loaded.
      *
      * @since 3.0.0
+     * @phpstan-return void
      */
     function wp_cookie_constants()
     {
@@ -124683,6 +125893,7 @@ namespace {
      * Defines SSL-related WordPress constants.
      *
      * @since 3.0.0
+     * @phpstan-return void
      */
     function wp_ssl_constants()
     {
@@ -124691,6 +125902,7 @@ namespace {
      * Defines functionality-related WordPress constants.
      *
      * @since 3.0.0
+     * @phpstan-return void
      */
     function wp_functionality_constants()
     {
@@ -124699,6 +125911,7 @@ namespace {
      * Defines templating-related WordPress constants.
      *
      * @since 3.0.0
+     * @phpstan-return void
      */
     function wp_templating_constants()
     {
@@ -124770,7 +125983,6 @@ namespace {
      * @param string $in_same_cat
      * @param int    $limitprev
      * @param string $excluded_categories
-     * @phpstan-return void
      */
     function previous_post($format = '%', $previous = 'previous post: ', $title = 'yes', $in_same_cat = 'no', $limitprev = 1, $excluded_categories = '')
     {
@@ -124788,7 +126000,6 @@ namespace {
      * @param string $in_same_cat
      * @param int $limitnext
      * @param string $excluded_categories
-     * @phpstan-return void
      */
     function next_post($format = '%', $next = 'next post: ', $title = 'yes', $in_same_cat = 'no', $limitnext = 1, $excluded_categories = '')
     {
@@ -127430,7 +128641,6 @@ namespace {
      * @since 3.3.0
      * @since 5.3.0 Echo `noindex,nofollow` if search engine visibility is discouraged.
      * @deprecated 5.7.0 Use wp_robots_no_robots() instead on 'wp_robots' filter.
-     * @phpstan-return void
      */
     function wp_no_robots()
     {
@@ -127961,7 +129171,6 @@ namespace {
      *
      * @since 5.9.1
      * @deprecated 6.3.0 SVG generation is handled on a per-block basis in block supports.
-     * @phpstan-return void
      */
     function wp_global_styles_render_svg_filters()
     {
@@ -128029,7 +129238,6 @@ namespace {
      *
      * @since 4.2.0
      * @deprecated 6.4.0 Use wp_enqueue_emoji_styles() instead.
-     * @phpstan-return void
      */
     function print_emoji_styles()
     {
@@ -128063,7 +129271,6 @@ namespace {
      *                    update the `https_detection_errors` option, but this is no longer necessary as the errors are
      *                    retrieved directly in Site Health and no longer used outside of Site Health.
      * @access private
-     * @phpstan-return void
      */
     function wp_update_https_detection_errors()
     {
@@ -128125,7 +129332,6 @@ namespace {
      * @deprecated 6.4.0 Use wp_enqueue_block_template_skip_link() instead.
      *
      * @global string $_wp_current_template_content
-     * @phpstan-return void
      */
     function the_block_template_skip_link()
     {
@@ -128206,7 +129412,6 @@ namespace {
      *
      * @since 6.2.0
      * @deprecated 6.7.0 Use {@see 'wp_enqueue_global_styles'} instead.
-     * @phpstan-return void
      */
     function wp_enqueue_global_styles_custom_css()
     {
@@ -128272,7 +129477,6 @@ namespace {
      * @see https://html.spec.whatwg.org/multipage/rendering.html#img-contain-size
      * @see https://core.trac.wordpress.org/ticket/62413
      * @see https://core.trac.wordpress.org/ticket/62731
-     * @phpstan-return void
      */
     function wp_print_auto_sizes_contain_css_fix()
     {
@@ -128325,6 +129529,7 @@ namespace {
      * @param callable $callback The callback function that will be called if the regex is matched.
      * @param int      $priority Optional. Used to specify the order in which the registered handlers will
      *                           be tested. Default 10.
+     * @phpstan-return void
      */
     function wp_embed_register_handler($id, $regex, $callback, $priority = 10)
     {
@@ -128338,6 +129543,7 @@ namespace {
      *
      * @param string $id       The handler ID that should be removed.
      * @param int    $priority Optional. The priority of the handler to be removed. Default 10.
+     * @phpstan-return void
      */
     function wp_embed_unregister_handler($id, $priority = 10)
     {
@@ -128420,6 +129626,7 @@ namespace {
      *                         as wildcards.
      * @param string $provider The URL to the oEmbed provider.
      * @param bool   $regex    Optional. Whether the `$format` parameter is in a RegEx format. Default false.
+     * @phpstan-return void
      */
     function wp_oembed_add_provider($format, $provider, $regex = \false)
     {
@@ -128502,6 +129709,7 @@ namespace {
      * Registers the oEmbed REST API route.
      *
      * @since 4.4.0
+     * @phpstan-return void
      */
     function wp_oembed_register_route()
     {
@@ -128726,6 +129934,7 @@ namespace {
      * Intended to be used in 'The Loop'.
      *
      * @since 4.4.0
+     * @phpstan-return void
      */
     function the_excerpt_embed()
     {
@@ -128752,6 +129961,7 @@ namespace {
      * Runs first in oembed_head().
      *
      * @since 4.4.0
+     * @phpstan-return void
      */
     function enqueue_embed_scripts()
     {
@@ -128769,6 +129979,7 @@ namespace {
      * Prints the JavaScript in the embed iframe header.
      *
      * @since 4.4.0
+     * @phpstan-return void
      */
     function print_embed_scripts()
     {
@@ -128927,6 +130138,7 @@ namespace {
      * @see get_bloginfo() For the list of possible values to display.
      *
      * @param string $show See get_bloginfo() for possible values.
+     * @phpstan-return void
      */
     function bloginfo_rss($show = '')
     {
@@ -128965,6 +130177,7 @@ namespace {
      *
      * @param string $deprecated Unused.
      * @phpstan-param '&#8211;' $deprecated
+     * @phpstan-return void
      */
     function wp_title_rss($deprecated = '&#8211;')
     {
@@ -128985,6 +130198,7 @@ namespace {
      * Displays the post title in the feed.
      *
      * @since 0.71
+     * @phpstan-return void
      */
     function the_title_rss()
     {
@@ -129008,6 +130222,7 @@ namespace {
      * @since 2.9.0
      *
      * @param string $feed_type The type of feed. rss2 | atom | rss | rdf
+     * @phpstan-return void
      */
     function the_content_feed($feed_type = \null)
     {
@@ -129016,6 +130231,7 @@ namespace {
      * Displays the post excerpt for the feed.
      *
      * @since 0.71
+     * @phpstan-return void
      */
     function the_excerpt_rss()
     {
@@ -129024,6 +130240,7 @@ namespace {
      * Displays the permalink to the post for use in feeds.
      *
      * @since 2.3.0
+     * @phpstan-return void
      */
     function the_permalink_rss()
     {
@@ -129032,6 +130249,7 @@ namespace {
      * Outputs the link to the comments for the current post in an XML safe way.
      *
      * @since 3.0.0
+     * @phpstan-return void
      */
     function comments_link_feed()
     {
@@ -129042,6 +130260,7 @@ namespace {
      * @since 2.5.0
      *
      * @param int|WP_Comment $comment_id Optional comment object or ID. Defaults to global comment object.
+     * @phpstan-return void
      */
     function comment_guid($comment_id = \null)
     {
@@ -129064,6 +130283,7 @@ namespace {
      * @since 4.4.0 Introduced the `$comment` argument.
      *
      * @param int|WP_Comment $comment Optional. Comment object or ID. Defaults to global comment object.
+     * @phpstan-return void
      */
     function comment_link($comment = \null)
     {
@@ -129082,6 +130302,7 @@ namespace {
      * Displays the current comment author in the feed.
      *
      * @since 1.0.0
+     * @phpstan-return void
      */
     function comment_author_rss()
     {
@@ -129090,6 +130311,7 @@ namespace {
      * Displays the current comment content for use in the feeds.
      *
      * @since 1.0.0
+     * @phpstan-return void
      */
     function comment_text_rss()
     {
@@ -129117,6 +130339,7 @@ namespace {
      * @see get_the_category_rss() For better explanation.
      *
      * @param string $type Optional, default is the type returned by get_default_feed().
+     * @phpstan-return void
      */
     function the_category_rss($type = \null)
     {
@@ -129127,6 +130350,7 @@ namespace {
      * The two possible values are either 'xhtml' or 'html'.
      *
      * @since 2.2.0
+     * @phpstan-return void
      */
     function html_type_rss()
     {
@@ -129193,6 +130417,7 @@ namespace {
      * @since 4.3.0
      *
      * @see get_site_icon_url()
+     * @phpstan-return void
      */
     function atom_site_icon()
     {
@@ -129201,6 +130426,7 @@ namespace {
      * Displays Site Icon in RSS2.
      *
      * @since 4.3.0
+     * @phpstan-return void
      */
     function rss2_site_icon()
     {
@@ -129221,6 +130447,7 @@ namespace {
      * Generate a correct link for the atom:self element.
      *
      * @since 2.5.0
+     * @phpstan-return void
      */
     function self_link()
     {
@@ -129463,6 +130690,7 @@ namespace {
      *
      * @access private
      * @since 6.5.0
+     * @phpstan-return void
      */
     function _wp_register_default_font_collections()
     {
@@ -131238,6 +132466,7 @@ namespace {
      * @param string $input_string The string to be parsed.
      * @param array  $result       Variables will be stored in this array.
      * @phpstan-param-out array<int|string, array|string> $result
+     * @phpstan-return void
      */
     function wp_parse_str($input_string, &$result)
     {
@@ -131616,6 +132845,7 @@ namespace {
      * @ignore
      * @since 4.6.0
      * @access private
+     * @phpstan-return void
      */
     function _print_emoji_detection_script()
     {
@@ -132272,6 +133502,7 @@ namespace {
      * @global WP_Query $wp_the_query Copy of the WordPress Query object.
      *
      * @param string|array $query_vars Default WP_Query arguments.
+     * @phpstan-return void
      */
     function wp($query_vars = '')
     {
@@ -132345,6 +133576,7 @@ namespace {
      * Sets the HTTP headers for caching for 10 days with JavaScript content type.
      *
      * @since 2.1.0
+     * @phpstan-return void
      */
     function cache_javascript_headers()
     {
@@ -132387,6 +133619,7 @@ namespace {
      * @since 2.1.0
      *
      * @global WP_Query $wp_query WordPress Query object.
+     * @phpstan-return void
      */
     function do_feed()
     {
@@ -132397,6 +133630,7 @@ namespace {
      * @since 2.1.0
      *
      * @see load_template()
+     * @phpstan-return void
      */
     function do_feed_rdf()
     {
@@ -132407,6 +133641,7 @@ namespace {
      * @since 2.1.0
      *
      * @see load_template()
+     * @phpstan-return void
      */
     function do_feed_rss()
     {
@@ -132419,6 +133654,7 @@ namespace {
      * @see load_template()
      *
      * @param bool $for_comments True for the comment feed, false for normal feed.
+     * @phpstan-return void
      */
     function do_feed_rss2($for_comments)
     {
@@ -132431,6 +133667,7 @@ namespace {
      * @see load_template()
      *
      * @param bool $for_comments True for the comment feed, false for normal feed.
+     * @phpstan-return void
      */
     function do_feed_atom($for_comments)
     {
@@ -132442,6 +133679,7 @@ namespace {
      * @since 5.3.0 Remove the "Disallow: /" output if search engine visibility is
      *              discouraged in favor of robots meta HTML tag via wp_robots_no_robots()
      *              filter callback.
+     * @phpstan-return void
      */
     function do_robots()
     {
@@ -133451,6 +134689,7 @@ namespace {
      *
      * @since 4.7.0
      * @access private
+     * @phpstan-return void
      */
     function _delete_option_fresh_site()
     {
@@ -133602,6 +134841,7 @@ namespace {
      * @since 6.0.0
      *
      * @param array $input_array The array to sort, passed by reference.
+     * @phpstan-return void
      */
     function wp_recursive_ksort(&$input_array)
     {
@@ -133860,6 +135100,7 @@ namespace {
      * Make sure all output buffers are flushed before our singletons are destroyed.
      *
      * @since 2.2.0
+     * @phpstan-return void
      */
     function wp_ob_end_flush_all()
     {
@@ -133904,6 +135145,7 @@ namespace {
      * @param string $function_name The function that was called.
      * @param string $version       The version of WordPress that deprecated the function.
      * @param string $replacement   Optional. The function that should have been called. Default empty string.
+     * @phpstan-return void
      */
     function _deprecated_function($function_name, $version, $replacement = '')
     {
@@ -133927,6 +135169,7 @@ namespace {
      * @param string $version      The version of WordPress that deprecated the function.
      * @param string $parent_class Optional. The parent class calling the deprecated constructor.
      *                             Default empty string.
+     * @phpstan-return void
      */
     function _deprecated_constructor($class_name, $version, $parent_class = '')
     {
@@ -133948,6 +135191,7 @@ namespace {
      * @param string $version     The version of WordPress that deprecated the class.
      * @param string $replacement Optional. The class or function that should have been called.
      *                            Default empty string.
+     * @phpstan-return void
      */
     function _deprecated_class($class_name, $version, $replacement = '')
     {
@@ -133971,6 +135215,7 @@ namespace {
      * @param string $replacement Optional. The file that should have been included based on ABSPATH.
      *                            Default empty string.
      * @param string $message     Optional. A message regarding the change. Default empty string.
+     * @phpstan-return void
      */
     function _deprecated_file($file, $version, $replacement = '', $message = '')
     {
@@ -134000,6 +135245,7 @@ namespace {
      * @param string $function_name The function that was called.
      * @param string $version       The version of WordPress that deprecated the argument used.
      * @param string $message       Optional. A message regarding the change. Default empty string.
+     * @phpstan-return void
      */
     function _deprecated_argument($function_name, $version, $message = '')
     {
@@ -134023,6 +135269,7 @@ namespace {
      * @param string $version     The version of WordPress that deprecated the hook.
      * @param string $replacement Optional. The hook that should have been used. Default empty string.
      * @param string $message     Optional. A message regarding the change. Default empty.
+     * @phpstan-return void
      */
     function _deprecated_hook($hook, $version, $replacement = '', $message = '')
     {
@@ -134041,6 +135288,7 @@ namespace {
      * @param string $function_name The function that was called.
      * @param string $message       A message explaining what has been done incorrectly.
      * @param string $version       The version of WordPress where the message was added.
+     * @phpstan-return void
      */
     function _doing_it_wrong($function_name, $message, $version)
     {
@@ -134306,6 +135554,7 @@ namespace {
      * @since 2.9.0
      *
      * @global wpdb $wpdb WordPress database abstraction object.
+     * @phpstan-return void
      */
     function wp_scheduled_delete()
     {
@@ -134421,6 +135670,7 @@ namespace {
      *
      * @see https://blogs.msdn.com/ie/archive/2008/07/02/ie8-security-part-v-comprehensive-protection.aspx
      * @see https://src.chromium.org/viewvc/chrome?view=rev&revision=6985
+     * @phpstan-return void
      */
     function send_nosniff_header()
     {
@@ -134483,6 +135733,7 @@ namespace {
      *
      * @see https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/X-Frame-Options
      * @see https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Content-Security-Policy/frame-ancestors
+     * @phpstan-return void
      */
     function send_frame_options_header()
     {
@@ -134492,6 +135743,7 @@ namespace {
      *
      * @since 4.9.0
      * @since 6.8.0 This function was moved from `wp-admin/includes/misc.php` to `wp-includes/functions.php`.
+     * @phpstan-return void
      */
     function wp_admin_headers()
     {
@@ -134623,6 +135875,7 @@ namespace {
      * Outputs the HTML that shows the wp-login dialog when the user is no longer logged in.
      *
      * @since 3.6.0
+     * @phpstan-return void
      */
     function wp_auth_check_html()
     {
@@ -134744,6 +135997,7 @@ namespace {
      * @see mbstring_binary_safe_encoding()
      *
      * @since 3.7.0
+     * @phpstan-return void
      */
     function reset_mbstring_encoding()
     {
@@ -135347,6 +136601,7 @@ namespace {
      *   attributes?: string[],
      *   paragraph_wrap?: bool,
      * } $args
+     * @phpstan-return void
      */
     function wp_admin_notice($message, $args = array())
     {
@@ -135668,6 +136923,7 @@ namespace {
      *     fetchpriority?: 'low'|'auto'|'high',
      *     module_dependencies?: array<non-empty-string|array{ id: non-empty-string, ... }>,
      * }|bool $args
+     * @phpstan-return void
      */
     function wp_enqueue_script($handle, $src = '', $deps = array(), $ver = \false, $args = array())
     {
@@ -135680,6 +136936,7 @@ namespace {
      * @since 3.1.0
      *
      * @param string $handle Name of the script to be removed.
+     * @phpstan-return void
      */
     function wp_dequeue_script($handle)
     {
@@ -135805,6 +137062,7 @@ namespace {
      * @since 2.1.0
      *
      * @param string $handle Name of the stylesheet to be removed.
+     * @phpstan-return void
      */
     function wp_deregister_style($handle)
     {
@@ -135831,6 +137089,7 @@ namespace {
      * @param string           $media  Optional. The media for which this stylesheet has been defined.
      *                                 Default 'all'. Accepts media types like 'all', 'print' and 'screen', or media queries like
      *                                 '(orientation: portrait)' and '(max-width: 640px)'.
+     * @phpstan-return void
      */
     function wp_enqueue_style($handle, $src = '', $deps = array(), $ver = \false, $media = 'all')
     {
@@ -135843,6 +137102,7 @@ namespace {
      * @since 3.1.0
      *
      * @param string $handle Name of the stylesheet to be removed.
+     * @phpstan-return void
      */
     function wp_dequeue_style($handle)
     {
@@ -136286,6 +137546,7 @@ namespace {
      * @since 1.5.0
      *
      * @link https://core.trac.wordpress.org/ticket/1458 Explanation of 'wp_meta' action.
+     * @phpstan-return void
      */
     function wp_meta()
     {
@@ -136298,6 +137559,7 @@ namespace {
      * @see get_bloginfo() For possible `$show` values
      *
      * @param string $show Optional. Site information to display. Default empty.
+     * @phpstan-return void
      */
     function bloginfo($show = '')
     {
@@ -136373,6 +137635,7 @@ namespace {
      * @param int    $size    Optional. Size of the site icon. Default 512 (pixels).
      * @param string $url     Optional. Fallback url if no site icon is found. Default empty.
      * @param int    $blog_id Optional. ID of the blog to get the site icon for. Default current blog.
+     * @phpstan-return void
      */
     function site_icon_url($size = 512, $url = '', $blog_id = 0)
     {
@@ -136419,6 +137682,7 @@ namespace {
      * @since 4.5.0
      *
      * @param int $blog_id Optional. ID of the blog in question. Default is the ID of the current blog.
+     * @phpstan-return void
      */
     function the_custom_logo($blog_id = 0)
     {
@@ -136593,6 +137857,7 @@ namespace {
      *
      * @param string $before Optional. Content to prepend to the title. Default empty.
      * @param string $after  Optional. Content to append to the title. Default empty.
+     * @phpstan-return void
      */
     function the_archive_title($before = '', $after = '')
     {
@@ -136617,6 +137882,7 @@ namespace {
      *
      * @param string $before Optional. Content to prepend to the description. Default empty.
      * @param string $after  Optional. Content to append to the description. Default empty.
+     * @phpstan-return void
      */
     function the_archive_description($before = '', $after = '')
     {
@@ -136793,6 +138059,7 @@ namespace {
      *
      * @see get_calendar()
      * @since 2.1.0
+     * @phpstan-return void
      */
     function delete_get_calendar_cache()
     {
@@ -136817,6 +138084,7 @@ namespace {
      * Outputs the date in iso8601 format for xml files.
      *
      * @since 1.0.0
+     * @phpstan-return void
      */
     function the_date_xml()
     {
@@ -136899,6 +138167,7 @@ namespace {
      * @param string $format Optional. Format to use for retrieving the time the post
      *                       was written. Accepts 'G', 'U', or PHP date format.
      *                       Defaults to the 'time_format' option.
+     * @phpstan-return void
      */
     function the_time($format = '')
     {
@@ -136983,6 +138252,7 @@ namespace {
      * @param string $format Optional. Format to use for retrieving the time the post
      *                       was modified. Accepts 'G', 'U', or PHP date format.
      *                       Defaults to the 'time_format' option.
+     * @phpstan-return void
      */
     function the_modified_time($format = '')
     {
@@ -137054,6 +138324,7 @@ namespace {
      * See {@see 'wp_head'}.
      *
      * @since 1.2.0
+     * @phpstan-return void
      */
     function wp_head()
     {
@@ -137064,6 +138335,7 @@ namespace {
      * See {@see 'wp_footer'}.
      *
      * @since 1.5.1
+     * @phpstan-return void
      */
     function wp_footer()
     {
@@ -137074,6 +138346,7 @@ namespace {
      * See {@see 'wp_body_open'}.
      *
      * @since 5.2.0
+     * @phpstan-return void
      */
     function wp_body_open()
     {
@@ -137095,6 +138368,7 @@ namespace {
      * @since 2.8.0
      *
      * @param array $args Optional arguments.
+     * @phpstan-return void
      */
     function feed_links_extra($args = array())
     {
@@ -137104,6 +138378,7 @@ namespace {
      *
      * @link http://archipelago.phrasewise.com/rsd
      * @since 2.0.0
+     * @phpstan-return void
      */
     function rsd_link()
     {
@@ -137119,6 +138394,7 @@ namespace {
      *     add_action( 'wp_head', 'wp_strict_cross_origin_referrer' );
      *
      * @since 5.7.0
+     * @phpstan-return void
      */
     function wp_strict_cross_origin_referrer()
     {
@@ -137145,6 +138421,7 @@ namespace {
      * These performance improving indicators work by using `<link rel"…">`.
      *
      * @since 4.6.0
+     * @phpstan-return void
      */
     function wp_resource_hints()
     {
@@ -137252,6 +138529,7 @@ namespace {
      *   tinymce?: bool|array,
      *   quicktags?: bool|array,
      * } $settings See _WP_Editors::parse_settings()
+     * @phpstan-return void
      */
     function wp_editor($content, $editor_id, $settings = array())
     {
@@ -137264,6 +138542,7 @@ namespace {
      *
      * @uses _WP_Editors
      * @since 4.8.0
+     * @phpstan-return void
      */
     function wp_enqueue_editor()
     {
@@ -137360,6 +138639,7 @@ namespace {
      * for placing in an HTML attribute.
      *
      * @since 2.1.0
+     * @phpstan-return void
      */
     function the_search_query()
     {
@@ -137390,6 +138670,7 @@ namespace {
      *
      * @param string $doctype Optional. The type of HTML document. Accepts 'xhtml' or 'html'. Default 'html'.
      * @phpstan-param 'xhtml'|'html' $doctype
+     * @phpstan-return void
      */
     function language_attributes($doctype = 'html')
     {
@@ -137525,6 +138806,7 @@ namespace {
      *   focus?: string,
      *   current?: string,
      * } $icons
+     * @phpstan-return void
      */
     function wp_admin_css_color($key, $name, $url, $colors = array(), $icons = array())
     {
@@ -137538,6 +138820,7 @@ namespace {
      * @see wp_admin_css_color()
      *
      * @since 3.0.0
+     * @phpstan-return void
      */
     function register_admin_color_schemes()
     {
@@ -137587,6 +138870,7 @@ namespace {
      * require array('thickbox') to ensure it is loaded after.
      *
      * @since 2.5.0
+     * @phpstan-return void
      */
     function add_thickbox()
     {
@@ -137597,6 +138881,7 @@ namespace {
      * See {@see 'wp_head'}.
      *
      * @since 2.5.0
+     * @phpstan-return void
      */
     function wp_generator()
     {
@@ -137610,6 +138895,7 @@ namespace {
      * @since 2.5.0
      *
      * @param string $type The type of generator to output - (html|xhtml|atom|rss2|rdf|comment|export).
+     * @phpstan-return void
      */
     function the_generator($type)
     {
@@ -137829,6 +139115,7 @@ namespace {
      * @since 6.7.0 Resolve relative paths in block styles.
      *
      * @global WP_Styles $wp_styles
+     * @phpstan-return void
      */
     function wp_add_global_styles_for_blocks()
     {
@@ -137859,6 +139146,7 @@ namespace {
      * Cleans the caches under the theme_json group.
      *
      * @since 6.2.0
+     * @phpstan-return void
      */
     function wp_clean_theme_json_cache()
     {
@@ -138828,6 +140116,7 @@ namespace {
      *
      * @since 7.1.0
      * @access private
+     * @phpstan-return void
      */
     function _wp_register_default_icon_collections()
     {
@@ -139764,6 +141053,7 @@ namespace {
      * 'excerpt_save_pre', and 'content_filtered_save_pre' hooks.
      *
      * @since 2.0.0
+     * @phpstan-return void
      */
     function kses_init_filters()
     {
@@ -139779,6 +141069,7 @@ namespace {
      * hook (priority is also default).
      *
      * @since 2.0.6
+     * @phpstan-return void
      */
     function kses_remove_filters()
     {
@@ -139791,6 +141082,7 @@ namespace {
      * capability, then KSES filters are added.
      *
      * @since 2.0.0
+     * @phpstan-return void
      */
     function kses_init()
     {
@@ -140020,6 +141312,7 @@ namespace {
      * @param string $text   Text to translate.
      * @param string $domain Optional. Text domain. Unique identifier for retrieving translated strings.
      *                       Default 'default'.
+     * @phpstan-return void
      */
     function _e($text, $domain = 'default')
     {
@@ -140037,6 +141330,7 @@ namespace {
      * @param string $text   Text to translate.
      * @param string $domain Optional. Text domain. Unique identifier for retrieving translated strings.
      *                       Default 'default'.
+     * @phpstan-return void
      */
     function esc_attr_e($text, $domain = 'default')
     {
@@ -140054,6 +141348,7 @@ namespace {
      * @param string $text   Text to translate.
      * @param string $domain Optional. Text domain. Unique identifier for retrieving translated strings.
      *                       Default 'default'.
+     * @phpstan-return void
      */
     function esc_html_e($text, $domain = 'default')
     {
@@ -140087,6 +141382,7 @@ namespace {
      * @param string $context Context information for the translators.
      * @param string $domain  Optional. Text domain. Unique identifier for retrieving translated strings.
      *                        Default 'default'.
+     * @phpstan-return void
      */
     function _ex($text, $context, $domain = 'default')
     {
@@ -140824,6 +142120,7 @@ namespace {
      * @since 4.4.0 Added the `$post` parameter.
      *
      * @param int|WP_Post $post Optional. Post ID or post object. Default is the global `$post`.
+     * @phpstan-return void
      */
     function the_permalink($post = 0)
     {
@@ -140858,6 +142155,7 @@ namespace {
      *
      * @param string $mode Optional. Permalink mode. Accepts 'title' or 'id'. Default 'id'.
      * @phpstan-param 'title'|'id' $mode
+     * @phpstan-return void
      */
     function permalink_anchor($mode = 'id')
     {
@@ -141024,6 +142322,7 @@ namespace {
      * @param string $anchor The link's anchor text.
      * @param string $feed   Optional. Feed type. Possible values include 'rss2', 'atom'.
      *                       Default is the value of get_default_feed().
+     * @phpstan-return void
      */
     function the_feed_link($anchor, $feed = '')
     {
@@ -141068,6 +142367,7 @@ namespace {
      * @param int    $post_id   Optional. Post ID. Default is the ID of the global `$post`.
      * @param string $feed      Optional. Feed type. Possible values include 'rss2', 'atom'.
      *                          Default is the value of get_default_feed().
+     * @phpstan-return void
      */
     function post_comments_feed_link($link_text = '', $post_id = 0, $feed = '')
     {
@@ -141156,6 +142456,7 @@ namespace {
      * @param string  $after  Optional. Display after edit link. Default empty.
      * @param WP_Term $tag    Optional. Term object. If null, the queried object will be inspected.
      *                        Default null.
+     * @phpstan-return void
      */
     function edit_tag_link($link = '', $before = '', $after = '', $tag = \null)
     {
@@ -141481,6 +142782,7 @@ namespace {
      * @param int[]|string $excluded_terms Optional. Array or comma-separated list of excluded term IDs.
      *                                     Default empty.
      * @param string       $taxonomy       Optional. Taxonomy, if `$in_same_term` is true. Default 'category'.
+     * @phpstan-return void
      */
     function adjacent_posts_rel_link($title = '%title', $in_same_term = \false, $excluded_terms = '', $taxonomy = 'category')
     {
@@ -141513,6 +142815,7 @@ namespace {
      * @param int[]|string $excluded_terms Optional. Array or comma-separated list of excluded term IDs.
      *                                     Default empty.
      * @param string       $taxonomy       Optional. Taxonomy, if `$in_same_term` is true. Default 'category'.
+     * @phpstan-return void
      */
     function next_post_rel_link($title = '%title', $in_same_term = \false, $excluded_terms = '', $taxonomy = 'category')
     {
@@ -141530,6 +142833,7 @@ namespace {
      * @param int[]|string $excluded_terms Optional. Array or comma-separated list of excluded term IDs.
      *                                     Default true.
      * @param string       $taxonomy       Optional. Taxonomy, if `$in_same_term` is true. Default 'category'.
+     * @phpstan-return void
      */
     function prev_post_rel_link($title = '%title', $in_same_term = \false, $excluded_terms = '', $taxonomy = 'category')
     {
@@ -141585,6 +142889,7 @@ namespace {
      * @param int[]|string $excluded_terms Optional. Array or comma-separated list of excluded term IDs.
      *                                     Default empty.
      * @param string       $taxonomy       Optional. Taxonomy, if `$in_same_term` is true. Default 'category'.
+     * @phpstan-return void
      */
     function previous_post_link($format = '&laquo; %link', $link = '%title', $in_same_term = \false, $excluded_terms = '', $taxonomy = 'category')
     {
@@ -141620,6 +142925,7 @@ namespace {
      * @param int[]|string $excluded_terms Optional. Array or comma-separated list of excluded term IDs.
      *                                     Default empty.
      * @param string       $taxonomy       Optional. Taxonomy, if `$in_same_term` is true. Default 'category'.
+     * @phpstan-return void
      */
     function next_post_link($format = '%link &raquo;', $link = '%title', $in_same_term = \false, $excluded_terms = '', $taxonomy = 'category')
     {
@@ -141661,6 +142967,7 @@ namespace {
      * @param bool         $previous       Optional. Whether to display link to previous or next post.
      *                                     Default true.
      * @param string       $taxonomy       Optional. Taxonomy, if `$in_same_term` is true. Default 'category'.
+     * @phpstan-return void
      */
     function adjacent_post_link($format, $link, $in_same_term = \false, $excluded_terms = '', $previous = \true, $taxonomy = 'category')
     {
@@ -141730,6 +143037,7 @@ namespace {
      *
      * @param string $label    Content for link text.
      * @param int    $max_page Optional. Max pages. Default 0.
+     * @phpstan-return void
      */
     function next_posts_link($label = \null, $max_page = 0)
     {
@@ -141781,6 +143089,7 @@ namespace {
      * @since 0.71
      *
      * @param string $label Optional. Previous page link text.
+     * @phpstan-return void
      */
     function previous_posts_link($label = \null)
     {
@@ -141819,6 +143128,7 @@ namespace {
      * @param string $sep      Optional. Separator for posts navigation links. Default empty.
      * @param string $prelabel Optional. Label for previous pages. Default empty.
      * @param string $nxtlabel Optional Label for next pages. Default empty.
+     * @phpstan-return void
      */
     function posts_nav_link($sep = '', $prelabel = '', $nxtlabel = '')
     {
@@ -141880,6 +143190,7 @@ namespace {
      *   aria_label?: string,
      *   class?: string,
      * } $args See get_the_post_navigation()
+     * @phpstan-return void
      */
     function the_post_navigation($args = array())
     {
@@ -141931,6 +143242,7 @@ namespace {
      *   aria_label?: string,
      *   class?: string,
      * } $args See get_the_posts_navigation()
+     * @phpstan-return void
      */
     function the_posts_navigation($args = array())
     {
@@ -142006,6 +143318,7 @@ namespace {
      *   before_page_number?: string,
      *   after_page_number?: string,
      * } $args See get_the_posts_pagination()
+     * @phpstan-return void
      */
     function the_posts_pagination($args = array())
     {
@@ -142066,6 +143379,7 @@ namespace {
      *
      * @param string $label    Optional. Label for link text. Default empty.
      * @param int    $max_page Optional. Max page. Default 0.
+     * @phpstan-return void
      */
     function next_comments_link($label = '', $max_page = 0)
     {
@@ -142089,6 +143403,7 @@ namespace {
      * @since 2.7.0
      *
      * @param string $label Optional. Label for comments link text. Default empty.
+     * @phpstan-return void
      */
     function previous_comments_link($label = '')
     {
@@ -142171,6 +143486,7 @@ namespace {
      *   aria_label?: string,
      *   class?: string,
      * } $args See get_the_comments_navigation()
+     * @phpstan-return void
      */
     function the_comments_navigation($args = array())
     {
@@ -142212,6 +143528,7 @@ namespace {
      *   aria_label?: string,
      *   class?: string,
      * } $args See get_the_comments_pagination()
+     * @phpstan-return void
      */
     function the_comments_pagination($args = array())
     {
@@ -142563,6 +143880,7 @@ namespace {
      * @param string $title  Unused.
      * @param string $before Optional. HTML to display before the link. Default empty.
      * @param string $after  Optional. HTML to display after the link. Default empty.
+     * @phpstan-return void
      */
     function the_shortlink($text = '', $title = '', $before = '', $after = '')
     {
@@ -142769,6 +144087,7 @@ namespace {
      *
      * @param string $before Optional. Display before privacy policy link. Default empty.
      * @param string $after  Optional. Display after privacy policy link. Default empty.
+     * @phpstan-return void
      */
     function the_privacy_policy_link($before = '', $after = '')
     {
@@ -142840,6 +144159,7 @@ namespace {
      *
      * @global string $PHP_SELF The filename of the currently executing script,
      *                          relative to the document root.
+     * @phpstan-return void
      */
     function wp_fix_server_vars()
     {
@@ -142872,6 +144192,7 @@ namespace {
      * @global string   $required_php_version    The minimum required PHP version string.
      * @global string[] $required_php_extensions The names of required PHP extensions.
      * @global string   $wp_version              The WordPress version string.
+     * @phpstan-return void
      */
     function wp_check_php_mysql_versions()
     {
@@ -143062,6 +144383,7 @@ namespace {
      *
      * @since 3.0.0
      * @access private
+     * @phpstan-return void
      */
     function wp_set_lang_dir()
     {
@@ -143088,6 +144410,7 @@ namespace {
      *
      * @global wpdb   $wpdb         WordPress database abstraction object.
      * @global string $table_prefix The database table prefix.
+     * @phpstan-return void
      */
     function wp_set_wpdb_vars()
     {
@@ -143116,6 +144439,7 @@ namespace {
      * @access private
      *
      * @global array $wp_filter Stores all of the filters.
+     * @phpstan-return void
      */
     function wp_start_object_cache()
     {
@@ -143249,6 +144573,7 @@ namespace {
      *
      * @since 3.0.0
      * @access private
+     * @phpstan-return void
      */
     function wp_set_internal_encoding()
     {
@@ -143261,6 +144586,7 @@ namespace {
      *
      * @since 3.0.0
      * @access private
+     * @phpstan-return void
      */
     function wp_magic_quotes()
     {
@@ -143270,6 +144596,7 @@ namespace {
      *
      * @since 1.2.0
      * @access private
+     * @phpstan-return void
      */
     function shutdown_action_hook()
     {
@@ -143565,6 +144892,7 @@ namespace {
      * @since 4.9.0
      *
      * @param string $scrape_key Scrape key.
+     * @phpstan-return void
      */
     function wp_finalize_scraping_edited_file_errors($scrape_key)
     {
@@ -143639,6 +144967,7 @@ namespace {
      * when data.model is passed.
      *
      * @since 3.9.0
+     * @phpstan-return void
      */
     function wp_underscore_audio_template()
     {
@@ -143648,6 +144977,7 @@ namespace {
      * when data.model is passed.
      *
      * @since 3.9.0
+     * @phpstan-return void
      */
     function wp_underscore_video_template()
     {
@@ -143656,6 +144986,7 @@ namespace {
      * Prints the templates used in the media manager.
      *
      * @since 3.5.0
+     * @phpstan-return void
      */
     function wp_print_media_templates()
     {
@@ -143795,6 +145126,7 @@ namespace {
      * @phpstan-param non-negative-int $width
      * @phpstan-param non-negative-int $height
      * @phpstan-param array{ 'left'|'center'|'right', 'top'|'center'|'bottom' }|bool $crop
+     * @phpstan-return void
      */
     function add_image_size($name, $width = 0, $height = 0, $crop = \false)
     {
@@ -143844,6 +145176,7 @@ namespace {
      *   0: string,
      *   1: string,
      * } $crop
+     * @phpstan-return void
      */
     function set_post_thumbnail_size($width = 0, $height = 0, $crop = \false)
     {
@@ -144475,6 +145808,7 @@ namespace {
      * @since 2.9.0
      *
      * @param string[] $attr Array of thumbnail attributes including src, class, alt, title, keyed by attribute name.
+     * @phpstan-return void
      */
     function _wp_post_thumbnail_class_filter_add($attr)
     {
@@ -144487,6 +145821,7 @@ namespace {
      * @since 2.9.0
      *
      * @param string[] $attr Array of thumbnail attributes including src, class, alt, title, keyed by attribute name.
+     * @phpstan-return void
      */
     function _wp_post_thumbnail_class_filter_remove($attr)
     {
@@ -144514,6 +145849,7 @@ namespace {
      * @ignore
      * @since 6.3.0
      * @access private
+     * @phpstan-return void
      */
     function _wp_post_thumbnail_context_filter_add()
     {
@@ -144525,6 +145861,7 @@ namespace {
      * @ignore
      * @since 6.3.0
      * @access private
+     * @phpstan-return void
      */
     function _wp_post_thumbnail_context_filter_remove()
     {
@@ -144641,6 +145978,7 @@ namespace {
      * Outputs the templates used by playlists.
      *
      * @since 3.9.0
+     * @phpstan-return void
      */
     function wp_underscore_playlist_templates()
     {
@@ -144652,6 +145990,7 @@ namespace {
      *
      * @param string $type Type of playlist. Accepts 'audio' or 'video'.
      * @phpstan-param 'audio'|'video' $type
+     * @phpstan-return void
      */
     function wp_playlist_scripts($type)
     {
@@ -144851,6 +146190,7 @@ namespace {
      * @param string|int[] $size Optional. Image size. Accepts any registered image size name, or an array
      *                           of width and height values in pixels (in that order). Default 'thumbnail'.
      * @param string|false $text Optional. Link text. Default false.
+     * @phpstan-return void
      */
     function previous_image_link($size = 'thumbnail', $text = \false)
     {
@@ -144878,6 +146218,7 @@ namespace {
      * @param string|int[] $size Optional. Image size. Accepts any registered image size name, or an array
      *                           of width and height values in pixels (in that order). Default 'thumbnail'.
      * @param string|false $text Optional. Link text. Default false.
+     * @phpstan-return void
      */
     function next_image_link($size = 'thumbnail', $text = \false)
     {
@@ -144909,6 +146250,7 @@ namespace {
      * @param string|int[] $size Optional. Image size. Accepts any registered image size name, or an array
      *                           of width and height values in pixels (in that order). Default 'thumbnail'.
      * @param bool         $text Optional. Link text. Default false.
+     * @phpstan-return void
      */
     function adjacent_image_link($prev = \true, $size = 'thumbnail', $text = \false)
     {
@@ -145325,6 +146667,7 @@ namespace {
      *
      * @since 5.3.0
      * @access private
+     * @phpstan-return void
      */
     function _wp_add_additional_image_sizes()
     {
@@ -146098,6 +147441,7 @@ namespace {
      * Updates the last_updated field for the current site.
      *
      * @since MU (3.0.0)
+     * @phpstan-return void
      */
     function wpmu_update_blogs_date()
     {
@@ -146158,6 +147502,7 @@ namespace {
      * @since MU (3.0.0)
      *
      * @param int $blog_id Optional. Blog ID. Defaults to current blog.
+     * @phpstan-return void
      */
     function refresh_blog_details($blog_id = 0)
     {
@@ -146180,6 +147525,7 @@ namespace {
      * @since 4.7.4
      *
      * @param int $site_id Optional. Site ID. Default is the current site ID.
+     * @phpstan-return void
      */
     function clean_site_details_cache($site_id = 0)
     {
@@ -146309,6 +147655,7 @@ namespace {
      * @since 7.0.0
      *
      * @global WP_Object_Cache $wp_object_cache Object cache global instance.
+     * @phpstan-return void
      */
     function wp_cache_switch_to_blog_fallback()
     {
@@ -146505,6 +147852,7 @@ namespace {
      * Defines Multisite cookie constants.
      *
      * @since 3.0.0
+     * @phpstan-return void
      */
     function ms_cookie_constants()
     {
@@ -146516,6 +147864,7 @@ namespace {
      * wp-includes/ms-files.php (wp-content/blogs.php in MU).
      *
      * @since 3.0.0
+     * @phpstan-return void
      */
     function ms_file_constants()
     {
@@ -147146,6 +148495,7 @@ namespace {
      * @param string $user       The user's requested login name.
      * @param string $user_email The user's email address.
      * @param array  $meta       Optional. Signup meta data. By default, contains the requested privacy setting and lang_id.
+     * @phpstan-return void
      */
     function wpmu_signup_blog($domain, $path, $title, $user, $user_email, $meta = array())
     {
@@ -147163,6 +148513,7 @@ namespace {
      * @param string $user       The user's requested login name.
      * @param string $user_email The user's email address.
      * @param array  $meta       Optional. Signup meta data. Default empty array.
+     * @phpstan-return void
      */
     function wpmu_signup_user($user, $user_email, $meta = array())
     {
@@ -147277,6 +148628,7 @@ namespace {
      * @param int      $id       ID of the user to delete.
      * @param int|null $reassign ID of the user to reassign posts and links to.
      * @param WP_User  $user     User object.
+     * @phpstan-return void
      */
     function wp_delete_signup_on_user_delete($id, $reassign, $user)
     {
@@ -147515,6 +148867,7 @@ namespace {
      *
      * @param string $deprecated Not used.
      * @phpstan-param '' $deprecated
+     * @phpstan-return void
      */
     function update_posts_count($deprecated = '')
     {
@@ -147529,6 +148882,7 @@ namespace {
      *
      * @param WP_Site|int $blog_id The new site's object or ID.
      * @param int|array   $user_id User ID, or array of arguments including 'user_id'.
+     * @phpstan-return void
      */
     function wpmu_log_new_registrations($blog_id, $user_id)
     {
@@ -147568,6 +148922,7 @@ namespace {
      * Adds a nonce field to the signup page.
      *
      * @since MU (3.0.0)
+     * @phpstan-return void
      */
     function signup_nonce_fields()
     {
@@ -147587,6 +148942,7 @@ namespace {
      * Corrects 404 redirects when NOBLOGREDIRECT is defined.
      *
      * @since MU (3.0.0)
+     * @phpstan-return void
      */
     function maybe_redirect_404()
     {
@@ -147638,6 +148994,7 @@ namespace {
      * @param int    $user_id  User ID.
      * @param string $password User password. Ignored.
      * @param array  $meta     Signup meta data.
+     * @phpstan-return void
      */
     function add_new_user_to_blog(
         $user_id,
@@ -147653,6 +149010,7 @@ namespace {
      * @since MU (3.0.0)
      *
      * @param PHPMailer\PHPMailer\PHPMailer $phpmailer The PHPMailer instance (passed by reference).
+     * @phpstan-return void
      */
     function fix_phpmailer_messageid($phpmailer)
     {
@@ -147678,6 +149036,7 @@ namespace {
      *
      * @param int $old_value The old public value.
      * @param int $value     The new public value.
+     * @phpstan-return void
      */
     function update_blog_public($old_value, $value)
     {
@@ -147743,6 +149102,7 @@ namespace {
      * @since 4.8.0 The `$network_id` parameter has been added.
      *
      * @param int|null $network_id ID of the network. Default is the current network.
+     * @phpstan-return void
      */
     function wp_update_network_counts($network_id = \null)
     {
@@ -147784,6 +149144,7 @@ namespace {
      * @since 4.8.0 The `$network_id` parameter has been added.
      *
      * @param int|null $network_id ID of the network. Default is the current network.
+     * @phpstan-return void
      */
     function wp_update_network_site_counts($network_id = \null)
     {
@@ -147796,6 +149157,7 @@ namespace {
      * @since 6.0.0 This function is now a wrapper for wp_update_user_counts().
      *
      * @param int|null $network_id ID of the network. Default is the current network.
+     * @phpstan-return void
      */
     function wp_update_network_user_counts($network_id = \null)
     {
@@ -148133,6 +149495,7 @@ namespace {
      * @since 4.6.0
      *
      * @param array $networks Array of network row objects.
+     * @phpstan-return void
      */
     function update_network_cache($networks)
     {
@@ -148147,6 +149510,7 @@ namespace {
      * @global wpdb $wpdb WordPress database abstraction object.
      *
      * @param array $network_ids Array of network IDs.
+     * @phpstan-return void
      */
     function _prime_network_caches($network_ids)
     {
@@ -148276,6 +149640,7 @@ namespace {
      *
      * @param array $ids               ID list.
      * @param bool  $update_meta_cache Optional. Whether to update the meta cache. Default true.
+     * @phpstan-return void
      */
     function _prime_site_caches($ids, $update_meta_cache = \true)
     {
@@ -148674,6 +150039,7 @@ namespace {
      * @param WP_Site      $new_site The site object after the update.
      * @param WP_Site|null $old_site Optional. If $new_site has been updated, this must be the previous
      *                               state of that site. Default null.
+     * @phpstan-return void
      */
     function wp_maybe_transition_site_statuses_on_update($new_site, $old_site = \null)
     {
@@ -148685,6 +150051,7 @@ namespace {
      *
      * @param WP_Site $new_site The site object after the update.
      * @param WP_Site $old_site The site object prior to the update.
+     * @phpstan-return void
      */
     function wp_maybe_clean_new_site_cache_on_update($new_site, $old_site)
     {
@@ -148707,6 +150074,7 @@ namespace {
      * Sets the last changed time for the 'sites' cache group.
      *
      * @since 5.1.0
+     * @phpstan-return void
      */
     function wp_cache_set_sites_last_changed()
     {
@@ -148801,6 +150169,7 @@ namespace {
      * @global WP_Rewrite $wp_rewrite WordPress rewrite component.
      *
      * @param array $menu_items The current menu item objects to which to add the class property information.
+     * @phpstan-return void
      */
     function _wp_menu_item_classes_by_context(&$menu_items)
     {
@@ -148886,6 +150255,7 @@ namespace {
      *
      * @param string[] $locations Associative array of menu location identifiers (like a slug) and descriptive text.
      * @phpstan-param array<string, string> $locations
+     * @phpstan-return void
      */
     function register_nav_menus($locations = array())
     {
@@ -148910,6 +150280,7 @@ namespace {
      *
      * @param string $location    Menu location identifier, like a slug.
      * @param string $description Menu location descriptive text.
+     * @phpstan-return void
      */
     function register_nav_menu($location, $description)
     {
@@ -149106,6 +150477,7 @@ namespace {
      * @since 6.1.0
      *
      * @param WP_Post[] $menu_items Array of menu item post objects.
+     * @phpstan-return void
      */
     function update_menu_item_cache($menu_items)
     {
@@ -149162,6 +150534,7 @@ namespace {
      * @access private
      *
      * @param int $object_id The ID of the original object being trashed.
+     * @phpstan-return void
      */
     function _wp_delete_post_menu_item($object_id)
     {
@@ -149175,6 +150548,7 @@ namespace {
      * @param int    $object_id The ID of the original object being trashed.
      * @param int    $tt_id     Term taxonomy ID. Unused.
      * @param string $taxonomy  Taxonomy slug.
+     * @phpstan-return void
      */
     function _wp_delete_tax_menu_item($object_id, $tt_id, $taxonomy)
     {
@@ -149210,6 +150584,7 @@ namespace {
      *
      * @access private
      * @since 4.9.0
+     * @phpstan-return void
      */
     function _wp_menus_changed()
     {
@@ -149336,6 +150711,7 @@ namespace {
      * @global array $new_allowed_options
      *
      * @param string $option_group The option group to load options for.
+     * @phpstan-return void
      */
     function wp_prime_option_caches_by_group($option_group)
     {
@@ -149437,6 +150813,7 @@ namespace {
      * @since 1.5.0
      *
      * @param string $option Option name.
+     * @phpstan-return void
      */
     function form_option($option)
     {
@@ -149468,6 +150845,7 @@ namespace {
      * @see wp_prime_network_option_caches()
      *
      * @param string[] $options An array of option names to be loaded.
+     * @phpstan-return void
      */
     function wp_prime_site_option_caches(array $options)
     {
@@ -149978,6 +151356,7 @@ namespace {
      *
      * @since 4.7.0
      * @since 6.0.1 The `show_on_front`, `page_on_front`, and `page_for_posts` options were added.
+     * @phpstan-return void
      */
     function register_initial_settings()
     {
@@ -150021,6 +151400,7 @@ namespace {
      *   show_in_rest?: bool|array,
      *   default?: mixed,
      * } $args
+     * @phpstan-return void
      */
     function register_setting($option_group, $option_name, $args = array())
     {
@@ -150040,6 +151420,7 @@ namespace {
      * @param string   $option_name  The name of the option to unregister.
      * @param callable $deprecated   Optional. Deprecated.
      * @phpstan-param '' $deprecated
+     * @phpstan-return void
      */
     function unregister_setting($option_group, $option_name, $deprecated = '')
     {
@@ -150383,6 +151764,7 @@ namespace {
      * Logs the current user out.
      *
      * @since 2.5.0
+     * @phpstan-return void
      */
     function wp_logout()
     {
@@ -150706,6 +152088,7 @@ namespace {
      * @since 2.7.0
      *
      * @param WP_User $user User object.
+     * @phpstan-return void
      */
     function wp_password_change_notification($user)
     {
@@ -150965,6 +152348,7 @@ namespace {
      *
      * @param string $password The plaintext new user password.
      * @param int    $user_id  User ID.
+     * @phpstan-return void
      */
     function wp_set_password(
         #[\SensitiveParameter]
@@ -151731,6 +153115,7 @@ namespace {
      * @global WP_Hook[] $wp_filter Stores all of the filters and actions.
      *
      * @param array $args The collected parameters from the hook that was called.
+     * @phpstan-return void
      */
     function _wp_call_all_hook($args)
     {
@@ -151910,6 +153295,7 @@ namespace {
      * Displays the ID of the current item in the WordPress Loop.
      *
      * @since 0.71
+     * @phpstan-return void
      */
     function the_ID()
     {
@@ -151997,6 +153383,7 @@ namespace {
      * @since 1.5.0
      *
      * @param int|WP_Post $post Optional. Post ID or post object. Default is global $post.
+     * @phpstan-return void
      */
     function the_guid($post = 0)
     {
@@ -152023,6 +153410,7 @@ namespace {
      *
      * @param string $more_link_text Optional. Content for when there is more text.
      * @param bool   $strip_teaser   Optional. Strip teaser content before the more text. Default false.
+     * @phpstan-return void
      */
     function the_content($more_link_text = \null, $strip_teaser = \false)
     {
@@ -152052,6 +153440,7 @@ namespace {
      * Displays the post excerpt.
      *
      * @since 0.71
+     * @phpstan-return void
      */
     function the_excerpt()
     {
@@ -152091,6 +153480,7 @@ namespace {
      * @param string|string[]  $css_class Optional. One or more classes to add to the class list.
      *                                    Default empty.
      * @param int|WP_Post|null $post      Optional. Post ID or post object. Defaults to the global `$post`.
+     * @phpstan-return void
      */
     function post_class($css_class = '', $post = \null)
     {
@@ -152129,6 +153519,7 @@ namespace {
      *
      * @param string|string[] $css_class Optional. Space-separated string or array of class names
      *                                   to add to the class list. Default empty.
+     * @phpstan-return void
      */
     function body_class($css_class = '')
     {
@@ -152508,6 +153899,7 @@ namespace {
      * @param bool        $deprecated Deprecated. Not used.
      * @param bool        $permalink Optional. Whether to include permalink. Default false.
      * @phpstan-param false $deprecated
+     * @phpstan-return void
      */
     function the_attachment_link($post = 0, $fullsize = \false, $deprecated = \false, $permalink = \false)
     {
@@ -152697,6 +154089,7 @@ namespace {
      * @param string|int[] $size Optional. Image size. Accepts any registered image size name, or an array of
      *                           width and height values in pixels (in that order). Default 'post-thumbnail'.
      * @param string|array $attr Optional. Query string or array of attributes. Default empty.
+     * @phpstan-return void
      */
     function the_post_thumbnail($size = 'post-thumbnail', $attr = '')
     {
@@ -152758,6 +154151,7 @@ namespace {
      * @param string|int[] $size Optional. Image size to use. Accepts any valid image size,
      *                           or an array of width and height values in pixels (in that order).
      *                           Default 'post-thumbnail'.
+     * @phpstan-return void
      */
     function the_post_thumbnail_url($size = 'post-thumbnail')
     {
@@ -152779,6 +154173,7 @@ namespace {
      * @since 4.6.0
      *
      * @param int|WP_Post|null $post Optional. Post ID or WP_Post object. Default is global `$post`.
+     * @phpstan-return void
      */
     function the_post_thumbnail_caption($post = \null)
     {
@@ -152789,6 +154184,7 @@ namespace {
      * See {@see 'init'}.
      *
      * @since 2.9.0
+     * @phpstan-return void
      */
     function create_initial_post_types()
     {
@@ -153595,6 +154991,7 @@ namespace {
      * @global array $post_type_meta_caps Used to store meta capabilities.
      *
      * @param string[] $capabilities Post type meta capabilities.
+     * @phpstan-return void
      */
     function _post_type_meta_capabilities($capabilities = \null)
     {
@@ -153699,6 +155096,7 @@ namespace {
      *
      * @access private
      * @since 3.1.0
+     * @phpstan-return void
      */
     function _add_post_type_submenus()
     {
@@ -153739,6 +155137,7 @@ namespace {
      * @param string|array $feature   The feature being added, accepts an array of
      *                                feature strings or a single string.
      * @param mixed        ...$args   Optional extra arguments to pass along with certain features.
+     * @phpstan-return void
      */
     function add_post_type_support($post_type, $feature, ...$args)
     {
@@ -153752,6 +155151,7 @@ namespace {
      *
      * @param string $post_type The post type for which to remove the feature.
      * @param string $feature   The feature being removed.
+     * @phpstan-return void
      */
     function remove_post_type_support($post_type, $feature)
     {
@@ -154278,6 +155678,7 @@ namespace {
      * @since 2.7.0
      *
      * @param int $post_id Post ID.
+     * @phpstan-return void
      */
     function stick_post($post_id)
     {
@@ -154426,6 +155827,7 @@ namespace {
      * @access private
      *
      * @param int $post_id Post ID.
+     * @phpstan-return void
      */
     function _reset_front_page_settings_for_post($post_id)
     {
@@ -155016,6 +156418,7 @@ namespace {
      * @param string  $new_status Transition to this post status.
      * @param string  $old_status Previous post status.
      * @param WP_Post $post Post data.
+     * @phpstan-return void
      */
     function wp_transition_post_status($new_status, $old_status, $post)
     {
@@ -155209,6 +156612,7 @@ namespace {
      * @param int      $page_id  Page ID.
      * @param array    $children Parent-children relations (passed by reference).
      * @param string[] $result   Array of page names keyed by ID (passed by reference).
+     * @phpstan-return void
      */
     function _page_traverse_name($page_id, &$children, &$result)
     {
@@ -155735,6 +157139,7 @@ namespace {
      * @since 6.1.0
      *
      * @param WP_Post[] $posts Array of post objects.
+     * @phpstan-return void
      */
     function update_post_parent_caches($posts)
     {
@@ -155785,6 +157190,7 @@ namespace {
      * @param string  $new_status New post status.
      * @param string  $old_status Previous post status.
      * @param WP_Post $post       Post object.
+     * @phpstan-return void
      */
     function _transition_post_status($new_status, $old_status, $post)
     {
@@ -155801,6 +157207,7 @@ namespace {
      *                            as deprecated with _deprecated_argument() as it conflicts with
      *                            wp_transition_post_status() and the default filter for _future_post_hook().
      * @param WP_Post $post       Post object.
+     * @phpstan-return void
      */
     function _future_post_hook($deprecated, $post)
     {
@@ -155881,6 +157288,7 @@ namespace {
      * @since 3.4.0
      *
      * @global wpdb $wpdb WordPress database abstraction object.
+     * @phpstan-return void
      */
     function wp_delete_auto_drafts()
     {
@@ -155891,6 +157299,7 @@ namespace {
      * @since 4.5.0
      *
      * @param WP_Post[] $posts Array of WP_Post objects.
+     * @phpstan-return void
      */
     function wp_queue_posts_for_term_meta_lazyload($posts)
     {
@@ -155927,6 +157336,7 @@ namespace {
      * @param int[] $ids               ID list.
      * @param bool  $update_term_cache Optional. Whether to update the term cache. Default true.
      * @param bool  $update_meta_cache Optional. Whether to update the meta cache. Default true.
+     * @phpstan-return void
      */
     function _prime_post_caches($ids, $update_term_cache = \true, $update_meta_cache = \true)
     {
@@ -155957,6 +157367,7 @@ namespace {
      *
      * @param string $post_name Post slug.
      * @param int    $post_id   Optional. Post ID that should be ignored. Default 0.
+     * @phpstan-return void
      */
     function wp_add_trashed_suffix_to_post_name_for_trashed_posts($post_name, $post_id = 0)
     {
@@ -155984,6 +157395,7 @@ namespace {
      * Sets the last changed time for the 'posts' cache group.
      *
      * @since 5.0.0
+     * @phpstan-return void
      */
     function wp_cache_set_posts_last_changed()
     {
@@ -156082,6 +157494,7 @@ namespace {
      * @since 6.3.0 Adds `wp_pattern_sync_status` meta field to the wp_block post type so an unsynced option can be added.
      *
      * @link https://github.com/WordPress/gutenberg/pull/51144
+     * @phpstan-return void
      */
     function wp_create_initial_post_meta()
     {
@@ -156139,6 +157552,7 @@ namespace {
      *
      * @param string $query_var Query variable key.
      * @param mixed  $value     Query variable value.
+     * @phpstan-return void
      */
     function set_query_var($query_var, $value)
     {
@@ -156175,6 +157589,7 @@ namespace {
      *
      * @global WP_Query $wp_query     WordPress Query object.
      * @global WP_Query $wp_the_query Copy of the global WP_Query instance created during wp_reset_query().
+     * @phpstan-return void
      */
     function wp_reset_query()
     {
@@ -156186,6 +157601,7 @@ namespace {
      * @since 3.0.0
      *
      * @global WP_Query $wp_query WordPress Query object.
+     * @phpstan-return void
      */
     function wp_reset_postdata()
     {
@@ -156936,6 +158352,7 @@ namespace {
      *   update_callback?: callable|null,
      *   schema?: array|null,
      * } $args
+     * @phpstan-return void
      */
     function register_rest_field($object_type, $attribute, $args = array())
     {
@@ -156947,6 +158364,7 @@ namespace {
      *
      * @see rest_api_register_rewrites()
      * @global WP $wp Current WordPress environment instance.
+     * @phpstan-return void
      */
     function rest_api_init()
     {
@@ -156958,6 +158376,7 @@ namespace {
      *
      * @see add_rewrite_rule()
      * @global WP_Rewrite $wp_rewrite WordPress rewrite component.
+     * @phpstan-return void
      */
     function rest_api_register_rewrites()
     {
@@ -156969,6 +158388,7 @@ namespace {
      * to make testing and disabling these filters easier.
      *
      * @since 4.4.0
+     * @phpstan-return void
      */
     function rest_api_default_filters()
     {
@@ -156977,6 +158397,7 @@ namespace {
      * Registers default REST API routes.
      *
      * @since 4.7.0
+     * @phpstan-return void
      */
     function create_initial_rest_routes()
     {
@@ -157289,6 +158710,7 @@ namespace {
      *
      * @param WP_Error $user_or_error The authenticated user or error instance.
      * @param array    $app_password  The Application Password used to authenticate.
+     * @phpstan-return void
      */
     function rest_application_password_collect_status($user_or_error, $app_password = array())
     {
@@ -158193,6 +159615,7 @@ namespace {
      * @param int    $source_post_id Post ID to copy meta value(s) from.
      * @param int    $target_post_id Post ID to copy meta value(s) to.
      * @param string $meta_key       Meta key to copy.
+     * @phpstan-return void
      */
     function _wp_copy_post_meta($source_post_id, $target_post_id, $meta_key)
     {
@@ -158324,6 +159747,7 @@ namespace {
      *
      * @since 2.7.0
      * @access private
+     * @phpstan-return void
      */
     function _show_post_preview()
     {
@@ -158417,6 +159841,7 @@ namespace {
      * @param string       $after Optional. Priority of the new rule. Accepts 'top'
      *                            or 'bottom'. Default 'bottom'.
      * @phpstan-param 'top'|'bottom' $after
+     * @phpstan-return void
      */
     function add_rewrite_rule($regex, $query, $after = 'bottom')
     {
@@ -158449,6 +159874,7 @@ namespace {
      * @global WP_Rewrite $wp_rewrite WordPress rewrite component.
      *
      * @param string $tag Name of the rewrite tag.
+     * @phpstan-return void
      */
     function remove_rewrite_tag($tag)
     {
@@ -158474,6 +159900,7 @@ namespace {
      *   walk_dirs?: bool,
      *   endpoints?: bool,
      * } $args See WP_Rewrite::add_permastruct()
+     * @phpstan-return void
      */
     function add_permastruct($name, $struct, $args = array())
     {
@@ -158490,6 +159917,7 @@ namespace {
      * @global WP_Rewrite $wp_rewrite WordPress rewrite component.
      *
      * @param string $name Name for permalink structure.
+     * @phpstan-return void
      */
     function remove_permastruct($name)
     {
@@ -158519,6 +159947,7 @@ namespace {
      *
      * @param bool $hard Whether to update .htaccess (hard flush) or just update
      *                   rewrite_rules option (soft flush). Default is true (hard).
+     * @phpstan-return void
      */
     function flush_rewrite_rules($hard = \true)
     {
@@ -158571,6 +160000,7 @@ namespace {
      *                               - `EP_YEAR`
      * @param string|bool $query_var Name of the corresponding query variable. Pass `false` to skip registering a query_var
      *                               for this endpoint. Defaults to the value of `$name`.
+     * @phpstan-return void
      */
     function add_rewrite_endpoint($name, $places, $query_var = \true)
     {
@@ -158778,6 +160208,7 @@ namespace {
      *
      * @param WP_Scripts $scripts            WP_Scripts object.
      * @param bool       $force_uncompressed Whether to forcibly prevent gzip compression. Default false.
+     * @phpstan-return void
      */
     function wp_register_tinymce_scripts($scripts, $force_uncompressed = \false)
     {
@@ -158793,6 +160224,7 @@ namespace {
      * @global WP_Locale $wp_locale WordPress date and time locale object.
      *
      * @param WP_Scripts $scripts WP_Scripts object.
+     * @phpstan-return void
      */
     function wp_default_packages_vendor($scripts)
     {
@@ -158836,6 +160268,7 @@ namespace {
      * @since 5.0.0
      *
      * @param WP_Scripts $scripts WP_Scripts object.
+     * @phpstan-return void
      */
     function wp_default_packages_scripts($scripts)
     {
@@ -158850,6 +160283,7 @@ namespace {
      * @global wpdb      $wpdb      WordPress database abstraction object.
      *
      * @param WP_Scripts $scripts WP_Scripts object.
+     * @phpstan-return void
      */
     function wp_default_packages_inline_scripts($scripts)
     {
@@ -158863,6 +160297,7 @@ namespace {
      * @since 5.0.0
      *
      * @global WP_Scripts $wp_scripts
+     * @phpstan-return void
      */
     function wp_tinymce_inline_scripts()
     {
@@ -158873,6 +160308,7 @@ namespace {
      * @since 5.0.0
      *
      * @param WP_Scripts $scripts WP_Scripts object.
+     * @phpstan-return void
      */
     function wp_default_packages($scripts)
     {
@@ -158901,6 +160337,7 @@ namespace {
      * @since 2.6.0
      *
      * @param WP_Scripts $scripts WP_Scripts object.
+     * @phpstan-return void
      */
     function wp_default_scripts($scripts)
     {
@@ -158921,6 +160358,7 @@ namespace {
      * @global array $editor_styles
      *
      * @param WP_Styles $styles
+     * @phpstan-return void
      */
     function wp_default_styles($styles)
     {
@@ -158944,6 +160382,7 @@ namespace {
      * @since 2.5.0
      *
      * @global array $shortcode_tags
+     * @phpstan-return void
      */
     function wp_just_in_time_script_localization()
     {
@@ -159034,6 +160473,7 @@ namespace {
      *
      * @global WP_Scripts $wp_scripts
      * @global bool       $compress_scripts
+     * @phpstan-return void
      */
     function _print_scripts()
     {
@@ -159066,6 +160506,7 @@ namespace {
      * The closure calls print_footer_scripts() to print scripts in the footer as usual.
      *
      * @since 3.3.0
+     * @phpstan-return void
      */
     function _wp_footer_scripts()
     {
@@ -159074,6 +160515,7 @@ namespace {
      * Hooks to print the scripts and styles in the footer.
      *
      * @since 2.8.0
+     * @phpstan-return void
      */
     function wp_print_footer_scripts()
     {
@@ -159085,6 +160527,7 @@ namespace {
      * Runs first in wp_head() where all is_home(), is_page(), etc. functions are available.
      *
      * @since 2.8.0
+     * @phpstan-return void
      */
     function wp_enqueue_scripts()
     {
@@ -159121,6 +160564,7 @@ namespace {
      * @since 3.3.0
      *
      * @global bool $compress_css
+     * @phpstan-return void
      */
     function _print_styles()
     {
@@ -159133,6 +160577,7 @@ namespace {
      * @global bool $concatenate_scripts
      * @global bool $compress_scripts
      * @global bool $compress_css
+     * @phpstan-return void
      */
     function script_concat_settings()
     {
@@ -159242,6 +160687,7 @@ namespace {
      * @since 5.3.0
      *
      * @global WP_Styles $wp_styles
+     * @phpstan-return void
      */
     function enqueue_block_styles_assets()
     {
@@ -159250,6 +160696,7 @@ namespace {
      * Function responsible for enqueuing the assets required for block styles functionality on the editor.
      *
      * @since 5.3.0
+     * @phpstan-return void
      */
     function enqueue_editor_block_styles_assets()
     {
@@ -159258,6 +160705,7 @@ namespace {
      * Enqueues the assets required for the block directory within the block editor.
      *
      * @since 5.5.0
+     * @phpstan-return void
      */
     function wp_enqueue_editor_block_directory_assets()
     {
@@ -159266,6 +160714,7 @@ namespace {
      * Enqueues the assets required for the format library within the block editor.
      *
      * @since 5.8.0
+     * @phpstan-return void
      */
     function wp_enqueue_editor_format_library_assets()
     {
@@ -159295,6 +160744,7 @@ namespace {
      * @since 5.7.0
      *
      * @param array<string, string|bool> $attributes Key-value pairs representing `<script>` tag attributes.
+     * @phpstan-return void
      */
     function wp_print_script_tag($attributes)
     {
@@ -159340,6 +160790,7 @@ namespace {
      *
      * @param string                     $data       Data for script tag: JavaScript, importmap, speculationrules, etc.
      * @param array<string, string|bool> $attributes Optional. Key-value pairs representing `<script>` tag attributes.
+     * @phpstan-return void
      */
     function wp_print_inline_script_tag($data, $attributes = array())
     {
@@ -159355,6 +160806,7 @@ namespace {
      * @since 5.8.0
      *
      * @global WP_Styles $wp_styles
+     * @phpstan-return void
      */
     function wp_maybe_inline_styles()
     {
@@ -159377,6 +160829,7 @@ namespace {
      * Function that enqueues the CSS Custom Properties coming from theme.json.
      *
      * @since 5.9.0
+     * @phpstan-return void
      */
     function wp_enqueue_global_styles_css_custom_properties()
     {
@@ -159394,6 +160847,7 @@ namespace {
      *
      * @param string $style    String containing the CSS styles to be added.
      * @param int    $priority To set the priority for the add_action.
+     * @phpstan-return void
      */
     function wp_enqueue_block_support_styles($style, $priority = 10)
     {
@@ -159452,6 +160906,7 @@ namespace {
      *   media?: string,
      *   path?: string|null,
      * } $args
+     * @phpstan-return void
      */
     function wp_enqueue_block_style($block_name, $args)
     {
@@ -159464,6 +160919,7 @@ namespace {
      * @since 6.1.0
      * @since 6.2.0 Added File block styles.
      * @since 6.8.0 Moved stylesheet registration outside of this function.
+     * @phpstan-return void
      */
     function wp_enqueue_classic_theme_styles()
     {
@@ -159475,6 +160931,7 @@ namespace {
      *
      * @global array  $menu
      * @global array  $submenu
+     * @phpstan-return void
      */
     function wp_enqueue_command_palette_assets()
     {
@@ -159657,6 +161114,7 @@ namespace {
      *   in_footer?: bool,
      *   fetchpriority?: 'auto'|'low'|'high',
      * } $args
+     * @phpstan-return void
      */
     function wp_register_script_module(string $id, string $src, array $deps = array(), $version = \false, array $args = array())
     {
@@ -159704,6 +161162,7 @@ namespace {
      *   in_footer?: bool,
      *   fetchpriority?: 'auto'|'low'|'high',
      * } $args
+     * @phpstan-return void
      */
     function wp_enqueue_script_module(string $id, string $src = '', array $deps = array(), $version = \false, array $args = array())
     {
@@ -159714,6 +161173,7 @@ namespace {
      * @since 6.5.0
      *
      * @param string $id The identifier of the script module.
+     * @phpstan-return void
      */
     function wp_dequeue_script_module(string $id)
     {
@@ -159724,6 +161184,7 @@ namespace {
      * @since 6.5.0
      *
      * @param string $id The identifier of the script module.
+     * @phpstan-return void
      */
     function wp_deregister_script_module(string $id)
     {
@@ -159752,6 +161213,7 @@ namespace {
      * Registers all the default WordPress Script Modules.
      *
      * @since 6.7.0
+     * @phpstan-return void
      */
     function wp_default_script_modules()
     {
@@ -159760,6 +161222,7 @@ namespace {
      * Enqueues script modules required by the block editor.
      *
      * @since 6.9.0
+     * @phpstan-return void
      */
     function wp_enqueue_block_editor_script_modules()
     {
@@ -159797,6 +161260,7 @@ namespace {
      * @global array $shortcode_tags
      *
      * @param string $tag Shortcode tag to remove hook for.
+     * @phpstan-return void
      */
     function remove_shortcode($tag)
     {
@@ -159810,6 +161274,7 @@ namespace {
      * @since 2.5.0
      *
      * @global array $shortcode_tags
+     * @phpstan-return void
      */
     function remove_all_shortcodes()
     {
@@ -160383,6 +161848,7 @@ namespace {
      * @since 5.9.0 Added `'wp_template_part_area'` taxonomy.
      *
      * @global WP_Rewrite $wp_rewrite WordPress rewrite component.
+     * @phpstan-return void
      */
     function create_initial_taxonomies()
     {
@@ -161427,6 +162893,7 @@ namespace {
      *
      * @param int          $object_id  The term object ID that refers to the term.
      * @param string|array $taxonomies List of taxonomy names or single taxonomy name.
+     * @phpstan-return void
      */
     function wp_delete_object_term_relationships($object_id, $taxonomies)
     {
@@ -161814,6 +163281,7 @@ namespace {
      * @since 4.9.0
      *
      * @param string $taxonomy Taxonomy slug.
+     * @phpstan-return void
      */
     function clean_taxonomy_cache($taxonomy)
     {
@@ -161865,6 +163333,7 @@ namespace {
      *
      * @param WP_Term[] $terms    Array of term objects to change.
      * @param string    $taxonomy Not used.
+     * @phpstan-return void
      */
     function update_term_cache($terms, $taxonomy = '')
     {
@@ -161932,6 +163401,7 @@ namespace {
      *
      * @param array $term_ids          Array of term IDs.
      * @param bool  $update_meta_cache Optional. Whether to update the meta cache. Default true.
+     * @phpstan-return void
      */
     function _prime_term_caches($term_ids, $update_meta_cache = \true)
     {
@@ -161949,6 +163419,7 @@ namespace {
      *
      * @param int[]       $terms    List of term taxonomy IDs.
      * @param WP_Taxonomy $taxonomy Current taxonomy object of terms.
+     * @phpstan-return void
      */
     function _update_post_term_count($terms, $taxonomy)
     {
@@ -161964,6 +163435,7 @@ namespace {
      *
      * @param int[]       $terms    List of term taxonomy IDs.
      * @param WP_Taxonomy $taxonomy Current taxonomy object of terms.
+     * @phpstan-return void
      */
     function _update_generic_term_count($terms, $taxonomy)
     {
@@ -162011,6 +163483,7 @@ namespace {
      *
      * @ignore
      * @since 4.3.0
+     * @phpstan-return void
      */
     function _wp_check_for_scheduled_split_terms()
     {
@@ -162042,6 +163515,7 @@ namespace {
      * @param int    $new_term_id      ID of the new term created for the $term_taxonomy_id.
      * @param int    $term_taxonomy_id ID for the term_taxonomy row affected by the split.
      * @param string $taxonomy         Taxonomy for the split term.
+     * @phpstan-return void
      */
     function _wp_check_split_terms_in_menus($term_id, $new_term_id, $term_taxonomy_id, $taxonomy)
     {
@@ -162141,6 +163615,7 @@ namespace {
      *   sep?: string,
      *   after?: string,
      * } $args
+     * @phpstan-return void
      */
     function the_taxonomies($args = array())
     {
@@ -162285,6 +163760,7 @@ namespace {
      * Sets the last changed time for the 'terms' cache group.
      *
      * @since 5.0.0
+     * @phpstan-return void
      */
     function wp_cache_set_terms_last_changed()
     {
@@ -162715,6 +164191,7 @@ namespace {
      *
      * @global string $wp_stylesheet_path Path to current theme's stylesheet directory.
      * @global string $wp_template_path   Path to current theme's template directory.
+     * @phpstan-return void
      */
     function wp_set_template_globals()
     {
@@ -162769,6 +164246,7 @@ namespace {
      * @param bool   $load_once      Whether to require_once or require. Default true.
      * @param array  $args           Optional. Additional arguments passed to the template.
      *                               Default empty array.
+     * @phpstan-return void
      */
     function load_template($_template_file, $load_once = \true, $args = array())
     {
@@ -162847,6 +164325,7 @@ namespace {
      *
      * @since 6.3.0
      * @access private
+     * @phpstan-return void
      */
     function wp_block_theme_activate_nonce()
     {
@@ -162858,6 +164337,7 @@ namespace {
      * trigger code that uses `current_user_can()` which requires functionality from `pluggable.php`.
      *
      * @since 6.3.2
+     * @phpstan-return void
      */
     function wp_initialize_theme_preview_hooks()
     {
@@ -162910,6 +164390,7 @@ namespace {
      *
      * @access private
      * @since 5.8.0
+     * @phpstan-return void
      */
     function wp_enable_block_templates()
     {
@@ -162970,6 +164451,7 @@ namespace {
      *
      * @since 3.5.0
      * @param bool $clear_update_cache Whether to clear the theme updates cache.
+     * @phpstan-return void
      */
     function wp_clean_themes_cache($clear_update_cache = \true)
     {
@@ -163207,6 +164689,7 @@ namespace {
      * @global array                $wp_registered_sidebars
      *
      * @param string $stylesheet Stylesheet name.
+     * @phpstan-return void
      */
     function switch_theme($stylesheet)
     {
@@ -163308,6 +164791,7 @@ namespace {
      * Removes theme modifications option for the active theme.
      *
      * @since 2.1.0
+     * @phpstan-return void
      */
     function remove_theme_mods()
     {
@@ -163326,6 +164810,7 @@ namespace {
      * Displays the custom header text color in 3- or 6-digit hexadecimal form (minus the hash symbol).
      *
      * @since 2.1.0
+     * @phpstan-return void
      */
     function header_textcolor()
     {
@@ -163380,6 +164865,7 @@ namespace {
      * @since 4.4.0
      *
      * @param array $attr Optional. Attributes for the image markup. Default empty.
+     * @phpstan-return void
      */
     function the_header_image_tag($attr = array())
     {
@@ -163428,6 +164914,7 @@ namespace {
      * Displays header image URL.
      *
      * @since 2.1.0
+     * @phpstan-return void
      */
     function header_image()
     {
@@ -163463,6 +164950,7 @@ namespace {
      *
      * @param array $headers Array of headers keyed by a string ID. The IDs point to arrays
      *                       containing 'url', 'thumbnail_url', and 'description' keys.
+     * @phpstan-return void
      */
     function register_default_headers($headers)
     {
@@ -163513,6 +165001,7 @@ namespace {
      * Displays header video URL.
      *
      * @since 4.7.0
+     * @phpstan-return void
      */
     function the_header_video_url()
     {
@@ -163584,6 +165073,7 @@ namespace {
      * Displays background image path.
      *
      * @since 3.0.0
+     * @phpstan-return void
      */
     function background_image()
     {
@@ -163602,6 +165092,7 @@ namespace {
      * Displays background color value.
      *
      * @since 3.0.0
+     * @phpstan-return void
      */
     function background_color()
     {
@@ -163692,6 +165183,7 @@ namespace {
      *
      * @param array|string $stylesheet Optional. Stylesheet name or array thereof, relative to theme root.
      *                                 Defaults to 'editor-style.css'
+     * @phpstan-return void
      */
     function add_editor_style($stylesheet = 'editor-style.css')
     {
@@ -163831,6 +165323,7 @@ namespace {
      *
      * @global Custom_Image_Header $custom_image_header
      * @global Custom_Background   $custom_background
+     * @phpstan-return void
      */
     function _custom_header_background_just_in_time()
     {
@@ -163840,6 +165333,7 @@ namespace {
      *
      * @since 4.5.0
      * @access private
+     * @phpstan-return void
      */
     function _custom_logo_header_styles()
     {
@@ -164028,6 +165522,7 @@ namespace {
      * @since 6.6.0 Also removes `site_logo` option set by the site logo block.
      *
      * @param int $id The attachment ID.
+     * @phpstan-return void
      */
     function _delete_attachment_theme_mod($id)
     {
@@ -164038,6 +165533,7 @@ namespace {
      * See {@see 'after_switch_theme'}.
      *
      * @since 3.3.0
+     * @phpstan-return void
      */
     function check_theme_switched()
     {
@@ -164096,6 +165592,7 @@ namespace {
      * Adds settings for the customize-loader script.
      *
      * @since 3.4.0
+     * @phpstan-return void
      */
     function _wp_customize_loader_settings()
     {
@@ -164128,6 +165625,7 @@ namespace {
      * @since 3.4.0
      * @since 4.7.0 Support for IE8 and below is explicitly removed via conditional comments.
      * @since 5.5.0 IE8 and older are no longer supported.
+     * @phpstan-return void
      */
     function wp_customize_support_script()
     {
@@ -164184,6 +165682,7 @@ namespace {
      *
      * @since 5.5.0
      * @since 6.0.1 The `block-templates` feature was added.
+     * @phpstan-return void
      */
     function create_initial_theme_features()
     {
@@ -164221,6 +165720,7 @@ namespace {
      *
      * @since 5.9.0
      * @access private
+     * @phpstan-return void
      */
     function _add_default_theme_supports()
     {
@@ -164241,6 +165741,7 @@ namespace {
      * @param array $extra_stats Extra statistics to report to the WordPress.org API.
      * @param bool  $force_check Whether to bypass the transient cache and force a fresh update check.
      *                           Defaults to false, true if $extra_stats is set.
+     * @phpstan-return void
      */
     function wp_version_check($extra_stats = array(), $force_check = \false)
     {
@@ -164258,6 +165759,7 @@ namespace {
      * @since 2.3.0
      *
      * @param array $extra_stats Extra statistics to report to the WordPress.org API.
+     * @phpstan-return void
      */
     function wp_update_plugins($extra_stats = array())
     {
@@ -164286,6 +165788,7 @@ namespace {
      * Updates WordPress core plus any plugins and themes that have automatic updates enabled.
      *
      * @since 3.7.0
+     * @phpstan-return void
      */
     function wp_maybe_auto_update()
     {
@@ -164359,6 +165862,7 @@ namespace {
      * Schedules core, theme, and plugin update checks.
      *
      * @since 3.1.0
+     * @phpstan-return void
      */
     function wp_schedule_update_checks()
     {
@@ -164367,6 +165871,7 @@ namespace {
      * Clears existing update caches for plugins, themes, and core.
      *
      * @since 4.1.0
+     * @phpstan-return void
      */
     function wp_clean_update_cache()
     {
@@ -165492,6 +166997,7 @@ namespace {
      *
      * @param WP_User $user     The user
      * @param string  $new_pass New password for the user in plaintext
+     * @phpstan-return void
      */
     function reset_password(
         $user,
@@ -165526,6 +167032,7 @@ namespace {
      *                        or an empty string (admin only), 'user', or 'both' (admin and user).
      *                        Default 'both'.
      * @phpstan-param 'admin'|'user'|'both' $notify
+     * @phpstan-return void
      */
     function wp_send_new_user_notifications($user_id, $notify = 'both')
     {
@@ -165554,6 +167061,7 @@ namespace {
      * Removes the current session token from the database.
      *
      * @since 4.0.0
+     * @phpstan-return void
      */
     function wp_destroy_current_session()
     {
@@ -165562,6 +167070,7 @@ namespace {
      * Removes all but the current session token for the current user for the database.
      *
      * @since 4.0.0
+     * @phpstan-return void
      */
     function wp_destroy_other_sessions()
     {
@@ -165570,6 +167079,7 @@ namespace {
      * Removes all session tokens for the current user from the database.
      *
      * @since 4.0.0
+     * @phpstan-return void
      */
     function wp_destroy_all_sessions()
     {
@@ -165632,6 +167142,7 @@ namespace {
      * @since 4.9.0 This function was moved from wp-admin/includes/ms.php so it's no longer Multisite specific.
      *
      * @global string $pagenow The filename of the current screen.
+     * @phpstan-return void
      */
     function new_user_email_admin_notice()
     {
@@ -165864,6 +167375,7 @@ namespace {
      * @access private
      *
      * @global wpdb $wpdb WordPress database abstraction object.
+     * @phpstan-return void
      */
     function wp_register_persisted_preferences_meta()
     {
@@ -165872,6 +167384,7 @@ namespace {
      * Sets the last changed time for the 'users' cache group.
      *
      * @since 6.3.0
+     * @phpstan-return void
      */
     function wp_cache_set_users_last_changed()
     {
@@ -166177,6 +167690,7 @@ namespace {
      * @global WP_Widget_Factory $wp_widget_factory
      *
      * @param string|WP_Widget $widget Either the name of a `WP_Widget` subclass or an instance of a `WP_Widget` subclass.
+     * @phpstan-return void
      */
     function unregister_widget($widget)
     {
@@ -166210,6 +167724,7 @@ namespace {
      *   id?: string,
      *   name?: string,
      * } $args
+     * @phpstan-return void
      */
     function register_sidebars($number = 1, $args = array())
     {
@@ -166291,6 +167806,7 @@ namespace {
      * @global array $wp_registered_sidebars The registered sidebars.
      *
      * @param string|int $sidebar_id The ID of the sidebar when it was registered.
+     * @phpstan-return void
      */
     function unregister_sidebar($sidebar_id)
     {
@@ -166389,6 +167905,7 @@ namespace {
      * @since 2.2.0
      *
      * @param int|string $id Widget ID.
+     * @phpstan-return void
      */
     function wp_unregister_sidebar_widget($id)
     {
@@ -166483,6 +168000,7 @@ namespace {
      * @since 2.2.0
      *
      * @param int|string $id Widget ID.
+     * @phpstan-return void
      */
     function wp_unregister_widget_control($id)
     {
@@ -166611,6 +168129,7 @@ namespace {
      *
      * @global array $_wp_sidebars_widgets
      * @param array $sidebars_widgets Sidebar widgets and their settings.
+     * @phpstan-return void
      */
     function wp_set_sidebars_widgets($sidebars_widgets)
     {
@@ -166693,6 +168212,7 @@ namespace {
      * @since 3.3.0
      *
      * @global array $sidebars_widgets
+     * @phpstan-return void
      */
     function _wp_sidebars_changed()
     {
@@ -166819,6 +168339,7 @@ namespace {
      * @since 5.8.0
      *
      * @access private
+     * @phpstan-return void
      */
     function wp_setup_widgets_block_editor()
     {
@@ -166864,6 +168385,7 @@ namespace {
      *
      * @param string $widget_id  The widget ID to assign.
      * @param string $sidebar_id The sidebar ID to assign to. If empty, the widget won't be added to any sidebar.
+     * @phpstan-return void
      */
     function wp_assign_widget_to_sidebar($widget_id, $sidebar_id)
     {
@@ -166913,6 +168435,7 @@ namespace {
      *
      * @global WP_Scripts $wp_scripts
      * @global WP_Styles  $wp_styles
+     * @phpstan-return void
      */
     function wp_check_widget_editor_deps()
     {
@@ -166944,6 +168467,7 @@ namespace {
      *                                Defaults to 'Log In'.
      * @param string        $message  Optional. Message to display in header. Default empty.
      * @param WP_Error|null $wp_error Optional. The error to pass. Defaults to a WP_Error instance.
+     * @phpstan-return void
      */
     function login_header($title = \null, $message = '', $wp_error = \null)
     {
@@ -166957,6 +168481,7 @@ namespace {
      *                                    upon successful login.
      *
      * @param string $input_id Which input to auto-focus.
+     * @phpstan-return void
      */
     function login_footer($input_id = '')
     {
@@ -166965,6 +168490,7 @@ namespace {
      * Outputs the JavaScript to handle the form shaking on the login page.
      *
      * @since 3.0.0
+     * @phpstan-return void
      */
     function wp_shake_js()
     {
@@ -166973,6 +168499,7 @@ namespace {
      * Outputs the viewport meta tag for the login page.
      *
      * @since 3.7.0
+     * @phpstan-return void
      */
     function wp_login_viewport_meta()
     {
@@ -166981,6 +168508,7 @@ namespace {
      * Prints signup_header via wp_head.
      *
      * @since MU (3.0.0)
+     * @phpstan-return void
      */
     function do_signup_header()
     {
@@ -166989,6 +168517,7 @@ namespace {
      * Prints styles for front-end Multisite Sign-up pages.
      *
      * @since MU (3.0.0)
+     * @phpstan-return void
      */
     function wpmu_signup_stylesheet()
     {
@@ -167001,6 +168530,7 @@ namespace {
      * @param string          $blogname   The new site name.
      * @param string          $blog_title The new site title.
      * @param WP_Error|string $errors     A WP_Error object containing existing errors. Defaults to empty string.
+     * @phpstan-return void
      */
     function show_blog_form($blogname = '', $blog_title = '', $errors = '')
     {
@@ -167024,6 +168554,7 @@ namespace {
      * @param string          $user_name  The entered username.
      * @param string          $user_email The entered email address.
      * @param WP_Error|string $errors     A WP_Error object containing existing errors. Defaults to empty string.
+     * @phpstan-return void
      */
     function show_user_form($user_name = '', $user_email = '', $errors = '')
     {
@@ -167047,6 +168578,7 @@ namespace {
      * @param string          $blogname   The new site name
      * @param string          $blog_title The new site title.
      * @param WP_Error|string $errors     A WP_Error object containing existing errors. Defaults to empty string.
+     * @phpstan-return void
      */
     function signup_another_blog($blogname = '', $blog_title = '', $errors = '')
     {
@@ -167081,6 +168613,7 @@ namespace {
      * @param string $user_email The user's email address.
      * @param array  $meta       Any additional meta from the {@see 'add_signup_meta'} filter in validate_blog_signup().
      * @param int    $blog_id    The site ID.
+     * @phpstan-return void
      */
     function confirm_another_blog_signup($domain, $path, $blog_title, $user_name, $user_email = '', $meta = array(), $blog_id = 0)
     {
@@ -167096,6 +168629,7 @@ namespace {
      * @param string          $user_name  The username.
      * @param string          $user_email The user's email.
      * @param WP_Error|string $errors     A WP_Error object containing existing errors. Defaults to empty string.
+     * @phpstan-return void
      */
     function signup_user($user_name = '', $user_email = '', $errors = '')
     {
@@ -167117,6 +168651,7 @@ namespace {
      *
      * @param string $user_name  The username.
      * @param string $user_email The user's email address.
+     * @phpstan-return void
      */
     function confirm_user_signup($user_name, $user_email)
     {
@@ -167131,6 +168666,7 @@ namespace {
      * @param string          $blogname   The site name.
      * @param string          $blog_title The site title.
      * @param WP_Error|string $errors     A WP_Error object containing existing errors. Defaults to empty string.
+     * @phpstan-return void
      */
     function signup_blog($user_name = '', $user_email = '', $blogname = '', $blog_title = '', $errors = '')
     {
@@ -167156,6 +168692,7 @@ namespace {
      * @param string $user_name  The user's username.
      * @param string $user_email The user's email address.
      * @param array  $meta       Any additional meta from the {@see 'add_signup_meta'} filter in validate_blog_signup().
+     * @phpstan-return void
      */
     function confirm_blog_signup($domain, $path, $blog_title, $user_name = '', $user_email = '', $meta = array())
     {
