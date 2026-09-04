@@ -258,6 +258,14 @@ final class VoidOrNeverAnalyzerTest extends TestCase
                 self::documentedFunction("if (true) {\n        return 1;\n    }\n    return;"),
                 self::RESULT_NULL,
             ],
+            'yield inside a closure' => [
+                self::documentedFunction("\$generator = function () {\n        yield 1;\n    };"),
+                self::RESULT_VOID,
+            ],
+            'return with expression inside a closure' => [
+                self::documentedFunction("\$callback = function () {\n        return 1;\n    };"),
+                self::RESULT_VOID,
+            ],
             'method without return statement' => [
                 <<<'PHP'
                 <?php

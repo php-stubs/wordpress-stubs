@@ -39,6 +39,10 @@
     <rule ref="PSR12NeutronRuleset.Strings.ConcatenationUsage">
         <exclude-pattern>tests/</exclude-pattern>
     </rule>
+    <!-- Contradicts Universal.WhiteSpace.AnonClassKeywordSpacing, which follows PSR-12. -->
+    <rule ref="PSR12.Classes.AnonClassDeclaration.SpaceAfterKeyword">
+        <severity>0</severity>
+    </rule>
     <rule ref="SlevomatCodingStandard.Functions.FunctionLength">
         <exclude-pattern>tests/ParameterTypeTest.php</exclude-pattern>
         <exclude-pattern>tests/VoidOrNeverAnalyzerTest.php</exclude-pattern>

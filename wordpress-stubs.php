@@ -17715,6 +17715,7 @@ namespace PHPMailer\PHPMailer {
          * Clear queued addresses of given kind.
          *
          * @param string $kind 'to', 'cc', or 'bcc'
+         * @phpstan-return void
          */
         public function clearQueuedAddresses($kind)
         {
@@ -51345,6 +51346,7 @@ namespace {
          * @since 1.5.0
          *
          * @global WP_Post $post Global post object.
+         * @phpstan-return void
          */
         public function the_post()
         {
@@ -89251,6 +89253,7 @@ namespace {
          * @since 5.3.0
          *
          * @see register_rest_route()
+         * @phpstan-return void
          */
         public function register_routes()
         {
@@ -90331,6 +90334,7 @@ namespace {
          * @since 5.0.0
          *
          * @see register_rest_route()
+         * @phpstan-return void
          */
         public function register_routes()
         {
@@ -94002,6 +94006,7 @@ namespace {
          * @since 6.1.0 Adds page-cache async test.
          *
          * @see register_rest_route()
+         * @phpstan-return void
          */
         public function register_routes()
         {
@@ -95479,6 +95484,7 @@ namespace {
          * @since 5.8.0
          *
          * @see register_rest_route()
+         * @phpstan-return void
          */
         public function register_routes()
         {
@@ -102218,6 +102224,7 @@ namespace {
      *   end_date?: string,
      *   status?: string,
      * } $args
+     * @phpstan-return void
      */
     function export_wp($args = array())
     {
@@ -110492,6 +110499,7 @@ namespace {
      * @since 6.8.2
      *
      * @global int $wp_current_db_version The old (current) database version.
+     * @phpstan-return void
      */
     function upgrade_682()
     {
@@ -117488,6 +117496,7 @@ namespace {
      * avoids unnecessary logic and filesystem lookups in the other function.
      *
      * @since 6.3.0
+     * @phpstan-return void
      */
     function register_core_block_style_handles()
     {
@@ -120255,6 +120264,7 @@ namespace {
      * Hooked to admin_enqueue_scripts.
      *
      * @param string $hook_suffix The current admin page.
+     * @phpstan-return void
      */
     function wp_font_library_wp_admin_enqueue_scripts($hook_suffix)
     {
@@ -120320,6 +120330,7 @@ namespace {
     /**
      * Render the font-library page.
      * Call this function from add_menu_page or add_submenu_page.
+     * @phpstan-return never
      */
     function wp_font_library_render_page()
     {
@@ -120385,6 +120396,7 @@ namespace {
      * Hooked to admin_enqueue_scripts.
      *
      * @param string $hook_suffix The current admin page.
+     * @phpstan-return void
      */
     function wp_options_connectors_wp_admin_enqueue_scripts($hook_suffix)
     {
@@ -120450,6 +120462,7 @@ namespace {
     /**
      * Render the options-connectors page.
      * Call this function from add_menu_page or add_submenu_page.
+     * @phpstan-return never
      */
     function wp_options_connectors_render_page()
     {
@@ -124857,6 +124870,7 @@ namespace {
      * Register initial note status meta.
      *
      * @since 6.9.0
+     * @phpstan-return void
      */
     function wp_create_initial_comment_meta()
     {
@@ -160673,6 +160687,7 @@ namespace {
      * @since 5.3.0
      *
      * @global WP_Styles $wp_styles
+     * @phpstan-return void
      */
     function enqueue_block_styles_assets()
     {
@@ -160791,6 +160806,7 @@ namespace {
      * @since 5.8.0
      *
      * @global WP_Styles $wp_styles
+     * @phpstan-return void
      */
     function wp_maybe_inline_styles()
     {
@@ -160890,6 +160906,7 @@ namespace {
      *   media?: string,
      *   path?: string|null,
      * } $args
+     * @phpstan-return void
      */
     function wp_enqueue_block_style($block_name, $args)
     {
@@ -160914,6 +160931,7 @@ namespace {
      *
      * @global array  $menu
      * @global array  $submenu
+     * @phpstan-return void
      */
     function wp_enqueue_command_palette_assets()
     {
@@ -165664,6 +165682,7 @@ namespace {
      *
      * @since 5.5.0
      * @since 6.0.1 The `block-templates` feature was added.
+     * @phpstan-return void
      */
     function create_initial_theme_features()
     {
@@ -165701,6 +165720,7 @@ namespace {
      *
      * @since 5.9.0
      * @access private
+     * @phpstan-return void
      */
     function _add_default_theme_supports()
     {
@@ -165721,6 +165741,7 @@ namespace {
      * @param array $extra_stats Extra statistics to report to the WordPress.org API.
      * @param bool  $force_check Whether to bypass the transient cache and force a fresh update check.
      *                           Defaults to false, true if $extra_stats is set.
+     * @phpstan-return void
      */
     function wp_version_check($extra_stats = array(), $force_check = \false)
     {
@@ -165738,6 +165759,7 @@ namespace {
      * @since 2.3.0
      *
      * @param array $extra_stats Extra statistics to report to the WordPress.org API.
+     * @phpstan-return void
      */
     function wp_update_plugins($extra_stats = array())
     {

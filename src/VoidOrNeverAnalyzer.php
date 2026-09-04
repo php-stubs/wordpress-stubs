@@ -7,6 +7,7 @@ namespace PhpStubs\WordPress\Core;
 use phpDocumentor\Reflection\DocBlockFactoryInterface;
 use phpDocumentor\Reflection\Types\Never_;
 use phpDocumentor\Reflection\Types\Void_;
+use Closure;
 use PhpParser\ConstExprEvaluator;
 use PhpParser\Node;
 use PhpParser\Node\Expr\Exit_;
@@ -15,6 +16,7 @@ use PhpParser\Node\Expr\New_;
 use PhpParser\Node\Expr\Throw_;
 use PhpParser\Node\Expr\Yield_;
 use PhpParser\Node\Expr\YieldFrom;
+use PhpParser\Node\FunctionLike;
 use PhpParser\Node\Name;
 use PhpParser\Node\Scalar\String_;
 use PhpParser\Node\Stmt\ClassMethod;
@@ -22,6 +24,9 @@ use PhpParser\Node\Stmt\Expression;
 use PhpParser\Node\Stmt\Function_;
 use PhpParser\Node\Stmt\Return_;
 use PhpParser\NodeFinder;
+use PhpParser\NodeTraverser;
+use PhpParser\NodeVisitor;
+use PhpParser\NodeVisitorAbstract;
 
 use function array_key_exists;
 use function is_array;
@@ -47,7 +52,13 @@ final class VoidOrNeverAnalyzer
             return;
         }
 
-        $returnStmts = $this->nodeFinder->findInstanceOf($node, Return_::class);
+        /** @var array<\PhpParser\Node\Stmt\Return_> $returnStmts */
+        $returnStmts = $this->findInOwnBody(
+            $node,
+            static function (Node $node): bool {
+                return $node instanceof Return_;
+            }
+        );
 
         if (count($returnStmts) !== 0) {
             $this->analyzeWithReturns($node, $returnStmts);
@@ -90,15 +101,15 @@ final class VoidOrNeverAnalyzer
             return false;
         }
 
-        $yields = $this->nodeFinder->findFirst(
+        $yields = $this->findInOwnBody(
             $node,
             static function (Node $node): bool {
                 return $node instanceof Yield_ || $node instanceof YieldFrom;
             }
-        ) instanceof Node;
+        );
 
         // Generator functions do not return void or never.
-        if ($yields) {
+        if (count($yields) !== 0) {
             return false;
         }
 
@@ -257,5 +268,46 @@ final class VoidOrNeverAnalyzer
 
         // Truthy 'exit' or no 'exit' array key (default: true) means it will exit.
         return ! array_key_exists('exit', $arg) || (bool)$arg['exit'];
+    }
+
+    /**
+     * Finds nodes in the body of a function, skipping the bodies of nested functions.
+     *
+     * @param \PhpParser\Node\Stmt\Function_|\PhpParser\Node\Stmt\ClassMethod $node
+     * @param \Closure(\PhpParser\Node): bool $filter
+     * @return array<\PhpParser\Node>
+     */
+    private function findInOwnBody(Node $node, Closure $filter): array
+    {
+        $visitor = new class() extends NodeVisitorAbstract {
+            /** @var \Closure(\PhpParser\Node): bool */
+            public Closure $filter;
+
+            /** @var array<\PhpParser\Node> */
+            public array $found = [];
+
+            /**
+             * @return \PhpParser\NodeVisitor::DONT_TRAVERSE_CHILDREN|null
+             */
+            public function enterNode(Node $node): ?int
+            {
+                // A nested function has its own return type
+                if ($node instanceof FunctionLike||$node instanceof ClassLike) {
+                    return NodeVisitor::DONT_TRAVERSE_CHILDREN;
+                }
+
+                if (($this->filter)($node)) {
+                    $this->found[] = $node;
+                }
+
+                return null;
+            }
+        };
+
+        $visitor->filter = $filter;
+
+        (new NodeTraverser($visitor))->traverse((array)$node->stmts);
+
+        return $visitor->found;
     }
 }
