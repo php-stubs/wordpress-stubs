@@ -14,9 +14,6 @@ if [ ! -d vendor ]; then
     composer update
 fi
 
-# Convert psalm-incompatible callable types in Abilities API
-sed -i -e 's#callable( mixed $input= )#callable(mixed=)#g' source/wordpress/wp-includes/abilities-api/class-wp-ability.php
-
 # Fix incorrect "binary string" type in AVIF Info class
 sed -i -e 's#@\(param\|return\) binary string#@\1 string#g' source/wordpress/wp-includes/class-avif-info.php
 
