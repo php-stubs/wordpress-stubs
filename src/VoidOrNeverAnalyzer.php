@@ -292,7 +292,7 @@ final class VoidOrNeverAnalyzer
             public function enterNode(Node $node): ?int
             {
                 // A nested function has its own return type
-                if ($node instanceof FunctionLike||$node instanceof ClassLike) {
+                if ($node instanceof FunctionLike) {
                     return NodeVisitor::DONT_TRAVERSE_CHILDREN;
                 }
 
