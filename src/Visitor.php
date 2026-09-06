@@ -379,7 +379,7 @@ class Visitor extends NodeVisitor
                         continue;
                     }
 
-                    $addition->children = array_merge($addition->children, $inherit->children);
+                    $this->mergeInheritedChildren($addition, $inherit);
                     continue 3;
                 }
             }
@@ -388,6 +388,27 @@ class Visitor extends NodeVisitor
         }
 
         return $additions;
+    }
+
+    private function mergeInheritedChildren(WordPressTag $addition, WordPressTag $inherit): void
+    {
+        $namesInAdditionDocs = [];
+
+        foreach ($addition->children as $child) {
+            if ($child->name === null) {
+                continue;
+            }
+
+            $namesInAdditionDocs[] = $child->name;
+        }
+
+        foreach ($inherit->children as $child) {
+            if (($child->name === null) || in_array($child->name, $namesInAdditionDocs, true)) {
+                continue;
+            }
+
+            $addition->children[] = $child;
+        }
     }
 
     /**

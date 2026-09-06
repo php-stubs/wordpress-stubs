@@ -92,4 +92,73 @@ final class VisitorTest extends TestCase
         self::assertStringContainsString('name: string', $stubs);
         self::assertStringContainsString('type: string', $stubs);
     }
+
+    /**
+     * Args inherited from a `@see`d symbol must not duplicate the keys which
+     * are documented on the symbol itself, only missing keys are inherited.
+     */
+    public function testInheritedArgsDoNotDuplicateDocumentedArgs(): void
+    {
+        $code = <<<'PHP'
+        <?php
+        /**
+         * @param array $args {
+         *     Optional. Arguments.
+         *
+         *     @type bool $foo Description of foo.
+         *     @type int  $bar Description of bar.
+         * }
+         */
+        function donor($args = []) {}
+        /**
+         * @param array $args {
+         *     Optional. Arguments. See donor() for additional arguments.
+         *
+         *     @type bool $foo Description of foo.
+         * }
+         */
+        function recipient($args = []) {}
+        PHP;
+
+        $stubs = self::generateStubs($code);
+
+        [, $listItems] = explode('function donor', $stubs, 2);
+
+        self::assertSame(1, substr_count($listItems, 'foo?: bool'), $listItems);
+        self::assertSame(1, substr_count($listItems, 'bar?: int'), $listItems);
+    }
+
+    /**
+     * Args inherited from a `@see`d symbol must not override the keys which are
+     * documented on the symbol itself.
+     */
+    public function testInheritedArgsDoNotOverrideDocumentedArgs(): void
+    {
+        $code = <<<'PHP'
+        <?php
+        /**
+         * @param array $args {
+         *     Optional. Arguments.
+         *
+         *     @type int $foo Description of foo.
+         * }
+         */
+        function donor($args = []) {}
+        /**
+         * @param array $args {
+         *     Optional. Arguments. See donor() for additional arguments.
+         *
+         *     @type bool $foo Description of foo.
+         * }
+         */
+        function recipient($args = []) {}
+        PHP;
+
+        $stubs = self::generateStubs($code);
+
+        [, $listItems] = explode('function donor', $stubs, 2);
+
+        self::assertStringContainsString('foo?: bool', $listItems);
+        self::assertStringNotContainsString('foo?: int', $listItems);
+    }
 }
