@@ -43673,8 +43673,8 @@ namespace {
      *   accepted_args: int,
      * }
      *
-     * @phpstan-implements Iterator<int, array<string, Hook_Callback>>
-     * @phpstan-implements ArrayAccess<int, array<string, Hook_Callback>>
+     * @phpstan-implements Iterator<int, array<non-decimal-int-string, Hook_Callback>>
+     * @phpstan-implements ArrayAccess<int, array<non-decimal-int-string, Hook_Callback>>
      */
     #[\AllowDynamicProperties]
     final class WP_Hook implements \Iterator, \ArrayAccess
@@ -43684,7 +43684,7 @@ namespace {
          *
          * @since 4.7.0
          * @var array
-         * @phpstan-var array<int, array<string, Hook_Callback>>
+         * @phpstan-var array<int, array<non-decimal-int-string, Hook_Callback>>
          */
         public $callbacks = array();
         /**
@@ -43864,7 +43864,7 @@ namespace {
          *
          * @param int $offset The offset to retrieve.
          * @return array|null If set, the value at the specified offset, null otherwise.
-         * @phpstan-return array<string, Hook_Callback>|null
+         * @phpstan-return array<non-decimal-int-string, Hook_Callback>|null
          */
         #[\ReturnTypeWillChange]
         public function offsetGet($offset)
@@ -43879,7 +43879,7 @@ namespace {
          *
          * @param int|null $offset The offset to assign the value to.
          * @param array    $value The value to set.
-         * @phpstan-param array<string, Hook_Callback> $value
+         * @phpstan-param array<non-decimal-int-string, Hook_Callback> $value
          */
         #[\ReturnTypeWillChange]
         public function offsetSet($offset, $value)
@@ -43906,7 +43906,7 @@ namespace {
          * @link https://www.php.net/manual/en/iterator.current.php
          *
          * @return array|false Array of callbacks at current priority, false if there are no more elements.
-         * @phpstan-return array<string, Hook_Callback>|false
+         * @phpstan-return array<non-decimal-int-string, Hook_Callback>|false
          */
         #[\ReturnTypeWillChange]
         public function current()
@@ -43920,7 +43920,7 @@ namespace {
          * @link https://www.php.net/manual/en/iterator.next.php
          *
          * @return array|false Array of callbacks at next priority, false if there are no more elements.
-         * @phpstan-return array<string, Hook_Callback>|false
+         * @phpstan-return array<non-decimal-int-string, Hook_Callback>|false
          */
         #[\ReturnTypeWillChange]
         public function next()
@@ -60906,8 +60906,12 @@ namespace {
         /**
          * Widgets array.
          *
+         * Keyed by class name for a widget registered by name, and by a prefixed object ID for a widget
+         * registered as an instance.
+         *
          * @since 2.8.0
-         * @var array
+         * @var array<string, WP_Widget>
+         * @phpstan-var array<non-decimal-int-string, WP_Widget>
          * @phpstan-var array<int, \WP_Widget>
          */
         public $widgets = array();
@@ -60936,6 +60940,7 @@ namespace {
          * @since 2.8.0
          * @since 4.6.0 Updated the `$widget` parameter to also accept a WP_Widget instance object
          *              instead of simply a `WP_Widget` subclass name.
+         * @since 7.1.1 The key for an instance is prefixed so that it is never cast to an integer.
          *
          * @param string|WP_Widget $widget Either the name of a `WP_Widget` subclass or an instance of a `WP_Widget` subclass.
          * @phpstan-param class-string<\WP_Widget>|\WP_Widget $widget
@@ -60949,6 +60954,7 @@ namespace {
          * @since 2.8.0
          * @since 4.6.0 Updated the `$widget` parameter to also accept a WP_Widget instance object
          *              instead of simply a `WP_Widget` subclass name.
+         * @since 7.1.1 The key for an instance is prefixed so that it is never cast to an integer.
          *
          * @param string|WP_Widget $widget Either the name of a `WP_Widget` subclass or an instance of a `WP_Widget` subclass.
          * @phpstan-param class-string<\WP_Widget>|\WP_Widget $widget
@@ -66780,6 +66786,17 @@ namespace {
      * @since 3.4.0
      *
      * @see WP_Customize_Setting
+     *
+     * @phpstan-type Header_Image_Data array{
+     *     attachment_id?: int,
+     *     url?: string,
+     *     thumbnail_url?: string,
+     *     timestamp?: int,
+     *     width?: int,
+     *     height?: int,
+     *     alt_text?: string,
+     *     attachment_parent?: int,
+     * }
      */
     final class WP_Customize_Header_Image_Setting extends \WP_Customize_Setting
     {
@@ -66800,6 +66817,35 @@ namespace {
          * @return true Always returns true.
          */
         public function update($value)
+        {
+        }
+        /**
+         * Sanitizes a header value.
+         *
+         * The value is expected to be one of the following:
+         *
+         * - An array of header image data, with the keys `attachment_id`, `url`, `thumbnail_url`, `timestamp`, `width`,
+         *   `height`, `alt_text`, and `attachment_parent`, as supplied by {@see get_uploaded_header_images()}. Any other
+         *   key is discarded.
+         * - An array with a `choice` key, being the legacy format in which any of the other accepted values is nested.
+         * - The string `remove-header`, `random-default-image`, or `random-uploaded-image`.
+         * - A string corresponding to one of the keys for the array returned by {@see get_uploaded_header_images()}, or
+         *   one of the keys for the array passed into {@see register_default_headers()}.
+         *
+         * @since 7.1.1
+         *
+         * @see WP_Customize_Header_Image_Setting::update()
+         * @see Custom_Image_Header::set_header_image()
+         *
+         * @param mixed $value Value to sanitize.
+         * @return array|string|WP_Error|null Sanitized value, or `null`/`WP_Error` if invalid. The array holds
+         *                                    the header image data, or that data nested under a `choice` key,
+         *                                    before the `customize_sanitize_header_image_data` filter, which
+         *                                    may return anything, is applied to it.
+         *
+         * @phpstan-return array<mixed, mixed>|string|WP_Error|null
+         */
+        public function sanitize($value)
         {
         }
     }
@@ -90025,6 +90071,7 @@ namespace {
          * Checks if a given REST request has access to update a comment.
          *
          * @since 4.7.0
+         * @since 7.1.1 Target post permissions are checked when a comment's parent post is changed.
          *
          * @param WP_REST_Request $request Full details about the request.
          * @return true|WP_Error True if the request has access to update the item, error object otherwise.
@@ -90218,6 +90265,23 @@ namespace {
          * @return bool True if the content is allowed, false otherwise.
          */
         protected function check_is_comment_content_allowed($prepared_comment)
+        {
+        }
+        /**
+         * Checks that a post can receive a comment or a note from the current user.
+         *
+         * Used when creating a note and when changing the parent post of an existing
+         * comment or note, so that attaching content to a post is authorized the same
+         * way whichever path it arrives by.
+         *
+         * @since 7.1.1
+         *
+         * @param int             $post_id Target post ID.
+         * @param WP_REST_Request $request Full details about the request.
+         * @param bool            $is_note Optional. Whether the comment is a note. Default false.
+         * @return true|WP_Error True if the post can receive the comment, error object otherwise.
+         */
+        protected function check_target_post_permission(int $post_id, \WP_REST_Request $request, bool $is_note = \false)
         {
         }
     }
@@ -96362,8 +96426,6 @@ namespace {
          * Renders sitemap templates based on rewrite rules.
          *
          * @since 5.5.0
-         *
-         * @global WP_Query $wp_query WordPress Query object.
          * @phpstan-return void
          */
         public function render_sitemaps()
@@ -105193,8 +105255,11 @@ namespace {
      * Checks for "Site Wide Only: true" for backward compatibility.
      *
      * @since 3.0.0
+     * @since 7.1.1 The `$plugin` path is normalized with `plugin_basename()` and `trim()`,
+     *              matching how `activate_plugin()` resolves it.
      *
-     * @param string $plugin Path to the plugin file relative to the plugins directory.
+     * @param string $plugin Path to the plugin file. Accepts a path relative to the plugins
+     *                       directory, or an absolute path, with or without surrounding whitespace.
      * @return bool True if plugin is network only, false otherwise.
      */
     function is_network_only_plugin($plugin)
@@ -136025,7 +136090,7 @@ namespace {
      *     @type string $id          Unique ID for the popover element. Default is a
      *                               generated unique ID.
      *     @type string $button      Existing `button` or `a` markup. Used instead of generated button.
-     *                               Default standard button HTML.
+     *                               Default empty string.
      *     @type string $label       Not used for tooltips.
      *     @type string $close_label Not used for tooltips.
      *     @type string $icon        Dashicons icon class for the toggle button.
@@ -136061,7 +136126,7 @@ namespace {
      *     @type string $id          Unique ID for the popover element. Default is a
      *                               generated unique ID.
      *     @type string $button      Existing `button` markup. Used instead of generated button.
-     *                               Default standard button HTML.
+     *                               Default empty string.
      *     @type string $label       Accessible label for the toggle button.
      *                               Default 'Help', matching the default icon.
      *                               Ignored for tooltips.
@@ -136102,7 +136167,7 @@ namespace {
      *     @type string $id          Unique ID for the popover element. Default is a
      *                               generated unique ID.
      *     @type string $button      Existing `button` or `a` markup. Used instead of generated button.
-     *                               Default standard button HTML.
+     *                               Default empty string.
      *     @type string $label       Accessible label for the toggle button.
      *                               Default 'Help', matching the default icon.
      *                               Ignored for tooltips.
@@ -151739,6 +151804,7 @@ namespace {
      *              and no longer returns false, but can still return void for invalid callbacks.
      * @since 6.9.0 Returns explicit null if an invalid callback is supplied.
      * @since 7.1.0 Uses spl_object_id() instead of spl_object_hash() for performance.
+     * @since 7.1.1 The ID for an object callback is prefixed so that it is never cast to an integer array key.
      *
      * @access private
      *
@@ -151748,6 +151814,8 @@ namespace {
      * @param int      $priority  Unused. The order in which the functions
      *                            associated with a particular action are executed.
      * @return string|null Unique function ID for usage as array key, or null if it couldn't be determined.
+     *
+     * @phpstan-return non-decimal-int-string|null
      */
     function _wp_filter_build_unique_id($hook_name, $callback, $priority): ?string
     {
@@ -162687,6 +162755,21 @@ namespace {
     {
     }
     /**
+     * Determines whether a template found by locate_template() may be loaded.
+     *
+     * @since 7.1.2
+     * @access private
+     *
+     * @global string $wp_stylesheet_path Path to current theme's stylesheet directory.
+     * @global string $wp_template_path   Path to current theme's template directory.
+     *
+     * @param string $path Path to an existing template file.
+     * @return bool Whether the template may be loaded.
+     */
+    function _wp_is_template_path_allowed($path)
+    {
+    }
+    /**
      * Retrieves the name of the highest priority template file that exists.
      *
      * Searches in the stylesheet directory before the template directory and
@@ -162695,6 +162778,7 @@ namespace {
      *
      * @since 2.7.0
      * @since 5.5.0 The `$args` parameter was added.
+     * @since 7.1.2 A template name containing `..` is only located if it resolves inside the theme.
      *
      * @global string $wp_stylesheet_path Path to current theme's stylesheet directory.
      * @global string $wp_template_path   Path to current theme's template directory.
@@ -163413,6 +163497,7 @@ namespace {
      * Gets the header image data.
      *
      * @since 3.4.0
+     * @since 7.1.1 The `width` and `height` are cast to non-negative integers.
      *
      * @global array $_wp_default_headers
      *
