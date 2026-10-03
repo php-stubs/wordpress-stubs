@@ -60912,7 +60912,6 @@ namespace {
          * @since 2.8.0
          * @var array<string, WP_Widget>
          * @phpstan-var array<non-decimal-int-string, WP_Widget>
-         * @phpstan-var array<int, \WP_Widget>
          */
         public $widgets = array();
         /**
