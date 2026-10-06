@@ -7,6 +7,8 @@ namespace PhpStubs\WordPress\Core\Tests;
 use function absint;
 use function PHPStan\Testing\assertType;
 
+assertType('int<0, max>', absint(Faker::int()));
+
 // Returns input for non-negative integers
 assertType('0', absint(0));
 assertType('1', absint(1));
