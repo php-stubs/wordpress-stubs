@@ -129,16 +129,17 @@ class Visitor extends NodeVisitor
         assert(isset($name), 'Node does not have a name');
 
         if ($node instanceof Function_ || $node instanceof ClassLike) {
-            return $name;
+            assert($node->namespacedName instanceof Name);
+            return $node->namespacedName->toString();
         }
 
         $parent = $this->stack[count($this->stack) - 2];
         assert($parent instanceof ClassLike);
-        assert($parent->name instanceof Identifier);
+        assert($parent->namespacedName instanceof Name);
 
         return sprintf(
             '%1$s::%2$s%3$s',
-            $parent->name->name,
+            $parent->namespacedName->toString(),
             $node instanceof Property ? '$' : '',
             $name
         );

@@ -24127,7 +24127,6 @@ namespace SimplePie\Cache {
          * @param string $location Location string (from SimplePie::$cache_location)
          * @param string $name Unique ID for the cache
          * @param Base::TYPE_FEED|Base::TYPE_IMAGE $type Either TYPE_FEED for SimplePie data, or TYPE_IMAGE for image data
-         * @phpstan-return void
          */
         public function __construct(string $location, string $name, $type)
         {
@@ -76318,7 +76317,6 @@ namespace WordPress\AiClient\Files\DTO {
          * @param string $file The file string (URL, base64 data, or local path).
          * @param string|null $mimeType The MIME type of the file (optional).
          * @throws \WordPress\AiClient\Common\Exception\InvalidArgumentException If the file format is invalid or MIME type cannot be determined.
-         * @phpstan-return void
          */
         public function __construct(string $file, ?string $mimeType = null)
         {
