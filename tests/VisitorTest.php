@@ -68,6 +68,33 @@ final class VisitorTest extends TestCase
     }
 
     /**
+     * @runInSeparateProcess
+     * @preserveGlobalState disabled
+     */
+    public function testMapReturnDoesNotOverrideExistingReturn(): void
+    {
+        $code = <<<'PHP'
+        <?php
+        /**
+         * @phpstan-return int|false
+         */
+        function check_admin_referer($action = -1) {}
+        /**
+         * @return int|false
+         */
+        function check_ajax_referer($action = -1, $query_arg = false, $stop = true) {}
+        PHP;
+
+        $stubs = self::generateStubs($code);
+
+        self::assertSame(2, substr_count($stubs, '@phpstan-return'), $stubs);
+        self::assertStringContainsString('@phpstan-return int|false', $stubs);
+        self::assertStringNotContainsString('@phpstan-return ($action is', $stubs);
+        self::assertStringContainsString('@phpstan-param string $action', $stubs);
+        self::assertStringContainsString('@phpstan-return ($stop is true ? 1|2 : 1|2|false)', $stubs);
+    }
+
+    /**
      * Without an existing `@phpstan-return`, the visitor still synthesises one from
      * a `@return` tag that uses array hash notation.
      */

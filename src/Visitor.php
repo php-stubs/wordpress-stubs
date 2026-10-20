@@ -552,6 +552,25 @@ class Visitor extends NodeVisitor
         $additions = $this->additionalTagStrings[$name];
 
         $docCommentText = $docComment->getText();
+        try {
+            $docblock = $this->docBlockFactory->create($docCommentText);
+        } catch (\RuntimeException | \InvalidArgumentException $e) {
+            return null;
+        }
+
+        if (count($docblock->getTagsByName('phpstan-return')) > 0) {
+            $additions = array_filter(
+                $additions,
+                static function (string $tag): bool {
+                    return ! str_starts_with($tag, '@phpstan-return ');
+                }
+            );
+        }
+
+        if (count($additions) === 0) {
+            return null;
+        }
+
         $newDocComment = sprintf(
             "%s\n * %s\n */",
             substr($docCommentText, 0, -self::WP_INDENT_SIZE),
