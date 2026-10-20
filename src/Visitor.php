@@ -552,7 +552,13 @@ class Visitor extends NodeVisitor
         $additions = $this->additionalTagStrings[$name];
 
         $docCommentText = $docComment->getText();
-        if (preg_match('/(?:^\h*\*|\/\*\*)\h*@phpstan-return\b/m', $docCommentText) === 1) {
+        try {
+            $docblock = $this->docBlockFactory->create($docCommentText);
+        } catch (\RuntimeException | \InvalidArgumentException $e) {
+            return null;
+        }
+
+        if (count($docblock->getTagsByName('phpstan-return')) > 0) {
             $additions = array_filter(
                 $additions,
                 static fn (string $tag): bool => ! str_starts_with($tag, '@phpstan-return ')
