@@ -552,6 +552,17 @@ class Visitor extends NodeVisitor
         $additions = $this->additionalTagStrings[$name];
 
         $docCommentText = $docComment->getText();
+        if (preg_match('/(?:^\h*\*|\/\*\*)\h*@phpstan-return\b/m', $docCommentText) === 1) {
+            $additions = array_filter(
+                $additions,
+                static fn (string $tag): bool => ! str_starts_with($tag, '@phpstan-return ')
+            );
+        }
+
+        if (count($additions) === 0) {
+            return null;
+        }
+
         $newDocComment = sprintf(
             "%s\n * %s\n */",
             substr($docCommentText, 0, -self::WP_INDENT_SIZE),
