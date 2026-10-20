@@ -32,3 +32,6 @@ assertType('_WP_Dependency|false', Faker::wpScripts()->query(Faker::nonEmptyStri
 assertType('bool', Faker::wpScripts()->query(Faker::nonEmptyString(), 'enqueued'));
 assertType('_WP_Dependency|false', Faker::wpStyles()->query(Faker::nonEmptyString(), 'registered'));
 assertType('bool', Faker::wpStyles()->query(Faker::nonEmptyString(), 'enqueued'));
+
+// Always false if $status is not a known status
+assertType('false', Faker::wpDependencies()->query(Faker::nonEmptyString(), 'unknown'));

@@ -299,6 +299,51 @@ class Visitor extends NodeVisitor
         return $names;
     }
 
+    /**
+     * @param array<\phpDocumentor\Reflection\DocBlock\Tag> $tags
+     * @return list<string>
+     */
+    private static function getTemplateNamesFromTags(array $tags): array
+    {
+        $names = [];
+
+        foreach ($tags as $tag) {
+            if (! ($tag instanceof Generic)) {
+                continue;
+            }
+
+            if (preg_match('#^\s*(\S+)#', (string)$tag, $matches) !== 1) {
+                continue;
+            }
+
+            $names[] = $matches[1];
+        }
+
+        return $names;
+    }
+
+    /**
+     * @return list<string>
+     */
+    private function getParamNamesFromMap(string $symbolName): array
+    {
+        if (! array_key_exists($symbolName, $this->functionMap)) {
+            return [];
+        }
+
+        $names = [];
+
+        foreach (array_keys($this->functionMap[$symbolName]) as $paramName) {
+            if (! is_string($paramName) || str_starts_with($paramName, '@')) {
+                continue;
+            }
+
+            $names[] = $paramName;
+        }
+
+        return $names;
+    }
+
     private function addTags(string $name, Doc $docComment): ?Doc
     {
         $additions = $this->additionalTags[$name] ?? [];
@@ -311,6 +356,15 @@ class Visitor extends NodeVisitor
         }
 
         $additions = $this->discoverInheritedArgs($docblock, $additions);
+        $mapParamNames = $this->getParamNamesFromMap($name);
+
+        // A parameter type from the function map replaces the one generated from the hash notation.
+        $additions = array_filter(
+            $additions,
+            static function (WordPressTag $tag) use ($mapParamNames): bool {
+                return $tag->tag !== '@phpstan-param' || ! in_array($tag->name, $mapParamNames, true);
+            }
+        );
 
         /** @var list<string> $additionStrings */
         $additionStrings = array_map(
@@ -567,6 +621,24 @@ class Visitor extends NodeVisitor
             );
         }
 
+        $existingParamNames = $this->getVariableNamesFromTags($docblock->getTagsByName('phpstan-param'));
+        $existingTemplateNames = self::getTemplateNamesFromTags($docblock->getTagsByName('phpstan-template'));
+
+        $additions = array_filter(
+            $additions,
+            static function (string $tag) use ($existingParamNames, $existingTemplateNames): bool {
+                if (preg_match('#^@phpstan-param\s.*\$([a-zA-Z_\x80-\xff][a-zA-Z0-9_\x80-\xff]*)$#s', $tag, $matches) === 1) {
+                    return ! in_array($matches[1], $existingParamNames, true);
+                }
+
+                if (preg_match('#^@phpstan-template\s+(\S+)#', $tag, $matches) === 1) {
+                    return ! in_array($matches[1], $existingTemplateNames, true);
+                }
+
+                return true;
+            }
+        );
+
         if (count($additions) === 0) {
             return null;
         }
@@ -616,7 +688,11 @@ class Visitor extends NodeVisitor
 
         // It's common for an args parameter to accept a query var string or array with `string|array`.
         // Remove the accepted string type for these so we get the strongest typing we can manage.
-        $tagVariableType = str_replace(['|string', 'string|'], '', $tagVariableType);
+        $members = WordPressTag::getUnionMembers($tagVariableType);
+
+        if ($members !== null && count($members) > 1) {
+            $tagVariableType = implode('|', array_diff($members, ['string']));
+        }
 
         $tag = new WordPressTag();
         $tag->tag = '@phpstan-param';
@@ -753,37 +829,41 @@ class Visitor extends NodeVisitor
 
     private static function getTypeNameFromString(string $tagVariable): ?string
     {
-        // PHPStan doesn't support typed array shapes (`int[]{...}`) so replace
-        // typed arrays such as `int[]` with `array`.
-        $tagVariableType = preg_replace('#[a-zA-Z0-9_]+\[\]#', 'array', $tagVariable);
+        $members = WordPressTag::getUnionMembers($tagVariable);
 
-        if ($tagVariableType === null) {
+        if ($members === null) {
             return null;
         }
 
-        $tagVariableType = str_replace(
-            [
-                'stdClass',
-                '\\object',
-            ],
-            'object',
-            $tagVariableType
+        $members = array_map(
+            static function (string $member): string {
+                // PHPStan doesn't support typed array shapes (`int[]{...}`) so replace
+                // typed arrays such as `int[]` with `array`.
+                if (preg_match('#^[a-zA-Z0-9_\\\\]+(?:\[\])+$#', $member) === 1) {
+                    return 'array';
+                }
+
+                if (in_array(ltrim($member, '\\'), ['stdClass', 'object'], true)) {
+                    return 'object';
+                }
+
+                return $member;
+            },
+            $members
         );
 
-        $supportedTypes = [
-            'object',
-            'array',
-        ];
-
-        foreach ($supportedTypes as $supportedType) {
-            if (! str_contains($tagVariableType, "{$supportedType}|")) {
-                continue;
-            }
-            // Move the type that uses the hash notation to the end of union types so the shape works.
-            $tagVariableType = sprintf('%s|%s', str_replace("{$supportedType}|", '', $tagVariableType), $supportedType);
+        // Move the type that uses the hash notation to the end of union types so the shape works.
+        foreach (['object', 'array'] as $supportedType) {
+            $hashTypes = array_filter(
+                $members,
+                static function (string $member) use ($supportedType): bool {
+                    return $member === $supportedType || str_starts_with($member, "{$supportedType}<");
+                }
+            );
+            $members = array_merge(array_diff_key($members, $hashTypes), $hashTypes);
         }
 
-        return $tagVariableType;
+        return implode('|', $members);
     }
 
     /**

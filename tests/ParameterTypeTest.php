@@ -450,4 +450,17 @@ class ParameterTypeTest extends IntegrationTest
             ]
         );
     }
+
+    public function testWpEnqueueScriptModule(): void
+    {
+        $this->analyse(
+            __DIR__ . '/data/param/wp-enqueue-script-module.php',
+            [
+                ['Parameter #5 $args of function wp_enqueue_script_module expects array{in_footer?: bool, fetchpriority?: \'auto\'|\'high\'|\'low\', ...<string, bool|string>}, array{in_footer: \'yes\'} given.', 10],
+                ['Parameter #5 $args of function wp_enqueue_script_module expects array{in_footer?: bool, fetchpriority?: \'auto\'|\'high\'|\'low\', ...<string, bool|string>}, array{fetchpriority: \'urgent\'} given.', 11],
+                ['Parameter #5 $args of function wp_enqueue_script_module expects array{in_footer?: bool, fetchpriority?: \'auto\'|\'high\'|\'low\', ...<string, bool|string>}, array{other: 1} given.', 12],
+                ['Parameter #5 $args of function wp_enqueue_script_module expects array{in_footer?: bool, fetchpriority?: \'auto\'|\'high\'|\'low\', ...<string, bool|string>}, array{1: true} given.', 13],
+            ]
+        );
+    }
 }

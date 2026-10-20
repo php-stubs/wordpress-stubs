@@ -188,4 +188,122 @@ final class VisitorTest extends TestCase
         self::assertStringContainsString('foo?: bool', $listItems);
         self::assertStringNotContainsString('foo?: int', $listItems);
     }
+
+    /**
+     * A shape documented on a generic array becomes an unsealed shape keeping the generic types,
+     * and only the top-level `string` is removed from the type.
+     */
+    public function testArrayShapeOfGenericArrayIsUnsealed(): void
+    {
+        $code = <<<'PHP'
+        <?php
+        /**
+         * @param string|array<string, string|bool> $args {
+         *     Optional. Arguments.
+         *
+         *     @type bool                $in_footer     Whether to print in the footer.
+         *     @type 'auto'|'low'|'high' $fetchpriority Fetch priority.
+         * }
+         */
+        function wpstubs_test_generic_shape($args = []) {}
+        PHP;
+
+        $stubs = self::generateStubs($code);
+
+        self::assertStringContainsString(
+            "@phpstan-param array{\n *   in_footer?: bool,\n *   fetchpriority?: 'auto'|'low'|'high',\n *   ...<string, string|bool>,\n * } \$args",
+            $stubs
+        );
+    }
+
+    /**
+     * A list of lists of array shapes is formatted as nested generic arrays.
+     */
+    public function testListOfListsOfArrayShapes(): void
+    {
+        $code = <<<'PHP'
+        <?php
+        /**
+         * @param array[][] $fonts {
+         *     Optional. Font families.
+         *
+         *     @type array ...$0 {
+         *         Font variations.
+         *
+         *         @type array ...$0 {
+         *             Font face.
+         *
+         *             @type string $font-family The font-family property.
+         *             @type string $font-style  Optional. The font-style property. Default 'normal'.
+         *         }
+         *     }
+         * }
+         */
+        function wpstubs_test_nested_lists($fonts = []) {}
+        PHP;
+
+        $stubs = self::generateStubs($code);
+
+        self::assertStringContainsString(
+            "@phpstan-param array<int|string, array<array-key, array{\n *   font-family: string,\n *   font-style?: string,\n * }>> \$fonts",
+            $stubs
+        );
+    }
+
+    /**
+     * A parameter type from the function map replaces the one generated from the hash notation.
+     *
+     * @runInSeparateProcess
+     * @preserveGlobalState disabled
+     */
+    public function testMapParamReplacesGeneratedParam(): void
+    {
+        $code = <<<'PHP'
+        <?php
+        /**
+         * @param array $args {
+         *     Optional. Extra arguments that get passed to the callback function.
+         *
+         *     @type string $label_for Label.
+         *     @type string $class     Class.
+         * }
+         */
+        function add_settings_field($id, $title, $callback, $page, $section = 'default', $args = array()) {}
+        PHP;
+
+        $stubs = self::generateStubs($code);
+
+        self::assertSame(1, substr_count($stubs, '@phpstan-param'), $stubs);
+        self::assertStringContainsString('@phpstan-param array{label_for?: string, class?: string, ...} $args', $stubs);
+    }
+
+    /**
+     * Function map parameters and templates do not duplicate the ones written in core.
+     *
+     * @runInSeparateProcess
+     * @preserveGlobalState disabled
+     */
+    public function testMapTagsDoNotDuplicateExistingTags(): void
+    {
+        $code = <<<'PHP'
+        <?php
+        /**
+         * @param mixed $value The array or string to be stripped.
+         * @return mixed The stripped value.
+         *
+         * @phpstan-template T
+         * @phpstan-param T $value
+         * @phpstan-return (T is string ? string : T)
+         */
+        function stripslashes_from_strings_only($value) {}
+        PHP;
+
+        $stubs = self::generateStubs($code);
+
+        self::assertSame(1, substr_count($stubs, '@phpstan-template'), $stubs);
+        self::assertSame(1, substr_count($stubs, '@phpstan-param'), $stubs);
+        self::assertSame(1, substr_count($stubs, '@phpstan-return'), $stubs);
+        self::assertStringContainsString('@phpstan-param T $value', $stubs);
+        self::assertStringContainsString('@phpstan-pure', $stubs);
+    }
 }
