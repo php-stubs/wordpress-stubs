@@ -45004,7 +45004,6 @@ namespace {
          *   filename: string|null,
          *   http_response: WP_HTTP_Requests_Response|null,
          * }
-         * @phpstan-return array{headers: \WpOrg\Requests\Utility\CaseInsensitiveDictionary, body: string, response: array{code: int, message: string}, cookies: array<int, \WP_Http_Cookie>, filename: string|null, http_response: \WP_HTTP_Requests_Response}|\WP_Error
          */
         public function request($url, $args = array())
         {
@@ -50965,7 +50964,6 @@ namespace {
          * @phpstan-return (
          *     $query is array{ fields: 'ids', ... } ? int[] : WP_Post[]
          * )
-         * @phpstan-return ($query is array ? ($query is array{fields: 'id=>parent'|'ids', ...} ? array<int, int> : array<int, \WP_Post>) : array<int, int>|array<int, \WP_Post>)
          */
         public function query($query)
         {
@@ -130545,7 +130543,6 @@ namespace {
      * @phpstan-template T
      * @phpstan-param T|string $value
      * @phpstan-pure
-     * @phpstan-return ($value is string ? ($value is '' ? '' : string) : T)
      */
     function stripslashes_from_strings_only($value)
     {
@@ -132779,7 +132776,6 @@ namespace {
      *                     baseurl: non-empty-string,
      *                 }
      *                |array{ error: non-empty-string }
-     * @phpstan-return array{path: string, url: string, subdir: string, basedir: string, baseurl: string, error: false|string}
      */
     function wp_get_upload_dir()
     {
@@ -132828,7 +132824,6 @@ namespace {
      *                     baseurl: non-empty-string,
      *                 }
      *                |array{ error: non-empty-string }
-     * @phpstan-return array{path: string, url: string, subdir: string, basedir: string, baseurl: string, error: false|string}
      */
     function wp_upload_dir($time = \null, $create_dir = \true, $refresh_cache = \false)
     {
@@ -133158,7 +133153,6 @@ namespace {
      *   code?: string,
      *   exit?: bool,
      * } $args
-     * @phpstan-return ($args is array{exit: false, ...} ? void : never)
      */
     function wp_die($message = '', $title = '', $args = array())
     {
@@ -150588,7 +150582,6 @@ namespace {
      *                   as the function otherwise exits rather than returning false.
      * @phpstan-return ( $action is -1 ? int|false : int )
      * @phpstan-param string $action
-     * @phpstan-return ($action is -1 ? 1|2|false : 1|2)
      */
     function check_admin_referer($action = -1, $query_arg = '_wpnonce')
     {
@@ -150610,7 +150603,6 @@ namespace {
      *                   as the function otherwise exits rather than returning false.
      * @phpstan-return ( $stop is true ? int : int|false )
      * @phpstan-param string $action
-     * @phpstan-return ($stop is true ? 1|2 : 1|2|false)
      */
     function check_ajax_referer($action = -1, $query_arg = \false, $stop = \true)
     {
@@ -153294,7 +153286,6 @@ namespace {
      * @return string[]|WP_Post_Type[] An array of post type names or objects.
      * @phpstan-return ( $output is 'names' ? string[] : WP_Post_Type[] )
      * @phpstan-param 'names'|'objects' $output
-     * @phpstan-return ($output is 'names' ? array<string, string> : array<string, \WP_Post_Type>)
      */
     function get_post_types($args = array(), $output = 'names', $operator = 'and')
     {
@@ -154025,7 +154016,6 @@ namespace {
      *   w?: int,
      *   year?: int,
      * } $args
-     * @phpstan-return ($args is array{fields: 'id=>parent'|'ids', ...} ? array<int, int> : array<int, \WP_Post>)
      */
     function get_posts($args = \null)
     {
@@ -154298,7 +154288,6 @@ namespace {
      * )
      * @phpstan-template T of mixed
      * @phpstan-param T $value
-     * @phpstan-return ($field is 'ID'|'post_parent'|'menu_order' ? (T is int ? T : int) : ($field is 'ancestors' ? (T is array<int<0, max>>|list<int<0, max>> ? T : (T is list ? list<int<0, max>> : array<int<0, max>>)) : ($context is 'raw' ? T : ($context is 'attribute'|'js' ? string : ($context is 'edit' ? ($field is not 'post_content' ? string : mixed) : mixed)))))
      */
     function sanitize_post_field($field, $value, $post_id, $context = 'display')
     {
@@ -154823,7 +154812,6 @@ namespace {
      *   meta_input?: array,
      *   page_template?: string,
      * } $postarr
-     * @phpstan-return ($wp_error is false ? int<0, max> : int<1, max>|\WP_Error)
      */
     function wp_insert_post($postarr, $wp_error = \false, $fire_after_hooks = \true)
     {
@@ -154876,7 +154864,6 @@ namespace {
      *   meta_input?: array,
      *   page_template?: string,
      * } $postarr See wp_insert_post()
-     * @phpstan-return ($wp_error is false ? int<0, max> : int<1, max>|\WP_Error)
      */
     function wp_update_post($postarr = array(), $wp_error = \false, $fire_after_hooks = \true)
     {
@@ -155367,7 +155354,6 @@ namespace {
      * @phpstan-return (
      *     $wp_error is false ? int : int|WP_Error
      * )
-     * @phpstan-return ($wp_error is false ? int<0, max> : int<1, max>|\WP_Error)
      */
     function wp_insert_attachment($args, $file = \false, $parent_post_id = 0, $wp_error = \false, $fire_after_hooks = \true)
     {
@@ -161313,7 +161299,6 @@ namespace {
      *         )
      *     )
      * )
-     * @phpstan-return ($term is 0 ? 0 : ($term is '' ? null : ($taxonomy is '' ? string|null : array{term_id: string, term_taxonomy_id: string}|null)))
      */
     function term_exists($term, $taxonomy = '', $parent_term = \null)
     {

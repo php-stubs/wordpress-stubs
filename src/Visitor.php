@@ -561,7 +561,9 @@ class Visitor extends NodeVisitor
         if (count($docblock->getTagsByName('phpstan-return')) > 0) {
             $additions = array_filter(
                 $additions,
-                static fn (string $tag): bool => ! str_starts_with($tag, '@phpstan-return ')
+                static function (string $tag): bool {
+                    return ! str_starts_with($tag, '@phpstan-return ');
+                }
             );
         }
 
