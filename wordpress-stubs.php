@@ -42457,7 +42457,7 @@ namespace {
          * @param string $handle Name of the item. Should be unique.
          * @param string $status Optional. Status of the item to query. Default 'registered'.
          * @return bool|_WP_Dependency Found, or object Item data.
-         * @phpstan-template TStatus 'registered'|'scripts'|'enqueued'|'queued'|'to_do'|'to_print'|'done'|'printed'
+         * @phpstan-template TStatus of 'registered'|'scripts'|'enqueued'|'queued'|'to_do'|'to_print'|'done'|'printed'
          * @phpstan-return ($handle is not non-empty-string ? false : ($status is not TStatus ? false : ($status is 'registered'|'scripts' ? _WP_Dependency|false : bool)))
          */
         public function query($handle, $status = 'registered')
@@ -45004,7 +45004,6 @@ namespace {
          *   filename: string|null,
          *   http_response: WP_HTTP_Requests_Response|null,
          * }
-         * @phpstan-return array{headers: \WpOrg\Requests\Utility\CaseInsensitiveDictionary, body: string, response: array{code: int, message: string}, cookies: array<int, \WP_Http_Cookie>, filename: string|null, http_response: \WP_HTTP_Requests_Response}|\WP_Error
          */
         public function request($url, $args = array())
         {
@@ -45784,6 +45783,7 @@ namespace {
          * @param string $filename
          * @param string $mime_type
          * @return array { filename|null, extension, mime-type }
+         * @phpstan-return array{string|null, string|false, string}
          */
         protected function get_output_format($filename = \null, $mime_type = \null)
         {
@@ -50965,7 +50965,6 @@ namespace {
          * @phpstan-return (
          *     $query is array{ fields: 'ids', ... } ? int[] : WP_Post[]
          * )
-         * @phpstan-return ($query is array ? ($query is array{fields: 'id=>parent'|'ids', ...} ? array<int, int> : array<int, \WP_Post>) : array<int, int>|array<int, \WP_Post>)
          */
         public function query($query)
         {
@@ -53236,9 +53235,10 @@ namespace {
          *     @type bool                $in_footer     Whether to print the script module in the footer. Only relevant to block themes. Default 'false'. Optional.
          *     @type 'auto'|'low'|'high' $fetchpriority Fetch priority. Default 'auto'. Optional.
          * }
-         * @phpstan-param array<string, bool>{
+         * @phpstan-param array{
          *   in_footer?: bool,
          *   fetchpriority?: 'auto'|'low'|'high',
+         *   ...<string, string|bool>,
          * } $args
          * @phpstan-return void
          */
@@ -53320,9 +53320,10 @@ namespace {
          *     @type bool                $in_footer     Whether to print the script module in the footer. Only relevant to block themes. Default 'false'. Optional.
          *     @type 'auto'|'low'|'high' $fetchpriority Fetch priority. Default 'auto'. Optional.
          * }
-         * @phpstan-param array<string, bool>{
+         * @phpstan-param array{
          *   in_footer?: bool,
          *   fetchpriority?: 'auto'|'low'|'high',
+         *   ...<string, string|bool>,
          * } $args
          * @phpstan-return void
          */
@@ -68846,24 +68847,22 @@ namespace {
          * @param array[][] $fonts Optional. The font-families and their font variations.
          *                         See {@see wp_print_font_faces()} for the supported fields.
          *                         Default empty array.
-         * @phpstan-param array[]<int|string, array{
-         * ?: array<array-key, array{
-         *     font-family: string,
-         *     src: string|string[],
-         *     font-style?: string,
-         *     font-weight?: string,
-         *     font-display?: string,
-         *     ascent-override?: string,
-         *     descent-override?: string,
-         *     font-stretch?: string,
-         *     font-variant?: string,
-         *     font-feature-settings?: string,
-         *     font-variation-settings?: string,
-         *     line-gap-override?: string,
-         *     size-adjust?: string,
-         *     unicode-range?: string,
-         * }>,
-         * }> $fonts See wp_print_font_faces()
+         * @phpstan-param array<int|string, array<array-key, array{
+         *   font-family: string,
+         *   src: string|string[],
+         *   font-style?: string,
+         *   font-weight?: string,
+         *   font-display?: string,
+         *   ascent-override?: string,
+         *   descent-override?: string,
+         *   font-stretch?: string,
+         *   font-variant?: string,
+         *   font-feature-settings?: string,
+         *   font-variation-settings?: string,
+         *   line-gap-override?: string,
+         *   size-adjust?: string,
+         *   unicode-range?: string,
+         * }>> $fonts See wp_print_font_faces()
          * @phpstan-return void
          */
         public function generate_and_print(array $fonts)
@@ -107653,10 +107652,6 @@ namespace {
      *     @type string $class     CSS Class to be added to the `<tr>` element when the
      *                             field is output.
      * }
-     * @phpstan-param array{
-     *   label_for?: string,
-     *   class?: string,
-     * } $args
      * @phpstan-param array{label_for?: string, class?: string, ...} $args
      * @phpstan-return void
      */
@@ -120906,9 +120901,6 @@ namespace {
      *     @type string $taxonomy Taxonomy to retrieve terms for. Default 'category'.
      * }
      * @return array List of category objects.
-     * @phpstan-param array{
-     *   taxonomy?: string,
-     * } $args
      * @phpstan-param array{taxonomy?:string,...} $args
      * @phpstan-return ($args is array{fields: 'count', ...} ? list<numeric-string> : ($args is array{fields: 'names'|'slugs', ...} ? list<string> : ($args is array{fields: 'id=>name'|'id=>slug', ...} ? array<int, string> : ($args is array{fields: 'id=>parent', ...} ? array<int, int> : ($args is array{fields: 'ids'|'tt_ids', ...} ? list<int> : array<int, \WP_Term>)))))
      */
@@ -129349,24 +129341,22 @@ namespace {
      *         }
      *     }
      * }
-     * @phpstan-param array[]<int|string, array{
-     * ?: array<array-key, array{
-     *     font-family: string,
-     *     src: string|string[],
-     *     font-style?: string,
-     *     font-weight?: string,
-     *     font-display?: string,
-     *     ascent-override?: string,
-     *     descent-override?: string,
-     *     font-stretch?: string,
-     *     font-variant?: string,
-     *     font-feature-settings?: string,
-     *     font-variation-settings?: string,
-     *     line-gap-override?: string,
-     *     size-adjust?: string,
-     *     unicode-range?: string,
-     * }>,
-     * }> $fonts
+     * @phpstan-param array<int|string, array<array-key, array{
+     *   font-family: string,
+     *   src: string|string[],
+     *   font-style?: string,
+     *   font-weight?: string,
+     *   font-display?: string,
+     *   ascent-override?: string,
+     *   descent-override?: string,
+     *   font-stretch?: string,
+     *   font-variant?: string,
+     *   font-feature-settings?: string,
+     *   font-variation-settings?: string,
+     *   line-gap-override?: string,
+     *   size-adjust?: string,
+     *   unicode-range?: string,
+     * }>> $fonts
      * @phpstan-return void
      */
     function wp_print_font_faces($fonts = array())
@@ -130542,10 +130532,7 @@ namespace {
      * @phpstan-template T
      * @phpstan-param T $value
      * @phpstan-return (T is string ? string : T)
-     * @phpstan-template T
-     * @phpstan-param T|string $value
      * @phpstan-pure
-     * @phpstan-return ($value is string ? ($value is '' ? '' : string) : T)
      */
     function stripslashes_from_strings_only($value)
     {
@@ -132779,7 +132766,6 @@ namespace {
      *                     baseurl: non-empty-string,
      *                 }
      *                |array{ error: non-empty-string }
-     * @phpstan-return array{path: string, url: string, subdir: string, basedir: string, baseurl: string, error: false|string}
      */
     function wp_get_upload_dir()
     {
@@ -132828,7 +132814,6 @@ namespace {
      *                     baseurl: non-empty-string,
      *                 }
      *                |array{ error: non-empty-string }
-     * @phpstan-return array{path: string, url: string, subdir: string, basedir: string, baseurl: string, error: false|string}
      */
     function wp_upload_dir($time = \null, $create_dir = \true, $refresh_cache = \false)
     {
@@ -133158,7 +133143,6 @@ namespace {
      *   code?: string,
      *   exit?: bool,
      * } $args
-     * @phpstan-return ($args is array{exit: false, ...} ? void : never)
      */
     function wp_die($message = '', $title = '', $args = array())
     {
@@ -150588,7 +150572,6 @@ namespace {
      *                   as the function otherwise exits rather than returning false.
      * @phpstan-return ( $action is -1 ? int|false : int )
      * @phpstan-param string $action
-     * @phpstan-return ($action is -1 ? 1|2|false : 1|2)
      */
     function check_admin_referer($action = -1, $query_arg = '_wpnonce')
     {
@@ -150610,7 +150593,6 @@ namespace {
      *                   as the function otherwise exits rather than returning false.
      * @phpstan-return ( $stop is true ? int : int|false )
      * @phpstan-param string $action
-     * @phpstan-return ($stop is true ? 1|2 : 1|2|false)
      */
     function check_ajax_referer($action = -1, $query_arg = \false, $stop = \true)
     {
@@ -153294,7 +153276,6 @@ namespace {
      * @return string[]|WP_Post_Type[] An array of post type names or objects.
      * @phpstan-return ( $output is 'names' ? string[] : WP_Post_Type[] )
      * @phpstan-param 'names'|'objects' $output
-     * @phpstan-return ($output is 'names' ? array<string, string> : array<string, \WP_Post_Type>)
      */
     function get_post_types($args = array(), $output = 'names', $operator = 'and')
     {
@@ -154025,7 +154006,6 @@ namespace {
      *   w?: int,
      *   year?: int,
      * } $args
-     * @phpstan-return ($args is array{fields: 'id=>parent'|'ids', ...} ? array<int, int> : array<int, \WP_Post>)
      */
     function get_posts($args = \null)
     {
@@ -154298,7 +154278,6 @@ namespace {
      * )
      * @phpstan-template T of mixed
      * @phpstan-param T $value
-     * @phpstan-return ($field is 'ID'|'post_parent'|'menu_order' ? (T is int ? T : int) : ($field is 'ancestors' ? (T is array<int<0, max>>|list<int<0, max>> ? T : (T is list ? list<int<0, max>> : array<int<0, max>>)) : ($context is 'raw' ? T : ($context is 'attribute'|'js' ? string : ($context is 'edit' ? ($field is not 'post_content' ? string : mixed) : mixed)))))
      */
     function sanitize_post_field($field, $value, $post_id, $context = 'display')
     {
@@ -154823,7 +154802,6 @@ namespace {
      *   meta_input?: array,
      *   page_template?: string,
      * } $postarr
-     * @phpstan-return ($wp_error is false ? int<0, max> : int<1, max>|\WP_Error)
      */
     function wp_insert_post($postarr, $wp_error = \false, $fire_after_hooks = \true)
     {
@@ -154876,7 +154854,6 @@ namespace {
      *   meta_input?: array,
      *   page_template?: string,
      * } $postarr See wp_insert_post()
-     * @phpstan-return ($wp_error is false ? int<0, max> : int<1, max>|\WP_Error)
      */
     function wp_update_post($postarr = array(), $wp_error = \false, $fire_after_hooks = \true)
     {
@@ -155367,7 +155344,6 @@ namespace {
      * @phpstan-return (
      *     $wp_error is false ? int : int|WP_Error
      * )
-     * @phpstan-return ($wp_error is false ? int<0, max> : int<1, max>|\WP_Error)
      */
     function wp_insert_attachment($args, $file = \false, $parent_post_id = 0, $wp_error = \false, $fire_after_hooks = \true)
     {
@@ -159447,9 +159423,10 @@ namespace {
      *     @type bool $prettify Whether to add new lines and indents to output.
      *                          Default to whether the `SCRIPT_DEBUG` constant is defined.
      * }
-     * @phpstan-param array<string, bool>{
+     * @phpstan-param array{
      *   optimize?: bool,
      *   prettify?: bool,
+     *   ...<string, bool>,
      * } $options
      * @phpstan-return void
      */
@@ -159476,13 +159453,14 @@ namespace {
      *     @type string           $media  The media for which this stylesheet has been defined.
      *     @type string|null      $path   Absolute path to the stylesheet, so that it can potentially be inlined.
      * }
-     * @phpstan-param array<string, bool|null>|array{
+     * @phpstan-param array{
      *   handle?: string,
      *   src?: string|false,
      *   deps?: string[],
      *   ver?: string|bool|null,
      *   media?: string,
      *   path?: string|null,
+     *   ...<string, string|string[]|bool|null>,
      * } $args
      */
     function wp_enqueue_block_style($block_name, $args)
@@ -159685,9 +159663,10 @@ namespace {
      *     @type bool                $in_footer     Whether to print the script module in the footer. Only relevant to block themes. Default 'false'. Optional.
      *     @type 'auto'|'low'|'high' $fetchpriority Fetch priority. Default 'auto'. Optional.
      * }
-     * @phpstan-param array<string, bool>{
+     * @phpstan-param array{
      *   in_footer?: bool,
      *   fetchpriority?: 'auto'|'low'|'high',
+     *   ...<string, string|bool>,
      * } $args
      */
     function wp_register_script_module(string $id, string $src, array $deps = array(), $version = \false, array $args = array())
@@ -159732,9 +159711,10 @@ namespace {
      *     @type bool                $in_footer     Whether to print the script module in the footer. Only relevant to block themes. Default 'false'. Optional.
      *     @type 'auto'|'low'|'high' $fetchpriority Fetch priority. Default 'auto'. Optional.
      * }
-     * @phpstan-param array<string, bool>{
+     * @phpstan-param array{
      *   in_footer?: bool,
      *   fetchpriority?: 'auto'|'low'|'high',
+     *   ...<string, string|bool>,
      * } $args
      */
     function wp_enqueue_script_module(string $id, string $src = '', array $deps = array(), $version = \false, array $args = array())
@@ -161313,7 +161293,6 @@ namespace {
      *         )
      *     )
      * )
-     * @phpstan-return ($term is 0 ? 0 : ($term is '' ? null : ($taxonomy is '' ? string|null : array{term_id: string, term_taxonomy_id: string}|null)))
      */
     function term_exists($term, $taxonomy = '', $parent_term = \null)
     {
