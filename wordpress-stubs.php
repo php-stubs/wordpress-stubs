@@ -42457,7 +42457,7 @@ namespace {
          * @param string $handle Name of the item. Should be unique.
          * @param string $status Optional. Status of the item to query. Default 'registered'.
          * @return bool|_WP_Dependency Found, or object Item data.
-         * @phpstan-template TStatus 'registered'|'scripts'|'enqueued'|'queued'|'to_do'|'to_print'|'done'|'printed'
+         * @phpstan-template TStatus of 'registered'|'scripts'|'enqueued'|'queued'|'to_do'|'to_print'|'done'|'printed'
          * @phpstan-return ($handle is not non-empty-string ? false : ($status is not TStatus ? false : ($status is 'registered'|'scripts' ? _WP_Dependency|false : bool)))
          */
         public function query($handle, $status = 'registered')
@@ -45783,6 +45783,7 @@ namespace {
          * @param string $filename
          * @param string $mime_type
          * @return array { filename|null, extension, mime-type }
+         * @phpstan-return array{string|null, string|false, string}
          */
         protected function get_output_format($filename = \null, $mime_type = \null)
         {
@@ -53234,9 +53235,10 @@ namespace {
          *     @type bool                $in_footer     Whether to print the script module in the footer. Only relevant to block themes. Default 'false'. Optional.
          *     @type 'auto'|'low'|'high' $fetchpriority Fetch priority. Default 'auto'. Optional.
          * }
-         * @phpstan-param array<string, bool>{
+         * @phpstan-param array{
          *   in_footer?: bool,
          *   fetchpriority?: 'auto'|'low'|'high',
+         *   ...<string, string|bool>,
          * } $args
          * @phpstan-return void
          */
@@ -53318,9 +53320,10 @@ namespace {
          *     @type bool                $in_footer     Whether to print the script module in the footer. Only relevant to block themes. Default 'false'. Optional.
          *     @type 'auto'|'low'|'high' $fetchpriority Fetch priority. Default 'auto'. Optional.
          * }
-         * @phpstan-param array<string, bool>{
+         * @phpstan-param array{
          *   in_footer?: bool,
          *   fetchpriority?: 'auto'|'low'|'high',
+         *   ...<string, string|bool>,
          * } $args
          * @phpstan-return void
          */
@@ -68844,24 +68847,22 @@ namespace {
          * @param array[][] $fonts Optional. The font-families and their font variations.
          *                         See {@see wp_print_font_faces()} for the supported fields.
          *                         Default empty array.
-         * @phpstan-param array[]<int|string, array{
-         * ?: array<array-key, array{
-         *     font-family: string,
-         *     src: string|string[],
-         *     font-style?: string,
-         *     font-weight?: string,
-         *     font-display?: string,
-         *     ascent-override?: string,
-         *     descent-override?: string,
-         *     font-stretch?: string,
-         *     font-variant?: string,
-         *     font-feature-settings?: string,
-         *     font-variation-settings?: string,
-         *     line-gap-override?: string,
-         *     size-adjust?: string,
-         *     unicode-range?: string,
-         * }>,
-         * }> $fonts See wp_print_font_faces()
+         * @phpstan-param array<int|string, array<array-key, array{
+         *   font-family: string,
+         *   src: string|string[],
+         *   font-style?: string,
+         *   font-weight?: string,
+         *   font-display?: string,
+         *   ascent-override?: string,
+         *   descent-override?: string,
+         *   font-stretch?: string,
+         *   font-variant?: string,
+         *   font-feature-settings?: string,
+         *   font-variation-settings?: string,
+         *   line-gap-override?: string,
+         *   size-adjust?: string,
+         *   unicode-range?: string,
+         * }>> $fonts See wp_print_font_faces()
          * @phpstan-return void
          */
         public function generate_and_print(array $fonts)
@@ -107651,10 +107652,6 @@ namespace {
      *     @type string $class     CSS Class to be added to the `<tr>` element when the
      *                             field is output.
      * }
-     * @phpstan-param array{
-     *   label_for?: string,
-     *   class?: string,
-     * } $args
      * @phpstan-param array{label_for?: string, class?: string, ...} $args
      * @phpstan-return void
      */
@@ -120904,9 +120901,6 @@ namespace {
      *     @type string $taxonomy Taxonomy to retrieve terms for. Default 'category'.
      * }
      * @return array List of category objects.
-     * @phpstan-param array{
-     *   taxonomy?: string,
-     * } $args
      * @phpstan-param array{taxonomy?:string,...} $args
      * @phpstan-return ($args is array{fields: 'count', ...} ? list<numeric-string> : ($args is array{fields: 'names'|'slugs', ...} ? list<string> : ($args is array{fields: 'id=>name'|'id=>slug', ...} ? array<int, string> : ($args is array{fields: 'id=>parent', ...} ? array<int, int> : ($args is array{fields: 'ids'|'tt_ids', ...} ? list<int> : array<int, \WP_Term>)))))
      */
@@ -129347,24 +129341,22 @@ namespace {
      *         }
      *     }
      * }
-     * @phpstan-param array[]<int|string, array{
-     * ?: array<array-key, array{
-     *     font-family: string,
-     *     src: string|string[],
-     *     font-style?: string,
-     *     font-weight?: string,
-     *     font-display?: string,
-     *     ascent-override?: string,
-     *     descent-override?: string,
-     *     font-stretch?: string,
-     *     font-variant?: string,
-     *     font-feature-settings?: string,
-     *     font-variation-settings?: string,
-     *     line-gap-override?: string,
-     *     size-adjust?: string,
-     *     unicode-range?: string,
-     * }>,
-     * }> $fonts
+     * @phpstan-param array<int|string, array<array-key, array{
+     *   font-family: string,
+     *   src: string|string[],
+     *   font-style?: string,
+     *   font-weight?: string,
+     *   font-display?: string,
+     *   ascent-override?: string,
+     *   descent-override?: string,
+     *   font-stretch?: string,
+     *   font-variant?: string,
+     *   font-feature-settings?: string,
+     *   font-variation-settings?: string,
+     *   line-gap-override?: string,
+     *   size-adjust?: string,
+     *   unicode-range?: string,
+     * }>> $fonts
      * @phpstan-return void
      */
     function wp_print_font_faces($fonts = array())
@@ -130540,8 +130532,6 @@ namespace {
      * @phpstan-template T
      * @phpstan-param T $value
      * @phpstan-return (T is string ? string : T)
-     * @phpstan-template T
-     * @phpstan-param T|string $value
      * @phpstan-pure
      */
     function stripslashes_from_strings_only($value)
@@ -159433,9 +159423,10 @@ namespace {
      *     @type bool $prettify Whether to add new lines and indents to output.
      *                          Default to whether the `SCRIPT_DEBUG` constant is defined.
      * }
-     * @phpstan-param array<string, bool>{
+     * @phpstan-param array{
      *   optimize?: bool,
      *   prettify?: bool,
+     *   ...<string, bool>,
      * } $options
      * @phpstan-return void
      */
@@ -159462,13 +159453,14 @@ namespace {
      *     @type string           $media  The media for which this stylesheet has been defined.
      *     @type string|null      $path   Absolute path to the stylesheet, so that it can potentially be inlined.
      * }
-     * @phpstan-param array<string, bool|null>|array{
+     * @phpstan-param array{
      *   handle?: string,
      *   src?: string|false,
      *   deps?: string[],
      *   ver?: string|bool|null,
      *   media?: string,
      *   path?: string|null,
+     *   ...<string, string|string[]|bool|null>,
      * } $args
      */
     function wp_enqueue_block_style($block_name, $args)
@@ -159671,9 +159663,10 @@ namespace {
      *     @type bool                $in_footer     Whether to print the script module in the footer. Only relevant to block themes. Default 'false'. Optional.
      *     @type 'auto'|'low'|'high' $fetchpriority Fetch priority. Default 'auto'. Optional.
      * }
-     * @phpstan-param array<string, bool>{
+     * @phpstan-param array{
      *   in_footer?: bool,
      *   fetchpriority?: 'auto'|'low'|'high',
+     *   ...<string, string|bool>,
      * } $args
      */
     function wp_register_script_module(string $id, string $src, array $deps = array(), $version = \false, array $args = array())
@@ -159718,9 +159711,10 @@ namespace {
      *     @type bool                $in_footer     Whether to print the script module in the footer. Only relevant to block themes. Default 'false'. Optional.
      *     @type 'auto'|'low'|'high' $fetchpriority Fetch priority. Default 'auto'. Optional.
      * }
-     * @phpstan-param array<string, bool>{
+     * @phpstan-param array{
      *   in_footer?: bool,
      *   fetchpriority?: 'auto'|'low'|'high',
+     *   ...<string, string|bool>,
      * } $args
      */
     function wp_enqueue_script_module(string $id, string $src = '', array $deps = array(), $version = \false, array $args = array())
