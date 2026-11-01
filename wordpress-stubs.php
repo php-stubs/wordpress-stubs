@@ -142942,6 +142942,7 @@ namespace {
      * @since 5.5.1 Removed the ability to alter the list of types.
      *
      * @return string The current environment type.
+     * @phpstan-return 'development'|'local'|'production'|'staging'
      */
     function wp_get_environment_type()
     {
