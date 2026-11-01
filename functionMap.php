@@ -253,6 +253,7 @@ return [
     'wp_generate_uuid4' => ['lowercase-string&non-falsy-string', '@phpstan-impure' => ''],
     'wp_get_archives' => ['($args is array{echo: false|0, ...} ? string|void : void)'],
     'wp_get_comment_status' => ["'approved'|'spam'|'trash'|'unapproved'|false"],
+    'wp_get_development_mode' => ["''|'all'|'core'|'plugin'|'theme'"],
     'wp_get_elements_class_name' => ['lowercase-string&non-falsy-string'],
     'wp_get_environment_type' => ["'development'|'local'|'production'|'staging'"],
     'wp_get_http_headers' => [null, 'deprecated' => 'false'],

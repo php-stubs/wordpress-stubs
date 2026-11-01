@@ -142967,6 +142967,7 @@ namespace {
      * @since 6.3.0
      *
      * @return string The current development mode.
+     * @phpstan-return ''|'all'|'core'|'plugin'|'theme'
      */
     function wp_get_development_mode()
     {
