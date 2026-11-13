@@ -71,12 +71,18 @@ final class VisitorTest extends TestCase
      * @runInSeparateProcess
      * @preserveGlobalState disabled
      */
-    public function testMapReturnDoesNotOverrideExistingReturn(): void
+    public function testMapReturnOverridesExistingReturn(): void
     {
         $code = <<<'PHP'
         <?php
         /**
-         * @phpstan-return int|false
+         * Keep the original description.
+         *
+         * @param int|string $action Action to verify.
+         * @phpstan-param int $action
+         * @phpstan-return (
+         *     $action is -1 ? int|false : int
+         * )
          */
         function check_admin_referer($action = -1) {}
         /**
@@ -88,8 +94,11 @@ final class VisitorTest extends TestCase
         $stubs = self::generateStubs($code);
 
         self::assertSame(2, substr_count($stubs, '@phpstan-return'), $stubs);
-        self::assertStringContainsString('@phpstan-return int|false', $stubs);
-        self::assertStringNotContainsString('@phpstan-return ($action is', $stubs);
+        self::assertStringContainsString('@phpstan-return ($action is -1 ? 1|2|false : 1|2)', $stubs);
+        self::assertStringNotContainsString('@phpstan-param int $action', $stubs);
+        self::assertSame(2, substr_count($stubs, '@phpstan-param string $action'), $stubs);
+        self::assertStringContainsString('Keep the original description.', $stubs);
+        self::assertStringContainsString('Action to verify.', $stubs);
         self::assertStringContainsString('@phpstan-param string $action', $stubs);
         self::assertStringContainsString('@phpstan-return ($stop is true ? 1|2 : 1|2|false)', $stubs);
     }
