@@ -15,8 +15,11 @@ use PHPStan\PhpDocParser\ParserConfig;
 
 final class PhpStanTagMerger
 {
-    /** @param list<string> $additions */
-    public function merge(string $comment, array $additions): string
+    /**
+     * @param list<string> $additions
+     * @param callable(string, string): void|null $onOverride
+     */
+    public function merge(string $comment, array $additions, ?callable $onOverride = null): string
     {
         $config = new ParserConfig(['indexes' => true]);
         $lexer = new Lexer($config);
@@ -25,14 +28,23 @@ final class PhpStanTagMerger
         $tokens = new TokenIterator($lexer->tokenize($comment));
         $original = $parser->parse($tokens);
         $mapped = $parser->parse(new TokenIterator($lexer->tokenize(sprintf("/**\n * %s\n */", implode("\n * ", $additions)))));
-        $keys = array_map([$this, 'getTagKey'], $mapped->getTags());
+        $replacements = [];
+        foreach ($mapped->getTags() as $tag) {
+            $replacements[$this->getTagKey($tag)] = (string)$tag;
+        }
 
         $offset = 0;
         $parts = [];
         $rawTokens = $tokens->getTokens();
         foreach ($original->getTags() as $tag) {
-            if (! in_array($this->getTagKey($tag), $keys, true)) {
+            $tagKey = $this->getTagKey($tag);
+            if (! isset($replacements[$tagKey])) {
                 continue;
+            }
+
+            if ($onOverride !== null) {
+                // phpcs:ignore NeutronStandard.Functions.VariableFunctions.VariableFunction -- Invoke the override observer.
+                $onOverride((string)$tag, $replacements[$tagKey]);
             }
 
             $start = $tag->getAttribute(Attribute::START_INDEX);

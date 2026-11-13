@@ -91,7 +91,23 @@ final class VisitorTest extends TestCase
         function check_ajax_referer($action = -1, $query_arg = false, $stop = true) {}
         PHP;
 
-        $stubs = self::generateStubs($code);
+        $logFile = tempnam(sys_get_temp_dir(), 'wpstubs-overrides-');
+        self::assertNotFalse($logFile);
+        // phpcs:ignore Generic.PHP.ForbiddenFunctions.Found,WordPress.PHP.IniSet.Risky -- Capture generator diagnostics in the isolated test.
+        $previousLog = ini_set('error_log', $logFile);
+        try {
+            $stubs = self::generateStubs($code);
+            $log = file_get_contents($logFile);
+            self::assertNotFalse($log);
+            self::assertStringContainsString("check_admin_referer\nCore: @phpstan-param int \$action\nMap:  @phpstan-param string \$action", $log);
+            self::assertStringContainsString("check_admin_referer\nCore: @phpstan-return", $log);
+            self::assertStringContainsString('Map:  @phpstan-return ($action is -1 ? (1 | 2 | false) : (1 | 2))', $log);
+            self::assertStringNotContainsString('check_ajax_referer', $log);
+        } finally {
+            // phpcs:ignore Generic.PHP.ForbiddenFunctions.Found,WordPress.PHP.IniSet.Risky -- Restore the original log destination.
+            ini_set('error_log', $previousLog === false ? '' : $previousLog);
+            unlink($logFile);
+        }
 
         self::assertSame(2, substr_count($stubs, '@phpstan-return'), $stubs);
         self::assertStringContainsString('@phpstan-return ($action is -1 ? 1|2|false : 1|2)', $stubs);

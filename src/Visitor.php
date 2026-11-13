@@ -549,7 +549,14 @@ class Visitor extends NodeVisitor
             return null;
         }
 
-        $newDocComment = (new PhpStanTagMerger())->merge($docComment->getText(), $this->additionalTagStrings[$name]);
+        $newDocComment = (new PhpStanTagMerger())->merge(
+            $docComment->getText(),
+            $this->additionalTagStrings[$name],
+            static function (string $coreTag, string $mappedTag) use ($name): void {
+                // phpcs:ignore Generic.PHP.ForbiddenFunctions.Found -- Report intentional overrides during generation.
+                error_log(sprintf("%s\nCore: %s\nMap:  %s", $name, str_replace(["\r", "\n"], ' ', $coreTag), str_replace(["\r", "\n"], ' ', $mappedTag)));
+            }
+        );
 
         return new Doc($newDocComment, $docComment->getStartLine(), $docComment->getStartFilePos());
     }
